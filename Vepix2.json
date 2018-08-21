@@ -10,151 +10,181 @@
 	},
 	"sides": [{
 			"side": "1",
-			"translation": "Vepix"
+			"translation": "Vepix",
+            "color": "#DC143C"
 		},
 		{
 			"side": "2",
 			"translation": "Vepix",
+            "color": "#FFA500",
 			"hide": true
 		},
 		{
 			"side": "3",
 			"translation": "Vepix",
+            "color": "#CDCD00",
 			"hide": true
 		},
 		{
 			"side": "4",
 			"translation": "Vepix",
+            "color": "#008B00",
 			"hide": true
 		},
 		{
 			"side": "5",
 			"translation": "Vepix",
+            "color": "#4876FF",
 			"hide": true
 		},
 		{
 			"side": "6",
 			"translation": "Vepix",
+            "color": "#4B0082",
 			"hide": true
 		},
 		{
 			"side": "7",
 			"translation": "Vepix",
+            "color": "#800080",
 			"hide": true
 		},
 		{
 			"side": "8",
 			"translation": "Vepix",
+            "color": "#292421",
 			"hide": true
 		},
 		{
 			"side": "9",
 			"translation": "Vepix",
+            "color": "#C1C1C1",
 			"hide": true
 		},
 		{
 			"side": "10",
 			"translation": "Vepix",
+            "color": "#8B4513",
 			"hide": true
 		},
 		{
 			"side": "11",
 			"translation": "Vepix",
+            "color": "#FF69B4",
 			"hide": true
 		},
 		{
 			"side": "12",
 			"translation": "Vepix",
+            "color": "#EEC900",
 			"hide": true
 		},
 		{
 			"side": "13",
 			"translation": "Vepix",
+            "color": "#87CEFA",
 			"hide": true
 		},
 		{
 			"side": "14",
 			"translation": "Vepix",
+            "color": "#40E0D0",
 			"hide": true
 		},
 		{
 			"side": "15",
 			"translation": "Vepix",
+            "color": "#800000",
 			"hide": true
 		},
 		{
 			"side": "16",
 			"translation": "Vepix",
+            "color": "#8E8E38",
 			"hide": true
 		},
 		{
 			"side": "17",
 			"translation": "Vepix",
+            "color": "#388E8E",
 			"hide": true
 		},
 		{
 			"side": "18",
 			"translation": "Vepix",
+            "color": "#C67171",
 			"hide": true
 		},
 		{
 			"side": "19",
 			"translation": "Vepix",
+            "color": "#C5C1AA",
 			"hide": true
 		},
 		{
 			"side": "20",
 			"translation": "Vepix",
+            "color": "#71C671",
 			"hide": true
 		},
 		{
 			"side": "21",
 			"translation": "Vepix",
+            "color": "#FCE6C9",
 			"hide": true
 		},
 		{
 			"side": "22",
 			"translation": "Vepix",
+            "color": "#DA70D6",
 			"hide": true
 		},
 		{
 			"side": "23",
 			"translation": "Vepix",
+            "color": "#00BFFF",
 			"hide": true
 		},
 		{
 			"side": "24",
 			"translation": "Vepix",
+            "color": "#DAA520",
 			"hide": true
 		},
 		{
 			"side": "25",
 			"translation": "Vepix",
+            "color": "#FF6347",
 			"hide": true
 		},
 		{
 			"side": "26",
 			"translation": "Vepix",
+            "color": "#3D59AB",
 			"hide": true
 		},
 		{
 			"side": "27",
 			"translation": "Vepix",
+            "color": "#00C5CD",
 			"hide": true
 		},
 		{
 			"side": "28",
 			"translation": "Vepix",
+            "color": "#4EEE94",
 			"hide": true
 		},
 		{
 			"side": "29",
 			"translation": "Vepix",
+            "color": "#FFFF00",
 			"hide": true
 		},
 		{
 			"side": "30",
 			"translation": "Vepix",
+            "color": "#FFDAB9",
 			"hide": true
 		}
 	],
