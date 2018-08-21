@@ -226,6 +226,7 @@
 			"translation": "Vepix",
 			"side": "1",
 			"help": "Type /kill to kill someone!",
+            "info": "Can kill one person during the night. Sided with Vepix. ",
 			"actions": {
 				"night": {
 					"kill": {
