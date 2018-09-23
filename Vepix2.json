@@ -5,8 +5,8 @@
 	"nolynch": true,
 	"minplayers": 3,
 	"ticks": {
-		"night": 30,
-		"standby": 7
+		"night": 15,
+		"standby": 3
 	},
 	"sides": [{
 			"side": "1",
