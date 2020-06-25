@@ -1,0 +1,903 @@
+{
+  "name": "Zelda3",
+  "altname": "Four Swords",
+  "minplayers": 4,  
+  "author": "<b><i><span style='color:#005CE6'>Miki Sayaka</span></i></b>",
+  "summary": "The battle between the Triforce continues throughout the Town of Termina! However, there are now multiple Links! There can only be one in the end, but in the meantime, they must team up to take down Beast Ganon and the Skull Kid!",
+  "sides": [
+    {
+      "side": "mafia2",
+      "translation": "Gerudo"
+    },
+    {
+      "side": "village",
+      "translation": "People of Hyrule"
+    },
+    {
+      "side": "red",
+      "translation": "Red Link"
+    },
+    {
+      "side": "blue",
+      "translation": "Blue Link"
+    },
+    {
+      "side": "green",
+      "translation": "Green Link"
+    },
+    {
+      "side": "purple",
+      "translation": "Purple Link"
+    },
+    {
+      "side": "shadow",
+      "translation": "Shadow Link"
+    },
+    {
+      "side": "werewolf",
+      "translation": "Skull Kid"
+    },
+    {
+      "side": "godfather",
+      "translation": "Demon King"
+    },
+    {
+      "side": "Bellum",
+      "translation": "Bellum"
+    }
+  ],
+  "roles": [
+    {
+      "role": "inspector",
+      "translation": "Zelda",
+      "side": "village",
+      "help": "You are the Princess of Hyrule and can use /Inspect [name] to find someone's identity with the help of the Triforce of Wisdom! Although you can only win with one of the Links, all of the Links know who you are, so be sure to coordinate them! Beware of Shadow Link, who appears as Link but is actually sided with the bad guys! (Hint: use /tt to talk to the Links!)",
+      "info": "Inspector. All the Links know her on startup. Can't be daykilled. ~Sided~",
+      "actions": {
+        "teamTalk": [
+          "samurai",
+          "samurai1",
+          "samurai2",
+          "samurai3",
+          "samurai4",
+          "shadow"
+        ],
+        "night": {
+          "inspect": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "priority": 30
+          }
+        },
+        "daykill": "evade"
+      }
+    },
+    {
+      "role": "bodyguard",
+      "translation": "Impa",
+      "side": "village",
+      "help": "You are the last remaining Sheikah and Zelda's personal Bodyguard! Use /Protect [name] to protect someone during the night!",
+      "info": "Can /protect. ~Sided~",
+      "hide": true,
+      "actions": {
+        "night": {
+          "protect": {
+            "target": "AnyButSelf",
+            "common": "Role",
+            "priority": 5,
+            "broadcast": "role"
+          }
+        }
+      }
+    },
+    {
+      "role": "impa",
+      "translation": "Impa",
+      "side": "village",      
+      "help": "You are the last remaining Sheikah and Zelda's personal Bodyguard! Use /Protect [name] three times per night to protect someone during the night!",
+      "info": "Can /protect once per night. Can /protect three people per night in medium+ games. ~Sided~",
+      "actions": {
+        "night": {
+          "protect": {
+            "target": "AnyButSelf",
+            "common": "Role",
+            "priority": 6,
+            "limit": 3,
+            "broadcast": "role"
+          }
+        }
+      }
+    },
+    {
+      "role": "werewolfsmall",
+      "translation": "Skull Kid",
+      "side": "werewolf",
+      "help": "You are the Skull Kid, wearing Majora's Mask. Type /Kill [name] to kill someone! You are alone, but Zelda will think you are a normal citizen, you ignore distracters and even Navi can't find you! Also, if any Link tries to kill you, the Link will die instead.",
+      "info": "Can /Kill and can /Wrath (kill that only works on Ganon, every other night). Appears as Navi if Inspected. Counters daykills. ~Sided~",
+      "actions": {
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "initialrecharge": 2,
+            "priority": 10
+          },
+          "wrath": {
+          	"command": ["dummy5"],
+          	"dummy5broadcastmsg": "Skull Kid takes the Majora's Mask and flings it at ~Target~!",
+            "target": "AnyButSelf",
+            "common": "Self",
+            "recharge": 2,
+            "initialrecharge": 2,
+            "priority": 1
+          }
+        },
+        "distract": {
+          "mode": "ignore",
+          "msg": "Someone tried to distract you during the night, but couldn't do anything to you."
+        },
+        "inspect": {
+          "revealAs": "spy"
+        },
+        "daykill": {
+          "mode": {
+            "revenge": [
+              "samurai1",
+              "samurai2",
+              "samurai3",
+              "samurai4",
+              "samurai",
+              "shadow"
+            ]
+          }
+        },
+        "daykillrevengemsg": "Link (or Koume??) raises the Master Sword into the air like he just don't care, but he should have cared because Skull Kid was still around :( RIP ~Target~!",
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "exposer",
+      "translation": "Saria",
+      "side": "village",
+      "help": "Yahoo! You like running around in the Lost Woods, where you blare your eponymous Saria's Song on stereo. Type /Expose [name] to reveal someone's role during the day!",
+      "info": "Can /expose (not revealed). ~Sided~",
+      "actions": {
+        "standby": {
+          "expose": {
+            "target": "AnyButSelf",
+            "msg": "Type /Expose to reveal someone's role! :",
+            "exposemsg": "Doo-da-duh! Doo-da-duh! Listen to the forest! Did you hear that ~Target~ is the ~Role~?"
+          }
+        }
+      }
+    },
+    {
+      "role": "hooker",
+      "translation": "Darunia",
+      "side": "village",
+      "help": "You are the King of the Gorons! You love a good dance party, so you can go up to someone and /Distract [name] to keep them from doing anything during the Night.",
+      "actions": {
+        "night": {
+          "distract": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "distractmsg": "You tried to use your Night Actions, but Darunia showed up and started dancing all over the place!",
+            "priority": 1
+          }
+        }
+      }
+    },
+    {
+      "role": "mayor",
+      "translation": "Ruto",
+      "side": "village",
+      "help": "You are the Princess of the Zorua. Your word is law! Well, not always, but your vote counts as 4!",
+      "info": "Vote counts as 4. ~Sided~.",
+      "actions": {
+        "vote": 4
+      }
+    },
+    {
+      "role": "spy",
+      "translation": "Navi",
+      "side": "village",
+      "help": "You are an annoying little fairy and know more than you should. Say HEY, LISTEN and someone will probably kill you. You also learn who the Links are!",
+      "info": "25% chance to hax Link when he daykills.",
+      "actions": {
+        "standbyHax": {
+          "kill": {
+            "revealPlayer": 0.25
+          }
+        }
+      }
+    },
+    {
+      "role": "nabooru",
+      "translation": "Nabooru",
+      "side": "village",
+      "help": "You are the Sage of the Spirit Temple! You can /kill [name] someone during the day, and you will be revealed. However, due to your heightened senses in the sun, you are immune to daykills yourself!",
+      "info": "Can /kill during the day (revealed) but can't be daykilled. ~Sided~",
+      "actions": {
+        "standby": {
+          "kill": {
+            "target": "AnyButSelf",
+            "msg": "Type /Kill [name] to destroy someone!:",
+            "killmsg": "Behold the power of the Spirit! I, ~Self~, aka Nabooru, shall destroy you!"
+          }
+        },
+        "daykill": "evade"
+      }
+    },
+    {
+      "role": "bomb",
+      "translation": "Tatl",
+      "side": "village",
+      "help": "You are an annoying little fairy and know more than you should. Say HEY, LISTEN and someone will probably kill you. You also learn who the Links are!",
+      "info": "1% chance to hax Link when he daykills. Bombs daykills. Appears as Navi on startup and Inspects as Navi. ~Sided~",
+      "actions": {
+      	"startup": {"revealAs": "spy"},
+      	"inspect": {"revealAs": "spy"},
+      	"daykill": "bomb",
+        "daykillrevengemsg": "~Target~ tried to attack ~Self~! during the day. \"ANNOYING FAIRY?!\" ~Self~ exclaimed. \"I'll show you annoying fairy!!\" With their last breath, ~Self~ sends an endless stream of Help Text at ~Target~!",
+        "standbyHax": {
+          "kill": {
+            "revealPlayer": 0.01
+          }
+        }
+      }
+    },
+    {
+      "role": "godfather",
+      "translation": "Malladus",
+      "side": "godfather",
+      "help": "You are the Demon King! Terrorize Hyrule by killing up to 2 targets by typing /kill [name]. You destroy any distracters if they dare to stand in your way. You have a vote of 3, and you cannot be killed during the Day!",
+      "info": "Can kill 2 targets per night. Vote of 3. Evades all daykills. ~Sided~",
+      "actions": {
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "priority": 14,
+            "limit": 2
+          }
+        },
+        "daykill": "evade",
+        "vote": 3,
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "The Demon King just kills anyone who is in his way. Including you!",
+          "msg": "Someone was in your way, so you couldn't kill your targets. But you killed the fool instead!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "mafia21",
+      "translation": "Koume",
+      "side": "mafia2",
+      "help": "You are the Gerudo Sorceress of Flame. You can use your fire magic to kill someone during the Day with /burn [name] (you will not be revealed!).",
+      "info": "Can /burn (daykill, not revealed). ~Sided~",
+      "actions": {
+        "standby": {
+          "burn": {
+            "command": "kill",
+            "target": "AnyButTeam",
+            "msg": "You can /burn [name] to kill and you won't be revealed! :",
+            "killmsg": "Koume uses her fire magic to burn ~Target~ to the bones!"
+          }
+        },
+        "avoidStandbyHax": [
+          "burn"
+        ],
+        "startup": "team-reveal-with-roles",
+        "teamTalk": true,
+        "preventTeamvote": true
+      }
+    },
+    {
+      "role": "mafiaboss2",
+      "translation": "Beast Ganon",
+      "side": "mafia2",
+      "help": "You are the Great King of Evil - but in Beast Form! You can use /Kill [name] to kill someone during the Night! You are such a beast that it will takes 2 daykills to kill you! Additionally, you have cannot be lynched!",
+      "info": "Can nightkill. Immune to nightkill. Evades 1-3 daykills depending on how many Links spawn. Immune to Lynch.",
+      "winIfDeadRoles": [
+        "samurai1",
+        "samurai2",
+        "samurai3",
+        "samurai4",
+        "samurai",
+        "shadow",
+        "werewolfsmall"
+      ],
+      "actions": {
+      "dummy5": {
+      	"mode": "die",
+      	"targetmsg": "The Wrath was too much for ~Self~!",
+      	"msg": "Curse you Skull Kid! You've been Wrath'd!"
+      	},
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 15,
+            "broadcast": "team"
+          }
+        },
+        "daykill": {
+          "mode": {
+            "evadeCharges": 1
+          }
+        },
+        "kill": {
+          "mode": "ignore"
+        },
+        "avoidHax": [
+          "kill"
+        ],
+        "lynch": {
+          "convertTo": "mafiaboss2.0",
+          "convertmsg": "Nope, lynching Beast Ganon won't work!"
+        },
+        "startup": "team-reveal-with-roles",
+        "teamTalk": true,
+        "preventTeamvote": true
+      }
+    },
+    {
+      "role": "mafiaboss2.1",
+      "translation": "Beast Ganon",
+      "side": "mafia2",
+      "help": "You are the Great King of Evil - but in Beast Form! You can use /Kill [name] to kill someone during the Night! You are such a beast that it will takes 3 daykills to kill you! Additionally, you cannot be lynched!",
+      "hide": true,
+      "winIfDeadRoles": [
+        "samurai1",
+        "samurai2",
+        "samurai3",
+        "samurai4",
+        "samurai",
+        "shadow",
+        "werewolfsmall"
+      ],
+      "actions": {
+      "dummy5": {
+      	"mode": "die",
+      	"targetmsg": "The Wrath was too much for ~Self~!",
+      	"msg": "Curse you Skull Kid! You've been Wrath'd!"
+      	},
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 15,
+            "broadcast": "team"
+          }
+        },
+        "daykill": {
+          "mode": {
+            "evadeCharges": 2
+          }
+        },
+        "kill": {
+          "mode": "ignore"
+        },
+        "avoidHax": [
+          "kill"
+        ],
+        "lynch": {
+          "convertTo": "mafiaboss2.0",
+          "convertmsg": "Nope, lynching Beast Ganon won't work!"
+        },
+        "startup": "team-reveal-with-roles",
+        "teamTalk": true,
+        "preventTeamvote": true
+      }
+    },
+    {
+      "role": "mafiaboss2.2",
+      "translation": "Beast Ganon",
+      "side": "mafia2",
+      "help": "You are the Great King of Evil - but in Beast Form! You can use /Kill [name] to kill someone during the Night! You are such a beast that it will takes 4 daykills to kill you! Additionally, you cannot be lynched!",
+      "hide": true,
+      "winIfDeadRoles": [
+        "samurai1",
+        "samurai2",
+        "samurai3",
+        "samurai4",
+        "samurai",
+        "shadow",
+        "werewolfsmall"
+      ],
+      "actions": {
+      "dummy5": {
+      	"mode": "die",
+      	"targetmsg": "The Wrath was too much for ~Self~!",
+      	"msg": "Curse you Skull Kid! You've been Wrath'd!"
+      	},
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 15,
+            "broadcast": "team"
+          }
+        },
+        "daykill": {
+          "mode": {
+            "evadeCharges": 3
+          }
+        },
+        "kill": {
+          "mode": "ignore"
+        },
+        "avoidHax": [
+          "kill"
+        ],
+        "lynch": {
+          "convertTo": "mafiaboss2.0",
+          "convertmsg": "Nope, lynching Beast Ganon won't work!"
+        },
+        "startup": "team-reveal-with-roles",
+        "teamTalk": true,
+        "preventTeamvote": true
+      }
+    },
+    {
+      "role": "mafiaboss2.0",
+      "translation": "Beast Ganon",
+      "side": "mafia2",
+      "help": "You are the Great King of Evil - but in Beast Form! You can use /Kill [name] to kill someone during the Night!",
+      "hide": true,
+      "winIfDeadRoles": [
+        "samurai1",
+        "samurai2",
+        "samurai3",
+        "samurai4",
+        "samurai",
+        "shadow",
+        "werewolfsmall"
+      ],
+      "actions": {
+      "dummy5": {
+      	"mode": "die",
+      	"targetmsg": "The Wrath was too much for ~Self~!",
+      	"msg": "Curse you Skull Kid! You've been Wrath'd!"
+      	},
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 15,
+            "broadcast": "team"
+          }
+        },
+        "daykill": {
+          "mode": {
+            "evadeCharges": "*"
+          }
+        },
+        "kill": {
+          "mode": "ignore"
+        },
+        "avoidHax": [
+          "kill"
+        ],
+        "lynch": {
+          "convertTo": "mafiaboss2.0",
+          "convertmsg": "Nope, lynching Beast Ganon won't work!"
+        },
+        "startup": "team-reveal-with-roles",
+        "teamTalk": true,
+        "preventTeamvote": true
+      }
+    },
+    {
+      "role": "samurai",
+      "translation": "Link",
+      "side": "village",
+      "help": "Congratulations! You have become the last Link alive. It's up to you to lead the village to victory! You can now kill twice per day!",
+      "info": "There are now multiple Links in Hyrule! Only one can win with the village, and they all know Zelda on startup. The One True Link can kill twice per day!",
+      "actions": {
+        "standby": {
+          "kill": {
+            "target": "AnyButSelf",
+            "limit": 2,
+            "msg": "You can kill TWICE now using /kill [name]! You won't be revealed! Beast Ganon and Skull Kid still evade your daykills!",
+            "killmsg": "The One True Link raises the Master Sword into the air, followed by a few quick slashes to kill ~Target~!"
+          }
+        }
+      }
+    },
+    {
+      "role": "samurai0",
+      "translation": "Link",
+      "side": "village",
+      "help": "You are a Hero of Time! However, due to a recent multi-player release, there are multiple Links in Hyrule! In order to win, you must defeat all of Hyrule's enemies and be the last Link standing! Type /Kill [name] during the day phase to kill someone! You won't be revealed when you kill!",
+      "hide": true,
+      "actions": {}
+    },
+    {
+      "role": "samurai1",
+      "translation": "Red Link",
+      "side": "red",
+      "help": "You are a Hero of Time! However, due to a recent multi-player release, there are multiple Links in Hyrule! In order to win, you must defeat all of Hyrule's enemies and be the last Link standing! Type /Kill [name] during the day phase to kill someone! You won't be revealed when you kill!",
+      "hide": true,
+      "actions": {
+        "startup": {
+          "revealRole": "inspector",
+          "revealAs": "samurai0"
+        },
+        "inspect": {
+          "revealAs": "samurai"
+        },
+        "onteam": "samurai",
+        "onDeadRoles": {
+          "convertTo": {
+            "samurai": [
+              "samurai2",
+              "samurai3",
+              "shadow",
+              "samurai4"
+            ]
+          },
+          "convertmsg": "The One True Link has been chosen!"
+        },
+        "standby": {
+          "kill": {
+            "target": "AnyButSelf",
+            "msg": "You can kill now using /kill [name]! You won't be revealed! Beast Ganon takes multiple hits to go down, and Skull Kid counters your daykills!",
+            "killmsg": "Link raises the Master Sword into the air, followed by a few quick slashes to kill ~Target~!"
+          }
+        }
+      }
+    },
+    {
+      "role": "samurai2",
+      "translation": "Blue Link",
+      "side": "blue",
+      "help": "You are a Hero of Time! However, due to a recent multi-player release, there are multiple Links in Hyrule! In order to win, you must defeat all of Hyrule's enemies and be the last Link standing! Type /Kill [name] during the day phase to kill someone! You won't be revealed when you kill!",
+      "hide": true,
+      "actions": {
+        "startup": {
+          "revealRole": "inspector",
+          "revealAs": "samurai0"
+        },
+        "inspect": {
+          "revealAs": "samurai"
+        },
+        "onteam": "samurai",
+        "onDeadRoles": {
+          "convertTo": {
+            "samurai": [
+              "samurai1",
+              "samurai3",
+              "shadow",
+              "samurai4"
+            ]
+          },
+          "convertmsg": "The One True Link has been chosen!"
+        },
+        "standby": {
+          "kill": {
+            "target": "AnyButSelf",
+            "msg": "You can kill now using /kill [name]! You won't be revealed! Beast Ganon takes multiple hits to go down, and Skull Kid counters your daykills!",
+            "killmsg": "Link raises the Master Sword into the air, followed by a few quick slashes to kill ~Target~!"
+          }
+        }
+      }
+    },
+    {
+      "role": "samurai3",
+      "translation": "Green Link",
+      "side": "green",
+      "help": "You are a Hero of Time! However, due to a recent multi-player release, there are multiple Links in Hyrule! In order to win, you must defeat all of Hyrule's enemies and be the last Link standing! Type /Kill [name] during the day phase to kill someone! You won't be revealed when you kill!",
+      "hide": true,
+      "actions": {
+        "startup": {
+          "revealRole": "inspector",
+          "revealAs": "samurai0"
+        },
+        "inspect": {
+          "revealAs": "samurai"
+        },
+        "onteam": "samurai",
+        "onDeadRoles": {
+          "convertTo": {
+            "samurai": [
+              "samurai1",
+              "samurai2",
+              "shadow",
+              "samurai4"
+            ]
+          },
+          "convertmsg": "The One True Link has been chosen!"
+        },
+        "standby": {
+          "kill": {
+            "target": "AnyButSelf",
+            "msg": "You can kill now using /kill [name]! You won't be revealed! Beast Ganon takes multiple hits to go down, and Skull Kid counters your daykills!",
+            "killmsg": "Link raises the Master Sword into the air, followed by a few quick slashes to kill ~Target~!"
+          }
+        }
+      }
+    },
+    {
+      "role": "samurai4",
+      "translation": "Purple Link",
+      "side": "purple",
+      "help": "You are a Hero of Time! However, due to a recent multi-player release, there are multiple Links in Hyrule! In order to win, you must defeat all of Hyrule's enemies and be the last Link standing! Type /Kill [name] during the day phase to kill someone! You won't be revealed when you kill!",
+      "hide": true,
+      "actions": {
+        "startup": {
+          "revealRole": "inspector",
+          "revealAs": "samurai0"
+        },
+        "inspect": {
+          "revealAs": "samurai"
+        },
+        "onteam": "samurai",
+        "onDeadRoles": {
+          "convertTo": {
+            "samurai": [
+              "samurai1",
+              "samurai2",
+              "shadow",
+              "samurai3"
+            ]
+          },
+          "convertmsg": "The One True Link has been chosen!"
+        },
+        "standby": {
+          "kill": {
+            "target": "AnyButSelf",
+            "msg": "You can kill now using /kill [name]! You won't be revealed! Beast Ganon takes multiple hits to go down, and Skull Kid counters your daykills!",
+            "killmsg": "Link raises the Master Sword into the air, followed by a few quick slashes to kill ~Target~!"
+          }
+        }
+      }
+    },
+    {
+      "role": "shadow",
+      "translation": "Shadow Link",
+      "side": "shadow",
+      "help": "You are not a Hero of Time! However, you look like Link, so you can also /kill during the Day without being revealed! You are aligned with only yourself, but you should try to convince Zelda you are good! Because you can mirror everything, you evade 1 nightkill.",
+      "info": "Appears as Link if Inspected and knows Zelda on startup. Can daykill (not revealed). Evades one nightkill. ~Sided~",
+      "actions": {
+        "startup": {
+          "revealRole": "inspector"
+        },
+        "inspect": {
+          "revealAs": "samurai"
+        },
+        "kill": {
+        	"mode": {
+        		"evadeCharges": 1
+        		}
+        	},
+        "standby": {
+          "kill": {
+            "target": "AnyButSelf",
+            "msg": "You can kill now using /kill [name]! You won't be revealed! Beast Ganon takes multiple hits to go down, and Skull Kid counters your daykills!",
+            "killmsg": "Link raises the Master Sword into the air, followed by a few quick slashes to kill ~Target~!"
+          }
+        }
+      }
+    }
+  ],
+  "spawnPacks": {
+    "samurai": {
+      "roles": [
+        [
+          "samurai1",
+          "samurai2",
+          "samurai3",
+          "samurai4"
+        ],
+        [
+          "samurai2",
+          "samurai3",
+          "samurai4",
+          "samurai1"
+        ],
+        [
+          "samurai3",
+          "samurai4",
+          "samurai1",
+          "samurai2"
+        ],
+        [
+          "samurai4",
+          "samurai1",
+          "samurai2",
+          "samurai3"
+        ],
+        [
+          "samurai2",
+          "samurai1",
+          "samurai3",
+          "samurai4"
+        ],
+        [
+          "samurai2",
+          "samurai1",
+          "samurai4",
+          "samurai3"
+        ],
+        [
+          "samurai2",
+          "samurai4",
+          "samurai3",
+          "samurai1"
+        ],
+        [
+          "samurai2",
+          "samurai4",
+          "samurai1",
+          "samurai3"
+        ],
+        [
+          "samurai3",
+          "samurai1",
+          "samurai4",
+          "samurai2"
+        ],
+        [
+          "samurai3",
+          "samurai2",
+          "samurai1",
+          "samurai4"
+        ],
+        [
+          "samurai3",
+          "samurai2",
+          "samurai4",
+          "samurai1"
+        ],
+        [
+          "samurai3",
+          "samurai4",
+          "samurai2",
+          "samurai1"
+        ],
+        [
+          "samurai4",
+          "samurai3",
+          "samurai2",
+          "samurai1"
+        ],
+        [
+          "samurai4",
+          "samurai2",
+          "samurai3",
+          "samurai1"
+        ],
+        [
+          "samurai4",
+          "samurai1",
+          "samurai3",
+          "samurai2"
+        ]
+      ]
+    }
+  },
+  "roles1": [
+    "shadow",
+    "pack:samurai",
+    "bomb"
+  ],
+  "roles2": [
+    "shadow",
+    "pack:samurai",
+    "pack:samurai",
+    "werewolfsmall"
+  ],
+  "roles3": [
+    "shadow",
+    "pack:samurai",
+    "pack:samurai",
+    "inspector",
+    "mafiaboss2",
+    "bodyguard"
+  ],
+  "roles4": [
+    "impa",
+    "inspector",
+    "pack:samurai",
+    "pack:samurai",
+    "pack:samurai",
+    "mafiaboss2.1",
+    "shadow",
+    "spy"
+  ],
+  "roles5": [
+    "impa",
+    "inspector",
+    "pack:samurai",
+    "pack:samurai",
+    "pack:samurai",
+    "pack:samurai",
+    "mafiaboss2.2",
+    "shadow",
+    "werewolfsmall",
+    "spy",
+    "mafia21",
+    "bomb"
+  ],
+  "roles6": [
+    "impa",
+    "inspector",
+    "bomb",
+    "bomb",
+    "pack:samurai",
+    "pack:samurai",
+    "pack:samurai",
+    "pack:samurai",
+    "werewolfsmall",
+    "mafiaboss2.2",
+    "mafia21",
+    "mafia21",
+    "exposer",
+    "shadow",
+    "spy",
+    "bomb"
+    ],
+  "roles7": [
+    "impa",
+    "inspector",
+    "bomb",
+    "pack:samurai",
+    "pack:samurai",
+    "pack:samurai",
+    "pack:samurai",
+    "werewolfsmall",
+    "mafiaboss2.2",
+    "mafia21",
+    "mafia21",
+    "mafia21",
+    "nabooru",
+    "exposer",
+    "mayor",
+    "bomb",
+    "godfather",
+    "spy",
+    "shadow",
+    "spy",
+    "hooker",
+    "mafia21",
+    "bomb",
+    "spy",
+    "spy",
+    "mafia21",
+    "bomb",
+    "mafia21",
+    "spy",
+    "bomb",
+    "pack:samurai",
+    "pack:samurai",
+    "pack:samurai",
+    "pack:samurai",
+    "mafia21",
+    "pack:samurai",
+    "pack:samurai",
+    "pack:samurai",
+    "pack:samurai",
+    "pack:samurai",
+    "mafia21",
+    "pack:samurai",
+    "pack:samurai",
+    "pack:samurai",
+    "pack:samurai",
+    "mafia21",
+    "pack:samurai",
+    "pack:samurai",
+    "pack:samurai",
+    "pack:samurai"
+  ],
+  "villageCantLoseRoles": [
+    "mayor",
+    "samurai"
+  ]
+}
