@@ -1,0 +1,3959 @@
+{
+    "author": [
+        "Roild",
+        "Zony11",
+        "Magmarex",
+        "Matt Ayala",
+        "Veteran Padgett",
+        "Karp Karpity",
+        "MewtwoHidden"
+    ],
+    "name": "Asylum",
+    "altname": "MADHAUS",
+    "tips": [
+        "Child Patient: Careful believing or revealing information. It may be fake.",
+        "Amnesia Patient(s): Not all 'allies' are on the same side.",
+        "Day Killers: Consider holding off on kills until you have information.",
+        "Slow System Users: Careful when using /roles or searching for a generic tag (patient, alien, staff, illusion)",
+        "*** Mafia Members ***",
+        "Trying to Fake: Roles which may be easy to fake are 'Abrasive', 'Stealthy', 'Depressed', 'Violent', 'Buff', 'Voodoo', 'Filthy', 'Withdrawal', or basic 'Patient'. Make sure you understand what you're pretending to be."
+    ],
+    "summary": "Things are going bump in the home of the deranged. People are seeing impossible things that have contorted their sanity. Residents swear they see the staff taking people down into the basement... where they never return. No one can say with certainty who remains, as ethereal illusions plague the asylum, and as the mentally deranged fight things they know are beyond reality, their internal conflicts become increasingly apparent. The question remains: who are they fighting -- their foes or themselves? Added /tips!",
+    "killmsg": "±Voices: ~Player~ (~Role~) succumbed to mental illness and died!",
+    "threadlink": "http://pokemon-online.eu/forums/showthread.php?23007-Asylum",
+    "lynchmsg": "±Voices: ~Player~ (~Role~) succumbed to mental illness and died!",
+    "drawmsg": "The Asylum is quiet... The eerie quiet holds the souls of the damned and the tortured..",
+    "changelog": {
+        "8.11.14": "Added preventTeamvote.",
+        "11.14.13": "Added teamTalk.",
+        "6.11.14": "Some new roles."
+    },
+    "ticks": {
+        "night": 35,
+        "night1": 35,
+        "standby": 35
+    },
+    "variables": {
+        "ilroles": ["illusion", "illusionbp", "formless","crawling","slithering", "illusion","undead","winged","illusion sg","monstrous","amnesia staff"],
+        "viroles": ["osvigi", "insecure", "liar1", "liar2", "sensitive", "old", "bp1", "ptsd", "village_ww", "child", "ospl", "violent", "psycho", "phobia", "manic", "patient", "human", "greedy", "conspiracy", "bg", "1x bg", "suicidal", "creepy", 
+"withdrawal", "withdrawal2", "withdrawal3", "screwball", "freak", "solitary", "personality", "masochist", "voodoo", "amnesia", "rich", "aluminum", "brave","safeguard", "filthy", "kind"],
+        "stroles": ["staff bg", "staffbp", "staff", "amnesia staff", "staff pl", "staff dealer", "staff doctor","trainee", "staff chef", "staff sg", "staff lobo"],
+        "alroles": [  "alien", "sentinel","prober","alienbp",  "bodysnatcher",  "doppelganger", "xenomorph",
+  "alien chest","warrior","queen" ]
+    },
+    "sides": [
+        {
+            "side": "village",
+            "translation": "Patients",
+            "winmsg": "±Voices: 'Free. The voices are saying we're finally free!' ~Players~ escaped the clutches of the asylum and their cruel caretakers at long last."
+        },
+        {
+            "side": "aliens",
+            "translation": "Aliens",
+            "winmsg": "±Voices: 'We are everywhere. We are nowhere. We are your neighbor, your friend, your enemy, and your family.' ~Players~ used the bodies of the Asylum's residents to invade and take over!"
+        },
+        {
+            "side": "maniac",
+            "translation": "Maniac",
+            "winmsg": "±Voices: won't win. Wins with all if he gets target."
+        },
+        {
+            "side": "illusion",
+            "translation": "Illusions",
+            "winmsg": "±Voices:  'It's too late. The voices tried to warn you what was coming, but you just wouldn't listen...' ~Players~ rendered everyone else catatonic and destroyed whatever shreds of sanity they had left."
+        },
+        {
+            "side": "staff",
+            "translation": "Staff",
+            "winmsg": "±Voices: 'There is no escape. Besides, why would you want to; it's all in the name of science, after all.' ~Players~ managed to capture all the patients and can now experiment on and torture them as much as they please!"
+        }
+    ],
+    "roles": [
+        {
+            "role": "osvigi",
+            "translation": "Abrasive Patient",
+            "players": "Always.",
+            "side": "village",
+            "help": "Your violent past has left you imprisoned in this Asylum, with a bunch of freaks and lunatics. This has rubbed off on you, as you've gone mad as well. So mad, that you can type /Kill [name] once per game to get rid of someone! Try not to hit your fellow patients!",
+            "info": "Can kill one person during the night, once per game. Sided with the Patients.",
+            "actions": { 
+                "dummy2": {
+                    "mode": "ignore",
+                    "msg": "±Voices: Your target isn't suspicious!"
+                },
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Voices: Your target is human!"
+                },
+                "onlist": "patient",
+                "onteam": "patient",
+                "startup": {
+                    "revealRole": "child"
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "hide": true,
+			"common": "Role",
+                        "priority": 21,
+                        "msg": "±Voices: The Abrasive Patient found his victim! Unfortunately, it happened to be you...",
+                        "charges": 1
+                    }
+                }
+            }
+        },
+        {
+            "role": "ptsd",
+            "translation": "PTSD Patient",
+            "players": "Always.",
+            "side": "village",
+            "help": "You've suffered from Post-Traumatic Stress Disorder, from being a war vet for your country. You've had nightmares of those people that your country have murdered. Still, you must help the other Patients. Type /Kill [name] to kill someone!",
+            "info": "Can kill one person during the night. Sided with the Patients.",
+            "actions": { 
+                "dummy2": {
+                    "mode": "ignore",
+                    "msg": "±Voices: Your target isn't suspicious!"
+                },
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Voices: Your target is human!"
+                },
+                "onlist": "patient",
+                "onteam": "patient",
+                "startup": {
+                    "revealRole": "child"
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "hide": true,
+			"common": "Role",
+                        "priority": 21,
+                        "msg": "±Voices: The PTSD Patient used his War Veteran skills to sneak up behind you and kill you!"
+                    }
+                }
+            }
+        },
+    {
+        "role": "bp1",
+        "translation": "Stealthy Patient",
+	"players": "Always.",
+        "side": "village",
+        "help": "Before entering the Asylum, you were part of a band of Freaks. You were the one called the 'Rubber Woman' (although your actual gender isn't known..) because of your elasticity. Using this skill, you can avoid the first kill against you.",
+        "info": "Ignores the first kill against it. Sided with the Patients.",
+        "actions": {
+	    "onlist": "patient",
+            "onteam": "patient",
+            "startup": {
+                    "revealRole": "child"
+            },
+            "kill": {
+                "mode": {
+                    "evadeCharges": 1
+                },
+                "evadechargemsg": "You managed to evade a kill! But you won't get lucky twice...",
+                "msg": "~Self~ dodged your kill!"
+            },
+            "dummy2": {
+                    "mode": "ignore",
+                    "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            }
+        }
+    },
+    {
+        "role": "village_ww",
+        "translation": "Schizophrenic Patient",
+	"players": "Always.",
+        "side": "village",
+        "help": "You have a hyperactive mind. Sometimes, you hear voices. Whispers. You've become frightened of the other patients, so you panic by killing whoever tries to distract or stalk you.",
+        "info": "Kills anyone who tries to stalk or distract it. Sided with the Patients.",
+        "actions": { 
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "startup": {
+               "revealRole": "child"
+            },
+            "distract": {
+                "mode": "ChangeTarget",
+                "hookermsg": "±Voices: 'THE VOICES! THEY'RE COMING FOR ME! YOU MUST BE ONE OF THEM!' You tried distracting the Schizophrenic Patient, but unfortunately, that didn't go too well for you.",
+                "msg": "±Voices: You noticed someone was trying to distract you. You savagely murdered them!"
+            },
+            "stalk": {
+                "mode": "ChangeTarget",
+                "hookermsg": "±Voices: 'THE VOICES! THEY'RE COMING FOR ME! YOU MUST BE ONE OF THEM!' You tried stalking the Schizophrenic Patient, but unfortunately, that didn't go too well for you.",
+                "msg": "±Voices: You noticed someone attempting to stalk you. You savagely murdered them as they approached you!"
+            }
+        }
+    },
+    {
+        "role": "child",
+        "translation": "Child Patient",
+	"players": "Always.",
+        "side": "village",
+        "help": "You've wandered around the Asylum, innocently, long enough to meet with patients and horrors alike. Thus, you are revealed to everybody else. You have no actions during the night. Vote to remove people during the day!",
+        "info": "Is known to every other role. Sided with the Patients.",
+        "actions": {
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+               "mode": "ignore",
+               "msg": "±Voices: Your target is human!"
+            }
+        }
+    },	
+    {
+        "role": "old",
+        "translation": "Old Patient",
+        "players": "Always.",
+        "side": "village",
+        "help": "You've been around the Asylum for so long. The Staff have broken your body and - even worse - your spirit. You can't withstand much more pressure on you, so if you get protected, distracted, or poisoned, you will die.",
+        "info": "If protected, distracted, or poisoned, will die. Sided with the Patients.",
+        "actions": {
+            "onlist": "patient",
+            "onteam": "patient",
+            "startup": {
+                "revealRole": "child"
+            },
+            "protect": {
+                "mode": "die",
+                "msg": "±Voices: Someone tries to protect you. They hold you close, not realizing that your brittle bones would give way. As they splinter and break, they cut into your vital organs, causing you to bleed out."
+            },
+            "distract": {
+                "mode": "die",
+                "msg": "±Voices: Someone tries to distract you. They try to hold you closer and closer, but your brittle bones give way. As they splinter and break, they cut into your vital organs, causing you to bleed out."
+            },
+            "poison": {
+                "mode": "die",
+                "msg": "±Voices: 'Someone poisons you. Your immune system is so weak that your vital organs are instantly flooded with poison causing them to stop functioning."
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            }
+        }
+    },
+    {
+        "role": "ospl",
+        "translation": "Depressed Patient",
+	"players": "Always.",
+        "side": "village",
+        "help": "You're an extremely sad patient. So sad, in fact, that you can /distract [name] one person, per game, and tell them how much your life sucks! Try not to talk about it to the Schizophrenic Patient, though!",
+        "info": "Can distract one person during the night, once per game. Sided with the Patients.",
+        "actions": { 
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "startup": {
+                "revealRole": "child"
+            },
+            "night": {
+                "distract": {
+                    "target": "AnyButSelf",
+                    "hide": true,
+                    "common": "Self",
+                    "priority": 3,
+                    "distractmsg": "'You know, man,' the Depressive Patient started. 'this isn't fair... Life isn't fair... My wife died in a car crash, and my kids were taken away from me after I came here...' You felt the need to sympathize with him, and were unable to perform any actions.",
+                    "teammsg": "Your partner was confronted by a Depressive Patient. You sympathized with his sob story, and decided not to use any of your actions.",
+                    "charges": 1
+                }
+            }
+        }
+    },
+    {
+        "role": "violent",
+        "translation": "Violent Patient",
+	"players": "Always.",
+        "side": "village",
+        "help": "You have this strong feeling...of anger...of hatred...not towards anyone in specific, but that doesn't mean you can't take it out on anyone! Once during the game, and only during the day, you may type /Kill [name] to violently slay someone, without being revealed. Vote to remove people during the day!",
+        "info": "Can kill one person during the day, once per game (non-revealing). Sided with the Patients.",
+        "actions": { 
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "startup": {
+                "revealRole": "child"
+            },
+            "standby": {
+                "kill": {
+                    "target": "AnyButSelf",
+                    "msg": "±Voices: Type /Kill [name] to kill someone! You won't be revealed, but you can only use this once! Try not to hit your teammates!",
+                    "killmsg": "±Voices: The Violent Patient takes a knife and slashes ~Target~'s throat with it! They attempt moaning in pain and agony, as others tries to revive them, but to no avail. ~Target~ never said anything ever again.",
+                    "charges": 1
+                }
+            }
+        }
+    },
+    {
+        "role": "psycho",
+        "translation": "Psychotic Patient",
+	"players": "Always.",
+        "side": "village",
+        "help": "'AUGH!!!!!' You've seen it all - Aliens, Illusions, and the abusive Staff Members. You feel you need to take charge of this Asylum. During the day, show them what you're made of with /Kill [name]. You won't be revealed. However, since you're just a little more crazy than the other Patients can handle, two votes will be added to the total if someone decides to vote you. Vote to remove people during the day!",
+        "info": "Can kill one person during the day (non-revealing). voteshield of +2. Sided with the Patients.",
+        "actions": { 
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "voteshield": 2,
+            "onlist": "patient",
+            "onteam": "patient",
+            "startup": {
+                "revealRole": "child"
+            },
+            "standby": {
+                "kill": {
+                    "target": "AnyButSelf",
+                    "msg": "±Voices: Type /Kill [name] to kill someone! You won't be revealed, but try not to hit your teammates!",
+                    "killmsg": "±Voices: '~Target~? Why are you acting so odd?' Blood rushes out of their mouth as they plunge to the ground, dead. The work of the Psychotic Patient has been finished...for now."
+                }
+            }
+        }
+    },	
+    {
+        "role": "phobia",
+        "players": "Always.",
+        "translation": "Phobia Patient",
+        "side": "village",
+        "help": "The Asylum is so dark. You fear what may happen when you aren't looking. So much that the slightest disturbance would cause you to have a panic attack. You are especially afraid of those who stalk, distract, or inspect you at night.",
+        "info": "If stalked, distracted, or inspected, will die. Sided with the Patients.",
+        "actions": {
+            "onlist": "patient",
+            "onteam": "patient",
+            "startup": {
+                "revealRole": "child"
+            },
+            "stalk": {
+                "mode": "die",
+                "msg": "±Voices: 'The stalkers are out to get you! They follow you at every turn, getting ready to kill you. You know they're out to get you.' Your paranoia heightens to primal levels as you begin hyperventilating until your heart explodes in fear."
+            },
+            "distract": {
+                "mode": "die",
+                "msg": "±Voices: 'Someone gets close to you and begins touching your arm. You fear their ulterior motives and the possibility of them trying to trick you into becoming a science experiment.' Your paranoia heightens to primal levels as you begin hyperventilating until your heart explodes in fear."
+            },
+            "inspect": {
+                "mode": "die",
+                "msg": "±Voices: 'Someone's snooping around for information. You know they're trying to frame you for all the murders at the Asylum.' You run away as fast as you can. Your paranoia heightens to primal levels as you begin hyperventilating until your heart explodes in fear."
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            }
+        }
+    },	
+    {
+        "role": "manic",
+        "translation": "Manic Patient",
+	"players": "Always.",
+        "side": "village",
+        "info": "Can distract during the night. Sided with the patients.",
+        "help": "You're constantly excited over everything -- good or bad! You feel as if you need to tell people what you're excited about too! Type /Distract [name] to tell them! This also prevents them from using their actions, but watch out to not distract the Schizophrenic Patient...",
+        "actions": { 
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "startup": {
+                "revealRole": "child"
+            },
+            "night": {
+                "distract": {
+                    "target": "AnyButSelf",
+                    "hide": true,
+	            "common": "Self",
+                    "priority": 3,
+                    "distractmsg": "'HEY! DID YOU KNOW THAT UM...ERR...MY BIRTHDAY WAS TWO MONTHS AGO? I'LL BE TURNING THIRTY IN TEN MONTHS!' The annoying Manic Patient confronted you, you had no choice but to submit to him for the night being, and couldn't use your actions.",
+                    "teammsg": "±Voices: It was someone's birthday, your teammate reminded you. They even came up to you. HEY! MY BIRTHDAY! IT'S...UMMM...IN TEN MONTHS! Needless to say, you forgot what to do during the night."
+                }
+            }
+        }
+    },
+    {
+        "role": "alien",
+        "translation": "Alien",
+        "side": "aliens",
+	"players": "Always.",
+        "help": "You are one of those small green men with the laser guns, your goal is to eradicate all people not on your team. You can /kill during the night along with your teammates.",
+        "info": "Kill shared with team during the night. Sided with Aliens.",
+        "actions": { 
+            "teamTalk": true,
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "aliens"
+                ]
+            },
+            "preventTeamvote": true,
+	    "updateTeam": true,
+            "onlist": "alien",
+            "onteam": "alien",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "night": {
+                "kill": {
+                    "hide": true,
+                    "common": "Team",
+                    "broadcast": "team",
+                    "priority": 20,
+                    "target": "AnyButTeam"
+                }
+            }
+        }
+    },
+    {
+        "role": "insecure",
+        "translation": "Insecure Patient",
+        "side": "village",
+        "players": "Always.",
+        "help": "Your parents always told you that everything you did was wrong, that they wished you could be like your older sibling. They always wanted you to learn as much as you could, but would bring up how bad you are. Now that you're older, everything you do is with a sense of failure. You can /kill, /protect, /distract, or /stalk each night with a high chance of failing. Once you perform an action though you have to wait to do it again because you are afraid of messing up.",
+        "info": "Can kill, protect, distract, stalk. Each has a high fail chance and requires 2 nights to recharge. Sided with the Patients.",
+        "actions": {
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "night": {
+                "kill": {
+                    "hide": "true",
+                    "common": "Self",
+                    "target": "AnyButSelf",
+                    "priority": 21,
+                    "failChance": 0.7,
+                    "recharge": 3,
+                    "restrict": ["stalk", "protect", "distract"]
+                },
+            "protect": {
+                "hide": "true",
+                "common": "Self",
+                "target": "AnyButSelf",
+                "priority": 5,
+                "failChance": 0.7,
+                "recharge": 3,
+                "restrict": ["stalk", "kill", "distract"]
+            },
+            "distract": {
+                "hide": "true",
+                "common": "Self",
+                "target": "AnyButSelf",
+                "priority": 3,
+                "failChance": 0.7,
+                "recharge": 3,
+                "restrict": ["stalk", "kill", "protect"]
+            },
+            "stalk": {
+                "hide": "true",
+                "common": "Self",
+                "target": "AnyButSelf",
+                "recharge": 3,
+                "failChance": 0.7,
+                "priority": 54,
+                "restrict": ["kill", "protect", "distract"]
+            }
+        },
+        "dummy2": {
+            "mode": "ignore",
+            "msg": "±Voices: Your target isn't suspicious!"
+        },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            }
+        }
+    },
+    {
+        "role": "liar1",
+        "translation": "Pathological Liar Patient",
+        "players": "Always.",
+        "side": "village",
+        "help": "You were admitted to the Asylum for a serious case of hypochondria. You always lie about your life as well as everything else. You even lie about your being, making inspectors view you as either suspicious or not human.",
+        "info": "Inspected as either suspicious or not human. Sided with the Patients.",
+        "actions": {
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            }
+        }
+    },
+    {
+        "role": "liar2",
+        "translation": "Pathological Liar Patient",
+        "players": "Always.",
+        "side": "village",
+        "help": "You were admitted to the Asylum for a serious case of hypochondria. You always lie about your life as well as everything else. You even lie about your being, making inspectors view you as either suspicious or not human.",
+        "info": "Inspected as either suspicious or not human. Sided with the Patients.",
+        "actions": {
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            }
+        }
+    },
+    {
+        "role": "patient",
+        "translation": "Patient",
+        "players": "Always.",
+        "side": "village",
+        "help": "Deemed incompetent by society, you were placed in the Asylum as a patient. They just don't understand the horrors you've witnessed.. Staff with their insane experiments, Aliens abducting people, the horrific shapes just out of your vision... You can vote during the day to remove these threats (if you even know what that is).",
+        "info": "Sided with Patients.",
+        "actions": { 
+            "initialCondition": {
+                "clearPoison": true
+            },
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            }
+        }
+    },
+    {
+        "role": "human",
+        "translation": "Social Patient",
+        "players": "Always.",
+        "side": "village",
+        "help": "As a patient who likes to meet new people, you can inspect people once during the night with /inspect. You only find out whether or not your target is a human or not, so be wary of Staff and Maniacs you may find.",
+        "info": "Can find out if a person is human or not. Sided with Patients",
+        "actions": { 
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "night": {
+                "inspect": {
+                    "command": "dummy",
+                    "hide": true,
+                    "common": "Self",
+                    "priority": 60,
+                    "target": "AnyButSelf"
+                }
+            }
+        }
+    },
+    {
+        "role": "greedy",
+        "translation": "Greedy Patient",
+        "players": "Always.",
+        "side": "village",
+        "help": "Before being placed in the Asylum, you were a hoarder. Even now, you still collect as much as you can. Other patients admire you for it, so they give you more power when voting. Use your 2 votes to remove those who threaten your allies.",
+        "info": "Vote counts as 2. Sided with the Patients.",
+        "actions": { 
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "vote": 2,
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            }
+        }
+    },
+    {
+        "role": "conspiracy",
+        "translation": "Conspiracy Patient",
+        "players": "Always.",
+        "side": "village",
+        "help": "You can inspect people once during the night with /inspect. You only find out whether your target is suspicious or not, which means they are sided with the Aliens or Staff, so be sure to share your results.",
+        "info": "Can find out if a person is suspicious (alien/staff) or not during the night. Sided with Patients.",
+        "actions": { 
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "night": {
+                "inspect": {
+                    "command": [
+                        "dummy2"
+                    ],
+                    "hide": true,
+                    "common": "Self",
+                    "priority": 60,
+                    "target": "AnyButSelf"
+                }
+            }
+        }
+    },
+    {
+        "role": "bg",
+        "translation": "Guard Patient",
+        "players": "Always.",
+        "side": "village",
+        "help": "You used to protect powerful people, but when you started seeing things that weren't there, you were placed in the Asylum. You still maintain the same sense of honor though. So use /protect during the night to protect a fellow patient from death!",
+        "info": "Can protect during the night. Sided with Patients",
+        "actions": { 
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "night": {
+                "protect": {
+                    "hide": true,
+                    "common": "Self",
+                    "priority": 6,
+                    "target": "AnyButSelf"
+                }
+            }
+        }
+    },
+    {
+        "role": "1x bg",
+        "translation": "Buff Patient",
+        "side": "village",
+        "players": "Always.",
+        "help": "You may not be sane, but you have big muscles and great strength! Use /protect during the night to protect a fellow patient from death, once per game!",
+        "info": "Can protect once per game. Sided with the Patients.",
+        "actions": { 
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "night": {
+                "protect": {
+                    "hide": true,
+                    "common": "Self",
+                    "priority": 6,
+                    "target": "AnyButSelf",
+                    "charges": 1
+                }
+            }
+        }
+    },
+    {
+        "role": "suicidal",
+        "translation": "Suicidal Patient",
+        "players": "Always.",
+        "help": "Life isn't worth living. There just isn't a reason. Every time you do something, you'll try to kill myself. Be it /distract, /stalk, or /protect, you will kill yourself half the time. And /kill... Seems only right to kill yourself 90% of the time for that... Vote during the day as well.",
+        "info": "Can stalk, protect, distract, or kill once per night. Actions have 50% chance to kill user. Kill has 90% chance to kill user. Sided with Patients.",
+        "side": "village",
+        "actions": { 
+            "onlist": "patient",
+            "onteam": "patient",
+            "startup": {
+                "revealRole": "child"
+            },
+            "night": {
+                "kill": {
+                    "hide": true,
+                    "common": "Self",
+                    "target": "AnyButSelf",
+                    "suicideChance": 0.9,
+                    "priority": 21
+                },
+                "distract": {
+                    "hide": true,
+                    "common": "Self",
+                    "target": "AnyButSelf",
+                    "suicideChance": 0.5,
+                    "priority": 3
+                },
+                "protect": {
+                    "hide": true,
+                    "common": "Self",
+                    "target": "AnyButSelf",
+                    "suicideChance": 0.5,
+                    "priority": 6
+                },
+                "stalk": {
+                    "hide": true,
+                    "common": "Self",
+                    "target": "AnyButSelf",
+                    "suicideChance": 0.5,
+                    "priority": 49
+                }
+            }
+        }
+    },
+    {
+        "role": "creepy",
+        "translation": "Creepy Patient",
+        "players": "Always.",
+        "side": "village",
+        "help": "Ehhheheheheh... You love following people, just out of their view, knowing who they visit. Although you can't tell what they're there to do, you can /stalk during the night to know who people visit. Be careful, the Schizophrenic Patient doesn't enjoy being visited...",
+        "info": "Can stalk during the night. Sided with Patients",
+        "actions": { 
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "night": {
+                "stalk": {
+                    "hide": true,
+                    "common": "Self",
+                    "priority": 54,
+                    "target": "AnyButSelf"
+                }
+            }
+        }
+    },
+    {
+        "role": "sentinel",
+        "translation": "Alien Sentinel",
+        "players": "Always.",
+        "side": "aliens",
+        "help": "Help your fellow aliens to eradicate the humans and /kill one each night. Because of your extreme devotion you cannot be distracted or stalked.",
+        "info": "Cannot be stalked or distracted. Shared night kill. Sided with Aliens.",
+        "actions": { 
+            "teamTalk": true,
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "aliens"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "alien",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "stalk": {
+                "mode": "noVisit"
+            },
+            "distract": {
+                "mode": "ignore"
+            },
+            "night": {
+                "kill": {
+                    "hide": true,
+                    "common": "Team",
+                    "broadcast": "team",
+                    "priority": 20,
+                    "target": "AnyButTeam"
+                }
+            }
+        }
+    },
+    {
+        "role": "brainwasher",
+        "translation": "Alien Brainwasher",
+        "side": "aliens",
+        "players": "Always.",
+        "help": "The humans are so feeble minded. It doesn't take much to make them forget their training. With a simple /wash, their minds will forget how to use their abilities. You can only use this three times per game though. You also share a /kill with your teammates, so coordinate with them to win.",
+        "info": "Can weaken a target once per night, three times per game. Shared night kill. Sided with Aliens.",
+        "actions": { "teamTalk": true,
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "aliens"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "alien",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "night": {
+                "kill": {
+                   "hide": true,
+                    "common": "Team",
+                    "target": "AnyButTeam",
+                    "priority": 20,
+                    "broadcast": "team"
+                },
+                "wash": {
+                    "command": [
+                        "convert"
+                    ],
+                    "priority": 7,
+                    "charges": 3,
+                    "hide": true,
+                    "convertmsg": "Someone was weakened during the night...",
+                    "common": "Self",
+                    "target": "AnyButTeam",
+                    "newRole": {	
+                        "patient": "variable:viroles",
+                        "alien": "variable:alroles",
+                        "servant": [
+                            "servant"
+                        ],
+                        "ocd": [
+                            "ocd"
+                        ],
+                        "ocd2": [
+                            "ocd2"
+                        ],
+                        "ocd3": [
+                            "ocd3"
+                        ],
+                        "tortured": [
+                            "tortured"
+                        ],
+                        "lyncherpro": [
+                            "lyncherpro"
+                        ],
+                        "staff": "variable:stroles",
+                        "rpatient": [
+                            "rpatient"
+                        ],
+                        "illusion": "variable:ilroles"
+                    },
+                    "broadcast": "team"
+                }
+            }
+        }
+    },
+    {
+        "role": "prober",
+        "translation": "Alien Prober",
+        "players": "Always.",
+        "side": "aliens",
+        "help": "You are the alien who experiments on humans. Whenever you /probe someone, they will be unable to do anything and you will figure out their physical orientation(Human or not). You can /kill someone if necessary, shared with your team. Work with your teammates to destroy those pesky humans.",
+        "info": "Can inspect and distract in one action. Has a shared night kill. Sided with the Aliens.",
+        "actions": { 
+            "teamTalk": true,
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "aliens"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "alien",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "night": {
+                "probe": {
+                    "command": [
+                        "distract",
+                        "dummy"
+                    ],
+                    "priority": 7,
+                    "hide": true,
+                    "common": "Self",
+                    "distractmsg": "You see a strange light around the corner. Following it, you suddenly black out and then find yourself back in bed in the morning with an incredible headache.",
+                    "teammsg": "After seeing a strange light, your partner disappeared. You spent the whole night looking for them, just to find them in bed in the morning with no recollection of the previous night.",
+                    "target": "AnyButTeam",
+                    "broadcast": "team"
+                },
+                "kill": {
+                    "hide": true,
+                    "common": "Team",
+                    "priority": 20,
+                    "target": "AnyButTeam",
+                    "broadcast": "team"
+                }
+            }
+        }
+    },
+    {
+        "role": "alienbp",
+        "translation": "Alien Psion",
+	"players": "Always.",
+        "side": "aliens",
+        "help": "You are an alien who has great psionic powers at your disposal. These powers allow you to phase through a kill, but only one per game.",
+        "info": "Ignores the first kill against it. Shared night kill. Sided with the Aliens..",
+        "actions": {
+	    "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "aliens"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "alien",
+            "night": { 
+                "kill": { 
+                    "common": "Team", 
+                    "priority": 20, 
+                    "target": "AnyButTeam",
+                    "broadcast": "team"
+                }
+            },
+            "kill": {
+                "mode": {
+                    "evadeCharges": 1
+                },
+                "evadechargemsg": "You managed to evade a kill! But you won't get lucky twice...",
+                "msg": "~Self~ dodged your kill!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            } 
+        }
+    },
+    {
+        "role": "bodysnatcher",
+        "translation": "Alien Bodysnatcher",
+        "players": "Always.",
+        "side": "aliens",
+        "help": "What better way to take over things than by making your enemies into your slave? Take control of a person's body with /convert, once per game. If you hit someone who isn't a patient, you will erase their training instead (convert to basic form). The silly humans will never suspect a thing.",
+        "info": "Converts patients into servants and other roles into basic form, once per game. Sided with Aliens.",
+        "actions": { 
+            "teamTalk": true,
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "aliens"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "alien",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "night": {
+                "kill": {
+                    "hide": true,
+                    "common": "Team",
+                    "target": "AnyButTeam",
+                    "priority": 20,
+                    "broadcast": "team"
+                },
+                "convert": {
+                    "priority": 7,
+                    "target": "AnyButTeam",
+                    "hide": true,
+                    "common": "Self",
+                    "convertmsg": "Someone was weakened during the night...",
+                    "newRole": {
+                        "servant": "variable:viroles",
+                        "alien": "variable:alroles",
+                        "ocd": [
+                            "ocd"
+                        ],
+                        "ocd2": [
+                            "ocd2"
+                        ],
+                        "ocd3": [
+                            "ocd3"
+                        ],
+                        "tortured": [
+                            "tortured"
+                        ],
+                        "lyncherpro": [
+                            "lyncherpro"
+                        ],
+                        "staff": "variable:stroles",
+                        "rpatient": [
+                            "rpatient"
+                        ],
+                        "illusion": "variable:ilroles"
+                    }
+                }
+            }
+        }
+    },
+    {
+        "role": "servant",
+        "translation": "Alien Servant",
+        "side": "aliens",
+        "players": "Always.",
+        "help": "You used to have an individual personality, but that doesn't matter now. Your mind is long gone and all you can think about is serving your new masters. Use /shield on your Alien overlords to protect them from harm each night.",
+        "info": "Can shield someone each night to redirect actions. Sided with Aliens.",
+        "actions": {
+        "teamTalk": true,
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "aliens"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "alien",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "night": {
+                "shield": {
+                    "hide": true,
+                    "common": "Self",
+                    "broadcast": "team",
+                    "shieldActions": "*",
+                    "target": "AnyButSelf",
+                    "priority": 6
+                }
+            }
+        }
+    },
+    {
+        "role": "doppelganger",
+        "translation": "Alien Doppelganger",
+        "players": "Always.",
+        "side": "aliens",
+        "help": "The best way to take down the humans is to infiltrate their ranks. As an alien who has mastered the art of impersonation, you made your way into the Amnesia ward and pretended to be one of them. You share a night /kill with your brethren. Earn the trust of the humans so they will tell you what you want to know.",
+        "info": "Knows Amnesia Patients. Thought to be an Amnesia patient as well. Shared night kill. Sided with Aliens.",
+        "actions": { 
+            "teamTalk": true,
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "aliens"
+                ],
+                "revealPlayers": [
+                    "doppelganger",
+                    "amnesia",
+                    "amnesia staff"
+                ],
+                "revealPlayersMsg": "The other amnesia patients  are: ~Players~."
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "alien",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "night": {
+                "kill": {
+                    "hide": true,
+                    "common": "Team",
+                    "target": "AnyButTeam",
+                    "priority": 20,
+                    "broadcast": "team"
+                }
+            }
+        }
+    },
+    {
+        "role": "xenomorph",
+        "translation": "Alien Xenomorph",
+        "players": "Always.",
+        "side": "aliens",
+        "help": "You are one of the Alien's special pets. As Xenomorph still in your newborn phase, you have to /hug one person to distract them for one night. This will also move you along in your evolution.",
+        "info": "Can distract one person in first form. One unshared kill in second form. Shared kill in final form with higher prio.",
+        "actions": { 
+            "teamTalk": true,
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "aliens"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "alien",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "night": {
+                "hug": {
+                    "command": [
+                        "copy",
+                        "distract"
+                    ],
+                    "priority": 2,
+                    "copyAs": "alien chest",
+                    "hide": true,
+                    "common": "Self",
+                    "silent": true,
+                    "broadcast": "team",
+                    "target": "AnyButTeam"
+                }
+            }
+        }
+    },
+    {
+        "role": "alien chest",
+        "translation": "Alien Chestburster",
+        "players": "Always.",
+        "side": "aliens",
+        "info": "Second stage of the Xenomorph evolution. Can kill, unshared. Sided with the Aliens",
+        "help": "You have become implanted in the chest of a target. Use /kill [name] to burst through them and grow. This kill isn't shared with your team, so kill wisely. You will become an Alien Warrior when you do so.",
+        "actions": { 
+            "teamTalk": true,
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "aliens"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "alien",
+            "night": {
+                "kill": {
+                    "hide": true,
+                    "common": "Self",
+                    "command": [
+                        "copy",
+                        "kill"
+                    ],
+                    "target": "AnyButTeam",
+                    "silent": true,
+                    "copyAs": "warrior",
+                    "priority": 20,
+                    "broadcast": "team"
+                }
+            }
+        }
+    },
+    {
+        "role": "warrior",
+        "translation": "Alien Warrior",
+        "players": "Always.",
+        "side": "aliens",
+        "info": "Third form of the Alien Xenomorph. Increases shared kill speed. Sided with the Aliens.",
+        "help": "You have completed your life cycle and are now a fully grown Alien Warrior. You use your claws to rip targets to shred while you sneak and crawl around. This grants your team a priority boost.",
+        "actions": { 
+            "teamTalk": true,
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "aliens"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "alien",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "night": {
+                "kill": {
+                    "hide": true,
+                    "common": "Team",
+                    "target": "AnyButTeam",
+                    "priority": 11,
+                    "broadcast": "team"
+                }
+            }
+        }
+    },
+    {
+        "role": "queen",
+        "translation": "Alien Queen",
+        "side": "aliens",
+        "players": "Always.",
+        "help": "A new planet has been found abundant with resources. Unfortunately, it is populated with worthless 'humans'. Wipe them out so that you may have this new planet all for yourself. Along with /kill, you can /eat someone every other night.",
+        "info": "Shared night kill. Extra kill every other night. Sided with Aliens.",
+        "actions": { 
+            "teamTalk": true,
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "aliens"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "alien",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "night": {
+                "kill": {
+                    "priority": 20,
+                    "hide": true,
+                    "common": "Team",
+                    "broadcast": "team",
+                    "target": "AnyButTeam"
+                },
+                "eat": {
+                    "command": "kill",
+                    "priority": 20,
+                    "hide": true,
+                    "common": "Self",
+                    "target": "AnyButTeam",
+                    "broadcast": "team",
+                    "recharge": 2
+                }
+            }
+        }
+    },
+    {
+        "role": "staff bg",
+        "translation": "Staff Security",
+        "players": "Always.",
+        "side": "staff",
+        "help": "The patients of this asylum make for such interesting test subjects, but they can also be very violent. The Staff have hired you to protect from their outbursts if needed. Help your teammates with /protect each night to keep the patients under control. You share a kill with your teammates as well.",
+        "info": "Can protect and kill each night. Sided with Staff.",
+        "actions": { 
+            "teamTalk": true,
+            "onDeath": {
+                "convertRoles": {
+                    "trainee": "staff bg"
+                },
+                "convertmsg": "±Voices: The Staff Trainee has obtained a new job!"
+            },
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "staff"
+                ]
+            },
+            "preventTeamvote": true,
+            "onlist": "staff",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "night": {
+                "protect": {
+                    "hide": true,
+                    "common": "Self",
+                    "broadcast": "team",
+                    "target": "AnyButSelf",
+                    "priority": 5
+                },
+                "kill": {
+                    "hide": true,
+                    "common": "Team",
+                    "broadcast": "team",
+                    "target": "AnyButTeam",
+                    "priority": 12
+                }
+            }
+        }
+    },
+    {
+        "role": "staffbp",
+        "translation": "Staff Gymnast",
+	"players": "Always.",
+        "side": "staff",
+        "help": "Even though you work in the Asylum to torture people, that doesn't mean you can't work out! .",
+        "info": "Ignores the first kill against it. Shared night kill. Sided with the Staff.",
+        "actions": {
+	    "onlist": "staff",
+            "teamTalk": true,
+	    "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "staff"
+                ]
+            },
+            "preventTeamvote": true,
+            "night": { 
+                "kill": { 
+                    "common": "Team", 
+                    "priority": 12, 
+                    "target": "AnyButTeam", 
+                    "broadcast": "team"
+                }
+            },
+            "kill": {
+                "mode": {
+                    "evadeCharges": 1
+                },
+                "evadechargemsg": "You managed to evade a kill! But you won't get lucky twice...",
+                "msg": "~Self~ dodged your kill!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            }
+        }
+    },
+    {
+        "role": "staff",
+        "translation": "Staff Member",
+        "side": "staff",
+        "players": "Always.",
+        "help": "The patients are nothing but pawns. You are better than them and they choose to defy you? Dispose one each night with /kill as you see fit.",
+        "info": "Shared night kill. Sided with Staff.",
+        "actions": { 
+            "teamTalk": true,
+            "onDeath": {
+                "convertRoles": {
+                    "trainee": "staff"
+                },
+                "convertmsg": "±Voices: The Staff Trainee has obtained a new job!"
+            },
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "staff"
+                ]
+            },
+            "preventTeamvote": true,
+            "onlist": "staff",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "night": {
+                "kill": {
+                    "hide": true,
+                    "common": "Team",
+                    "broadcast": "team",
+                    "target": "AnyButTeam",
+                    "priority": 12
+                }
+            }
+        }
+    },
+    {
+        "role": "staff pl",
+        "translation": "Staff Nurse",
+        "side": "staff",
+        "players": "Always.",
+        "help": "Because of your training as an attendant, you tend to understand people better. Yet because of your personal machinations, you want to restrain the patients to watch their pain. Use /distract on others to calm them down for a short while.. and use your /kill to eliminate people too, shared with your team.",
+        "info": "Distract and shared night kill. Sided with Staff.",
+        "actions": { 
+            "teamTalk": true,
+            "onDeath": {
+                "convertRoles": {
+                    "trainee": "staff pl"
+                },
+                "convertmsg": "±Voices: The Staff Trainee has obtained a new job!"
+            },
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "staff"
+                ]
+            },
+            "preventTeamvote": true,
+            "onlist": "staff",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "night": {
+                "kill": {
+                    "hide": true,
+                    "common": "Team",
+                    "broadcast": "team",
+                    "target": "AnyButTeam",
+                    "priority": 12
+                },
+                "distract": {
+                    "hide": true,
+                    "common": "Self",
+                    "broadcast": "team",
+                    "target": "AnyButTeam",
+                    "priority": 0
+                }
+            }
+        }
+    },
+    {
+        "role": "rabid",
+        "translation": "Rabid Illusion",
+        "side": "illusion",
+        "players": "Always.",
+        "help": "You are the embodiment of ravenous, rabid, creatures who foam at the mouth and spread special diseases amongst victims. Twice per game, you can /bite one target per game, which will degenerate your target, making them into an ally or a basic form of their side. You also share a /kill with your teammates. Use it to destroy everyone else.",
+        "info": "Shared night kill. Can convert two people during the game into a basic role or a rabies patient. Sided with the Illusions.",
+        "actions": { 
+            "teamTalk": true,
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                   "illusion"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "illusion",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "night": {
+                "kill": {
+                    "priority": 16,
+                    "hide": true,
+                    "common": "Team",
+                    "broadcast": "team",
+                    "target": "AnyButTeam"
+                },
+                "bite": {
+                    "command": "convert",
+                    "target": "AnyButTeam",
+                    "broadcast": "team",
+                    "charges": 2,
+                    "hide": true,
+                    "common": "Self",
+                    "convertmsg": "Someone was weakened during the night...",
+                    "priority": 8,
+                    "newRole": {
+                        "rpatient": [
+                            "rpatient"
+                        ],
+                        "alien": "variable:alroles",
+                        "servant": [
+                            "servant"
+                        ],
+                        "rpatient": "variable:viroles",
+                        "ocd": [
+                            "ocd"
+                        ],
+                        "ocd2": [
+                            "ocd2"
+                        ],
+                        "ocd3": [
+                            "ocd3"
+                        ],
+                        "tortured": [
+                            "tortured"
+                        ],
+                        "lyncherpro": [
+                            "lyncherpro"
+                        ],
+                        "staff": "variable:stroles",
+                        "illusion": "variable:ilroles"
+                    },
+                    "silent": true
+                }
+            }
+        }
+    },
+    {
+        "role": "illusionbp",
+        "translation": "Misty Illusion",
+	"players": "Always.",
+        "side": "illusion",
+        "help": "You're just a puff of fear and darkness, a cloud of hate and rage. The fog that inhabits the minds of the people. You are not easy to get rid of, ignoring one kill during the game. You also share a kill with your teammates.",
+        "info": "Ignores the first kill against it. Shared night kill Sided with the Illusions.",
+        "actions": {
+	    "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "illusion"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "illusion",
+            "night": { 
+                "kill": { 
+                    "common": "Team", 
+                    "priority": 16, 
+                    "target": "AnyButTeam", 
+                    "broadcast": "team"
+                }
+            },
+            "kill": {
+                "mode": {
+                    "evadeCharges": 1
+                },
+                "evadechargemsg": "You managed to evade a kill! But you won't get lucky twice...",
+                "msg": "~Self~ dodged your kill!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            }
+        }
+    },
+    {
+        "role": "formless",
+        "translation": "Formless Illusion",
+        "players": "Always.",
+        "side": "illusion",
+        "help": "You are the darkness in the corners of the room. The wickedness that haunts the patients of this Asylum. They imagine seeing you out of the corners of their eyes, but when they try to look at you, you disappear entirely. You can't be stalked or distracted. You share a /kill with your team, use it to eliminate everyone else.",
+        "info": "Can kill during the night. Can't be stalked or distracted. Sided with the Illusions.",
+        "actions": { 
+            "teamTalk": true,
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "illusion"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "illusion",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "night": {
+                "kill": {
+                    "priority": 16,
+                    "hide": true,
+                    "common": "Team",
+                    "broadcast": "team",
+                    "target": "AnyButTeam"
+                }
+            },
+            "distract": {
+                "mode": "ignore"
+            },
+            "stalk": {
+                "mode": "noVisit"
+            }
+        }
+    },
+    {
+        "role": "crawling",
+        "translation": "Crawling Illusion",
+        "players": "Always.",
+        "side": "illusion",
+        "help": "You are a swarm of insects and vermin. Your numbers allow you to figure out what other roles do with /stalk. You can surround a target and /kill them, shared with your team.",
+        "info": "Can kill during the night. Can stalk during the night. Sided with the Illusions.",
+        "actions": { 
+            "teamTalk": true,
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "illusion"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "illusion",
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "night": {
+                "kill": {
+                    "priority": 16,
+                    "hide": true,
+                    "common": "Team",
+                    "broadcast": "team",
+                    "target": "AnyButTeam"
+                },
+                "stalk": {
+                    "target": "AnyButTeam",
+                    "broadcast": "team",
+                    "hide": true,
+                    "common": "Self",
+                    "priority": 31
+                }
+            }
+        }
+    },
+    {
+        "role": "slithering",
+        "translation": "Slithering Illusion",
+        "side": "illusion",
+        "players": "Always.",
+        "help": "From the deepest fears of people, you have been born as a den of snakes. You can coil around an enemy and /poison with a venomous bite (The poison isn't too strong). You also share a /kill with your fellow illusions. Use it to demolish everyone else..",
+        "info": "Can poison during the night. Shared nightkill. Sided with the Illusions.",
+        "actions": { 
+            "teamTalk": true,
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "illusion"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "illusion",
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "night": {
+                "poison": {
+                    "target": "AnyButTeam",
+                    "hide": true,
+                    "common": "Self",
+                    "broadcast": "team",
+                    "priority": 40,
+                    "limit": 1,
+                    "count": 3
+                },
+                "kill": {
+                    "target": "AnyButTeam",
+                    "hide": true,
+                    "common": "Team",
+                    "broadcast": "team",
+                    "priority": 16
+                }
+            }
+        }
+    },
+    {
+        "role": "illusion",
+        "translation": "Illusion",
+        "players": "Always.",
+        "side": "illusion",
+        "help": "You are the shadow of a doubt instilled in humanity. Attached to all creatures, you wait patiently until your time to strike. Then you strike with a /kill, removing them from life. Team up with your fellow illusions to eliminate everyone else.",
+        "info": "Can kill one person during the night. Sided with the Illusions.",
+        "actions": { 
+            "teamTalk": true,
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "illusion"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "illusion",
+            "onteam": "illusion",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "night": {
+                "kill": {
+                    "hide": true,
+                    "common": "Team",
+                    "priority": 16,
+                    "broadcast": "team",
+                    "target": "AnyButTeam"
+                }
+            }
+        }
+    },
+    {
+        "role": "undead",
+        "translation": "Undead Illusion",
+        "players": "Always.",
+        "side": "illusion",
+        "help": "You are the embodiment of all creatures dead. You have many forms that represent you, so you can /stalk, /protect, and /distract once per game each. You and your teammates can also /kill each night.",
+        "info": "Can kill one person during the night. Can either stalk, protect, or distract one person, once per game each. Sided with the Illusions.",
+        "actions": { 
+            "teamTalk": true,
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "illusion"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "illusion",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "night": {
+                "kill": {
+                    "hide": true,
+                    "common": "Team",
+                    "priority": 16,
+                    "broadcast": "team",
+                    "target": "AnyButTeam"
+                },
+                "protect": {
+                    "hide": true,
+                    "common": "Self",
+                    "priority": 5,
+                    "broadcast": "team",
+                    "target": "AnyButSelf",
+                    "restrict": [
+                        "stalk",
+                        "distract"
+                    ],
+                    "charges": 1
+                },
+                "stalk": {
+                    "hide": true,
+                    "common": "Self",
+                    "priority": 21,
+                    "target": "AnyButTeam",
+                    "broadcast": "team",             
+                    "restrict": [
+                        "distract",
+                        "protect"
+                    ],
+                    "charges": 1
+                },
+                "distract": {
+                    "hide": true,
+                    "common": "Self",
+                    "priority": 1,
+                    "target": "AnyButTeam",
+                    "broadcast": "team",
+                    "distractmsg": "Though you can’t see anything, you know someone, or something, is watching you. Paralyzed with an unnatural fear, you are unable to complete any actions in the night.",
+"teammsg": "Someone or something has your partner paralyzed with fear. You realize that they may have a psychological break, so you stay with them during the night.",
+                    "restrict": [
+                        "stalk",
+                        "protect"
+                    ],
+                    "charges": 1
+                }
+            }
+        }
+    },
+    {
+        "role": "winged",
+        "translation": "Winged Illusion",
+        "side": "illusion",
+	"players": "Always.",
+        "help": "You are the dread of the skies. You strike hard and quick without being seen. Once per game, you can /kill one target which won't reveal you. During the night, you share a kill with your fellow illusions. Coordinate to finish off everyone else.",
+        "info": "Can kill during the night. Can kill during the day once per game. Sided with the Illusions.",
+        "actions": { 
+            "teamTalk": true,
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "illusion"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "illusion",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target wasn't human!"
+            },
+            "night": {
+                "kill": {
+                    "priority": 16,
+                    "hide": true,
+                    "common": "Team",
+                    "broadcast": "team",
+                    "target": "AnyButTeam"
+                }
+            },
+            "standby": {
+                "kill": {
+                    "msg": "±Voices: You can strike now with /kill. You won't be revealed, but you only get one kill.",
+                    "killmsg": "±Voices: A flutter of wings can be heard throughout the Asylum. 'KACAW' screeches throughout the halls. ~Target~ is terrified and suddenly falls down dead, victim to a fatal heart attack.",
+                    "charges": 1,
+                    "target": "AnyButTeam"
+                }
+            }
+        }
+    },
+    {
+        "role": "rpatient",
+        "translation": "Rabies Patient",
+        "players": "Always.",
+        "side": "illusion",
+        "help": "You've been infected with rabies from the Rabid Illusion. Your mind has been warped as your spirit breaks. You have vowed to serve the illusions now with a /shield.",
+        "info": "Can shield someone each night. Sided with the Ilusions.",
+        "actions": { 
+            "teamTalk": true,
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "illusion"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "illusion",
+            "night": {
+                "shield": {
+                    "target": "Any",
+                    "shieldActions": "*",
+                    "priority": 1,
+                    "hide": true,
+                    "common": "Self",
+                    "broadcast": "team"
+                }
+            }
+        }
+    },
+    {
+        "role": "monstrous",
+        "translation": "Monstrous Illusion",
+        "side": "illusion",
+        "players": "Always.",
+        "help": "You are the embodiment of monsters with unrivaled strength. Not only do you have a shared /kill, but you can use /slash once per game which will bypass any protections. ",
+        "info": "Shared night kill and unshared second piercing kill. Sided with the Illusions.",
+        "actions": { 
+            "teamTalk": true,
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "illusion"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,
+            "onlist": "illusion",
+            "night": {
+                "kill": {
+                    "priority": 16,
+                    "hide": true,
+                    "common": "Team",
+                    "target": "AnyButTeam",
+                    "broadcast": "team"
+                },
+                "slash": {
+                    "command": "kill",
+                    "priority": 16,
+                    "hide": true,
+                    "common": "Self",
+                    "target": "AnyButTeam",
+                    "broadcast": "team",
+                    "pierce": true,
+                    "charges": 1
+                }
+            }
+        }
+    },
+    {
+        "role": "sensitive",
+        "translation": "Sensitive Patient",
+        "side": "village",
+        "players": "Always.",
+        "help": "You're a soft-spoken patient, wrongly accused for the murder of your parents, but you were too weak to do anything about it. You're so weak that you cry when someone is even slightly mean to you. Because of this, you gain 4 votes when voted.",
+        "info": "Gets 4 extra votes if voted at all. Sided with the Patients.",
+        "actions": {
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "voteshield": 4,
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+             },
+             "dummy": {
+                 "mode": "ignore",
+                 "msg": "±Voices: Your target is human!"
+             }
+        }
+    },
+    {
+        "role": "withdrawal",
+        "translation": "Withdrawal Patient",
+        "players": "Always.",
+        "help": "You are trying to quit your drug addiction, but you don't know how much longer you can do this. You feel like if you don't get any drugs by the fourth night you might explode... in votes.",
+        "info": "Gets 999 votes on day 4. Sided with Patients.",
+        "side": "village",
+        "actions": { 
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "initialCondition": {
+                "curse": {
+                    "cursedRole": "withdrawal2",
+                    "curseCount": 4
+                }
+            }
+        }
+    },
+    {
+        "role": "withdrawal2",
+        "translation": "Withdrawal Patient",
+        "players": "Always.",
+        "help": "You can't take it anymore! Staying off of drugs for so long has made you crazy, and there's nothing that anybody can do to stop you from lynching someone. Your vote will remove whomever you choose.",
+        "hide": true,
+        "info": "Gets 999 votes on night 4. Sided with Patients.",
+        "side": "village",
+        "actions": { 
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+               "mode": "ignore",
+               "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "vote": 999,
+            "initialCondition": {
+                "curse": {
+                    "cursedRole": "withdrawal3",
+                    "curseCount": 1
+                }
+            }
+        }
+    },
+    {
+        "role": "withdrawal3",
+        "translation": "Post-Withdrawal Patient",
+        "players": "Always.",
+        "help": "You've finally gotten the drugs out of your system. You will live your life as a normal patient now. Use your vote of 1 to assist the other patients.",
+        "hide": true,
+        "info": "Gets 999 votes on night 4. Sided with Patients.",
+        "side": "village",
+        "actions": { 
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient"
+        }
+    },
+    {
+        "role": "screwball",
+        "players": "Always.",
+        "translation": "Screwball Patient",
+        "help": "You are fed up with life and don't care anymore. You have a -1 vote because everything is a joke to you. Use this to keep people in the game. They just might think you want them out *snickers*.",
+        "info": "-1 vote. Sided with Patients.",
+        "side": "village",
+        "actions": { 
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "vote": -1
+        }
+    },
+    {
+        "role": "freak",
+        "translation": "Freak Patient",
+        "players": "Always.",
+        "help": "Your freakish presence can /scare someone every night. It will also scare away anyone who tries to harm that person.",
+        "info": " distract + protect in one action. Sided with Patients.",
+        "side": "village",
+        "actions": { 
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "startup": {
+                "revealRole": "child"
+            },
+            "night": {
+                "scare": {
+                    "command": [
+                        "distract",
+                        "protect"
+                    ],
+                    "hide": true,
+                    "common": "Self",
+                    "target": "AnyButSelf",
+                    "priority": 3
+                }
+            }
+        }
+    },
+    {
+        "role": "solitary",
+        "translation": "Solitary Patient",
+        "players": "Always.",
+        "help": "Locked up in a padded cell, you can't be killed normally. You have a vote of one since you still get news of things outside your room. Use this to help your allies.",
+        "info": "Ignores night kills. Sided with Patients.",
+        "side": "village",
+        "actions": { 
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "kill": {
+                "mode": "ignore"
+            }
+        }
+    },
+    {
+        "role": "personality",
+        "translation": "Multiple Personality Patient",
+        "players": "Always.",
+        "help": "Your mind is broken, but your spirit is strong. As traumatic experiences plague your subconscience, you have created people to protect you. A sleuth who can /stalk, a lady who can /distract, a tough guy who can /protect, and the darkest... A murderer with a can /kill. Each has one use, so choose wisely.",
+        "info": "Can kill, distract, stalk, and protect once per game. Sided with the Patients.",
+        "side": "village",
+        "actions": { 
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "startup": {
+                "revealRole": "child"
+            },
+            "night": {
+                "kill": {
+                    "hide": true,
+                    "common": "Self",
+                    "target": "AnyButSelf",
+                    "priority": 21,
+                    "restrict": [
+                        "stalk",
+                        "distract",
+                        "protect"
+                    ],
+                    "charges": 1
+                },
+                "protect": {
+                    "hide": true,
+                    "common": "Team",
+                    "priority": 5,
+                    "target": "AnyButSelf",
+                    "restrict": [
+                        "stalk",
+                        "distract",
+                        "kill"
+                    ],
+                    "charges": 1
+                },
+                "stalk": {
+                    "hide": true,
+                    "common": "Self",
+                    "priority": 21,
+                    "target": "AnyButSelf",
+                    "restrict": [
+                        "distract",
+                        "protect",
+                        "kill"
+                    ],
+                    "charges": 1
+                },
+                "distract": {
+                    "hide": true,
+                    "common": "Self",
+                    "priority": 1,
+                    "target": "AnyButSelf",
+                    "restrict": [
+                        "stalk",
+                        "protect",
+                        "kill"
+                    ],
+                    "charges": 1
+                }
+            }
+        }
+    },
+    {
+        "role": "masochist",
+        "players": "Always.",
+        "translation": "Masochist Patient",
+        "help": "Everybody is complaining about how patients are dying, but you enjoy pain. Use /shield on somebody to help both of you out by taking kills and other actions in their place.",
+        "side": "village",
+        "info": "Can shield someone each night to redirect actions. Sided with Patients",
+        "actions": { 
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "startup": {
+                "revealRole": "child"
+            },
+            "night": {
+                "shield": {
+                    "hide": true,
+                    "common": "Self",
+                    "shieldActions": "*",
+                    "target": "AnyButSelf",
+                    "priority": 6
+                }
+            }
+        }
+    },
+    {
+        "role": "voodoo",
+        "translation": "Voodoo  Patient",
+        "players": "Always.",
+        "help": "You have been sent to the Asylum because of your background in witchcraft and voodoo. People assume it's a form of psychosis, but you know better. During the night, you can cast a protective hex with /safeguard which will protect your target from some negative effects. Sadly, you had all your supplies taken from you so you can only do it once per game.",
+        "side": "village",
+        "info": "Can safeguard during the night. Sided with the Patients.",
+        "actions": { 
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "startup": {
+                "revealRole": "child"
+            },
+            "night": {
+                "safeguard": {
+                    "hide": true,
+                    "common": "Self",
+                    "target": "AnyButSelf",
+                    "priority": 4,
+                    "charges": 1
+                }
+            }
+        }
+    },
+    {
+        "role": "amnesia",
+        "translation": "Amnesia Patient",
+        "players": "Always.",
+        "help": "Huh? What? You awake in a large room with some other people. You don't know who they are, really, other than that they seem to have amnesia like you. Maybe they're good? Then again... Maybe they're not. Vote during the day to remove threats to the Patients. And remember, you don't really know if your Amnesia friends are actually friends.",
+        "info": "Knows other members of the Amnesia Ward. Sided with the Patients.",
+        "side": "village",
+        "actions": { 
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "startup": {
+                "revealRole": "child",
+                "revealPlayers": [
+                    "doppelganger",
+                    "amnesia staff",
+                    "amnesia"
+                ],
+                "revealPlayersMsg": "The other amnesia patients are: ~Players~."
+            },
+            "onlist": "patient",
+            "onteam": "patient"
+        }
+    },
+    {
+        "role": "amnesia staff",
+        "translation": "Staff Psychiatrist",
+        "players": "Always.",
+        "help": "You are a Psychiatrist. You were brought in to treat the amnesia patients, but they forgot who you were, so you decided to hide amongst them. Use this knowledge to work with your team to win. You share a kill with your team as well.",
+        "info": "Knows the other Amnesia Patients. Sided with the Staff.",
+        "side": "staff",
+        "actions": { 
+            "teamTalk": true,
+            "night": {
+                "kill": {
+                    "hide": true,
+                    "common": "Team",
+                    "broadcast": "team",
+                    "target": "AnyButTeam",
+                    "priority": 16
+                }
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "staff"
+                ],
+                "revealPlayers": [
+                    "amnesia",
+                    "amnesia staff",
+                    "doppelganger"
+                ],
+                "revealPlayersMsg": "The other amnesia patients are: ~Players~."
+            },
+            "preventTeamvote": true,
+            "onlist": "staff"
+        }
+    },
+    {
+        "role": "maniac",
+        "translation": "Maniac",
+        "side": "maniac",
+        "hide": true,
+        "help": "Dummy role."
+    },
+    {
+        "role": "ocd",
+        "translation": "Obsessive Compulsive Maniac",
+        "players": "Always.",
+        "side": "maniac",
+        "help": "Perfect. Perfect. Perfect. Perfect... Must be perfect... You are a patient of the asylum because of your life-long need for perfection. Because of this, you are completely disgusted by the likes of the Filthy Patient. Your sole goal in life is to have the filthy patient the target of public anger and to see him lynched. If you accomplish this, you will be satisfied and will win with everyone. If he is killed instead though, you will return to the patients and only win with them.",
+        "info": "Wins the game with any side if he lynches his target(If he doesn't, becomes Obsessive Compulsive Patient). Sided with himself or everyone.",
+        "actions": { 
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "onlist": "maniac",
+            "startup": {
+                "revealRole": [
+                    "child",
+                    "filthy"
+                ]
+            }
+        }
+    },
+    {
+        "role": "ocd2",
+        "translation": "Sated Maniac",
+        "side": "maniac",
+        "players": "Always.",
+        "winningSides": "*",
+        "hide": true,
+        "help": "The Filthy Patient has been lynched by your hands. You are satisfied with life now and will continue to clean where you can. You aren't a threat to anyone, so you will now win with everyone!",
+        "actions": { 
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "maniac"
+        }
+    },
+    {
+        "role": "rich",
+        "translation": "Rich Patient",
+        "players": "Always.",
+        "side": "village",
+        "help": "You, despite your deteriorating state of mind, have bribed the Staff into not killing you! Vote to remove people during the day!",
+        "info": "Can't be killed by the Staff. Sided with the Patients. ",
+        "actions": { 
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "kill": {
+                "mode": {
+                    "ignore": [
+                        "staff bg",
+                        "staff",
+                        "staff sg",
+                        "amnesia staff",
+                        "staff pl",
+                        "staff dealer",
+                        "staff doctor",
+                        "trainee",
+                        "staff chef",
+                        "staff lobo"
+                    ]
+                },
+                "msg": "±Voices: You can't kill the Rich Patient because his finances fund the Asylum!"
+            }
+        }
+    },
+    {
+        "role": "aluminum",
+        "translation": "Aluminum Hat Patient",
+        "players": "Always.",
+        "side": "village",
+        "help": "You wear an aluminum hat! Though the others say it's superstitious, aliens have a weakness to aluminum, meaning you can't be killed by them! Vote to remove people during the day!",
+        "info": "Can't be killed by the Aliens. Sided with the Patients. ",
+        "actions": { 
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "kill": {
+                "mode": {
+                    "ignore": [
+                        "alien",
+                        "sentinel",
+                        "prober",
+                        "alienbp",
+                        "bodysnatcher",
+                        "servant",
+                        "doppelganger",
+                        "xenomorph",
+                        "alien chest",
+                        "warrior",
+                        "queen"
+                    ]
+                },
+                "msg": "±Voices: You can't kill the Aluminum Hat Patient because you and your teammates don't like aluminum!"
+            }
+        }
+    },
+    {
+        "role": "brave",
+        "translation": "Brave Patient",
+        "side": "village",
+        "players": "Always.",
+        "help": "You've found it a troubling time to be fearful of the illusions that stalk the Asylum! You've decided to stand up against them, and thus, they respect you for that. You can't be killed by the Illusions. Vote to remove people during the day!",
+        "info": "Can't be killed by the Illusions. Sided with the Patients. ",
+        "actions": { 
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "kill": {
+                "mode": {
+                    "ignore": [
+                        "illusion",
+                        "formless",
+                        "crawling",
+                        "slithering",
+                        "illusion sg",
+                        "illusion",
+                        "undead",
+                        "winged",
+                        "rpatient",
+                        "monstrous"
+                    ]
+                },
+                "msg": "±Voices: You can't kill the Brave Patient because you prey on fear, not courage!"
+            }
+        }
+    },
+    {
+        "role": "ocd3",
+        "translation": "Obsessive Compulsive Patient",
+        "players": "Always.",
+        "side": "village",
+        "help": "The Filthy Patient died, so you returned to your life as an OCD Patient. You win with the Patients only now.",
+        "info": "OCD Maniac who failed to lynch his target. Only wins with the Patients now.",
+        "actions": { 
+            "onlist": "patient",
+            "onteam": "patient",
+            "startup": {
+                "revealRole": "child"
+            }
+        }
+    },
+    {
+        "role": "safeguard",
+        "translation": "Superstitious Patient",
+        "side": "village",
+        "players": "Always.",
+        "help": "Using your superstitions, you try to guide people away from possible dangers, allowing them to escape from some negative effects. Using this gift that other people deemed 'insane', be sure to help your patient allies survive!",
+        "info": "Can safeguard once per night. Sided with Patients.",
+        "actions": {
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "startup": {
+                "revealRole": "child"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "night": {
+                "safeguard": {
+                    "target": "AnyButSelf",
+                    "hide": true,
+                    "common": "Self",
+                    "priority": 4
+                }
+            }
+        }
+    },
+    {
+        "role": "filthy",
+        "translation": "Filthy Patient",
+        "players": "Always.",
+        "side": "village",
+        "help": "You are a putrid patient with tendencies to hoard the most disgusting objects. As such, you resist poison since the crap you hoard is much worse than anything they can do to you! Your awful demeanor means that inspectors view you negatively.",
+        "info": "Resists poison. Inspected as not human and as suspicious. Sided with the Patients.",
+        "actions": { 
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "startup": {
+                "revealRole": "child"
+            },
+            "poison": {
+                "mode": "resistance",
+                "constant": 3
+            },
+            "lynch": {
+                "convertRoles": {
+                    "ocd": "ocd2"
+                },
+                "convertmsg": "±Voices: The Filthy Patient was cleansed from this world. Now the Obessive Compulsive Maniac, ~Target~, is satisfied and will win with anyone."
+            },
+            "onDeath": {
+                "convertRoles": {
+                    "ocd": "ocd3"
+                },
+                "convertmsg": "±Voices: The Filthy Patient died, so the Obessive Compulsive Maniac is satisfied and returns to the Patients."
+            }
+        }
+    },
+    {
+        "role": "tortured",
+        "translation": "Tortured Maniac",
+        "players": "Always.",
+        "side": "maniac",
+        "help": "You are so spiteful of your own being that you hurt yourself whenever you can. Be it cuts, welts, bruises or anything else, what you want most in life is to feel pain. If you get YOURSELF lynched, you will automatically win with everyone. Society doesn't make it easy for you though, so you have a -2 votes. Your need to die gives you a voteshield of 2. All of the damage you've accumulated over time means you only have 4 turns to achieve your goal before you die.",
+        "info": "Wins the game if successfully lynched. -2 votes and 2 voteshield. Dies in 3 nights. Sided with self, but wins with anyone if lynched.",
+        "actions": { 
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "voteshield": 2,
+            "vote": -2,
+            "onlist": "maniac",
+            "startup": {
+                "revealRole": "child"
+            },
+            "initialCondition": {
+                "poison": {
+                    "count": 4,
+                    "poisonDeadMessage": "All of your wounds added up... It was good to feel the pain though."
+                }
+            },
+            "lynch": {
+                "convertTo": "tortured2",
+                "convertmsg": "'Hah... Hahaha! This pain is glorious... so I can't die yet.' The Tortured patient has achieved his goal of being lynched, so now ~Self~ wins with everyone!"
+            }
+        }
+    },
+    {
+        "role": "tortured2",
+        "translation": "Tortured Maniac",
+        "side": "maniac",
+        "players": "Always.",
+        "winningSides": "*",
+        "help": "You've successfully gotten yourself lynched and now you'll win with anyone because you are satisfied with anything now.",
+        "hide": true,
+        "actions": { 
+            "teamTalk": true,
+            "initialCondition": {
+                "clearPoison": true
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "startup": {
+                "revealRole": "child"
+            }
+        }
+    },
+    {
+        "role": "staff dealer",
+        "translation": "Staff Pharmacist",
+        "side": "staff",
+        "players": "Always.",
+        "help": "You offer a wide variety of medicinal goods. Their effects are specifically reserved to limit others and include pills which /distract, /protect, /stalk, and /poison. Supplies are limited however so you can only use each one once. You'll always be able to /kill with your team however.",
+        "info": "Can distract, protect, stalk, and poison one time each. Shared nightkill. Sided with Staff",
+        "actions": { 
+            "teamTalk": true,
+            "onDeath": {
+                "convertRoles": {
+                    "trainee": "staff dealer"
+                },
+                "convertmsg": "±Voices: The Staff Trainee has obtained a new job!"
+            },
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "staff"
+                ]
+            },
+            "preventTeamvote": true,
+            "onlist": "staff",
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "night": {
+                "kill": {
+                    "hide": true,
+                    "common": "Team",
+                    "priority": 16,
+                    "broadcast": "team",
+                    "target": "AnyButTeam"
+                },
+                "protect": {
+                    "hide": true,
+                    "common": "Team",
+                    "priority": 5,
+                    "broadcast": "team",
+                    "target": "AnyButSelf",
+                    "restrict": [
+                        "stalk",
+                        "distract",
+                        "poison"
+                    ],
+                    "charges": 1
+                },
+                "stalk": {
+                    "hide": true,
+                    "common": "Team",
+                    "priority": 21,
+                    "target": "AnyButTeam",
+                    "broadcast": "team",
+                    "restrict": [
+                        "distract",
+                        "protect",
+                        "poison"
+                    ],
+                    "charges": 1
+                },
+                "distract": {
+                    "hide": true,
+                    "common": "Team",
+                    "priority": 1,
+                    "target": "AnyButTeam",
+                    "broadcast": "team",
+                    "restrict": [
+                        "stalk",
+                        "protect",
+                        "poison"
+                    ],
+                    "charges": 1
+                },
+                "poison": {
+                    "target": "AnyButTeam",
+                    "hide": true,
+                    "common": "Self",
+                    "broadcast": "team",
+                    "priority": 40,
+                    "limit": 1,
+                    "count": 4,
+                    "restrict": [
+                        "stalk",
+                        "protect",
+                        "distract"
+                    ],
+                    "charges": 1
+                }
+            }
+        }
+    },
+    {
+        "role": "lyncherpro",
+        "translation": "Maniac Sadist",
+        "players": "Always.",
+        "side": "maniac",
+        "help": "Your only affliction is that you love to watch others writhe in pain. ",
+        "info": "Lynch 3 targets to win. Dies if any of them die.",
+        "actions": {
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "startup": {
+                "revealRole": "child"
+            },
+            "night": {
+                "protect": {
+                    "limit": 3,
+                    "hide": true,
+                    "common": "Self",
+                    "target": "AnyButSelf",
+                    "priority": 5
+                }
+            },
+            "onDeadRoles": {
+                "convertTo": {
+                    "lyncherpro": [
+                        "filthy"
+                    ]
+                },
+                "convertmsg": "±Voices: Winning"
+            }
+        }
+    },
+    {
+        "role": "staff doctor",
+        "translation": "Staff Doctor",
+        "players": "Always.",
+        "help": "With a doctorate in health, you know exactly how to /cure people from disease. You know what the other Staff are doing, but you have no reason to stop them. In fact, you almost enjoy watching the suffering of others. You share a /kill with your teammates. Use your medicine to cure them or yourself of any poisons.",
+        "side": "staff",
+        "info": "Can remove poison during the night. Shared night kill. Sided with the Staff.",
+        "actions": { 
+            "teamTalk": true,
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "staff"
+                ]
+            },
+            "onDeath": {
+                "convertRoles": {
+                    "trainee": "staff doctor"
+                },
+                "convertmsg": "±Voices: The Staff Trainee has obtained a new job!"
+            },
+            "preventTeamvote": true,
+            "onlist": "staff",
+            "night": {
+                "kill": {
+                    "hide": true,
+                    "common": "Team",
+                    "broadcast": "team",
+                    "target": "AnyButTeam",
+                    "priority": 12
+                },
+                "cure": {
+                    "command": [
+                        "detox"
+                    ],
+                    "hide": true,
+                    "common": "Self",
+                    "broadcast": "team",
+                    "silent": true,
+                    "msg": "±Voices: ~Target~ was cured!",
+                    "targetmsg": "±Voices: You were cured of poison!",
+                    "target": "Any",
+                    "priority": 100
+                }
+            }
+        }
+    },
+    {
+        "role": "trainee",
+        "translation": "Staff Trainee",
+        "players": "Always.",
+        "side": "staff",
+        "help": "You are a Staff Member who is still in training. As you haven't mastered a craft yet, you will assoon as one of your allies dies. When they do, you will ",
+        "info": "Obtains the job of the first Staff member to die. Sided with the Staff.",
+        "actions": { 
+            "teamTalk": true,
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "staff"
+                ]
+            },
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "preventTeamvote": true,
+            "onlist": "staff"
+        }
+    },
+    {
+        "role": "kind",
+        "translation": "Kind Patient",
+        "side": "village",
+        "help": "You are a benevolent patient placed in the Asylum by a spiteful parent. Even though you believe you aren't crazy, there are still perturbing shapes and images that you notice every once in a while... So during the night, you /wave to tell others who you are (can't be faked). Vote during the day to remove people!",
+        "info": "Can tell another person that user is 100% Patient. Sided with the Patients.",
+        "actions": { 	
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "onlist": "patient",
+            "onteam": "patient",
+            "startup": {
+                "revealRole": "child"
+            },
+            "night": {
+                "wave": {
+                    "command": "dummy3",
+                    "hide": true,
+                    "common": "Self",
+                    "target": "AnyButSelf",
+                    "priority": 3,
+                    "dummy3targetmsg": "±Voices: Hello, ~Target~, nice to meet you. I'm ~Self~, a patient around here. I hope we can get along.",
+                    "dummy3usermsg": "±Voices: You said hello to ~Target~!"
+                }
+            }
+        }
+    },
+    {
+        "role": "staff chef",
+        "translation": "Staff Chef",
+        "players": "Always.",
+        "side": "staff",
+        "help": "You were trained in the art of culinary warfare. Your palette can identify even the slightest spices. Your love of food is only matched by your love of... murder. Using your food, you can /poison one person every two days. Use this to assist your team in finishing off your enemies.",
+        "info": "Can poison once every two nights. Sided with the Staff.",
+        "actions": { 
+            "teamTalk": true,
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "staff"
+                ]
+            },
+            "onDeath": {
+                "convertRoles": {
+                    "trainee": "staff chef"
+                },
+                "convertmsg": "±Voices: The Staff Trainee has obtained a new job!"
+            },
+            "preventTeamvote": true,
+            "onlist": "staff",
+            "night": {
+                "poison": {
+                    "hide": true,
+                    "common": "Self",
+                    "broadcast": "team",
+                    "recharge": 2,
+                    "target": "AnyButTeam",
+                    "priority": 50
+                }
+            }
+        }
+    },
+    {
+        "role": "staff lobo",
+        "translation": "Staff Lobotomizer",
+        "side": "staff",
+        "players": "Always.",
+        "help": "These patients are out of control and only going to hurt themselves. Use /lobo during the night, up to three times, to take away their power to cause harm. You can also use /kill with the rest of the staff.",
+        "info": "Weakens others to a basic role up to 3 times per game. Shared nightkill. Sided with Staff.",
+        "actions": { 
+            "teamTalk": true,
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "staff"
+                ]
+            },
+            "onDeath": {
+                "convertRoles": {
+                    "trainee": "staff lobo"
+                },
+                "convertmsg": "±Voices: The Staff Trainee has obtained a new job!"
+            },
+            "preventTeamvote": true,
+            "onlist": "staff",
+            "night": {
+                "kill": {
+                    "hide": true,
+                    "common": "Team",
+                    "broadcast": "team",
+                    "target": "AnyButTeam",
+                    "priority": 12
+                },
+                "lobo": {
+                    "command": [
+                        "convert"
+                    ],
+                    "hide": true,
+                    "common": "Self",
+                    "convertmsg": "Someone was weakened during the night...",
+                    "charges": 3,
+                    "broadcast": "team",
+                    "newRole": {
+                        "patient": "variable:viroles",
+                        "alien": "variable:alroles",
+                        "servant": [
+                            "servant"
+                        ],
+                        "ocd": [
+                            "ocd"
+                        ],
+                        "ocd2": [
+                            "ocd2"
+                        ],
+                        "ocd3": [
+                            "ocd3"
+                        ],
+                        "tortured": [
+                            "tortured"
+                        ],
+                        "lyncherpro": [
+                            "lyncherpro"
+                        ],
+                        "staff": "variable:stroles",
+                        "rpatient": [
+                            "rpatient"
+                        ],
+                        "illusion": "variable:ilroles"
+                    },
+                    "target": "AnyButTeam",
+                    "priority": 9
+                }
+            }
+        }
+    },
+    {
+        "role": "priority",
+        "translation": "Priorities",
+        "side": "village",
+        "help": "Just Prios.",
+        "info": "Just prios.",
+        "actions": { 
+            "night": {
+                "Staff Kills": {
+                    "command": "kill",
+                    "target": "AnyButSelf",
+                    "common": "Self",
+                    "priority": 12
+                },
+                "Xenomorph with Aliens": {
+                    "command": "kill",
+                    "target": "AnyButSelf",
+                    "common": "Self",
+                    "priority": 11
+                },
+                "Illusion Kills": {
+                    "command": "kill",
+                    "common": "Self",
+                    "target": "AnyButSelf",
+                    "priority": 16
+                },
+                "Alien Kills": {
+                    "command": "kill",
+                    "target": "AnyButSelf",
+                    "common": "Self",
+                    "priority": 20
+                },
+                "Protects": {
+                    "command": "kill",
+                    "target": "AnyButSelf",
+                    "common": "Self",
+                    "priority": 5
+                },
+                "Safeguards": {
+                    "command": "kill",
+                    "target": "AnyButSelf",
+                    "common": "Self",
+                    "priority": 4
+                },
+                "Shields": {
+                    "command": "kill",
+                    "target": "AnyButSelf",
+                    "common": "Self",
+                    "priority": 6
+                },
+                "All other actions": {
+                    "command": "kill",
+                    "common": "Self",
+                    "target": "AnyButSelf",
+                    "priority": 40
+		},
+                "Alien Distract": {
+		    "command": "kill",
+                    "target": "AnyButSelf",
+                    "common": "Self",
+                    "priority": 2
+                },
+                "Illusion Distract": {
+                    "command": "kill",
+                    "target": "AnyButSelf",
+                    "common": "Self",
+                    "priority": 1
+                },
+                "Patient Kills": {
+                    "command": "kill",
+                    "common": "Self",
+                    "target": "AnyButSelf",
+                    "priority": 21
+                },
+                "Patient Distracts": {
+		    "command": "kill",
+                    "target": "AnyButSelf",
+                    "common": "Self",
+                    "priority": 3
+                },
+                "Alien Convert": {
+                    "command": "kill",
+                    "target": "AnyButSelf",
+                    "common": "Self",
+                    "priority": 7
+                },
+                "Staff Convert": {
+                    "command": "kill",
+		    "common": "Self",
+                    "target": "AnyButSelf",
+                    "priority": 9
+                },
+                "Illusion Convert": {
+                    "command": "kill",
+                    "target": "AnyButSelf",
+                    "common": "Self",
+                    "priority": 8
+                },
+                "Staff Distract": {
+                    "command": "kill",
+                    "target": "AnyButSelf",
+                    "common": "Self",
+                    "priority": 0
+		}
+            }
+        }
+    },
+    {
+        "role": "staff sg",
+        "translation": "Staff Alchemist",
+        "side": "staff",
+        "players": "Always.",
+        "help": "Your experience with chemicals allows you to detect poisons and create antidotes for them. Use /safeguard each night to protect a teammate from poison. You can concoct dangerous chemicals to /kill enemies with as well, which you share with your team.",
+        "info": "Can safeguard and kill. Sided with the Illusions.",
+        "actions": { 
+            "teamTalk": true,
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target is suspicious!"
+            },
+        "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "staff"
+                ]
+            },
+            "onDeath": {
+                "convertRoles": {
+                    "trainee": "staff sg"
+                },
+                "convertmsg": "±Voices: The Staff Trainee has obtained a new job!"
+            },
+            "preventTeamvote": true,
+            "onlist": "staff",
+            "night": {
+                "kill": {
+                    "hide": true,
+                    "common": "Team",
+                    "broadcast": "team",
+                    "target": "AnyButTeam",
+                    "priority": 12
+                },
+                "safeguard": {
+                    "target": "AnyButSelf",
+                    "hide": true,
+                    "common": "Self",
+                    "priority": 4
+                }
+            }
+        }
+    },
+    {
+        "role": "illusion sg",
+        "translation": "Slimy Illusion",
+        "players": "Always.",
+        "side": "illusion",
+        "help": "You are the embodiment of gross and slimy things. Like your cousin from the movie 'The Blob', you also absorb people into yourself with a /kill shared with your team. Also use /safeguard each night to cover a teammate in protective goo, protecting against special effects.",
+        "info": "Can safeguard and shared night kill. Sided with the Illusions.",
+        "actions": { 
+            "teamTalk": true,
+            "dummy": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't human!"
+            },
+            "dummy2": {
+                "mode": "ignore",
+                "msg": "±Voices: Your target isn't suspicious!"
+            },
+            "startup": {
+                "revealRole": "child",
+                "team-revealif": [
+                    "illusion"
+                ]
+            },
+            "preventTeamvote": true,
+            "updateTeam": true,				
+            "onlist": "illusion",
+            "night": {
+                "kill": {
+                    "priority": 16,
+                    "hide": true,
+                    "common": "Team",
+                    "broadcast": "team",
+                    "target": "AnyButTeam"
+                },
+                "safeguard": {
+                    "target": "AnyButSelf",
+                    "hide": true,
+                    "common": "Self",
+                    "priority": 4
+                }
+            }
+        }
+    }
+    ],
+    "villageCantLoseRoles": [
+        "ptsd",
+        "osvigi",
+        "violent",
+        "psycho",
+        "greedy",
+        "suicidal",
+        "withdrawal2",
+        "personality"
+    ],
+    "roles1": [
+        {
+            "conspiracy": 0.5,
+            "human": 0.5,
+            "patient": 0.2
+        },
+        {
+            "creepy": 0.5,
+            "ospl": 0.5,
+            "patient": 0.2
+        },
+        {
+            "patient": 0.2,
+            "withdrawal": 0.3,
+            "amnesia": 0.3,
+            "1x bg": 0.1,
+            "kind": 0.1
+        },
+        {
+            "1x bg": 0.3,
+            "bg": 0.4,
+	    "freak": 0.2,
+	    "bp1": 0.3,
+            "voodoo": 0.2,
+            "masochist": 0.4,
+            "ospl": 0.3
+        },
+        {
+            "sentinel": 0.2,
+            "monstrous": 0.2,
+            "winged": 0.1,
+	    "prober": 0.1,
+            "undead": 0.2
+        },
+        {
+            "patient": 0.2,
+            "kind": 0.2,
+	    "liar1": 0.1,
+	    "liar2": 0.1,
+	    "bp1": 0.1,
+            "filthy": 0.2
+        },
+        {
+            "staff pl": 0.2,
+            "staff dealer": 0.1,
+            "staff lobo": 0.2
+        }
+    ],
+    "roles2": [
+        {
+            "conspiracy": 0.5,
+            "human": 0.5
+        },
+        {
+            "creepy": 0.5,
+            "manic": 0.5,
+	    "freak": 0.5,
+            "patient": 0.2
+        },
+        {
+            "patient": 0.3,
+            "withdrawal": 0.3,
+	    "bp1": 0.1,
+            "amnesia": 0.3
+        },
+        {
+            "1x bg": 0.2,
+            "bg": 0.2,
+            "masochist": 0.2
+        },
+        {
+            "illusion": 0.1,
+            "undead": 0.2,
+            "winged": 0.2,
+            "monstrous": 0.2
+        },
+        {
+            "patient": 0.2,
+            "amnesia": 0.2,
+            "kind": 0.2
+        },
+        {
+            "sentinel": 0.2,
+            "doppelganger": 0.2,
+            "queen": 0.2,
+            "xenomorph": 0.2,
+            "prober": 0.2
+        },
+        "child",
+        "alien",
+        {
+            "1x bg": 0.2,
+            "masochist": 0.2,
+            "ospl": 0.2,
+	    "bp1": 0.1,
+            "village_ww": 0.1
+        },
+        {
+            "formless": 0.2,
+            "slithering": 0.2,
+            "crawling": 0.2,
+	    "illusionbp": 0.1,
+            "illusion sg": 0.2
+        },
+        {
+	    "patient": 0.3,
+	    "old": 0.1,
+	    "liar1": 0.1,
+            "liar2": 0.1,
+	    "insecure": 0.1,
+	    "phobia": 0.1
+	},
+        {
+            "ptsd": 0.2,
+            "violent": 0.2
+        }
+    ],
+    "roles3": [
+        {
+            "conspiracy": 0.5,
+            "human": 0.5
+        },
+        {
+            "creepy": 0.5,
+            "manic": 0.5,
+	    "freak": 0.5
+        },
+        {
+            "patient": 0.3,
+            "withdrawal": 0.3,
+            "amnesia": 0.3
+        },
+        {
+            "1x bg": 0.1,
+            "bg": 0.4,
+	    "bp1": 0.1,
+	    "personality": 0.2,
+            "masochist": 0.3
+        },
+        {
+	    "staff dealer": 0.1,
+            "staff pl": 0.2,
+            "staff lobo": 0.2
+        },
+        {
+            "patient": 0.2,
+            "amnesia": 0.3,
+	    "bp1": 0.1,
+            "kind": 0.3
+        },
+        {
+            "sentinel": 0.2,
+            "doppelganger": 0.2,
+            "queen": 0.2,
+            "xenomorph": 0.2,
+            "prober": 0.2
+        },
+        "child",
+        {
+            "staff bg": 0.2,
+            "amnesia staff": 0.2,
+	    "staffbp": 0.2,
+            "staff doctor": 0.2,
+            "trainee": 0.1
+        },
+        {
+            "1x bg": 0.2,
+            "masochist": 0.2,
+	    "personality": 0.1,
+            "ospl": 0.2,
+	     "bp1": 0.1,
+            "village_ww": 0.2
+        },
+        {
+            "bodysnatcher": 0.2,
+            "brainwasher": 0.2,
+            "prober": 0.2
+        },
+        "filthy",
+        {
+            "ptsd": 0.2,
+            "violent": 0.2
+        },
+        {
+	    "staff chef": 0.3,
+	    "staff": 0.1,
+	    "staffbp": 0.2
+	},
+        {
+            "ocd": 0.7,
+            "tortured": 0.4
+        },
+        {
+            "doppelganger": 0.3,
+	    "alienbp": 0.2,
+            "alien": 0.1
+        },
+        {
+            "greedy": 0.2,
+            "osvigi": 0.2,
+            "withdrawal": 0.1,
+            "suicidal": 0.1
+        }
+    ],
+    "roles4": [
+        {
+            "conspiracy": 0.5,
+            "human": 0.5
+        },
+        {
+            "creepy": 0.5,
+            "manic": 0.5,
+            "freak": 0.3
+        },
+        {
+            "brave": 0.1,
+            "rich": 0.1,
+            "aluminum": 0.1
+        },
+        {
+            "bg": 0.2,
+            "masochist": 0.2
+        },
+        {
+            "staff dealer": 0.3,
+            "staff pl": 0.3,
+            "staff lobo": 0.3,
+	    "trainee": 0.1
+        },
+        "amnesia",
+        {
+            "doppelganger": 0.1,
+            "queen": 0.2,
+            "xenomorph": 0.2,
+            "bodysnatcher": 0.2
+        },
+        "child",
+        {
+            "staff bg": 0.2,
+            "amnesia staff": 0.2,
+            "staff doctor": 0.2,
+	    "staffbp": 0.2,
+            "trainee": 0.1,
+            "staff sg": 0.2
+        },
+        {
+            "1x bg": 0.2,
+            "masochist": 0.2,
+            "ospl": 0.2,
+	    "personality": 0.1,
+	    "bp1": 0.2,
+            "village_ww": 0.2
+        },
+        {
+            "sentinel": 0.2,
+            "brainwasher": 0.2,
+            "prober": 0.2
+        },
+        "filthy",
+        {
+            "ptsd": 0.2,
+            "violent": 0.2
+        },
+        {
+            "winged": 0.2,
+            "undead": 0.2,
+	    "illusionbp": 0.1,
+            "monstrous": 0.2
+        },
+        {
+            "ocd": 0.5,
+            "tortured": 0.2
+        },
+        {
+            "staff": 0.2,
+            "trainee": 0.1,
+	    "staffbp": 0.2,
+            "amnesia staff": 0.2
+        },
+        {
+            "greedy": 0.2,
+            "osvigi": 0.2,
+            "freak": 0.1,
+            "withdrawal": 0.1
+        },
+        {
+            "rabid": 0.2,
+            "slithering": 0.2
+        },
+        {
+            "freak": 0.2,
+            "violent": 0.2
+        },
+        "psycho",
+        {
+            "patient": 0.1,
+	    "bp1": 0.1,
+            "safeguard": 0.3,
+            "solitary": 0.3
+        }
+    ],
+    "roles5": [
+        {
+            "conspiracy": 0.5,
+            "human": 0.5
+        },
+        {
+            "creepy": 0.5,
+	    "freak": 0.3,
+            "manic": 0.5
+        },
+        {
+            "brave": 0.1,
+            "rich": 0.1,
+            "aluminum": 0.1
+        },
+        {
+            "1x bg": 0.1,
+            "bg": 0.3,
+            "masochist": 0.2
+        },
+        {
+            "staff dealer": 0.1,
+            "staff pl": 0.2,
+            "staff lobo": 0.2
+        },
+        "amnesia",
+        {
+            "doppelganger": 0.1,
+            "queen": 0.2,
+            "xenomorph": 0.2,
+            "bodysnatcher": 0.2
+        },
+        "child",
+        {
+            "staff bg": 0.2,
+            "amnesia staff": 0.2,
+            "staff doctor": 0.3,
+	    "staffbp": 0.2,
+            "trainee": 0.1,
+            "staff sg": 0.2
+        },
+        {
+            "1x bg": 0.2,
+            "masochist": 0.2,
+            "ospl": 0.2,
+            "freak": 0.2,
+            "bp1": 0.1,
+            "village_ww": 0.2
+        },
+        {
+            "sentinel": 0.2,
+            "brainwasher": 0.2,
+            "prober": 0.2
+        },
+        "filthy",
+        {
+            "ptsd": 0.2,
+            "violent": 0.2
+        },
+        {
+            "winged": 0.2,
+            "undead": 0.2,
+            "monstrous": 0.2
+        },
+        {
+            "ocd": 0.4,
+            "tortured": 0.2
+        },
+        {
+            "trainee": 0.1,
+	    "staffbp": 0.2,
+	    "staff bg": 0.2,
+            "amnesia staff": 0.2
+        },
+        {
+            "greedy": 0.2,
+            "osvigi": 0.2,
+            "withdrawal": 0.1,
+            "suicidal": 0.1
+        },
+        {
+            "rabid": 0.2,
+            "slithering": 0.2
+        },
+        {
+            "freak": 0.2,
+            "violent": 0.2
+        },
+        "psycho",
+        "solitary",
+        {
+            "doppelganger": 0.1,
+            "alien": 0.2,
+	    "alienbp": 0.1,
+            "sentinel": 0.1
+        },
+        {
+            "patient": 0.3,
+            "1x bg": 0.1,
+            "ospl": 0.1,
+            "voodoo": 0.1,
+	    "bp1": 0.1,
+            "amnesia": 0.1
+        },
+        {
+            "formless": 0.3,
+            "winged": 0.1,
+	    "illusionbp": 0.1,
+            "monstrous": 0.1,
+            "illusion": 0.1
+        },
+        {
+            "safeguard": 0.2,
+            "bg": 0.2,
+	    "bp1": 0.1,
+            "masochist": 0.2
+        },
+        {
+            "kind": 0.3,
+            "masochist": 0.1,
+            "1x bg": 0.1,
+	    "bp1": 0.1,
+            "ospl": 0.1
+        },
+        {
+            "violent": 0.5,
+            "ptsd": 0.5,
+            "psycho": 0.2
+        },
+        {
+	    "patient": 0.4,
+	    "old": 0.2,
+	    "insecure": 0.2,
+	    "liar1": 0.2,
+	    "liar2": 0.2,
+	    "sensitive": 0.2
+	},
+        {
+            "doppelganger": 0.2,
+            "amnesia staff": 0.2
+        }
+    ],
+    "roles6": [
+        "conspiracy",
+        {
+            "creepy": 0.5,
+            "manic": 0.5
+        },
+        {
+            "brave": 0.1,
+            "rich": 0.1,
+            "aluminum": 0.1
+        },
+        {
+            "1x bg": 0.1,
+            "bg": 0.3,
+            "freak": 0.2,
+            "masochist": 0.2
+        },
+        {
+            "staff dealer": 0.1,
+            "staff pl": 0.2,
+            "staff lobo": 0.2
+        },
+        "amnesia",
+        {
+            "doppelganger": 0.1,
+            "queen": 0.2,
+            "xenomorph": 0.2,
+            "bodysnatcher": 0.2
+        },
+        "child",
+        {
+            "staff bg": 0.2,
+            "amnesia staff": 0.2,
+            "staff doctor": 0.2,
+            "trainee": 0.1,
+            "staff sg": 0.2
+        },
+        {
+            "1x bg": 0.2,
+	    "safeguard": 0.1,
+            "masochist": 0.2
+        },
+        {
+            "sentinel": 0.2,
+            "brainwasher": 0.2,
+            "prober": 0.2
+        },
+        "filthy",
+        {
+            "ptsd": 0.2,
+            "violent": 0.2
+        },
+        {
+            "winged": 0.2,
+            "monstrous": 0.2
+        },
+        {
+            "ocd": 0.4,
+            "tortured": 0.2
+        },
+        {
+            "trainee": 0.1,
+	    "staff bg": 0.1,
+	    "staffbp": 0.2,
+            "amnesia staff": 0.2
+        },
+        {
+            "greedy": 0.2,
+            "osvigi": 0.2,
+            "withdrawal": 0.1
+        },
+        {
+            "rabid": 0.2,
+            "slithering": 0.2
+        },
+        {
+            "freak": 0.2,
+            "violent": 0.2
+        },
+        "psycho",
+        "solitary",
+        {
+            "doppelganger": 0.1,
+            "alien": 0.2,
+            "sentinel": 0.1
+        },
+        {
+            "patient": 0.3,
+            "1x bg": 0.1,
+	    "bp1": 0.1,
+	    "personality": 0.1,
+            "ospl": 0.1,
+            "freak": 0.1,
+            "voodoo": 0.1,
+            "amnesia": 0.1
+        },
+        {
+            "formless": 0.3,
+            "winged": 0.1,
+            "monstrous": 0.1,
+	    "illusionbp": 0.1,
+            "illusion": 0.1
+        },
+        {
+            "safeguard": 0.2,
+            "bg": 0.2,
+	    "bp1": 0.1,
+            "masochist": 0.2
+        },
+        {
+            "masochist": 0.1,
+            "1x bg": 0.1,
+            "bp1": 0.1,
+            "ospl": 0.1,
+            "suicidal": 0.2
+        },
+        {
+            "violent": 0.5,
+            "ptsd": 0.5,
+            "psycho": 0.2
+        },
+        "human",
+        {
+            "doppelganger": 0.2,
+            "amnesia staff": 0.4
+        },
+        {
+            "kind": 0.2,
+            "amnesia": 0.2
+        },
+        {
+            "village_ww": 0.2,
+            "ospl": 0.2
+        },
+        {
+            "amnesia staff": 0.2,
+            "doppelganger": 0.4
+        },
+        "undead",
+        "personality",
+        {
+            "greedy": 0.1,
+            "ospl": 0.1,
+            "violent": 0.1,
+            "patient": 0.5,
+            "1x bg": 0.1,
+            "suicidal": 0.1
+        },
+        {
+            "voodoo": 0.1,
+            "freak": 0.1,
+            "violent": 0.1,
+            "patient": 0.5,
+            "1x bg": 0.1
+        },
+        {
+	    "patient": 0.4,
+	    "old": 0.2,
+	    "insecure": 0.2,
+	    "liar1": 0.2,
+	    "liar2": 0.2,
+	    "sensitive": 0.2,
+            "brave": 0.3,
+            "rich": 0.3,
+            "aluminum": 0.3
+        },
+        {
+	    "patient": 0.4,
+	    "old": 0.2,
+	    "insecure": 0.2,
+	    "liar1": 0.2,
+	    "liar2": 0.2,
+	    "sensitive": 0.2
+	}
+    ]
+
+}
