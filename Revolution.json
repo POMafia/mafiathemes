@@ -1,0 +1,175 @@
+{
+    "name": "Revolution",
+    "author": "Miki Sayaka",
+    "ticks": {
+    	"night1": 15,
+    	"night": 25
+    },
+    "minplayers": 3,
+    "nolynch": true,
+    "bot": {
+    	"name": "Historian",
+    	"color": "#9933ff"
+    },
+    "borderColor": "#cc0066",
+    "sides": [
+        {
+            "translation": "Freedom Fighters",
+            "color": "#cc0000",
+            "side": "village"
+        },
+        {
+            "translation": "Dictator",
+            "color": "#3333ff",
+            "side": "mafia"
+        }
+    ],
+    "roles": [
+        {
+            "translation": "Rebel",
+            "role": "villager",
+            "side": "village",
+            "info": "Can /topple someone during the day to become Dictator if they find the dictator.",
+            "actions": {
+                "standby": {
+                    "topple": {
+                    	"command": "expose",
+                        "target": "AnyButSelf",
+                        "msg": "You can steal the throne by using /topple [name] :",
+                        "exposemsg": "VIVA LA RESISTANCE! A rebel waves a flag in the air!!",
+                        "copyAs": {
+                        	"mafia": ["mafia", "mafia2"]
+                        },
+                        "newRole": {
+                        	"villager2": ["mafia", "mafia2"]
+                        },
+                        "copymsg": "The regime has been toppled!",
+                        "convertmsg": "But what's this? The rebel who toppled it set up a new dictatorship!",
+                        "convertusermsg": "",
+                        "copyusermsg": "You toppled the Regime and become a Dictator!"
+                    }
+                }
+            },
+            "help": "You are one of the Rebels. Type /Topple [name] during the day to try and topple the Dictator! If you topple the dictator, you become the new dictator! Your name and target will not be revealed!"
+        },
+        {
+            "translation": "Rebel",
+            "role": "villager2",
+            "side": "village",
+            "hide": true,
+            "actions": {
+				"initialCondition": {
+				  "curse": {
+					"cursedRole": "villager",
+					"curseCount": -1,
+					"silentCurse": true
+				    }
+				}
+            },
+            "help": "Some blasted rebel destroyed your regime!! Oh well, now you can join the rebellion. Starting the next night, you can /topple someone to try and become dictator again!"
+        },
+        {
+            "translation": "Dictator",
+            "role": "mafia",
+            "side": "mafia",
+            "info": "Can kill once per night (can't kill the first night of the game). Gains a second kill if they stay in power for a full day.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "priority": 1,
+                        "common": "Team",
+                        "killmsg": "A rebel (~Target~) has been silenced by the Regime!"
+                    }
+                },
+				"initialCondition": {
+				  "curse": {
+					"cursedRole": "mafia2",
+					"curseCount": 1,
+					"silentCurse": true
+				    }
+				}
+            },
+            "help": "Now that you are in power, you must abuse it to your end! Type /Kill [name] to eliminate someone during the night!"
+        },
+        {
+            "translation": "Dictator",
+            "role": "mafia2",
+            "side": "mafia",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "priority": 1,
+                        "limit": 2,
+                        "common": "Team",
+                        "killmsg": "A rebel (~Target~) has been silenced by the Regime!"
+                    }
+                }
+            },
+            "help": "Now that you have been in power for a while, you can abuse it even MORE! Type /Kill [name] twice during the night to eliminate two rebels!"
+        },
+        {
+            "translation": "Dictator",
+            "role": "mafia0",
+            "side": "mafia",
+            "hide": true,
+            "actions": {
+				"initialCondition": {
+				  "curse": {
+					"cursedRole": "mafia",
+					"curseCount": 1,
+					"silentCurse": true
+				    }
+				}
+            },
+            "help": "You are the dictator! You must abuse your power to stay in power! Type /kill [name] to eliminate the rebels starting night 2."
+        }
+    ],
+    "roles1": [],
+    "roles2": [
+        "mafia0",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager"
+    ],
+    "villageCantLoseRoles": []
+}
