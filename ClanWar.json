@@ -1,0 +1,233 @@
+{
+"name": "ClanWar",
+"author": "Fegelein",
+"summary": "In a desolate, crime-ridden city, three different gangs from three different parts of town decide to settle their differences once and for all: there can only be one surviving clan. A neighborhood assassin who does things his own way and a village leader from another land want a piece of the action as well. Back-stabbing, bluffing, and betrayal are all commonplace in this theme - are you up for the challenge? Fegelein is the current owner of ClanWar, PM him with suggestions/feedback. Originally created by Grasseh. In small games, NA no longer has 2 votes.",
+"threadlink": "http://pokemon-online.eu/forums/showthread.php?16086-ClanWar",
+"sides": [
+{ "side": "clan", "translation": "East Clan"
+},
+{ "side": "clan2", "translation": "South Clan"
+},
+{ "side": "clan3", "translation": "NorthWest Clan"
+},
+{ "side": "neighbour", "translation": "Neighbour Village"
+},
+{ "side": "leader", "translation": "Village Leader"
+}
+],
+"roles": [{
+"role": "espy",
+"translation": "East Spy",
+"side": "clan",
+"help": "You are the East Spy. You have no action, but at night, you roam around and might find out who is going to get killed and even by who!You are allied with the East Clan, but you do not remember your partners.",
+"actions": { "hax": {"kill": { "revealTeam": 0.50, "revealPlayer": 0.08} } }
+},{
+"role": "sspy",
+"translation": "South Spy",
+"side": "clan2",
+"help": "You are the South Spy. You have no action, but at night, you roam around and might find out who is going to get killed and even by who!You are allied with the South Clan, but you do not remember your partners.",
+"actions": { "hax": {"kill": { "revealTeam": 0.50, "revealPlayer": 0.08} } }
+}, {
+"role": "nspy",
+"translation": "NorthWest Spy",
+"side": "clan3",
+"help": "You are the NorthWest Spy. You have no action, but at night, you roam around and might find out who is going to get killed and even by who!You are allied with the NorthWest Clan, but you do not remember your partners.",
+"actions": { "hax": {"kill": { "revealTeam": 0.50, "revealPlayer": 0.08} } }
+},{
+"role": "espy2",
+"translation": "East Roamer",
+"side": "clan",
+"help": "You are the East Roamer. You have no action, but at night, you roam around and might find out who is going to get protected and maybe by who!You are allied with the East Clan, but you do not remember your partners.",
+"actions": { "hax": {"protect": { "revealTeam": 0.25, "revealPlayer": 0.05} } }
+},{
+"role": "sspy2",
+"translation": "South Roamer",
+"side": "clan2",
+"help": "You are the South Roamer. You have no action, but at night, you roam around and might find out who is going to get protected and maybe by who!You are allied with the South Clan, but you do not remember your partners.",
+"actions": { "hax": {"protect": { "revealTeam": 0.25, "revealPlayer": 0.05} } }
+},{
+"role": "nspy2",
+"translation": "NorthWest Roamer",
+"side": "clan3",
+"help": "You are the NorthWest Roamer. You have no action, but at night, you roam around and might find out who is going to get protected and maybe by who!You are allied with the NorthWest Clan, but you do not remember your partners.",
+"actions": { "hax": {"protect": { "revealTeam": 0.25, "revealPlayer": 0.05} } }
+}, {
+"role": "einspector",
+"translation": "East Inspector",
+"side": "clan",
+"help": "You can find other players' identity by typing /Inspect [name]! You are allied with the East Clan, but you do not remember your partners.",
+"actions": { "night": {"inspect": {"target": "AnyButSelf", "common": "Self", "priority": 15} } }
+}, {
+"role": "sinspector",
+"translation": "South Inspector",
+"side": "clan2",
+"help": "You can find other players' identity by typing /Inspect [name]! You are allied with the South Clan, but you do not remember your partners.",
+"actions": { "night": {"inspect": {"target": "AnyButSelf", "common": "Self", "priority": 16} } }
+}, {
+"role": "ninspector",
+"translation": "NorthWest Inspector",
+"side": "clan3",
+"help": "You can find other players' identity by typing /Inspect [name]! You are allied with the NorthWest Clan, but you do not remember your partners.",
+"actions": { "night": {"inspect": {"target": "AnyButSelf", "common": "Self", "priority": 17} } }
+}, {
+"role": "ebodyguard",
+"translation": "East Bodyguard",
+"side": "clan",
+"help": "You can protect another player by typing /Protect [name]!You are allied with the East Clan, but you do not remember your partners.",
+"actions": { "night": {"protect": {"target": "AnyButSelf", "common": "Role", "priority": 4, "broadcast": "role"} },
+"startup": "role-reveal"}
+}, {
+"role": "sbodyguard",
+"translation": "South Bodyguard",
+"side": "clan2",
+"help": "You can protect another player by typing /Protect [name]!You are allied with the South Clan, but you do not remember your partners.",
+"actions": { "night": {"protect": {"target": "AnyButSelf", "common": "Role", "priority": 5, "broadcast": "role"} },
+"startup": "role-reveal"}
+}, {
+"role": "nbodyguard",
+"translation": "NorthWest Bodyguard",
+"side": "clan3",
+"help": "You can protect another player by typing /Protect [name]!You are allied with the NorthWest Clan, but you do not remember your partners.",
+"actions": { "night": {"protect": {"target": "AnyButSelf", "common": "Role", "priority": 6, "broadcast": "role"} },
+"startup": "role-reveal"}
+}, {
+"role": "ekiller",
+"translation": "East Gunner",
+"side": "clan",
+"help": "You have guns with you. You can kill people by typing /Kill [name]!You are allied with the East Clan, but you do not remember your partners.",
+"actions": { "night": {"kill": {"target": "AnyButSelf", "common": "Self", "priority": 12} } 
+}
+}, {
+"role": "skiller",
+"translation": "South Gunner",
+"side": "clan2",
+"help": "You have guns with you. You can kill people by typing /Kill [name]!You are allied with the South Clan, but you do not remember your partners.",
+"actions": { "night": {"kill": {"target": "AnyButSelf", "common": "Self", "priority": 13} } 
+}
+}, {
+"role": "nkiller",
+"translation": "NorthWest Gunner",
+"side": "clan3",
+"help": "You have guns with you. You can kill people by typing /Kill [name]!You are allied with the NorthWest Clan, but you do not remember your partners.",
+"actions": { "night": {"kill": {"target": "AnyButSelf", "common": "Self", "priority": 14} } 
+}
+},  {
+"role": "werewolf2",
+"translation": "Neighbour Assassin",
+"side": "neighbour",
+"help": "You are from the village next to this one. You do not care about the Clan Wars, so you kill people for fun by typing /Kill [name]!Your vote counts for 2 as everyone is fearing you in the village.You are allied with yourself.",
+"actions": { "night": {"kill": {"target": "AnyButSelf", "common": "Self", "priority": 7} },
+"distract": {"mode": "ChangeTarget", "hookermsg": "You tried to hook the Assassin, and you payed for it!", "msg": "The ~Distracter~ came to you last night! You killed her instead !"},
+"vote": 2,
+"kill": {"mode": "ignore"},
+"avoidHax": ["kill"] }
+},
+{
+"role": "werewolf",
+"translation": "Neighbour Assassin",
+"side": "neighbour",
+"help": "You are from the village next to this one. You do not care about the Clan Wars, so you kill people for fun by typing /Kill [name]!You are allied with yourself.",
+"actions": { "night": {"kill": {"target": "AnyButSelf", "common": "Self", "priority": 7} },
+"distract": {"mode": "ChangeTarget", "hookermsg": "You tried to hook the Assassin, and you payed for it!", "msg": "The ~Distracter~ came to you last night! You killed her instead !"},
+"kill": {"mode": "ignore"},
+"avoidHax": ["kill"] }
+}, {
+"role": "ehooker",
+"translation": "East Hooker",
+"side": "clan",
+"help": "You can distract(hook) people at night by typing /Distract [name]!You are allied with the East Clan, but you do not remember your partners.",
+"actions": { "night": {"distract": {"target": "AnyButSelf", "common": "Self", "priority": 1} } }
+}, {
+"role": "shooker",
+"translation": "South Hooker",
+"side": "clan2",
+"help": "You can distract(hook) people at night by typing /Distract [name]!You are allied with the South Clan, but you do not remember your partners.",
+"actions": { "night": {"distract": {"target": "AnyButSelf", "common": "Self", "priority": 2} } }
+}, {
+"role": "nhooker",
+"translation": "NorthWest Hooker",
+"side": "clan3",
+"help": "You can distract(hook) people at night by typing /Distract [name]!You are allied with the NorthWest Clan, but you do not remember your partners.",
+"actions": { "night": {"distract": {"target": "AnyButSelf", "common": "Self", "priority": 3} } }
+}, {
+"role": "emayor",
+"translation": "East Mayor",
+"side": "clan",
+"help": "You are so respected in the East Clan that you vote counts for 3!You are allied with the East Clan, but you do not remember your partners.",
+"actions": { "vote": 3 }
+}, {
+"role": "smayor",
+"translation": "South Mayor",
+"side": "clan2",
+"help": "You are so respected in the South Clan that you vote counts for 3!You are allied with the South Clan, but you do not remember your partners.",
+"actions": { "vote": 3 }
+}, {
+"role": "nmayor",
+"translation": "NorthWest Mayor",
+"side": "clan3",
+"help": "You are so respected in the NorthWest Clan that you vote counts for 3!You are allied with the NorthWest Clan, but you do not remember your partners.",
+"actions": { "vote": 3 }
+}, {
+"role": "leader",
+"translation": "Village Leader",
+"side": "leader",
+"help": "You rule over the village. You are so sick of these clan wars that you want to kill everyone involved in them. Type /Kill [name] to kill one of them. You have 2 Kills per night. Since you rule this village, you have 4 votes. You are allied with yourself. You win if you are the last player standing.",
+"actions": { "night": {"kill": {"target": "AnyButSelf", "common": "Self", "priority": 8, "limit": 2} },
+"distract": {"mode": "ChangeTarget", "hookermsg": "You tried to mess with the Town Leader.He saw that as a great opportunity to get rid of you!", "msg": "The ~Distracter~ came to you last night! You took this opportunity to get rid of her!"},
+"vote": 4,
+"kill": {"mode": "ignore"},
+"avoidHax": ["kill"] }
+}, {
+"role": "eboss",
+"translation": "East Boss",
+"side": "clan",
+"help": "Type /Kill [name] to kill someone! You can't be distracted!You are allied with the East Clan, but you do not remember your partners.",
+"actions": { "night": {"kill": {"target": "AnyButTeam", "common": "Team", "priority": 9, "broadcast": "team"} },
+"distract": {"mode": "ignore"}
+}
+}, {
+"role": "sboss",
+"translation": "South Boss",
+"side": "clan2",
+"help": "Type /Kill [name] to kill someone! You can't be distracted!You are allied with the South Clan, but you do not remember your partners.",
+"actions": { "night": {"kill": {"target": "AnyButTeam", "common": "Team", "priority": 10, "broadcast": "team"} },
+"distract": {"mode": "ignore"}
+}
+}, {
+"role": "nboss",
+"translation": "NorthWest Boss",
+"side": "clan3",
+"help": "Type /Kill [name] to kill someone! You can't be distracted!You are allied with the NorthWest Clan, but you do not remember your partners.",
+"actions": { "night": {"kill": {"target": "AnyButTeam", "common": "Team", "priority": 11, "broadcast": "team"} },
+"distract": {"mode": "ignore"}
+}
+}, {
+"role": "eassassin",
+"translation": "East Assassin",
+"side": "clan",
+"help": "At day, you can discreetly knife someone in the back by typing /Kill [name].You are allied with the East Clan, but you do not remember your partners.",
+"actions": { "standby": {"kill": {"target": "AnyButSelf", "msg": "You can kill now using /kill [name] :",
+"killmsg": "~Target~ makes a strange noise. ~Target~ falls on the floor and you notice a knife in the back with an E written on it."} } }
+}, {
+"role": "sassassin",
+"translation": "South Assassin",
+"side": "clan2",
+"help": "At day, you can discreetly knife someone in the back by typing /Kill [name].You are allied with the South Clan, but you do not remember your partners.",
+"actions": { "standby": {"kill": {"target": "AnyButSelf", "msg": "You can kill now using /kill [name] :",
+"killmsg": "~Target~ makes a strange noise. ~Target~ falls on the floor and you notice a knife in the back with a S written on it."} } }
+}, {
+"role": "nassassin",
+"translation": "NorthWest Assassin",
+"side": "clan3",
+"help": "At day, you can discreetly knife someone in the back by typing /Kill [name].You are allied with the NorthWest Clan, but you do not remember your partners.",
+"actions": { "standby": {"kill": {"target": "AnyButSelf", "msg": "You can kill now using /kill [name] :",
+"killmsg": "~Target~ makes a strange noise. ~Target~ falls on the floor and you notice a knife in the back with a NW written on it."} } }
+}],
+
+"roles1": ["skiller", "nkiller", "ekiller", "nbodyguard", "sbodyguard", "ebodyguard", "werewolf",
+"ninspector", "sinspector", "einspector", "nhooker"],
+"roles2": ["skiller", "nkiller", "ekiller", "nbodyguard", "sbodyguard", "ebodyguard", "werewolf2",
+"ninspector", "sinspector", "einspector", "nhooker", "shooker", "ehooker", "nspy", "sspy", "espy", 
+"skiller", "nkiller", "ekiller", "nmayor", "smayor", "emayor","leader", "nspy2", "sspy2", "espy2",
+"sassassin", "nassassin", "eassassin", "nboss", "sboss", "eboss"]
+}
