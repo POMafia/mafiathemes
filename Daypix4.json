@@ -1,0 +1,165 @@
+{
+    "name": "Daypix4",
+    "author": "R​iceKirby",
+    "summary": "Daypix with some evasions. Those that kill more evade less, and vice-versa.",
+    "sides": [
+        { "side": "1", "translation": "Daypix"},
+        { "side": "2", "translation": "Daypix"},
+        { "side": "3", "translation": "Daypix"},
+        { "side": "4", "translation": "Daypix"},
+        { "side": "5", "translation": "Daypix"},
+        { "side": "6", "translation": "Daypix"},
+        { "side": "7", "translation": "Daypix"},
+        { "side": "8", "translation": "Daypix"},
+        { "side": "9", "translation": "Daypix"},
+        { "side": "10", "translation": "Daypix"},
+        { "side": "11", "translation": "Daypix"},
+        { "side": "12", "translation": "Daypix"},
+        { "side": "13", "translation": "Daypix"},
+        { "side": "14", "translation": "Daypix"},
+        { "side": "15", "translation": "Daypix"},
+        { "side": "16", "translation": "Daypix"},
+        { "side": "17", "translation": "Daypix"},
+        { "side": "18", "translation": "Daypix"},
+        { "side": "19", "translation": "Daypix"},
+        { "side": "20", "translation": "Daypix"},
+        { "side": "21", "translation": "Daypix"},
+        { "side": "22", "translation": "Daypix"},
+        { "side": "23", "translation": "Daypix"},
+        { "side": "24", "translation": "Daypix"},
+        { "side": "25", "translation": "Daypix"},
+        { "side": "26", "translation": "Daypix"},
+        { "side": "27", "translation": "Daypix"},
+        { "side": "28", "translation": "Daypix"},
+        { "side": "29", "translation": "Daypix"},
+        { "side": "30", "translation": "Daypix"}
+    ],
+    "ticks": {
+        "night1": 22,
+        "standby": 30,
+        "night": 15
+    },
+    "nolynch": true,
+    "variables": {
+        "help1": "You are one of the Daypix. Type /Kill [name] during the day to kill up to 3 times! Your name and target are revealed when you kill! You evade 2 daykills per game.",
+        "help2": "You are one of the Daypix. Type /Kill [name] during the day to kill up to 2 times! Your name and target are revealed when you kill! You evade 3 daykills per game.",
+        "help3": "You are one of the Daypix. Type /Kill [name] during the day to kill up to 1 time! Your name and target are revealed when you kill! You evade 4 daykills per game.",
+        "type1": {
+            "standby": {
+                "kill": {
+                    "target": "AnyButSelf",
+                    "msg": "Type /kill [name] to kill another Daypix (you can use up to 3 times per turn).",
+                    "killmsg": "~Self~ kills ~Target~!",
+                    "limit": 3
+                }
+            },
+            "daykill": {
+                "mode": {
+                    "evadeCharges": 2
+                }
+            }
+        },
+        "type2": {
+            "standby": {
+                "kill": {
+                    "target": "AnyButSelf",
+                    "msg": "Type /kill [name] to kill another Daypix (you can use up to 2 times per turn).",
+                    "killmsg": "~Self~ kills ~Target~!",
+                    "limit": 2
+                }
+            },
+            "daykill": {
+                "mode": {
+                    "evadeCharges": 3
+                }
+            }
+        },
+        "type3": {
+            "standby": {
+                "kill": {
+                    "target": "AnyButSelf",
+                    "msg": "Type /kill [name] to kill another Daypix (you can use once per turn).",
+                    "killmsg": "~Self~ kills ~Target~!",
+                    "limit": 1
+                }
+            },
+            "daykill": {
+                "mode": {
+                    "evadeCharges": 4
+                }
+            }
+        }
+    },
+    "roles": [
+        { "role": "1", "translation": "Daypix", "side": "1", "help": "variable:help1", "info": "Can daykill 3 players per day. Evades 2 daykills per game. Sided with itself.", "actions": "variable:type1" }, 
+        { "role": "2", "translation": "Daypix", "side": "2", "help": "variable:help2", "info": "Can daykill 2 players per day. Evades 3 daykills per game. Sided with itself.", "actions": "variable:type2" }, 
+        { "role": "3", "translation": "Daypix", "side": "3", "help": "variable:help3", "info": "Can daykill 1 players per day. Evades 4 daykills per game. Sided with itself.", "actions": "variable:type3" }, 
+        { "role": "4", "translation": "Daypix", "side": "4", "help": "variable:help1", "hide": true, "actions": "variable:type1" }, 
+        { "role": "5", "translation": "Daypix", "side": "5", "help": "variable:help2", "hide": true, "actions": "variable:type2" }, 
+        { "role": "6", "translation": "Daypix", "side": "6", "help": "variable:help3", "hide": true, "actions": "variable:type3" }, 
+        { "role": "7", "translation": "Daypix", "side": "7", "help": "variable:help1", "hide": true, "actions": "variable:type1" }, 
+        { "role": "8", "translation": "Daypix", "side": "8", "help": "variable:help2", "hide": true, "actions": "variable:type2" }, 
+        { "role": "9", "translation": "Daypix", "side": "9", "help": "variable:help3", "hide": true, "actions": "variable:type3" }, 
+        { "role": "10", "translation": "Daypix", "side": "10", "help": "variable:help1", "hide": true, "actions": "variable:type1" }, 
+        { "role": "11", "translation": "Daypix", "side": "11", "help": "variable:help2", "hide": true, "actions": "variable:type2" }, 
+        { "role": "12", "translation": "Daypix", "side": "12", "help": "variable:help3", "hide": true, "actions": "variable:type3" }, 
+        { "role": "13", "translation": "Daypix", "side": "13", "help": "variable:help1", "hide": true, "actions": "variable:type1" }, 
+        { "role": "14", "translation": "Daypix", "side": "14", "help": "variable:help2", "hide": true, "actions": "variable:type2" }, 
+        { "role": "15", "translation": "Daypix", "side": "15", "help": "variable:help3", "hide": true, "actions": "variable:type3" }, 
+        { "role": "16", "translation": "Daypix", "side": "16", "help": "variable:help1", "hide": true, "actions": "variable:type1" }, 
+        { "role": "17", "translation": "Daypix", "side": "17", "help": "variable:help2", "hide": true, "actions": "variable:type2" }, 
+        { "role": "18", "translation": "Daypix", "side": "18", "help": "variable:help3", "hide": true, "actions": "variable:type3" }, 
+        { "role": "19", "translation": "Daypix", "side": "19", "help": "variable:help1", "hide": true, "actions": "variable:type1" }, 
+        { "role": "20", "translation": "Daypix", "side": "20", "help": "variable:help2", "hide": true, "actions": "variable:type2" }, 
+        { "role": "21", "translation": "Daypix", "side": "21", "help": "variable:help3", "hide": true, "actions": "variable:type3" }, 
+        { "role": "22", "translation": "Daypix", "side": "22", "help": "variable:help1", "hide": true, "actions": "variable:type1" }, 
+        { "role": "23", "translation": "Daypix", "side": "23", "help": "variable:help2", "hide": true, "actions": "variable:type2" }, 
+        { "role": "24", "translation": "Daypix", "side": "24", "help": "variable:help3", "hide": true, "actions": "variable:type3" }, 
+        { "role": "25", "translation": "Daypix", "side": "25", "help": "variable:help1", "hide": true, "actions": "variable:type1" }, 
+        { "role": "26", "translation": "Daypix", "side": "26", "help": "variable:help2", "hide": true, "actions": "variable:type2" }, 
+        { "role": "27", "translation": "Daypix", "side": "27", "help": "variable:help3", "hide": true, "actions": "variable:type3" }, 
+        { "role": "28", "translation": "Daypix", "side": "28", "help": "variable:help1", "hide": true, "actions": "variable:type1" }, 
+        { "role": "29", "translation": "Daypix", "side": "29", "help": "variable:help2", "hide": true, "actions": "variable:type2" }, 
+        { "role": "30", "translation": "Daypix", "side": "30", "help": "variable:help3", "hide": true, "actions": "variable:type3" }
+    ],
+    "minplayers": 3,
+    "roles1": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "23"
+    ],
+    "tips": {
+        "Diplomacy": "Form alliances. It will put pressure on other players and allow you to use your kills better."
+    },
+    "changelog": {
+        "16.05.2015": "Theme created. Increased evasion for all roles by 1 charge."
+    }
+}
