@@ -1,0 +1,626 @@
+{
+    "name": "WB3",
+    "author": [
+        "Yentero",
+        "Shazan"
+    ],
+    "summary": "In the Etherian lands all races fight to possess the world, so the ally's need to help yourselfs to conquer the world, welcome to Warlords Battlecry 3 ( Sheeps don't have special commands, But they are the only ones who are transformed, Minotaur's kill distractor)!",
+    "minplayers": 8,
+    "sides": [
+        {
+            "side": "village",
+            "translation": "Eterian Defenders",
+            "winmsg": "Now the world is in peace forever...I guess. Thank you ~Players~."
+        },
+        {
+            "side": "monsters",
+            "translation": "Monsters",
+            "winmsg": "The monsters ~Players~ invaded Etheria, and later the world, making the corrupt and bloody.!"
+        },
+        {
+            "side": "demon",
+            "translation": "Devils",
+            "winmsg": "After the destruction of enemies, ~Players~ rule the whole world, and a new era has begun! Well, everybody is doomed."
+        },
+        {
+            "side": "forest",
+            "translation": "Forest Task",
+            "winmsg": "Strange but yet powerful, ~Players~ have covered the whole world with deep forests!"
+        }
+    ],
+    "roles": [
+        {
+            "role": "Imperium",
+            "translation": "Imperium",
+            "side": "village",
+            "help": "The Imperium has trained an elephant can to /crush during the day, your mages can cast a /spell on a sheep, turning it into an elemental, but the result is random.",
+            "info": "Can kill during the day and convert one sheep to one of the elementals (Fire, Water, Earth or Wind). Sided with Eterian Defenders.",
+            "actions": {
+                "night": {
+                    "spell": {
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 2,
+                        "failChance": 0,
+                        "canConvert": [
+                            "Sheep"
+                        ],
+                        "newRole": {
+                            "random": {
+                                "Fire Elemental": 0.25,
+                                "Earth Elemental": 0.25,
+                                "Water Elemental": 0.25,
+                                "Wind Elemental": 0.25
+                            }
+                        },
+                        "silent": true,
+                        "pierce": true,
+                        "command": "convert"
+                    }
+                },
+                "standby": {
+                    "crush": {
+                        "command": "kill",
+                        "target": "AnyButSelf",
+                        "msg": "You can kill now by typing /crush [name](and not will be revelated)!",
+                        "killmsg": "The imperium elephant crused ~Target~, and return to the base again!"
+                    }
+                },
+                "vote": 1
+            }
+        },
+        {
+            "role": "Knight",
+            "translation": "Knight",
+            "side": "village",
+            "help": "Sir, you are a knight, his army has the fastest horses, allowing cause more damage (vote), varies between +2 or +3, and you can /safeguard yourself.",
+            "info": "Vote that varies between +2 and +3(10%), can self /safeguard, Sided with Eterian Defender",
+            "actions": {
+                "night": {
+                    "safeguard": {
+                        "target": "Self",
+                        "common": "Role",
+                        "priority": 2,
+                        "broadcast": "role"
+                    }
+                },
+                "vote": [
+                    2,
+                    2,
+                    2,
+                    2,
+                    2,
+                    2,
+                    2,
+                    2,
+                    2,
+                    3
+                ]
+            }
+        },
+        {
+            "role": "NobleElf",
+            "translation": "Noble Elf",
+            "side": "village",
+            "help": "The protectors of the portal that brought the five Knights of the Underworld (some gods), you can protect everyone, even his enemies.",
+            "info": "Can protect a player during the night. Sided with Eterian Defenders.",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 2,
+                        "broadcast": "role"
+                    }
+                },
+                "vote": 1
+            }
+        },
+        {
+            "role": "Barbarian",
+            "translation": "Barbarian",
+            "side": "village",
+            "help": "You're a barbarian, the most populous race in the world, your clan knows all eterian lands, so you can /hide during the day to reveal another race, you can also /humanshield other players.",
+            "info": "Can expose one race and can safeguard. Sided with Eterian Defenders.",
+            "actions": {
+                "night": {
+                    "humanshield": {
+                        "command": "safeguard",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 2,
+                        "broadcast": "none"
+                    }
+                },
+                "standby": {
+                    "hide": {
+                        "command": "expose",
+                        "target": "AnyButSelf",
+                        "msg": "You can type /expose [name] to reveal someone's role!",
+                        "exposemsg": " The barbarian hided, 15 minutes after sees ~Target~, and discovered the ~Target~ is from the ~Role~ army!"
+                    }
+                },
+                "vote": 1
+            }
+        },
+        {
+            "role": "Sheep",
+            "translation": "Sheep",
+            "side": "village",
+            "help": "You are a sheep, you dont have special commands, vote to help win, or wait someone convert you.",
+            "info": "Can vote",
+            "actions": {
+                "vote": 1
+            }
+        },
+        {
+            "role": "Ssrathi",
+            "translation": "Ssrathi",
+            "side": "monsters",
+            "help": "You are a Ssrathi, these 'snakesss' have a prophet (responsible for releasing the five knights) that foresees the future, it can /inspect a target, and can also /transform the sheep into naga, for being a reptile, is immune to poison.",
+            "info": "Can Inspect. You Know their partner. Can /transform sheeps. Immune to poison. Sided with monsters.",
+            "actions": {
+                "poison": {
+                    "silent": true,
+                    "mode": "ignore"
+                },
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 30,
+                        "broadcast": "team"
+                    },
+                    "transform": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 4,
+                        "newRole": "Naga",
+                        "failChance": 0,
+                        "canConvert": [
+                            "Sheep"
+                        ],
+                        "silent": "true"
+                    }
+                },
+                "startup": "team-reveal-with-roles",
+                "vote": [
+                    1
+                ]
+            }
+        },
+        {
+            "role": "Minotaur",
+            "translation": "Minotaur",
+            "side": "monsters",
+            "help": "You are a minotaur, the most violent race in the world, with their nocturnal abilities, you can /kill without being distracted, because it will kill them too.",
+            "info": "Can kill once every night. You know their partners. Kill distractor's. Sided with Monsters.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 0.9,
+                        "broadcast": "team"
+                    }
+                    },
+                     "distract": {
+                    "mode": "killattacker",
+                    "msg": "Someone tried to distract the Minotaur, but his devotion to Sartek, god of minotaurs, do to prefer to kill the poor bastard.!"
+                },
+                "startup": "team-reveal-with-roles",
+                "vote": 1
+            }
+        },
+        {
+            "role": "Plague",
+            "translation": "Plague",
+            "side": "demon",
+            "help": "You are Plaque Lord, you can /poison another races, you can /safeguard too and the new plague you can /doom sheep's, transforming in Hydras, you know your allies.",
+            "info": "Can poison once every night and can safeguarded. Sided with the Demons",
+            "actions": {
+                "poison": {
+                    "silent": true,
+                    "mode": "ignore"
+                },
+                "night": {
+                    "poison": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 40,
+                        "broadcast": "none",
+                        "limit": 1,
+                        "count": 2
+                    },
+                    "safeguard": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 2,
+                        "broadcast": "none"
+                    },
+                    "doom": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 4,
+                        "newRole": "Hydra",
+                        "failChance": 0,
+                        "canConvert": [
+                            "Sheep"
+                        ],
+                        "silent": "true"
+                    }
+                },
+                "startup": "team-reveal-with-roles",
+                "vote": 1
+            }
+        },
+        {
+            "role": "Demon",
+            "translation": "Demon",
+            "side": "demon",
+            "help": "You are a Demon, this race was one of the first to leave the portal and invade eteria, allowing the /kill during the day (with a chance to be revealed).",
+            "info": "Can kill during the day (10% reveal chance). Evade kill, Sided with Demons.",
+            "actions": {
+                "kill": {
+                    "mode": {
+                        "evadeChance": 1
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You can kill now by typing /kill[name](10% to reveal you)!",
+                        "killmsg": "The great Demon got out a whip and cut down ~Target~'s head!",
+                        "revealChance": 0.1,
+                        "revealmsg": "But the troops of the dead hero decides to reveal ~Self~ as ~Role~, but that makes this extinct by the death for troops warned.!"
+                    }
+                },
+                "startup": "team-reveal-with-roles",
+                "vote": 1
+            }
+        },
+        {
+            "role": "Wood Elf",
+            "translation": "Wood Elf",
+            "side": "forest",
+            "help": "You are the wood elf, By train in the deep forest, you have a chance to dodge attacks overnight, and counteract with your +3 vote.",
+            "info": "Has a chance evade kills during the night. Has 3 votes.",
+            "actions": {
+                "kill": {
+                    "mode": {
+                        "evadeChance": 0.3
+                    }
+                },
+                "vote": 3
+            }
+        },
+        {
+            "role": "Fairy",
+            "translation": "Fairy",
+            "side": "forest",
+            "help": "You are a fairy, explorer of the deep forest, this knowlegde allows you /transform sheeps into a fairy dragon, and /expose another's players without being detected. Your vote count varies between +1 and -1!",
+            "info": "Can expose(Not revealed). Has a vote -1 or +1.",
+            "actions": {
+                "night": {
+                    "transform": {
+                        "command": "convert",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 4,
+                        "newRole": "Fairy Dragon",
+                        "failChance": 0,
+                        "canConvert": [
+                            "Sheep"
+                        ],
+                        "silent": "true"
+                    }
+                },
+                "standby": {
+                    "expose": {
+                        "target": "AnyButSelf",
+                        "msg": "You can type /expose [name] to reveal someone's role!",
+                        "exposemsg": "The Fairy launches the sleep powder in ~target~ and discovers he is a ~Role~, so talks too loud, but it is so bright that it can not be detected!"
+                    }
+                },
+                "vote": [
+                    -1,
+                    1
+                ]
+            }
+        },
+        {
+            "role": "The Swarm",
+            "translation": "Swarm",
+            "side": "monsters",
+            "help": "You are the Swarm, the only exist Scorpion, but immune to poison. You can also /poison, and try to /evolve into Mega Swarm to have a more deadly poison, but for now their vote is 0.",
+            "info": "You can poison and evolve (poison have more priority and evolve have chance to fail), immune from poison.",
+            "actions": {
+                "startup": "team-reveal",
+                "poison": {
+                    "silent": true,
+                    "mode": "ignore"
+                },
+                "night": {
+                    "evolve": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 4,
+                        "newRole": "MegaSwarm",
+                        "failChance": 0.5,
+                        "canConvert": [
+                            "The Swarm"
+                        ],
+                        "silent": "true"
+                    },
+                    "poison": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 3,
+                        "limit": 1,
+                        "count": 3
+                    }
+                },
+                "vote": 0
+            }
+        },
+        {
+            "role": "MegaSwarm",
+            "translation": "Mega Swarm",
+            "side": "monsters",
+            "help": "You evolved into Mega Swarm now has his troop appearance of human scorpion, now its venom takes about 1 day to kill, his action will be shared with your team and your vote now worth 1.",
+            "info": "You only posion during night, Sided with Monster.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "poison": {
+                    "silent": true,
+                    "mode": "ignore"
+                },
+                "night": {
+                    "poison": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 40,
+                        "limit": 1,
+                        "count": 2
+                    }
+                },
+                "vote": 1
+            }
+        },
+        {
+            "role": "Fairy Dragon",
+            "translation": "Fairy Dragon",
+            "side": "forest",
+            "help": "The fairy visited you transforming you into the fairy dragon and you have taken sides with the forest! You have also gained new powers such as being able to /kill during the night.",
+            "info": "You side changed to forest, you can kill now during the night.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "broadcast": "team"
+                    }
+                },
+                "vote": 1
+            }
+        },
+        {
+            "role": "Naga",
+            "translation": "Naga",
+            "side": "monsters",
+            "help": "The Ssrathi came to you and transformed you into a Naga, the girl reptilian, you can /sing (distract) one person per night, and your vote varies between 1 and 2.",
+            "info": "Can distract now during the night random vote of 1 or 2.",
+            "actions": {
+                "poison": {
+                    "silent": true,
+                    "mode": "ignore"
+                },
+                "startup": "team-reveal-with-roles",
+                "night": {
+                    "sing": {
+                        "command": "distract",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "distractmsg": "The Naga sang to you all night and you were mesmerised with her voice and was unable to do anything that night",
+                        "teammsg": "The Naga was singing to your partner all night and you decided not to wonder off alone."
+                    }
+                },
+                "vote": [
+                    1,
+                    2
+                ]
+            }
+        },
+        {
+            "role": "Hydra",
+            "translation": "Hydra",
+            "side": "demon",
+            "help": "You have been doomed and became a Hydra and you die to any attacks, so you can /evolve to acquire a random power. All hydras have 2 vote count!",
+            "info": "Can /evolve to either Fire Hydra or Frost Hydra.",
+            "actions": {
+                "night": {
+                    "evolve": {
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 2,
+                        "newRole": {
+                            "random": {
+                                "Fire Hydra": 0.5,
+                                "Frost Hydra": 0.5
+                            }
+                        },
+                        "silent": true,
+                        "pierce": true,
+                        "command": "convert"
+                    }
+                },
+                "vote": 2
+            }
+        },
+        {
+            "role": "Fire Hydra",
+            "translation": "Fire Hydra",
+            "side": "demon",
+            "help": "You have decided to evolve into the fearsome fire Hydra, you can /kill during the night. However, you have not gotten used to your powers so you need to wait one night for you to claim another victim. You still keep your 2 vote!",
+            "info": "Vote of 2. Can kill during the night.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "broadcast": "team",
+                        "recharge": 1
+                    }
+                },
+                "startup": "team-reveal",
+                "vote": 2
+            }
+        },
+        {
+            "role": "Frost Hydra",
+            "translation": "Frost Hydra",
+            "side": "demon",
+            "help": "You have decided to evolve into Frost Hydra, you can /frost (Distract) to freeze the target. You still keep your 2 vote!",
+            "info": "Vote of 2. Can distract during the nights",
+            "actions": {
+                "startup": "team-reveal",
+                "night": {
+                    "frost": {
+                        "command": "distract",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "distractmsg": "The Frost Hydra uses Breath Frost ,you are too cold to continue the night!",
+                        "teammsg": "Frost Hydra used the Breath Frost in your ally, you spent all night trying to provide warmth to your partner."
+                    }
+                },
+                "vote": 2
+            }
+        },
+        {
+            "role": "Fire Elemental",
+            "translation": "Fire Elemental",
+            "side": "village",
+            "help": "The mage of Imperium decided to cast a spell on you, and as a result you have transformed to the fire elemental and you can now /burn someone to poison them!",
+            "info": "Can now /burn (poison).",
+            "actions": {
+                "night": {
+                    "poison": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 20,
+                        "limit": 1,
+                        "count": 2
+                    }
+                },
+                "vote": 1
+            }
+        },
+        {
+            "role": "Earth Elemental",
+            "translation": "Earth Elemental",
+            "side": "village",
+            "help": "The mage of Imperium decided to cast a spell on you, and as a result you transformed to the Earth Elemental, you now have -3 vote and a self protect.",
+            "info": "Can self protect. Has -3 vote",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "Self",
+                        "common": "Role",
+                        "priority": 2,
+                        "broadcast": "role"
+                    }
+                },
+                "vote": -3
+            }
+        },
+        {
+            "role": "Water Elemental",
+            "translation": "Water Elemental",
+            "side": "village",
+            "help": "The mage of Imperium decided to cast a spell on you, and the result you transformed to Water Elemental, combine stealth and camouflage, you can /stalk someone.",
+            "info": "Now you can /stalk someone.",
+            "actions": {
+                "night": {
+                    "stalk": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 31
+                    }
+                },
+                "vote": 1
+            }
+        },
+        {
+            "role": "Wind Elemental",
+            "translation": "Wind Elemental",
+            "side": "village",
+            "help": "The mage of Imperium decided to cast a spell on you, and as a result you transformed to the Wind Elemental, use your wind forces to distract using /wind.",
+            "info": "Can /wind (distract).",
+            "actions": {
+                "night": {
+                    "wind": {
+                        "command": "distract",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 0.9,
+                        "distractmsg": "Is it a small tornado? The power of your wind caused you to faint till the next day!",
+                        "teammsg": "You partner fainted due to wind, you spent the night helping your ally."
+                    }
+                },
+                "vote": 1
+            }
+        }
+    ],
+    "killmsg": "~Player~, (~Role~) Died!",
+    "votemsg": "~Player~ attacked ~Target~.",
+    "roles1": [
+        "Sheep",
+        "Imperium",
+        "Demon",
+        "Minotaur",
+        "Fairy",
+        "The Swarm",
+        "Wood Elf",
+        "Knight",
+        "Ssrathi",
+        "Plague",
+        "Barbarian",
+        "Sheep",
+        "NobleElf",
+        "Sheep",
+        "Sheep",
+        "Sheep",
+        "Sheep",
+        "Minotaur",
+        "Plague",
+        "Fairy",
+        "Ssrathi",
+        "The Swarm",
+        "Barbarian",
+        "Sheep",
+        "NobleElf",
+        "Knight",
+        "Sheep",
+        "Plague",
+        "Wood Elf",
+        "Sheep",
+        "Sheep",
+        "Knight",
+        "The Swarm",
+        "Fairy",
+        "Demon",
+        "Imperium",
+        "Sheep",
+        "Plague",
+        "Wood Elf",
+        "Barbarian"
+    ],
+    "killusermsg": "You died in combat!"
+}
