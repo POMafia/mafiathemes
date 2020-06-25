@@ -1,0 +1,1703 @@
+{
+    "name": "Habitats",
+    "author": [
+        "<b><i><span style='color:#ff5500'>Fiery Espeon</span></i></b>",
+        "<b><i><span style='color:#FF00FF'>MUMU</span></i></b>",
+        "<b><i><span style='color:#5882FA'>TraceofLife</span></i></b>"
+    ],
+    "tips": [
+		"Deoxys: This is Enemy #1 to all sides. You should try to take out Deoxys before it powers up."
+	],
+    "minplayers": 3,
+    "summary": "The battle between Land and Sea Pokemon has occured again! Groudon leads the Land Pokemon into the fight against Kyore and the Sea Pokemon! Rayquaza and the other Avian Pokemon are attempting to stop everyone. Meanwhile, Regigigas has woken up from his deep slumber, and is preparing an assault with the other Mountain Pokemon. In the midst of all of this havoc, Deoxys has came crashing down from space on a meteorite to the Pokemon world, with mysterious powers. Which habitat will conquer all the others?",
+    "sides": [
+        {
+            "side": "land",
+            "translation": "Land Pokemon",
+            "winmsg": "~Players~ have extended the land masses to all the other habitats!"
+        },
+        {
+            "side": "sea",
+            "translation": "Sea Pokemon",
+            "winmsg": "The sea has engulfed all the other habitats, thanks to ~Players~!"
+        },
+        {
+            "side": "avian",
+            "translation": "Avian Pokemon",
+            "winmsg": "~Players~ will now govern the Pokemon World from the skies!"
+        },
+        {
+            "side": "mountain",
+            "translation": "Mountain Pokemon",
+            "winmsg": "The Mountains are truly the superior habitat! ~Players~ are able to rule everyone else from Mt. Coronet!."
+        },
+        {
+            "side": "space",
+            "translation": "Space Pokemon",
+            "winmsg": "±Deoxys: Looks like I, ~Players~, have managed to wipe out all Pokemon. Now I can safely go back to space!"
+        }
+    ],
+    "roles": [
+        {
+            "role": "groudon",
+            "translation": "Groudon",
+            "side": "land",
+            "help": "You  are known as the Continent Pokémon, able to expand land masses. You  have an ancient rivalry against Kyogre, and so you have sided yourself  with the other Land Pokemon to accomplish your goal. Use /kill during  the day to kill someone without revealing yourself. You can only do this  every two days. After five nights, you will undergo Primal Reversion and be able  to kill every day, and receive a vote of two! ",
+            "info": " Can kill one person every other day,(Non Revealing) Converts to Primal Groudon On The 5th Night.  ~Sided~  ",
+            "actions": {
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "groudon2",
+                        "curseCount": 5,
+                        "curseConvertMessage": "Groudon has found a Red Orb and has achieved Primal Reversion!"
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Expand the lass masses and crush your opponents with /kill! You can only use this every two days and you will not be revealed!",
+                        "killmsg": "The land began to shake. Out of nowhere, Groudon slowly extends the land masses toward  ~Target~. They were not able to run fast enough. Stones slowly crush ~Target~ as Groudon uses Precipice Blades. Groudon slowly stomps away…",
+                        "recharge": 2
+                    }
+                }
+            }
+        },
+        {
+            "role": "groudon2",
+            "translation": "Primal Groudon",
+            "side": "land",
+            "help": " Now that you have undergone Primal Reversion, you can kill every day with /kill, this will not reveal you, Your vote now count as 2 ",
+            "info": "Can Kill one person everyday (Non Revealing) Vote Count as 2, ~Sided~ ",
+            "actions": {
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Expand the lass masses and crush your opponents with /kill! You can only use this every day and you will not be revealed!",
+                        "killmsg": "The land began to shake. Out of nowhere, Groudon slowly extends the land masses toward  ~Target~. They were not able to run fast enough. Stones slowly crush ~Target~ as Groudon uses Precipice Blades. Groudon slowly stomps away…"
+                    }
+                },
+                "vote": 2
+            }
+        },
+        {
+            "role": "kyogre",
+            "translation": "Kyogre",
+            "side": "sea",
+            "help": "You  are known as the Sea Basin Pokemon, able to expand the oceans! You have  an ancient rivalry with Groudon, and you plan to engulf all the other  habitats with the sea! You are sided with the other Sea Pokémon to  accomplish your tasks. Use /kill during the day to kill someone without  revealing yourself. You can only do this every two days. After five  nights, you will undergo Primal Reversion  and be able to kill every day, and  receive a vote of two!",
+            "info": "Can kill one person every other day,(Non Revealing) Converts to Primal Kyogre On The 5th Night.  ~Sided~  ",
+            "actions": {
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "kyogre2",
+                        "curseCount": 5,
+                        "curseConvertMessage": "Kyogre has found a Red Orb and has Primal Devolved!"
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Expand the oceans and drown your opponents with /kill! You can only use this every two days and you will not be revealed!",
+                        "killmsg": "~Target~ sees a red glare in the ocean. The seas suddenly rise up and pull ~Target~ beneath the depths. The last image they can make out is Kyogre using Origin Pulse, and slowly swimming away…",
+                        "recharge": 2
+                    }
+                }
+            }
+        },
+        {
+            "role": "kyogre2",
+            "translation": "Primal Kyogre",
+            "side": "sea",
+            "help": "Now that you have undergone Primal Reversion, you can kill every day with /kill, this will not reveal you, Your vote now count as 2.",
+            "info": "Can Kill one person everyday (Non Revealing) Vote Count as 2, ~Sided~ ,",
+            "actions": {
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Expand the oceans and drown your opponents with /kill! You can only use this every day and you will not be revealed!",
+                        "killmsg": "~Target~ sees a red glare in the ocean. The seas suddenly rise up and pull ~Target~ beneath the depths. The last image they can make out is Kyogre using Origin Pulse, and slowly swimming away…"
+                    }
+                },
+                "vote": 2
+            }
+        },
+        {
+            "role": "rayquaza",
+            "translation": "Rayquaza",
+            "side": "avian",
+            "help": "You  are known as the Sky High Pokemon, protector of the ozone layer. You  must stop both Kyogre and Groudon from destroying the world, and  atmosphere. While you’re down there, you plan to help all the Avian  Pokemon. Use /kill during the day to kill someone without revealing  yourself. You can only do this every two days. After 5 nights, you will  mega evolve and be able to kill every day, and receive a vote of two! ",
+            "info": "Can kill one person every other day,(Non Revealing) Evolves to Mega Rayquaza On The 5th Night.  ~Sided~ ",
+            "actions": {
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "rayquaza2",
+                        "curseCount": 5,
+                        "curseConvertMessage": "Rayquaza has been able to Mega Evolve!"
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Distribute justice among the non-Avian Pokemon by using /kill! You can only use this every two days and you will not be revealed!",
+                        "killmsg": "~Target~ sees something coming out of space towards him. IS IT A METEOR? IS IT A COMET? IT’s RAYQUAZA! Rayquaza comes down from the ozone layer and obliterates ~Target~ with Dragon Ascent. Rayquaza retreats to Sky Pillar for his next victim.",
+                        "recharge": 2
+                    }
+                }
+            }
+        },
+        {
+            "role": "rayquaza2",
+            "translation": "Mega Rayquaza",
+            "side": "avian",
+            "help": "Now that you have Mega Evolved, you can kill every day with /kill, this will not reveal you, Your vote now count as 2.",
+            "info": "Can Kill one person everyday (Non Revealing) Vote Count as 2, ~Sided~ ",
+            "actions": {
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Distribute justice among the non-Avian Pokemon by using /kill! You can only use this every day and you will not be revealed!",
+                        "killmsg": "~Target~ sees something coming out of space towards him. IS IT A METEOR? IS IT A COMET? IT’s RAYQUAZA! Rayquaza comes down from the ozone layer and obliterates ~Target~ with Dragon Ascent. Rayquaza retreats to Sky Pillar for his next victim."
+                    }
+                },
+                "vote": 2
+            }
+        },
+        {
+            "role": "regigigas",
+            "translation": "Regigigas",
+            "side": "mountain",
+            "help": "You  are known as the Colossal Pokemon, the leader of the three Regis! You  are here to show mountain supremacy, and so have sided with the other  Mountain Pokemon! Use /kill during the day to kill someone without  revealing yourself. You can only do this every two days. After 5 nights,  Slow Start will wear off and you will be able to kill every day, and  receive a vote of two!",
+            "info": "Can kill one person every other day,(Non Revealing) Becomes Empowered Regigigas On The 5th Night.  ~Sided~ ",
+            "actions": {
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "regigigas2",
+                        "curseCount": 5,
+                        "curseConvertMessage": "Regigigas got it's act together! It has Empowered!"
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Show them your strength, use /kill to get rid of one of your opponents! You can only use this every two days.",
+                        "killmsg": "Regigigas uses Thunder Wave on ~Target~. They are unable to move! It nails ~Target~ with Crush Grip and finishes off ~Target~ with Stone Edge, Ice Punch, and Iron Head..",
+                        "recharge": 2
+                    }
+                }
+            }
+        },
+        {
+            "role": "regigigas2",
+            "translation": "Empowered Regigigas",
+            "side": "mountain",
+            "help": "Now that your Slow Start wore off, you can kill every day with /kill, this will not reveal you, Your vote now count as 2.",
+            "info": "Can Kill one person everyday (Non Revealing) Vote Count as 2, ~Sided~ ",
+            "actions": {
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Show them your strength, use /kill to get rid of one of your opponents! You can only use this every day.",
+                        "killmsg": "Regigigas uses Thunder Wave on ~Target~. They are unable to move! It nails ~Target~ with Crush Grip and finishes off ~Target~ with Stone Edge, Ice Punch, and Iron Head.."
+                    }
+                },
+                "vote": 2
+            }
+        },
+        {
+            "role": "dugtrio",
+            "translation": "Dugtrio",
+            "side": "land",
+            "help": "You  are known as the Mole Pokemon! You must protect your Land Habitat at  all costs, and don’t want the sea to take your home! Because of your  ability Arena Trap and a variety of decent moves, you are able to stall  and /distract someone from using their actions! Make sure not to  distract other Land Pokemon!",
+            "info": "Can Distract one person during the night,  ~Sided~  ",
+            "actions": {
+                "night": {
+                    "distract": {
+                        "target": "AnyButSelf",
+                        "distractmsg": "Trio, trio, trio, trio, trio- Wait, what was I supposed to do?",
+                        "common": "Self",
+                        "priority": 2
+                    }
+                }
+            }
+        },
+        {
+            "role": "galvantula",
+            "translation": "Galvantula",
+            "side": "mountain",
+            "help": "You  are known as the EleSpider Pokemon! Since you are part Electric type  and are able to use Thunder Wave, you are able to /distract someone  every night with paralysis. Make sure not to distract any of the other  Mountain Pokemon!",
+            "info": "Can Distract one person during the night,  ~Sided~  ",
+            "actions": {
+                "night": {
+                    "distract": {
+                        "target": "AnyButSelf",
+                        "distractmsg": "You were paralyzed by Galvantula’s Thunder Wave! You were not able to move!",
+                        "common": "Self",
+                        "priority": 3
+                    }
+                }
+            }
+        },
+        {
+            "role": "togekiss",
+            "translation": "Togekiss",
+            "side": "avian",
+            "help": "You  are known as the Jubilee Pokemon! Since you have the ability Serene  Grace and you know the move Air Slash, you are able to /distract someone  every night with your constant flinching. Make sure not to distract any  of the other Avian Pokemon!",
+            "info": "Can Distract one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "distract": {
+                        "target": "AnyButSelf",
+                        "distractmsg": "Togekiss kept using Air Slash on you; you were unable to do anything during the night.",
+                        "common": "Self",
+                        "priority": 4
+                    }
+                }
+            }
+        },
+        {
+            "role": "milotic",
+            "translation": "Milotic",
+            "side": "sea",
+            "help": "You  are known as the Tender Pokemon! Since you have the ability Cute Charm  and you are the prettiest Pokemon, you are able to /distract someone  every night. Make sure not to distract any of the other Sea Pokemon!",
+            "info": "Can Distract one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "distract": {
+                        "target": "AnyButSelf",
+                        "distractmsg": "You were entranced by Milotic’s exotic beauty.",
+                        "common": "Self",
+                        "priority": 5
+                    }
+                }
+            }
+        },
+        {
+            "role": "bg",
+            "translation": "All Protects",
+            "side": "land",
+            "hide": true,
+            "help": "Missingno",
+            "info": "Can bg one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 6,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "hippowdon",
+            "translation": "Hippowdon",
+            "side": "land",
+            "help": "You  are known as the Heavyweight Pokemon! You are tired of everyone calling  you fat and wish to get rid of everyone that is not a part of the Land  Habitat. Use your amazing HP, Defense and Special Defense stats to  /protect a Land Pokemon from harm during the night! .",
+            "info": "Can Protect one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 6,
+                        "hide": true
+                    }
+                }
+            }
+        },
+        {
+            "role": "wailord",
+            "translation": "Wailord",
+            "side": "sea",
+            "help": "You  are known as the Float Whale Pokemon! Use your amazing HP stat and size  to /protect someone during the night! Remember, you have sided with the  Sea Pokemon!.",
+            "info": "Can Protect one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 6,
+                        "hide": true
+                    }
+                }
+            }
+        },
+        {
+            "role": "skarmory",
+            "translation": "Skarmory",
+            "side": "avian",
+            "help": "You  are known as the Armor Bird Pokemon! You have the highest Defense of  all Flying type Pokemon and you have the ability Sturdy! Use /protect during the night to  help one of the Avian Pokemon!.",
+            "info": "Can Protect one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 6,
+                        "hide": true
+                    }
+                }
+            }
+        },
+        {
+            "role": "aggron",
+            "translation": "Aggron",
+            "side": "mountain",
+            "help": "You  are known as the Iron Armor Pokemon! You have great Defense and Special  Defense, and you have a great Rock/Steel typing! Use /protect during  the night to protect one of the Mountain Pokemon from harm..",
+            "info": "Can Protect one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 6,
+                        "hide": true
+                    }
+                }
+            }
+        },
+        {
+            "role": "insp",
+            "translation": "All Inspects",
+            "side": "land",
+            "hide": true,
+            "help": "Missingno",
+            "info": "Can Detox one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 30,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "flygon",
+            "translation": "Flygon",
+            "side": "land",
+            "info": "Can Inspect one person every night,  ~Sided~ ",
+            "help": "You are known as the Mystic Pokemon! You have sided yourself with the Land Pokemon and will use your stealth and flying abilities to find information! Use /inspect every night to gain information!",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 30,
+                        "hide": true
+                    }
+                }
+            }
+        },
+        {
+            "role": "lumineon",
+            "translation": "Lumineon",
+            "side": "sea",
+            "info": "Can Inspect one person every night,  ~Sided~ ",
+            "help": "You are known as the Neon Pokemon! You are easily able to /inspect one person every night because of their tendency to run away whenever they see your eerie glow. Remember to find and connect other Sea Pokemon.",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 30,
+                        "hide": true
+                    }
+                }
+            }
+        },
+        {
+            "role": "xatu",
+            "translation": "Xatu",
+            "side": "avian",
+            "info": "Can inspect one person every night.  ~Sided~ ",
+            "help": "You are known as the Mystic Pokemon, Use your psychic and flying abilities to /inspect one person every night! You should try to find and connect your Avian teammates",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 30,
+                        "hide": true
+                    }
+                }
+            }
+        },
+        {
+            "role": "sableye",
+            "translation": "Sableye",
+            "side": "mountain",
+            "info": "Can Inspect one person every night,  ~Sided~ ",
+            "help": "You are known as the Darkness Pokemon! Lure out your targets and gain recon on them with /inspect! You can use this every night. It's best to find your Mountain Pokemon allies and your enemies.",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 30,
+                        "hide": true
+                    }
+                }
+            }
+        },
+        {
+            "role": "donphan",
+            "translation": "Donphan",
+            "side": "land",
+            "info": "Vote Counts as 3,  ~Sided~ ",
+            "help": "You are known as the Armor Pokemon! Since you are able to threaten other Pokemon with your moves, you have 3 votes to help the Land Pokemon!",
+            "actions": {
+                "vote": 3
+            }
+        },
+        {
+            "role": "kingdra",
+            "translation": "Kingdra",
+            "side": "sea",
+            "info": "Vote Counts as 3,  ~Sided~ ",
+            "help": "You are known as the Dragon Pokemon! Due to your incredible moveset and having the ability Sniper, having the power to threaten other Pokemon, you have 3 votes to help the Sea Pokemon!",
+            "actions": {
+                "vote": 3
+            }
+        },
+        {
+            "role": "salamence",
+            "translation": "Salamence",
+            "side": "avian",
+            "info": "Vote Counts as 3,  ~Sided~ ",
+            "help": "You are known as the Dragon Pokemon! Because you are a Dragon type. and you were able to Intimidate your opponents, you have 3 votes to help the Avian Pokemon!",
+            "actions": {
+                "vote": 3
+            }
+        },
+        {
+            "role": "tyranitar",
+            "translation": "Tyranitar",
+            "side": "mountain",
+            "info": "Vote Counts as 3,  ~Sided~ ",
+            "help": "You are known as the Armor Pokemon! Your frightening appearance and amazing power, allow you to have a vote of 3! Make sure not to vote other Mountain Pokemon!",
+            "actions": {
+                "vote": 3
+            }
+        },
+        {
+            "role": "rhyperior",
+            "translation": "Rhyperior",
+            "side": "land",
+            "info": "Can Kill one person during the night,  ~Sided~ ",
+            "help": "You are known as the Drill Pokemon! Your bulk and Attack strength allow you to take out opponents easily with /kill! You can use this every night. Make sure not to target other Land Pokemon! ",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 10
+                    }
+                }
+            }
+        },
+        {
+            "role": "sharpedo",
+            "translation": "Sharpedo",
+            "side": "sea",
+            "info": "Can Kill one person during the night,  ~Sided~ ",
+            "help": "You are known as the Brutal Pokemon! Use your ability, Speed Boost, and attack strength to take out your opponents with /kill, which can be used every night! Make sure not to attack any other Sea Pokemon!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 7
+                    }
+                }
+            }
+        },
+        {
+            "role": "staraptor",
+            "translation": "Staraptor",
+            "side": "avian",
+            "info": "Can Kill one person during the night,  ~Sided~ ",
+            "help": "You are known as the Predator Pokemon! Due to your ability, Reckless, and being the only Flying type Pokemon to know Close Combat, you are able to ruthlessly /kill one person every single night. Make sure not to hit any Avian Pokemon!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 8
+                    }
+                }
+            }
+        },
+        {
+            "role": "hariyama",
+            "translation": "Hariyama",
+            "side": "mountain",
+            "info": "Can Kill one person during the night,  ~Sided~ ",
+            "help": "You are known as the Arm Thrust Pokemon! Although you might be slow, you have access to a great Attack strength, and priority moves! Use /kill every night to kill someone. Make sure not to attack any Mountain Pokemon!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 9
+                    }
+                }
+            }
+        },
+        {
+            "role": "krookodile",
+            "translation": "Krookodile",
+            "side": "land",
+            "help": "You are known as the Intimidation Pokemon! Hide in the sand, and use /stalk every night to follow someone! If they catch you following them, you will simply be able to Intimidate them into forgetting!",
+            "info": "Can Stalk one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "stalk": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 32
+                    }
+                }
+            }
+        },
+        {
+            "role": "floatzel",
+            "translation": "Floatzel",
+            "side": "sea",
+            "help": "You are known as the Sea Weasel Pokemon! You are able to follow someone during the night using /stalk! If they catch you, you can just weasel out of it!",
+            "info": "Can Stalk one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "stalk": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 31
+                    }
+                }
+            }
+        },
+        {
+            "role": "noivern",
+            "translation": "Noivern",
+            "side": "avian",
+            "help": "You are known as the Sound Wave Pokemon! Use /stalk to follow someone during the night. If they catch you, you can just immobilize them with sound waves!",
+            "info": "Can Stalk one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "stalk": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 36
+                    }
+                }
+            }
+        },
+        {
+            "role": "mawile",
+            "translation": "Mawile",
+            "side": "mountain",
+            "help": "You are known as the Deciever Pokemon! Use /stalk to follow someone during the night! No one will be able to catch you in the act, because of you decieving them!",
+            "info": "Can Stalk one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "stalk": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 37
+                    }
+                }
+            }
+        },
+        {
+            "role": "camerupt",
+            "translation": "Camerupt",
+            "side": "land",
+            "help": "You are known as the Eruption Pokemon! Other Pokemon mistake you for being dumb and sometimes, a real volcano. Use /watch to see what other Pokemon are up to!",
+            "info": "Can Watch one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "watch": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 33
+                    }
+                }
+            }
+        },
+        {
+            "role": "clawitzer",
+            "translation": "Clawitzer",
+            "side": "sea",
+            "help": "You are known as the Howitzer Pokemon! You are able to hide under the beach, and /watch what other Pokemon are doing every night!",
+            "info": "Can Watch one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "watch": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 34
+                    }
+                }
+            }
+        },
+        {
+            "role": "mandibuzz",
+            "translation": "Mandibuzz",
+            "side": "avian",
+            "help": "You are known as the Bone Vulture Pokemon! You are able to eavesdrop on other Pokemon and so, you can use /watch each night to find out what they are upto! ",
+            "info": "Can Watch one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "watch": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 38
+                    }
+                }
+            }
+        },
+        {
+            "role": "golem",
+            "translation": "Golem",
+            "side": "mountain",
+            "help": "You are known as the Megaton Pokemon! Pokemon mistake you for a rock, and you are easily able to /watch what they are up to each night!",
+            "info": "Can Watch one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "watch": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 35
+                    }
+                }
+            }
+        },
+        {
+            "role": "nidoking",
+            "translation": "Nidoking",
+            "side": "land",
+            "help": "You are known as the Drill Pokemon! Use /poison to use Toxic on your opponents, and watch them faint in two days! Make sure not to use it on other Land Pokemon.",
+            "info": "Can Poison one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "poison": {
+                        "count": 3,
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 28,
+                        "poisonDeadMessage": "You were unable to find a Pecha Berry in time!!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "dragalge",
+            "translation": "Dragalge",
+            "side": "sea",
+            "help": "You are known as the Mock Kelp Pokemon! Use your powerful Slude Bomb to /poison one person every night! Watch them faint from posion in two days. Make sure not to use it on any other Sea Pokemon!",
+            "info": "Can Poison one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "poison": {
+                        "count": 3,
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 28,
+                        "poisonDeadMessage": "You were unable to find a Pecha Berry in time!!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "jumpluff",
+            "translation": "Jumpluff",
+            "side": "avian",
+            "help": "You are known as the Cottonweed Pokemon! Use /poison to use Leech Seed on your opponents and slowly drain them of their health! They will lose all their HP in 2 days. Make sure not to use it on Avian Pokemon!",
+            "info": "Can Poison one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "poison": {
+                        "count": 3,
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 28,
+                        "poisonDeadMessage": "Jumpluff's Leech Seed sapped all your HP!!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "ferrothorn",
+            "translation": "Ferrothorn",
+            "side": "mountain",
+            "help": "You are known as the Thorn Pod Pokemon! Use /poison to use Leech Seed on your opponents and slowly drain them to death! They will faint in two days. Make sure not to use this on any Mountain Pokemon!",
+            "info": "Can Poison one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "poison": {
+                        "count": 3,
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 28,
+                        "poisonDeadMessage": "Ferrothorn's Leech Seed sapped all your HP!!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "detox",
+            "translation": "All Detoxes",
+            "side": "land",
+            "hide": true,
+            "help": "Missingno",
+            "info": "Can Detox one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "detox": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 29,
+                        "broadcast": "team",
+                        "msg": "Your target (~Target~) was cured of poison!",
+                        "targetmsg": "A Pokemon used it's healing power on you and cured you of poison!",
+                        "detoxfailmsg": "Your target (~Target~) isn't poisoned!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "vileplume",
+            "translation": "Vileplume",
+            "side": "land",
+            "help": "You are known as the Flower Pokemon! Since you are able to use the move Aromatherapy, you are able to /detox one person every night and cure them of their poison!",
+            "info": "Can Detox one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "detox": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 29,
+                        "hide": true,
+                        "broadcast": "team",
+                        "msg": "Your target (~Target~) was cured of poison!",
+                        "targetmsg": "A Pokemon used it's healing power on you and cured you of poison!",
+                        "detoxfailmsg": "Your target (~Target~) isn't poisoned!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "lanturn",
+            "translation": "Lanturn",
+            "side": "sea",
+            "help": "You are known as the Light Pokemon! Use /detox to heal one player from poison each night! You are able to do this due to you knowing the move Heal Bell!",
+            "info": "Can Detox one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "detox": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 29,
+                        "hide": true,
+                        "broadcast": "team",
+                        "msg": "Your target (~Target~) was cured of poison!",
+                        "targetmsg": "A Pokemon used it's healing power on you and cured you of poison!",
+                        "detoxfailmsg": "Your target (~Target~) isn't poisoned!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "altaria",
+            "translation": "Altaria",
+            "side": "avian",
+            "help": "You are known as the Humming Pokemon! Use your soothing voice and Heal Bell to /detox one person during the night! This will cure them of poison!",
+            "info": "Can Detox one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "detox": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 29,
+                        "hide": true,
+                        "broadcast": "team",
+                        "msg": "Your target (~Target~) was cured of poison!",
+                        "targetmsg": "A Pokemon used it's healing power on you and cured you of poison!",
+                        "detoxfailmsg": "Your target (~Target~) isn't poisoned!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "clefable",
+            "translation": "Clefable",
+            "side": "mountain",
+            "help": "You are known as the Fairy Pokemon! Use Aromatherapy and /detox to heal someone from poison! You can do this every night.",
+            "info": "Can Detox one person during the night,  ~Sided~ ",
+            "actions": {
+                "night": {
+                    "detox": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 29,
+                        "hide": true,
+                        "broadcast": "team",
+                        "msg": "Your target (~Target~) was cured of poison!",
+                        "targetmsg": "A Pokemon used it's healing power on you and cured you of poison!",
+                        "detoxfailmsg": "Your target (~Target~) isn't poisoned!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "deoxys",
+            "translation": "Deoxys",
+            "side": "space",
+            "info": "Can Poison one person during the night, poison lasts 2 nights, can protect itself during the night, evades 1 day kill, has a voteshield of -1, converts to Deoxys Defense form on the third night,  ~Sided~ .",
+            "help": "You are known as the DNA Pokemon, with your powers, you can /poison one person  every night, they will die 2 nights later, you can also /protect yourself each night, you evade 1 kill aimed at you during the day, lastly, during voting, 1 vote against you is cancelled, you will change to your defense form at the end of the third night, you win when you are the last one standing.",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 6,
+"hide": true
+                    },
+                    "poison": {
+                        "count": 3,
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 28,
+                        "poisonDeadMessage": "Something went wrong with your DNA!."
+                    }
+                },
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "deoxysd",
+                        "curseCount": 3,
+                        "curseConvertMessage": "Deoxys has changed forms to Deoxys-D!"
+                    }
+                },
+                "daykill": {
+                    "mode": {
+                        "evadeCharges": 1
+                    }
+                },
+                "voteshield": -1
+            }
+        },
+        {
+            "role": "deoxysd",
+            "translation": "Deoxys-D",
+            "side": "space",
+            "info": "Can Kill one person during the night, can't be night killed, can't be day killed, vote count as 2, voteshield of -2, converts to Deoxys Speed on the fourth night,  ~Sided~ .",
+            "help": "You now changed to your defensive form, you can /kill one person each night and you can no longer be killed by killers, in this second form, your vote is worth 2, and during voting, 2 votes against you is cancelled, you win when you are the last one standing.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 11
+                    }
+                },
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "deoxyss",
+                        "curseCount": 1,
+                        "curseConvertMessage": "Deoxys-D has changed forms to Deoxys-S!"
+                    }
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "daykill": "evade",
+                "vote": 2,
+                "voteshield": -2
+            }
+        },
+        {
+            "role": "deoxyss2",
+            "translation": "Deoxys-S",
+            "side": "space",
+            "info": "Can Kill one person during the night, can't be distracted, can kill one person during the day every other day (Non Revealing), can't be day or night killed, survives 2 lynches, vote counts as 3, ignores stalkers, ignores watchers, converts to Deoxys Attack on the seventh night,  ~Sided~ .",
+            "help": "You now changed to your speed form, you can continue to /kill one person each night and because you are so fast, this kill can not be distracted any more, you can also kill one person during the day, but you can not kill 2 consecutive days,this kill will not reveal you, if anyone tries to kill or poison you at night, they will fail to do so, and you can not be killed during the day, if you are voted off, you will survive it up to twice, your vote counts as 3 in this third form, lastly, stalkers and watchers can not track you when you kill, you win when you are the last one standing.",
+            "actions": {
+                "kill": {
+                    "mode": "ignore"
+                },
+                "distract": {
+                    "mode": "ignore"
+                },
+                "stalk": {
+                    "mode": "ignore"
+                },
+                "watch": {
+                    "mode": "ignore"
+                },
+                "poison": {
+                    "mode": "ignore"
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 11
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Use your mysterious power and crush your opponents with /kill! You can only use this every two days and you will not be revealed!",
+                        "killmsg": "Deoxys switches to Attack Forme. ~Target~ gets hit by Psycho Boost, and then a  Zap Cannon. Deoxys finishes with a Focus Punch. Deoxys switches back to Speed Forme, and goes back to its meteor.",
+                        "recharge": 1
+                    }
+                },
+                "lynch": {
+                    "convertTo": "deoxyss3",
+                    "convertmsg": "Deoxys has teleported and escaped the lynch!"
+                },
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "deoxysa",
+                        "curseCount": 3,
+                        "curseConvertMessage": "Deoxys-S has changed forms to Deoxys-A!"
+                    }
+                },
+                "daykill": "evade",
+                "vote": 3
+            }
+        },
+        {
+            "role": "deoxyss",
+            "translation": "Deoxys-S",
+            "side": "space",
+            "info": "Can Kill one person during the night, can't be distracted, can kill one person during the day every other day (Non Revealing), can't be day or night killed, survives 2 lynches, vote counts as 3, ignores stalkers, ignores watchers, converts to Deoxys Attack on the seventh night,  ~Sided~ .",
+            "help": "You now changed to your speed form, you can continue to /kill one person each night and because you are so fast, this kill can not be distracted anymore, you can also kill one person during the day, but you can not kill 2 consecutive days,this kill will not reveal you, if anyone tries to kill or poison you at night, they will fail to do so, and you can not be killed during the day, if you are voted off, you will survive it up to twice, your vote counts as 3 in this third form, lastly, stalkers and watchers can not track you when you kill, you win when you are the last one standing.",
+            "actions": {
+                "kill": {
+                    "mode": "ignore"
+                },
+                "distract": {
+                    "mode": "ignore"
+                },
+                "stalk": {
+                    "mode": "ignore"
+                },
+                "watch": {
+                    "mode": "ignore"
+                },
+                "poison": {
+                    "mode": "ignore"
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 11
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Use your mysterious power and crush your opponents with /kill! You can only use this every two days and you will not be revealed!",
+                        "killmsg": "Deoxys switches to Attack Forme. ~Target~ gets hit by Psycho Boost, and then a  Zap Cannon. Deoxys finishes with a Focus Punch. Deoxys switches back to Speed Forme, and goes back to its meteor.",
+                        "recharge": 1
+                    }
+                },
+                "lynch": {
+                    "convertTo": "deoxyss2",
+                    "convertmsg": "Deoxys has teleported and escaped the lynch!"
+                },
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "deoxysa",
+                        "curseCount": 3,
+                        "curseConvertMessage": "Deoxys-S has changed forms to Deoxys-A!"
+                    }
+                },
+                "daykill": "evade",
+                "vote": 3
+            }
+        },
+        {
+            "role": "deoxyss3",
+            "translation": "Deoxys-S",
+            "side": "space",
+            "info": "Can Kill one person during the night, can't be distracted, can kill one person during the day every other day (Non Revealing), can't be day or night killed, survives 2 lynches, vote counts as 3, ignores stalkers, ignores watchers, converts to Deoxys Attack on the seventh night,  ~Sided~ .",
+            "help": "You now changed to your speed form, you can continue to /kill one person each night and because you are so fast, this kill can not be distracted anymore, you can also kill one person during the day, but you can not kill 2 consecutive days,this kill will not reveal you, if anyone tries to kill or poison you at night, they will fail to do so, and you can not be killed during the day, if you are voted off, you will survive it up to twice, your vote counts as 3 in this third form, lastly, stalkers and watchers can not track you when you kill, you win when you are the last one standing.",
+            "actions": {
+                "kill": {
+                    "mode": "ignore"
+                },
+                "distract": {
+                    "mode": "ignore"
+                },
+                "stalk": {
+                    "mode": "ignore"
+                },
+                "watch": {
+                    "mode": "ignore"
+                },
+                "poison": {
+                    "mode": "ignore"
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 11
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Use your mysterious power and crush your opponents with /kill! You can only use this every two days and you will not be revealed!",
+                        "killmsg": "Deoxys switches to Attack Forme. ~Target~ gets hit by Psycho Boost, and then a  Zap Cannon. Deoxys finishes with a Focus Punch. Deoxys switches back to Speed Forme, and goes back to its meteor.",
+                        "recharge": 1
+                    }
+                },
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "deoxysa",
+                        "curseCount": 3,
+                        "curseConvertMessage": "Deoxys-S has changed forms to Deoxys-A!"
+                    }
+                },
+                "daykill": "evade",
+                "vote": 3
+            }
+        },
+        {
+            "role": "deoxysa",
+            "translation": "Deoxys-A",
+            "side": "space",
+            "info": "Can Kill one person during the night, outspeeding bodyguards, can kill one person during the day(Non Revealing), counters night kills, counters day kills, can't be poisoned, kills distractors, protectors, inspectors, stalkers, watchers, poisoners and detoxers, survives 1 lynch and kills 2 voters randomly, vote counts as 4,  ~Sided~ .",
+            "help": "You now changed to your attack form, you can continue to /kill one person each night, your kill will go before all other actions during the night, you can now /kill every day, this still will not reveal you, if anyone tries to use any action on you during the night, you will kill them and you will be completely uneffected by that action, if anyone tries to kill you during the day, you will kill them instead, if voted off, you will survive once, and kill 2 people that voted you, in this fourth form, your vote count as 4, you win when you are the last one standing.",
+            "actions": {
+                "distract": {
+                    "mode": "ignore"
+                },
+                "stalk": {
+                    "mode": "ignore"
+                },
+                "watch": {
+                    "mode": "ignore"
+                },
+                "poison": {
+                    "mode": "ignore"
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 0
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Use your mysterious power and crush your opponents with /kill! Use this kill every day and you will not be revealed!",
+                        "killmsg": "Deoxys switches to Attack Forme. ~Target~ gets hit by Psycho Boost and then a  Zap Cannon. Deoxys finishes with a Focus Punch. Deoxys switches back to Speed Forme and goes back to the meteor."
+                    }
+                },
+                "lynch": {
+                    "killVoters": {
+                        "random": 2,
+                        "message": "Deoxys-A was too powerful for you to lynch! Deoxys-A managed to randomly kill two of you! ."
+                    }
+                },
+                "daykill": "revenge",
+                "daykillrevengemsg": "Deoxys-A's Attack and Special Attack were too much for ~Target~ to handle.",
+                "vote": 4
+            }
+        }
+    ],
+    "roles1": [
+        "staraptor",
+        "hariyama",
+        "skarmory"
+    ],
+    "roles2": [
+        "rhyperior",
+        "sharpedo",
+        "floatzel",
+        "krookodile"
+    ],
+    "roles3": [
+        "deoxys",
+        "groudon",
+        "kyogre",
+        "rayquaza",
+        "regigigas"
+    ],
+    "roles4": [
+        "rhyperior",
+        "dugtrio",
+        "galvantula",
+        "hariyama",
+        "togekiss",
+        "staraptor"
+    ],
+    "roles5": [
+        "deoxys",
+        "salamence",
+        "staraptor",
+        "tyranitar",
+        "hariyama",
+        "kingdra",
+        "sharpedo"
+    ],
+    "roles6": [
+        "rhyperior",
+        "dugtrio",
+        "sharpedo",
+        "milotic",
+        "togekiss",
+        "staraptor",
+        "galvantula",
+        "hariyama",
+        "deoxys"
+    ],
+    "roles7": [
+        "salamence",
+        "staraptor",
+        "skarmory",
+        "wailord",
+        "sharpedo",
+        "kingdra",
+        "rhyperior",
+        "donphan",
+        "hippowdon",
+        "deoxys"
+    ],
+    "roles8": [
+        "groudon",
+        "dugtrio",
+        "hippowdon",
+        "flygon",
+        "donphan",
+        "kyogre",
+        "milotic",
+        "wailord",
+        "lumineon",
+        "kingdra",
+        "deoxys"
+    ],
+    "roles9": [
+        "groudon",
+        "kyogre",
+        "rayquaza",
+        "regigigas",
+        "donphan",
+        "kingdra",
+        "salamence",
+        "tyranitar",
+        "nidoking",
+        "dragalge",
+        "jumpluff",
+        "ferrothorn",
+        "deoxys"
+    ],
+    "roles10": [
+        "rayquaza",
+        "regigigas",
+        "togekiss",
+        "galvantula",
+        "skarmory",
+        "aggron",
+        "xatu",
+        "sableye",
+        "salamence",
+        "tyranitar",
+        "staraptor",
+        "hariyama",
+        "noivern",
+        "mawile",
+        "deoxys"
+    ],
+    "roles11": [
+        "groudon",
+        "donphan",
+        "nidoking",
+        "vileplume",
+        "kyogre",
+        "kingdra",
+        "dragalge",
+        "lanturn",
+        "rayquaza",
+        "salamence",
+        "jumpluff",
+        "altaria",
+        "regigigas",
+        "tyranitar",
+        "ferrothorn",
+        "clefable",
+        "deoxys"
+    ],
+    "roles12": [
+        "groudon",
+        "hippowdon",
+        "donphan",
+        "flygon",
+        "rhyperior",
+        "krookodile",
+        "kyogre",
+        "wailord",
+        "kingdra",
+        "lumineon",
+        "sharpedo",
+        "floatzel",
+        "rayquaza",
+        "skarmory",
+        "salamence",
+        "xatu",
+        "staraptor",
+        "noivern",
+        "deoxys"
+    ],
+    "roles13": [
+        "groudon",
+        "rhyperior",
+        "hippowdon",
+        "nidoking",
+        "vileplume",
+        "kyogre",
+        "sharpedo",
+        "wailord",
+        "dragalge",
+        "lanturn",
+        "rayquaza",
+        "staraptor",
+        "skarmory",
+        "jumpluff",
+        "altaria",
+        "regigigas",
+        "hariyama",
+        "aggron",
+        "ferrothorn",
+        "clefable",
+        "deoxys"
+    ],
+    "roles14": [
+        "rayquaza",
+        "staraptor",
+        "skarmory",
+        "salamence",
+        "togekiss",
+        "xatu",
+        "xatu",
+        "noivern",
+        "mandibuzz",
+        "jumpluff",
+        "altaria",
+        "regigigas",
+        "hariyama",
+        "aggron",
+        "tyranitar",
+        "galvantula",
+        "sableye",
+        "sableye",
+        "mawile",
+        "golem",
+        "ferrothorn",
+        "clefable",
+        "deoxys"
+    ],
+    "roles15": [
+        "groudon",
+        "hippowdon",
+        "donphan",
+        "flygon",
+        "rhyperior",
+        "camerupt",
+        "kyogre",
+        "wailord",
+        "kingdra",
+        "lumineon",
+        "sharpedo",
+        "clawitzer",
+        "rayquaza",
+        "skarmory",
+        "salamence",
+        "xatu",
+        "staraptor",
+        "mandibuzz",
+        "regigigas",
+        "aggron",
+        "tyranitar",
+        "sableye",
+        "hariyama",
+        "golem",
+        "deoxys"
+    ],
+    "roles16": [
+        "kyogre",
+        "sharpedo",
+        "wailord",
+        "kingdra",
+        "milotic",
+        "lumineon",
+        "floatzel",
+        "clawitzer",
+        "dragalge",
+        "dragalge",
+        "dragalge",
+        "lanturn",
+        "lanturn",
+        "rayquaza",
+        "staraptor",
+        "skarmory",
+        "salamence",
+        "togekiss",
+        "xatu",
+        "noivern",
+        "mandibuzz",
+        "jumpluff",
+        "jumpluff",
+        "jumpluff",
+        "altaria",
+        "altaria",
+        "deoxys"
+    ],
+    "roles17": [
+        "groudon",
+        "rhyperior",
+        "donphan",
+        "hippowdon",
+        "flygon",
+        "krookodile",
+        "camerupt",
+        "kyogre",
+        "sharpedo",
+        "wailord",
+        "kingdra",
+        "lumineon",
+        "floatzel",
+        "clawitzer",
+        "rayquaza",
+        "staraptor",
+        "skarmory",
+        "salamence",
+        "xatu",
+        "noivern",
+        "mandibuzz",
+        "regigigas",
+        "hariyama",
+        "tyranitar",
+        "aggron",
+        "sableye",
+        "mawile",
+        "golem",
+        "deoxys"
+    ],
+    "roles18": [
+        "kyogre",
+        "sharpedo",
+        "wailord",
+        "kingdra",
+        "milotic",
+        "lumineon",
+        "floatzel",
+        "clawitzer",
+        "dragalge",
+        "lanturn",
+        "rayquaza",
+        "staraptor",
+        "skarmory",
+        "salamence",
+        "togekiss",
+        "xatu",
+        "noivern",
+        "mandibuzz",
+        "jumpluff",
+        "altaria",
+        "regigigas",
+        "hariyama",
+        "tyranitar",
+        "aggron",
+        "galvantula",
+        "sableye",
+        "mawile",
+        "golem",
+        "ferrothorn",
+        "clefable",
+        "deoxys"
+    ],
+    "roles19": [
+        "groudon",
+        "rhyperior",
+        "donphan",
+        "dugtrio",
+        "hippowdon",
+        "flygon",
+        "krookodile",
+        "camerupt",
+        "kyogre",
+        "sharpedo",
+        "wailord",
+        "kingdra",
+        "milotic",
+        "lumineon",
+        "floatzel",
+        "clawitzer",
+        "rayquaza",
+        "staraptor",
+        "skarmory",
+        "salamence",
+        "togekiss",
+        "xatu",
+        "noivern",
+        "mandibuzz",
+        "regigigas",
+        "hariyama",
+        "tyranitar",
+        "aggron",
+        "galvantula",
+        "sableye",
+        "mawile",
+        "golem",
+        "deoxys"
+    ],
+    "roles20": [
+        "groudon",
+        "rhyperior",
+        "donphan",
+        "dugtrio",
+        "hippowdon",
+        "hippowdon",
+        "flygon",
+        "krookodile",
+        "camerupt",
+        "nidoking",
+        "vileplume",
+        "kyogre",
+        "sharpedo",
+        "wailord",
+        "wailord",
+        "kingdra",
+        "milotic",
+        "lumineon",
+        "floatzel",
+        "clawitzer",
+        "dragalge",
+        "lanturn",
+        "regigigas",
+        "hariyama",
+        "tyranitar",
+        "aggron",
+        "aggron",
+        "galvantula",
+        "sableye",
+        "mawile",
+        "golem",
+        "ferrothorn",
+        "clefable",
+        "deoxys"
+    ],
+    "roles21": [
+        "rayquaza",
+        "skarmory",
+        "skarmory",
+        "togekiss",
+        "togekiss",
+        "xatu",
+        "xatu",
+        "staraptor",
+        "staraptor",
+        "noivern",
+        "noivern",
+        "mandibuzz",
+        "mandibuzz",
+        "salamence",
+        "salamence",
+        "jumpluff",
+        "altaria",
+        "regigigas",
+        "aggron",
+        "aggron",
+        "galvantula",
+        "galvantula",
+        "sableye",
+        "sableye",
+        "hariyama",
+        "hariyama",
+        "mawile",
+        "mawile",
+        "golem",
+        "golem",
+        "tyranitar",
+        "tyranitar",
+        "ferrothorn",
+        "clefable",
+        "deoxys"
+    ],
+    "roles22": [
+        "groudon",
+        "rhyperior",
+        "donphan",
+        "dugtrio",
+        "hippowdon",
+        "flygon",
+        "krookodile",
+        "camerupt",
+        "camerupt",
+        "kyogre",
+        "sharpedo",
+        "kingdra",
+        "milotic",
+        "wailord",
+        "lumineon",
+        "floatzel",
+        "clawitzer",
+        "clawitzer",
+        "rayquaza",
+        "staraptor",
+        "salamence",
+        "togekiss",
+        "skarmory",
+        "xatu",
+        "noivern",
+        "mandibuzz",
+        "mandibuzz",
+        "regigigas",
+        "hariyama",
+        "tyranitar",
+        "galvantula",
+        "aggron",
+        "sableye",
+        "mawile",
+        "golem",
+        "golem",
+        "deoxys"
+    ],
+    "roles23": [
+        "groudon",
+        "rhyperior",
+        "rhyperior",
+        "donphan",
+        "donphan",
+        "dugtrio",
+        "dugtrio",
+        "hippowdon",
+        "hippowdon",
+        "flygon",
+        "flygon",
+        "krookodile",
+        "krookodile",
+        "camerupt",
+        "camerupt",
+        "nidoking",
+        "nidoking",
+        "vileplume",
+        "vileplume",
+        "rayquaza",
+        "staraptor",
+        "staraptor",
+        "salamence",
+        "salamence",
+        "togekiss",
+        "togekiss",
+        "skarmory",
+        "skarmory",
+        "xatu",
+        "xatu",
+        "noivern",
+        "noivern",
+        "mandibuzz",
+        "mandibuzz",
+        "jumpluff",
+        "jumpluff",
+        "altaria",
+        "altaria"
+    ],
+    "roles24": [
+        "groudon",
+        "rhyperior",
+        "rhyperior",
+        "donphan",
+        "dugtrio",
+        "dugtrio",
+        "hippowdon",
+        "hippowdon",
+        "flygon",
+        "krookodile",
+        "camerupt",
+        "nidoking",
+        "vileplume",
+        "rayquaza",
+        "staraptor",
+        "staraptor",
+        "salamence",
+        "togekiss",
+        "togekiss",
+        "skarmory",
+        "skarmory",
+        "xatu",
+        "noivern",
+        "mandibuzz",
+        "jumpluff",
+        "altaria",
+        "regigigas",
+        "hariyama",
+        "hariyama",
+        "aggron",
+        "aggron",
+        "galvantula",
+        "galvantula",
+        "tyranitar",
+        "sableye",
+        "mawile",
+        "golem",
+        "ferrothorn",
+        "clefable"
+    ],
+    "roles25": [
+        "groudon",
+        "rhyperior",
+        "donphan",
+        "dugtrio",
+        "hippowdon",
+        "flygon",
+        "krookodile",
+        "camerupt",
+        "nidoking",
+        "vileplume",
+        "kyogre",
+        "sharpedo",
+        "kingdra",
+        "milotic",
+        "wailord",
+        "lumineon",
+        "floatzel",
+        "clawitzer",
+        "dragalge",
+        "lanturn",
+        "rayquaza",
+        "staraptor",
+        "salamence",
+        "togekiss",
+        "skarmory",
+        "xatu",
+        "noivern",
+        "mandibuzz",
+        "jumpluff",
+        "altaria",
+        "regigigas",
+        "hariyama",
+        "aggron",
+        "galvantula",
+        "tyranitar",
+        "sableye",
+        "mawile",
+        "golem",
+        "ferrothorn",
+        "clefable",
+        "deoxys"
+    ],
+    "killmsg": "±Castform: ~Role~ (~Player~) could not find a Full Restore in time.",
+    "killusermsg": "*** Looks like you didn't find a Sitrus Berry in time.***",
+    "border": "***~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "lynchmsg": "±Castform: ~Player~ (~Role~) was caught stealing Berries and was forced to leave!"
+}
