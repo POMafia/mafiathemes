@@ -1,0 +1,235 @@
+{
+        "name": "Magikarp",
+        "author": ["Meowmix", "Pangaea", "Ayepom", "too OP pls nerf"],
+        "summary": "Splash, splash, splash. The Magikarp just want to splash around, but the Gyarados are sick of all the tomfoolery and will attack any silly Magikarp who tries to splash them. The Fisherman just wants some lunch, so he fishes during the day. Can the Magikarp survive? | Type /tips for some helpful hints and tricks! | TIPS HAVE BEEN UPDATED REGARDING CHANGES IN SPLASHING MECHANICS!",
+        "tips": { 
+        	"Magikarp": "Each Gyarados will kill only the FIRST person that splashes it each night. Splashing someone and not dying does NOT clean them. If there is more than one death at the end of the night, then the FIRST Magikarp that died splashed a Gyarados. Be wary of people who may attempt to frame you or the person you're splashing!",
+        	"Gyarados": "You can attempt to \"clean\" your partners by saying you splashed them. When people see that you didn't die, they will assume the person you \"splashed\" is clean.",
+        	"Fisherman": "Use your daykill wisely. Remember that if you kill a Gyarados, you will die with it. Try to lay low until later on, when you can use your vote of 2 to your advantage. Only use your second daykill if you absolutely need to!"
+        },
+        "sides": [
+        	{
+        
+        		"side": "village",
+                "translation": "Magikarps",
+                "winmsg": "Magikarps (~Players~) somehow defeated their evolved brethren. Nice job!"
+            },
+            {
+                "side": "mafia",
+                "translation": "Gyarados",
+                "winmsg": "Gyarados (~Players~) finally got rid of those annoying Magikarp. Some peace and quiet at last!"
+            },
+            {
+                "side": "fish",
+                "translation": "Fisherman",
+                "winmsg": "Fisherman (~Players~) caught quite a load today. Looks like a feast!"
+            }
+        ],
+        "roles": [
+            {
+                "role": "karp",
+                "translation": "Magikarp",
+                "side": "village",
+                "help": "You are a Magikarp! You're generally pretty useless, but you can /splash someone at night. If you splash a Gyarados, you might die (but this is not guaranteed)!",
+                "info": "Can splash one person during the night (a distract command which always fails). Sided with the Magikarp.",
+                "actions": {
+                    "night": {
+                        "splash": {
+                            "target": "AnyButSelf",
+                            "common": "Self",
+                            "priority": 1,
+                            "command": ["copy", "convert"],
+                            "silent": true,
+                            "newRole": {
+                            	"bgyara1": ["bgyara", "bgyara1"],
+                            	"karp": ["karp"],
+                            	"karp_dead": ["karp_dead"],
+                            	"fisher": ["fisher"]
+                            },
+                            "silentConvert": true,
+                            "convertmsg": "",
+                            "usermsg": "",
+                            "silentCopy": true,
+                            "copyAs": {
+                            	"karp_dead": ["bgyara"],
+                            	"karp": ["karp", "karp_dead", "bgyara1", "skarp", "fisher"]
+                            	}
+                        }
+                    },
+                    "copy": {
+                        "mode": "identify",
+                        "msg": "Someone tried to splash you last night. But nothing happened!"
+                    },
+                    "expose": "revealexposer",
+                    "revealexposermsg": "The Shiny Magikarp used splash on ~Self~. Nothing happened!"
+                }
+            },
+            {
+                "role": "karp_dead",
+                "translation": "Magikarp",
+                "hide": true,
+                "side": "village",
+                "help": "You are a Magikarp! You're generally pretty useless, but you can /splash someone at night. If you splash a Gyarados, you'll die!",
+                "info": "Can splash one person during the night (a distract command which always fails). Sided with the Magikarp.",
+                "actions": {
+                	"initialCondition": {
+                		"poison": {
+                			"count": -1,
+                			"poisonDeadMessage": "You tried to splash a Gyarados. It didn't end well."
+                			}
+                		},
+                    "copy": {
+                        "mode": "identify",
+                        "msg": "Someone tried to splash you last night. But nothing happened!"
+                    }
+                }
+            },
+            {
+                "role": "skarp",
+                "translation": "Shiny Magikarp",
+                "side": "village",
+                "help": "You are a Magi -- oh cool, you're shiny! Due to being shiny, you are very special, so instead of using splash during the night, you can use it during the day! Watch out for those Gyarados though!",
+                "info": "Can splash someone during the day (dies if it splashes a Gyarados). Sided with the Magikarp.",
+                "actions": {
+                    "standby": {
+                        "splash": {
+                            "target": "AnyButSelf",
+                            "limit": 1,
+                            "command": "expose",
+                            "msg": "Type /splash [name] to splash someone! Be careful not to splash a Gyarados!",
+                            "exposemsg": "Splash!"
+                    }
+                }
+                }   
+            },
+            {
+                "role": "bgyara",
+                "translation": "Gyarados",
+                "side": "mafia",
+                "help": "You are a Gyarados! Always enraged, you can /kill someone at night. You share a kill with your Gyarados buddies. The first Magikarp that tries to splash you will die! If you are killed during the day, your attacker will die as well.",
+                "info": "Can kill one person during the night (shared with team). Kills the first Magikarp who uses /splash on it. Bombs all daykills. Sided with the Gyarados.",
+                "actions": {
+                    "night": {
+                        "kill": {
+                        	"command": ["poison"],
+                            "target": "AnyButTeam",
+                            "common": "Team",
+                            "count": -1,
+                            "poisonDeadMessage": "You fainted!",
+                            "priority": 5,
+                            "broadcast": "team"
+                        }
+                    },
+                     "expose": "revenge",
+                     "exposerevengemsg": "~Target~ (~Role~) tried to splash a Gyarados. The Gyarados killed him out of rage!",
+                        "avoidHax": [
+                        "kill"
+                    ],
+                    "startup": "team-reveal",
+                    "preventTeamvote": true,
+                    "teamTalk": true,
+                    "daykill": "bomb",
+                    "daykillrevengemsg": "A Gyarados is hooked onto the fishing line! ~Target~ pulls hard but is intimidated by Gyarados's fearsome stare and dies from fear. The Gyarados continues to flop around in the dirt until it finally dies!"
+                }
+            },
+            {
+                "role": "bgyara1",
+                "translation": "Gyarados",
+                "side": "mafia",
+                "hide": true,
+                "help": "",
+                "info": "",
+                "actions": {
+                	"initialCondition": {
+                		"curse": {
+                			"curseCount": -1,
+                			"silentCurse": true,
+                			"cursedRole": "bgyara"
+                			}
+                		}
+                }
+            },
+            {
+                "role": "fisher",
+                "translation": "Fisherman",
+                "side": "fish",
+                "help": "You are a Fisherman! Being human, your vote is more important than that of a fish: it's 2! You can /fish during the day to catch your prey. Additionally, you may /net someone for a second catch, but be warned, you may be revealed. Watch out for Gyarados though; if you try to fish one of them, you'll both die instead!.",
+                "info": "Can kill one person during the day with /fish. Can kill an additional person with /net, with a 50% chance of revealing himself. Vote counts as 2. Sided with himself.",
+                "actions": {
+                    "standby": {
+                        "fish": {
+                            "target": "AnyButTeam",
+                            "limit": 1,
+                            "command": "kill",
+                            "msg": "Type /fish [name] now to catch your fish!",
+                            "killmsg": "~Target~ is hooked onto the fishing line. Fisherman pulls hard and successfully brings it to land where he battles it to death!"
+                        },
+                        "net": {
+                            "target": "AnyButTeam",
+                            "limit": 2,
+                            "command": "kill",
+                            "msg": "You can type /net [name] for more fish, but there's a 50% chance you'll be revealed!",
+                            "killmsg": "Fisherman sees a fish swimming near the surface! ~Target~ was scooped up by a net!",
+                            "revealChance": 0.5,
+                            "revealmsg": "~Self~'s face was seen during the catch! This is why we don't get greedy."
+                        }
+                    },
+					"expose": "revealexposer",
+                    "revealexposermsg": "The Shiny Magikarp used splash on ~Self~. Nothing happened!",
+                    "distract": {
+                        "mode": "ignore",
+                        "msg": "Someone tried to splash you last night. But nothing happened!"
+                    },
+                    "vote": 2,
+                    "startup": "team-reveal"
+                }
+            }
+        ],
+        "roles1": [
+            "bgyara",
+            "karp",
+            "karp",
+            "karp",
+            "karp",
+			"karp",
+            "bgyara",
+            "karp",
+            "karp",
+            "karp",
+            "karp",
+            "bgyara",
+            "karp",
+            "fisher",
+            "bgyara",
+            "skarp",
+            "karp",
+            "karp",
+            "karp",
+            "bgyara",
+            "karp",
+            "karp",
+            "karp",
+            "karp",
+            "bgyara",
+            "karp",
+            "karp",
+            "karp",
+            "bgyara",
+            "karp",
+            "karp",
+            "karp",
+            "karp",
+            "bgyara",
+            "karp",
+            "karp",
+            "karp",
+            "bgyara",
+            "karp",
+            "karp"
+        ],
+        "killmsg": "±Feebas: ~Player~ (~Role~) fainted.",
+        "killusermsg": "You fainted!",
+		"changelog": {
+			"12/22/16": "Gyarados' kill is ACTUALLY shared now as it should be. Tips were updated to accommodate the changes in splash mechanics."
+		}
+    }
