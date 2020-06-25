@@ -1,0 +1,1935 @@
+{
+	"name": "NV",
+	"altname": "Not Vanilla",
+	"macro": false,
+	"author": [
+        "<b><i><span style='color:#380B61'>Crobat</span></i></b>",
+        "<b><i><span style='color:#FF00FF'>Espeon</span></i></b>",
+        "<b><i><span style='color:#FF0000'>Arcanine</span></i></b>",
+		"<b><i><span style='color:#000000'>Fate Testarossa</span></i></b>",
+		"<b><i><span style='color:#5882FA'>Amane Ohtori</span></i></b>"		
+    ],
+	"tips": [
+		"Village: To figure out your role, try using the following commands at night: /protect (or /bg), /inspect (or /insp or /cop), /detox, /kill, /distract (or /pl), /safeguard (or /sg), /stalk, and /watch. For those that were unable to use any of those commands at night, try using these commands during the day: /inspect (or /insp or /cop), /kill, and /expose. If none of these commands worked during the night or the day, then you are either a Bomb, Bulletproof, Day Spy, Daykill Bomb, Daykill Revealer, Mayor, Spy, or Two Shot Bulletproof!",
+		"Vigilante or One Shot Vigilante?: If you can kill during the night, try using /cancel. If you can use this command, then you are a One Shot Vigilante. If you can't use this command, then you are a regular Vigilante.",
+		"Mafia: Each villager doesn't know its abilities at the start, so you can try fakeclaiming a power role if someone may have figured out that you're mafia!",
+		"Deaths: When someone is either killed or lynched, their actual role will be revealed to everyone. The number of votes the lynched person received will also be visible to help you find Mayors and/or Mafia Mayors.",
+		"Current Roles: All you will see are a bunch of Villagers and Mafias. However, the mafia may also have special abilities themselves! See /roles :mafia for more information.",
+		"Inspectors: Village inspectors can only see if a person is a Villager or a Mafia, but mafia inspectors can see exactly what role a Villager is!",
+		"*** Possible Roles Depending on Game Size ***",
+		"3p: Bodyguard, Bomb, Bulletproof, Mayor, One Shot Vigilante, Pretty Lady, Samurai, Vigilante, Mafia, Mafia Distractor, Mafia Inspector, Mafia Samurai, Mafia Spy",
+		"4p: Bodyguard, Bomb, Daykill Bomb, Inspector, Mayor, Pretty Lady, Samurai, Vigilante, Mafia Distractor, Mafia Inspector, Mafia Samurai",
+		"5p: Bodyguard, Bomb, Day Inspector, Daykill Bomb, Daykill Revealer, Pretty Lady, Samurai, Stalker, Vigilante, Watcher, Mafia Distractor, Mafia Inspector, Mafia Spy",
+		"Games of 6 and larger start with the same possible roles as 5p. Each game size lists additional roles, one of which is guaranteed to spawn.",
+		"6p: Day Inspector, Exposer, Samurai",
+		"7p: Mafia, Mafia Bodyguard, Mafia Bomb, Mafia Day Spy, Mafia Distractor, Mafia Inspector, Mafia Spy",
+		"8p: Mayor (vote as low as 2, as high as 6)",
+		"9p: Mafia Mayor (vote as low as 2, as high as 4)",
+		"12p and up: Any mafia role has a chance to spawn.",
+		"13p and up: Any village role has a chance to spawn.",
+		"*** COMMANDS FOR VILLAGE TO USE ***",
+		"3p: /protect, /kill, /cancel, /distract",
+		"4p: /protect, /inspect, /distract, /kill",
+		"5p and up: /protect, /distract, /stalk, /watch, /kill",
+		"13p and up: ALL OF THEM",
+		"Remember you can also use /inspect, /expose, and /kill during the day!"
+	],
+	"summary": "Is this Vanilla? Nah. Every villager is actually a power role, but none of them are told what special abilities they have! Commands can be used during the night or the day! They will need to figure out (and prove) who can do what before the mafia have eliminated them! Check out the /tips before playing; hopefully they help.",
+	"sides": [
+		{
+			"side": "village",
+			"translation": "Village",
+			"winmsg": "~Players~ figured out each others' roles and worked together to achieve victory!"
+		},
+		{
+			"side": "mafia",
+			"translation": "Mafia",
+			"winmsg": "~Players~ have decimated the village."
+		}
+	],
+	"roles": [
+		{
+			"role": "villager",
+			"translation": "Villager",
+			"side": "village",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Is actually a power role, but isn't told what its abilties are. ~Sided~",
+			"actions": {
+			}
+		},
+		{
+			"role": "bodyguard",
+			"translation": "Bodyguard",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Can protect one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"cancel": ["bg"],
+						"priority": 3
+					},
+					"bg": {
+						"command": "protect",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 3,
+						"cancel": ["protect"],
+						"hide": true,
+						"inputmsg": "You have chosen to protect ~Target~!"
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Bodyguard!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "inspector",
+			"translation": "Inspector",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Can inspect one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"inspect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 9,
+						"cancel": ["insp", "cop"]
+					},
+					"insp": {
+						"command": "inspect",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 9,
+						"cancel": ["inspect", "cop"],
+						"hide": true,
+						"inputmsg": "You have chosen to inspect ~Target~!"
+					},
+					"cop": {
+						"command": "inspect",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 9,
+						"cancel": ["inspect", "insp"],
+						"hide": true,
+						"inputmsg": "You have chosen to inspect ~Target~!"
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is an Inspector!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "inspectorday",
+			"translation": "Day Inspector",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Can inspect one person during the standby. ~Sided~",
+			"actions": {
+				"standby": {
+					"inspect": {
+						"command": "expose",
+						"target": "AnyButSelf",
+						"limit": 1,
+						"exposemsg": "A villager was able to find a ~Role~!",
+						"exposedtargetmsg": "~Target~ is the ~Role~!"
+					},
+					"insp": {
+						"command": "expose",
+						"target": "AnyButSelf",
+						"limit": 1,
+						"exposemsg": "A villager was able to find a ~Role~!",
+						"exposedtargetmsg": "~Target~ is the ~Role~!"
+					},
+					"cop": {
+						"command": "expose",
+						"target": "AnyButSelf",
+						"limit": 1,
+						"exposemsg": "A villager was able to find a ~Role~!",
+						"exposedtargetmsg": "~Target~ is the ~Role~!"
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Day Inspector!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "mayor",
+			"translation": "Mayor",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Vote of 2, 3, 4, 5, or 6 (stays the same all game). ~Sided~",
+			"actions": {
+				"vote": 2,
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Mayor with a vote of 2!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "mayor3",
+			"translation": "Mayor (+3)",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Vote of 3. ~Sided~",
+			"actions": {
+				"vote": 3,
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Mayor with a vote of 3!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "mayor4",
+			"translation": "Mayor (+4)",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Vote of 4. ~Sided~",
+			"actions": {
+				"vote": 4,
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Mayor with a vote of 4!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "mayor5",
+			"translation": "Mayor (+5)",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Vote of 5. ~Sided~",
+			"actions": {
+				"vote": 5,
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Mayor with a vote of 5!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "mayor6",
+			"translation": "Mayor (+6)",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Vote of 6. ~Sided~",
+			"actions": {
+				"vote": 6,
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Mayor with a vote of 6!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "prettylady",
+			"translation": "Pretty Lady",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Can distract one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"distract": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 2,
+						"cancel": ["pl"]
+					},
+					"pl": {
+						"command": "distract",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 2,
+						"cancel": ["distract"],
+						"hide": true,
+						"inputmsg": "You have chosen to distract ~Target~!"
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Pretty Lady!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "samurai",
+			"translation": "Samurai",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Can kill one person during the standby (reveals user). ~Sided~",
+			"actions": {
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"killmsg": "~Self~ (~Role~), doing his/her best Cloud impersonation, lunges and pulls out a Buster Sword, striking down ~Target~!"
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a revealing Samurai!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "samurai2",
+			"translation": "Samurai",
+			"side": "village",
+			"hide": "side",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Can kill one person during the standby (user is not revealed). ~Sided~",
+			"actions": {
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"killmsg": "A villager, doing his/her best Cloud impersonation, lunges and pulls out a Buster Sword, striking down ~Target~!"
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a non-revealing Samurai!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "spy",
+			"translation": "Spy",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Gets hax on kill and cancel. ~Sided~",
+			"actions": {
+				"hax": {
+					"kill": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"cancel": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Spy!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "spyday",
+			"translation": "Day Spy",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Gets hax on daykills. ~Sided~",
+			"actions": {
+				"standbyHax": {
+					"kill": {						
+						"revealRole": 0.3
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Day Spy!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "vigilante",
+			"translation": "Vigilante",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Can kill one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 7,
+						"msg": "You were killed by the Vigilante!"
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Vigilante!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "bulletproof",
+			"translation": "Bulletproof",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Survives one nightkill. ~Sided~",
+			"actions": {
+				"kill": {
+					"mode": {
+						"evadeCharges": 1
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Bulletproof!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "bulletproof2",
+			"translation": "Two Shot Bulletproof",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Survives two nightkills. ~Sided~",
+			"actions": {
+				"kill": {
+					"mode": {
+						"evadeCharges": 2
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Two Shot Bulletproof!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "stalker",
+			"translation": "Stalker",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Can stalk one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"stalk": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 10
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Stalker!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "safeguarder",
+			"translation": "Safeguarder",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Can safeguard one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"safeguard": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 3,
+						"cancel": ["sg"]
+					},
+					"sg": {
+						"command": "safeguard",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 3,
+						"cancel": ["safeguard"],
+						"hide": true,
+						"inputmsg": "You have chosen to safeguard ~Target~!"
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Safeguarder!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "bomb",
+			"translation": "Bomb",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Revenges nightkills. ~Sided~",
+			"actions": {
+				"kill": {
+					"mode": "killattackerevenifprotected",
+					"targetmsg": "You were killed, but you were able to kill your attacker before dying!"
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Bomb!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "daybomb",
+			"translation": "Daykill Bomb",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Revenges daykills. ~Sided~",
+			"actions": {
+				"daykill": "bomb",
+				"daykillrevengemsg": "~Target~ tried to kill ~Self~, but ~Self~ was holding a bomb that suddenly exploded, killing them both!",
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Daykill Bomb!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "daykillrevealer",
+			"translation": "Daykill Revealer",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Reveals attacker when daykilled. ~Sided~",
+			"actions": {
+				"daykill": "revealkiller",
+				"daykillrevengemsg": "Before dying, ~Self~ revealed that ~Target~ is a ~Role~!",
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Daykill Revealer!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "exposer",
+			"translation": "Exposer",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Can expose one person during the standby (reveals user). ~Sided~",
+			"actions": {
+				"standby": {
+					"expose": {
+						"target": "AnyButSelf",
+						"exposemsg": "~Self~ (Exposer) announces to everyone that ~Target~ is the ~Role~!"
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a revealing Exposer!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"				
+			}
+		},
+		{
+			"role": "exposer2",
+			"translation": "Exposer",
+			"side": "village",
+			"hide": "side",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Can expose one person during the standby (user is not revealed). ~Sided~",
+			"actions": {
+				"standby": {
+					"expose": {
+						"target": "AnyButSelf",
+						"exposemsg": "A villager announces to everyone that ~Target~ is the ~Role~!"
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a non-revealing Exposer!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"				
+			}
+		},
+		{
+			"role": "detoxer",
+			"translation": "Detoxer",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Can detox one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"detox": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 9
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Detoxer!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "watcher",
+			"translation": "Watcher",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Can watch one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"watch": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 13
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a Watcher!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "osv",
+			"translation": "One Shot Vigilante",
+			"side": "village",
+			"startupmsg": "You are a Villager!",
+			"help": "You are a villager and your town is being invaded by the mafia! However, you don't know what your abilities are or whether you use them during the night or during the day! Good luck figuring out and proving what you can do!",
+			"info": "Can kill one person during the night once a game. Can cancel to stop this kill. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 5,
+						"charges": 1,
+						"msg": "You were killed by the One Shot Vigilante!"
+					},
+					"cancel": {
+						"command": ["dummy2"],
+						"target": "Any",
+						"cancel": ["kill"],
+						"common": "Self",
+						"priority": 14,
+						"pierce": true
+					}
+				},
+				"dummy": {
+                    "mode": {
+                        "ignore": ["mafia_inspector"]
+                    },
+                    "msg": "±Info: ~Self~ is a One Shot Vigilante!"
+                },
+				"inspect": {
+                    "revealAs": "villager"
+                },
+				"onlist": "villager",
+				"onteam": "villager"
+			}
+		},
+		{
+			"role": "mafia",
+			"translation": "Mafia",
+			"side": "mafia",
+			"help": "Time to take over this pathetic village! You share a /kill with your teammates every night.",
+			"info": "Can kill one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team"
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "mafia_bodyguard",
+			"translation": "Mafia Bodyguard",
+			"side": "mafia",
+			"help": "You share a /kill with your teammates every night. You can also /protect one person every night.",
+			"info": "Can kill one person during the night. Can protect one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					},
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 3,
+						"broadcast": "team"
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "mafia_inspector",
+			"translation": "Mafia Inspector",
+			"side": "mafia",
+			"help": "You share a /kill with your teammates every night. You can also /inspect one person every night.",
+			"info": "Can kill one person during the night. Can inspect one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					},
+					"inspect": {
+						"command": "dummy",
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 9,
+						"broadcast": "team"
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "mafia_mayor",
+			"translation": "Mafia Mayor",
+			"side": "mafia",
+			"help": "You share a /kill with your teammates every night. You have a vote of 2.",
+			"info": "Can kill one person during the night. Vote of 2, 3, 4, 5, or 6 (stays the same all game). ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true,
+				"vote": 2
+			}
+		},
+		{
+			"role": "mafia_mayor3",
+			"translation": "Mafia Mayor (+3)",
+			"side": "mafia",
+			"hide": true,
+			"help": "You share a /kill with your teammates every night. You have a vote of 3.",
+			"info": "Can kill one person during the night. Vote of 3. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true,
+				"vote": 3
+			}
+		},
+		{
+			"role": "mafia_mayor4",
+			"translation": "Mafia Mayor (+4)",
+			"side": "mafia",
+			"hide": true,
+			"help": "You share a /kill with your teammates every night. You have a vote of 4.",
+			"info": "Can kill one person during the night. Vote of 4. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true,
+				"vote": 4
+			}
+		},
+		{
+			"role": "mafia_mayor5",
+			"translation": "Mafia Mayor (+5)",
+			"side": "mafia",
+			"hide": true,
+			"help": "You share a /kill with your teammates every night. You have a vote of 5.",
+			"info": "Can kill one person during the night. Vote of 5. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true,
+				"vote": 5
+			}
+		},
+		{
+			"role": "mafia_mayor6",
+			"translation": "Mafia Mayor (+6)",
+			"side": "mafia",
+			"hide": true,
+			"help": "You share a /kill with your teammates every night. You have a vote of 6.",
+			"info": "Can kill one person during the night. Vote of 6. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true,
+				"vote": 6
+			}
+		},
+		{
+			"role": "mafia_distractor",
+			"translation": "Mafia Distractor",
+			"side": "mafia",
+			"help": "You share a /kill with your teammates every night. You can also /distract one person every night.",
+			"info": "Can kill one person during the night. Can distract one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					},
+					"distract": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 1,
+						"broadcast": "team"
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "mafia_samurai",
+			"translation": "Mafia Samurai",
+			"side": "mafia",
+			"help": "You share a /kill with your teammates every night. You can also /kill one person during the standby, but this will reveal you!",
+			"info": "Can kill one person during the night. Can kill one person during the standby (reveals user). ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					}
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButTeam",
+						"msg": "You can /kill someone now, but this will reveal you!",
+						"killmsg": "~Self~ (Mafia Samurai) slowly walks up towards ~Target~ before whipping out a large sword and slicing them in half!"
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "mafia_samurai2",
+			"translation": "Mafia Samurai",
+			"side": "mafia",
+			"hide": "side",
+			"help": "You share a /kill with your teammates every night. You can also /kill one person during the standby, and this won't reveal you!",
+			"info": "Can kill one person during the night. Can kill one person during the standby (user is not revealed). ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					}
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButTeam",
+						"msg": "You can /kill someone now, and this won't reveal you!",
+						"killmsg": "The Mafia Samurai slowly walks up towards ~Target~ before whipping out a large sword and slicing them in half!"
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "mafia_spy",
+			"translation": "Mafia Spy",
+			"side": "mafia",
+			"help": "You share a /kill with your teammates every night. You also get hax on night commands.",
+			"info": "Can kill one person during the night. Gets small hax on every night command. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					}
+				},
+				"hax": {
+					"kill": {
+						"revealTeam": 0.3,
+						"revealPlayer": 0.15
+					},
+					"distract": {
+						"revealTeam": 0.3,
+						"revealPlayer": 0.15
+					},
+					"protect": {
+						"revealTeam": 0.3,
+						"revealPlayer": 0.15
+					},
+					"safeguard": {
+						"revealTeam": 0.3,
+						"revealPlayer": 0.15
+					},
+					"inspect": {
+						"revealTeam": 0.3,
+						"revealPlayer": 0.15
+					},
+					"detox": {
+						"revealTeam": 0.3,
+						"revealPlayer": 0.15
+					},
+					"stalk": {
+						"revealTeam": 0.3,
+						"revealPlayer": 0.15
+					},
+					"watch": {
+						"revealTeam": 0.3,
+						"revealPlayer": 0.15
+					},
+					"cancel": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "mafia_spyday",
+			"translation": "Mafia Day Spy",
+			"side": "mafia",
+			"help": "You share a /kill with your teammates every night. You also get hax on day commands.",
+			"info": "Can kill one person during the night. Gets small hax on every day command. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					}
+				},
+				"standbyHax": {
+					"inspect": {
+						"revealRole": 0.3
+					},
+					"kill": {
+						"revealRole": 0.3
+					},
+					"expose": {
+						"revealRole": 0.3
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "mafia_bulletproof",
+			"translation": "Mafia Bulletproof",
+			"side": "mafia",
+			"help": "You share a /kill with your teammates every night. You will also survive 1 nightkill.",
+			"info": "Can kill one person during the night. Survives one nightkill. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeCharges": 1
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "mafia_bulletproof2",
+			"translation": "Mafia Two Shot Bulletproof",
+			"side": "mafia",
+			"help": "You share a /kill with your teammates every night. You will also survive 2 nightkills.",
+			"info": "Can kill one person during the night. Survives two nightkills. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeCharges": 2
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "mafia_stalker",
+			"translation": "Mafia Stalker",
+			"side": "mafia",
+			"help": "You share a /kill with your teammates every night. You can also /stalk one person every night.",
+			"info": "Can kill one person during the night. Can stalk one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					},
+					"stalk": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 11,
+						"broadcast": "team"
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "mafia_safeguarder",
+			"translation": "Mafia Safeguarder",
+			"side": "mafia",
+			"help": "You share a /kill with your teammates every night. You can also /safeguard one person every night.",
+			"info": "Can kill one person during the night. Can safeguard one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					},
+					"safeguard": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 3,
+						"broadcast": "team"
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "mafia_bomb",
+			"translation": "Mafia Bomb",
+			"side": "mafia",
+			"help": "You share a /kill with your teammates every night. If you are killed during the night, you will bring your attacker down with you!",
+			"info": "Can kill one person during the night. Revenges nightkills. ~Sided~",
+			"actions": {
+				"kill": {
+					"mode": "killattackerevenifprotected",
+					"targetmsg": "You were killed, but you were able to kill your attacker before dying!"
+				},
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "mafia_daybomb",
+			"translation": "Mafia Daybomb",
+			"side": "mafia",
+			"help": "You share a /kill with your teammates every night. If you are killed during the day, you will bring your attacker down with you!",
+			"info": "Can kill one person during the night. Revenges daykills. ~Sided~",
+			"actions": {
+				"daykill": "bomb",
+				"daykillrevengemsg": "~Target~ tried to kill ~Self~, but ~Self~ was holding a bomb that suddenly exploded, killing them both!",
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "mafia_daykillrevealer",
+			"translation": "Mafia Daykill Revealer",
+			"side": "mafia",
+			"help": "You share a /kill with your teammates every night. If you are killed during the day, you will reveal your attacker!",
+			"info": "Can kill one person during the night. Reveals attacker if daykilled. ~Sided~",
+			"actions": {
+				"daykill": "revealkiller",
+				"daykillrevengemsg": "Before dying, ~Self~ revealed that ~Target~ is a ~Role~!",
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "mafia_watcher",
+			"translation": "Mafia Watcher",
+			"side": "mafia",
+			"help": "You share a /kill with your teammates every night. You can also /watch one person every night.",
+			"info": "Can kill one person during the night. Can watch one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					},
+					"watch": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 12,
+						"broadcast": "team"
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "mafia_poisoner",
+			"translation": "Mafia Poisoner",
+			"side": "mafia",
+			"help": "You share a /kill with your teammates every night. You can also /poison one person every night.",
+			"info": "Can kill one person during the night. Can poison one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 6,
+						"broadcast": "team",
+						"hide": true
+					},
+					"poison": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 8,
+						"broadcast": "team"
+					}
+				},
+				"inspect": {
+                    "revealAs": "mafia"
+                },
+				"onlist": "mafia",
+				"teamUtilities": true
+			}
+		}
+	],
+	"spawnPacks": {
+		"3p": {
+			"roles": [				
+				["vigilante", "bulletproof", "mafia"],
+				["osv", "bomb", "mafia"],
+				["vigilante", "bodyguard", "mafia"],
+				["vigilante", "prettylady", "mafia"],
+				["samurai", "vigilante", "mafia_distractor"],
+				["samurai", "vigilante", "mafia_spy"],
+				["samurai", "mayor", "mafia_inspector"],
+				["samurai", "bomb", "mafia_samurai"]
+			]
+		},
+		"4p": {
+			"roles": [
+				["vigilante", "samurai2", "bomb", "mafia_inspector"],
+				["vigilante", "samurai2", "daybomb", "mafia_inspector"],
+				["vigilante", "mayor", "bomb", "mafia_inspector"],
+				["vigilante", "mayor", "bomb", "mafia_samurai2"],
+				["vigilante", "samurai2", "daybomb", "mafia_samurai2"],
+				["vigilante", "samurai2", "bomb", "mafia_inspector"],
+				["mayor", "inspector", "prettylady", "mafia_distractor"],
+				["mayor", "inspector", "prettylady", "mafia_inspector"],
+				["mayor", "inspector", "bodyguard", "mafia_distractor"],
+				["mayor", "inspector", "bodyguard", "mafia_inspector"],
+				["samurai2", "inspector", "prettylady", "mafia_distractor"],
+				["samurai2", "inspector", "prettylady", "mafia_inspector"],
+				["samurai", "inspector", "bodyguard", "mafia_distractor"],
+				["samurai", "inspector", "bodyguard", "mafia_inspector"],
+				["samurai2", "inspector", "prettylady", "mafia_samurai"],
+				["samurai2", "inspector", "prettylady", "mafia_samurai"],
+				["samurai", "inspector", "bodyguard", "mafia_samurai"],
+				["samurai", "inspector", "bodyguard", "mafia_samurai"]
+			]
+		},
+		"5p": {
+			"roles": [
+				["vigilante", "prettylady", "bomb", "stalker", "mafia_spy"],
+				["vigilante", "prettylady", "bomb", "watcher", "mafia_spy"],
+				["vigilante", "prettylady", "bomb", "stalker", "mafia_inspector"],
+				["vigilante", "prettylady", "bomb", "watcher", "mafia_inspector"],
+				["vigilante", "prettylady", "bomb", "stalker", "mafia_distractor"],
+				["vigilante", "prettylady", "bomb", "watcher", "mafia_distractor"],
+				["samurai2", "prettylady", "daybomb", "stalker", "mafia_spy"],
+				["samurai2", "prettylady", "daybomb", "watcher", "mafia_spy"],
+				["samurai2", "prettylady", "daykillrevealer", "stalker", "mafia_spy"],
+				["samurai2", "prettylady", "daykillrevealer", "watcher", "mafia_spy"],
+				["samurai2", "prettylady", "daybomb", "stalker", "mafia_inspector"],
+				["samurai2", "prettylady", "daybomb", "watcher", "mafia_inspector"],
+				["samurai2", "prettylady", "daykillrevealer", "stalker", "mafia_inspector"],
+				["samurai2", "prettylady", "daykillrevealer", "watcher", "mafia_inspector"],
+				["samurai2", "prettylady", "daybomb", "stalker", "mafia_distractor"],
+				["samurai2", "prettylady", "daybomb", "watcher", "mafia_distractor"],
+				["samurai2", "prettylady", "daykillrevealer", "stalker", "mafia_distractor"],
+				["samurai2", "prettylady", "daykillrevealer", "watcher", "mafia_distractor"],
+				["vigilante", "prettylady", "bomb", "inspectorday", "mafia_spy"],
+				["vigilante", "prettylady", "bomb", "inspectorday", "mafia_inspector"],
+				["vigilante", "prettylady", "bomb", "inspectorday", "mafia_distractor"],
+				["vigilante", "bodyguard", "bomb", "stalker", "mafia_spy"],
+				["vigilante", "bodyguard", "bomb", "watcher", "mafia_spy"],
+				["vigilante", "bodyguard", "bomb", "stalker", "mafia_inspector"],
+				["vigilante", "bodyguard", "bomb", "watcher", "mafia_inspector"],
+				["vigilante", "bodyguard", "bomb", "stalker", "mafia_distractor"],
+				["vigilante", "bodyguard", "bomb", "watcher", "mafia_distractor"],
+				["samurai2", "bodyguard", "daybomb", "stalker", "mafia_spy"],
+				["samurai2", "bodyguard", "daybomb", "watcher", "mafia_spy"],
+				["samurai2", "bodyguard", "daykillrevealer", "stalker", "mafia_spy"],
+				["samurai2", "bodyguard", "daykillrevealer", "watcher", "mafia_spy"],
+				["samurai2", "bodyguard", "daybomb", "stalker", "mafia_inspector"],
+				["samurai2", "bodyguard", "daybomb", "watcher", "mafia_inspector"],
+				["samurai2", "bodyguard", "daykillrevealer", "stalker", "mafia_inspector"],
+				["samurai2", "bodyguard", "daykillrevealer", "watcher", "mafia_inspector"],
+				["samurai2", "bodyguard", "daybomb", "stalker", "mafia_distractor"],
+				["samurai2", "bodyguard", "daybomb", "watcher", "mafia_distractor"],
+				["samurai2", "bodyguard", "daykillrevealer", "stalker", "mafia_distractor"],
+				["samurai2", "bodyguard", "daykillrevealer", "watcher", "mafia_distractor"],
+				["vigilante", "bodyguard", "bomb", "inspectorday", "mafia_spy"],
+				["vigilante", "bodyguard", "bomb", "inspectorday", "mafia_inspector"],
+				["vigilante", "bodyguard", "bomb", "inspectorday", "mafia_distractor"]
+			]
+		},
+		"6p": {
+			"roles": [
+				["exposer"],
+				["exposer2"],
+				["samurai"],
+				["samurai2"],
+				["inspectorday"]
+			],
+			"chance": [
+				30,
+				30,
+				10,
+				10,
+				20
+			]
+		},
+		"7p": {
+			"roles": [
+				["mafia"],
+				["mafia_bodyguard"],
+				["mafia_bomb"],
+				["mafia_spyday"],
+				["mafia_spy"],
+				["mafia_distractor"],
+				["mafia_inspector"]
+			],
+			"chance": [
+				50,
+				5,
+				10,
+				5,
+				5,
+				5,
+				20
+			]
+		},
+		"8p": {
+			"roles": [
+				["mayor"],
+				["mayor3"],
+				["mayor4"],
+				["mayor5"],
+				["mayor6"]
+			],
+			"chance": [
+				30,
+				30,
+				20,
+				10,
+				10
+			]
+		},
+		"9p": {
+			"roles": [
+				["mafia_mayor"],
+				["mafia_mayor3"],
+				["mafia_mayor4"]
+			],
+			"chance": [
+				60,
+				30,
+				10
+			]
+		},
+		"protection+": {
+			"roles": [
+				["bodyguard"],
+				["bomb"],
+				["bulletproof"],
+				["daybomb"],
+				["prettylady"],
+				["safeguarder"],
+				["bulletproof2"]
+			],
+			"chance": [
+				25,
+				15,
+				10,
+				10,
+				25,
+				10,
+				5
+			]
+		},
+		"information+": {
+			"roles": [
+				["inspectorday"],
+				["spyday"],
+				["daykillrevealer"],
+				["detoxer"],
+				["exposer"],
+				["exposer2"],
+				["inspector"],
+				["spy"],
+				["stalker"],
+				["watcher"]
+			],
+			"chance": [
+				15,
+				5,
+				5,
+				5,
+				15,
+				15,
+				15,
+				10,
+				7.5,
+				7.5
+			]
+		},
+		"protection-": {
+			"roles": [
+				["bodyguard"],
+				["bomb"],
+				["bulletproof"],
+				["daybomb"],
+				["prettylady"],
+				["safeguarder"],
+				["bulletproof2"]
+			],
+			"chance": [
+				10,
+				10,
+				20,
+				20,
+				10,
+				20,
+				10
+			]
+		},
+		"information-": {
+			"roles": [
+				["inspectorday"],
+				["spyday"],
+				["daykillrevealer"],
+				["detoxer"],
+				["exposer"],
+				["exposer2"],
+				["inspector"],
+				["spy"],
+				["stalker"],
+				["watcher"]
+			],
+			"chance": [
+				5,
+				20,
+				15,
+				15,
+				5,
+				5,
+				10,
+				15,
+				5,
+				5
+			]
+		},
+		"VCLR": {
+			"roles": [
+				["samurai"],
+				["samurai2"],
+				["vigilante"],
+				["osv"]
+			],
+			"chance": [
+				35,
+				30,
+				20,
+				15
+			]
+		},
+		"mayors": {
+			"roles": [				
+				["mayor3"],
+				["mayor4"],
+				["mayor5"],
+				["mayor6"]
+			],
+			"chance": [
+				25,
+				25,
+				25,
+				25
+			]
+		},
+		"mafia": {
+			"roles": [
+				["mafia"],
+				["mafia_bodyguard"],
+				["mafia_bomb"],
+				["mafia_bulletproof"],
+				["mafia_spyday"],
+				["mafia_daybomb"],
+				["mafia_daykillrevealer"],
+				["mafia_distractor"],
+				["mafia_inspector"],
+				["mafia_poisoner"],
+				["mafia_safeguarder"],
+				["mafia_samurai"],
+				["mafia_samurai2"],
+				["mafia_spy"],
+				["mafia_stalker"],
+				["mafia_bulletproof2"],
+				["mafia_watcher"]
+			],
+			"chance": [
+				50,
+				3.125,
+				3.125,
+				3.125,
+				3.125,
+				3.125,
+				3.125,
+				3.125,
+				3.125,
+				3.125,
+				3.125,
+				3.125,
+				3.125,
+				3.125,
+				3.125,
+				3.125,
+				3.125
+			]
+		},
+		"mafia+": {
+			"roles": [
+				["mafia"],
+				["mafia_bodyguard"],
+				["mafia_bomb"],
+				["mafia_bulletproof"],
+				["mafia_spyday"],
+				["mafia_daybomb"],
+				["mafia_daykillrevealer"],
+				["mafia_distractor"],
+				["mafia_inspector"],
+				["mafia_poisoner"],
+				["mafia_safeguarder"],
+				["mafia_samurai"],
+				["mafia_samurai2"],
+				["mafia_spy"],
+				["mafia_stalker"],
+				["mafia_bulletproof2"],
+				["mafia_watcher"]
+			],
+			"chance": [
+				50,
+				4.6875,
+				4.6875,
+				1.5625,
+				1.5625,
+				1.5625,
+				1.5625,
+				4.6875,
+				4.6875,
+				4.6875,
+				1.5625,
+				4.6875,
+				4.6875,
+				4.6875,
+				1.5625,
+				1.5625,
+				1.5625
+			]
+		},
+		"mafia-": {
+			"roles": [
+				["mafia"],
+				["mafia_bodyguard"],
+				["mafia_bomb"],
+				["mafia_bulletproof"],
+				["mafia_spyday"],
+				["mafia_daybomb"],
+				["mafia_daykillrevealer"],
+				["mafia_distractor"],
+				["mafia_inspector"],
+				["mafia_poisoner"],
+				["mafia_safeguarder"],
+				["mafia_samurai"],
+				["mafia_samurai2"],
+				["mafia_spy"],
+				["mafia_stalker"],
+				["mafia_bulletproof2"],
+				["mafia_watcher"]
+			],
+			"chance": [
+				50,
+				1.5625,
+				1.5625,
+				4.6875,
+				4.6875,
+				4.6875,
+				4.6875,
+				1.5625,
+				1.5625,
+				1.5625,
+				4.6875,
+				1.5625,
+				1.5625,
+				1.5625,
+				4.6875,
+				4.6875,
+				4.6875
+			]
+		},
+		"mafiamayors": {
+			"roles": [
+				["mafia_mayor"],
+				["mafia_mayor3"],
+				["mafia_mayor4"],
+				["mafia_mayor5"],
+				["mafia_mayor6"]
+			],
+			"chance": [
+				40,
+				30,
+				15,
+				10,
+				5
+			]
+		}
+	},
+	"roles1": [
+		"pack:3p",
+		"pack:3p",
+		"pack:3p"
+	],
+	"roles2": [
+		"pack:4p",
+		"pack:4p",
+		"pack:4p",
+		"pack:4p"
+	],
+	"roles3": [
+		"pack:5p",
+		"pack:5p",
+		"pack:5p",
+		"pack:5p",
+		"pack:5p",
+		"pack:6p",
+		"pack:7p",
+		"pack:8p",
+		"pack:9p",
+		"pack:information+",
+		"pack:VCLR",
+		"pack:mafia",
+		"pack:protection+",
+		"pack:mayors",
+		"pack:mafia+",
+		"pack:information-",
+		"pack:VCLR",
+		"pack:mafiamayors",
+		"pack:protection-",
+		"pack:information-",
+		"pack:mafia",
+		"pack:protection+",
+		"pack:mayors",
+		"pack:mafia-",
+		"pack:information-",
+		"pack:VCLR",
+		"pack:mafiamayors",
+		"pack:protection-",
+		"pack:information+",
+		"pack:mafia+",
+		"pack:protection+",
+		"pack:mayors",
+		"pack:mafia-",
+		"pack:information-",
+		"pack:VCLR",
+		"pack:mafiamayors",
+		"pack:protection-",
+		"pack:information+",
+		"pack:mafia",
+		"pack:information-",
+		"pack:mayors",
+		"pack:mafia-",
+		"pack:protection+",
+		"pack:VCLR",
+		"pack:mafiamayors"
+	],
+	"villageCantLoseRoles": [
+		"mayor",
+		"mayor3",
+		"mayor4",
+		"mayor5",
+		"mayor6",
+		"samurai",
+		"samurai2",
+		"vigilante",
+		"osv"
+	],
+	"votemsg": "~Player~ wants to hang ~Target~!",
+	"lynchmsg": "±RIP: ~Player~ (~Role~) was hung by ~Count~ people!",
+    "drawmsg": "N is for no survivors...",
+    "minplayers": 3,
+	"changelog": [
+		"6/22/2015: Adjusted spawn so VCLR will always spawn regardless of game size and will spawn more often as games get larger. Added a new command: /cancel. This can be used by the One Shot Vigilante to cancel its kill. It is also haxable by both the Spy and the Mafia Spy.",
+		"12/5/2016: Removed Miller, Mole, and Vengeful Villager. Adjusted spawn yet again. Smaller games will be comprised of significantly fewer roles so that the village has a better chance of actually figuring out what their role is."
+	]
+}
