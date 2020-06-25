@@ -1,0 +1,1156 @@
+ {
+ 	"name": "Alola",
+ 	"author": "<b><i><span style='color:#FF00FF'>Azumarill, Strawberry</span></i></b>",
+ 	"borderColor": "blue",
+ 	"bot": {
+ 		"name": "Zeraora",
+ 		"color": "#FF00FF"
+ 	},
+ 	"summary": "Welcome to Alola, the tropical heaven, unfortunately not everything is going well in this paradise, The Nice Pokemon are in a great battle against various dangerous wild Pokemon, namely, the Poisonous Pokemon who poison everything in the vicinity, The ghostly Eerie Pokemon, the Combative Fighting Pokemon as well as the Scary Bird Pokemon, to make things worse, there is a Mimikyu who is constantly harassing everyone by being impossible to find,  Necrozma came looking for more Light to take from Alola, and a ferocious Lycanroc-Dusk is on the hunt, the Evil-Looking Silvally is just here to mess around but also makes things more painful for some, Will the Nice Pokemon be able to win this ? find out!",
+ 	"sides": [{
+ 			"side": "mafia1",
+ 			"translation": "Poisonous Pokemon",
+ 			"color": "purple"
+ 		},
+ 		{
+ 			"side": "mafia2",
+ 			"translation": "Eerie Pokemon",
+ 			"color": "green"
+ 		},
+ 		{
+ 			"side": "mafia3",
+ 			"translation": "Combative Fighting Pokemon",
+ 			"color": "yellow"
+ 		},
+ 		{
+ 			"side": "mafia4",
+ 			"translation": "Scary Bird Pokemon",
+ 			"color": "cyan"
+ 		},
+ 		{
+ 			"side": "mafia5",
+ 			"translation": "Necrozma",
+ 			"color": "red"
+ 		},
+ 		{
+ 			"side": "mafia6",
+ 			"translation": "Evil-Looking Silvally",
+ 			"color": "orange"
+ 		},
+ 		{
+ 			"side": "village",
+ 			"translation": "Nice Pokemon",
+ 			"color": "#FF00FF"
+ 		},
+ 		{
+ 			"side": "werewolf",
+ 			"color": "brown",
+ 			"translation": "Lycanroc-Dusk"
+ 		},
+ 		{
+ 			"side": "godfather",
+ 			"color": "pink",
+ 			"translation": "Mimikyu"
+ 		}
+ 	],
+ 	"tips": {
+ 		"Day Kills": "Many roles have one shot day kills in form of Z-Moves, you only have 1 of this per game, also, some roles avoid or counter re-useable day kills, this applies to both village and mafias, and most of them reveals user<b><i><span style='color:#005CE6'>SO PLEASE THINK BEFORE YOU USE THIS.</span></i></b>",
+ 		"Main Threats": "Necrozma(Extremely durable and powerful mafia that controls votes), Mimikyu (Immune to almost everything and one usually can't find it by actions), Lycanroc-Dusk (Kills anything trying to interact with it and survives being voted off once), Nihilego, Marshadow,Buzzwole,Celesteela(Mafia faction leaders with very powerful abilities).",
+ 		"Counters": "Many roles counters certain actions, so mindlessly spamming actions might not be the best course of action, in case of 'idle' action(you don't want to use an action) using it on someone not in the game works as a safe 'idle'(example: /kill ricekirby) if you haven't used it on someone already",
+ 		"When to claim": "Check your role, and other roles in the game, and reads on players who has the roles,sometime, it might turn out that you can say your role out in public and have a safe game and/or auto-win from there.",
+ 		"Millers,moles and role ignoring certain actions": "Decidueye reveals as roles of Eerie Pokemon, Celesteela and Mimikyu are mafia who reveal as village roles, so Inspectors and other role-finding roles should be careful, Gumshoos /Is is generally reliable against everything except Mimikyu however",
+ 		"Read votes": "Many roles have unusual vote count, Necrozma among other things, for example, so paying attention to votes is useful"
+ 	},
+
+ 	"variables": {
+ 		"komalaHax": {
+ 			"revealTeam": 0.15,
+ 			"revealPlayer": 0.02
+ 		},
+ 		"komalaDistractHax": {
+ 			"revealTeam": 0.02,
+ 			"revealPlayer": 0.02
+ 		}
+
+
+ 	},
+ 	"roles": [
+
+ 		{
+ 			"role": "wimpod",
+ 			"translation": "Wimpod",
+ 			"side": "village",
+ 			"help": "You are a little Wimpod, you are not really good at battles,so you leave it to the more well-equipped Pokemon,but you can help defeating the scary Pokemon, you do it  by typing /vote for them during the voting",
+ 			"actions": {}
+ 		},
+
+ 		{
+ 			"role": "magearna",
+ 			"translation": "Magearna",
+ 			"side": "village",
+ 			"help": "You are a Magearna, you are sided with the Nice Pokemon, you can defeat a Pokemon by using /Fleurcannon during the day, be careful as this will reveal you and some Pokemon can avoid this or defeat you should you attempt to use it on them.",
+ 			"actions": {
+ 				"standby": {
+ 					"fleurcannon": {
+ 						"command": "kill",
+ 						"target": "AnyButSelf",
+ 						"msg": "You can kill now using /Fleurcannon [name] to defeat a Pokemon, this will reveal you.",
+ 						"killmsg": "~Self~ , The ~Role~, Used Fleur Cannon on ~Target~, ~Target~ fainted!"
+ 					}
+ 				}
+ 			}
+ 		},
+
+
+
+ 		{
+ 			"role": "cosmoem",
+ 			"translation": "Cosmoem",
+ 			"side": "village",
+ 			"help": "Where is Nebby? Nebby is in Mafia now! You are the Legendary Pokemon Cosmoem, you are sided with the Nice Pokemon, due to your very high defenses and Sturdy Ability you can Not be defeated by normal attacks, but you are not very strong currently, during the night, you can /Sun or /Moon to evolve into Solgaleo or Lunala, use this power to defeat all the opposing Pokemon.",
+ 			"help2": "Abilities: Solgaleo (/Sun): day expose(does not reveal you) counters reguler attacks during the day, can not be poisoned normally, gains the Z-Move Searing Sunraze Smasher on 7th day or if Necrozma is defeated, has a vote of 3; Lunala (/moon): night expose(does not reveal you), counters reguler attacks during the night,resists poison 2 more days than normal Pokemon,gains the Z-Move Menacing Moonraze Maelstrom that can be used during the night on 6th day or if Necrozma is defeated, has a vote of -3;",
+ 			"info": "Can use /Sun to evolve into Solgaleo or /Moon to evolve into Lunala, Immune to Nightkills, Immune to Daykills. ~Sided~",
+ 			"actions": {
+ 				"night": {
+ 					"sun": {
+ 						"command": "convert",
+ 						"target": "OnlySelf",
+ 						"common": "Self",
+ 						"priority": 791,
+ 						"noFollow": true,
+ 						"pierce": true,
+ 						"hide": true,
+ 						"cancel": ["moon"],
+ 						"newRole": "solgaleo",
+ 						"convertmsg": "Cosmoem has evolved into Solgaleo!",
+ 						"canConvert": [
+ 							"cosmoem"
+ 						],
+ 						"silent": true
+ 					},
+ 					"moon": {
+ 						"command": "convert",
+ 						"target": "OnlySelf",
+ 						"common": "Self",
+ 						"priority": 792,
+ 						"noFollow": true,
+ 						"pierce": true,
+ 						"hide": true,
+ 						"cancel": ["sun"],
+ 						"newRole": "lunala",
+ 						"convertmsg": "Cosmoem has evolved into Lunala!",
+ 						"canConvert": [
+ 							"cosmoem"
+ 						],
+ 						"silent": true
+ 					}
+
+ 				},
+ 				"kill": {
+ 					"mode": "ignore"
+ 				},
+ 				"distract": {
+ 					"mode": "ignore"
+ 				},
+
+ 				"daykill": {
+ 					"mode": {
+ 						"evadeChance": 1
+ 					}
+ 				}
+ 			}
+ 		},
+ 		{
+ 			"role": "solgaleo",
+ 			"side": "village",
+ 			"translation": "Solgaleo",
+ 			"help": "Now that you evolved into Solgaleo, you can  /expose someone during the day, you won't be revealed, you will also avoid ordinery attackers during the day due to your ability Fullmetal Body, as a Steel Type Pokemon you can not be poisoned by normal means, You will learn your Z-Move Searing Sunraze Smasher after Necrozma is defeated or after 7 days has passed, which you can use during the day to Knock Out a Pokemon, this will Knock them out even if they are protected or prepared against attacks during the day, but Beware that you can only use this ONCE and everyone will see you using it,though that can, sometimes be a good thing too of course,as the Legendary Pokemon of the Sun, your vote is worth 3.",
+ 			"actions": {
+ 				"vote": 3,
+ 				"poison": {
+ 					"mode": "ignore"
+ 				},
+ 				"daykill": "evade",
+ 				"initialCondition": {
+ 					"curse": {
+ 						"cursedRole": "solgaleo2",
+ 						"curseCount": 6,
+ 						"curseConvertMessage": "Solgaleo has learned its Z-Move!"
+ 					}
+ 				},
+ 				"standby": {
+ 					"expose": {
+ 						"target": "AnyButSelf",
+ 						"exposemsg": "Sogaleo uses the light of it's Radiant Sun Phase to illuminate ~Target~, ~Target~   is revealed to be the ~Role~!"
+ 					}
+ 				}
+ 			}
+ 		},
+ 		{
+ 			"role": "lunala",
+ 			"side": "village",
+ 			"translation": "Lunala",
+ 			"help": "Now that you evolved into Lunala, you can  /expose someone during the night, you won't be revealed, you will also avoid ordinery attackers during the night due to your ability Shadow Shield, you are very durable and as such you resist poison quite well, it will take 2 more days for poison to defeat you compared to other Pokemon, You will learn your Z-Move Menacing Moonraze Maelstrom after Necrozma is defeated or after 6 days has passed, which you can use during the night to Knock Out a Pokemon, this will Knock them out even if they are protected or prepared against attacks during the night, but Beware that you can only use this ONCE and everyone will see you using it,though that can, sometimes be a good thing too of course,as  you hide in the shadows as the Legendary Pokemon of the Moon, your vote is worth -3.",
+ 			"actions": {
+ 				"vote": -3,
+ 				"poison": {
+ 					"mode": "resistance",
+ 					"rate": 2
+ 				},
+ 				"kill": {
+ 					"mode": "ignore"
+ 				},
+ 				"initialCondition": {
+ 					"curse": {
+ 						"cursedRole": "lunala2",
+ 						"curseCount": 6,
+ 						"curseConvertMessage": "Lunala has learned its Z-Move!"
+ 					}
+ 				},
+ 				"night": {
+ 					"expose": {
+ 						"command": [
+ 							"dummy4"
+ 						],
+ 						"target": "AnyButSelf",
+ 						"common": "Self",
+ 						"priority": 5000000000,
+ 						"dummy4broadcastmsg": "Lunala uses the light of it's Full Moon Phase to illuminate ~Target~, ~Target~   is revealed to be the ~TargetRole~!"
+ 					}
+ 				}
+ 			}
+ 		},
+ 		{
+ 			"role": "lunala2",
+ 			"side": "village",
+ 			"translation": "Lunala",
+ 			"help": "Now that you evolved into Lunala, you can  /expose someone during the night, you won't be revealed, you will also avoid ordinery attackers during the night due to your ability Shadow Shield, you are very durable and as such you resist poison quite well, it will take 2 more days for poison to defeat you compared to other Pokemon, Now that you learned your Z-Move Menacing Moonraze Maelstrom, you can use during the night to Knock Out a Pokemon, this will Knock them out even if they are protected or prepared against attacks during the night, but Beware that you can only use this ONCE and everyone will see you using it,though that can, sometimes be a good thing too of course,as  you hide in the shadows as the Legendary Pokemon of the Moon, your vote is worth -3.",
+ 			"actions": {
+ 				"vote": -3,
+ 				"poison": {
+ 					"mode": "resistance",
+ 					"rate": 2
+ 				},
+ 				"kill": {
+ 					"mode": "ignore"
+ 				},
+ 				"initialCondition": {
+ 					"curse": {
+ 						"cursedRole": "lunala2",
+ 						"curseCount": 6,
+ 						"curseConvertMessage": "Lunala has learned its Z-Move!"
+ 					}
+ 				},
+ 				"night": {
+ 					"expose": {
+ 						"command": [
+ 							"dummy4"
+ 						],
+ 						"target": "AnyButTeam",
+ 						"common": "Self",
+ 						"priority": 5000000000,
+ 						"dummy4broadcastmsg": "Lunala uses the light of it's Full Moon Phase to illuminate ~Target~, ~Target~   is revealed to be the ~TargetRole~!"
+ 					},
+ 					"menacingmoonrazemaelstrom": {
+ 						"command": "kill",
+ 						"target": "AnyButSelf",
+ 						"common": "Self",
+ 						"priority": 0,
+ 						"pierce": true,
+ 						"bypass": [
+ 							"killattacker", "ignore", "evadeCharges"
+ 						]
+ 					}
+ 				}
+ 			}
+ 		},
+ 		{
+ 			"role": "solgaleo2",
+ 			"side": "village",
+ 			"translation": "Solgaleo",
+ 			"help": "Now that you evolved into Solgaleo, you can  /expose someone during the day, you won't be revealed, you will also avoid ordinery attackers during the day due to your ability Fullmetal Body, as a Steel Type Pokemon you can not be poisoned by normal means, Now that you learned your Z-Move Searing Sunraze Smasher, you can use during the day to Knock Out a Pokemon, this will Knock them out even if they are protected or prepared against attacks during the day, but Beware that you can only use this ONCE and everyone will see you using it,though that can, sometimes be a good thing too of course,as the Legendary Pokemon of the Sun, your vote is still worth 3.",
+ 			"actions": {
+ 				"vote": 3,
+ 				"poison": {
+ 					"mode": "ignore"
+ 				},
+ 				"daykill": "evade",
+ 				"standby": {
+ 					"expose": {
+ 						"target": "AnyButSelf",
+ 						"exposemsg": "Sogaleo uses the light of it's Radiant Sun Phase to illuminate ~Target~, ~Target~   is revealed to be the ~Role~!"
+ 					},
+ 					"searingsunrazesmasher": {
+ 						"command": "kill",
+ 						"bypass": ["ignore", "dayprotect", "protect", "evade", "evadeCharges", "revenge"],
+ 						"target": "AnyButSelf",
+ 						"killmsg": "~Self~, Solgaleo, used it's Full Power Z-Move Searing Sunraze Smasher on ~Target~, ~Target~ Fainted."
+ 					}
+ 				}
+ 			}
+ 		},
+ 		{
+ 			"role": "ribombee1",
+ 			"translation": "Ribombee",
+ 			"side": "village",
+ 			"help": "You are a Ribombee, sided with the Nice Pokemon you can Use /Quiverdance each night up to 6 times to to raise your vote by one for each Quiver Dance, and use /Pollenpuff to either protect/safeguard an ally, or Knock Out an Opposing Pokemon.",
+ 			"actions": {
+ 				"night": {
+ 					"pollenpuff": {
+ 						"command": [
+ 							"dummy",
+ 							"safeguard",
+ 							"protect"
+ 						],
+ 						"common": "Self",
+ 						"target": "AnyButSelf",
+ 						"priority": 4
+ 					},
+ 					"quiver": {
+ 						"common": "Self",
+ 						"target": "OnlySelf",
+ 						"priority": 40,
+ 						"command": [
+ 							"convert"
+ 						],
+ 						"newRole": "ribombee2"
+ 					}
+ 				}
+ 			}
+ 		}, {
+ 			"role": "wishiwashi2",
+ 			"translation": "Wishiwashi-School",
+ 			"side": "village",
+ 			"startupmsg": "You are ~Role~!",
+ 			"help": "You are a Wishiwashi-School, with your Schooling Ability active, you have great power, you can use this to /Protect one person at night,use this to Protect a Nice Pokemon, You can also use /Hydropump to Knock Out a Pokemon each day, but this will let everyone see you if you succeed,if you are attacked and hurt, you will revert to your base form",
+ 			"info": "Can protect one person during the night. Can /Hydropump (Daykill, Reveals User) one person during the day every day. Converts to Wishiwashi ondeath. Sided with The Nice Pokemon.",
+ 			"actions": {
+ 				"night": {
+ 					"protect": {
+ 						"target": "AnyButSelf",
+ 						"common": "Self",
+ 						"priority": 8
+ 					}
+ 				},
+ 				"standby": {
+ 					"hydropump": {
+ 						"command": "kill",
+ 						"target": "AnyButSelf",
+ 						"msg": "You can now use /Hydropump to knock out a target, but be careful, this will reveal you, also this may fail or backfire if you use it on the wrong Pokemon.",
+ 						"killmsg": "~Self~Used Hydro Pump On~Target~.~Target~Fainted."
+ 					}
+ 				}
+ 			}
+ 		},
+ 		{
+ 			"role": "wishiwashi",
+ 			"translation": "Wishiwashi",
+ 			"side": "village",
+ 			"help": "You're A Nice Wishiwashi, now that you got hurt, you stopped schooling, you can no longer /Protect or /Hydropump people during the day, but you can still help out the Nice Pokemon by voting out the other pokemon.",
+ 			"actions": {}
+ 		},
+ 		{
+ 			"role": "komala",
+ 			"translation": "Komala",
+ 			"side": "village",
+ 			"help": "Zzzzz... Zzzzz.... Uh? Oh, You are a Komala,  looks like you can't do anything at any time because you are sleeping. But sometimes You  dream about Pokemon Battles that happen nearby, use this knowledge to help out your team, as you are sleeping, you avoid the first attempt at exposing you during the day.",
+ 			"actions": {
+ 				"night": {
+ 					"safeguard": {
+ 						"target": "OnlySelf",
+ 						"compulsory": true,
+ 						"inputmsg": "",
+ 						"common": "Self",
+ 						"macro": false,
+ 						"priority": 2
+ 					}
+ 				},
+ 				"hax": {
+ 					"kill": "variable:komalaHax",
+ 					"distract": "variable:komalaDistractHax"
+ 				},
+ 				"initialCondition": {
+ 					"clearCurse": true,
+
+ 					"expose": "evadeCharges:1"
+ 				}
+
+ 			}
+
+
+ 		},
+
+
+ 		{
+ 			"role": "ribombee2",
+ 			"translation": "Ribombee +1",
+ 			"side": "village",
+ 			"help": "You are a Ribombee, sided with the Nice Pokemon you can Use /Quiverdance each night up to 6 times to to raise your vote by one for each Quiver Dance, and use /Pollenpuff to either protect/safeguard an ally, or Knock Out an Opposing Pokemon, your vote is now worth 2.",
+ 			"actions": {
+ 				"vote": 2,
+ 				"night": {
+ 					"pollenpuff": {
+ 						"command": [
+ 							"dummy",
+ 							"safeguard",
+ 							"protect"
+ 						],
+ 						"common": "Self",
+ 						"target": "AnyButSelf",
+ 						"priority": 4
+ 					},
+ 					"quiver": {
+ 						"common": "Self",
+ 						"target": "OnlySelf",
+ 						"priority": 39,
+ 						"command": [
+ 							"convert"
+ 						],
+ 						"newRole": "ribombee3"
+ 					}
+ 				}
+ 			}
+ 		},
+ 		{
+ 			"role": "ribombee3",
+ 			"translation": "Ribombee +2",
+ 			"side": "village",
+ 			"help": "You are a Ribombee, sided with the Nice Pokemon you can Use /Quiverdance each night up to 6 times to to raise your vote by one for each Quiver Dance, and use /Pollenpuff to either protect/safeguard an ally, or Knock Out an Opposing Pokemon, your vote is now worth 3.",
+ 			"actions": {
+ 				"vote": 3,
+ 				"night": {
+ 					"pollenpuff": {
+ 						"command": [
+ 							"dummy",
+ 							"safeguard",
+ 							"protect"
+ 						],
+ 						"common": "Self",
+ 						"target": "AnyButSelf",
+ 						"priority": 4
+ 					},
+ 					"quiver": {
+ 						"common": "Self",
+ 						"target": "OnlySelf",
+ 						"priority": 38,
+ 						"command": [
+ 							"convert"
+ 						],
+ 						"newRole": "ribombee4"
+ 					}
+ 				}
+ 			}
+ 		},
+ 		{
+ 			"role": "ribombee4",
+ 			"translation": "Ribombee +3",
+ 			"side": "village",
+ 			"help": "You are a Ribombee, sided with the Nice Pokemon you can Use /Quiverdance each night up to 6 times to to raise your vote by one for each Quiver Dance, and use /Pollenpuff to either protect/safeguard an ally, or Knock Out an Opposing Pokemon, your vote is now worth 4.",
+ 			"actions": {
+ 				"vote": 4,
+ 				"night": {
+ 					"pollenpuff": {
+ 						"command": [
+ 							"dummy",
+ 							"safeguard",
+ 							"protect"
+ 						],
+ 						"common": "Self",
+ 						"target": "AnyButSelf",
+ 						"priority": 4
+ 					},
+ 					"quiver": {
+ 						"common": "Self",
+ 						"target": "OnlySelf",
+ 						"priority": 37,
+ 						"command": [
+ 							"convert"
+ 						],
+ 						"newRole": "ribombee5"
+ 					}
+ 				}
+ 			}
+ 		},
+ 		{
+ 			"role": "ribombee5",
+ 			"translation": "Ribombee +4",
+ 			"side": "village",
+ 			"help": "You are a Ribombee, sided with the Nice Pokemon you can Use /Quiverdance each night up to 6 times to to raise your vote by one for each Quiver Dance, and use /Pollenpuff to either protect/safeguard an ally, or Knock Out an Opposing Pokemon, your vote is now worth 5.",
+ 			"actions": {
+ 				"vote": 5,
+ 				"night": {
+ 					"pollenpuff": {
+ 						"command": [
+ 							"dummy",
+ 							"safeguard",
+ 							"protect"
+ 						],
+ 						"common": "Self",
+ 						"target": "AnyButSelf",
+ 						"priority": 4
+ 					},
+ 					"quiver": {
+ 						"common": "Self",
+ 						"target": "OnlySelf",
+ 						"priority": 36,
+ 						"command": [
+ 							"convert"
+ 						],
+ 						"newRole": "ribombee6"
+ 					}
+ 				}
+ 			}
+ 		},
+ 		{
+ 			"role": "ribombee6",
+ 			"translation": "Ribombee +5",
+ 			"side": "village",
+ 			"help": "You are a Ribombee, sided with the Nice Pokemon you can Use /Quiverdance each night up to 6 times to to raise your vote by one for each Quiver Dance, and use /Pollenpuff to either protect/safeguard an ally, or Knock Out an Opposing Pokemon, your vote is now worth 6.",
+ 			"actions": {
+ 				"vote": 6,
+ 				"night": {
+ 					"pollenpuff": {
+ 						"command": [
+ 							"dummy",
+ 							"safeguard",
+ 							"protect"
+ 						],
+ 						"common": "Self",
+ 						"target": "AnyButSelf",
+ 						"priority": 4
+ 					},
+ 					"quiver": {
+ 						"common": "Self",
+ 						"target": "OnlySelf",
+ 						"priority": 35,
+ 						"command": [
+ 							"convert"
+ 						],
+ 						"newRole": "ribombee7"
+ 					}
+ 				}
+ 			}
+ 		},
+ 		{
+ 			"role": "ribombee7",
+ 			"translation": "Ribombee +6",
+ 			"side": "village",
+ 			"help": "You are a Ribombee, sided with the Nice Pokemon, Now that you used Quiver Dance 6 times, your vote is now worth 7, you can continue to use /Pollenpuff to either protect/safeguard an ally, or Knock Out an Opposing Pokemon.",
+ 			"actions": {
+ 				"vote": 7,
+ 				"night": {
+ 					"pollenpuff": {
+ 						"command": [
+ 							"dummy",
+ 							"safeguard",
+ 							"protect"
+ 						],
+ 						"common": "Self",
+ 						"target": "AnyButSelf",
+ 						"priority": 4
+ 					}
+ 				}
+ 			}
+ 		},
+
+
+ 		{
+ 			"role": "gumshoos",
+ 			"translation": "Gumshoos",
+ 			"side": "village",
+ 			"startupmsg": "You are a ~Role~!",
+ 			"help": "You are a Gumshoos, sided with the Nice Pokemon, you can /Check 1 person each night to know what Pokemon they are Sided with, beware that some Pokemon may not be Sided with the side they appear to be, you can also use your sleuth skills to guess 2 people each night with /Is to know their role,  ",
+ 			"info": "Can inspect one person during the night, Can /Is two person during the night, can /Expose one person during the day, Sided with The Nice Pokemon.",
+ 			"actions": {
+ 				"night": {
+ 					"check": {
+ 						"command": "inspect",
+ 						"target": "AnyButSelf",
+ 						"common": "Self",
+ 						"priority": 20,
+ 						"Sight": "Team"
+ 					},
+ 					"is": {
+ 						"command": ["inspect"],
+ 						"inspectMsg": "Yes, it seems ~Target~ is ~Result~!!",
+ 						"target": "AnyButSelf",
+ 						"common": "Self",
+ 						"inputmsg": "You are going to find out if ~Target~ is ~GuessedRole~.",
+ 						"limit": 2,
+ 						"pinpoint": true,
+ 						"pinpointFailMsg": "Hm, it appears ~Target~ isn't ~GuessedRole~...",
+ 						"priority": 2
+ 					}
+ 				},
+
+ 				"standby": {
+ 					"expose": {
+ 						"target": "AnyButSelf",
+ 						"msg": "You can type /expose [name] to reveal someone's role!",
+ 						"exposemsg": "From it's hiding place,a wild Pokemon tells everyone that   ~Target~ is  The ~Role~!"
+ 					}
+ 				}
+ 			}
+ 		},
+ 		{
+ 			"role": "oranguru",
+ 			"side": "village",
+ 			"translation": "Oranguru",
+ 			"help": "You are an Oranguru, You are sided with the Nice Pokemon, to help them our, You can /psychic one person during the night to learn everything about them with your analysis skills! You can also /instruct Name@Name to redirect the first name's actions to the second one.",
+ 			"actions": {
+ 				"night": {
+ 					"psychic": {
+ 						"command": [
+ 							"dummy2",
+ 							"inspect",
+ 							"watch",
+ 							"stalk"
+ 						],
+ 						"priority": 30,
+ 						"common": "Self",
+ 						"target": "AnyButSelf"
+ 					},
+ 					"instruct": {
+ 						"command": [
+ 							"redirect"
+ 						],
+ 						"redirectTarget": "Any",
+ 						"priority": 2,
+ 						"common": "Self",
+ 						"target": "AnyButSelf"
+ 					}
+ 				}
+ 			}
+ 		},
+
+ 		{
+ 			"role": "decidueye",
+ 			"translation": "Decidueye",
+ 			"side": "village",
+ 			"help": "You are a Decidueye, sided with the Nice Pokemon, you are here to help them, to do so you can /Cover one person each night, this will let you see most others who visit them, as  well as protect them from most attackers during the day, you can also /Spiritshackle someone during the night, this will cause most Pokemon to be unable to take most actions the night or the following day, other than voting, You can also use your Z-Move /Sinisterarrowraid during the day to Knock Out a Pokemon, this will Knock them out even if they are protected or prepared against attacks during the day, but Beware that you can only use this ONCE and everyone will see you using it,though that can, sometimes be a good thing too of course, lastly, as you are a standing Ghost type Pokemon with Grass/Ghost typing, people may often mistake you as Marshadow or Dhelmise.",
+ 			"actions": {
+ 				"revealAs": [
+ 					"marshadow",
+ 					"dhelmise"
+ 				],
+ 				"night": {
+ 					"cover": {
+ 						"command": [
+ 							"watch",
+ 							"dayprotect"
+ 						],
+ 						"target": "AnyButSelf",
+ 						"common": "Self",
+ 						"priority": 6
+ 					},
+ 					"shackle": {
+ 						"command": [
+ 							"distract",
+ 							"daydistract"
+ 						],
+ 						"target": "AnyButSelf",
+ 						"common": "Self",
+ 						"priority": 3
+ 					}
+ 				},
+ 				"inspect": {
+ 					"seenSide": "mafia2"
+ 				},
+ 				"standby": {
+ 					"sinisterarrowraid": {
+ 						"command": "kill",
+ 						"bypass": ["ignore", "dayprotect", "protect", "evade", "evadeCharges", "revenge"],
+ 						"target": "AnyButSelf",
+ 						"killmsg": "~Self~ used it's Full Power Z-Move Sinister Arrow Raid on ~Target~, ~Target~ Fainted",
+ 						"charges": 1
+ 					}
+ 				}
+ 			}
+ 		},
+
+ 		{
+ 			"role": "incineroar",
+ 			"translation": "Incineroar",
+ 			"side": "village",
+ 			"help": "You are an Incineroar, Sided with the Nice Pokemon you can /Stalk one person during the night to see who they visit, you can also use your Signature move /Throatchop to silence one person during the night, and they won't be able to vote, you can not be exposed due to your dark typing, You can also use your Z-Move /Maliciousmoonsault during the day to Knock Out a Pokemon, this will Knock them out even if they are protected or prepared against attacks during the day, but Beware that you can only use this ONCE and everyone will see you using it,though that can, sometimes be a good thing too of course.",
+ 			"info": "Can stalk one person during the night. Can throatchop (silence) one person during the night. Evades expose. Can Maliciousmoonsault (Daykill,reveals user, can kill immunes, counters and protected targets) one person once per game. ~Sided~",
+ 			"actions": {
+ 				"startup": "team-reveal-with-roles",
+ 				"preventTeamvote": true,
+ 				"updateTeam": true,
+ 				"night": {
+ 					"stalk": {
+ 						"target": "AnyButSelf",
+ 						"common": "Self",
+ 						"priority": 9807
+ 					},
+ 					"throatchop": {
+ 						"command": "voteBlock",
+ 						"target": "AnyButSelf",
+ 						"common": "Self",
+ 						"priority": 8,
+ 						"voteBlockMsg": "Incineroar chopped your throat, so you cannot vote!"
+ 					}
+ 				},
+ 				"standby": {
+ 					"maliciousmoonsault": {
+ 						"command": "kill",
+ 						"bypass": ["ignore", "dayprotect", "protect", "evade", "evadeCharges", "revenge"],
+ 						"target": "AnyButSelf",
+ 						"killmsg": "~Self~ used it's Full Power Z-Move Moonsault on ~Target~, ~Target~ Fainted",
+ 						"charges": 1
+ 					}
+ 				},
+ 				"expose": "evade"
+ 			}
+ 		},
+
+ 		{
+ 			"role": "primarina",
+ 			"translation": "Primarina",
+ 			"side": "village",
+ 			"info": "Can SparklingAria (protect+safeguard+distract+detox) one person during the night. Can /OceanicOperetta (Daykill,Can Kill Immunes And Counters) one person during the day ONCE per game. Sided with Heroes.",
+ 			"help": "You are Primarina, you are one of the Nice Pokemon, you win when only Nice Pokemon are left in alola, in order to help them stay there longer you can use /SparklingAria at night on one of them, this will protect them from almost everything at night and heal them if they are statused. You can also use your Z-Move /OceanicOperetta during the day to Knock Out a Pokemon, this will Knock them out even if they are protected or prepared against attacks during the day, but Beware that you can only use this ONCE and everyone will see you using it,though that can, sometimes be a good thing too of course.",
+ 			"actions": {
+ 				"night": {
+ 					"sparklingaria": {
+ 						"command": ["distract", "protect", "safeguard", "detox"],
+ 						"target": "AnyButSelf",
+ 						"distractmsg": "Primarina used Sparkling Aria on you, you were soothed and safe for the night, but you couldn't take any action either",
+ 						"common": "Self",
+ 						"priority": 5
+ 					}
+ 				},
+ 				"standby": {
+ 					"oceanicoperetta": {
+ 						"command": "kill",
+ 						"bypass": ["ignore",
+ 							"dayprotect",
+ 							"protect",
+ 							"evade",
+ 							"evadeCharges",
+ 							"revenge"
+ 						],
+ 						"target": "AnyButSelf",
+ 						"msg": "You can now use /Oceanicoperetta to knock out a target, but be careful, you can only use this ONCE and this will reveal you, choose your time and target wisely",
+ 						"charges": 1,
+ 						"killmsg": "~Self~ used it's Full Power Z-Move Oceanic Operetta on ~Target~, ~Target~ Fainted."
+ 					}
+ 				}
+ 			}
+ 		},
+
+
+ 		{
+ 			"role": "togedemaru",
+ 			"translation": "Togedemaru",
+ 			"side": "village",
+ 			"help": "You are a very cute Togedemaru, you are sided with the Nice Pokemon, help them out by flinching an opponent with /Zingzap, this will stop them from doing their job during the night,As you are a Steel Type Pokemon you can Not be Poisoned by anyone other than the Salazzle, Your Sturdy Ability allows you to survive 1 attack during the day, Because you are so cute, up to 2 votes against you does not count.",
+ 			"actions": {
+ 				"night": {
+ 					"zingzap": {
+ 						"command": "distract",
+ 						"target": "AnyButSelf",
+ 						"common": "Self",
+ 						"priority": 2
+ 					}
+ 				},
+ 				"poison": {
+ 					"mode": "ignore"
+
+ 				},
+ 				"daykill": {
+ 					"mode": {
+ 						"evadeCharges": 1
+ 					}
+ 				},
+ 				"voteshield": -2
+ 			}
+ 		},
+
+
+ 		{
+ 			"role": "salazzle",
+ 			"translation": "Salazzle",
+ 			"side": "mafia1",
+ 			"startupmsg": "You are ~Role~!",
+ 			"help": "You are a Salazzle, sided with the Poison Pokemon, you can /Sludgewave 1 person during the night to knock them out, this is shared with your team, you can also badly poison a Pokemon with /Toxic, due to your use of your Corrosion ability this will poison even Poison and Steel type Pokemon.",
+ 			"info": "Can kill one person during the night(Shared with team). Can poison one person during the night(Can poison even Immunes). Sided with The Poison Pokemon.",
+ 			"actions": {
+ 				"startup": "team-reveal-with-roles",
+ 				"preventTeamvote": true,
+ 				"night": {
+ 					"sludgewave": {
+ 						"command": ["kill", "convert"],
+ 						"canConvert": ["wishiwashi2"],
+ 						"newRole": "wishiwashi",
+ 						"convertfailmsg": "",
+
+
+ 						"target": "AnyButTeam",
+ 						"common": "Team",
+ 						"priority": 14,
+ 						"broadcast": "team",
+ 						"msg": "±Zeraora: Salazzle Knocked you out with a powerful Sludge Wave!"
+ 					},
+ 					"toxic": {
+ 						"command": "poison",
+ 						"target": "AnyButTeam",
+ 						"common": "Self",
+ 						"priority": 18,
+ 						"broadcast": "team"
+ 					}
+ 				},
+ 				"teamTalk": true
+ 			}
+ 		},
+ 		{
+ 			"role": "possessedpokemon",
+ 			"translation": "Possessed Pokemon",
+ 			"side": "mafia1",
+ 			"help": "You have been posssed by Nihilego, now you are sided with the Poisonous Pokemon, help them out by using /Guard on someone during the night, this will fully protect them from almost every action, use this to make sure Nihilego is guarded.",
+ 			"info": "Can guard one person during the night(Protect, Safeguard) Vote of -2..Sided with The Poisonous Pokemon.",
+ 			"actions": {
+ 				"startup": "team-reveal-with-roles",
+ 				"preventTeamvote": true,
+ 				"updateTeam": true,
+ 				"night": {
+ 					"guard": {
+ 						"command": ["protect", "safeguard"],
+ 						"target": "AnyButSelf",
+ 						"common": "Self",
+ 						"broadcast": "team",
+ 						"priority": 3,
+ 						"vote": -2,
+ 						"teamTalk": true
+ 					}
+ 				}
+ 			}
+
+ 		},
+
+
+
+ 		{
+ 			"role": "palossand",
+ 			"translation": "Palossand",
+ 			"side": "mafia2",
+ 			"help": "You are a Palossand, sided with the Eerie Pokemon, you can beat an opponent during the night by trapping them in your sand castle with /Sand, you can also /Sap one person during each night, this will knock them out in the following night unless they can heal themselves, you can use you signature move /Shoreup every night to keep yourself healthy from minor nuisance like poisons and leech seed, as you are in a sand castle at night most attackers won't be able to attack you, you win when only Eerie Pokemon remains in Alola",
+ 			"actions": {
+ 				"teamUtilities": true,
+ 				"night": {
+ 					"sand": {
+ 						"command": ["kill", "convert"],
+ 						"canConvert": ["wishiwashi2"],
+ 						"newRole": "wishiwashi",
+ 						"convertfailmsg": "",
+
+
+ 						"target": "AnyButTeam",
+ 						"common": "Team",
+ 						"priority": 15,
+ 						"broadcast": "team",
+ 						"msg": "±Zeraora: Palossand choked you in it's sand castle, you managed to get out, but fainted soon"
+
+ 					},
+ 					"sap": {
+ 						"command": "poison",
+ 						"target": "AnyButTeam",
+ 						"common": "Self",
+ 						"priority": 18,
+ 						"poisonDeadMessage": "Palossand's sand slowly sapped in all your energy and you fainted.",
+ 						"broadcast": "team"
+ 					},
+ 					"shoreup": {
+ 						"command": [
+ 							"detox"
+ 						],
+ 						"target": "OnlySelf",
+ 						"common": "Self",
+ 						"priority": 30
+ 					}
+ 				},
+ 				"kill": {
+ 					"mode": "ignore"
+ 				}
+ 			}
+ 		},
+ 		{
+ 			"role": "dhelmise",
+ 			"translation": "Dhelmise",
+ 			"side": "mafia2",
+ 			"startupmsg": "You are A Dhelmise!",
+ 			"help": "You are a Dhelmise, sided with the Eerie Pokemon you can /Powerwhip during the night to knock out a pokemon, You can also use your Signature Move /Anchorshot on someone, this will lock down most Pokemon from doing anything during the night, You avoid poisons thrown in your way due to your Steelworker Ability giving you affinity to the Steel Type, you also can not be attacked during the day by reguler attacks as you are under the sea, you win when only Eerie Pokemon remains in Alola.",
+ 			"info": "Can kill one person during the night. Can distract one person during the night. Immune to poison.Immune to daykills. Sided with The Eerie Pokemon.",
+ 			"actions": {
+ 				"startup": "team-reveal-with-roles",
+ 				"preventTeamvote": true,
+ 				"updateTeam": true,
+ 				"night": {
+ 					"anchorshot": {
+ 						"command": "distract",
+ 						"target": "AnyButTeam",
+ 						"common": "Self",
+ 						"priority": 5,
+ 						"broadcast": "team",
+ 						"distractmsg": "Dhelmise locked you down with it's Anchor shot, it took you all night to get free",
+ 						"teammsg": "Dhelmise locked your teammate down with it's Anchor shot, it took you all night to get your teammatefree."
+ 					},
+ 					"powerwhip": {
+ 						"command": ["kill", "convert"],
+ 						"canConvert": ["wishiwashi2"],
+ 						"newRole": "wishiwashi",
+ 						"convertfailmsg": "",
+
+
+ 						"target": "AnyButTeam",
+ 						"common": "Team",
+ 						"priority": 16,
+ 						"broadcast": "team",
+ 						"msg": "±Zeraora: Dhelmise knocked you out with a strong Power Whip"
+ 					}
+ 				},
+ 				"poison": {
+ 					"mode": "ignore"
+ 				},
+ 				"daykill": {
+ 					"mode": {
+ 						"evadeChance": 1
+ 					}
+ 				},
+ 				"teamTalk": true
+ 			}
+ 		},
+ 		{
+ 			"role": "passimian",
+ 			"translation": "Passimian",
+ 			"side": "mafia3",
+ 			"help": "You are a Passimian, Sided with the Fighting Pokemon, you can /Superpower one Pokemon during the Night to knock them out,You can also /Pass a ball to one Pokemon during the Night, which will keep most pokemon busy for the rest of the night, due to your quick reflexes, you will avoid most reguler attacks thrown in your way during the day.",
+ 			"actions": {
+ 				"teamUtilities": true,
+ 				"night": {
+ 					"superpower": {
+ 						"command": ["kill", "convert"],
+ 						"canConvert": ["wishiwashi2"],
+ 						"newRole": "wishiwashi",
+ 						"convertfailmsg": "",
+
+
+ 						"target": "AnyButTeam",
+ 						"common": "Team",
+ 						"priority": 13,
+ 						"broadcast": "team"
+ 					}
+ 				},
+ 				"pass": {
+ 					"command": "distract",
+ 					"target": "AnyButTeam",
+ 					"common": "Team",
+ 					"priority": 4,
+ 					"broadcast": "team",
+ 					"distractmsg": "Passimian passed you the ball, you couldn't do any action because you were too busy catching the ball."
+ 				}
+ 			},
+ 			"daykill": {
+ 				"mode": {
+ 					"evadeChance": 1
+ 				}
+ 			}
+ 		},
+ 		{
+ 			"role": "crabrawler",
+ 			"translation": "Crabrawler",
+ 			"side": "mafia3",
+ 			"help": "You are a Crabrawler, Sided with the Fighting Pokemon, currently you are not very strong, but you can observe what is going on around you, after a few night you will evolve into your final form, Crabominable",
+ 			"info": "Can hax, evolves to crabominable after as many night as karp coded. Sided With the Combative Fighting Pokemon",
+ 			"actions": {
+ 				"night": {
+ 					"watch": {
+ 						"target": "AnyButTeam",
+ 						"common": "Self",
+ 						"priority": 25
+ 					}
+ 				},
+ 				"initialCondition": {
+ 					"curse": {
+ 						"cursedRole": "crabominable",
+ 						"curseCount": 3,
+ 						"curseConvertMessage": ""
+ 					}
+ 				},
+ 				"teamUtilities": true
+ 			},
+ 			"hax": {
+ 				"inspect": {
+ 					"revealTeam": 0.1,
+ 					"revealPlayer": 0.03
+ 				},
+ 				"protect": {
+ 					"revealTeam": 0.1,
+ 					"revealPlayer": 0.03
+ 				},
+ 				"poison": {
+ 					"revealTeam": 0.1,
+ 					"revealPlayer": 0.03
+ 				},
+ 				"kill": {
+ 					"revealTeam": 0.1,
+ 					"revealPlayer": 0.03
+ 				},
+ 				"distract": {
+ 					"revealTeam": 0.1,
+ 					"revealPlayer": 0.03
+ 				}
+ 			}
+ 		},
+ 		{
+ 			"role": "crabominable",
+ 			"translation": "Crabominable",
+ 			"side": "mafia3",
+ 			"help": "Now that you have evolved, you share your team's /Superpower during the night, which you can use to Knock out an Opposing Pokemon, in addition, you can use your signature move /Icehammer to Knock out a second Pokemon during the night, this was supposed to pierce protect but ask karp if it does.",
+ 			"info": "",
+ 			"actions": {
+ 				"night": {
+ 					"watch": {
+ 						"target": "AnyButTeam",
+ 						"limit": 2,
+ 						"common": "Self",
+ 						"priority": 25
+ 					},
+ 					"superpower": {
+ 						"target": "AnyButTeam",
+ 						"common": "Team",
+ 						"priority": 15,
+ 						"broadcast": "team"
+ 					},
+ 					"icehammer": {
+ 						"command": "kill",
+ 						"target": "AnyButTeam",
+ 						"common": "Self",
+ 						"priority": 1,
+ 						"broadcast": "team",
+ 						"recharge": 2
+ 					}
+ 				},
+ 				"vote": 2,
+ 				"teamUtilities": true
+ 			}
+ 		},
+ 		{
+ 			"role": "celesteela",
+ 			"translation": "Celesteela",
+ 			"side": "mafia4",
+ 			"help": "You are a Celesteela, the Ultra Beast Leader of the Sky Pokemon, with your powers you can Use /Heavyslam to knock out most opposing Pokemon, you can also use your plethora of Grass Type movepool to /Drain a pokemon, this will drain even Poison and Steel pokemon, causing them to faint the next night if not healed, you can also protect ANYONE, even yourself, with your /protect, as you are a very durable part Steel Type you easily survive up to 3 reguler attacks during the night, as well as up to 2 non-Z-Move attacks during the day,as well as avoid poison from most pokemon, the poisonous Nihilego can not possess you either, and since you are a mechanical Steel Pokemon just like a Magearna, Inspectors and Exposers often mistake you for Magearna,lastly, since you are so heavy due to being one of the heaviest Pokemon, up to 2 votes against you do nothing .",
+ 			"actions": {
+ 				"teamUtilities": true,
+ 				"voteshield": -2,
+ 				"kill": {
+ 					"mode": {
+ 						"evadeCharges": 3
+ 					}
+ 				},
+ 				"daykill": {
+ 					"mode": {
+ 						"evadeCharges": 2
+ 					}
+ 				},
+ 				"poison": {
+ 					"mode": "ignore"
+ 				},
+ 				"convert": {
+ 					"mode": "ignore"
+ 				},
+ 				"inspect": {
+ 					"revealAs": "magearna"
+ 				},
+ 				"night": {
+ 					"drain": {
+ 						"command": [
+ 							"poison"
+ 						],
+ 						"bypass": ["ignore"],
+ 						"pierce": true,
+ 						"priority": 20,
+ 						"common": "Self",
+ 						"target": "AnyButTeam"
+ 					},
+ 					"heavyslam": {
+ 						"command": ["kill", "convert"],
+ 						"canConvert": ["wishiwashi2"],
+ 						"newRole": "wishiwashi",
+ 						"convertfailmsg": "",
+
+
+ 						"priority": 20,
+ 						"common": "Team",
+ 						"target": "AnyButTeam"
+ 					},
+ 					"protect": {
+ 						"priority": 7,
+ 						"common": "Self",
+ 						"target": "Any"
+ 					}
+ 				}
+ 			}
+ 		}
+
+ 	],
+ 	"roles1": [
+ 		"decidueye",
+ 		"dhelmise",
+ 		"cosmoem",
+ 		"ribombee1",
+ 		"celesteela",
+ 		"primarina",
+ 		"palossand",
+ 		"komala",
+ 		"crabrawler",
+ 		"oranguru",
+ 		"salazzle",
+ 		"wimpod",
+ 		"magearna",
+ 		"wishiwashi2",
+ 		"wimpod",
+ 		"wimpod",
+ 		"togedemaru",
+ 		"gumshoos",
+ 		"wimpod",
+ 		"incineroar",
+ 		"wimpod",
+ 		"passimian",
+ 		"wimpod",
+ 		"wimpod",
+ 		"wimpod"
+ 	],
+
+
+ 	"villageCantLoseRoles": [
+ 		"magearna",
+ 		"solgaleo",
+ 		"lunala",
+ 		"incineroar",
+ 		"cosmoem",
+ 		"lunala2",
+ 		"solgaleo2",
+ 		"decidueye",
+ 		"primarina",
+ 		"ribombee1",
+ 		"ribombee2",
+ 		"ribombee3",
+ 		"ribombee4",
+ 		"ribombee5",
+ 		"ribombee6",
+ 		"ribombee7",
+ 		"togedemaru",
+ 		"wishiwashi2"
+ 	],
+ 	"minplayers": 3,
+ 	"changelog": {
+ 		"29-6-2018": "1.00.0 Theme on server, had to lower minplayer from 7 to 3 to get enough people. 1.00.1 Fixed Celesteela's Heavyslam, fixed kill and lynch message from the Kirby one we had by mistake, lowered cosmoem evolve priority to the dex # of the respective evolution, fixed celesteela leech/drain, fixed priority of celesteela/dhelmise,gave lunala the nightkill evade it was supposed to have, fixed village colour,allowed lunala z move to pierce correctly, added villager code in,fixed z moves not bypassing evadeCharges, added togedemaru instead of primarina to test because json is aids , 30/6/2018 fixed togedemaru distract command. forgot to mention that added altname on 10.0, saparate changelog by day but it broke so back to old one,oranguru added, switched dhelmise and palossand spawn in small since dhelmise sux, then made 4p 3v1  and ghosts pushed back, primarina added, finally, so using that over cosmoem for test, added salazzle without breaking somehow, added komala hax but can't make the role yet since azu sux, instead added ribombee which sky made, expect ribombee kill to fail though, but that's okay, celesteela spawn pushed back to 6,yes rimbombee, azu just noticed the new culrpit in the  wordpads, azu apperently broke it too but luckily it works now, just spams convert, I also sneaked in a wishiwashi, 01/07/2018 fixed changelog start date from april to june,  added in komala without breaking, added in strawberry's passimian finally, added wishiwashi school up and running, fixed sides, added name, put salazzle on poison team properly, RIP THE THE A MAGICAL GIRL(Nice Pokemon), added incineroar,fixed z move commands for starters, added possessed pokemon,fixed ribombee convert, fixed vclr, finally added summery, sponsored by sky sentinel and json glitch, added crabs, retweaked spawn.10-2-2019:Fixed Ribombee's Quiver Dance, it is now OnlySelf, used to be able to convert the whole game to Ribombees, like the game it converted a Dhelmise into a Ribombee"
+
+ 	},
+ 	"killmsg": "±Zeraora: ~Player~ (~Role~) Fainted!",
+ 	"killusermsg": "You Fainted and can not fight for the rest of the Battle!",
+ 	"lynchmsg": "±Game: ~Player~ (~Role~) has been forced to leave Alola!"
+
+ }
