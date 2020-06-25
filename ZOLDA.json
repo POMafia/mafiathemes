@@ -1,0 +1,634 @@
+{
+    "name": "ZOLDA",
+    "author": "Still Tyrex despite the small changes",
+    "summary": "Basically Zelda, but just testing some spawn changes. Current changes made: Nayru has a 50% chance of spawning in place of Impa (10-17), Koume spawns in place of Ganondorf (10-17), Moon has a 50% chance of spawning in place of Skull Kid (13-17), and a second Link has a 50% chance of spawning in place of the King of Hyrule (15-17).",
+    "sides": [
+        {
+            "side": "windmage",
+            "translation": "Wind Mage"
+        },
+        {
+            "side": "gerudo",
+            "translation": "Gerudo"
+        },
+        {
+            "side": "village",
+            "translation": "People of Hyrule"
+        },
+        {
+            "side": "skullkid",
+            "translation": "Skull Kid"
+        },
+        {
+            "side": "malladus",
+            "translation": "Demon King"
+        }
+    ],
+    "roles": [
+        {
+            "role": "citizen",
+            "translation": "Citizen",
+            "side": "village",
+            "help": "You are a normal citizen of Hyrule. Vote to remove people in the day!",
+            "actions": {}
+        },
+        {
+            "role": "zelda",
+            "translation": "Zelda",
+            "side": "village",
+            "help": "You are the Princess of Hyrule and can use /Inspect [name] to find someone's identity with the help of the Triforce of Wisdom! However, you are easily distracted, so maybe you should stay hidden and find a voice to speak for you.",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 11
+                    }
+                }
+            }
+        },
+        {
+            "role": "impa",
+            "translation": "Impa",
+            "side": "village",
+            "help": "You are the last remaining Sheikah and Zelda's personal Bodyguard! Use /Protect [name] to protect someone!",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 3,
+						"hide": true
+                    }
+                }
+            }
+        },
+        {
+            "role": "skullkid",
+            "translation": "Skull Kid",
+            "side": "skullkid",
+            "help": "You are the Skull Kid, wearing Majora's Mask. Type /Kill [name] to kill someone! You are alone, but Zelda will think you are a normal citizen, you ignore distracters and even Navi can't find you! Furthermore, you evade all daykills and you will convert into Majora's Wrath if you are lynched!",
+			"info": "Can kill one person during the night. Can't be haxed or distracted. Evades daykills. Reveals as Citizen when inspected. Converts to Majora's Wrath if lynched.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 4,
+						"broadcast": "team"
+                    }
+                },
+				"daykill": {
+					"mode": {
+						"evadeChance": 1
+					}
+				},
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "Someone tried to distract you during the night, but couldn't do anything to you."
+                },
+                "inspect": {
+                    "revealAs": "citizen"
+                },
+				"lynch": {
+					"convertTo": "majora",
+					"convertmsg": "The Majora's Mask falls from ~Self~'s face and gains a humanoid shape, becoming its ultimate form, the Majora's Wrath!"
+				},
+				"teamUtilities": true,
+                "avoidHax": [
+                    "kill"
+                ]
+            }
+        },
+		{
+			"role": "majora",
+			"translation": "Majora's Wrath",
+			"side": "skullkid",
+			"help": "With your transformation, you can still /kill during the night, and this will now kill even evaders! You still ignore distractors as well. However, you no longer evade daykills.",
+			"info": "Can kill one person during the night (kills evaders). Can't be distracted. ~Sided~",
+			"actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 4,
+						"bypass": ["ignore"],
+						"broadcast": "team"
+                    }
+                },
+				"distract": {
+                    "mode": "ignore",
+                    "msg": "Someone tried to distract you during the night, but couldn't do anything to you."
+                },
+				"teamUtilities": true
+			}
+		},
+        {
+            "role": "tingle",
+            "translation": "Tingle",
+            "side": "village",
+            "help": "You are a weird guy dressed in green. Your appearance alone is enough to distract most people by using /Distract [name].",
+            "actions": {
+                "night": {
+                    "distract": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 2
+                    }
+                }
+            }
+        },
+        {
+            "role": "king",
+            "translation": "King of Hyrule",
+            "side": "village",
+            "help": "You are the King of Hyrule. Your word is law! Well, not always, but at least your vote counts for 3.",
+            "actions": {
+                "vote": 3
+            }
+        },
+        {
+            "role": "navi",
+            "translation": "Navi",
+            "side": "village",
+            "help": "You are an annoying little fairy and know more than you should. Say HEY, LISTEN and someone will probably kill you.",
+            "actions": {
+                "hax": {
+                    "kill": {
+                        "revealTeam": 0.33,
+                        "revealPlayer": 0.17
+                    }
+                }
+            }
+        },
+        {
+            "role": "malladus",
+            "translation": "Malladus",
+            "side": "malladus",
+            "help": "You are the Demon King! Terrorize Hyrule by killing up to 2 targets by typing /kill [name]. You destroy any distracters if they dare to stand in your way, and you have a vote of 3.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 7,
+                        "limit": 2
+                    }
+                },
+                "distract": {
+                    "mode": "ChangeTarget",
+                    "hookermsg": "The Demon King just kills anyone who is in his way. Including you!",
+                    "msg": "Someone was in your way, so you couldn't kill your targets. But you killed the fool instead!"
+                },
+				"teamUtilities": true,
+				"vote": 3,
+                "avoidHax": [
+                    "kill"
+                ]
+            }
+        },
+        {
+            "role": "din",
+            "translation": "Din",
+            "side": "village",
+            "help": "You are the Goddess of Power. You can kill 1 person in the night with /Kill [name], but you are sided with the People of Hyrule so don't kill them!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 10
+                    }
+                }
+            }
+        },
+        {
+            "role": "nayru",
+            "translation": "Nayru",
+            "side": "village",
+            "help": "You are the Goddess of Wisdom. Use /Protect [name] to protect up to 2 persons!",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 3,
+                        "limit": 2,
+						"hide": true
+                    }
+                }
+            }
+        },
+        {
+            "role": "farore",
+            "translation": "Farore",
+            "side": "village",
+            "help": "You are the Goddess of Courage. You can prevent others from getting voted off with your -2 vote.",
+            "actions": {
+                "vote": -2
+            }
+        },
+        {
+            "role": "minion",
+            "translation": "Vaati's minion",
+            "side": "windmage",
+            "help": "You are one of Vaati's minions. Type /Kill [name] to kill someone! Let Vaati pick a target and then pick somebody else to get 2 kills for your team. [Hint: Use /tt [message] to talk to your team]",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Role",
+                        "priority": 6,
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate (Vaati's Minion) has decided to kill ~Target~!"
+                    }
+                },
+                "startup": "team-reveal-with-roles",
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "koume",
+            "translation": "Koume",
+            "side": "gerudo",
+            "help": "You are the Gerudo Sorceress of Flame. Type /Kill [name] to kill someone! You can also use your fire magic to burn someone in the day, but that will reveal yourself so use it only in an act of despair! [Hint: Use /tt [message] to talk to your team]",
+			"info": "Can kill one person during the night. Can fire (kill) one person during the day (reveals user). ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 8,
+                        "broadcast": "team",
+						"hide": true
+                    }
+                },
+                "standby": {
+                    "fire": {
+                        "command": "kill",
+						"target": "AnyButTeam",
+                        "msg": "You can kill now using /fire [name], but you will be revealed if you do! :",
+                        "killmsg": "Koume uses her fire magic to burn ~Target~ to the bones! ~Self~ lets out an evil laugh."
+                    }
+                },
+                "startup": "team-reveal-with-roles",
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "kotake",
+            "translation": "Kotake",
+            "side": "gerudo",
+            "help": "You are the Gerudo Sorceress of Ice. Type /Kill [name] to kill someone! You can also use your ice magic to freeze someone for the night by typing /Distract [name]. [Hint: Use /tt [message] to talk to your team]",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 8,
+                        "broadcast": "team",
+						"hide": true
+                    },
+                    "distract": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 1,
+						"broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal-with-roles",
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "vaati",
+            "translation": "Vaati",
+            "side": "windmage",
+            "help": "You are the evil wind mage Vaati! With /kill [name] you can kill someone. Command your minions to kill a different target than you to get 2 kills per night. You can't be distracted! [Hint: Use /tt [message] to talk to your team]",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Role",
+                        "priority": 5,
+                        "broadcast": "team",
+                        "broadcastmsg": "Your partner (Vaati) has decided to kill ~Target~!"
+                    }
+                },
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "Someone tried to distract you during the night, but your wind magic negated the effect."
+                },
+                "startup": "team-reveal-with-roles",
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "ganondorf",
+            "translation": "Ganondorf",
+            "side": "gerudo",
+            "help": "You are the Great King of Evil! You can use /Kill [name] to kill someone and can't be killed yourself by anyone except Link! You also can't be distracted! [Hint: Use /tt [message] to talk to your team]",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 8,
+                        "broadcast": "team",
+						"hide": true
+                    }
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "Tingle tried to sell you a map, but you simply popped his balloon and went on with your business."
+                },
+                "avoidHax": [
+                    "kill"
+                ],
+                "startup": "team-reveal-with-roles",
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "link",
+            "translation": "Link",
+            "side": "village",
+            "help": "You are the Hero of Time and the only one who can kill Ganondorf! Type /Kill [name] during the day phase to kill someone! You will be revealed when you kill, so make wise choices and claim in the first night to get protection! DO NOT CLAIM IF KOUME IS IN OR IMPA/NAYRU ARE OUT!",
+            "actions": {
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ raises the Master Sword into the air, followed by a few quick slashes to kill ~Target~!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "midna",
+            "translation": "Midna",
+            "side": "village",
+            "help": "You are Midna, a strange, dark creature and sided with the People of Hyrule, but Zelda will not be sure whether you are good or evil when she inspects you!",
+            "actions": {
+                "inspect": {
+                    "revealAs": "malladus"
+                },
+				"startup": {
+                    "revealAs": "citizen"
+                }
+            }
+        },
+        {
+            "role": "moon",
+            "translation": "Moon",
+            "side": "skullkid",
+            "help": "You are the Moon that threats to fall over Termina! As the days pass, you get closer to the town, which also changes your powers! Your powers will revert if someone plays the Song of Time though! Regardless of your abilities, you will always be able to /protect someone every night (including yourself)!",
+            "info": "Can protect one person during the night (including itself) every turn. Power changes every turn. Can shine (inspect) during the day on the 1st turn, has a vote of 4 on the 2nd, and can nightkill (unshared) on the 3rd (cycle repeats after that). Sided with Skull Kid.",
+            "actions": {
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": 1,
+                        "cursedRole": "moon1",
+                        "curseConvertMessage": "Dawn of First Day: 72 hours remaining."
+                    }
+                },
+				"night": {
+					"protect": {
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": 3,
+						"broadcast": "team",
+						"hide": true
+                    }
+				},
+				"teamUtilities": true
+            }
+        },
+        {
+            "role": "moon1",
+            "translation": "Moon",
+            "side": "skullkid",
+            "help": "You are the Moon! For the next 24 hours, you can use /shine [name] during the day to reveal someone's identity while keeping yourself hidden! You can still /protect during the night.",
+            "hide": true,
+            "actions": {
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": 1,
+                        "cursedRole": "moon2",
+                        "curseConvertMessage": "Dawn of Second Day: 48 hours remaining."
+                    }
+                },
+				"teamUtilities": true,
+                "night": {
+					"protect": {
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": 3,
+						"broadcast": "team",
+						"hide": true
+                    }
+				},
+				"standby": {
+                    "shine": {
+                        "command": "expose",
+						"target": "AnyButTeam",
+                        "msg": "Type /shine [name] to find out someone's role (you won't be revealed!)",
+                        "exposemsg": "The Moon glares at the ~Role~!",
+						"exposedtargetmsg": "~Target~ is the ~Role~!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "moon2",
+            "translation": "Moon",
+            "side": "skullkid",
+            "help": "You are the Moon! For the next 24 hours, your vote will count as 4! You can still /protect during the night.",
+            "hide": true,
+            "actions": {
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": 1,
+                        "cursedRole": "moon3",
+                        "curseConvertMessage": "Dawn of Final Day: 24 hours remaining."
+                    }
+                },
+				"night": {
+					"protect": {
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": 3,
+						"broadcast": "team",
+						"hide": true
+                    }
+				},
+				"teamUtilities": true,
+                "vote": 4
+            }
+        },
+        {
+            "role": "moon3",
+            "translation": "Moon",
+            "side": "skullkid",
+            "help": "You are the Moon! For the next 24 hours, you can type /kill [name] during the night to defeat an opponent! This is NOT shared with your teammate either! You can still /protect during the night.",
+            "hide": true,
+            "actions": {
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": 1,
+                        "cursedRole": "moon1",
+                        "curseConvertMessage": "The Moon was about to hit the ground, but the Song of Time was played, and then... Dawn of First Day: 72 hours remaining."
+                    }
+                },
+				"teamUtilities": true,
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 9,
+						"broadcast": "team"
+                    },
+					"protect": {
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": 3,
+						"broadcast": "team",
+						"hide": true
+                    }
+                }
+            }
+        },
+		{
+            "role": "bodyguards",
+            "translation": "Impa, Moon, Nayru",
+            "side": "village",
+			"hide": true,
+            "help": "",
+			"info": "",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 3
+                    }
+                }
+            }
+        },
+		{
+            "role": "gerudo",
+            "translation": "Gerudo",
+            "side": "gerudo",
+			"hide": true,
+            "help": "",
+			"info": "",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 8
+                    }
+                }
+            }
+        }
+    ],
+	"roles1": [
+        "king",
+        "link",
+        "minion",
+        "zelda",
+        "kotake",
+        "citizen"
+	],
+	"roles2": [
+        "impa",
+        "link",
+        "vaati",
+        "zelda",
+        "ganondorf",
+        "citizen",
+        "majora",
+        "king",
+        "citizen"
+	],
+    "roles3": [
+        {"impa": 0.5, "nayru": 0.5},
+        "link",
+        "vaati",
+        "zelda",
+        "koume",
+        "citizen",
+        "minion",
+        "tingle",
+        "citizen",
+        "kotake",
+        "citizen",
+        "navi",
+        {"moon": 0.5, "skullkid": 0.5},
+        "minion",
+        {"king": 0.5, "link": 0.5},
+        "farore",
+        "citizen"
+    ],
+    "roles4": [
+        "nayru",
+        "link",
+        "vaati",
+        "zelda",
+        "ganondorf",
+        "citizen",
+        "minion",
+        "tingle",
+        "citizen",
+        "kotake",
+        "minion",
+        "king",
+        "skullkid",
+        "navi",
+        "farore",
+        "citizen",
+        "midna",
+        "malladus",
+        "citizen",
+        "citizen",
+        "din",
+        "citizen",
+        "koume",
+        "minion",
+        "citizen",
+        "citizen",
+        "citizen",
+        "moon",
+        "minion",
+        "citizen",
+        "citizen",
+        "citizen",
+        "tingle",
+        "koume",
+        "farore",
+        "minion",
+        "midna",
+        "din",
+        "kotake",
+        "citizen",
+        "citizen",
+        "minion",
+        "citizen"
+    ],
+    "villageCantLoseRoles": [
+        "king",
+        "din",
+        "link"
+    ],
+	"minplayers": 5,
+	"changelog": [
+		"6/11/2015: Theme 'created'. Impa doesn't spawn until 7, which is when Vaati's minion spawns.",
+		"10/21/2016: Changed spawn for all games of 17 and fewer. Spawn spots of 10, 13, and 15 are probably questionable.",
+		"12/4/2016: Changed spawn for games of 9 and fewer.",
+		"12/23/2016: Moon can now protect one person during the night, including itself. It can also inspect during the day instead of exposing."
+	]
+}
