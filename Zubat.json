@@ -1,0 +1,258 @@
+{
+	"name": "Zubat",
+	"author": [
+		"Teen Heat"
+	],
+	"summary": "A wild Zubat appeared! It's the bats versus the rocks. Zubats have a 50% accurate protect, Golbats can find Zubats, and Crobat can daykill but dies if protected or killed by Shiny Zubat's fake protect! See /roles for more, but be careful who you protect...",
+	"minplayers": 3,
+	"sides": [
+		{
+			"side": "village",
+			"translation": "Batthings",
+			"winmsg": "±Echo: ~Players~ got rid of all the rocks somehow, and are free to live doing whatever it is bats do!"
+		},
+		{
+			"side": "rock",
+			"translation": "Rockthings",
+			"winmsg": "±Echo: ~Players~ used Rock Slide! Bye bye bats!"
+		}
+	],
+	"roles": [
+		{
+			"role": "zub",
+			"translation": "Zubat",
+			"side": "village",
+			"info": "Can protect one player during the night with 50% accuracy. Sided with Batthings.",
+			"help": "Zuuuubaiiithydfslklsnnakaat! You are the bane of every Pokémon Trainer's existence, appearing whenever and wherever you're least wanted. So nobody will really care if you use your body as a shield to possibly /protect someone at night. This probably won't work on your own, but if all of you Zubats swarm around the same target, one of you is bound to succeed!",
+			"actions": {
+				"night": {
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 2,
+						"failChance": 0.50
+					}
+				},
+				"copy": {
+					"mode": "ignore",
+					"msg": "±Info: ~Self~ is a Zubat!"
+				}
+			}
+		},
+		{
+			"role": "shi",
+			"translation": "Shiny Zubat",
+			"side": "village",
+			"info": "Can try to protect one player during the night with 50% accuracy, but actually kills if successful. Sees itself as Zubat. Does not inspect as a Zubat to Golbat. Sided with Batthings.",
+			"help": "Zuuuubaiiithydfslklsnnakaat! You are the bane of every Pokémon Trainer's existence, appearing whenever and wherever you're least wanted. So nobody will really care if you use your body as a shield to possibly /protect someone at night. This probably won't work on your own, but if all of you Zubats swarm around the same target, one of you is bound to succeed!",
+			"actions": {
+				"night": {
+					"protect": {
+						"command": "kill",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 4,
+						"failChance": 0.50
+					}
+				},
+				"startup": {
+					"revealAs": "zub"
+				},
+				"copy": {
+					"mode": "ignore",
+					"msg": "±Info: ~Self~ is not a Zubat!"
+				}
+			}
+		},
+		{
+			"role": "gol",
+			"translation": "Golbat",
+			"side": "village",
+			"info": "Can inspect one player during the night, revealing if the target is a Zubat or not. Does not see Shiny Zubat as a Zubat. Sided with Batthings.",
+			"help": "Go-Go-Go-Golbat! When you evolved, you gained an enormous mouth and wings, but you're still close with the Zubats. This allows your echolocation to /inspect one Pokemon every night and find out if they're a Zubat or not. However, if a Zubat happens to be colored oddly, you might not recognize it...",
+			"actions": {
+				"night": {
+					"inspect": {
+						"command": "copy",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 6,
+						"copyAs": "gol",
+						"silentCopy": true
+					}
+				},
+				"copy": {
+					"mode": "ignore",
+					"msg": "±Info: ~Self~ is not a Zubat!"
+				}
+			}
+		},
+		{
+			"role": "cro",
+			"translation": "Crobat",
+			"side": "village",
+			"info": "Can fly at one player during the standby to kill them. Immune to Rockthings' kill. Dies if successfully protected. Has a vote of 0.5. Sided with Batthings.",
+			"help": "Super, super, supersonic! That's how fast you are- fast enough to dodge any Rock-type kills in the night! Your /fly attack lets you kill someone during the day. But you hate to be boxed in, so if someone successfully protects you, you'll die. Also, you have a vote worth 0.5, or half of everyone else's. Sorry.",
+			"help": "Super, super, supersonic! That's how fast you are- fast enough to dodge all killers in the night! Your /fly attack lets you kill someone during the day. But you hate to be boxed in, so if someone successfully protects you, you'll die. Also, you have a vote worth 0.5, or half of everyone else's. Sorry.",
+			"actions": {
+				"standby": {
+					"fly": {
+						"command": "kill",
+						"target": "AnyButSelf",
+						"killmsg": "Crobat used Fly! ~Target~ was sliced in half!"
+					}
+				},
+				"vote": 0.5,
+				"protect": {
+					"mode": "die"
+				},
+				"kill": {
+					"mode": {
+						"ignore": ["geo", "gra", "gol"]
+					}
+				},
+				"copy": {
+					"mode": "ignore",
+					"msg": "±Info: ~Self~ is not a Zubat!"
+				}
+			}
+		},
+		{
+			"role": "geo",
+			"translation": "Geodude",
+			"side": "rock",
+			"info": "Can kill one player during the night (shared with team). Sided with Rockthings.",
+			"help": "EEEEUEUUEUEUGH. That's totally what you sound like. Use /kill with your team to get rid of those annoying bats!",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 3,
+						"broadcast": "team"
+					}
+				},
+				"copy": {
+					"mode": "ignore",
+					"msg": "±Info: ~Self~ is not a Zubat!"
+				},
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true
+			}
+		},
+		{
+			"role": "gra",
+			"translation": "Graveler",
+			"side": "rock",
+			"info": "Can kill one player during the night (shared with team). Can protect one player during the night. Sided with Rockthings.",
+			"help": "EEEEUEUUEUEUGHEEEEUEUUEUEUGHEEEEUEUUEUEUGH. You sound like Geodude only cooler. Use /kill with your team to get rid of those annoying bats, and use /protect to prevent a teammate from dying or kill Crobat!",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 3,
+						"broadcast": "team"
+					},
+					"protect": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 1,
+						"broadcast": "team"
+					}
+				},
+				"copy": {
+					"mode": "ignore",
+					"msg": "±Info: ~Self~ is not a Zubat!"
+				},
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true
+			}
+		},
+		{
+			"role": "gom",
+			"translation": "Golem",
+			"side": "rock",
+			"info": "Can kill up to 3 players during the night, but with only 25% accuracy. Sided with Rockthings.",
+			"help": "EEEEUEUUEUEUGHEEEEUEUUEUEUGHEEEEUEUUEUEUGHEEEEUEUUEUEUGHEEEEUEUUEUEUGHEEEEUEUUEUEUGHEEEEUEUUEUEUGHEEEEUEUUEUEUGHEEEEUEUUEUEUGH. You sound like a real jerk. When evolving you gained a lot of power, so you can kill up to 3 bats just on your own! But unfortunately you've also gained a lot of weight, so there's like only a 25% chance that'll work at all. Good luck and move quickly, or as quickly as you can!",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 5,
+						"broadcast": "team",
+						"limit": 3,
+						"failChance": 0.75
+					}
+				},
+				"copy": {
+					"mode": "ignore",
+					"msg": "±Info: ~Self~ is not a Zubat!"
+				},
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true
+			}
+		}
+	],
+	"roles1": [
+		"cro",
+		"cro",
+		"gra"
+	],
+	"roles2": [
+		"zub",
+		"zub",
+		"gol",
+		"geo",
+		"zub",
+		
+		"gol",
+		"gra",
+		"zub",
+		"zub",
+		"shi",
+		
+		"gra",
+		"cro",
+		"zub",
+		"gom",
+		"zub",
+		
+		"geo",
+		"gol",
+		"zub",
+		"gom",
+		"shi",
+		
+		"zub",
+		"gra",
+		"gol",
+		"zub",
+		"cro",
+		
+		"geo",
+		"gol",
+		"zub",
+		"gom",
+		"zub",
+		
+		"zub",
+		"gra",
+		"shi",
+		"zub",
+		"gol",
+		
+		"geo",
+		"zub",
+		"gol",
+		"zub",
+		"gom"
+	],
+	"killmsg": "±Echo: ~Player~ (~Role~) died! Goodbye, ~Player~.",
+	"lynchmsg": "±Echo: The wild ~Player~ (~Role~) fled!",
+	"border": "*** vvVvvVvvVvvVvvVvvVvvVvvVvvVvvVvvVvvVvvVvvVvvVvvVvvVvvVvvVvvVvvVvvVvvVvvVvvVvvVvv ***"
+}
