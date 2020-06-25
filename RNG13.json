@@ -1,0 +1,189 @@
+{
+"name": "RNG13",
+"author": "Pangaea",
+"minplayers": 3,
+"closedSetup": "team",
+"macro": false,
+"summary": "pray that you will get chosen by the RNG gods or else you will DIE",
+"ticks": {
+"standby": 2,
+"night1": 5,
+"night": 5
+},
+"nolynch": true,
+"sides": [
+{
+"translation": "WINRAR",
+"side": "win",
+"winmsg": "±~Players~: AHAHAHHAHAAH! WINRAR PREVAILS!!!! ALL HEIL THE RNG GODS!!111!!!!!=1p10i1290i RIP IN PIECE FAILS"
+},
+{
+"translation": "LOSERS",
+"side": "lose",
+"winmsg": "wait what"
+}
+],
+"roles": [
+{
+"role": "miki",
+"winIfDeadRoles": ["nub2"],
+"translation": "WINRAR",
+"side": "win",
+"help": "LMAO SOMEONE IS GOING TO LOSE BUT GUESS WHAT IT ISNT ME LOOOOOOOOOOOHELOOOOOPMELLLL",
+"info": "ALL HEIL DA RNG GODS!!!",
+"actions": {
+	"night": {
+		"BLESS": {
+			"command": "convert",
+			"target": "AnyButTeam",
+			"common": "Self",
+                        "restrict": ["BLESS"],
+			"priority": 1337,
+			"compulsory": true,
+			"canConvert": ["nub"],
+				"convertmsg": "~Target~ WAS BLESSED BY THE RNG GOD ~Self~ AND BECAME ~New~ AHAHAHHA",
+			"limit": 1,
+			"charges": 1,
+			"newRole": {
+				"random": {
+					"miki": 1
+			}
+		}
+	}
+}
+}
+},
+{
+"role": "nub",
+"translation": "FAIL",
+"side": "lose",
+"help": "OMG THE RNG GODS MIGHT SAVE YOUR LIFE SO PRAY TO THEM OR DIE LIKE THE MEN OF JAMESTOWNAAAAAAAAAAAAAAAAAAAAAAAAA",
+"info": "please help me",
+"actions": {}
+},
+{
+"role": "nub2",
+"translation": "FAIL",
+"hide": true,
+"side": "win",
+"help": "OMG THE RNG GODS MIGHT SAVE YOUR LIFE SO PRAY TO THEM OR DIE LIKE THE MEN OF JAMESTOWNAAAAAAAAAAAAAAAAAAAAAAAAA",
+"actions": {
+	"onDeadRoles": {
+		"convertTo": {
+			"nub3": ["nub"]
+		},
+		"convertmsg": ""
+	}
+}
+},
+{
+"role": "nub3",
+"translation": "FAIL",
+"hide": true,
+"side": "lose",
+"help": "OMG THE RNG GODS MIGHT SAVE YOUR LIFE SO PRAY TO THEM OR DIE LIKE THE MEN OF JAMESTOWNAAAAAAAAAAAAAAAAAAAAAAAAA",
+"actions": {}
+}
+],
+"roles1": [
+"miki",
+"nub2",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub",
+"nub"
+]
+}
