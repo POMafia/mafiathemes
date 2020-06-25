@@ -1,0 +1,1468 @@
+{
+    "name": "Sarfai",
+    "altname": "Safari",
+    "author": "Miki Sayaka",
+    "minplayers": 3,
+    "bot": {
+    	"name": "Tauros"
+    },
+    "summary": "Safari has moved into Mafia and all the crummy RNG with it. Have fun using your finder and gacha to get meaningless powerups as the insanely powerful Salt Inducers take control! Also, you might become a Stick and become so annoying that you just win. Have fun!",
+    "killmsg": "~Player~ (~Role~) got salted and died!",
+    "lynchmsg": "~Player~ (~Role~) got baited and died!",
+    "votemsg": "~Player~ left some bait on ~Target~!",
+    "borderColor": "#009B73",
+    "sides": [
+        {
+            "translation": "Safari Players",
+            "color": "#D87D00",
+            "side": "safari"
+        },
+        {
+            "translation": "Salt Inducers",
+            "color": "#FF27DB",
+            "side": "mafia"
+        },
+        {
+            "translation": "Stick",
+            "color": "#009534",
+            "side": "stick"
+        }
+    ],
+    "variables": {
+        "baitHelp": "You're a Safari player who's only good at baiting stuff. You can use your /finder or /gacha during the night to try and get new powers! Vote off the Salt Inducing Pyramid and League to win!",
+        "randoPyr": {
+            "target": "OnlySelf",
+            "priority": 0,
+            "common": "Self",
+            "compulsory": true,
+            "command": "convert",
+            "inputmsg": "",
+            "hide": true,
+            "macro": false,
+            "convertmsg": "",
+            "convertusermsg": "",
+            "convertfailmsg": "",
+            "newRole": {
+                "random": {
+                    "pyramid0": 0.2,
+                    "pyramid1": 0.2,
+                    "pyramid2": 0.2,
+                    "pyramid3": 0.2,
+                    "pyramid4": 0.2
+                }
+            },
+            "unlimitedSelfConvert": true,
+            "ignoreDistract": true,
+            "silentConvert": true
+        },
+        "gacha": {
+            "target": "OnlySelf",
+            "common": "Self",
+            "priority": 80,
+            "command": ["convert"],
+            "silentConvert": true,
+            "convertmsg": "",
+            "convertfailmsg": "",
+            "inputmsg": "You have chosen to pull a gachapon!",
+            "usermsg": "",
+            "cancel": ["finder"],
+            "newRole": {
+                "random": {
+                    "gachaRockFail": 0.45,
+                    "gachaStardust": 0.2,
+                    "gachaNugget": 0.125,
+                    "gachaAmpere": 0.07,
+                    "gachaBigNugget": 0.05,
+                    "gachaRock": 0.05,
+                    "gachaStick": 0.005
+                }
+            },
+            "hide": true
+        },
+        "gachaPyr": {
+            "target": "OnlySelf",
+            "common": "Self",
+            "priority": 80,
+            "command": ["convert"],
+            "silentConvert": true,
+            "convertmsg": "",
+            "convertfailmsg": "",
+            "inputmsg": "You have chosen to pull a gachapon!",
+            "usermsg": "",
+            "cancel": ["finder"],
+            "newRole": {
+                "random": {
+                    "pyramidRockFail": 0.45,
+                    "pyramidStardust": 0.2,
+                    "pyramidNugget": 0.125,
+                    "pyramidAmpere": 0.07,
+                    "pyramidBigNugget": 0.05,
+                    "pyramidRock": 0.05,
+                    "pyramidStick": 0.005
+                }
+            },
+            "hide": true
+        },
+        "gachaLeague": {
+            "target": "OnlySelf",
+            "common": "Self",
+            "priority": 80,
+            "command": ["convert"],
+            "silentConvert": true,
+            "inputmsg": "You have chosen to pull a gachapon!",
+            "convertmsg": "",
+            "convertfailmsg": "",
+            "usermsg": "",
+            "cancel": ["finder"],
+            "newRole": {
+                "random": {
+                    "leagueRockFail": 0.45,
+                    "leagueStardust": 0.2,
+                    "leagueNugget": 0.125,
+                    "leagueAmpere": 0.07,
+                    "leagueBigNugget": 0.05,
+                    "leagueRock": 0.05,
+                    "leagueStick": 0.005
+                }
+            },
+            "hide": true
+        },
+        "backToLeague": {
+            "target": "OnlySelf",
+            "common": "Self",
+            "priority": 0,
+            "compulsory": true,
+            "inputmsg": "",
+            "command": ["convert"],
+            "silentConvert": true,
+            "convertmsg": "",
+            "convertfailmsg": "",
+            "usermsg": "",
+            "newRole": "league",
+                "macro": false,
+            "unlimitedSelfConvert": true,
+            "ignoreDistract": true,
+            "hide": true
+        },
+        "backToBait": {
+            "target": "OnlySelf",
+            "common": "Self",
+            "priority": 0,
+            "compulsory": true,
+            "inputmsg": "",
+            "command": ["convert"],
+            "silentConvert": true,
+            "convertmsg": "",
+            "convertfailmsg": "",
+            "usermsg": "",
+            "newRole": "bait",
+                "macro": false,
+            "unlimitedSelfConvert": true,
+            "ignoreDistract": true,
+            "hide": true
+        },
+        "backToBait2": {
+            "target": "OnlySelf",
+            "common": "Self",
+            "priority": 105,
+            "compulsory": true,
+            "inputmsg": "",
+                "macro": false,
+            "command": ["convert"],
+            "silentConvert": true,
+            "convertmsg": "",
+            "convertfailmsg": "",
+            "usermsg": "",
+            "newRole": "bait",
+            "unlimitedSelfConvert": true,
+            "ignoreDistract": true,
+            "hide": true
+        },
+        "dayRockFail": {
+            "rock": {
+                "charges": 1,
+                "target": "AnyButSelf",
+                "command": "expose",
+                "msg": "Gacha-PON! The Gachapon Machine has dispensed an item capsule. You got a rock! Type /rock [name] to heck someone up good :3",
+                "exposemsg": "~Self~ threw a Rock at ~Target~... but it missed!"
+            }
+        },
+        "dayRock": {
+            "rock": {
+                "charges": 1,
+                "target": "AnyButSelf",
+                "command": "kill",
+                "msg": "Gacha-PON! The Gachapon Machine has dispensed an item capsule. You got a rock! Type /rock [name] to heck someone up good :3",
+                "killmsg": "~Self~ threw a Rock at ~Target~. *THUD* A direct hit! ~Target~ (~TargetRole~) was killed! (...wait, killed? O_O)"
+            }
+        },
+        "dayAmpere": {
+            "ampere": {
+                "charges": 1,
+                "target": "AnyButSelf",
+                "command": "expose",
+                "msg": "Gacha-PON! The Gachapon Machine has dispensed an item capsule. You got an ampere gem! Type /ampere [name] to reveal someone's side!",
+                "exposemsg": "~Self~ used an Ampere Gem to illuminate ~Target~! Turns out they are a nice ~Side~."
+            }
+        },
+        "dayStardust": {
+            "sell": {
+                "charges": 1,
+                "target": "Self",
+                "command": "expose",
+                "msg": "Gacha-PON! The Gachapon Machine has dispensed an item capsule. You got a Stardust! Type /sell to give yourself a vote double for the day!",
+                "exposemsg": "~Self~ sold a Stardust to the NPC. What a noob! But now the person they vote for gets double the votes!",
+                "copyAs": {
+                    "gachaStardust2": ["gachaStardust"],
+                    "pyramidStardust2": ["pyramidStardust"],
+                    "leagueStardust2": ["leagueStardust"]
+                },
+                "copymsg": "",
+                "copyusermsg": "You now double the votes on whomever you vote for!"
+            }
+        },
+        "dayNugget": {
+            "sell": {
+                "charges": 1,
+                "target": "Self",
+                "command": "expose",
+                "msg": "Gacha-PON! The Gachapon Machine has dispensed an item capsule. You got a Nugget! Type /sell to increase your vote to 5 for the day!",
+                "exposemsg": "~Self~ sold a Nugget to the NPC. What a noob! But now they have a fanciful 5 vote power!",
+                "copyAs": {
+                    "gachaNugget2": ["gachaNugget"],
+                    "pyramidNugget2": ["pyramidNugget"],
+                    "leagueNugget2": ["leagueNugget"]
+                },
+                "copymsg": "",
+                "copyusermsg": "You now get 5 votes for the day!"
+            }
+        },
+        "dayBigNugget": {
+            "sell": {
+                "charges": 1,
+                "target": "Self",
+                "command": "expose",
+                "msg": "Gacha-PON! The Gachapon Machine has dispensed an item capsule. You got a Big Nugget! Type /sell to increase your vote to 20 for the day!",
+                "exposemsg": "~Self~ sold a Big Nugget to the NPC. What a noob! But now they have a whopping 20 vote power!",
+                "copyAs": {
+                    "gachaBigNugget2": ["gachaBigNugget"],
+                    "pyramidBigNugget2": ["pyramidBigNugget"],
+                    "leagueBigNugget2": ["leagueBigNugget"]
+                },
+                "copymsg": "",
+                "copyusermsg": "You now get 20 votes for the day!"
+            }
+        },
+        "dayStick": {
+            "stick": {
+                "charges": 1,
+                "target": "Self",
+                "command": "expose",
+                "msg": "Gacha-PON! The Gachapon Machine has dispensed an item capsule. YOU GOT A STICK!! Type /stick to become the menace of Safari (you have 50 votes, revealed daykill every day, win only with other Sticks). Be warned, as other players will know who you are and try to defeat you!",
+                "exposemsg": "~Self~ stands ominously in the shadows. Then, they reveal in their hand the legendary Stick. With a cackling grin, ~Self~ promises to poke all yall regardless of whether you want it or not!",
+                "copyAs": "stick",
+                "copymsg": "",
+                "copyusermsg": "You now get 50 votes, and a daykill (you can use it this turn too)."
+            }
+        },
+        "init_action": {
+            "target": "AnyButSelf",
+            "priority": 0,
+            "command": ["dummy"],
+            "charges": 0,
+                "macro": false,
+            "hide": true,
+            "common": "Self"
+        },
+        "addCharge": {
+            "target": "AnyButSelf",
+            "priority": 0,
+            "command": ["dummy"],
+            "addCharges": 1,
+            "hide": true,
+            "common": "Self"
+        },
+        "inspect": {
+            "target": "AnyButSelf",
+            "priority": 10,
+            "hide": true,
+            "common": "Self"
+        },
+        "protect": {
+            "target": "AnyButSelf",
+            "priority": 5,
+            "hide": true,
+            "common": "Self"
+        },
+        "distract": {
+            "target": "AnyButSelf",
+            "priority": 4,
+            "hide": true,
+            "ignoreDistract": true,
+            "distractmsg": "Someone put you in a Luxury ball. You were too comofortable to take actions during the night!",
+            "common": "Self"
+        },
+        "detox": {
+            "target": "AnyButSelf",
+            "priority": 20,
+            "hide": true,
+            "common": "Self"
+        },
+        "finder": {
+            "target": "OnlySelf",
+            "priority": 40,
+            "hide": true,
+            "common": "Self",
+            "command": "convert",
+            "cancel": ["gacha"],
+            "silentConvert": true,
+            "convertmsg": "",
+            "convertusermsg": "Beep. Beep. BEEP. You found an item with with your Finder!",
+            "failmsg": "You used your finder, but it was a pointless waste of time. What a surprise!",
+            "failChance": 0.35,
+            "inputmsg": "You have chosen to use your finder to find an item!",
+            "newRole": {
+                    "random": {
+                    "addBG": 0.4,
+                    "addInsp": 0.3,
+                    "addDetox": 0.2,
+                    "addPL": 0.1
+                }
+            }
+        },
+        "dummy": {
+            "target": "Any",
+            "common": "Self",
+            "priority": 95,
+            "inputmsg": "",
+            "command": ["dummy"],
+            "ignoreDistract": true,
+            "hide": true
+        },
+        "dummy2": {
+            "target": "OnlySelf",
+            "common": "Self",
+            "priority": 95,
+            "compulsory": true,
+            "inputmsg": "",
+                "macro": false,
+            "command": ["dummy"],
+            "ignoreDistract": true,
+            "hide": true
+        },
+        "dummyOther": {
+            "target": "AnyButTeam",
+            "common": "Self",
+            "priority": 95,
+            "command": ["dummy"],
+            "hide": true
+        },
+        "foundInsp": {
+            "target": "Any",
+            "common": "Self",
+            "priority": 95,
+            "compulsory": true,
+            "inputmsg": "",
+            "command": ["dummy"],
+            "dummyusermsg": "You found a Spy Ball with your finder! You can now /inspect [name] during the night to discover someone's identity!",
+            "ignoreDistract": true,
+            "hide": true
+        },
+        "foundBG": {
+            "target": "Any",
+            "common": "Self",
+            "priority": 95,
+            "compulsory": true,
+            "inputmsg": "",
+            "command": ["dummy"],
+            "dummyusermsg": "You found a Great Ball with your finder! Those are great for protecting people. You can now /protect [name] an ally during the night.",
+            "ignoreDistract": true,
+            "hide": true
+        },
+        "foundDetox": {
+            "target": "Any",
+            "common": "Self",
+            "priority": 95,
+            "compulsory": true,
+            "inputmsg": "",
+            "command": ["dummy"],
+            "dummyusermsg": "You found a Quick Ball with your finder! It's a fast solution to any poison. You can now /detox [name] to save someone from poison!",
+            "ignoreDistract": true,
+            "hide": true
+        },
+        "foundPL": {
+            "target": "Any",
+            "common": "Self",
+            "priority": 95,
+            "compulsory": true,
+            "inputmsg": "",
+            "command": ["dummy"],
+            "dummyusermsg": "You found a Luxury Ball with your finder! You can use it to /distract [name] to prevent their night actions from working.",
+            "ignoreDistract": true,
+            "hide": true
+        }
+    },
+    "roles": [
+        {
+            "translation": "Baiter",
+            "role": "bait_init",
+            "side": "safari",
+            "info": "Can /finder to get a new night action, or /gacha to try and get a day action. ~Sided~",
+            "actions": {
+                "night": {
+                    "gacha": "variable:gacha",
+                    "finder": "variable:finder",
+                    "backToBait": "variable:backToBait",
+                    "inspect": "variable:init_action",
+                    "protect": "variable:init_action",
+                    "detox": "variable:init_action",
+                    "distract": "variable:init_action",
+                    "userMsg": "variable:dummy2"
+                }
+            },
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Baiter",
+            "role": "bait",
+            "side": "safari",
+            "info": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "gacha": "variable:gacha",
+                    "finder": "variable:finder",
+                    "backToBait": "variable:backToBait2",
+                    "inspect": "variable:inspect",
+                    "protect": "variable:protect",
+                    "detox": "variable:detox",
+                    "distract": "variable:distract",
+                    "userMsg": "variable:dummy2"
+                }
+            },
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Baiter",
+            "role": "addInsp",
+            "side": "safari",
+            "info": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "gacha": "variable:gacha",
+                    "backToBait": "variable:backToBait2",
+                    "finder": "variable:dummy",
+                    "inspect": "variable:addCharge",
+                    "protect": "variable:protect",
+                    "detox": "variable:detox",
+                    "distract": "variable:distract",
+                    "userMsg": "variable:foundInsp"
+                }
+            },
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Baiter",
+            "role": "addBG",
+            "side": "safari",
+            "info": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "gacha": "variable:gacha",
+                    "backToBait": "variable:backToBait2",
+                    "finder": "variable:dummy",
+                    "inspect": "variable:inspect",
+                    "protect": "variable:addCharge",
+                    "detox": "variable:detox",
+                    "distract": "variable:distract",
+                    "userMsg": "variable:foundBG"
+                }
+            },
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Baiter",
+            "role": "addDetox",
+            "side": "safari",
+            "info": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "gacha": "variable:gacha",
+                    "backToBait": "variable:backToBait2",
+                    "finder": "variable:dummy",
+                    "inspect": "variable:inspect",
+                    "protect": "variable:protect",
+                    "detox": "variable:addCharge",
+                    "distract": "variable:distract",
+                    "userMsg": "variable:foundDetox"
+                }
+            },
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Baiter",
+            "role": "addPL",
+            "side": "safari",
+            "info": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "backToBait": "variable:backToBait2",
+                    "finder": "variable:dummy",
+                    "inspect": "variable:inspect",
+                    "protect": "variable:protect",
+                    "detox": "variable:detox",
+                    "distract": "variable:addCharge",
+                    "userMsg": "variable:foundPL"
+                }
+            },
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Gacha",
+            "role": "gacha",
+            "side": "safari",
+            "info": "Can get Rock (50%), Stardust (20%), Nugget (12.5%), Ampere (7%), Big Nugget (5%), Stick (0.5%).",
+            "actions": {},
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Finder",
+            "role": "finder",
+            "side": "safari",
+            "info": "Can get Great Ball (Protect) (40%), Spy Ball (Inspect) (30%), Quick Ball (Detox) (20%), Luxury Ball (Distract) (10%).",
+            "actions": {},
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Baiter",
+            "role": "gachaRockFail",
+            "side": "safari",
+            "info": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "gacha": "variable:gacha",
+                    "finder": "variable:finder",
+                    "backToBait": "variable:backToBait",
+                    "inspect": "variable:inspect",
+                    "protect": "variable:protect",
+                    "detox": "variable:detox",
+                    "distract": "variable:distract"
+                },
+                "standby": "variable:dayRockFail"
+            },
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Baiter",
+            "role": "gachaRock",
+            "side": "safari",
+            "info": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "gacha": "variable:gacha",
+                    "finder": "variable:finder",
+                    "backToBait": "variable:backToBait",
+                    "inspect": "variable:inspect",
+                    "protect": "variable:protect",
+                    "detox": "variable:detox",
+                    "distract": "variable:distract"
+                },
+                "standby": "variable:dayRock"
+            },
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Baiter",
+            "role": "gachaAmpere",
+            "side": "safari",
+            "info": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "gacha": "variable:gacha",
+                    "finder": "variable:finder",
+                    "backToBait": "variable:backToBait",
+                    "inspect": "variable:inspect",
+                    "protect": "variable:protect",
+                    "detox": "variable:detox",
+                    "distract": "variable:distract"
+                },
+                "standby": {
+                    "ampere": {
+                        "charges": 1,
+                        "target": "AnyButSelf",
+                        "command": "expose",
+                        "msg": "Gacha-PON! The Gachapon Machine has dispensed an item capsule. You got an ampere gem! Type /ampere [name] to reveal someone's side!",
+                        "exposemsg": "~Self~ used an Ampere Gem to illuminate ~Target~! Turns out they are a nice ~Side~."
+                    }
+                }
+            },
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Baiter",
+            "role": "gachaStardust",
+            "side": "safari",
+            "info": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "gacha": "variable:gacha",
+                    "finder": "variable:finder",
+                    "backToBait": "variable:backToBait",
+                    "inspect": "variable:inspect",
+                    "protect": "variable:protect",
+                    "detox": "variable:detox",
+                    "distract": "variable:distract"
+                },
+                "standby": {
+                    "sell": {
+                        "charges": 1,
+                        "target": "Self",
+                        "command": "expose",
+                        "msg": "Gacha-PON! The Gachapon Machine has dispensed an item capsule. You got a Stardust! Type /sell to give yourself a vote double for the day!",
+                        "exposemsg": "~Self~ sold a Stardust to the NPC. What a noob! But now the person they vote for gets double the votes!",
+                        "copyAs": {
+                            "gachaStardust2": ["gachaStardust"]
+                        },
+                        "copymsg": "",
+                        "copyusermsg": "You now double the votes on whomever you vote for!"
+                    }
+                }
+            },
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Baiter",
+            "role": "gachaStardust2",
+            "side": "safari",
+            "info": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "gacha": "variable:gacha",
+                    "finder": "variable:finder",
+                    "backToBait": "variable:backToBait",
+                    "inspect": "variable:inspect",
+                    "protect": "variable:protect",
+                    "detox": "variable:detox",
+                    "distract": "variable:distract"
+                },
+                "voteMultiplier": 2
+            },
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Baiter",
+            "role": "gachaNugget",
+            "side": "safari",
+            "info": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "gacha": "variable:gacha",
+                    "finder": "variable:finder",
+                    "backToBait": "variable:backToBait",
+                    "inspect": "variable:inspect",
+                    "protect": "variable:protect",
+                    "detox": "variable:detox",
+                    "distract": "variable:distract"
+                },
+                "standby": {
+                    "sell": {
+                        "charges": 1,
+                        "target": "Self",
+                        "command": "expose",
+                        "msg": "Gacha-PON! The Gachapon Machine has dispensed an item capsule. You got a Nugget! Type /sell to increase your vote to 5 for the day!",
+                        "exposemsg": "~Self~ sold a Nugget to the NPC. What a noob! But now they have a whopping 5 vote power!",
+                        "copyAs": {
+                            "gachaNugget2": ["gachaNugget"]
+                        },
+                        "copymsg": "",
+                        "copyusermsg": "You now get 5 votes for the day!"
+                    }
+                }
+            },
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Baiter",
+            "role": "gachaNugget2",
+            "side": "safari",
+            "info": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "gacha": "variable:gacha",
+                    "finder": "variable:finder",
+                    "backToBait": "variable:backToBait",
+                    "inspect": "variable:inspect",
+                    "protect": "variable:protect",
+                    "detox": "variable:detox",
+                    "distract": "variable:distract"
+                },
+                "vote": 5
+            },
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Baiter",
+            "role": "gachaBigNugget",
+            "side": "safari",
+            "info": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "gacha": "variable:gacha",
+                    "finder": "variable:finder",
+                    "backToBait": "variable:backToBait",
+                    "inspect": "variable:inspect",
+                    "protect": "variable:protect",
+                    "detox": "variable:detox",
+                    "distract": "variable:distract"
+                },
+                "standby": "variable:dayBigNugget"
+            },
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Baiter",
+            "role": "gachaBigNugget2",
+            "side": "safari",
+            "info": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "gacha": "variable:gacha",
+                    "finder": "variable:finder",
+                    "backToBait": "variable:backToBait",
+                    "inspect": "variable:inspect",
+                    "protect": "variable:protect",
+                    "detox": "variable:detox",
+                    "distract": "variable:distract"
+                },
+                "vote": 20
+            },
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Baiter",
+            "role": "gachaStick",
+            "side": "safari",
+            "info": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "gacha": "variable:gacha",
+                    "finder": "variable:finder",
+                    "backToBait": "variable:backToBait",
+                    "inspect": "variable:inspect",
+                    "protect": "variable:protect",
+                    "detox": "variable:detox",
+                    "distract": "variable:distract"
+                },
+                "standby": "variable:dayStick"
+            },
+            "help": "variable:baitHelp"
+        },
+        {
+            "translation": "Pyramid",
+            "role": "pyramid",
+            "side": "mafia",
+            "info": "Can /pyr to oddish players to death (varying liklihood of success). Vote increases by 2 at the end of every night. Can also /gacha. ~Sided~",
+            "actions": {
+                "night": {
+                    "pyr": {
+                        "target": "AnyButTeam",
+                        "priority": 9,
+                        "common": "Self",
+                        "command": "dummy",
+                        "broadcast": "team"
+                    },
+                    "gacha": "variable:gachaPyr",
+                    "randoPyr": "variable:randoPyr"
+                },
+                "setVote": 1,
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "You are RNG destroyer of hopes and dreams. Use /pyr during the night to oddish a player to death (it's only going to work some of the times though). Your vote starts at 1 and increases by 2 every night. Work together with the League to out-salt all the players! Use /gacha to get cool new abilities."
+        },
+        {
+            "translation": "Pyramid",
+            "role": "pyramid0",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /pyr someone during the night (varying chance to oddish them to death). Vote increases by 2 at the end of every night.",
+            "actions": {
+                "night": {
+                    "pyr": {
+                        "target": "AnyButTeam",
+                        "priority": 9,
+                        "hide": true,
+                        "common": "Self",
+                        "command": "kill",
+                        "broadcast": "team",
+                        "failChance": 0.25,
+                        "killmsg": "~Target~ (~TargetRole~) used Swampert in a Defense Room and got killed by Energy Ball Jellicent!"
+                    },
+                    "gacha": "variable:gachaPyr",
+                    "randoPyr": "variable:randoPyr"
+                },
+                "addVote": 2,
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "You are RNG destroyer of hopes and dreams. Use /pyr during the night to oddish a player to death (it's only going to work some of the times though). Your vote starts at 1 and increases by 2 every night."
+        },
+        {
+            "translation": "Pyramid",
+            "role": "pyramid1",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /pyr someone during the night (35% chance to oddish them to death). Vote increases by 2 at the end of every night.",
+            "actions": {
+                "night": {
+                    "pyr": {
+                        "target": "AnyButTeam",
+                        "priority": 9,
+                        "hide": true,
+                        "common": "Self",
+                        "failChance": 0.45,
+                        "command": "kill",
+                        "broadcast": "team",
+                        "killmsg": "~Target~ (~TargetRole~) wandered into an Empty Room and couldn't unscramble kxoyuFcimslatmirlpsyicRbyuiorier and died!"
+                    },
+                    "gacha": "variable:gachaPyr",
+                    "randoPyr": "variable:randoPyr"
+                },
+                "addVote": 2,
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "You are RNG destroyer of hopes and dreams. Use /pyr during the night to oddish a player to death (it's only going to work some of the times though). Your vote starts at 1 and increases by 2 every night."
+        },
+        {
+            "translation": "Pyramid",
+            "role": "pyramid2",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /pyr someone during the night (35% chance to oddish them to death). Vote increases by 2 at the end of every night.",
+            "actions": {
+                "night": {
+                    "pyr": {
+                        "target": "AnyButTeam",
+                        "priority": 9,
+                        "hide": true,
+                        "common": "Self",
+                        "command": "kill",
+                        "failChance": 0.45,
+                        "broadcast": "team",
+                        "killmsg": "~Target~ (~TargetRole~) tried to use Aurorus in a Hidden Mon room. Mega Lucario killed them!"
+                    },
+                    "gacha": "variable:gachaPyr",
+                    "randoPyr": "variable:randoPyr"
+                },
+                "addVote": 2,
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "You are RNG destroyer of hopes and dreams. Use /pyr during the night to oddish a player to death (it's only going to work some of the times though). Your vote starts at 1 and increases by 2 every night."
+        },
+        {
+            "translation": "Pyramid",
+            "role": "pyramid3",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /pyr someone during the night (35% chance to oddish them to death). Vote increases by 2 at the end of every night.",
+            "actions": {
+                "night": {
+                    "pyr": {
+                        "target": "AnyButTeam",
+                        "priority": 9,
+                        "hide": true,
+                        "common": "Self",
+                        "failChance": 0.55,
+                        "command": "kill",
+                        "broadcast": "team",
+                        "killmsg": "~Target~ (~TargetRole~) wandered into a Hazard room. They died to 6 invisible Flamethrowers!"
+                    },
+                    "gacha": "variable:gachaPyr",
+                    "randoPyr": "variable:randoPyr"
+                },
+                "addVote": 2,
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "You are RNG destroyer of hopes and dreams. Use /pyr during the night to oddish a player to death (it's only going to work some of the times though). Your vote starts at 1 and increases by 2 every night."
+        },
+        {
+            "translation": "Pyramid",
+            "role": "pyramid4",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /pyr someone during the night (35% chance to oddish them to death). Vote increases by 2 at the end of every night.",
+            "actions": {
+                "night": {
+                    "pyr": {
+                        "target": "AnyButTeam",
+                        "priority": 9,
+                        "hide": true,
+                        "common": "Self",
+                        "command": "kill",
+                        "failChance": 0.75,
+                        "broadcast": "team",
+                        "killmsg": "~Target~ (~TargetRole~) wandered into a Horde Room (Nerfed type: Steel, Water, Ghost, Dragon, Fairy). They just gave up and quit."
+                    },
+                    "gacha": "variable:gachaPyr",
+                    "randoPyr": "variable:randoPyr"
+                },
+                "addVote": 2,
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "You are RNG destroyer of hopes and dreams. Use /pyr during the night to oddish a player to death (it's only going to work some of the times though). Your vote starts at 1 and increases by 2 every night."
+        },
+        {
+            "translation": "Pyramid",
+            "role": "pyramidRockFail",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /pyr someone during the night (35% chance to oddish them to death). Vote increases by 2 at the end of every night.",
+            "actions": {
+                "night": {
+                    "pyr": {
+                        "target": "AnyButTeam",
+                        "priority": 9,
+                        "hide": true,
+                        "common": "Self",
+                        "command": "dummy",
+                        "broadcast": "team"
+                    },
+                    "gacha": "variable:gachaPyr",
+                    "randoPyr": "variable:randoPyr"
+                },
+                "standby": "variable:dayRockFail",
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "You are RNG destroyer of hopes and dreams. Use /pyr during the night to oddish a player to death (it's only going to work some of the times though). Your vote starts at 1 and increases by 2 every night."
+        },
+        {
+            "translation": "Pyramid",
+            "role": "pyramidRock",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /pyr someone during the night (35% chance to oddish them to death). Vote increases by 2 at the end of every night.",
+            "actions": {
+                "night": {
+                    "pyr": {
+                        "target": "AnyButTeam",
+                        "priority": 9,
+                        "hide": true,
+                        "common": "Self",
+                        "command": "dummy",
+                        "broadcast": "team"
+                    },
+                    "gacha": "variable:gachaPyr",
+                    "randoPyr": "variable:randoPyr"
+                },
+                "standby": "variable:dayRock",
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "You are RNG destroyer of hopes and dreams. Use /pyr during the night to oddish a player to death (it's only going to work some of the times though). Your vote starts at 1 and increases by 2 every night."
+        },
+        {
+            "translation": "Pyramid",
+            "role": "pyramidAmpere",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /pyr someone during the night (35% chance to oddish them to death). Vote increases by 2 at the end of every night.",
+            "actions": {
+                "night": {
+                    "pyr": {
+                        "target": "AnyButTeam",
+                        "priority": 9,
+                        "hide": true,
+                        "common": "Self",
+                        "command": "dummy",
+                        "broadcast": "team"
+                    },
+                    "gacha": "variable:gachaPyr",
+                    "randoPyr": "variable:randoPyr"
+                },
+                "standby": "variable:dayAmpere",
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "You are RNG destroyer of hopes and dreams. Use /pyr during the night to oddish a player to death (it's only going to work some of the times though). Your vote starts at 1 and increases by 2 every night."
+        },
+        {
+            "translation": "Pyramid",
+            "role": "pyramidStardust",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /pyr someone during the night (35% chance to oddish them to death). Vote increases by 2 at the end of every night.",
+            "actions": {
+                "night": {
+                    "pyr": {
+                        "target": "AnyButTeam",
+                        "priority": 9,
+                        "hide": true,
+                        "common": "Self",
+                        "command": "dummy",
+                        "broadcast": "team"
+                    },
+                    "gacha": "variable:gachaPyr",
+                    "randoPyr": "variable:randoPyr"
+                },
+                "standby": "variable:dayStardust",
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "You are RNG destroyer of hopes and dreams. Use /pyr during the night to oddish a player to death (it's only going to work some of the times though). Your vote starts at 1 and increases by 2 every night."
+        },
+        {
+            "translation": "Pyramid",
+            "role": "pyramidStardust2",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /pyr someone during the night (35% chance to oddish them to death). Vote increases by 2 at the end of every night.",
+            "actions": {
+                "night": {
+                    "pyr": {
+                        "target": "AnyButTeam",
+                        "priority": 9,
+                        "hide": true,
+                        "common": "Self",
+                        "command": "dummy",
+                        "broadcast": "team"
+                    },
+                    "gacha": "variable:gachaPyr",
+                    "randoPyr": "variable:randoPyr"
+                },
+                "voteMultiplier": 2,
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "You are RNG destroyer of hopes and dreams. Use /pyr during the night to oddish a player to death (it's only going to work some of the times though). Your vote starts at 1 and increases by 2 every night."
+        },
+        {
+            "translation": "Pyramid",
+            "role": "pyramidNugget",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /pyr someone during the night (35% chance to oddish them to death). Vote increases by 2 at the end of every night.",
+            "actions": {
+                "night": {
+                    "pyr": {
+                        "target": "AnyButTeam",
+                        "priority": 9,
+                        "hide": true,
+                        "common": "Self",
+                        "command": "dummy",
+                        "broadcast": "team"
+                    },
+                    "gacha": "variable:gachaPyr",
+                    "randoPyr": "variable:randoPyr"
+                },
+                "standby": "variable:dayNugget",
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "You are RNG destroyer of hopes and dreams. Use /pyr during the night to oddish a player to death (it's only going to work some of the times though). Your vote starts at 1 and increases by 2 every night."
+        },
+        {
+            "translation": "Pyramid",
+            "role": "pyramidNugget2",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /pyr someone during the night (35% chance to oddish them to death). Vote increases by 2 at the end of every night.",
+            "actions": {
+                "night": {
+                    "pyr": {
+                        "target": "AnyButTeam",
+                        "priority": 9,
+                        "hide": true,
+                        "common": "Self",
+                        "command": "dummy",
+                        "broadcast": "team"
+                    },
+                    "gacha": "variable:gachaPyr",
+                    "randoPyr": "variable:randoPyr"
+                },
+                "vote": 5,
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "You are RNG destroyer of hopes and dreams. Use /pyr during the night to oddish a player to death (it's only going to work some of the times though). Your vote starts at 1 and increases by 2 every night."
+        },
+        {
+            "translation": "Pyramid",
+            "role": "pyramidBigNugget",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /pyr someone during the night (35% chance to oddish them to death). Vote increases by 2 at the end of every night.",
+            "actions": {
+                "night": {
+                    "pyr": {
+                        "target": "AnyButTeam",
+                        "priority": 9,
+                        "hide": true,
+                        "common": "Self",
+                        "command": "dummy",
+                        "broadcast": "team"
+                    },
+                    "gacha": "variable:gachaPyr",
+                    "randoPyr": "variable:randoPyr"
+                },
+                "standby": "variable:dayBigNugget",
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "You are RNG destroyer of hopes and dreams. Use /pyr during the night to oddish a player to death (it's only going to work some of the times though). Your vote starts at 1 and increases by 2 every night."
+        },
+        {
+            "translation": "Pyramid",
+            "role": "pyramidBigNugget2",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /pyr someone during the night (35% chance to oddish them to death). Vote increases by 2 at the end of every night.",
+            "actions": {
+                "night": {
+                    "pyr": {
+                        "target": "AnyButTeam",
+                        "priority": 9,
+                        "hide": true,
+                        "common": "Self",
+                        "command": "dummy",
+                        "broadcast": "team"
+                    },
+                    "gacha": "variable:gachaPyr",
+                    "randoPyr": "variable:randoPyr"
+                },
+                "vote": 20,
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "You are RNG destroyer of hopes and dreams. Use /pyr during the night to oddish a player to death (it's only going to work some of the times though). Your vote starts at 1 and increases by 2 every night."
+        },
+        {
+            "translation": "Pyramid",
+            "role": "pyramidStick",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /pyr someone during the night (35% chance to oddish them to death). Vote increases by 2 at the end of every night.",
+            "actions": {
+                "night": {
+                    "pyr": {
+                        "target": "AnyButTeam",
+                        "priority": 9,
+                        "hide": true,
+                        "common": "Self",
+                        "command": "dummy",
+                        "broadcast": "team"
+                    },
+                    "gacha": "variable:gachaPyr",
+                    "randoPyr": "variable:randoPyr"
+                },
+                "standby": "variable:dayStick",
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "You are RNG destroyer of hopes and dreams. Use /pyr during the night to oddish a player to death (it's only going to work some of the times though). Your vote starts at 1 and increases by 2 every night."
+        },
+        {
+            "translation": "League",
+            "role": "league",
+            "side": "mafia",
+            "info": "Can /league someone to kill (40%) or poison (60%) killing in two turns. 35% chance to fail. ~Sided~",
+            "actions": {
+                "night": {
+                    "league": {
+                        "command": {
+                            "kill": 0.4,
+                            "poison": 0.6
+                        },
+                        "priority": 8,
+                        "hide": true,
+                        "common": "Self",
+                        "count": 3,
+                        "target": "AnyButTeam",
+                        "broadcast": "team",
+                        "failChance": 0.35
+                    },
+                    "gacha": "variable:gachaLeague"
+                },
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "Much like actual mons, it is up to you to spread uncontrollable chaos in the form of BS moves. However, since Finch can't touch you here, you are free to /league players to death as much as you want! This might kill them immediately, or after a couple days, depending on how salty they become. Work with the Pyramid to destroy all the Safari players! Remember to /gacha to get cool new stuff."
+        },
+        {
+            "translation": "League",
+            "role": "leagueRockFail",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /league someone to kill (40%) or poison (60%) killing in two turns. ~Sided~",
+            "actions": {
+                "night": {
+                    "league": "variable:dummyOther",
+                    "backToLeague": "variable:backToLeague",
+                    "gacha": "variable:gachaLeague"
+                },
+                "standby": "variable:dayRockFail",
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "Much like actual mons, it is up to you to spread uncontrollable chaos in the form of BS moves. However, since Finch can't touch you here, you are free to /league players to death as much as you want! This might kill them immediately, or after a couple days, depending on how salty they become. Work with the Pyramid to destroy all the Safari players!"
+        },
+        {
+            "translation": "League",
+            "role": "leagueRock",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /league someone to kill (40%) or poison (60%) killing in two turns. ~Sided~",
+            "actions": {
+                "night": {
+                    "league": "variable:dummyOther",
+                    "backToLeague": "variable:backToLeague",
+                    "gacha": "variable:gachaLeague"
+                },
+                "standby": "variable:dayRock",
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "Much like actual mons, it is up to you to spread uncontrollable chaos in the form of BS moves. However, since Finch can't touch you here, you are free to /league players to death as much as you want! This might kill them immediately, or after a couple days, depending on how salty they become. Work with the Pyramid to destroy all the Safari players!"
+        },
+        {
+            "translation": "League",
+            "role": "leagueAmpere",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /league someone to kill (40%) or poison (60%) killing in two turns. ~Sided~",
+            "actions": {
+                "night": {
+                    "league": "variable:dummyOther",
+                    "backToLeague": "variable:backToLeague",
+                    "gacha": "variable:gachaLeague"
+                },
+                "standby": "variable:dayAmpere",
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "Much like actual mons, it is up to you to spread uncontrollable chaos in the form of BS moves. However, since Finch can't touch you here, you are free to /league players to death as much as you want! This might kill them immediately, or after a couple days, depending on how salty they become. Work with the Pyramid to destroy all the Safari players!"
+        },
+        {
+            "translation": "League",
+            "role": "leagueStardust",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /league someone to kill (40%) or poison (60%) killing in two turns. ~Sided~",
+            "actions": {
+                "night": {
+                    "league": "variable:dummyOther",
+                    "backToLeague": "variable:backToLeague",
+                    "gacha": "variable:gachaLeague"
+                },
+                "standby": "variable:dayStardust",
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "Much like actual mons, it is up to you to spread uncontrollable chaos in the form of BS moves. However, since Finch can't touch you here, you are free to /league players to death as much as you want! This might kill them immediately, or after a couple days, depending on how salty they become. Work with the Pyramid to destroy all the Safari players!"
+        },
+        {
+            "translation": "League",
+            "role": "leagueStardust2",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /league someone to kill (40%) or poison (60%) killing in two turns. ~Sided~",
+            "actions": {
+                "night": {
+                    "league": "variable:dummyOther",
+                    "backToLeague": "variable:backToLeague",
+                    "gacha": "variable:gachaLeague"
+                },
+                "voteMultiplier": 2,
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "Much like actual mons, it is up to you to spread uncontrollable chaos in the form of BS moves. However, since Finch can't touch you here, you are free to /league players to death as much as you want! This might kill them immediately, or after a couple days, depending on how salty they become. Work with the Pyramid to destroy all the Safari players!"
+        },
+        {
+            "translation": "League",
+            "role": "leagueNugget",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /league someone to kill (40%) or poison (60%) killing in two turns. ~Sided~",
+            "actions": {
+                "night": {
+                    "league": "variable:dummyOther",
+                    "backToLeague": "variable:backToLeague",
+                    "gacha": "variable:gachaLeague"
+                },
+                "standby": "variable:dayNugget",
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "Much like actual mons, it is up to you to spread uncontrollable chaos in the form of BS moves. However, since Finch can't touch you here, you are free to /league players to death as much as you want! This might kill them immediately, or after a couple days, depending on how salty they become. Work with the Pyramid to destroy all the Safari players!"
+        },
+        {
+            "translation": "League",
+            "role": "leagueNugget2",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /league someone to kill (40%) or poison (60%) killing in two turns. ~Sided~",
+            "actions": {
+                "night": {
+                    "league": "variable:dummyOther",
+                    "backToLeague": "variable:backToLeague",
+                    "gacha": "variable:gachaLeague"
+                },
+                "vote": 5,
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "Much like actual mons, it is up to you to spread uncontrollable chaos in the form of BS moves. However, since Finch can't touch you here, you are free to /league players to death as much as you want! This might kill them immediately, or after a couple days, depending on how salty they become. Work with the Pyramid to destroy all the Safari players!"
+        },
+        {
+            "translation": "League",
+            "role": "leagueBigNugget",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /league someone to kill (40%) or poison (60%) killing in two turns. ~Sided~",
+            "actions": {
+                "night": {
+                    "league": "variable:dummyOther",
+                    "backToLeague": "variable:backToLeague",
+                    "gacha": "variable:gachaLeague"
+                },
+                "standby": "variable:dayNugget",
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "Much like actual mons, it is up to you to spread uncontrollable chaos in the form of BS moves. However, since Finch can't touch you here, you are free to /league players to death as much as you want! This might kill them immediately, or after a couple days, depending on how salty they become. Work with the Pyramid to destroy all the Safari players!"
+        },
+        {
+            "translation": "League",
+            "role": "leagueBigNugget2",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /league someone to kill (40%) or poison (60%) killing in two turns. ~Sided~",
+            "actions": {
+                "night": {
+                    "league": "variable:dummyOther",
+                    "backToLeague": "variable:backToLeague",
+                    "gacha": "variable:gachaLeague"
+                },
+                "vote": 20,
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "Much like actual mons, it is up to you to spread uncontrollable chaos in the form of BS moves. However, since Finch can't touch you here, you are free to /league players to death as much as you want! This might kill them immediately, or after a couple days, depending on how salty they become. Work with the Pyramid to destroy all the Safari players!"
+        },
+        {
+            "translation": "League",
+            "role": "leagueStick",
+            "side": "mafia",
+            "hide": true,
+            "info": "Can /league someone to kill (40%) or poison (60%) killing in two turns. ~Sided~",
+            "actions": {
+                "night": {
+                    "league": "variable:dummyOther",
+                    "backToLeague": "variable:backToLeague",
+                    "gacha": "variable:gachaLeague"
+                },
+                "standby": "variable:dayStick",
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "Much like actual mons, it is up to you to spread uncontrollable chaos in the form of BS moves. However, since Finch can't touch you here, you are free to /league players to death as much as you want! This might kill them immediately, or after a couple days, depending on how salty they become. Work with the Pyramid to destroy all the Safari players!"
+        },
+        {
+            "translation": "Stick",
+            "role": "stick",
+            "side": "stick",
+            "info": "Can /kill someone to during the day. Vote counts as 50. ~Sided~",
+            "actions": {
+                "vote": 50,
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "DESTROY SARFAI! /KILL [NAME]!!",
+                        "killmsg": "~Self~ pokes ~Target~ with a stick! ~Target~ (~Role~) was killed!"
+                    }
+                },
+                                "teamTalk": true,
+                "preventTeamvote": true,
+                "startup": "team-reveal-with-roles"
+            },
+            "help": "You've been consumed by the power of the Stick! Now you must destroy Safari. Use /kill [name] to destroy someone during the day, and dominate the vote phase with your 50 votes!"
+        }
+    ],
+    "roles1": [
+        "league",
+        "bait_init",
+        "bait_init",
+        "bait_init",
+        "bait_init"
+    ],
+    "roles2": [
+        "pyramid",
+        "bait_init",
+        "bait_init",
+        "bait_init",
+        "bait_init",
+        "bait_init",
+        "bait_init"
+    ],
+    "roles3": [
+        "pyramid",
+        "league",
+        "bait_init",
+        "bait_init",
+        "bait_init",
+        "bait_init",
+        "bait_init",
+        "bait_init",
+        "bait_init",
+        "bait_init",
+        "bait_init",
+        "bait_init"
+    ],
+    "villageCantLoseRoles": []
+}
