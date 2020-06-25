@@ -1,0 +1,345 @@
+{
+    "name": "RNG9",
+    "altname": "Hot Potato",
+    "author": "R​iceKirby",
+    "summary": "WOW THIS POTATO IS FREAKING HOT! Pass it to someone at random before it explodes in your hand!",
+    "ticks": {
+        "night1": 5,
+        "night": 5,
+        "standby": 5
+    },
+    "nolynch": true,
+    "minplayers": 3,
+    "sides": [
+        {
+			"side" : "winrar",
+			"translation" : "GOD TIER SWAG",
+			"winmsg" : "±~Players~: HAHAHAHAHAHAH. WE ARE THE WINRAR!!!!!!1!!11!112"
+		}, {
+			"side" : "nub",
+			"translation" : "Losers",
+			"winmsg" : "±RNG: 01000101010100100101001001001111010100100010000001 00010101010010010100100100111101010010001000000101 01000100010101010010010011010100100101001110010000 01010101000100010100100000010101000100010101010010 010011010100100101001110010000010101010001000101"
+		}
+    ],
+    "roles": [
+        {
+			"role" : "ok",
+			"translation" : "OK FOR NOW",
+			"side" : "nub",
+			"help" : "YOU ARE OK FOR NOW BUT YOU ARE DOOMED IF SOMEONE GIVES YOU THE POTATO SO PRAY FOR RNG GODS",
+            "info": "YOUR SURVIVE YOU WIN.",
+			"actions" : {
+                "onDeadRoles": {
+                    "convertTo": {
+                        "winrar": ["nub1", "nub2", "nub3", "nub4", "nub5", "nub6", "nub7", "nub8", "nub9"]
+                    },
+                    "convertmsg": "",
+                    "silentConvert": true
+                }
+            }
+		},
+        {
+			"role" : "winrar",
+			"translation" : "WINRAR",
+			"side" : "winrar",
+			"help" : "OMG CONGRATS U BEAT DA SYSTEM NOICEEEEEEEEEEEEEEEEEE",
+            "info": "A PRO WINNER ENOUGH SAID",
+			"winIfDeadRoles" : [],
+			"actions" : {}
+		},
+        
+        
+        {
+			"role" : "nub9",
+			"translation" : "FAIL",
+			"side" : "nub",
+			"help" : "THAT GOOD FOR NOTHING RNG HAS GIVEN YOU THE POTATO YOU MUST NOW GIVE IT TO SOMEONE ELSE OR TEAM ROCKET'S BLASTING OFF AGAINNNNNNNN",
+            "hide": true,
+			"actions" : {
+                "night": {
+                    "pass": {
+                        "command": "copy",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "compulsory": true,
+                        "copyAs": "nub_master",
+                        "copymsg": "~Self~ WAS TRYING TO PASS THE POTATO TO ~Target~ BUT THE POTATO EXPLODED ON ~Self~'S FACE GG WP",
+                        "restrict": ["pass"],
+                        "usermsg": "",
+                        "silentCopy": true,
+                        "hide": true
+                    }
+                }
+            }
+		},
+        {
+			"role" : "nub8",
+			"translation" : "FAIL",
+			"side" : "nub",
+			"help" : "THAT GOOD FOR NOTHING RNG HAS GIVEN YOU THE POTATO YOU MUST NOW GIVE IT TO SOMEONE ELSE OR TEAM ROCKET'S BLASTING OFF AGAINNNNNNNN",
+            "hide": true,
+			"actions" : {
+                "night": {
+                    "pass": {
+                        "command": ["copy", "convert"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "compulsory": true,
+                        "restrict": ["pass"],
+                        "newRole": "nub9",
+                        "copyAs": "ok",
+                        "usermsg": "",
+                        "tarmsg": "",
+                        "convertmsg": "OHGOD ~Self~ PASSED THE HOT POTATO TO ~Target~!",
+                        "copymsg": "",
+                        "hide": true
+                    }
+                }
+            }
+		},
+        {
+			"role" : "nub7",
+			"translation" : "FAIL",
+			"side" : "nub",
+			"help" : "THAT GOOD FOR NOTHING RNG HAS GIVEN YOU THE POTATO YOU MUST NOW GIVE IT TO SOMEONE ELSE OR TEAM ROCKET'S BLASTING OFF AGAINNNNNNNN",
+            "hide": true,
+			"actions" : {
+                "night": {
+                    "pass": {
+                        "command": ["copy", "convert"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "compulsory": true,
+                        "restrict": ["pass"],
+                        "newRole": "nub8",
+                        "copyAs": "ok",
+                        "usermsg": "",
+                        "tarmsg": "",
+                        "convertmsg": "OHGOD ~Self~ PASSED THE HOT POTATO TO ~Target~!",
+                        "copymsg": "",
+                        "hide": true
+                    }
+                }
+            }
+		},
+        {
+			"role" : "nub6",
+			"translation" : "FAIL",
+			"side" : "nub",
+			"help" : "THAT GOOD FOR NOTHING RNG HAS GIVEN YOU THE POTATO YOU MUST NOW GIVE IT TO SOMEONE ELSE OR TEAM ROCKET'S BLASTING OFF AGAINNNNNNNN",
+            "hide": true,
+			"actions" : {
+                "night": {
+                    "pass": {
+                        "command": ["copy", "convert"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "compulsory": true,
+                        "restrict": ["pass"],
+                        "newRole": "nub7",
+                        "copyAs": "ok",
+                        "usermsg": "",
+                        "tarmsg": "",
+                        "convertmsg": "OHGOD ~Self~ PASSED THE HOT POTATO TO ~Target~!",
+                        "copymsg": "",
+                        "hide": true
+                    }
+                }
+            }
+		},
+        {
+			"role" : "nub5",
+			"translation" : "FAIL",
+			"side" : "nub",
+			"help" : "THAT GOOD FOR NOTHING RNG HAS GIVEN YOU THE POTATO YOU MUST NOW GIVE IT TO SOMEONE ELSE OR TEAM ROCKET'S BLASTING OFF AGAINNNNNNNN",
+            "hide": true,
+			"actions" : {
+                "night": {
+                    "pass": {
+                        "command": ["copy", "convert"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "compulsory": true,
+                        "restrict": ["pass"],
+                        "newRole": "nub6",
+                        "copyAs": "ok",
+                        "usermsg": "",
+                        "tarmsg": "",
+                        "convertmsg": "OHGOD ~Self~ PASSED THE HOT POTATO TO ~Target~!",
+                        "copymsg": "",
+                        "hide": true
+                    }
+                }
+            }
+		},
+        
+        {
+			"role" : "nub4",
+			"translation" : "FAIL",
+			"side" : "nub",
+			"help" : "THAT GOOD FOR NOTHING RNG HAS GIVEN YOU THE POTATO YOU MUST NOW GIVE IT TO SOMEONE ELSE OR TEAM ROCKET'S BLASTING OFF AGAINNNNNNNN",
+            "hide": true,
+			"actions" : {
+                "night": {
+                    "pass": {
+                        "command": ["copy", "convert"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "compulsory": true,
+                        "restrict": ["pass"],
+                        "newRole": "nub5",
+                        "copyAs": "ok",
+                        "usermsg": "",
+                        "tarmsg": "",
+                        "convertmsg": "OHGOD ~Self~ PASSED THE HOT POTATO TO ~Target~!",
+                        "copymsg": "",
+                        "hide": true
+                    }
+                }
+            }
+		},
+        
+        {
+			"role" : "nub3",
+			"translation" : "FAIL",
+			"side" : "nub",
+			"help" : "THAT GOOD FOR NOTHING RNG HAS GIVEN YOU THE POTATO YOU MUST NOW GIVE IT TO SOMEONE ELSE OR TEAM ROCKET'S BLASTING OFF AGAINNNNNNNN",
+            "hide": true,
+			"actions" : {
+                "night": {
+                    "pass": {
+                        "command": ["copy", "convert"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "compulsory": true,
+                        "restrict": ["pass"],
+                        "newRole": "nub4",
+                        "copyAs": "ok",
+                        "usermsg": "",
+                        "tarmsg": "",
+                        "convertmsg": "OHGOD ~Self~ PASSED THE HOT POTATO TO ~Target~!",
+                        "copymsg": "",
+                        "hide": true
+                    }
+                }
+            }
+		},
+        {
+			"role" : "nub2",
+			"translation" : "FAIL",
+			"side" : "nub",
+			"help" : "THAT GOOD FOR NOTHING RNG HAS GIVEN YOU THE POTATO YOU MUST NOW GIVE IT TO SOMEONE ELSE OR TEAM ROCKET'S BLASTING OFF AGAINNNNNNNN",
+            "hide": true,
+			"actions" : {
+                "night": {
+                    "pass": {
+                        "command": ["copy", "convert"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "compulsory": true,
+                        "restrict": ["pass"],
+                        "newRole": "nub3",
+                        "copyAs": "ok",
+                        "usermsg": "",
+                        "tarmsg": "",
+                        "convertmsg": "OHGOD ~Self~ PASSED THE HOT POTATO TO ~Target~!",
+                        "copymsg": "",
+                        "hide": true
+                    }
+                }
+            }
+		},
+        {
+			"role" : "nub1",
+			"translation" : "FAIL",
+			"side" : "nub",
+			"help" : "THAT GOOD FOR NOTHING RNG HAS GIVEN YOU THE POTATO YOU MUST NOW GIVE IT TO SOMEONE ELSE OR TEAM ROCKET'S BLASTING OFF AGAINNNNNNNN",
+            "hide": true,
+			"actions" : {
+                "night": {
+                    "pass": {
+                        "command": ["copy", "convert"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "compulsory": true,
+                        "restrict": ["pass"],
+                        "newRole": "nub2",
+                        "copyAs": "ok",
+                        "usermsg": "",
+                        "tarmsg": "",
+                        "convertmsg": "OHGOD ~Self~ PASSED THE HOT POTATO TO ~Target~!",
+                        "copymsg": ""
+                    }
+                }
+            }
+		},
+        {
+			"role" : "nub_master",
+			"translation" : "FAIL",
+			"side" : "nub",
+			"help" : "THAT GOOD FOR NOTHING RNG HAS GIVEN YOU THE POTATO AND IT EXPLODED ON YOUR FACE TEAM ROCKET'S BLASTING OFF AGAINNNNNNNN",
+            "hide": true,
+			"actions" : {}
+		}
+    ],
+    "roles1": [
+        {"nub1": 1, "nub2": 1, "nub3": 1, "nub4": 1, "nub5": 1, "nub6": 1, "nub7": 1, "nub8": 1, "nub9": 1},
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+    ],
+    "villageCantLoseRoles": [
+        "ok",
+        "nub1",
+        "nub2",
+        "nub3",
+        "nub4",
+        "nub5",
+        "nub6"
+    ]
+}
