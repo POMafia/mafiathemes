@@ -1,0 +1,1845 @@
+{
+	"name": "TT",
+	"altname": "Teen Titans",
+	"threadlink": "http://pokemon-online.eu/threads/theme-creation-competition-phase-1.31305/",
+	"author": ["Joeypals", "Honey Senpai", "SkyPhoenix"],
+	"summary": "A brawl of ultimate proportions has erupted in the heart of Jump City! With the likes of Slade, The H.I.V.E., Trigon, and even Mumbo trying to destroy everything, it's up to the Teen Titans and their friends to defend the city! If they succeed, peace will be restored in Jump City and secured everywhere else in the world. If the Titans fail, the world will be thrown into total chaos! Teen Titans GO! A/N: This theme is part of TCC3, but something I've been meaning to make for a while. If you find any bugs, or have any questions/concerns, please contact either myself, Honey Senpai, or SkyPhoenix. And yes, this is based on the old anime not the new cartoon on Cartoon Network. ~Joeypals",
+	"sides": [
+		{
+			"side": "village",
+			"translation": "Teen Titans",
+			"winmsg": "Thanks to the valiant efforts of ~Players~ and their fallen comrades, the world has been saved!",
+			"color": "green"
+		},
+		{
+			"side": "mafia1",
+			"translation": "Slade's Brigade",
+			"winmsg": "~Players~ destroyed the opposing forces with brute strength, leaving a path of terror and destruction behind them.",
+			"color": "orange"
+		},
+		{
+			"side": "mafia2",
+			"translation": "H.I.V.E. Academy",
+			"winmsg": "After a fierce battle, ~Players~ proved to be just too strong for their opponents and have taken over the city!",
+			"color": "pink"
+		},
+		{
+			"side": "mafia3",
+			"translation": "Brotherhood Of Evil",
+			"winmsg": "Even our heroes could not stop ~Players~'s evil plans! They have taken total control of the world!",
+			"color": "blue"
+		},
+		{
+			"side": "mafia4",
+			"translation": "Trigon",
+			"winmsg": "~Player~'s power was just too strong for anyone to handle. After defeating their opponents they now sit in their throne in the middle of total destruction.",
+			"color": "yellow"
+		},
+		{
+			"side": "mafia5",
+			"translation": "The Amazing Mumbo",
+			"winmsg": "I, ~Players~, have proven to be the most adept out of everyone here by securing victory without spilling blood!",
+			"color": "purple"
+		},
+		{
+			"side": "consp",
+			"translation": "Red X",
+			"winmsg": "''I'm Just looking out for number one. I work on my own side''. ~Player~'s last words before disappearing in the blink of an eye.",
+			"color": "red"
+		}
+	],
+	"roles": [
+		{
+			"role": "robin",
+			"translation": "Robin",
+			"side": "village",
+			"info": "Can kill one target during the day (user not revealed). Progressively loses votes for every daykill (starts with 2 in games of 5-11, 4 in games of 12+). Sided with the Teen Titans.",
+			"help": "You are Robin, the current leader of the Teen Titans and the main protector of Jump City! Use your superhero gadgets wisely to /kill one target during the day (will not reveal you)! Your leadership skills allow you to start with vote of 4, but you will go crazy and lose votes after every kill. You currently have 4 votes.",
+			"actions": {
+				"vote": 4,
+				"standby": {
+					"kill": {
+						"copyAs": "robin2",
+						"target": "AnyButSelf",
+						"copymsg": "",
+						"msg": "Now's your chance to take out evil! Attack with /kill!",
+						"killmsg": "Right before ~Target~ could even react, a flashing bomb explodes from below and nullifies their sight. Robin quickly charges against his opponent and uses his metal staff to take them down!"
+					}
+				},
+				"onDeath": {
+					"convertRoles": {
+						"slade": "slade5"
+					},
+					"convertmsg": "As Robin (~Self~) falls, Slade appears by his corpse and takes his remaining power!"
+				}
+			}
+		},
+		{
+			"role": "robin2",
+			"translation": "Robin",
+			"side": "village",
+			"hide": true,
+			"help": "You are Robin, the current leader of the Teen Titans and the main protector of Jump City! Use your superhero gadgets wisely to /kill one target during the day (will not reveal you)! Your leadership skills allow you to start with vote of 4, but you will go crazy and lose votes after every kill. You currently have 3 votes.",
+			"actions": {
+				"vote": 3,
+				"standby": {
+					"kill": {
+						"initialrecharge": 1,
+						"copyAs": "robin3",
+						"copymsg": "",
+						"target": "AnyButSelf",
+						"msg": "Now's your chance to take out evil! Attack with /kill!",
+						"killmsg": "Right before ~Target~ could even react, a flashing bomb explodes from below and nullifies their sight. Robin quickly charges against his opponent and uses his metal staff to take them down!"
+					}
+				},
+				"onDeath": {
+					"convertRoles": {
+						"slade": "slade4"
+					},
+					"convertmsg": "As Robin (~Self~) falls, Slade appears by his corpse and takes his remaining power!"
+				}
+			}
+		},
+		{
+			"role": "robin3",
+			"translation": "Robin",
+			"side": "village",
+			"hide": true,
+			"help": "You are Robin, the current leader of the Teen Titans and the main protector of Jump City! Use your superhero gadgets wisely to /kill one target during the day (will not reveal you)! Your leadership skills allow you to start with vote of 4, but you will go crazy and lose votes after every kill. You currently have 2 votes.",
+			"actions": {
+				"vote": 2,
+				"standby": {
+					"kill": {
+						"initialrecharge": 1,
+						"copyAs": "robin4",
+						"copymsg": "",
+						"target": "AnyButSelf",
+						"msg": "Now's your chance to take out evil! Attack with /kill!",
+						"killmsg": "Right before ~Target~ could even react, a flashing bomb explodes from below and nullifies their sight. Robin quickly charges against his opponent and uses his metal staff to take them down!"
+					}
+				},
+				"onDeath": {
+					"convertRoles": {
+						"slade": "slade3"
+					},
+					"convertmsg": "As Robin (~Self~) falls, Slade appears by his corpse and takes his remaining power!"
+				}
+			}
+		},
+		{
+			"role": "robin4",
+			"translation": "Robin",
+			"side": "village",
+			"hide": true,
+			"help": "You are Robin, the current leader of the Teen Titans and the main protector of Jump City! Use your superhero gadgets wisely to /kill one target during the day (will not reveal you)! Your leadership skills allow you to start with vote of 4, but you will go crazy and lose votes after every kill. You currently have 1 vote.",
+			"actions": {
+				"standby": {
+					"kill": {
+						"initialrecharge": 1,
+						"target": "AnyButSelf",
+						"msg": "Now's your chance to take out evil! Attack with /kill!",
+						"killmsg": "Right before ~Target~ could even react, a flashing bomb explodes from below and nullifies their sight. Robin quickly charges against his opponent and uses his metal staff to take them down!"
+					}
+				},
+				"onDeath": {
+					"convertRoles": {
+						"slade": "slade2"
+					},
+					"convertmsg": "As Robin (~Self~) falls, Slade appears by his corpse and takes his remaining power!"
+				}
+			}
+		},
+		{
+			"role": "bb",
+			"translation": "Beast Boy",
+			"side": "village",
+			"info": "Can transform into a cat (PL), a rat (stalker), gorilla (exposer), elephant (daykiller that reveals), or Tyrannosaurus Rex (nightkiller with a 30% pierce chance). Cannot switch forms. Cannot transform until night 2. When Beast Boy dies, Terra joins Slade's Brigade. Sided with Teen Titans.",
+			"help": "You are Beast Boy! You posses an amazing power that allows you to turn into many different animals to perform different functions to help Robin and the Teen Titans fight the crime! You can use /cat to transform into a cute kitty and distract your enemies, /rat if you want to stalk enemies without being discovered, /elephant if you want to kill your enemies during the day while exposing you, /gorilla to expose any potential enemy or /trex if you want to turn into a powerful T-Rex and kill your enemies during the night with a chance of passing protection!",
+			"actions": {
+				"night": {
+					"cat": {
+						"command": "convert",
+						"convertmsg": "Beast Boy uses his transforming powers and morphs into a cat!",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 110,
+						"hide": true,
+						"initialrecharge": 1,
+						"silent": true,
+						"newRole": "catBB",	
+						"cancel": [
+							"rat",
+							"elephant",
+							"gorilla",
+							"trex"
+						]
+					},
+					"rat": {
+						"command": "convert",
+						"convertmsg": "Beast Boy uses his transforming powers and morphs into a rat!",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 110,
+						"hide": true,
+						"initialrecharge": 1,
+						"silent": true,
+						"newRole": "ratBB",	
+						"cancel": [
+							"cat",
+							"elephant",
+							"gorilla",
+							"trex"
+						]
+					},
+					"elephant": {
+						"command": "convert",
+						"convertmsg": "Beast Boy uses his transforming powers and morphs into an elephant!",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 110,
+						"hide": true,
+						"initialrecharge": 1,
+						"silent": true,
+						"newRole": "elephantBB",	
+						"cancel": [
+							"rat",
+							"cat",
+							"gorilla",
+							"trex"
+						]
+					},
+					"gorilla": {
+						"command": "convert",
+						"convertmsg": "Beast Boy uses his transforming powers and morphs into a gorilla!",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 110,
+						"hide": true,
+						"initialrecharge": 1,
+						"silent": true,
+						"newRole": "gorillaBB",	
+						"cancel": [
+							"rat",
+							"elephant",
+							"cat",
+							"trex"
+						]
+					},
+					"trex": {
+						"command": "convert",
+						"convertmsg": "Beast Boy uses his transforming powers and morphs into a T-Rex!",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 110,
+						"hide": true,
+						"initialrecharge": 1,
+						"silent": true,
+						"newRole": "trexBB",	
+						"cancel": [
+							"rat",
+							"elephant",
+							"gorilla",
+							"cat"
+						]
+					}
+				},
+				"onDeath": {
+					"convertRoles": {
+						"terra": "terras"
+					},
+					"convertmsg": "Beast Boy has fallen! Mortified, Terra lost trust in everyone around her and left the Teen Titans. However, Slade found her and convinced her to join his side, perfecting her powers in the process!"
+				}
+			}
+		},
+		{
+			"role": "catBB",
+			"translation": "Beast Boy (Cat Form)",
+			"hide": "true",
+			"side": "village",
+			"help": "You have decided to turn into an adorable kitten! In this very cute form, you are able to subdue your opponents for a night with your shining charm with /distract. Keep in mind that if you do die, Terra will join Slade, so try to keep her safe!",
+			"actions": {
+				"night": {
+					"distract": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 4,
+						"distractmsg": "Aww, green kitty! ...wait, what were you supposed to do?",
+						"teammsg": "Your teammate saw a green kitty and dragged you along to grab it!"
+					}
+				},
+				"onDeath": {
+					"convertRoles": {
+						"terra": "terras"
+					},
+					"convertmsg": "Beast Boy has fallen! Mortified, Terra lost trust in everyone around her and left the Teen Titans. However, Slade found her and convinced her to join his side, perfecting her powers in the process!"
+				}
+			}
+		},
+		{
+			"role": "ratBB",
+			"translation": "Beast Boy (Rat Form)",
+			"hide": "true",
+			"side": "village",
+			"help": "You have decided to turn into a creepy little rat! You may be much uglier than a cat in this form, but it could prove to be more useful. During the night, you may /stalk one target to see what they're up to. Keep in mind that if you do die, Terra will join Slade, so try to keep her safe!",
+			"actions": {
+				"night": {
+					"stalk": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 105
+					}
+				},
+				"onDeath": {
+					"convertRoles": {
+						"terra": "terras"
+					},
+					"convertmsg": "Beast Boy has fallen! Mortified, Terra lost trust in everyone around her and left the Teen Titans. However, Slade found her and convinced her to join his side, perfecting her powers in the process!"
+				}
+			}
+		},
+		{
+			"role": "elephantBB",
+			"translation": "Beast Boy (Elephant Form)",
+			"hide": "true",
+			"side": "village",
+			"help": "You have decided to turn into a mighty elephant! In this form, you can use your huge amount of strength to run someone down during the day with /kill! Do keep in mind that this will reveal you, so only use this kill when opportune. Also keep in mind that if you do die, Terra will join Slade, so try to keep her safe!",
+			"actions": {
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"msg": "Now's your chance to show Robin you have leadership skills! Attack someone with /kill (this will expose you)!",
+						"killmsg": "An angry elephant charges at ~Target~, leaving them cornered and furthermore terminated with a merciless stomp!",
+						"revealmsg": "~Self~ stepped on a fire extinguisher, causing him to yelp in pain!",
+						"revealChance": 1
+					}
+				},
+				"onDeath": {
+					"convertRoles": {
+						"terra": "terras"
+					},
+					"convertmsg": "Beast Boy has fallen! Mortified, Terra lost trust in everyone around her and left the Teen Titans. However, Slade found her and convinced her to join his side, perfecting her powers in the process!"
+				}
+			}
+		},
+		{
+			"role": "gorillaBB",
+			"translation": "Beast Boy (Gorilla Form)",
+			"hide": "true",
+			"side": "village",
+			"help": "You have decided to turn into a hulking gorilla! In this form, you are able to use your loud, screeching voice to make it loud and clear what someone actually is. Unlike the Elephant form, which can kill someone, this will not reveal you, so /expose to you leisure. Keep in mind that if you do die, Terra will join Slade, so try to keep her safe!",
+			"actions": {
+				"standby": {
+					"expose": {
+						"target": "AnyButSelf",
+						"msg": "Make it loud and clear who someone really is with /expose!",
+						"exposemsg": "~Self~ climbed up high in a tree and, with a booming voice, revealed that ~Target~ is actually ~Role~!"
+					}
+				},
+				"onDeath": {
+					"convertRoles": {
+						"terra": "terras"
+					},
+					"convertmsg": "Beast Boy has fallen! Mortified, Terra lost trust in everyone around her and left the Teen Titans. However, Slade found her and convinced her to join his side, perfecting her powers in the process!"
+				}
+			}
+		},
+		{
+			"role": "trexBB",
+			"translation": "Beast Boy (Tyrannosaurus Rex Form)",
+			"hide": "true",
+			"side": "village",
+			"help": "You have decided to turn into a terrifying T-Rex! In this form, you are able to take out an enemy during the night with /kill. The kicker is that this also has a 30% chance to pierce protection, so in theory you can take out a giant enemy like Slade! Keep in mind that if you do die, Terra will join Slade, so try to keep her safe!",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 45,
+						"pierceChance": 0.3
+					}
+				},
+				"onDeath": {
+					"convertRoles": {
+						"terra": "terras"
+					},
+					"convertmsg": "Beast Boy has fallen! Mortified, Terra lost trust in everyone around her and left the Teen Titans. However, Slade found her and convinced her to join his side, perfecting her powers in the process!"
+				}
+			}
+		},
+		{
+			"role": "cyborg",
+			"translation": "Cyborg",
+			"side": "village",
+			"info": "Can inspect one target during the night. Can kill two targets during the game (second kill will cause the player to not inspect or vote for one night/day, has a -2 voteshield for that phase but cannot vote). Sided with the Teen Titans.",
+			"help": "You are Cyborg! Your vast amount of technology and keen intellect allows you to use advanced gadgets to /inspect any target during the night, you can also /kill two targets by much but upon killing the second target you won't be able to inspect for one night (but gives you a -2 voteshield with the inability to vote), so use your abilities wisely!",
+			"actions": {
+				"night": {
+					"inspect": {
+						"target": "AnyButSelf",
+						"priority": 70,
+						"common": "Self"
+					},
+					"kill": {
+						"command": ["kill", "copy"],
+						"charges": 2,
+						"copyAs": "cyborg2",
+						"silentCopy": true,
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 33
+					}
+				}
+			}
+		},
+		{
+			"role": "cyborg2",
+			"translation": "Cyborg",
+			"side": "village",
+			"hide": true,
+			"help": "You are Cyborg! Your vast amount of technology and keen intellect allows you to use advanced gadgets to /inspect any target during the night, you can also /kill two targets by much but upon killing the second target you won't be able to inspect for one night (but gives you a -2 voteshield with the inability to vote), so use your abilities wisely!",
+			"actions": {
+				"night": {
+					"inspect": {
+						"target": "AnyButSelf",
+						"priority": 70,
+						"common": "Self"
+					},
+					"kill": {
+						"command": ["kill", "copy"],
+						"charges": 1,
+						"copyAs": "cyborg3",
+						"silentCopy": true,
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 33
+					}
+				}
+			}
+		},
+		{
+			"role": "cyborg3",
+			"translation": "Cyborg",
+			"side": "village",
+			"hide": true,
+			"help": "Due to overuse of your cannon, you are no longer able to attack or inspect at the current moment. In the meantime, enjoy a -2 voteshield and hope you do not get voted out, Cyborg.",
+			"actions": {
+				"noVote": true,
+				"voteshield": -2,
+                		"initialCondition": {
+                   			"curse": {
+                        			"cursedRole": "cyborg4",
+                        			"curseCount": 2,
+                        			"curseConvertMessage": "Cyborg has regained battery and can inspect again!"
+					}
+                    		}
+			}
+		},
+		{
+			"role": "cyborg4",
+			"translation": "Cyborg",
+			"side": "village",
+			"hide": true,
+			"help": "That's better! You may have lost your temporary -2 voteshield and kill, but on the plus side you can vote and inspect again! Everything else about you is the same, so look alive Cy!",
+			"actions": {
+				"night": {
+					"inspect": {
+						"target": "AnyButSelf",
+						"priority": 70,
+						"common": "Self"
+					}
+				}
+			}
+		},
+		{
+			"role": "raven",
+			"translation": "Raven",
+			"side": "village",
+			"info": "Can hax everything during the night (15% on everything). Can watch one target during the night (30% failure rate, can watch herself). When Trigon dies, gains 4 votes (5 total), hax goes up to 40%, and watch no longer fails. Sided with the Teen Titans.",
+			"help": "You are Raven, the literal spawn of a demon with a very cool, dark persona. Your powers lie in the realm of dark magic, mainly due to your heritage but nonetheless you are working on perfecting them. During the night, you can /watch anyone you desire, including yourself (has a 30% failure rate) and have the chance to see what others are doing just on plain sensory. Once Trigon dies you'll power up, so hope it goes fast.",
+			"actions": {
+				"night": {
+					"watch": {
+						"common": "Self",
+						"target": "Any",
+						"failChance": 0.3,
+						"priority": 270
+					}
+				},
+				"hax": {
+					"kill": {
+						"revealTeam": 0.15,
+						"revealPlayer": 0.15
+					},
+					"protect": {
+						"revealTeam": 0.15,
+						"revealPlayer": 0.15
+					},
+					"stalk": {
+						"revealTeam": 0.15,
+						"revealPlayer": 0.15
+					},
+					"distract": {
+						"revealTeam": 0.15,
+						"revealPlayer": 0.15
+					},
+					"poison": {
+						"revealTeam": 0.15,
+						"revealPlayer": 0.15
+					},
+					"watch": {
+						"revealTeam": 0.15,
+						"revealPlayer": 0.15
+					},
+					"convert": {
+						"revealTeam": 0.15,
+						"revealPlayer": 0.15
+					}
+				}
+			}
+		},
+		{
+			"role": "ravenw",
+			"translation": "Raven (White Form)",
+			"hide": true,
+			"side": "village",
+			"help": "With Trigon gone, you have now gained your true power! For starters, you have inherited his voting prowess in a way, as you now have a vote of 5. In addition, your watch will no longer fail and your hax on everything has gone up dramatically (up to 40%)! Use this newfound power to lead the Titans to victory!",
+			"actions": {
+				"vote": 5,
+				"night": {
+					"watch": {
+						"common": "Self",
+						"target": "Any",
+						"priority": 270,
+						"hide": true
+					}
+				},
+				"hax": {
+					"kill": {
+						"revealTeam": 0.4,
+						"revealPlayer": 0.4
+					},
+					"protect": {
+						"revealTeam": 0.4,
+						"revealPlayer": 0.4
+					},
+					"stalk": {
+						"revealTeam": 0.4,
+						"revealPlayer": 0.4
+					},
+					"distract": {
+						"revealTeam": 0.4,
+						"revealPlayer": 0.4
+					},
+					"poison": {
+						"revealTeam": 0.4,
+						"revealPlayer": 0.4
+					},
+					"watch": {
+						"revealTeam": 0.4,
+						"revealPlayer": 0.4
+					},
+					"convert": {
+						"revealTeam": 0.4,
+						"revealPlayer": 0.4
+					}
+				}
+			}
+		},
+		{
+			"role": "starfire",
+			"translation": "Starfire",
+			"info": "Can protect one target during the night. Can distract one target during the night with increasing odds of reveal to the target (0%, 20%, 50%, 75%, 100%). Sided with the Teen Titans.",
+			"side": "village",
+			"help": "You are Starfire, a very strong Tamaranean warrior that wields a strong power but also a nice heart, always seeking for the well being of your friends. Use your powers to /protect one target during the night, or /distract one target during the night, but watch out, doing this could reveal your action to the target! At the present, you will not reveal to a target.",
+			"actions": {
+				"night": {
+					"protect": {
+						"priority": 10,
+						"target": "AnyButSelf",
+						"common": "Self",
+						"cancel": [
+							"distract"
+						]
+					},
+					"distract": {
+						"command": ["distract", "copy"],
+						"noRepeat": true,
+						"copyAs": "starfire-reveal1",
+						"copymsg": "",
+						"cancel": [
+							"protect"
+						],
+						"silentCopy": true,
+						"priority": 6,
+						"target": "AnyButSelf",
+						"common": "Self",
+						"distractmsg": "A pretty alien girl just floated by, making any plans you had fade away.",
+						"teammsg": "Your teammate apparently saw some alien girl last night and ended up getting dragged along to hunt her down!"
+					}
+				}
+			}
+		},
+		{
+            		"role": "starfire-reveal1",
+            		"translation": "Starfire",
+            		"hide": true,
+            		"side": "village",
+            		"help": "Wait for it...",
+            		"actions": {
+                		"initialCondition": {
+                      			"curse": {
+                          			"cursedRole": "starfire2",
+                          			"curseCount": 1,
+						"curseConvertMessage": ""
+                      			}
+                		},
+                		"night": {
+                    			"distract": {
+                        			"command": "dummy3",
+                        			"priority": 6.1,
+						"hide": true,
+                        			"target": "AnyButSelf",
+                        			"common": "Self"
+                    			}
+                		}
+            		}
+        	},
+		{
+			"role": "starfire2",
+			"translation": "Starfire",
+			"hide": true,
+			"side": "village",
+			"help": "You are Starfire, a very strong Tamaranean warrior that wields a strong power but also a nice heart, always seeking for the well being of your friends. Use your powers to /protect one target during the night, or /distract one target during the night, but watch out, doing this could reveal your action to the target! At the present, you have a 20% chance to reveal to the target.",
+			"actions": {
+				"night": {
+					"protect": {
+						"priority": 10,
+						"target": "AnyButSelf",
+						"common": "Self",
+						"cancel": [
+							"distract"
+						]
+					},
+					"distract": {
+						"command": ["distract", "copy"],
+						"copyAs": "starfire-reveal2",
+						"priority": 6,
+						"silent": true,
+						"cancel": [
+							"protect"
+						],
+						"silentCopy": true,
+						"hide": true,
+						"target": "AnyButSelf",
+						"common": "Self",
+						"distractmsg": "A pretty alien girl just floated by, making any plans you had fade away.",
+						"teammsg": "Your teammate apparently saw some alien girl last night and ended up getting dragged along to hunt her down!"
+					}
+				}
+			}
+		},
+		{
+            		"role": "starfire-reveal2",
+            		"translation": "Starfire",
+            		"hide": true,
+            		"side": "village",
+            		"help": "Wait for it...",
+            		"actions": {
+                		"initialCondition": {
+                      			"curse": {
+                          			"cursedRole": "starfire3",
+                          			"curseCount": 1,
+						"curseConvertMessage": ""
+                      			}
+                		},
+                		"night": {
+                    			"distract": {
+                        			"command": {             
+                                    			"dummy2": 0.2,
+                                    			"dummy3": 0.8
+                                    		},
+                        			"dummy2usermsg": "Oh blorg!! It looks like that ~Target~ discovered your secret identity.",
+                        			"dummy2targetmsg": "~Role~ distracted you but you now know that she is ~Self~!",
+                        			"priority": 6.1,
+						"hide": true,
+                        			"target": "AnyButSelf",
+                        			"common": "Self"
+                    			}
+                		}
+            		}
+        	},
+		{
+			"role": "starfire3",
+			"translation": "Starfire",
+			"hide": true,
+			"side": "village",
+			"help": "You are Starfire, a very strong Tamaranean warrior that wields a strong power but also a nice heart, always seeking for the well being of your friends. Use your powers to /protect one target during the night, or /distract one target during the night, but watch out, doing this could reveal your action to the target! At the present, you have a 50% chance to reveal to the target.",
+			"actions": {
+				"night": {
+					"protect": {
+						"priority": 10,
+						"target": "AnyButSelf",
+						"common": "Self",
+						"cancel": [
+							"distract"
+						]
+					},
+					"distract": {
+						"command": ["distract", "copy"],
+						"copyAs": "starfire-reveal3",
+						"priority": 6,
+						"silent": true,
+						"cancel": [
+							"protect"
+						],
+						"silentCopy": true,
+						"hide": true,
+						"target": "AnyButSelf",
+						"common": "Self",
+						"distractmsg": "A pretty alien girl just floated by, making any plans you had fade away.",
+						"teammsg": "Your teammate apparently saw some alien girl last night and ended up getting dragged along to hunt her down!"
+					}
+				}
+			}
+		},
+		{
+            		"role": "starfire-reveal3",
+            		"translation": "Starfire",
+            		"hide": true,
+            		"side": "village",
+            		"help": "Wait for it...",
+            		"actions": {
+                		"initialCondition": {
+                      			"curse": {
+                          			"cursedRole": "starfire4",
+                          			"curseCount": 1,
+						"curseConvertMessage": ""
+                      			}
+                		},
+                		"night": {
+                    			"distract": {
+                        			"command": {              
+                                    			"dummy2": 0.5,
+                                    			"dummy3": 0.5
+                                    		},
+                        			"dummy2usermsg": "Oh blorg!! It looks like that ~Target~ discovered your secret identity.",
+                        			"dummy2targetmsg": "~Role~ distracted you but you now know that she is ~Self~!",
+                        			"priority": 6.1,
+						"hide": true,
+                        			"target": "AnyButSelf",
+                        			"common": "Self"
+                    			}
+                		}
+            		}
+        	},
+		{
+			"role": "starfire4",
+			"translation": "Starfire",
+			"hide": true,
+			"side": "village",
+			"help": "You are Starfire, a very strong Tamaranean warrior that wields a strong power but also a nice heart, always seeking for the well being of your friends. Use your powers to /protect one target during the night, or /distract one target during the night, but watch out, doing this could reveal your action to the target! At the present, you have a 75% chance to reveal to the target.",
+			"actions": {
+				"night": {
+					"protect": {
+						"priority": 10,
+						"target": "AnyButSelf",
+						"common": "Self",
+						"cancel": [
+							"distract"
+						]
+					},
+					"distract": {
+						"command": ["distract", "copy"],
+						"copyAs": "starfire-reveal4",
+						"priority": 6,
+						"silent": true,
+						"cancel": [
+							"protect"
+						],
+						"silentCopy": true,
+						"hide": true,
+						"target": "AnyButSelf",
+						"common": "Self",
+						"distractmsg": "A pretty alien girl just floated by, making any plans you had fade away.",
+						"teammsg": "Your teammate apparently saw some alien girl last night and ended up getting dragged along to hunt her down!"
+					}
+				}
+			}
+		},
+		{
+            		"role": "starfire-reveal4",
+            		"translation": "Starfire",
+            		"hide": true,
+            		"side": "village",
+            		"help": "Wait for it...",
+            		"actions": {
+                		"initialCondition": {
+                      			"curse": {
+                          			"cursedRole": "starfire5",
+                          			"curseCount": 1,
+						"curseConvertMessage": ""
+                      			}
+                		},
+                		"night": {
+                    			"distract": {
+                        			"command": {              
+                                    			"dummy2": 0.75,
+                                    			"dummy3": 0.25
+                                    		},
+                        			"dummy2usermsg": "Oh blorg!! It looks like that ~Target~ discovered your secret identity.",
+                        			"dummy2targetmsg": "~Role~ distracted you but you now know that she is ~Self~!",
+                        			"priority": 6.1,
+						"hide": true,
+                        			"target": "AnyButSelf",
+                        			"common": "Self"
+                    			}
+                		}
+            		}
+        	},
+		{
+			"role": "starfire5",
+			"translation": "Starfire",
+			"hide": true,
+			"side": "village",
+			"help": "You are Starfire, a very strong Tamaranean warrior that wields a strong power but also a nice heart, always seeking for the well being of your friends. Use your powers to /protect one target during the night, or /distract one target during the night, but watch out, doing this could reveal your action to the target! At the present, you have a 100% chance to reveal to the target.",
+			"actions": {
+				"night": {
+					"protect": {
+						"priority": 10,
+						"target": "AnyButSelf",
+						"common": "Self",
+						"cancel": [
+							"distract"
+						]
+					},
+					"distract": {
+						"command": ["distract", "copy"],
+						"copyAs": "starfire-reveal5",
+						"priority": 6,
+						"silent": true,
+						"cancel": [
+							"protect"
+						],
+						"silentCopy": true,
+						"hide": true,
+						"target": "AnyButSelf",
+						"common": "Self",
+						"distractmsg": "A pretty alien girl just floated by, making any plans you had fade away.",
+						"teammsg": "Your teammate apparently saw some alien girl last night and ended up getting dragged along to hunt her down!"
+					}
+				}
+			}
+		},
+		{
+            		"role": "starfire-reveal5",
+            		"translation": "Starfire",
+            		"hide": true,
+            		"side": "village",
+            		"help": "Wait for it...",
+            		"actions": {
+                		"initialCondition": {
+                      			"curse": {
+                          			"cursedRole": "starfire5",
+                          			"curseCount": 1,
+						"curseConvertMessage": ""
+                      			}
+                		},
+                		"night": {
+                    			"distract": {
+                        			"command": "dummy2",
+                        			"dummy2usermsg": "Oh blorg!! It looks like that ~Target~ discovered your secret identity.",
+                        			"dummy2targetmsg": "~Role~ distracted you but you now know that she is ~Self~!",
+                        			"priority": 6.1,
+						"hide": true,
+                        			"target": "AnyButSelf",
+                        			"common": "Self"
+                    			}
+                		}
+            		}
+        	},
+		{
+			"role": "terra",
+			"translation": "Terra",
+			"info": "Can expose one target during the night every other night (has 20% chance of killing herself, fails 30% of the time). Can expose one target during the day (has a 50% chance of revealing herself). When Beast Boy dies, joins Slade's Brigade and loses the suicide and failure rates in the process. Sided with the Teen Titans.",
+			"side": "village",
+			"help": "You are Terra! You were born with amazing powers but you still don't seem to control them very well, but with the help of the Titans you can fight the crime decently. Use /expose one target during the night every other night (20% chance of killing yourself and has a fail chance of 30%). You can also expose a target during the day, but this has a 50% chance of revealing yourself.",
+			"actions": {
+				"night": {
+					"expose": {
+                        			"command": ["dummy"],
+                        			"common": "Self",
+                        			"target": "AnyButSelf",
+                        			"priority": 9,
+                        			"recharge": 2,
+                        			"dummybroadcastmsg": "±Game: ~Target~ (~TargetRole~) has been hit by one of Terra's stones, leaving them exposed!",
+						"failChance": 0.3,
+						"suicideChance": 0.2
+					}
+				},
+				"standby": {
+					"expose": {
+						"target": "AnyButSelf",
+						"msg": "The time has come for you to prove your worth! It may put you in danger, but use /expose to see who someone is!",
+						"exposemsg": "Terra uses her ground control powers to lift ~Target~ (~Role~) in mid-air, leaving them at the sight of everyone!",
+						"revealmsg": "~Self~ is starting to show physical pain from lack of control of their powers.",
+						"revealChance": 0.5
+					}
+				}
+			}
+                },
+		{
+			"role": "mas",
+			"translation": "Mas",
+			"info": "Has 2 votes. When Mas dies, so does Menos. Knows Menos on startup. Sided with the Teen Titans.",
+			"side": "village",
+			"help": "You are Mas! You are Menos' main partner and without him you are completely powerless, but when you two are together your vote increases to 2! Mas y Menos si podemos! Be warned that if you die, so does Menos.",
+			"actions": {
+				"startup": {
+					"revealRole": "menos"
+				},
+				"vote": 2,
+				"onDeath": {
+					"killRoles": [
+						"menos"
+					],
+					"killmsg": "As Mas fell dead, Menos went out of control and self-destructed!"
+				}
+			}
+		},
+		{
+			"role": "menos",
+			"translation": "Menos",
+			"info": "Has -2 votes. When Menos dies, so does Mas. Knows Mas on startup. Sided with the Teen Titans.",
+			"side": "village",
+			"help":  "You are Menos! You are Mas's main partner and without him you are completely powerless, but when you two are together your vote is -2! Mas y Menos si podemos! Be warned that if you die, so does Mas.",
+			"actions": {
+				"startup": {
+					"revealRole": "mas"
+				},
+				"vote": -2,
+				"onDeath": {
+					"killRoles": [
+						"mas"
+					],
+					"killmsg": "As Menos fell dead, Mas went out of control and self-destructed!"
+				}
+			}
+		},
+		{
+			"role": "aqualad",
+			"translation": "Aqualad",
+			"info": "Can stalk one target during the night. Sided with the Teen Titans.",
+			"side": "village",
+			"help": "You are Aqualad. You have the ability to communicate with any marine creature to help yourself and the Teen Titans to beat the crime. With the help of your aquatic friends you can /stalk one target during the night.",
+			"actions": {
+				"night": {
+					"stalk": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 106
+					}
+				}
+			}
+		},
+		{
+			"role": "bumblebee",
+			"translation": "Bumblebee",
+			"info": "Can distract one target during the night. Sided with the Teen Titans.",
+			"side": "village",
+			"help": "You are Bumblebee! You are a very skilled girl with the ability to fly, shrink, and hit your opponents with powerful electric discharges! Use this stellar combination to /distract any target during the night!",
+			"actions": {
+				"night": {
+					"distract": {
+						"target":"AnyButSelf",
+						"common": "Self",
+						"priority" : 5,
+						"distractmsg": "Some weird bee/human girl hybrid flew at you with slight aggression, so you took off in the other direction!",
+						"teammsg": "On your way to do your night job, your partner ran screaming because of a bee. Being the good friend you are, you ran after him."
+					}
+				}
+			}
+		},
+		{
+			"role": "citizen",
+			"translation": "Citizen",
+			"info": "Sided with the Teen Titans.",
+			"side": "village",
+			"help": "You are a Citizen. You do not have any special powers nor anything alike, but don't worry, the Teen Titans are here to protect you from harm! Although, you can help them take out evil with your vote during the day!",
+			"actions": {}
+		},
+		{
+			"role": "silkie",
+			"translation": "Silkie",
+			"info": "Inspected as Jinx. Sided with the Teen Titans.",
+			"side": "village",
+			"help": "You are a Citizen. You do not have any special powers nor anything alike, but don't worry, the Teen Titans are here to protect you from harm! Although, you can help them take out evil with your vote during the day!",
+			"actions": {
+				"startup" : {
+					"revealAs" : "citizen"
+				},
+				"lynch" : {
+					"revealAs" : "silkie"
+				},
+				"inspect": {
+					"revealAs": "jinx"
+				},
+				"onlist" : "silkie"
+			}
+		},
+		{
+			"role": "slade",
+			"translation": "Slade",
+			"side": "mafia1",
+			"info": "Can kill one target during the night (shared with team). When Robin dies, gains however many votes he still had. Cannot be nightkilled or distracted. Sided with Slade's Brigade.",
+			"help": "You are Slade, one of the most powerful villains of Jump City, the arch-nemesis of the Teen Titans and specially the arch-nemesis of Robin. You are a very skilled warrior that leads a whole brigade with the purpose of destroying the Teen Titans. Use your skills to /kill one target during the night (shared with your team). You cannot be nightkilled or distracted and, if Robin dies, you get the amount of votes he had before dying. (Hint: Use /tt to talk to your team!)",
+			"actions": {
+				"teamUtilities": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 34,
+						"hide": true,
+						"msg": "There's a saying that goes ''All you care about, you destroy''. So why are you lying dead without me lifting a finger?",
+						"broadcast" : "team",
+						"broadcastmsg" : "±Chaos: Your teammate ~Player~ (Slade) has decided to kill ~Target~!"
+					}
+				},
+				"kill": {
+					"mode": "ignore"
+				},
+				"distract": {
+					"mode": "ignore"
+				}
+			}
+		},
+		{
+			"role": "slade2",
+			"translation": "Slade",
+			"side": "mafia1",
+			"hide": true,
+			"help": "You are Slade, one of the most powerful villains of Jump City, the arch-nemesis of the Teen Titans and specially the arch-nemesis of Robin. You are a very skilled warrior that leads a whole brigade with the purpose of destroying the Teen Titans. Use your skills to /kill one target during the night (shared with your team). You cannot be nightkilled or distracted and, if Robin dies, you get the amount of votes he had before dying. You have 2 votes. (Hint: Use /tt to talk to your team!)",
+			"actions": {
+				"teamUtilities": true,
+				"vote": 2,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 34,
+						"hide": true,
+						"msg": "There's a saying that goes ''All you care about, you destroy''. So why are you lying dead without me lifting a finger?",
+						"broadcast" : "team",
+						"broadcastmsg" : "±Chaos: Your teammate ~Player~ (Slade) has decided to kill ~Target~!"
+					}
+				},
+				"kill": {
+					"mode": "ignore"
+				},
+				"distract": {
+					"mode": "ignore"
+				}
+			}
+		},
+		{
+			"role": "slade3",
+			"translation": "Slade",
+			"side": "mafia1",
+			"hide": true,
+			"help": "You are Slade, one of the most powerful villains of Jump City, the arch-nemesis of the Teen Titans and specially the arch-nemesis of Robin. You are a very skilled warrior that leads a whole brigade with the purpose of destroying the Teen Titans. Use your skills to /kill one target during the night (shared with your team). You cannot be nightkilled or distracted and, if Robin dies, you get the amount of votes he had before dying. You have 3 votes. (Hint: Use /tt to talk to your team!)",
+			"actions": {
+				"teamUtilities": true,
+				"vote": 3,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 34,
+						"hide": true,
+						"msg": "There's a saying that goes ''All you care about, you destroy''. So why are you lying dead without me lifting a finger?",
+						"broadcast" : "team",
+						"broadcastmsg" : "±Chaos: Your teammate ~Player~ (Slade) has decided to kill ~Target~!"
+					}
+				},
+				"kill": {
+					"mode": "ignore"
+				},
+				"distract": {
+					"mode": "ignore"
+				}
+			}
+		},
+		{
+			"role": "slade4",
+			"translation": "Slade",
+			"side": "mafia1",
+			"hide": true,
+			"help": "You are Slade, one of the most powerful villains of Jump City, the arch-nemesis of the Teen Titans and specially the arch-nemesis of Robin. You are a very skilled warrior that leads a whole brigade with the purpose of destroying the Teen Titans. Use your skills to /kill one target during the night (shared with your team). You cannot be nightkilled or distracted and, if Robin dies, you get the amount of votes he had before dying. You have 4 votes. (Hint: Use /tt to talk to your team!)",
+			"actions": {
+				"teamUtilities": true,
+				"vote": 4,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 34,
+						"hide": true,
+						"msg": "There's a saying that goes ''All you care about, you destroy''. So why are you lying dead without me lifting a finger?",
+						"broadcast" : "team",
+						"broadcastmsg" : "±Chaos: Your teammate ~Player~ (Slade) has decided to kill ~Target~!"
+					}
+				},
+				"kill": {
+					"mode": "ignore"
+				},
+				"distract": {
+					"mode": "ignore"
+				}
+			}
+		},
+		{
+			"role": "slade5",
+			"translation": "Slade",
+			"side": "mafia1",
+			"hide": true,
+			"help": "You are Slade, one of the most powerful villains of Jump City, the arch-nemesis of the Teen Titans and specially the arch-nemesis of Robin. You are a very skilled warrior that leads a whole brigade with the purpose of destroying the Teen Titans. Use your skills to /kill one target during the night (shared with your team). You cannot be nightkilled or distracted and, if Robin dies, you get the amount of votes he had before dying. You have 5 votes. (Hint: Use /tt to talk to your team!)",
+			"actions": {
+				"teamUtilities": true,
+				"vote": 5,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 34,
+						"hide": true,
+						"msg": "There's a saying that goes ''All you care about, you destroy''. So why are you lying dead without me lifting a finger?",
+						"broadcast" : "team",
+						"broadcastmsg" : "Your teammate ~Player~ (Slade) has decided to kill ~Target~!"
+					}
+				},
+				"kill": {
+					"mode": "ignore"
+				},
+				"distract": {
+					"mode": "ignore"
+				}
+			}
+		},
+		{
+			"role": "cinderblock",
+			"translation": "Cinderblock",
+			"side": "mafia1",
+			"info": "Can protect one person during the night. Can kill one target during the night (shared with team). Killed if distracted. Sided with Slade's Brigade.",
+			"help": "You are Cinderblock! You are a gigantic and bulky monster of concrete capable of blocking strong hits. Because of this, you can /protect one person during the night as well as /kill one target during the night (shared with your team). Watch out though, you are just brute force without any fighting intelligence. So if you get distracted, you'll break apart and die! (Hint: Use /tt to talk to your team!)",
+			"actions": {
+				"teamUtilities": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 34,
+						"hide": true,
+						"msg": "There's a saying that goes ''All you care about, you destroy''. So why are you lying dead without me lifting a finger?",
+						"broadcast" : "team",
+						"broadcastmsg" : "Your teammate ~Player~ (Cinderblock) has decided to kill ~Target~!"
+					},
+					"protect": {
+						"target": "OnlyTeam",
+						"common": "Self",
+						"priority": 8,
+						"broadcast": "team",
+						"broadcastmsg": "Your teammate ~Player~ (Cinderblock) has decided to protect ~Target~!"
+					}
+				},
+				"distract": {
+					"mode": "die",
+					"msg": "The price of surrounding beauty took its toll on Cinderblock. He crumbled to the ground and died!"
+				}
+			}
+		},
+		{
+			"role": "plasmus",
+			"translation": "Plasmus",
+			"side": "mafia1",
+			"info": "Can poison one target during the night. Can kill one target during the night (shared with team). Has a voteshield of -1. Sided with Slade's Brigade.",
+			"help": "You are Plasmus! You were originally a human, but with mutant alterations, you turned into a big monster of purple ooze and radioactive substances. As a result, you can /poison one target during the night. You can also /kill one target during the night (Shared with your team) and you have a voteshield of -1. (Hint: use /tt to talk to your team!)",
+			"actions": {
+				"teamUtilities": true,
+				"voteshield": -1,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 34,
+						"hide": true,
+						"msg": "There's a saying that goes ''All you care about, you destroy''. So why are you lying dead without me lifting a finger?",
+						"broadcast" : "team",
+						"broadcastmsg" : "Your teammate ~Player~ (Plasmus) has decided to kill ~Target~!"
+					},
+					"poison": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 64,
+						"broadcast": "team",
+						"broadcastmsg": "Your teammate ~Player~ (Plasmus) has decided to poison ~Target~!",
+						"poisonDeadMessage": "The toxins from Plasmus have become too much for you!"
+					}
+				}
+			}
+		},
+		{
+			"role": "overload",
+			"translation": "Overload",
+			"side": "mafia1",
+			"info": "Can kill one target during the night (shared with team). Can distract one target during the night. Can kill one target during the day (will expose user). Sided with Slade's Brigade.",
+			"help": "You are Overload! Originally you were a computer circuit, but now you possess great intelligence and the capability of manipulating electricity, allowing you to turn into a huge monster composed of electricity. Use your powerful electric powers to /kill one target during the night (shared with your team). You can manipulate electronic devices to /distract one target during the night. You also can /kill one target during the day, but watch out, this will leave you totally exposed! (Hint: Use /tt to talk to your team)",
+			"actions": {
+				"teamUtilities": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 34,
+						"hide": true,
+						"msg": "There's a saying that goes ''All you care about, you destroy''. So why are you lying dead without me lifting a finger?",
+						"broadcast" : "team",
+						"broadcastmsg" : "Your teammate ~Player~ (Plasmus) has decided to kill ~Target~!"
+					},
+					"distract": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 7,
+						"msg": "There's a saying that goes ''All you care about, you destroy''. So why are you lying dead without me lifting a finger?",
+						"broadcast": "team",
+						"broadcastmsg": "Your teammate ~Player~ (Overload) has decided to distract ~Target~!",
+						"distractmsg": "As you went to move, a giant bolt of electricity struck you, leaving you immobile!",
+						"teammsg": "You went to grab your partner to leave for the night, but ended up getting shocked from Overload as well!"
+					}
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButTeam",
+						"msg": "Now's the time to strike! Take someone out with /kill!",
+						"killmsg": "The ground rumbled as lightning struck down all over the place. One of the bolts eventually hit ~Target~, killing them instantly!",
+						"revealmsg": "~Self~ bent over in exhaustion from using so much power.",
+						"revealChance": 1
+					}
+				}
+			}
+		},
+		{
+			"role": "terras",
+			"translation": "Terra",
+			"side": "mafia1",
+			"help": "You are Terra! Unfortunately your most cherished friend Beast Boy has fallen in combat. In your anger and frustration you left the Titans and decided to join Slade's Brigade. Slade taught you how to control your powers to its fullest so now when you /expose a target you won't kill yourself nor fail on the process.",
+			"actions": {
+				"teamUtilities": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 34,
+						"hide": true,
+						"msg": "There's a saying that goes ''All you care about, you destroy''. So why are you lying dead without me lifting a finger?",
+						"broadcast" : "team",
+						"broadcastmsg" : "Your teammate ~Player~ (Terra) has decided to kill ~Target~!"
+					},
+					"expose": {
+                        			"command": ["dummy"],
+                        			"common": "Self",
+                        			"target": "AnyButSelf",
+                        			"priority": 9,
+                        			"dummybroadcastmsg": "±Game: ~Target~ (~TargetRole~) has been hit by one of Terra's stones, leaving them exposed!"
+					}
+				},
+				"standby": {
+					"expose": {
+						"target": "AnyButSelf",
+						"msg": "The time has come for you to prove your worth! Use /expose to see who someone is!",
+						"exposemsg": "Terra uses her ground control powers to lift ~Target~ (~Role~) in mid-air, leaving them at the sight of everyone!"
+					}
+				}
+			}
+                },
+		{
+			"role" : "sladeb",
+			"translation" : "Slade's Brigade",
+			"info" : "If you somehow get this role, please contact Joeypals at http://pokemon-online.eu/forums/member.php?24510-Joeypals!!",
+			"hide" : true,
+			"side" : "mafia1",
+			"help" : "If you somehow get this role, please contact Joeypals at http://pokemon-online.eu/forums/member.php?24510-Joeypals!!",
+			"actions" : {
+				"initialCondition" : {
+					"poison" : {
+						"count" : 1,
+						"poisonDeadMessage" : "Time is up!"
+					}
+				},
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 34,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Skuttler) has decided to kill ~Target~!"
+					}
+				}
+			}
+		},
+		{
+			"role": "jinx",
+			"translation": "Jinx",
+			"side": "mafia2",
+			"info": "Can hex (inspect and distract) one target during the night. Can kill one target during the night (shared with team). Sided with The H.I.V.E.",
+			"help": "You are Jinx! A skilled sorceress with the power of manipulating the luck of everything around you, you can /hex (Inspect and distract) one target during the night. Since you can cause bad luck to your opponents, you can take advantage of this to cause utter chaos and /kill one target during the night as well (shared with your team, but Brother Blood has the final word on which target to kill). (Hint: Use /tt to talk to your team!)",
+			"actions": {
+				"teamUtilities": true,
+				"night": {
+					"hex": {
+						"command": ["inspect", "distract"],
+						"common": "Self",
+						"priority": 3,
+						"target": "AnyButTeam",
+						"msg": "All that you remember from last night is getting blasted with some kind of spell.",
+						"teammsg": "You were going to go destroy some people, but unfortunately you had to spend the night reviving your teammate!",
+						"broadcast": "team",
+						"broadcastmsg": "Your partner ~Player~ (Jinx) has decided to hex ~Target~!"
+					},
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 32,
+						"hide": true,
+						"msg": "And you thought you could escape The H.I.V.E. too... pathetic.",
+						"broadcast" : "team",
+						"broadcastmsg" : "Your teammate ~Player~ (Jinx) has decided to kill ~Target~!"
+					}
+				}
+			}
+		},
+		{
+			"role": "gizmo",
+			"translation": "Gizmo",
+			"side": "mafia2",
+			"info": "Can observe (stalk+watch) one target during the night. Can kill one target during the night (shared with team). Sided with The H.I.V.E.",
+			"help": "You are Gizmo! A kid with brilliant intellect and the capability of creating many useful robots for all sorts of purposes, your amazing technology allows you to /observe (stalk and watch) one target during the night. You are also capable of designing robots that can /kill one target during the night (shared with your team, but Brother Blood has the final word on which target to kill). (Hint: Use /tt to talk to your team!)",
+			"actions": {
+				"teamUtilities": true,
+				"night": {
+					"observe": {
+						"command": ["watch", "stalk"],
+						"priority": 305,
+						"common": "Self",
+						"target": "AnyButTeam",
+						"broadcast": "team",
+						"broadcastmsg": "Your partner ~Player~ (Gizmo) has decided to observe ~Target~!"
+					},
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 32,
+						"hide": true,
+						"msg": "And you thought you could escape The H.I.V.E. too... pathetic.",
+						"broadcast" : "team",
+						"broadcastmsg" : "Your teammate ~Player~ (Gizmo) has decided to kill ~Target~!"
+					}
+				}
+			}
+		},
+		{
+			"role": "mammoth",
+			"translation": "Mammoth",
+			"side": "mafia2",
+			"info": "Can kill one target during the night (shared with team). Dies if inspected. Can evade one nightkill. Sided with The H.I.V.E.",
+			"help": "You are Mammoth! A bulky  villain that wields an outstanding physical force and resistance, because of your amazing strength you are capable of /kill one target during the night (shared with your team, but Brother Blood has the final word on which target to kill). You are also capable of evading just one night kill. Beware! If someone inspects you and find out your plans you will go mad and die! (Hint: Use /tt to talk to your team!)",
+			"actions": {
+				"teamUtilities": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 32,
+						"hide": true,
+						"msg": "And you thought you could escape The H.I.V.E. too... pathetic.",
+						"broadcast" : "team",
+						"broadcastmsg" : "Your teammate ~Player~ (Mammoth) has decided to kill ~Target~!"
+					}
+				},
+				"inspect": {
+					"mode": "die",
+					"msg": "insertmsg"
+				},
+				"kill": {
+					"mode": {
+						"evadeCharges": 1
+					}
+				}
+			}
+		},
+		{
+			"role": "seemore",
+			"translation": "See-More",
+			"side": "mafia2",
+			"info": "Has 50% hax on kill (15% on player). Can kill one target during the night (shared with team). Sided with The H.I.V.E.",
+			"help": "You are See-More! Whoa man that's one big eye you got there, I'm sure it's full of fancy functions. I think you can use it to see a good deal of who's killing who (50% chance to hax the kill, 15% on the player) But hey, you also got a laser beam which allows you to /kill one target during the night! (shared with team, cannot be changed once Brother Blood makes his kill). (Hint: Use /tt to talk to your team!)",
+			"actions": {
+				"teamUtilities": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 32,
+						"hide": true,
+						"msg": "And you thought you could escape The H.I.V.E. too... pathetic.",
+						"broadcast" : "team",
+						"broadcastmsg" : "Your teammate ~Player~ (See-More) has decided to kill ~Target~!"
+					}
+				},
+				"hax": {
+					"kill": {
+						"revealTeam": 0.5,
+						"revealPlayer": 0.15
+					}
+				}
+			}
+		},
+		{
+			"role": "blood",
+			"translation": "Brother Blood",
+			"side": "mafia2",
+			"info": "Can kill one target during the night (shared with team, but his is absolute). Cannot be haxed. Has a vote of 3. Sided with The H.I.V.E.",
+			"help": "You are Brother Blood! The Mastermind of The H.I.V.E and the most powerful integrate, you have well disciplined students with outstanding abilities to help you take down the Teen Titans and furthermore rule Jump City and the world! You can use your powers to /kill one target during the night, and your decision is absolute (your students cannot change this choice, nor can you once you make it), you cannot be haxed and you have a vote of +3. (Hint: Use /tt to talk to your team!)",
+			"actions": {
+				"teamUtilities": true,
+				"vote": 3,
+				"avoidHax": [
+					"kill"
+				],
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 32,
+						"hide": true,
+						"msg": "And you thought you could escape The H.I.V.E. too... pathetic.",
+						"broadcast" : "team",
+						"broadcastmsg" : "Your teammate ~Player~ (See-More) has decided to kill ~Target~!",
+						"cancel": [
+							"kill"
+						]
+					}
+				}
+			}
+		},
+		{
+			"role" : "hive",
+			"translation" : "The H.I.V.E.",
+			"info" : "If you somehow get this role, please contact Joeypals at http://pokemon-online.eu/forums/member.php?24510-Joeypals!!",
+			"hide" : true,
+			"side" : "mafia2",
+			"help" : "If you somehow get this role, please contact Joeypals at http://pokemon-online.eu/forums/member.php?24510-Joeypals!!",
+			"actions" : {
+				"initialCondition" : {
+					"poison" : {
+						"count" : 1,
+						"poisonDeadMessage" : "Time is up!"
+					}
+				},
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 32,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Skuttler) has decided to kill ~Target~!"
+					}
+				}
+			}
+		},
+		{
+			"role": "brain",
+			"translation": "The Brain",
+			"side": "mafia3",
+			"info": "Can inspect 3 targets during the night. Has a voteshield of -1000. Sided with The Brotherhood of Evil.",
+			"help": "You are The Brain, the leader and mastermind of the Brotherhood of Evil! You don't have a body, you are just caged into a high technology recipient specially made for you. Uour intellect and vast knowledge about technology and science allow you to /inspect 3 targets during the night. You are also granted with a voteshield of -1000! (Hint: Use /tt to talk to your team!)",
+			"actions": {
+				"teamUtilities": true,
+				"voteshield": -1000,
+				"night": {
+					"inspect": {
+						"limit": 3,
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": 89,
+						"broadcast": "team",
+						"broadcastmsg": "Your teammate ~Player~ (The Brain) has decided to inspect ~Target~!"
+					}
+				}
+			},
+			"winIfDeadRoles": [
+				"robin",
+				"robin2",
+				"robin3",
+				"robin4",
+				"cyborg",
+				"cyborg2",
+				"elephantBB",
+				"trexBB",
+				"slade",
+				"slade2",
+				"slade3",
+				"slade4",
+				"slade5",
+				"cinderblock",
+				"plasmus",
+				"overload",
+				"terras",
+				"jinx",
+				"gizmo",
+				"mammoth",
+				"seemore",
+				"blood",
+				"trigon",
+				"mallah",
+				"rouge",
+				"immortus"
+			]
+		},
+		{
+			"role": "mallah",
+			"translation": "Monsieur Mallah",
+			"side": "mafia3",
+			"info": "Can kill one target during the night (separate from team, 100% pierce chance) and one target during the day (20% reveal chance). Sided with The Brotherhood of Evil.",
+			"help": "You are Monsieur Mallah, a gorilla gifted with a huge amount of knowledge thanks to the brilliant efforts of The Brain, your creator who was once a great scientist. Since you are so skilled at fighting, you can /kill one target during the night (separate from your team) and it will pierce through any protection with no chance of failing. You can also /kill one target during the day but this has a 20% chance of revealing yourself, so be smart enough to deduce when to use it! (Hint: Use /tt to talk to your team!)",
+			"actions": {
+				"teamUtilities": true,
+				"night": {
+					"kill": {
+						"common": "Self",
+						"target": "AnyButTeam",
+						"pierceChance": 1,
+						"priority": 30,
+						"broadcast": "team",
+						"msg": "Can't exactly win when you use the same plan over and over, now can you?",
+						"broadcastmsg": "Your teammate ~Player~ (Monsieur Mallah) has gone off on their own to kill ~Target~!"
+					}
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButTeam",
+						"msg": "Time to strike down an arrogant foe with /kill!",
+						"killmsg": "~Target~ thought they were just fine in this fight when all the sudden a giant ape took them out with a machine gun!",
+						"revealChance": 0.2,
+						"revealmsg": "~Self~ accidentally dropped a bullet, making them an easy target."
+					}
+				}
+			}
+		},
+		{
+			"role": "rouge",
+			"translation": "Madame Rouge",
+			"side": "mafia3",
+			"info": "Can kill one person during the night (shared with General Immortus). Can stalk 3 targets during the night. Inspects as Citizen. Sided with The Brotherhood of Evil.",
+			"help": "You are Madame Rouge! A smart and deceiving woman with the ability to make your body completely elastic and flexible, this allows you to /kill one target during the night (shared with General Immortus). Since you can morph into any person you know and imitate them totally well, anyone who inspects you thinks that you are a citizen. Take advantage of this to /stalk 3 targets during the night without being discovered! (Hint: Use /tt to talk to your team!)",
+			"actions": {
+				"teamUtilities": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 31,
+						"hide": true,
+						"msg": "Can't exactly win when you use the same plan over and over, now can you?",
+						"broadcast" : "team",
+						"broadcastmsg" : "Your teammate ~Player~ (Madame Rouge) has decided to kill ~Target~!"
+					},
+					"stalk": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 99,
+						"broadcast": "team",
+						"broadcastmsg": "Your teammate ~Player~ (Madame Rouge) has decided to stalk ~Target~!"
+					}
+				}
+			}
+		},
+		{
+			"role": "immortus",
+			"translation": "General Immortus",
+			"side": "mafia3",
+			"info": "Cannot be poisoned, nightkilled, or daykilled. Has a voteshield of -4. Shares a nightkill with Madame Rouge. Sided with The Brotherhood of Evil.",
+			"help": "You are General Immortus, the leading tactical expert of the Brotherhood of Evil. You were granted with immortality, which means that there is no way to poison, nightkill or daykill you. You command a huge army of soldiers, allowing you to /kill one target during the night (shared with Madame Rouge). Due to your experience in war, you have the knowledge to avoid direct attacks, allocating you to have a -4 voteshield. (Hint: Use /tt to talk to your team!)",
+			"actions": {
+				"teamUtilities": true,
+				"voteshield": -4,
+				"poison": {
+					"mode": "ignore"
+				},
+				"kill": {
+					"mode": "ignore"
+				},
+				"daykill": {
+					"mode": {
+						"evadeChance": 1
+					}
+				},
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 31,
+						"hide": true,
+						"msg": "Can't exactly win when you use the same plan over and over, now can you?",
+						"broadcast" : "team",
+						"broadcastmsg" : "Your teammate ~Player~ (General Immortus) has decided to kill ~Target~!"
+					}
+				}
+			}
+		},
+		{
+			"role" : "evil",
+			"translation" : "General Immortus/Madame Rogue",
+			"info" : "If you somehow get this role, please contact Joeypals at http://pokemon-online.eu/forums/member.php?24510-Joeypals!!",
+			"hide" : true,
+			"side" : "mafia3",
+			"help" : "If you somehow get this role, please contact Joeypals at http://pokemon-online.eu/forums/member.php?24510-Joeypals!!",
+			"actions" : {
+				"initialCondition" : {
+					"poison" : {
+						"count" : 1,
+						"poisonDeadMessage" : "Time is up!"
+					}
+				},
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 31,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Skuttler) has decided to kill ~Target~!"
+					}
+				}
+			}
+		},
+		{
+			"role": "mumbo",
+			"translation": "Mumbo",
+			"side": "mafia5",
+			"info": "Can convert one target into a Rabbit. Cannot be killed, poisoned, or stalked. Sided with The Amazing Mumbo.",
+			"help": "Mumbo Jumbo! Initially you were an underpriviled magician, but after finding a magical hat and a wand you have acquired incredible magic powers! This allows you to /convert anyone you want into a rabbit. Your magical powers are so vast and unknown that no one can kill, poison nor stalk you! (Hint: Use /tt to talk to your rabbit(s)!)",
+			"actions": {
+			"teamUtilities": true,
+				"kill": {
+					"mode": "ignore"
+				},
+				"poison": {
+					"mode": "ignore"
+				},
+				"stalk": {
+					"mode": "ignore"
+				},
+				"night": {
+					"convert": {
+						"target" : "AnyButTeam",
+						"common" : "Self",
+						"priority" : 109,
+						"newRole" : "rabbit",
+						"silent" : false,
+						"broadcast" : "team",
+						"broadcastmsg": "Mumbo has decided to do a magic trick on ~Target~!",
+						"convertmsg" : "Abracadabra! Mumbo has done the impossible and claimed ~Old~, turning them into a rabbit!"
+					}
+				}
+			}
+		},
+		{
+			"role": "rabbit",
+			"translation": "Rabbit",
+			"side": "mafia5",
+			"info": "Sided with The Amazing Mumbo.",
+			"help": "You are a Rabbit! You are one of the many servants Mumbo uses to perform his crazed magical tricks! You do not have any special powers, but you can help Mumbo by voting someone during the vote phase! (Hint: Use /tt to talk to The Amazing Mumbo!)",
+			"actions": {
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "trigon",
+			"translation": "Trigon",
+			"side": "mafia4",
+			"info": "Can kill one target during the night. Has a vote of 999. Can poison 2 targets in the same night, the target dies after two nights. On death, converts Raven into her White Form. Unable to be converted. Sided with himself.",
+			"help": "You are Trigon, a powerful inter-dimensional demon, Raven's father and arch-nemesis. Your powers are simply unmeasurable, giving you a vote of 999 and the ability to /kill one target during the night. In addition to this, you are also capable of poisoning two targets in the same night! If you die, Raven will unleash her hidden powers!",
+			"actions": {
+				"vote": 999,
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 41,
+						"msg": "Going up against a demon? Yeah, only way this ends is with your death."
+					},
+					"poison": {
+						"limit": 2,
+						"target": "AnyButSelf",
+						"common": "Self",
+						"count": 3,
+						"priority": 65,
+						"poisonDeadMessage": "Try to run from Trigon all you want, he will always beat you in the end."
+					}
+				},
+				"onDeath": {
+					"convertRoles": {
+						"raven": "ravenw"
+					},
+					"convertmsg": "Trigon has finally fallen! With peace starting to come to fruition, Raven takes on her full power and grows stronger as a result!"
+				},
+				"convert": {
+					"mode": "ignore"
+				}
+			},
+			"winIfDeadRoles": [
+				"robin",
+				"robin2",
+				"robin3",	
+				"robin4",
+				"cyborg",
+				"cyborg2",
+				"elephantBB",
+				"trexBB",
+				"slade",
+				"slade2",
+				"slade3",
+				"slade4",
+				"slade5",
+				"cinderblock",
+				"plasmus",
+				"overload",
+				"terras",
+				"jinx",
+				"gizmo",
+				"mammoth",
+				"seemore",
+				"blood",
+				"brain",
+				"mallah",
+				"rouge",
+				"immortus"
+			]
+		},
+		{
+			"role": "redx",
+			"translation": "Red X",
+			"side": "consp",
+			"info": "Can expose or fake-expose one target during the day. Can evade one nightkill and daykill. Wins with everyone.",
+			"help": "You are Red-X, a mysterious but skilled fighter with a vast knowledge in martial arts. You are very fast and capable of deceiving your oppponents. Because of this, you are able to evade one nightkill and one daykill. You can also /expose someone's role during the day without having the risk of being exposed! Since you don't work for anyone but yourself, you win with any side!",
+			"winningSides": "*",
+			"actions": {
+                		"daykill": {
+                    			"mode": {
+                        			"evadeCharges": 1
+                    			}
+                		},
+                		"kill": {
+                    			"mode": {
+                        			"evadeCharges": 1
+                    			}
+                		},
+				"standby": {
+	                   		"expose": {
+        	                		"target": "Any",
+                	        		"msg": "You can expose someone's side by typing /expose [name] (You won't be revealed!)",
+            		            		"exposemsg": "A smoke bomb hits the field and everyone scatters except for ~Target~ (~Role~), who is passed out in the center of the blast area."
+					}
+				}
+			}
+		}
+	],
+	"roles1": [
+		"robin3",
+		"slade",
+		"citizen",
+		"citizen",
+		"starfire",
+		"seemore",
+		"bb",
+		"jinx",
+		"silkie",
+		"terra",
+		"plasmus"
+	],
+	"roles2": [
+		"mas",
+		"menos",
+		"starfire",
+		"citizen",
+		"robin",
+		"slade",
+		"bb",
+		"terra",
+		"jinx",
+		"blood",
+		"citizen",
+		"cyborg",
+		"silkie",
+		"plasmus",
+		"mumbo",
+		"citizen",
+		"raven",
+		"silkie",
+		"trigon",
+		"redx"
+	],
+	"roles3": [
+		"mas",
+		"menos",
+		"starfire",
+		"citizen",
+		"robin",
+		"slade",
+		"bb",
+		"terra",
+		"jinx",
+		"blood",
+		"brain",
+		"cyborg",
+		"silkie",
+		"plasmus",
+		"mumbo",
+		"mallah",
+		"raven",
+		"silkie",
+		"trigon",
+		"redx",
+		"bumblebee",
+		"cinderblock",
+		"citizen",
+		"aqualad",
+		"immortus",
+		"gizmo",
+		"overload",
+		"silkie",
+		"rouge",
+		"bumblebee",
+		"seemore",
+		"citizen"
+	],
+	"villageCantLoseRoles": [
+		"robin",
+		"robin2",
+		"robin3",
+		"robin4",
+		"cyborg",
+		"cyborg2",
+		"mas",
+		"elephantBB",
+		"trexBB"
+	],
+	"changelog": {
+		"7.18.15": "Theme is finally finished and ready to play! Look out TCC competitors, I'm comin for ya. ~Joey",
+		"7.24.15": "Robin3 now spawns in games of 11 and below (2 votes instead of 4 to begin with). Possible spawn fixes on the way as needed.",
+		"7.26.15": "Forgot to add helpmsgs for Beast Boy's forms, but they're added now... m'bad :x ~Joey",
+		"9.26.15": "(yes Mafia still matters) Flipped around Slade and Jinx in the beginning spawn. We'll see how that goes. In addition, Slade can no longer be distracted.",
+		"10.1.15": "Took and put See-More in Plasmus' place (6p) and Plasmus in place of Brother Blood's place (11p). This is a means for balancing things out.",
+		"10.2.15": "Aqualad taken out of smaller games.",
+		"10.26.16": "Gave every side a color. Let everything be pretty!"
+	}
+}
