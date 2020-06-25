@@ -1,0 +1,1619 @@
+{
+	"name": "Megas",
+	"author": ["Pamitha", "Water"],
+	"threadlink": "",
+	"summary": "No description currently. Use /tips for help on how to play!",
+	"minplayers": 4,
+	"ticks": {
+		"standby": 30,
+		"night": 30,
+		"night1": 40
+	},
+	"sides": [{
+			"side": "village",
+			"translation": "Non-Megas",
+			"color": "#0099cc",
+			"winmsg": "The Non-Mega Pokemon (~Players~) have eliminated all of the Mega Pokemon! OU has never looked better."
+		},
+		{
+			"side": "bug",
+			"translation": "Bug Megas",
+			"color": "#33cc33",
+			"winmsg": "Ugh, do you hear that buzzing sound? The Bug Megas (~Players~) are the only ones left now..."
+		},
+		{
+			"side": "starter",
+			"translation": "Starter Megas",
+			"color": "#cc00cc",
+			"winmsg": "Who even needs to leave home? Starters (~Players~) are the strongest."
+		},
+		{
+			"side": "rayquaza",
+			"translation": "Rayquaza",
+			"color": "#ff9900",
+			"winmsg": "Mega Rayquaza (~Players~) has easily defeated every other Pokemon and unbanned itself from Ubers!"
+		}
+	],
+	"tips": {
+		"Poison": "Qwilfish, Zangoose, Seviper, (Mega) Beedrill, (Mega) Scizor, (Mega) Venusaur all ignore poison. Mega Rayquaza and Sigilyph die one night later to poison. Chikorita and Meganium die instantly if they are poisoned. Mega Beedrill's poison2 will pierce poison immunity and protection.",
+		"Night-Kill Evades": "Mega Rayquaza will evade all night kills. Mega Heracross and normal Rayquaza will evade the first night kills against them. (Mega) Beedrill will poison night kills. Mega Blastoise will evade Kingdra's kills.",
+		"Day-Kill Evades": "Mega Rayquaza will evade all day kills. Mega Pinsir and Mega Sceptile will evade the first day kills against them.",
+		"Inspect": "Qwilfish inspects as Beedrill, Meganium inspects as Venusaur, Chikorita inspects as Bulbasaur, and Sigilyph inspects as Unown. They will inspect as themselves if that role is dead. All Mega Pokemon inspect as their base forms.",
+		"Roles": "Some Pokemon, like Pinsir (regular form), will not show up on the roles list. This is because they don't spawn in the game. This isn't an error.",
+		"Balance": "This theme is still being balanced. PM Pamitha (or Water?) with any balancing concerns or issues."
+	},
+	"variables": {
+		"prio_charizard_distract": 1,
+		"prio_sigilyph_distract": 2,
+		"prio_charizard_evo": 3,
+		"prio_beedrill_poison2": 4,
+		"prio_blaziken": 5,
+		"prio_safeguard": 6,
+		"prio_protect": 7,
+		"prio_starter_kill": 8,
+		"prio_rayquaza": 9,
+		"prio_bug_poison": 10,
+		"prio_scizor_kill": 11,
+		"prio_kingdra": 12,
+		"prio_qwilfish": 13,
+		"prio_luxray": 14,
+		"prio_inspect": 15,
+		"prio_detox": 16,
+		"prio_golurk": 17,
+		"prio_watchog": 18,
+		"prio_heracross": 19,
+		"all_kingdra": ["kingdra", "kingdra_small"],
+		"all_luxray": ["luxray", "luxray_quick", "luxray_charge", "luxray_charge2"]
+	},
+	"roles": [{
+			"role": "kingdra",
+			"translation": "Kingdra",
+			"side": "village",
+			"help": "You can /kill one person during the night! Be careful to only kill Mega Pokemon but avoid Beedrill, who will sting you back!",
+			"info": "Normal/Peak version: Can kill one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_kingdra"
+					}
+				}
+			}
+		},
+		{
+			"role": "kingdra_small",
+			"translation": "Kingdra",
+			"side": "village",
+			"help": "You can /kill one person during the night, starting night 2! Be careful to only kill Mega Pokemon but avoid Beedrill, who will sting you back!",
+			"info": "Non-peak version: Can kill one person during the night, starting night 2. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_kingdra",
+						"initialrecharge": 2
+					}
+				}
+			}
+		},
+		{
+			"role": "qwilfish",
+			"translation": "Qwilfish",
+			"side": "village",
+			"help": "You can use your /poison to help get rid of the Mega Pokemon and in return are immune to poison! Be careful though, as Arcanine may see you as a threat!",
+			"info": "Can poison one person during the night. Ignores poison. Inspects as Beedrill. ~Sided~",
+			"actions": {
+				"inspect": {
+					"revealAs": "beedrill"
+				},
+				"poison": {
+					"mode": "ignore"
+				},
+				"onDeadRoles": {
+					"convertTo": {
+						"qwilfish_notmiller": ["beedrill", "beedrill_mega", "baedrill", "baedrill_mega"]
+					},
+					"convertmsg": "",
+					"silentConvert": true
+				},
+				"night": {
+					"poison": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_qwilfish"
+					}
+				}
+			}
+		},
+		{
+			"role": "qwilfish_notmiller",
+			"translation": "Qwilfish",
+			"side": "village",
+			"help": "You can use your /poison to help get rid of the Mega Pokemon and in return are immune to poison!",
+			"hide": true,
+			"actions": {
+				"poison": {
+					"mode": "ignore"
+				},
+				"night": {
+					"poison": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_qwilfish"
+					}
+				}
+			}
+		},
+		{
+			"role": "chikorita",
+			"translation": "Chikorita",
+			"side": "village",
+			"help": "You will be seen as Bulbasaur but you are actually sided with the Non-Megas! Poison will cause you to wilt instantly. Vote to remove people during the day!",
+			"info": "Inspects as Bulbasaur. Dies instantly to poison. ~Sided~",
+			"actions": {
+				"inspect": {
+					"revealAs": "bulbasaur"
+				},
+				"poison": {
+					"mode": "die",
+					"msg": "You were poisoned last night, but as a Grass type you wilted instantly!",
+					"targetmsg": "Your target (~Self~) was a Grass type, and died instantly to your poison!"
+				},
+				"onDeadRoles": {
+					"convertTo": {
+						"chikorita_notmiller": ["bulbasaur"]
+					},
+					"convertmsg": "",
+					"silentConvert": true
+				}
+			}
+		},
+		{
+			"role": "chikorita_notmiller",
+			"translation": "Chikorita",
+			"side": "village",
+			"help": "You will be seen as Bulbasaur (if there are any) but you are actually sided with the Non-Megas! Poison will cause you to wilt instantly. Vote to remove people during the day!",
+			"hide": true,
+			"actions": {
+				"poison": {
+					"mode": "die",
+					"msg": "You were poisoned last night, but as a Grass type you wilted instantly!",
+					"targetmsg": "Your target (~Self~) was a Grass type, and died instantly to your poison!"
+				}
+			}
+		},
+		{
+			"role": "meganium",
+			"translation": "Meganium",
+			"side": "village",
+			"help": "As a defensive Pokemon, you can /protect one person, keeping them safe from kills. Poison will cause you to wilt instantly. Arcanine's nose will pick you up as a Mega Pokemon, so be careful.",
+			"info": "Can protect (from kills and poison) one person during the night. Dies instantly to poison. Inspects as Venusaur. ~Sided~",
+			"actions": {
+				"inspect": {
+					"revealAs": "venusaur"
+				},
+				"poison": {
+					"mode": "die",
+					"msg": "You were poisoned last night, but as a Grass type you wilted instantly!",
+					"targetmsg": "Your target (~Self~) was a Grass type, and died instantly to your poison!"
+				},
+				"onDeadRoles": {
+					"convertTo": {
+						"meganium_notmiller": ["venusaur", "venusaur_mega"]
+					},
+					"convertmsg": "",
+					"silentConvert": true
+				},
+				"night": {
+					"protect": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_protect"
+					}
+				}
+			}
+		},
+		{
+			"role": "meganium_notmiller",
+			"translation": "Meganium",
+			"side": "village",
+			"help": "As a defensive Pokemon, you can /protect one person, keeping them safe from kills. Poison will cause you to wilt instantly.",
+			"hide": true,
+			"actions": {
+				"poison": {
+					"mode": "die",
+					"msg": "You were poisoned last night, but as a Grass type you wilted instantly!",
+					"targetmsg": "Your target (~Self~) was a Grass type, and died instantly to your poison!"
+				},
+				"night": {
+					"protect": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_protect"
+					}
+				}
+			}
+		},
+		{
+			"role": "alomomola",
+			"translation": "Alomomola",
+			"side": "village",
+			"help": "You can /safeguard a person from poison during the night.  Once per game, you can detox someone to cure their poison!",
+			"info": "Can safeguard (poison) one person during the night. Can detox one person during the night, once per game. ~Sided~",
+			"actions": {
+				"night": {
+					"safeguard": {
+						"command": "guard",
+						"guardActions": [
+							"poison"
+						],
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_safeguard"
+					},
+					"detox": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_detox",
+						"charges": 1
+					}
+				}
+			}
+		},
+		{
+			"role": "growlithe",
+			"translation": "Growlithe",
+			"side": "village",
+			"help": "You are a small but loyal detective! You can /inspect one person to figure out their role, every other night. As a puppy, you only have half the vote of a full-grown Pokemon, however. Use /tt to communicate with Arcanine!",
+			"info": "Vote counts as 0.5. Can inspect one person during the night, every other night. Knows Arcanine. ~Sided~",
+			"actions": {
+				"startup": {
+					"revealRole": [
+						"arcanine"
+					]
+				},
+				"night": {
+					"inspect": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_inspect",
+						"recharge": 2,
+						"broadcast": ["arcanine"]
+					}
+				},
+				"preventTeamvote": ["arcanine"],
+				"teamTalk": ["arcanine"],
+				"vote": 0.5
+			}
+		},
+		{
+			"role": "arcanine",
+			"translation": "Arcanine",
+			"side": "village",
+			"help": "You are a loyal detective! You can /inspect one person to figure out their role! Use /tt to communicate with Growlithe!",
+			"info": "Can inspect one person during the night. Knows Growlithe. ~Sided~",
+			"actions": {
+				"startup": {
+					"revealRole": [
+						"growlithe"
+					]
+				},
+				"night": {
+					"inspect": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_inspect",
+						"broadcast": ["growlithe"]
+					}
+				},
+				"preventTeamvote": ["growlithe"],
+				"teamTalk": ["growlithe"]
+			}
+		},
+		{
+			"role": "unown",
+			"translation": "Unown",
+			"side": "village",
+			"help": "You may not be able to do much, but your mysterious power will help Sigilyph survive. Stand together and vote with the Non-Megas to help get rid of the Megas!",
+			"info": "Has no special abilities. ~Sided~"
+		},
+		{
+			"role": "sigilyph",
+			"translation": "Sigilyph",
+			"side": "village",
+			"help": "There are no more Unown left to protect you! Your protection from kills and poison is gone now.",
+			"hide": true,
+			"actions": {
+				"night": {
+					"distract": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_sigilyph_distract",
+						"distractmsg": "You were put to sleep by Sigilyph's Hypnosis! You couldn't perform any actions, but now you feel well rested.",
+						"teamdistractmsg": "Sigilyph put your teammate to sleep! You were preoccupied trying to wake them up, and couldn't perform any actions last night."
+					}
+				}
+			}
+		},
+		{
+			"role": "sigilyph_nounown",
+			"translation": "Sigilyph",
+			"side": "village",
+			"help": "You can /distract a Pokemon at night to prevent them from doing anything!",
+			"hide": true,
+			"actions": {
+				"night": {
+					"distract": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_sigilyph_distract",
+						"distractmsg": "You were put to sleep by Sigilyph's Hypnosis! You couldn't perform any actions, but now you feel well rested.",
+						"teamdistractmsg": "Sigilyph put your teammate to sleep! You were preoccupied trying to wake them up, and couldn't perform any actions last night."
+					}
+				}
+			}
+		},
+		{
+			"role": "sigilyph_unown",
+			"translation": "Sigilyph",
+			"side": "village",
+			"help": "You are protected by the Unown, giving you a high chance to evade all kills and obscuring your identity.  Your Magic Guard will make poison less effective against you. You can /distract a Pokemon at night to prevent them from doing anything!",
+			"info": "Can distract one person during the night. Takes 1 extra night to die from poison and has a 35% chance of evading all kills while at least 1 Unown is alive. Inspects as Unown. ~Sided~",
+			"actions": {
+				"inspect": {
+					"revealAs": "unown"
+				},
+				"poison": {
+					"mode": "resistance",
+					"rate": 1.5
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.35
+					}
+				},
+				"daykill": {
+					"mode": {
+						"evadeChance": 0.35
+					}
+				},
+				"onDeadRoles": {
+					"convertTo": {
+						"sigilyph": ["unown"]
+					},
+					"convertmsg": "Sigilyph is no longer protected now that all of the Unown are gone!"
+				},
+				"night": {
+					"distract": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_sigilyph_distract",
+						"distractmsg": "You were put to sleep by Sigilyph's Hypnosis! You couldn't perform any actions, but you feel well rested.",
+						"teamdistractmsg": "Sigilyph put your teammate to sleep! You were preoccupied trying to wake them up, and couldn't perform any actions last night."
+					}
+				}
+			}
+		},
+		{
+			"role": "zangoose",
+			"translation": "Zangoose",
+			"side": "village",
+			"help": "You and Seviper have put aside your differences to defeat the Mega Pokemon but you are still leery and keep an eye on them! Your natural adaptations give you immunity to poison.  Use /tt to communicate with Seviper!",
+			"info": "Knows Seviper. Ignores poison. ~Sided~",
+			"actions": {
+				"startup": {
+					"revealRole": [
+						"seviper"
+					]
+				},
+				"poison": {
+					"mode": "ignore"
+				},
+				"preventTeamvote": ["seviper"],
+				"teamTalk": ["seviper"]
+			}
+		},
+		{
+			"role": "seviper",
+			"translation": "Seviper",
+			"side": "village",
+			"help": "You and Zangoose have put aside your differences to defeat the Mega Pokemon but you are still leery and keep an eye on them! Your poisonous nature means poison won't affect you! Use /tt to communicate with Zangoose!",
+			"info": "Knows Zangoose. Ignores poison. ~Sided~",
+			"actions": {
+				"startup": {
+					"revealRole": [
+						"zangoose"
+					]
+				},
+				"poison": {
+					"mode": "ignore"
+				},
+				"preventTeamvote": ["zangoose"],
+				"teamTalk": ["zangoose"]
+			}
+		},
+		{
+			"role": "luxray",
+			"translation": "Luxray",
+			"side": "village",
+			"help": "Starting on the second night, you can /charge to gain the ability to kill during the day. There's a chance you'll reveal yourself killing and you have to recharge between every kill, leaving you open to being distracted!",
+			"info": "Normal/Peak version: Can charge at night starting night 2, giving it the ability to kill during the day (with a 35% reveal chance). Needs to charge before each kill. ~Sided~",
+			"actions": {
+				"night": {
+					"charge": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": "variable:prio_luxray",
+						"newRole": "luxray_charge",
+						"convertmsg": "Luxray has charged up!",
+						"compulsory": true,
+						"noRepeat": true,
+						"initialrecharge": 2
+					}
+				}
+			}
+		},
+		{
+			"role": "luxray_quick",
+			"translation": "Luxray",
+			"side": "village",
+			"help": "You can /charge during the night to gain the ability to kill during the day. There's a chance you'll reveal yourself killing and you have to recharge between every kill, leaving you open to being distracted!",
+			"info": "Non-peak version: Can charge at night, giving it the ability to kill during the day (with a 35% reveal chance). Needs to charge before each kill. ~Sided~",
+			"actions": {
+				"night": {
+					"charge": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": "variable:prio_luxray",
+						"newRole": "luxray_charge",
+						"convertmsg": "Luxray has charged up!",
+						"compulsory": true,
+						"noRepeat": true
+					}
+				}
+			}
+		},
+		{
+			"role": "luxray_charge",
+			"translation": "Luxray",
+			"side": "village",
+			"help": "You're fully charged! Now you can /kill during the day but once you do you will have to charge up again. You have a chance to reveal yourself.",
+			"hide": true,
+			"actions": {
+				"inspect": {
+					"revealAs": "luxray"
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"msg": "Attack someone with your charged Thunderbolt with /kill [name]! (You may reveal yourself!)",
+						"killmsg": "Luxray unleashed its charged Thunderbolt on ~Target~, knocking them out in one hit!",
+						"revealChance": 0.35,
+						"revealmsg": "~Self~ is completely exhausted and needs to recharge.",
+						"charges": 1
+					}
+				},
+				"night": {
+					"charge": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": "variable:prio_luxray",
+						"newRole": "luxray_charge2",
+						"convertmsg": "Luxray has charged up!",
+						"compulsory": true,
+						"noRepeat": true
+					}
+				}
+			}
+		},
+		{
+			"role": "luxray_charge2",
+			"translation": "Luxray",
+			"side": "village",
+			"help": "You're fully charged! Now you can /kill during the day but once you do you will have to charge up again. You have a chance to reveal yourself.",
+			"hide": true,
+			"actions": {
+				"inspect": {
+					"revealAs": "luxray"
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"msg": "Attack someone with your charged Thunderbolt with /kill [name]! (You may reveal yourself!)",
+						"killmsg": "Luxray unleashed its charged Thunderbolt on ~Target~, knocking them out in one hit!",
+						"revealChance": 0.35,
+						"revealmsg": "~Self~ is completely exhausted and needs to recharge.",
+						"charges": 1
+					}
+				},
+				"night": {
+					"charge": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": "variable:prio_luxray",
+						"newRole": "luxray_charge",
+						"convertmsg": "Luxray has charged up!",
+						"compulsory": true,
+						"noRepeat": true
+					}
+				}
+			}
+		},
+		{
+			"role": "watchog",
+			"translation": "Watchog",
+			"side": "village",
+			"help": "You can use your senses to /watch one person during the night! You'll see everyone who visited them during the night!",
+			"info": "Can watch one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"watch": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_watchog"
+					}
+				}
+			}
+		},
+		{
+			"role": "golurk",
+			"translation": "Golurk",
+			"side": "village",
+			"help": "You can /lurk one person during the night to see who they visited during the night! Your earthen body also allows you to avoid Luxray's Thunderbolt!",
+			"info": "Can lurk (stalk) one person during the night. Evades Luxray's kills during the day. ~Sided~",
+			"actions": {
+				"night": {
+					"lurk": {
+						"command": "stalk",
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_golurk"
+					}
+				},
+				"daykill": {
+					"mode": {
+						"ignore": "variable:all_luxray"
+					},
+					"expend": true
+				}
+			}
+		},
+		{
+			"role": "scizor",
+			"translation": "Scizor",
+			"side": "bug",
+			"help": "You can /poison one person during the night, shared with your team. Your metallic exoskeleton protects you from poison! You evolve into Mega Scizor on night 2, gaining a kill every other night. Use /tt to talk to your team, and work together to win!",
+			"info": "Can poison (shared) one person during the night. Ignores poison. Evolves into Mega Scizor on night 2. ~Sided~",
+			"actions": {
+				"initialCondition": {
+					"curse": {
+						"cursedRole": "scizor_mega",
+						"curseCount": 2
+					}
+				},
+				"poison": {
+					"mode": "ignore"
+				},
+				"night": {
+					"poison": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_bug_poison",
+						"broadcast": "team"
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "scizor_mega",
+			"translation": "Mega Scizor",
+			"side": "bug",
+			"help": "You can /poison one person during the night, shared with your team. You can /kill every other night. Your metallic exoskeleton protects you from poison! Use /tt to talk to your team, and work together to win!",
+			"info": "Can poison (shared) one person during the night. Can kill (unshared) every other night. Ignores poison. ~Sided~",
+			"actions": {
+				"inspect": {
+					"revealAs": "scizor"
+				},
+				"poison": {
+					"mode": "ignore"
+				},
+				"night": {
+					"poison": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_bug_poison",
+						"broadcast": "team"
+					},
+					"kill": {
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_scizor_kill",
+						"broadcast": "team",
+						"recharge": 2
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "pinsir",
+			"translation": "Pinsir",
+			"side": "bug",
+			"help": "Dummy role for inspects.",
+			"hide": true,
+			"info": "Dummy role. ~Sided~",
+			"actions": {
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "pinsir_mega",
+			"translation": "Mega Pinsir",
+			"side": "bug",
+			"help": "You can /poison one person during the night, shared with your team. Once per game, you can /kill someone during the day, though you will reveal yourself in the process. You evade one daykill. Use /tt to talk to your team, and work together to win!",
+			"info": "Can poison (shared) one person during the night. Can kill one person during the day (revealing itself), once per game. Evades one kill during the day. ~Sided~",
+			"actions": {
+				"inspect": {
+					"revealAs": "pinsir"
+				},
+				"poison": {
+					"mode": "ignore"
+				},
+				"daykill": {
+					"mode": {
+						"evadeCharges": 1
+					}
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButTeam",
+						"msg": "Attack someone with your powerful pincers with /kill [name]! (You will reveal yourself!)",
+						"killmsg": "Mega Pinsir guillotined ~Target~ with its pincers! ~Self~ stands there, triumphantly.",
+						"charges": 1
+					}
+				},
+				"night": {
+					"poison": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_bug_poison",
+						"broadcast": "team"
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "heracross",
+			"translation": "Heracross",
+			"side": "bug",
+			"help": "Dummy role for inspects.",
+			"hide": true,
+			"info": "Dummy role. ~Sided~",
+			"actions": {
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "heracross_mega",
+			"translation": "Mega Heracross",
+			"side": "bug",
+			"help": "You can /poison one person during the night, shared with your team.  You can /watch someone during the night to give you information about who visited your target. Your bulk allows you to survive a single nightkill. Use /tt to talk to your team, and work together to win!",
+			"info": "Can poison (shared) one person during the night. Can watch (unshared) one person during the night. Evades one kill during the night. ~Sided~",
+			"actions": {
+				"inspect": {
+					"revealAs": "heracross"
+				},
+				"kill": {
+					"mode": {
+						"evadeCharges": 1
+					}
+				},
+				"night": {
+					"poison": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_bug_poison",
+						"broadcast": "team"
+					},
+					"watch": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_heracross"
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "beedrill",
+			"translation": "Beedrill",
+			"side": "bug",
+			"help": "You can /poison one person during the night, shared with your team. You are immune to poison and will strike back at anyone who kills you. You evolve into Mega Beedrill on night 3. Use /tt to talk to your team, and work together to win!",
+			"info": "Can poison (shared) one person during the night. Ignores poison. Bombs (with poison) kills at night. Evolves into Mega Beedrill on night 3. ~Sided~",
+			"actions": {
+				"initialCondition": {
+					"curse": {
+						"cursedRole": "beedrill_mega",
+						"curseCount": 3
+					}
+				},
+				"kill": {
+					"mode": "poisonattackerevenifprotected"
+				},
+				"poison": {
+					"mode": "ignore"
+				},
+				"night": {
+					"poison": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_bug_poison",
+						"broadcast": "team"
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "beedrill_mega",
+			"translation": "Mega Beedrill",
+			"side": "bug",
+			"help": "You can /poison one person during the night, shared with your team. You can also /poison2 which will infect your target regardless of protection or immunity! You are immune to poison and will strike back at anyone who kills you. Use /tt to talk to your team, and work together to win!",
+			"info": "Can poison (shared) one person during the night. Can poison2 (unshared) one person during the night, bypassing protection and immunity. Ignores poison. Bombs (with poison) kills at night. ~Sided~",
+			"actions": {
+				"inspect": {
+					"revealAs": "beedrill"
+				},
+				"kill": {
+					"mode": "poisonattackerevenifprotected"
+				},
+				"poison": {
+					"mode": "ignore"
+				},
+				"night": {
+					"poison": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_bug_poison",
+						"broadcast": "team"
+					},
+					"poison2": {
+						"command": "poison",
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_beedrill_poison2",
+						"broadcast": "team",
+						"bypass": [
+							"ignore"
+						]
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "baedrill",
+			"translation": "Baedrill",
+			"side": "bug",
+			"help": "You can /poison one person during the night, shared with your team. You are immune to poison and will strike back at anyone who kills you. You evolve into Mega Baedrill on night 3. Use /tt to talk to your team, and work together to win!",
+			"hide": true,
+			"actions": {
+				"initialCondition": {
+					"curse": {
+						"cursedRole": "baedrill_mega",
+						"curseCount": 3
+					}
+				},
+				"kill": {
+					"mode": "poisonattackerevenifprotected"
+				},
+				"poison": {
+					"mode": "ignore"
+				},
+				"night": {
+					"poison": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_bug_poison",
+						"broadcast": "team"
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "baedrill_mega",
+			"translation": "Mega Baedrill",
+			"side": "bug",
+			"help": "You can /poison one person during the night, shared with your team. You can also /poison2 which will infect your target regardless of protection or immunity! You are immune to poison and will strike back at anyone who kills you. Use /tt to talk to your team, and work together to win!",
+			"hide": true,
+			"actions": {
+				"inspect": {
+					"revealAs": "baedrill"
+				},
+				"kill": {
+					"mode": "poisonattackerevenifprotected"
+				},
+				"poison": {
+					"mode": "ignore"
+				},
+				"night": {
+					"poison": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_bug_poison",
+						"broadcast": "team"
+					},
+					"poison2": {
+						"command": "poison",
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_beedrill_poison2",
+						"broadcast": "team",
+						"bypass": [
+							"ignore"
+						]
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "charizard",
+			"translation": "Charizard",
+			"side": "starter",
+			"help": "You can /kill one person during the night, shared with your team. You have 2 votes and can use /x to evolve into Mega Charizard X (inspect) or you can use /y to evolve into Mega Charizard Y (distract). You won't keep your votes but you'll be able to change back! Use /tt to talk to your team, and work together to win!",
+			"info": "Vote counts as 2. Can kill (shared) one person during the night. Can x OR y itself during the night to convert into Mega Charizard X or Mega Charizard Y. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_starter_kill",
+						"broadcast": "team"
+					},
+					"x": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": "variable:prio_charizard_evo",
+						"newRole": "charizard_mega1",
+						"noRepeat": true,
+						"convertmsg": "Charizard mega evolved into Mega Charizard X!",
+						"broadcast": "team",
+						"cancel": [
+							"y"
+						]
+					},
+					"y": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": "variable:prio_charizard_evo",
+						"newRole": "charizard_mega2",
+						"noRepeat": true,
+						"convertmsg": "Charizard mega evolved into Mega Charizard Y!",
+						"broadcast": "team",
+						"cancel": [
+							"x"
+						]
+					}
+				},
+				"vote": 2,
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "charizard_mega1",
+			"translation": "Mega Charizard X",
+			"side": "starter",
+			"help": "You can /kill one person during the night, shared with your team. Your intimidating presence will cause people to reveal themselves to you you during the night, type /inspect to find out who is who! You can /devolve to turn back into Charizard and get your 2 votes back. Use /tt to talk to your team, and work together to win!",
+			"info": "Can kill (shared) one person during the night. Can inspect one person OR devolve into Charizard. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_starter_kill",
+						"broadcast": "team"
+					},
+					"devolve": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": "variable:prio_charizard_evo",
+						"newRole": "charizard",
+						"noRepeat": true,
+						"convertmsg": "Mega Charizard X reverted back to Charizard!",
+						"broadcast": "team",
+						"cancel": [
+							"inspect"
+						]
+					},
+					"inspect": {
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_inspect",
+						"broadcast": "team",
+						"cancel": [
+							"devolve"
+						]
+					}
+				},
+				"inspect": {
+					"revealAs": "charizard"
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "charizard_mega2",
+			"translation": "Mega Charizard Y",
+			"side": "starter",
+			"help": "You can /kill one person during the night, shared with your team. You can /distract someone by blinding them with your sunlight! You can /devolve to turn back into Charizard and get your 2 votes back. Use /tt to talk to your team, and work together to win!",
+			"info": "Can kill (shared) one person during the night. Can distract one person OR devolve into Charizard. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_starter_kill",
+						"broadcast": "team"
+					},
+					"devolve": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": "variable:prio_charizard_evo",
+						"newRole": "charizard",
+						"noRepeat": true,
+						"convertmsg": "Mega Charizard X reverted back to Charizard!",
+						"broadcast": "team",
+						"cancel": [
+							"distract"
+						]
+					},
+					"distract": {
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_charizard_distract",
+						"broadcast": "team",
+						"distractmsg": "You were blinded by harsh sunlight and unable to perform any actions!",
+						"cancel": [
+							"devolve"
+						]
+					}
+				},
+				"inspect": {
+					"revealAs": "charizard"
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "bulbasaur",
+			"translation": "Bulbasaur",
+			"side": "starter",
+			"help": "You can /kill one person during the night, shared with your team. Use /tt to talk to your team, and work together to win!",
+			"info": "Can kill (shared) during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_starter_kill",
+						"broadcast": "team"
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "venusaur",
+			"translation": "Venusaur",
+			"side": "starter",
+			"help": "You can /kill one person during the night, shared with your team. Use /tt to talk to your team, and work together to win!",
+			"info": "Can kill (shared) one person during the night. ~Sided~",
+			"actions": {
+				"poison": {
+					"mode": "ignore"
+				},
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_starter_kill",
+						"broadcast": "team"
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "venusaur_mega",
+			"translation": "Mega Venusaur",
+			"side": "starter",
+			"help": "You can /kill one person during the night, shared with your team. You can /protect up to 3 times per game, protecting them from poisons and kills. Use /tt to talk to your team, and work together to win!",
+			"info": "Can kill (shared) one person during the night. Can protect (kills and poison) one person during the night, three times per game. ~Sided~",
+			"actions": {
+				"inspect": {
+					"revealAs": "venusaur"
+				},
+				"poison": {
+					"mode": "ignore"
+				},
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_starter_kill",
+						"broadcast": "team"
+					},
+					"protect": {
+						"command": "guard",
+						"guardActions": [
+							"poison",
+							"kill"
+						],
+						"common": "Team",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_protect",
+						"broadcast": "team",
+						"charges": 3
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "blastoise",
+			"translation": "Blastoise",
+			"side": "starter",
+			"help": "Dummy role for inspects.",
+			"hide": true,
+			"info": "Dummy role. ~Sided~",
+			"actions": {
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "blastoise_mega",
+			"translation": "Mega Blastoise",
+			"side": "starter",
+			"help": "You can /kill one person during the night, shared with your team. Your sturdy shell protects you from Kingdra's kill. Use /tt to talk to your team, and work together to win!",
+			"info": "Can kill (shared) one person during the night. Evades Kingdra's kill. ~Sided~",
+			"actions": {
+				"inspect": {
+					"revealAs": "blastoise"
+				},
+				"kill": {
+					"mode": {
+						"ignore": "variable:all_kingdra"
+					}
+				},
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_starter_kill",
+						"broadcast": "team"
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "blaziken",
+			"translation": "Blaziken",
+			"side": "starter",
+			"help": "You can kill one person during the night, shared with your team. You will evolve into Mega Blaziken on night 3! Use /tt to talk to your team, and work together to win!",
+			"info": "Can kill (shared) one person during the night. Converts into Mega Blaziken on night 3. ~Sided~",
+			"actions": {
+				"initialCondition": {
+					"curse": {
+						"cursedRole": "blaziken_mega",
+						"curseCount": 3
+					}
+				},
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_starter_kill",
+						"broadcast": "team"
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "blaziken_mega",
+			"translation": "Mega Blaziken",
+			"side": "starter",
+			"help": "You can kill one person during the night, shared with your team. Since you've mega evolved, you can kill2 (unshared) one person during the night to kill them through protection! Use /tt to talk to your team, and work together to win!",
+			"info": "Can kill (shared) one person during the night. Can kill2 one person during the night, piercing any protection, once per game. ~Sided~",
+			"actions": {
+				"inspect": {
+					"revealAs": "blaziken"
+				},
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_starter_kill",
+						"broadcast": "team"
+					},
+					"kill2": {
+						"command": "kill",
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_blaziken",
+						"bypass": ["ignore"],
+						"pierce": true,
+						"broadcast": "team",
+						"charges": 1
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "sceptile",
+			"translation": "Sceptile",
+			"side": "starter",
+			"help": "Dummy role for inspects.",
+			"hide": true,
+			"info": "Dummy role. ~Sided~",
+			"actions": {
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "sceptile_mega",
+			"translation": "Mega Sceptile",
+			"side": "starter",
+			"help": "You can /kill one person during the night, shared with your team. You will survive one daykill. Use /tt to talk to your team, and work together to win!",
+			"info": "Can kill (shared) one person during the night. Evades one kill during the day. ~Sided~",
+			"actions": {
+				"inspect": {
+					"revealAs": "sceptile"
+				},
+				"initialCondition": {
+					"clearCurse": true
+				},
+				"daykill": {
+					"mode": {
+						"evadeCharges": 1
+					}
+				},
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_starter_kill",
+						"broadcast": "team"
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "swampert",
+			"translation": "Swampert",
+			"side": "starter",
+			"help": "Dummy role for inspects.",
+			"hide": true,
+			"info": "Dummy role. ~Sided~",
+			"actions": {
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "swampert_mega",
+			"translation": "Mega Swampert",
+			"side": "starter",
+			"help": "You can /kill one person during the night, shared with your team. You will survive one lynch. Use /tt to talk to your team, and work together to win!",
+			"info": "Can kill (shared) during the night. Evades one lynch. ~Sided~",
+			"actions": {
+				"inspect": {
+					"revealAs": "swampert"
+				},
+				"lynch": {
+					"convertTo": "swampert_mega2",
+					"convertmsg": "Mega Swampert evaded the lynch!"
+				},
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_starter_kill",
+						"broadcast": "team"
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "swampert_mega2",
+			"translation": "Mega Swampert",
+			"side": "starter",
+			"help": "You can /kill one person during the night, shared with your team. Use /tt to talk to your team, and work together to win!",
+			"hide": true,
+			"actions": {
+				"inspect": {
+					"revealAs": "swampert"
+				},
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": "variable:prio_starter_kill",
+						"broadcast": "team"
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "rayquaza",
+			"translation": "Rayquaza",
+			"side": "rayquaza",
+			"help": "You're the strongest Pokemon in the world! You can /kill one person during the night to show them what you're made of! You evade one night kill and if you survive until night 4, you will evolve into Mega Rayquaza!",
+			"info": "Can kill one person during the night. Evades one kill during the night. Takes 1 extra night to die of poison. Converts into Mega Rayquaza on night 4. ~Sided~",
+			"actions": {
+				"initialCondition": {
+					"curse": {
+						"cursedRole": "rayquaza_mega",
+						"curseCount": 3
+					}
+				},
+				"poison": {
+					"mode": "resistance",
+					"rate": 1.5
+				},
+				"kill": {
+					"mode": {
+						"evadeCharges": 1
+					}
+				},
+				"night": {
+					"kill": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_rayquaza"
+					}
+				}
+			}
+		},
+		{
+			"role": "rayquaza_mega",
+			"translation": "Mega Rayquaza",
+			"side": "rayquaza",
+			"help": "You've become your strongest form! Now you can /kill one person during the night AND one person during the day, with a 30% chance of revealing yourself in the day! You ignore all kills and take an extra night to die from poison. You also kill anyone who attempts to distract you from your goal.",
+			"info": "Can kill one person during the night and one person during the day (30% reveal). Evades all kills. Takes 1 extra night to die of poison. Kills distractors. ~Sided~",
+			"actions": {
+				"inspect": {
+					"revealAs": "rayquaza"
+				},
+				"poison": {
+					"mode": "resistance",
+					"rate": 1.5
+				},
+				"daykill": "evade",
+				"kill": {
+					"mode": "ignore"
+				},
+				"distract": {
+					"mode": "killattackerevenifprotected"
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"msg": "Attack someone with your Draco Meteor with /kill [name]! (You may reveal yourself!)",
+						"killmsg": "Asteroids fall from the sky and flatten ~Target~. It's a one-hit KO!",
+						"revealChance": 0.3,
+						"revealmsg": "~Self~'s White Herb restored their lowered stats."
+					}
+				},
+				"night": {
+					"kill": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_rayquaza"
+					}
+				}
+			}
+		}
+	],
+	"roles1": [
+		"sigilyph_nounown",
+		"chikorita",
+		"arcanine",
+		"bulbasaur"
+	],
+	"roles2": [
+		"unown",
+		"unown",
+		"chikorita",
+		"arcanine",
+		"bulbasaur"
+	],
+	"roles3": [
+		"unown",
+		"unown",
+		"kingdra_small",
+		"watchog",
+		"venusaur",
+		"bulbasaur"
+	],
+	"roles4": [
+		"unown",
+		"chikorita_notmiller",
+		"chikorita_notmiller",
+		"sigilyph_unown",
+		"kingdra_small",
+		"charizard",
+		"venusaur"
+	],
+	"roles5": [
+		"unown",
+		"unown",
+		"chikorita_notmiller",
+		"chikorita_notmiller",
+		"sigilyph_unown",
+		"arcanine",
+		"beedrill",
+		"heracross_mega"
+	],
+	"roles6": [
+		"unown",
+		"unown",
+		"unown",
+		"meganium_notmiller",
+		"arcanine",
+		"luxray_quick",
+		"charizard",
+		"blastoise_mega",
+		"rayquaza"
+	],
+	"roles7": [
+		"unown",
+		"unown",
+		"unown",
+		"watchog",
+		"meganium",
+		"growlithe",
+		"luxray_quick",
+		"charizard",
+		"blastoise_mega",
+		"venusaur_mega",
+		"rayquaza"
+	],
+	"roles8": [
+		"unown",
+		"unown",
+		"chikorita_notmiller",
+		"golurk",
+		"alomomola",
+		"meganium",
+		"arcanine",
+		"luxray_quick",
+		"charizard",
+		"venusaur_mega",
+		"beedrill",
+		"heracross_mega"
+	],
+	"roles9": [
+		"unown",
+		"unown",
+		"chikorita_notmiller",
+		"golurk",
+		"alomomola",
+		"meganium",
+		"arcanine",
+		"luxray_quick",
+		"charizard",
+		"venusaur_mega",
+		"beedrill",
+		"heracross_mega",
+		"rayquaza",
+		"chikorita_notmiller"
+	],
+	"roles10": [
+		"unown",
+		"unown",
+		"unown",
+		"chikorita_notmiller",
+		"kingdra",
+		"alomomola",
+		"meganium",
+		"arcanine",
+		"luxray",
+		"charizard",
+		"venusaur_mega",
+		"beedrill",
+		"pinsir_mega",
+		"rayquaza",
+		"chikorita_notmiller"
+	],
+	"roles11": [
+		"unown",
+		"sigilyph_unown",
+		"chikorita_notmiller",
+		"chikorita_notmiller",
+		"zangoose",
+		"seviper",
+		"kingdra",
+		"alomomola",
+		"meganium",
+		"arcanine",
+		"watchog",
+		"charizard",
+		"venusaur_mega",
+		"beedrill",
+		"scizor",
+		"rayquaza"
+	],
+	"roles12": [
+		"unown",
+		"unown",
+		"luxray",
+		"golurk",
+		"chikorita_notmiller",
+		"zangoose",
+		"seviper",
+		"kingdra",
+		"alomomola",
+		"meganium",
+		"arcanine",
+		"sceptile_mega",
+		"venusaur_mega",
+		"blaziken",
+		"beedrill",
+		"pinsir_mega",
+		"heracross_mega",
+		"chikorita_notmiller"
+	],
+	"roles13": [
+		"unown",
+		"watchog",
+		"qwilfish",
+		"luxray",
+		"golurk",
+		"chikorita_notmiller",
+		"zangoose",
+		"seviper",
+		"kingdra",
+		"alomomola",
+		"meganium",
+		"arcanine",
+		"charizard",
+		"venusaur_mega",
+		"blaziken",
+		"beedrill",
+		"pinsir_mega",
+		"scizor",
+		"rayquaza",
+		"unown"
+	],
+	"roles14": [
+		"unown",
+		"unown",
+		"unown",
+		"growlithe",
+		"chikorita_notmiller",
+		"luxray",
+		"golurk",
+		"chikorita_notmiller",
+		"zangoose",
+		"seviper",
+		"kingdra",
+		"alomomola",
+		"meganium",
+		"arcanine",
+		"charizard",
+		"venusaur_mega",
+		"swampert_mega",
+		"beedrill",
+		"pinsir_mega",
+		"scizor",
+		"rayquaza"
+	],
+	"roles15": [
+		"unown",
+		"unown",
+		"unown",
+		"unown",
+		"chikorita_notmiller",
+		"chikorita_notmiller",
+		"zangoose",
+		"seviper",
+		"arcanine",
+		"growlithe",
+		"golurk",
+		"alomomola",
+		"meganium",
+		"kingdra",
+		"luxray",
+		"charizard",
+		"venusaur_mega",
+		"blaziken_mega",
+		"beedrill",
+		"pinsir_mega",
+		"scizor",
+		"rayquaza"
+	],
+	"roles16": [
+		"unown",
+		"unown",
+		"unown",
+		"chikorita_notmiller",
+		"zangoose",
+		"seviper",
+		"arcanine",
+		"growlithe",
+		"golurk",
+		"watchog",
+		"alomomola",
+		"meganium",
+		"meganium",
+		"kingdra",
+		"luxray",
+		"blaziken",
+		"venusaur",
+		"sceptile_mega",
+		"swampert_mega",
+		"beedrill",
+		"heracross_mega",
+		"scizor_mega",
+		"rayquaza"
+	],
+	"roles17": [
+		"unown",
+		"unown",
+		"chikorita_notmiller",
+		"alomomola",
+		"qwilfish",
+		"zangoose",
+		"seviper",
+		"arcanine",
+		"growlithe",
+		"golurk",
+		"alomomola",
+		"meganium",
+		"meganium",
+		"kingdra",
+		"luxray",
+		"sceptile_mega",
+		"venusaur",
+		"charizard",
+		"swampert_mega",
+		"beedrill",
+		"pinsir",
+		"heracross_mega",
+		"scizor",
+		"rayquaza"
+	],
+	"villageCantLoseRoles": [
+		"kingdra",
+		"kingdra_small",
+		"qwilfish",
+		"luxray",
+		"luxray_quick",
+		"luxray_charge",
+		"luxray_charge2"
+	],
+	"changelog": {
+		"24.11.18": "10p spawn changed. Night length changed from 40 to 30 seconds (after night 1.)",
+		"20.10.18": "Golurk added. Sigilyph's kill evade chances changed from 50% to 35%. (Mega) Beedrill poisons killers instead of killing them, and Mega Beedrill's poison2 bypasses immunity. Rayquaza dies one night later to poison now, and becomes Mega Rayquaza one night earlier. Some messages changed. Spawns significantly changed to balance the theme better.",
+		"19.10.18": "Changelog added."
+	}
+}
