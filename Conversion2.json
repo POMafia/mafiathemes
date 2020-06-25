@@ -1,0 +1,920 @@
+{
+	"name": "Conversion2",
+	"author": "Pamitha",
+	"threadlink": "",
+	"summary": "The evil Porygon Mafia is invading the peaceful Frost Rotom Village! Band together with your teammates to turn everyone to your side! Use /tips for helpful information on how to play.",
+	"minplayers": 5,
+	"checkNoVoters": true,
+	"ticks": {
+		"standby": 25,
+		"night": 25,
+		"night1": 25
+	},
+	"sides": [{
+			"side": "rotom",
+			"translation": "Frost Rotom",
+			"color": "#0099cc",
+			"winmsg": "The Frost Rotom (~Players~) have made Frost Rotom Village peaceful again! Great job!"
+		},
+		{
+			"side": "porygon",
+			"translation": "Porygon Mafia",
+			"color": "#cc00cc",
+			"winmsg": "Frost Rotom Village looks slightly different than it used to... Well, congratulations to the Porygon (~Players~) anyway!"
+		},
+		{
+			"side": "missingno",
+			"translation": "Missingno.",
+			"color": "#7f7f7f",
+			"winmsg": "Frost Rotom Village looks more like Glitch City now, all thanks to ~Players~, the only one left."
+		}
+	],
+	"tips": {
+		"Priority": "You may convert someone and have them immediately be converted again afterwards. Pay attention at the end of the night before you message someone you converted! The priority order is Porygon Team (Conversion), Frost Rotom (Freeze).",
+		"Conversion2": "Every command is reflected by Conversion2, including safeguards and inspects! So be wary of your inspect results if a Porygon2 is in the game!",
+		"Safeguard": "A Porygon converted into a Frost Rotom will be able to safeguard immediately, but still has to recharge. Porygon2's one safeguard will be refreshed if it evolves into Porygon2 again later.",
+		"Hitting Allies": "If a Frost Rotom targets another Frost Rotom to convert them, they will just evade it, same if a Porygon does it to another Porygon.",
+		"Safeguard vs Evade": "If someone is safeguarded, it will show that they were guarded from your command. If they aren't, it'll say they can't be affected. They will always display the guard message if they were safeguarded, even if they normally can't be affected.",
+		"Converting Missingno.": "If Missingno. is converted into a Porygon or Frost Rotom, it will die 2 nights later.",
+		"Porygon-Z": "Porygon-Z knows every other Porygon-Z. If one gets converted, they might sell out the rest of them, so be careful!",
+		"Missingno. Safeguard": "Missingno. has a variable number of safeguards based on player count. 3: 11-17, 4: 18-21, 5: 22+",
+		"Issues": "This theme is unpolished and unbalanced. Just tell Pamitha if you find any problems."
+	},
+	"variables": {
+		"rotom_vote": 1,
+		"porygon_vote": 1,
+		"porygon2_vote": 1.5,
+		"porygonz_vote": 2,
+		"missingno_vote": 0,
+		"help_rotom_start": "You are a humble resident of this village. You can /inspect someone to find out their role. Starting on the second night, you can /freeze someone to turn them into another Frost Rotom, /inspect someone twice per game to find out their role, and /safeguard someone to protect them from being converted, inspected, or poisoned, though you can only do this once every three nights.",
+		"help_rotom": "You are a humble resident of this village. You can /freeze someone to turn them into another Frost Rotom. Twice per game, you can /inspect someone to find their role. You can also /safeguard someone to protect them from being converted, inspected, or poisoned, though you can only do this once every three nights.",
+		"help_porygon": "As a member of the Porygon mafia, you can /conversion one person to turn them into a Porygon! Every other night, you can /inspect one person to find out their role! You'll find their role even if they're safeguarded! You can /evolve as well, cancelling any other commands but allowing you to become a Porygon2.",
+		"help_porygon2_start": "As an evolved Pokemon, you have a vote of 1.5. You can /conversion one person or /conversion2 (starting night 2) to reflect any commands used on you! You can only conversion2 every three nights, however. You can /inspect one person every other night. You can  You can /evolve and cancel your other commands to become your final form, Porygon-Z!",
+		"help_porygon2": "As an evolved Pokemon, you have a vote of 1.5. You can /conversion one person or /conversion2 to reflect any commands used on you! You can only conversion2 every three nights, however. You can /inspect one person every other night. You can  You can /evolve and cancel your other commands to become your final form, Porygon-Z!",
+		"help_porygonz": "You're the fully evolved form of Porygon, giving you a vote of 2! You can /conversion two people during the night and every other day, you can conversion one person! Every other night, you can safeguard one person. You can't inspect or conversion2 anymore, but know every other Porygon-Z. Use /tt to talk to them!",
+		"help_missingno": "Where did you come from? Well, you can /garbage one person during the night to kill them, and you can ",
+		"prio_evolve": 1,
+		"prio_conversion2": 2,
+		"prio_safeguard": 3,
+		"prio_missingno_garbage": 4,
+		"prio_missingno_poison": 5,
+		"prio_porygon_conversion": 6,
+		"prio_porygon2z_conversion": 7,
+		"prio_rotom_freeze": 8,
+		"prio_inspect": 20,
+		"porygon_convertibles": ["rotom", "rotom_start", "rotom_dying", "missingno", "missingno_2", "missingno_3"],
+		"rotom_convertibles": ["porygon", "porygon_dying", "porygon2", "porygon2_start", "porygonz", "missingno", "missingno_2", "missingno_3"],
+		"porygon_list": ["porygon", "porygon_dying", "porygon2", "porygon2_start", "porygon2_convert", "porygonz"],
+		"rotom_list": ["rotom", "rotom_start", "rotom_dying"],
+		"missingno_list": ["missingno", "missingno_2", "missingno_3"]
+	},
+	"roles": [{
+			"role": "rotom_start",
+			"translation": "Frost Rotom",
+			"side": "rotom",
+			"help": "variable:help_rotom_start",
+			"hide": true,
+			"actions": {
+				"vote": "variable:rotom_vote",
+				"night": {
+					"freeze": {
+						"command": ["convert", "copy"],
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_rotom_freeze",
+						"copyAs": {
+							"porygon": [
+								"porygon2_convert"
+							]
+						},
+						"newRole": {
+							"rotom": "variable:porygon_list",
+							"rotom_dying": "variable:missingno_list"
+						},
+						"canConvert": "variable:rotom_convertibles",
+						"noRepeat": true,
+						"initialrecharge": 2
+					},
+					"inspect": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_inspect",
+						"charges": 2,
+						"limit": 1,
+						"initialrecharge": 2
+					},
+					"safeguard": {
+						"common": "Self",
+						"target": "Any",
+						"priority": "variable:prio_safeguard",
+						"recharge": 3,
+						"initialrecharge": 2
+					}
+				},
+				"distract": {
+					"mode": "ignore"
+				}
+			}
+		},
+		{
+			"role": "rotom",
+			"translation": "Frost Rotom",
+			"side": "rotom",
+			"help": "variable:help_rotom",
+			"info": "Can freeze (convert) one person during the night, starting night 2. Can safeguard one person during the night (including self), every three nights, starting night 2. Can inspect one person during the night starting night 2, twice per game. ~Sided~",
+			"actions": {
+				"vote": "variable:rotom_vote",
+				"night": {
+					"freeze": {
+						"command": ["convert", "copy"],
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_rotom_freeze",
+						"copyAs": {
+							"porygon": [
+								"porygon2_convert"
+							]
+						},
+						"newRole": {
+							"rotom": "variable:porygon_list",
+							"rotom_dying": "variable:missingno_list"
+						},
+						"canConvert": "variable:rotom_convertibles",
+						"noRepeat": true
+					},
+					"inspect": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_inspect",
+						"charges": 2,
+						"limit": 1,
+						"initialrecharge": 2
+					},
+					"safeguard": {
+						"common": "Self",
+						"target": "Any",
+						"priority": "variable:prio_safeguard",
+						"recharge": 3
+					}
+				},
+				"distract": {
+					"mode": "ignore"
+				}
+			}
+		},
+		{
+			"role": "rotom_dying",
+			"translation": "Frost Rotom",
+			"side": "rotom",
+			"help": "variable:help_rotom",
+			"hide": true,
+			"actions": {
+				"vote": "variable:rotom_vote",
+				"initialCondition": {
+					"poison": {
+						"count": 3,
+						"poisonDeadMessage": "Fatal error! Your code was too unstable and you shut off, permanently!"
+					}
+				},
+				"night": {
+					"freeze": {
+						"command": ["convert", "copy"],
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_rotom_freeze",
+						"copyAs": {
+							"porygon": [
+								"porygon2_convert"
+							]
+						},
+						"newRole": {
+							"rotom": "variable:porygon_list",
+							"rotom_dying": "variable:missingno_list"
+						},
+						"canConvert": "variable:rotom_convertibles",
+						"noRepeat": true
+					},
+					"inspect": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_inspect"
+					},
+					"safeguard": {
+						"common": "Self",
+						"target": "Any",
+						"priority": "variable:prio_safeguard",
+						"recharge": 3
+					}
+				},
+				"distract": {
+					"mode": "ignore"
+				}
+			}
+		},
+		{
+			"role": "porygon",
+			"translation": "Porygon",
+			"side": "porygon",
+			"help": "variable:help_porygon",
+			"info": "Can conversion (convert) one person during the night. Can inspect one person during the night (bypassing safeguard), every other night. Can evolve (cancels other commands) during the night to become Porygon2. ~Sided~",
+			"actions": {
+				"vote": "variable:porygon_vote",
+				"night": {
+					"conversion": {
+						"command": "convert",
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_porygon_conversion",
+						"newRole": {
+							"porygon": "variable:rotom_list",
+							"porygon_dying": "variable:missingno_list"
+						},
+						"canConvert": "variable:porygon_convertibles",
+						"noRepeat": true,
+						"cancel": [
+							"evolve"
+						],
+						"convertusermsg": "Your target (~Target~) became a ~New~! You might want to talk to them!",
+						"convertmsg": "A Porygon used Conversion! ~Old~ was converted into a ~New~!"
+					},
+					"inspect": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_inspect",
+						"recharge": 2,
+						"pierce": true,
+						"cancel": [
+							"evolve"
+						]
+					},
+					"evolve": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": "variable:prio_evolve",
+						"newRole": "porygon2",
+						"canConvert": "variable:porygon_list",
+						"noRepeat": true,
+						"cancel": [
+							"conversion",
+							"inspect"
+						],
+						"convertusermsg": "",
+						"convertmsg": "A ~Old~ evolved into a ~New~!"
+					}
+				},
+				"expose": {
+					"mode": {
+						"evadeChance": 1
+					}
+				}
+			}
+		},
+		{
+			"role": "porygon_dying",
+			"translation": "Porygon",
+			"side": "porygon",
+			"help": "variable:help_porygon",
+			"hide": true,
+			"actions": {
+				"vote": "variable:porygon_vote",
+				"initialCondition": {
+					"poison": {
+						"count": 3,
+						"poisonDeadMessage": "Fatal error! Your code was too unstable and you shut off, permanently!"
+					}
+				},
+				"night": {
+					"conversion": {
+						"command": "convert",
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_porygon_conversion",
+						"newRole": {
+							"porygon": "variable:rotom_list",
+							"porygon_dying": "variable:missingno_list"
+						},
+						"canConvert": "variable:porygon_convertibles",
+						"noRepeat": true,
+						"cancel": [
+							"evolve"
+						],
+						"convertusermsg": "Your target (~Target~) became a ~New~! You might want to talk to them!",
+						"convertmsg": "A Porygon used Conversion! ~Old~ was converted into a ~New~!"
+					},
+					"inspect": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_inspect",
+						"recharge": 2,
+						"pierce": true,
+						"cancel": [
+							"evolve"
+						]
+					},
+					"evolve": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": "variable:prio_evolve",
+						"newRole": "porygon2",
+						"canConvert": "variable:porygon_list",
+						"noRepeat": true,
+						"cancel": [
+							"conversion",
+							"inspect"
+						],
+						"convertusermsg": "",
+						"convertmsg": "A ~Old~ evolved into a ~New~!"
+					}
+				},
+				"expose": {
+					"mode": {
+						"evadeChance": 1
+					}
+				}
+			}
+		},
+		{
+			"role": "porygon2_start",
+			"translation": "Porygon2",
+			"side": "porygon",
+			"help": "variable:help_porygon2",
+			"hide": true,
+			"actions": {
+				"vote": "variable:porygon2_vote",
+				"night": {
+					"conversion": {
+						"command": "convert",
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_porygon2z_conversion",
+						"newRole": {
+							"porygon": "variable:rotom_list",
+							"porygon_dying": "variable:missingno_list"
+						},
+						"canConvert": "variable:porygon_convertibles",
+						"noRepeat": true,
+						"cancel": [
+							"conversion2",
+							"evolve"
+						],
+						"convertusermsg": "Your target (~Target~) became a ~New~! You might want to talk to them!",
+						"convertmsg": "A Porygon2 used Conversion! ~Old~ was converted into a ~New~!"
+					},
+					"conversion2": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": "variable:prio_conversion2",
+						"newRole": "porygon2_convert",
+						"canConvert": [
+							"porygon2_start"
+						],
+						"initialrecharge": 2,
+						"recharge": 3,
+						"noRepeat": true,
+						"pierce": true,
+						"bypass": [
+							"ignore"
+						],
+						"cancel": [
+							"conversion",
+							"evolve"
+						],
+						"convertusermsg": "You used Conversion2!",
+						"convertmsg": "A Porygon2 used Conversion2!"
+					},
+					"inspect": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_inspect",
+						"recharge": 2,
+						"pierce": true,
+						"cancel": [
+							"evolve"
+						]
+					},
+					"evolve": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": "variable:prio_evolve",
+						"newRole": "porygonz",
+						"canConvert": "variable:porygon_list",
+						"noRepeat": true,
+						"cancel": [
+							"conversion",
+							"conversion2",
+							"inspect"
+						],
+						"convertusermsg": "",
+						"convertmsg": "A ~Old~ evolved into a ~New~!"
+					}
+				},
+				"expose": {
+					"mode": {
+						"evadeChance": 1
+					}
+				}
+			}
+		},
+		{
+			"role": "porygon2",
+			"translation": "Porygon2",
+			"side": "porygon",
+			"help": "variable:help_porygon2",
+			"info": "Vote counts as 1.5. Can conversion (convert, cancels conversion2) one person during the night. Can conversion2 (cancels conversion) during the night, every three nights. Can inspect one person during the night, every other night (bypassing safeguard). Can evolve (cancels other commands) during the night to become Porygon-Z. ~Sided~",
+			"actions": {
+				"vote": "variable:porygon2_vote",
+				"night": {
+					"conversion": {
+						"command": "convert",
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_porygon2z_conversion",
+						"newRole": {
+							"porygon": "variable:rotom_list",
+							"porygon_dying": "variable:missingno_list"
+						},
+						"canConvert": "variable:porygon_convertibles",
+						"noRepeat": true,
+						"cancel": [
+							"conversion2",
+							"evolve"
+						],
+						"convertusermsg": "Your target (~Target~) became a ~New~! You might want to talk to them!",
+						"convertmsg": "A Porygon2 used Conversion! ~Old~ was converted into a ~New~!"
+					},
+					"conversion2": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": "variable:prio_conversion2",
+						"newRole": "porygon2_convert",
+						"canConvert": [
+							"porygon2"
+						],
+						"recharge": 3,
+						"noRepeat": true,
+						"pierce": true,
+						"bypass": [
+							"ignore"
+						],
+						"cancel": [
+							"conversion",
+							"evolve"
+						],
+						"convertusermsg": "You used Conversion2!",
+						"convertmsg": "A Porygon2 used Conversion2!"
+					},
+					"inspect": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_inspect",
+						"recharge": 2,
+						"pierce": true,
+						"cancel": [
+							"evolve"
+						]
+					},
+					"evolve": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": "variable:prio_evolve",
+						"newRole": "porygonz",
+						"canConvert": "variable:porygon_list",
+						"noRepeat": true,
+						"cancel": [
+							"conversion",
+							"conversion2",
+							"inspect"
+						],
+						"convertusermsg": "",
+						"convertmsg": "A ~Old~ evolved into a ~New~!"
+					}
+				},
+				"expose": {
+					"mode": {
+						"evadeChance": 1
+					}
+				}
+			}
+		},
+		{
+			"role": "porygon2_convert",
+			"translation": "Porygon2",
+			"side": "porygon",
+			"help": "",
+			"hide": true,
+			"actions": {
+				"initialCondition": {
+					"curse": {
+						"curseCount": 0,
+						"cursedRole": "porygon2",
+						"silentCurse": true
+					}
+				},
+				"convert": {
+					"mode": "ignore"
+				},
+				"kill": {
+					"mode": "killattackerevenifprotected"
+				},
+				"poison": {
+					"mode": "poisonattackerevenifprotected"
+				},
+				"safeguard": {
+					"mode": "ChangeTarget"
+				},
+				"inspect": {
+					"mode": "ChangeTarget"
+				}
+			}
+		},
+		{
+			"role": "porygonz",
+			"translation": "Porygon-Z",
+			"side": "porygon",
+			"help": "variable:help_porygonz",
+			"info": "Vote counts as 2. Can conversion (convert) two people during the night. Can conversion (convert) one person during the day (not revealed), every other day. Can safeguard one person during the night (including self), every other night. Knows other Porygon-Z. ~Sided~",
+			"actions": {
+				"startup": {
+					"revealRole": [
+						"porygonz"
+					]
+				},
+				"vote": "variable:porygonz_vote",
+				"night": {
+					"conversion": {
+						"command": "convert",
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_porygon2z_conversion",
+						"newRole": {
+							"porygon": "variable:rotom_list",
+							"porygon_dying": "variable:missingno_list"
+						},
+						"canConvert": "variable:porygon_convertibles",
+						"noRepeat": true,
+						"cancel": [
+							"conversion2"
+						],
+						"convertusermsg": "Your target (~Target~) became a ~New~! You might want to talk to them!",
+						"convertmsg": "A Porygon-Z used Conversion! ~Old~ was converted into a ~New~!",
+						"broadcast": ["porygonz"],
+						"broadcastmsg": "~Player~ has decided to conversion '~Target~'.",
+						"limit": 2
+					},
+					"safeguard": {
+						"common": "Self",
+						"target": "Any",
+						"priority": "variable:prio_safeguard",
+						"recharge": 3,
+						"broadcast": ["porygonz"],
+						"broadcastmsg": "~Player~ has decided to safeguard '~Target~'."
+					}
+				},
+				"standby": {
+					"conversion": {
+						"command": "expose",
+						"target": "AnyButSelf",
+						"msg": "Use /conversion [user] to convert them into a Porygon! (You won't be revealed).",
+						"exposemsg": "A Porygon-Z used Conversion on a ~Role~, turning them into a Porygon!",
+						"newRole": {
+							"porygon": "variable:rotom_list",
+							"porygon_dying": "variable:missingno_list"
+						},
+						"recharge": 2,
+						"canConvert": "variable:porygon_convertibles"
+					}
+				},
+				"expose": {
+					"mode": {
+						"evadeChance": 1
+					}
+				},
+				"preventTeamvote": ["porygonz"],
+				"teamTalk": ["porygonz"]
+			}
+		},
+		{
+			"role": "missingno",
+			"translation": "Missingno.",
+			"side": "missingno",
+			"winningSides": [
+				"rotom",
+				"porygon",
+				"missingno"
+			],
+			"help": "variable:help_missingno",
+			"info": "Vote counts as 0. Can garbage (kill) one person during the night. Can poison one person during the night. Can safeguard one person during the night (including self), with a number of charges that varies on player count (look at /tips.) Evades one day convert. Dies in two nights if converted. Inspects as Porygon or Frost Rotom randomly. Wins with anyone.",
+			"actions": {
+				"inspect": {
+					"revealAs": [
+						"porygon",
+						"rotom"
+					]
+				},
+				"vote": "variable:missingno_vote",
+				"night": {
+					"garbage": {
+						"command": "kill",
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_missingno_garbage"
+					},
+					"poison": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_missingno_poison"
+					},
+					"safeguard": {
+						"common": "Self",
+						"target": "Any",
+						"priority": "variable:prio_safeguard",
+						"charges": 3,
+						"limit": 1
+					}
+				}
+			}
+		},
+		{
+			"role": "missingno_2",
+			"translation": "Missingno.",
+			"side": "missingno",
+			"winningSides": [
+				"rotom",
+				"porygon",
+				"missingno"
+			],
+			"help": "variable:help_missingno",
+			"hide": true,
+			"actions": {
+				"inspect": {
+					"revealAs": [
+						"porygon",
+						"rotom"
+					]
+				},
+				"vote": "variable:missingno_vote",
+				"night": {
+					"garbage": {
+						"command": "kill",
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_missingno_garbage"
+					},
+					"poison": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_missingno_poison"
+					},
+					"safeguard": {
+						"common": "Self",
+						"target": "Any",
+						"priority": "variable:prio_safeguard",
+						"charges": 4,
+						"limit": 1
+					}
+				}
+			}
+		},
+		{
+			"role": "missingno_3",
+			"translation": "Missingno.",
+			"side": "missingno",
+			"winningSides": [
+				"rotom",
+				"porygon",
+				"missingno"
+			],
+			"help": "variable:help_missingno",
+			"hide": true,
+			"actions": {
+				"inspect": {
+					"revealAs": [
+						"porygon",
+						"rotom"
+					]
+				},
+				"vote": "variable:missingno_vote",
+				"night": {
+					"garbage": {
+						"command": "kill",
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_missingno_garbage"
+					},
+					"poison": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": "variable:prio_missingno_poison"
+					},
+					"safeguard": {
+						"common": "Self",
+						"target": "Any",
+						"priority": "variable:prio_safeguard",
+						"charges": 5,
+						"limit": 1
+					}
+				}
+			}
+		}
+	],
+	"roles1": [
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"porygon2_start"
+	],
+	"roles2": [
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"porygon2_start",
+		"porygon",
+		"rotom_start"
+	],
+	"roles3": [
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"porygon2_start",
+		"porygon2_start",
+		"rotom_start"
+	],
+	"roles4": [
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"porygon",
+		"porygon",
+		"porygon",
+		"missingno",
+		"rotom_start"
+	],
+	"roles5": [
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"porygon",
+		"porygon",
+		"porygon2_start",
+		"missingno"
+	],
+	"roles6": [
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"porygon",
+		"porygon2_start",
+		"porygon2_start",
+		"missingno",
+		"rotom_start"
+	],
+	"roles7": [
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"porygon",
+		"porygon",
+		"porygonz",
+		"missingno",
+		"rotom_start",
+		"rotom_start"
+	],
+	"roles8": [
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"porygon",
+		"porygon",
+		"porygon2_start",
+		"porygon2_start",
+		"missingno_2",
+		"rotom_start",
+		"rotom_start"
+	],
+	"roles9": [
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"porygon",
+		"porygon",
+		"porygonz",
+		"porygon2_start",
+		"missingno_2",
+		"rotom_start"
+	],
+	"roles10": [
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"porygon",
+		"porygon",
+		"porygonz",
+		"porygon2_start",
+		"missingno_3",
+		"rotom_start",
+		"porygon",
+		"rotom_start"
+	],
+	"roles11": [
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"rotom_start",
+		"porygon",
+		"porygon",
+		"porygon2_start",
+		"porygonz",
+		"porygonz",
+		"missingno_3"
+	]
+}
