@@ -1,0 +1,477 @@
+{
+    "name": "Popularity",
+    "author": "R​iceKirby",
+    "summary": "Vote for someone you like every day and night! First to get 5 votes wins!",
+    "minplayers": 3,
+    "ticks": {
+        "night": 20,
+        "standby": 3
+    },
+    "delayedConversionMsg" : true,
+    "votesniping": true,
+    "closedSetup": true,
+    "sides": [
+        {
+            "side": "0",
+            "translation": "People with 0 votes"
+        },
+        {
+            "side": "1",
+            "translation": "People with 1 vote"
+        },
+        {
+            "side": "2",
+            "translation": "People with 2 votes"
+        },
+        {
+            "side": "3",
+            "translation": "People with 3 votes"
+        },
+        {
+            "side": "4",
+            "translation": "People with 4 votes"
+        },
+        {
+            "side": "winner",
+            "translation": "Winner",
+            "winmsg": "±Announcer: ~Players~ got 5 votes and won this popularity contest!"
+        }
+    ],
+    "variables": {
+        "newRole": {
+            "level1": ["level0"],
+            "level1-v": ["level0-v"],
+            "level2": ["level1"],
+            "level2-v": ["level1-v"],
+            "level3": ["level2"],
+            "level3-v": ["level2-v"],
+            "level4": ["level3"],
+            "level4-v": ["level3-v"],
+            "winner": ["level4", "level4-v"]
+        },
+        "prio_0votes": 0,
+        "prio_1votes": 1,
+        "prio_2votes": 2,
+        "prio_3votes": 3,
+        "prio_4votes": 4,
+        "prio_5votes": 5
+    },
+    "roles": [
+        {
+            "role": "level0",
+            "translation": "Contestant (0 votes)",
+            "side": "0",
+            "help": "Use /vote [name] during the day AND the night to make someone popular!",
+            "hide": true, 
+            "actions": {
+                "night": {
+                    "vote": { 
+                        "command": ["copy", "convert"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:prio_0votes",
+                        "copyAs": "level0-v",
+                        "newRole": "variable:newRole",
+                        "hide": true,
+                        "silent": true,
+                        "silentCopy": true,
+                        "usermsg": "You made ~Target~ more popular!",
+                        "tarmsg": "Someone made you more popular!"
+                    }
+                },
+                "onlist": "contestant",
+                "lynch": {
+                    "convertTo": "level1",
+                    "convertmsg": "~Self~ got ~Count~ votes and became even more popular!"
+                }
+            }
+        },{
+            "role": "level0-v",
+            "translation": "Contestant (0 votes)",
+            "side": "0",
+            "help": "Use /vote [name] during the day AND the night to make someone popular!",
+            "hide": true, 
+            "actions": {
+                "night": {
+                    "vote": { 
+                        "command": "dummy",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:prio_0votes",
+                        "hide": true
+                    }
+                },
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "level0",
+                        "curseCount": -1,
+                        "silentCurse": true
+                    }
+                },
+                "onlist": "contestant"
+            }
+        },
+        
+        
+        
+        
+        {
+            "role": "level1",
+            "translation": "Contestant (1 votes)",
+            "side": "1",
+            "help": "Use /vote [name] during the day AND the night to make someone popular!",
+            "hide": true, 
+            "actions": {
+                "night": {
+                    "vote": { 
+                        "command": ["copy", "convert"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:prio_1votes",
+                        "copyAs": "level1-v",
+                        "newRole": "variable:newRole",
+                        "hide": true,
+                        "silent": true,
+                        "silentCopy": true,
+                        "usermsg": "You made ~Target~ more popular!",
+                        "tarmsg": "Someone made you more popular!"
+                    }
+                },
+                "onlist": "contestant",
+                "lynch": {
+                    "convertTo": "level2",
+                    "convertmsg": "~Self~ got ~Count~ votes and became even more popular!"
+                }
+            }
+        },{
+            "role": "level1-v",
+            "translation": "Contestant (1 votes)",
+            "side": "1",
+            "help": "Use /vote [name] during the day AND the night to make someone popular!",
+            "hide": true, 
+            "actions": {
+                "night": {
+                    "vote": { 
+                        "command": "dummy",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:prio_1votes",
+                        "hide": true
+                    }
+                },
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "level1",
+                        "curseCount": -1,
+                        "silentCurse": true
+                    }
+                },
+                "onlist": "contestant"
+            }
+        },
+        
+        
+        
+        
+        {
+            "role": "level2",
+            "translation": "Contestant (2 votes)",
+            "side": "2",
+            "help": "Use /vote [name] during the day AND the night to make someone popular!",
+            "hide": true, 
+            "actions": {
+                "night": {
+                    "vote": { 
+                        "command": ["copy", "convert"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:prio_2votes",
+                        "copyAs": "level2-v",
+                        "newRole": "variable:newRole",
+                        "hide": true,
+                        "silent": true,
+                        "silentCopy": true,
+                        "usermsg": "You made ~Target~ more popular!",
+                        "tarmsg": "Someone made you more popular!"
+                    }
+                },
+                "onlist": "contestant",
+                "lynch": {
+                    "convertTo": "level3",
+                    "convertmsg": "~Self~ got ~Count~ votes and became even more popular!"
+                }
+            }
+        },{
+            "role": "level2-v",
+            "translation": "Contestant (2 votes)",
+            "side": "2",
+            "help": "Use /vote [name] during the day AND the night to make someone popular!",
+            "hide": true, 
+            "actions": {
+                "night": {
+                    "vote": { 
+                        "command": "dummy",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:prio_2votes",
+                        "hide": true
+                    }
+                },
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "level2",
+                        "curseCount": -1,
+                        "silentCurse": true
+                    }
+                },
+                "onlist": "contestant"
+            }
+        },
+        
+        
+        
+        
+        {
+            "role": "level3",
+            "translation": "Contestant (3 votes)",
+            "side": "3",
+            "help": "Use /vote [name] during the day AND the night to make someone popular!",
+            "hide": true, 
+            "actions": {
+                "night": {
+                    "vote": { 
+                        "command": ["copy", "convert"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:prio_3votes",
+                        "copyAs": "level3-v",
+                        "newRole": "variable:newRole",
+                        "hide": true,
+                        "silent": true,
+                        "silentCopy": true,
+                        "usermsg": "You made ~Target~ more popular!",
+                        "tarmsg": "Someone made you more popular!"
+                    }
+                },
+                "onlist": "contestant",
+                "lynch": {
+                    "convertTo": "level4",
+                    "convertmsg": "~Self~ got ~Count~ votes and became even more popular!"
+                }
+            }
+        },{
+            "role": "level3-v",
+            "translation": "Contestant (3 votes)",
+            "side": "3",
+            "help": "Use /vote [name] during the day AND the night to make someone popular!",
+            "hide": true, 
+            "actions": {
+                "night": {
+                    "vote": { 
+                        "command": "dummy",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:prio_3votes",
+                        "hide": true
+                    }
+                },
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "level3",
+                        "curseCount": -1,
+                        "silentCurse": true
+                    }
+                },
+                "onlist": "contestant"
+            }
+        },
+        
+        
+        
+        
+        {
+            "role": "level4",
+            "translation": "Contestant (4 votes)",
+            "side": "4",
+            "help": "Use /vote [name] during the day AND the night to make someone popular!",
+            "hide": true, 
+            "actions": {
+                "night": {
+                    "vote": { 
+                        "command": ["copy", "convert"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:prio_4votes",
+                        "copyAs": "level4-v",
+                        "newRole": "variable:newRole",
+                        "hide": true,
+                        "silent": true,
+                        "silentCopy": true,
+                        "usermsg": "You made ~Target~ more popular!",
+                        "tarmsg": "Someone made you more popular!"
+                    }
+                },
+                "onlist": "contestant",
+                "lynch": {
+                    "convertTo": "winner",
+                    "convertmsg": "~Self~ got ~Count~ votes and became even more popular!"
+                }
+            }
+        },{
+            "role": "level4-v",
+            "translation": "Contestant (4 votes)",
+            "side": "4",
+            "help": "Use /vote [name] during the day AND the night to make someone popular!",
+            "hide": true, 
+            "actions": {
+                "night": {
+                    "vote": { 
+                        "command": "dummy",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:prio_4votes",
+                        "hide": true
+                    }
+                },
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "level4",
+                        "curseCount": -1,
+                        "silentCurse": true
+                    }
+                },
+                "onlist": "contestant"
+            }
+        },
+        
+        
+        
+        
+        
+        
+        
+        {
+            "role": "contestant",
+            "translation": "Contestant",
+            "side": "winner",
+            "help": "Placeholder role",
+            "info": "Can vote one person during the night AND the day. Sided with itself.",
+            "actions": {
+                "night": {
+                    "vote": { 
+                        "command": "convert",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "newRole": "winner",
+                        "silent": true,
+                        "usermsg": "You made ~Target~ more popular!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "winner",
+            "translation": "Winner",
+            "side": "winner",
+            "help": "Congratulations! You are really popular!",
+            "info": "Wins.",
+            "winIfDeadRoles": [],
+            "actions": {
+                "night": {
+                    "win": {
+                        "command": "convert",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 2,
+                        "newRole": "winner",
+                        "silent": true,
+                        "usermsg": "You made ~Target~ more popular!"
+                    },
+                    "vote": { 
+                        "command": ["convert"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:prio_4votes",
+                        "newRole": "variable:newRole",
+                        "hide": true,
+                        "silent": true,
+                        "usermsg": "You made ~Target~ more popular!",
+                        "tarmsg": "Someone made you more popular!"
+                    }
+                },
+                "initialCondition": {
+                    "clearCurse": true
+                }
+            }
+        }
+    ],
+    "roles1": [
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0",
+        "level0"
+    ],
+    "villageCantLoseRoles": [
+        "level0",
+        "level1",
+        "level2",
+        "level3",
+        "level4",
+        "level0-v",
+        "level1-v",
+        "level2-v",
+        "level3-v",
+        "level4-v"
+    ],
+    "votemsg": "~Player~ likes ~Target~!",
+    "changelog": {
+        "10.05.2015": "Fixed old bug where 2 people voting each other during the night could result in one of them not voting or voting twice."
+    }
+}
