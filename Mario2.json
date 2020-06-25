@@ -1,0 +1,1507 @@
+{
+    "name": "Mario2",
+	"altname": "Mario- The Lost Theme",
+    "author": [
+        "Micaiah",
+        "Sky Sentinel"
+    ],
+    "summary": "The Mushroom Kingdom is a peaceful place... usually. Bowser has decided to attack the Kingdom again! But this time he is not the only one attacking the Mushroom Kingdom. Beanbean Kingdom has decided to join the fray with Cackletta getting stronger every few nights. The Glitz Pit are here to get revenge on 'The Great Gonzalez'. And you can't forget about Wario and Waluigi, who want to get all of the riches in the Kingdom. Even the Ghosts come back to haunt Luigi and pals! Will the Mushroom Kingdom be able to survive all of these threats? PM Sky Sentinel/Micaiah with comments, concerns, and suggestions :D",
+    "changelog": {
+        "7.24.2014": "Testing begins. E. Gadd is added and minor changes are made to fix coding oversights. Brain does not spawn until the third Boo spawns. Small games changed, with sides generally swapped. Boo's kill changed to half pierce.",
+        "7.27.2014": "Added King Boo.",
+        "9.25.2918": "JUSTICE FOR MC BALLYHOO"
+    },
+    "sides": [
+        {
+            "side": "village",
+            "translation": "Mushroom Kingdom",
+            "winmsg": "~Players~ have saved the Mushroom Kingdom from the clutches of evil!"
+        },
+        {
+            "side": "beanbean",
+            "translation": "Beanbean Kingdom",
+            "winmsg": "~Players~ have chortles! The evil figures from the Beanbean Kingdom have awakened the power of the Bean and Dark Stars and conquered the world!"
+        },
+        {
+            "side": "bowser",
+            "translation": "Bowser's Castle",
+            "winmsg": "GRAAHAAHAA! ~Players~ have finally taken over the Mushroom Kingdom and now have it all to themselves!"
+        },
+        {
+            "side": "glitz",
+            "translation": "Glitz Pit",
+            "winmsg": "~Players~ have beat all of the competition and are now the true champions of the Mushroom Kingdom!"
+        },
+        {
+            "side": "wicked",
+            "translation": "Wicked Bros.",
+            "winmsg": "±~Players~: 'WAHAHAHA! WE WON!' The Wicked Bros. stunk up the Mushroom Kingdom and drove everyone away..."
+        },
+        {
+            "side": "ghosts",
+            "translation": "Ghosts",
+            "winmsg": "The ~Players~ have scared their enemies away and now haunt the entire Mushroom Kingdom!"
+        }
+    ],
+    "roles": [
+        {
+            "role": "toad",
+            "side": "village",
+            "translation": "Toad",
+            "help": "You are one of the many citizens of the Mushroom Kingdom. You are known to be easily frightened by pretty much everything! Because of that you are only able to vote during the day. Watch out for Kamek, though, as he can transform you into an evil Goomba!",
+            "actions": {
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ has no actions!"
+                }
+            }
+        },
+        {
+            "role": "mario",
+            "side": "village",
+            "translation": "Mario",
+            "help": "It's a-me! Wait, it's a-you! You are the star of the show, the one and only... Mario! You like to jump on things and throw fireballs, for God knows what reason. However, this allows you /kill someone during the day! You can't be daykilled yourself, but you'll be revealed!",
+            "actions": {
+                "daykill": "evade",
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can kill!"
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You picked up a Fire Flower! Type /kill [name] to take someone out!",
+                        "killmsg": "WAHOO! Mario (~Self~) jumps out of a Warp Pipe and throws a massive fireball at ~Target~, who is instantly incinerated!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "kong",
+            "side": "village",
+            "translation": "Donkey Kong",
+            "info": "Can protect one person during the night. Evades ten percent of nightkills. ~Sided~",
+            "help": "You are a super buff gorilla! You've also decided to put aside your differences with Mario and help him out. After all, you played baseball with him a couple times and he's not a bad dude. You can /protect someone during the night to intimidate killers who come near your target! Since you're a big scary monkey, 10 percent of killers will be to afraid to even come near YOU.",
+            "actions": {
+                "kill": {
+                    "mode": {
+                        "evadeChance": 0.1
+                    }
+                },
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can protect!"
+                },
+                "night": {
+                    "protect": {
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": 10
+                    }
+                }
+            }
+        },
+        {
+            "role": "ballyhoo",
+            "side": "village",
+            "translation": "MC Ballyhoo",
+            "info": "Can inspect one person during the night, once per game. Can expose one person during the standby. Sided with Mushroom Kingdom.",
+            "help": "You are the weird teal skinned being, MC Ballyhoo! As Master of Catastrophes of the Star Carnival and the host of Mario Party 8, nothing excites you more than a good game! You are also notoriously loud and always carry a microphone, so you can /expose someone during the day to tell everyone their role! This will also tell everyone who you are. Once per game, you can inspect someone during the night, but everyone will know you're doing so!",
+            "actions": {
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can expose!"
+                },
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Team",
+                        "priority": 33,
+                        "broadcast": "*",
+                        "charges": 1
+                    }
+                },
+                "standby": {
+                    "expose": {
+                        "exposemsg": "±~Self~: 'LADIES AND GENTLEMEN! CHILDREN OF ALL AGES! I have some super wonderful news! Everyone should know that ~Target~ is ~Role~!'",
+                        "target": "AnyButSelf"
+                    }
+                }
+            }
+        },
+        {
+            "role": "rosalina",
+            "side": "village",
+            "translation": "Rosalina",
+            "help": "You are a Princess of somethingorother and are the commander of the Comet Observatory! You helped Mario rescue Peach during Super Mario Galaxy by taking him to the center of the Universe, and you are now here to help him again by putting people into magical bubbles! Do this by typing /distract during the night!",
+            "actions": {
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can distract!"
+                },
+                "night": {
+                    "distract": {
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": 3,
+                        "distractmsg": "Rosalina put you in a magic bubble and it wouldn't pop all night!",
+                        "teammsg": "Your teammate was put in a magic bubble and you couldn't pop it."
+                    }
+                }
+            }
+        },
+        {
+            "role": "luigi",
+            "side": "village",
+            "translation": "Luigi",
+            "info": "Can gust (kill) one person during the night. Can't be killed by Ghost mafia. Sided with Mushroom Kingdom.",
+            "help": "Okiedokie! You are the green-suited brother of Mario! You are usually set aside as player two and are seen as Mario's sidekick, but you don't care! You love your brother and are ready to help him in any way you can. You can type /gust during the night to suck someone into your handy-dandy Poltergust 5000 and get rid of them! You cannot be killed by ghosts!",
+            "actions": {
+                "kill": {
+                    "mode": {
+                        "ignore": [
+                            "boo",
+                            "brain"
+                        ]
+                    }
+                },
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can kill!"
+                },
+                "night": {
+                    "gust": {
+                        "command": "kill",
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": 18,
+                        "msg": "Luigi sucked you into the Poltergust!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "yoshi",
+            "side": "village",
+            "translation": "Yoshi",
+            "help": "You are one of the famous adorable dinosaurs called Yoshi! You have helped Mario in a lot of his adventures to rescue Princess Peach and have always been by his side. There are many of you around the Mushroom Kingdom, so this makes your vote counts as 3.",
+            "actions": {
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ has extra votes!"
+                },
+                "vote": 3
+            }
+        },
+        {
+            "role": "starlow",
+            "side": "village",
+            "translation": "Starlow",
+            "help": "HEY, LISTEN! Wait... that's not your line! You're Starlow, the small yellow Star Sprite sent to Peach's Castle to discuss the 'Blorbs' outbreak that started in the Mushroom Kingdom. In the meantime, you got sucked into Bowser's belly along with Mario, Luigi, and most of the Toads in the Kingdom! You are smart, and you can provide people with information on what happens during the night. There is no command for this.",
+            "actions": {
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ has hax on kills!"
+                },
+                "hax": {
+                    "kill": {
+                        "revealTeam": 0.2,
+                        "revealPlayer": 0.1
+                    }
+                }
+            }
+        },
+        {
+            "role": "goombario",
+            "side": "village",
+            "info": "Can tattle (inspect action) one person during the night. Sided with Mushroom Kingdom.",
+            "translation": "Goombario",
+            "help": "You are Paper Mario's super sidekick, the wonderful bookworm Goombario! You study a whole lot of things and can use your /tattle command to see what actions a person has!",
+            "actions": {
+                "night": {
+                    "tattle": {
+                        "command": "dummy",
+                        "priority": 30,
+                        "common": "Self",
+                        "target": "AnyButSelf"
+                    }
+                }
+            }
+        },
+        {
+            "role": "peach",
+            "side": "village",
+            "translation": "Peach",
+            "info": "Can write a letter to someone during the night (neighbor). Sided with Mushroom Kingdom.",
+            "help": "You are Princess Peach of the Mushroom Kingdom! Everyone knows who you are and you have a habit of writing letters about baking cakes, so you can send someone a letter with /write during the night! This will let them know who you are!",
+            "actions": {
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can write letters!"
+                },
+                "night": {
+                    "write": {
+                        "command": "dummy2",
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": 25,
+                        "dummy2usermsg": "You wrote ~Target~ a nice letter with your name signed on it.",
+                        "dummy2targetmsg": "Dear ~Target~: Please come to the castle. I've baked a cake for you. Yours truly, Princess ~Self~."
+                    }
+                }
+            }
+        },
+        {
+            "role": "boomer",
+            "side": "village",
+            "translation": "Boomer",
+            "help": "You build it, I blast it! You are a Pixl from Super Paper Mario, and your special ability is BLOWING UP! If someone tries to kill you you will surprise them by BLOWING UP in their FACE!!",
+            "actions": {
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ revenges kills!"
+                },
+                "kill": {
+                    "mode": "killattacker"
+                }
+            }
+        },
+        {
+            "role": "birdo",
+            "side": "village",
+            "translation": "Birdo",
+            "help": "You're a weird pink thing that no one really likes. That's a bit harsh, maybe, but... it's true. Also, you might be a man. No one has the slightest idea. However, since you are so weird, no one listens to you and your vote counts as negative 3. Look on the bright side: You can use it to help someone not get voted off!",
+            "actions": {
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ has negative votes!"
+                },
+                "vote": -3
+            }
+        },
+        {
+            "role": "toadette",
+            "side": "village",
+            "translation": "Toadette",
+            "info": "Miller that thinks they are Toad but is tattled as being able to kill and inspected/exposed as Goomba. Sided with Mushroom Kingdom.",
+            "help": "You are one of the many citizens of the Mushroom Kingdom. You are known to be easily frightened by pretty much everything! Because of that you are only able to vote during the day. Watch out for Kamek, though, as he can transform you into an evil Goomba!",
+            "actions": {
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can kill!"
+                },
+                "inspect": {
+                    "revealAs": "goomba"
+                },
+                "startup": {
+                    "revealAs": "toad"
+                },
+                "onlist": "toad"
+            }
+        },
+        {
+            "role": "geno",
+            "side": "village",
+            "translation": "Geno",
+            "help": "You are the star warrior named ♥♪!?, but you go by Geno, which is the name of the doll you possessed! You are very agile and attentive, so you can /watch one person during the night to see who visited them. You can even watch yourself.",
+            "actions": {
+                "night": {
+                    "watch": {
+                        "common": "Self",
+                        "target": "Any",
+                        "priority": 99
+                    }
+                }
+            }
+        },
+        {
+            "role": "gadd",
+            "side": "village",
+            "translation": "Elvin Gadd",
+            "help": "You're the quirky Professor Elvin Gadd, inventor of incredible items like the Poltergust, F.L.U.D.D., and even a time machine! You recently made something that allows you to /stalk other people to see who they visit during the night.",
+            "actions": {
+                "night": {
+                    "stalk": {
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": 98
+                    }
+                }
+            }
+        },
+        {
+            "role": "placeholder",
+            "side": "village",
+            "hide": true,
+            "translation": "VILLAGEPLACEHOLDER",
+            "help": "separates teams"
+        },
+        {
+            "role": "fawful",
+            "side": "beanbean",
+            "translation": "Fawful",
+            "help": "I HAVE FURY! You are the awful Lord Fawful, once Cackletta's most best pupil, but now you have taken the world conquering into your own hands! The world conquering that makes the bread of your desires! And this mafia game will be the delicious mustard on that bread! THE MUSTARD OF THE FINK-RATS' DOOM! They have no readiness for your /kill during the standby phase! I HAVE CHORTLES!",
+            "actions": {
+                "teamUtilities": true,
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can kill!"
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "SO MUCH FURY! Type /kill to unleash your FURY on someone!",
+                        "killmsg": "'NOW IS WHEN I RAM YOU!' Fawful barrels into ~Target~ like an angry battery that has no friends. 'I HAVE DAYKILL!'"
+                    }
+                }
+            }
+        },
+        {
+            "role": "popple",
+            "side": "beanbean",
+            "translation": "Popple",
+            "help": "You're the great Shadow Thief Popple, see? You're a Beanish who likes to steal things, which means you like to sneak around a lot. You're not a very good thief, but your sneaking does grant you access to a lot of information such as things that are happening during the night, like kill, distract, and protect, see? You can also /kill someone by smacking them with your giant sack of stolen items. This is shared with Cackletta.",
+            "actions": {
+                "teamUtilities": true,
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can kill!"
+                },
+                "hax": {
+                    "kill": {
+                        "revealTeam": 0.2,
+                        "revealPlayer": 0.1
+                    },
+                    "gust": {
+                        "revealTeam": 0.24,
+                        "revealPlayer": 0.12
+                    },
+                    "distract": {
+                        "revealTeam": 0.4,
+                        "revealPlayer": 0.07
+                    },
+                    "protect": {
+                        "revealTeam": 0.1,
+                        "revealPlayer": 0.07
+                    }
+                },
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "hide": true,
+                        "msg": "You were wacked with a bag of stuff, see?",
+                        "target": "AnyButTeam",
+                        "broadcast": "team",
+                        "priority": 12
+                    }
+                }
+            }
+        },
+        {
+            "role": "cackletta",
+            "side": "beanbean",
+            "translation": "Cackletta",
+            "info": "Can kill one person during the night. Vote counts as 2. Gains votes slowly as the game progresses, maxing at five. Sided with Beanbean Kingdom.",
+            "help": "You are the evil Beanish witch, Cackletta. You have almost unlocked the power of the Beanstar and are therefore gaining power! Your voting power will increase every couple of days. It is currently 2. It will max out at 5! You can also /kill one person per night. This is shared with Popple.",
+            "actions": {
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ has extra votes!"
+                },
+                "vote": 2,
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "cackletta2",
+                        "curseCount": 2,
+                        "curseConvertMessage": "Cackletta's vote has increased with the power of the Beanstar!"
+                    }
+                },
+                "teamUtilities": true,
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "hide": true,
+                        "msg": "Cackletta threw you into a dark void!",
+                        "target": "AnyButTeam",
+                        "broadcast": "team",
+                        "priority": 12
+                    }
+                }
+            }
+        },
+        {
+            "role": "cackletta2",
+            "hide": true,
+            "side": "beanbean",
+            "translation": "Cackletta",
+            "help": "You are the evil Beanish witch, Cackletta. You have almost unlocked the power of the Beanstar and are therefore gaining power! Your voting power will increase every couple of days. It is currently 3. It will max out at 5! You can also /kill one person per night. This is shared with Popple.",
+            "actions": {
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ has extra votes!"
+                },
+                "vote": 3,
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "cackletta3",
+                        "curseCount": 2,
+                        "curseConvertMessage": "Cackletta's vote has increased with the power of the Beanstar!"
+                    }
+                },
+                "teamUtilities": true,
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "hide": true,
+                        "msg": "Cackletta threw you into a dark void!",
+                        "target": "AnyButTeam",
+                        "broadcast": "team",
+                        "priority": 12
+                    }
+                }
+            }
+        },
+        {
+            "role": "cackletta3",
+            "hide": true,
+            "side": "beanbean",
+            "translation": "Cackletta",
+            "help": "You are the evil Beanish witch, Cackletta. You have almost unlocked the power of the Beanstar and are therefore gaining power! Your voting power will increase every couple of days. It is currently 4. It will max out at 5! You can also /kill one person per night. This is shared with Popple.",
+            "actions": {
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ has extra votes!"
+                },
+                "vote": 4,
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "cackletta4",
+                        "curseCount": 2,
+                        "curseConvertMessage": "Cackletta's vote has increased with the power of the Beanstar!"
+                    }
+                },
+                "teamUtilities": true,
+                "night": {
+                    "kill": {
+                        "hide": true,
+                        "common": "Team",
+                        "msg": "Cackletta threw you into a dark void!",
+                        "target": "AnyButTeam",
+                        "broadcast": "team",
+                        "priority": 12
+                    }
+                }
+            }
+        },
+        {
+            "role": "cackletta4",
+            "hide": true,
+            "side": "beanbean",
+            "translation": "Cackletta",
+            "help": "You are the evil Beanish witch, Cackletta. You have finally unlocked the power of the Beanstar and your voting power is currently maxed out at 5! You can also /kill one person per night. This is shared with Popple.",
+            "actions": {
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ has extra votes!"
+                },
+                "vote": 5,
+                "teamUtilities": true,
+                "night": {
+                    "kill": {
+                        "hide": true,
+                        "common": "Team",
+                        "msg": "Cackletta threw you into a dark void!",
+                        "target": "AnyButTeam",
+                        "broadcast": "team",
+                        "priority": 12
+                    }
+                }
+            }
+        },
+        {
+            "role": "rookie",
+            "translation": "Rookie",
+            "info": "Can kill and shield at night. When Popple dies, turns into Bowser, loses shield and gets 2 votes. Sided with Beanbean Kingdom.",
+            "side": "beanbean",
+            "help": "You... have amnesia. All you can remember is meeting your master, the Shadow Thief Popple. Now you help him out. You suspect you've met this Mario character before, though. For now, you can /kill someone during the night, and you can /shield Popple to take a hit for him.",
+            "actions": {
+                "teamUtilities": true,
+                "onDeadRoles": {
+                    "convertTo": {
+                        "bowser3": [
+                            "popple"
+                        ]
+                    },
+                    "convertmsg": "GRAHH! King Bowser remembered who he was!"
+                },
+                "night": {
+                    "kill": {
+                        "hide": true,
+                        "common": "Team",
+                        "msg": "Rookie spit fireballs at you!",
+                        "target": "AnyButTeam",
+                        "broadcast": "team",
+                        "priority": 12
+                    },
+                    "shield": {
+                        "common": "Self",
+                        "target": "OnlyTeam",
+                        "broadcast": "team",
+                        "priority": 1
+                    }
+                }
+            }
+        },
+        {
+            "role": "beanprio",
+            "side": "bowser",
+            "translation": "Beanbean Kingdom",
+            "hide": true,
+            "help": "priority placeholder for Beanbean",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 12
+                    }
+                }
+            }
+        },
+        {
+            "role": "placeholder2",
+            "side": "beanbean",
+            "hide": true,
+            "translation": "BEANBEANPLACEHOLDER",
+            "help": "separates teams"
+        },
+        {
+            "role": "kamek",
+            "side": "bowser",
+            "info": "Can transform one Toad into a Goomba during the night. Can kill one person during the night. Can protect during the night. Sided with Bowser's Castle.",
+            "translation": "Kamek",
+            "help": "You're a wizard, Kamek. You raised Bowser ever since he was a child, and serve as a father figure to him. You also have a high position in his military, being a chief advisor to him. Using magic to help him in anyway possible, you can convert Toads into Goombas by using /transform during the night! You also share a /kill with Bowser and Bowser Jr. Finally, you can /protect someone during the night with a magic shield.",
+            "actions": {
+                "teamUtilities": true,
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can convert!"
+                },
+                "night": {
+                    "transform": {
+                        "command": "convert",
+                        "newRole": {
+                            "goomba": [
+                                "toad",
+                                "toadette"
+                            ]
+                        },
+                        "common": "Self",
+                        "convertmsg": "A Toad was transformed into a Goomba.",
+                        "target": "AnyButTeam",
+                        "priority": 31,
+                        "tarmsg": "You were converted into a Goomba!",
+                        "convertfailmsg": "Your target was not a Toad.",
+                        "usermsg": "Your target became a Goomba!"
+                    },
+                    "kill": {
+                        "common": "Team",
+                        "hide": true,
+                        "msg": "Kamek shot a magic bolt at you!",
+                        "target": "AnyButTeam",
+                        "priority": 14,
+                        "broadcast": "team"
+                    },
+                    "protect": {
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": 9
+                    }
+                }
+            }
+        },
+        {
+            "role": "goomba",
+            "side": "bowser",
+            "translation": "Goomba",
+            "help": "You have become a lowly Goomba. You can now only /shield your teammates and take actions for them. Since everyone thinks Goombas are a joke, your vote counts as negative one!",
+            "actions": {
+                "teamUtilities": true,
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can shield!"
+                },
+                "vote": -1,
+                "night": {
+                    "shield": {
+                        "common": "Self",
+                        "target": "OnlyTeam",
+                        "priority": 1,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "bowser3",
+            "side": "bowser",
+            "hide": true,
+            "translation": "Bowser",
+            "winningSides": [
+                "beanbean",
+                "ghosts",
+                "wicked"
+            ],
+            "help": "GRAAHAAHAA, you are Bowser! You finally remembered who you were. You have no one left to shield, but you can still /kill someone at night, and your newfound rage fuels your voting power to 2!",
+            "actions": {
+                "vote": 2,
+                "teamUtilities": true,
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can kill!"
+                },
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "msg": "Bowser punched you to death!",
+                        "target": "AnyButTeam",
+                        "hide": true,
+                        "priority": 14,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "bowserconsp",
+            "side": "bowser",
+            "hide": true,
+            "translation": "Bowser",
+            "winningSides": [
+                "beanbean",
+                "ghosts",
+                "wicked"
+            ],
+            "help": "GRAAHAAHAA, you are Bowser! But, uh... All of your friends are dead. Since you're kind of a chicken in these situations, you're now going to win with the Beanbean Kingdom, the Wicked Bros., or the Ghosts! You can also still win by yourself. You have lost your second kill, but your normal kill remains.",
+            "actions": {
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can kill!"
+                },
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "msg": "Bowser punched you to death!",
+                        "target": "AnyButTeam",
+                        "hide": true,
+                        "priority": 14,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "bowser",
+            "side": "bowser",
+            "info": "Can kill one person during the night. Can kill2 one person during every other night. Sided with Bowser's Castle. Upon death of entire team, wins the game with Beanbean Kingdom, Ghosts or Wicked Bros. and loses kill2.",
+            "translation": "Bowser",
+            "help": "GRAAHAAHAA, you are Bowser! You are the commander of the Koopa Troop and have always wanted to kidnap Peach. However, Mario has always foiled your plans! This time it will be different. You are out for revenge. You can /kill during the night and every 2 nights you get a second kill with /kill2.",
+            "actions": {
+                "teamUtilities": true,
+                "onDeadRoles": {
+                    "convertTo": {
+                        "bowserconsp": [
+                            "bowserjrtoad",
+                            "bowserjrmario",
+                            "bowserjrpeach",
+                            "bowserjrgoomba",
+                            "goomba",
+                            "kamek"
+                        ]
+                    },
+                    "convertmsg": "With the death of all of Bowser's pals, he now can win with more teams!"
+                },
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can kill!"
+                },
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "msg": "Bowser punched you to death!",
+                        "target": "AnyButTeam",
+                        "hide": true,
+                        "priority": 14,
+                        "broadcast": "team"
+                    },
+                    "kill2": {
+                        "recharge": 2,
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 11,
+                        "msg": "You were tackled by Bowser and lost all of your lives!",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "bowserprio",
+            "side": "bowser",
+            "translation": "Bowser's Castle",
+            "hide": true,
+            "help": "priority placeholder for Bowser's Castle",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 14
+                    }
+                }
+            }
+        },
+        {
+            "role": "bowserjrprio",
+            "side": "bowser",
+            "translation": "Bowser Jr.",
+            "hide": true,
+            "help": "priority placeholder for Bowser Jr.",
+            "actions": {
+                "night": {
+                    "mask": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "newRole": "bowserjrprio",
+                        "common": "Self",
+                        "priority": 40
+                    }
+                }
+            }
+        },
+        {
+            "role": "bowserjrtoad",
+            "side": "bowser",
+            "info": "Can wear the mask of Mario, Peach, Goomba, or Toad to be inspected as those roles. Can kill during the night. Sided with Bowser's Castle.",
+            "translation": "Bowser Jr.",
+            "help": "You are Bowser Jr., the most important son of Bowser and enemy of Mario! You have a bunch of magic masks that allow you to take the form of other people and be inspected as them. Use them wisely! You can type /mario, /peach, and /goomba to put on the mask that makes you look like them! Right now, you look like a Toad! You can also /kill someone during the night, and this is shared with your team.",
+            "actions": {
+                "teamUtilities": true,
+                "inspect": {
+                    "revealAs": "toad"
+                },
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ has no actions!"
+                },
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "msg": "Bowser Jr. punched you to death!",
+                        "target": "AnyButTeam",
+                        "priority": 14,
+                        "hide": true,
+                        "broadcast": "team"
+                    },
+                    "mario": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "hide": true,
+                        "newRole": "bowserjrmario",
+                        "common": "Self",
+                        "priority": 40,
+                        "silent": true,
+                        "broadcast": "team",
+                        "broadcastmsg": "Bowser Jr. is putting on his Mario mask!",
+                        "cancel": [
+                            "peach",
+                            "goomba"
+                        ]
+                    },
+                    "goomba": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "newRole": "bowserjrgoomba",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 40,
+                        "silent": true,
+                        "broadcast": "team",
+                        "broadcastmsg": "Bowser Jr. is putting on his Goomba mask!",
+                        "cancel": [
+                            "peach",
+                            "mario"
+                        ]
+                    },
+                    "peach": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "newRole": "bowserjrpeach",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 40,
+                        "broadcast": "team",
+                        "silent": true,
+                        "broadcastmsg": "Bowser Jr. is putting on his Peach mask!",
+                        "cancel": [
+                            "mario",
+                            "goomba"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "role": "bowserjrmario",
+            "side": "bowser",
+            "hide": true,
+            "translation": "Bowser Jr.",
+            "help": "You are Bowser Jr., the most important son of Bowser and enemy of Mario! You have a bunch of magic masks that allow you to take the form of other people and be inspected as them. Use them wisely! You can type /toad, /peach, and /goomba to put on the mask that makes you look like them! Right now, you look like Mario! You can also /kill someone during the night, and this is shared with your team.",
+            "actions": {
+                "teamUtilities": true,
+                "inspect": {
+                    "revealAs": "mario"
+                },
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can kill!"
+                },
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "msg": "Bowser Jr. punched you to death!",
+                        "target": "AnyButTeam",
+                        "priority": 14,
+                        "broadcast": "team",
+                        "hide": true
+                    },
+                    "toad": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "hide": true,
+                        "newRole": "bowserjrtoad",
+                        "common": "Self",
+                        "priority": 40,
+                        "silent": true,
+                        "broadcast": "team",
+                        "broadcastmsg": "Bowser Jr. is putting on his Toad mask!",
+                        "cancel": [
+                            "peach",
+                            "goomba"
+                        ]
+                    },
+                    "goomba": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "newRole": "bowserjrgoomba",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 40,
+                        "silent": true,
+                        "broadcast": "team",
+                        "broadcastmsg": "Bowser Jr. is putting on his Goomba mask!",
+                        "cancel": [
+                            "peach",
+                            "toad"
+                        ]
+                    },
+                    "peach": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "newRole": "bowserjrpeach",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 40,
+                        "silent": true,
+                        "broadcast": "team",
+                        "broadcastmsg": "Bowser Jr. is putting on his Peach mask!",
+                        "cancel": [
+                            "toad",
+                            "goomba"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "role": "bowserjrpeach",
+            "side": "bowser",
+            "hide": true,
+            "translation": "Bowser Jr.",
+            "help": "You are Bowser Jr., the most important son of Bowser and enemy of Mario! You have a bunch of magic masks that allow you to take the form of other people and be inspected as them. Use them wisely! You can type /mario, /toad, and /goomba to put on the mask that makes you look like them! Right now, you look like Peach! You can also /kill someone during the night, and this is shared with your team.",
+            "actions": {
+                "teamUtilities": true,
+                "inspect": {
+                    "revealAs": "peach"
+                },
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can write letters!"
+                },
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "msg": "Bowser Jr. punched you to death!",
+                        "target": "AnyButTeam",
+                        "priority": 14,
+                        "broadcast": "team",
+                        "hide": true
+                    },
+                    "mario": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "hide": true,
+                        "newRole": "bowserjrmario",
+                        "common": "Self",
+                        "priority": 40,
+                        "silent": true,
+                        "broadcast": "team",
+                        "broadcastmsg": "Bowser Jr. is putting on his Mario mask!",
+                        "cancel": [
+                            "toad",
+                            "goomba"
+                        ]
+                    },
+                    "goomba": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "newRole": "bowserjrgoomba",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 40,
+                        "silent": true,
+                        "broadcast": "team",
+                        "broadcastmsg": "Bowser Jr. is putting on his Goomba mask!",
+                        "cancel": [
+                            "toad",
+                            "mario"
+                        ]
+                    },
+                    "toad": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "newRole": "bowserjrtoad",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 40,
+                        "silent": true,
+                        "broadcast": "team",
+                        "broadcastmsg": "Bowser Jr. is putting on his Toad mask!",
+                        "cancel": [
+                            "mario",
+                            "goomba"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "role": "bowserjrgoomba",
+            "side": "bowser",
+            "hide": true,
+            "translation": "Bowser Jr.",
+            "help": "You are Bowser Jr., the most important son of Bowser and enemy of Mario! You have a bunch of magic masks that allow you to take the form of other people and be inspected as them. Use them wisely! You can type /mario, /peach, and /toad to put on the mask that makes you look like them! Right now, you look like a Goomba! You can also /kill someone during the night, and this is shared with your team.",
+            "actions": {
+                "teamUtilities": true,
+                "inspect": {
+                    "revealAs": "goomba"
+                },
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can shield!"
+                },
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "msg": "Bowser Jr. punched you to death!",
+                        "target": "AnyButTeam",
+                        "priority": 14,
+                        "hide": true,
+                        "broadcast": "team"
+                    },
+                    "mario": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "hide": true,
+                        "newRole": "bowserjrmario",
+                        "common": "Self",
+                        "priority": 40,
+                        "silent": true,
+                        "broadcast": "team",
+                        "broadcastmsg": "Bowser Jr. is putting on his Mario mask!",
+                        "cancel": [
+                            "peach",
+                            "toad"
+                        ]
+                    },
+                    "toad": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "newRole": "bowserjrtoad",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 40,
+                        "silent": true,
+                        "broadcast": "team",
+                        "broadcastmsg": "Bowser Jr. is putting on his Toad mask!",
+                        "cancel": [
+                            "peach",
+                            "mario"
+                        ]
+                    },
+                    "peach": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "newRole": "bowserjrpeach",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 40,
+                        "silent": true,
+                        "broadcast": "team",
+                        "broadcastmsg": "Bowser Jr. is putting on his Peach mask!",
+                        "cancel": [
+                            "mario",
+                            "toad"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "role": "placeholder3",
+            "side": "bowser",
+            "hide": true,
+            "translation": "BOWSERPLACEHOLDER",
+            "help": "separates teams"
+        },
+        {
+            "role": "adonis",
+            "side": "glitz",
+            "translation": "Armored Harrier",
+            "help": "You are one of two Armored Harriers entered in the Major Leagues in the Glitz Pit, and your defenses are insane! You and your brother both share the same job: /kill people during the night. Neither of you can be killed ever, but your votes count as zero because you have trouble moving about and therefore have trouble getting your vote in the ballot box! It's not a problem, though, as your partner Rawk Hawk has the power to vote out anyone he chooses.",
+            "actions": {
+                "daykill": "evade",
+                "teamUtilities": true,
+                "vote": 0,
+                "kill": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ cannot be killed!"
+                },
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ cannot be killed!"
+                },
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "msg": "The Armored Harrier jumped on you. Ouch!",
+                        "priority": 15,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "RAWK",
+            "translation": "Rawk Hawk",
+            "side": "glitz",
+            "info": "Can rawk (kill) one person during the standby, once per game. Vote counts as 100. Sided with Glitz Pit.",
+            "help": "You are the most amazing champion ever to grace the Glitz Pit: THE RAWK HAWK! After taking the belt by default, you continued to RAWK your way to victory match after match until your title was finally taken by Mario! You've sort of made peace with him since, but who cares! You're pretty freakin' mad! You have a MASSIVE following and whoever you vote for gets 100 extra votes! You can also /rawk one person during the day, but you can only do this once a game, so use it wisely! It will reveal you!",
+            "actions": {
+                "teamUtilities": true,
+                "vote": 100,
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ has extra votes!"
+                },
+                "standby": {
+                    "rawk": {
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "msg": "You can /rawk one person during the game to kill them, but you'll be revealed!",
+                        "killmsg": "RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWK! Get dunked, ~Target~, you WEAKLING! I'm the champ, END OF STORY! I'm a LEGEND!",
+                        "revealChance": 1,
+                        "revealmsg": "~Self~ runs around the ring as his fans cheer for him!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "placeholder4",
+            "side": "glitz",
+            "hide": true,
+            "translation": "GLITZPLACEHOLDER",
+            "help": "separates teams"
+        },
+        {
+            "role": "wario",
+            "side": "wicked",
+            "info": "Can waft (distract+poison) during the night. Can kill during the night. Sided with Wicked Bros.",
+            "translation": "Wario",
+            "help": "Wah, wah, WARIO! You are the repulsive, garlic-eating anti-Mario! Now, as bad as that all sounds, you love being that way and it's all part of your... charming personality. Regardless, you stink. Pretty badly. You can /waft during the night to distract someone, and they'll die the next night (gross, huh?). You can also /kill someone during the night, and this is shared with your pal Waluigi, and your employee Ashley! (You should let Waluigi kill since he avoids hax)",
+            "actions": {
+                "teamUtilities": true,
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can distract!"
+                },
+                "night": {
+                    "waft": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 2,
+                        "broadcast": "team",
+                        "poisonDeadMessage": "The smell got to you and you just died.",
+                        "distractmsg": "Wario... farted on you? You couldn't do anything, but you can't smell it yet...",
+                        "command": [
+                            "distract",
+                            "poison"
+                        ]
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 16,
+                        "hide": true,
+                        "msg": "Wah wah Wario sucker punched you in the stomach!",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "waluigi",
+            "side": "wicked",
+            "info": "Can kill during the night (can't be haxed). Can guard someone from distracts, kills, gust, and tattle during the night. Sided with Wicked Bros.",
+            "translation": "Waluigi",
+            "help": "You are Waluigi, Luigi's evil purple counterpart. You totally have a sweet 'stache, too! You're not as gross as Wario, but you are just as mean. You also are tall and athletic, which lets you /kill during the night! This is shared with Wario and Ashley. However, when you execute the kill, no one will know (can't be haxed) because you're much, much lighter than Wario. You can also /guard someone from distracts, kills, and tattles!",
+            "actions": {
+                "teamUtilities": true,
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can protect!"
+                },
+                "avoidHax": [
+                    "kill"
+                ],
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 16,
+                        "hide": true,
+                        "msg": "Waluigi broke a tennis racket over your head! Ouch.",
+                        "broadcast": "team"
+                    },
+                    "guard": {
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": 0,
+                        "guardActions": [
+                            "distract",
+                            "kill",
+                            "gust",
+                            "tattle"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "role": "ashley",
+            "translation": "Ashley",
+            "side": "wicked",
+            "info": "Can /kill during the night. Can also /shrink during night to get 2nd kill, only works 40% of the time. Vote of 2.",
+            "help": "Who's the girl next door living in the haunted mansion? You better learn her name because... you are ASHLEY! You know the darkest spells and brew the meanest potions, and you are an employee of WarioWare, Inc. Wario pays you to help him make microgames and he's also paying you to help him here. Your best friend, a demon named Red, tagged along and gives you an extra vote, making yours 2! You can /kill someone during the night, and you can also try to /shrink someone else to make them insignificant and effectively remove them from the game, but this only works 40 percent of the time!",
+            "actions": {
+                "teamUtilities": true,
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can kill!"
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 16,
+                        "hide": true,
+                        "msg": "Ashley turned you into a spoon!",
+                        "broadcast": "team"
+                    },
+                    "shrink": {
+                        "target": "AnyButTeam",
+                        "failChance": 0.6,
+                        "command": "kill",
+                        "common": "Self",
+                        "priority": 18,
+                        "msg": "A dark cloud appeared over your head and you were shrunk to death!",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "wickedprio",
+            "side": "wicked",
+            "translation": "Wicked Bros.",
+            "hide": true,
+            "help": "priority placeholder for Wicked Bros.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 16
+                    }
+                }
+            }
+        },
+        {
+            "role": "placeholder5",
+            "side": "wicked",
+            "hide": true,
+            "translation": "WICKEDPLACEHOLDER",
+            "help": "separates teams"
+        },
+        {
+            "role": "ghostprio",
+            "side": "ghosts",
+            "translation": "Ghosts",
+            "hide": true,
+            "help": "priority placeholder for ghosts",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 19
+                    }
+                }
+            }
+        },
+        {
+            "role": "boo",
+            "side": "ghosts",
+            "info": "Can kill one person during the night, pierces protect half of the time. Identifies distracters. Sided with Ghosts.",
+            "translation": "Boo",
+            "help": "Boo! I hope I didn't scare you because you are Boo! You are one of the many ghosts that haunt the Mushroom Kingdom and the most famous one. Because of this you can /kill one person during the night to scare them away from the Kingdom, and this is shared with your team. This will go through protects half of the time. If someone distracts you, you'll know who it is because you're so shy they try to comfort you!",
+            "actions": {
+                "teamUtilities": true,
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can kill!"
+                },
+                "distract": {
+                    "mode": "identify"
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "pierceChance": 0.5,
+                        "priority": 19,
+                        "hide": true,
+                        "msg": "BOO! You were scared out of the game!",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "brain",
+            "side": "ghosts",
+            "info": "Can kill one person during the night, pierces half of the time. Can inspect during the night. Sided with Ghosts.",
+            "translation": "The Brain",
+            "help": "You are a giant Poltergeist and the final boss of any Scarescraper in Luigi's Mansion: Dark Moon! You are super intelligent, and you love to read things, so you can inspect one person during the night. You can also kill someone during the night, and this is shared with your team! You will pierce through bodyguards half of the time!",
+            "actions": {
+                "teamUtilities": true,
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ can inspect!"
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "pierceChance": 0.5,
+                        "priority": 19,
+                        "hide": true,
+                        "msg": "The Brain threw a really big book your way and it KO'd you!",
+                        "broadcast": "team"
+                    },
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 32,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "kingboo",
+            "side": "ghosts",
+            "info": "Can kill one person during the night, does not pierce. Vote of 2, voteshield of -1. Sided with Ghosts.",
+            "translation": "King Boo",
+            "help": "Gahahaha! As King of the Boos, you've got a lot to prove. You can /kill one person during the night to scare them away, and this is shared with your team. Being a king gives you 2 votes, and you have a voteshield of -1 because your minions help you! You're loud and showy, so your kill does not pierce.",
+            "actions": {
+                "teamUtilities": true,
+                "dummy": {
+                    "mode": "ignore",
+                    "msg": "±Info: ~Self~ has extra votes!"
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 19,
+                        "hide": true,
+                        "msg": "BOO! You were scared out of the game!",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        }
+    ],
+    "killmsg": "~Player~ (~Role~) lost all their lives!",
+    "killusermsg": "Game over!",
+    "lynchmsg": "~Player~ (~Role~) received ~Count~ votes and was kicked out of the Kingdom!",
+    "tips": {
+        "Mario": "You should not claim until the Ghost mafia (at least the Brain) and Wario are gone.",
+        "Goombario": "Only Brain can inspect. Mario can kill. If you don't know a lot of roles, you should probably check out /roles to see who your target might be, or ask.",
+        "Ghost Mafia": "YOUR KILL PIERCES PROTECT SOMETIMES. You might want to kill revealed PRs.",
+        "Rawk Hawk": "Remember to vote wisely since vote count is revealed. Also remember to use your one-shot daykill wisely.",
+        "Geno": "In small games, watch whoever you think will die. If someone visited them, that someone is a bad, bad man. Talk it out with Elvin Gadd though."
+    },
+    "minplayers": 4,
+    "villageCantLoseRoles": [
+        "mario",
+        "luigi",
+        "yoshi"
+    ],
+    "roles1": [
+        "toad",
+        "toad",
+        "gadd",
+        "brain",
+        "geno",
+        "boo",
+        "toad",
+        "toad"
+    ],
+    "roles2": [
+        "mario",
+        "kong",
+        "peach",
+        "toad",
+        "geno",
+        "brain",
+        "popple",
+        "toad",
+        "rookie",
+        "gadd",
+        "rosalina",
+        "boo",
+        "yoshi"
+    ],
+    "roles3": [
+        "mario",
+        "kong",
+        "peach",
+        "geno",
+        "goombario",
+        "popple",
+        "boo",
+        "toad",
+        "brain",
+        "toadette",
+        "rosalina",
+        "cackletta",
+        "yoshi",
+        "toad",
+        "boo",
+        "toad",
+        "kamek",
+        "bowser",
+        "luigi"
+    ],
+    "roles4": [
+        "mario",
+        "kong",
+        "peach",
+        "toad",
+        "goombario",
+        "fawful",
+        "boo",
+        "wario",
+        "brain",
+        "toadette",
+        "rosalina",
+        "cackletta",
+        "yoshi",
+        "boo",
+        "toad",
+        "ballyhoo",
+        "kamek",
+        "bowser",
+        "luigi",
+        "waluigi",
+        "boo",
+        "birdo",
+        "bowserjrtoad",
+        "ashley",
+        "popple",
+        "toad",
+        "toadette",
+        "boo",
+        "toad",
+        "starlow"
+    ],
+    "roles5": [
+        "mario",
+        "kong",
+        "peach",
+        "toad",
+        "goombario",
+        "popple",
+        "boo",
+        "wario",
+        "brain",
+        "toadette",
+        "rosalina",
+        "cackletta",
+        "birdo",
+        "boo",
+        "toad",
+        "ballyhoo",
+        "kamek",
+        "bowser",
+        "luigi",
+        "waluigi",
+        "boo",
+        "yoshi",
+        "bowserjrtoad",
+        "ashley",
+        "fawful",
+        "adonis",
+        "adonis",
+        "RAWK",
+        "toad",
+        "starlow",
+        "boomer",
+        "boo",
+        "toad",
+        "gadd",
+        "kingboo",
+        "toad",
+        "geno",
+        "toadette",
+        "goomba",
+        "toad",
+        "toadette",
+        "toad",
+        "boo"
+    ]
+}
