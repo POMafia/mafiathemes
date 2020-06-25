@@ -1,0 +1,1605 @@
+{
+    "name": "Movies",
+    "author": [
+        "Windblown",
+        "Sky Sentinel"
+    ],
+    "threadlink": "http://pokemon-online.eu/threads/movies.27752",
+    "summary": "Join all your favorite movie heroes as they work together to stop the most notorious villains in film history! Tips are being added. If you have any suggestions for roles, please leave them in the theme's thread (can be found by typing /details movies) with the character and what they should do.",
+    "sides": [
+        {
+            "side": "village",
+            "translation": "Movie Heroes",
+            "winmsg": "Happily ever after! The heroes, ~Players~, have successfully saved the movie industry!"
+        },
+        {
+            "side": "monsters",
+            "translation": "Monster Mafia",
+            "winmsg": "Rawr! The Monster Mafia, made up of ~Players~, has crushed and snacked on the competition!"
+        },
+        {
+            "side": "space",
+            "translation": "Space Mafia",
+            "winmsg": "The final frontier. ~Players~ have taken over the Earth, along with the rest of the Solar System!"
+        },
+        {
+            "side": "serial",
+            "translation": "Serial Killers",
+            "winmsg": "The horrible team of serial killers, ~Players~, have killed everyone in the film industry. How delightful!"
+        },
+        {
+            "side": "godfather",
+            "translation": "Godfather",
+            "winmsg": "The mafia, made up of ~Players~, wins this mafia game. Is this really surprising?"
+        },
+        {
+            "side": "terminator",
+            "translation": "Terminator",
+            "winmsg": "MISSION COMPLETE. ALL LIFEFORMS TERMINATED. CONGRATULATIONS, ~Players~."
+        }
+    ],
+    "roles": [
+        {
+            "role": "villager",
+            "translation": "Viewer",
+            "side": "village",
+            "help": "You're just an average moviegoer, here to watch some classic films. Vote to remove people during the day!"
+        },
+        {
+            "role": "villagermute",
+            "translation": "Viewer",
+            "side": "village",
+            "help": "You're just an average moviegoer, here to watch some classic films. Vote to remove people during the day!",
+            "hide": true,
+            "actions": {
+                "noVote": true,
+                "noVoteMsg": "You tried to vote for ~Target~, but you couldn't speak up!"
+            }
+        },
+        {
+            "role": "freeman",
+            "translation": "Morgan Freeman",
+            "side": "village",
+            "help": "You're Morgan Freeman, the man with the golden voice. You've been in many, many movies, and since you're equally amazing in every movie we put you in as yourself. You can /expose one person during the day, but this will reveal who you are.",
+            "actions": {
+                "standby": {
+                    "expose": {
+                        "target": "AnyButSelf",
+                        "msg": "You can now reveal someone's role with /expose.",
+                        "exposemsg": "Morgan Freeman clears his throat. The room is silent. Calmly, he announces that ~Role~ is being played by ~Target~.",
+                        "revealChance": 1,
+                        "revealmsg": "~Self~ thanks the audience as he walks out of the room."
+                    }
+                }
+            }
+        },
+        {
+            "role": "sherlock",
+            "translation": "Sherlock Holmes",
+            "side": "village",
+            "help": "You're the renowned detective from Sir Arthur Conan Doyle's novels, Sherlock Holmes, as portrayed by Robert Downey, Jr.! Your excellent deductive powers allows you to /inspect one person during the night.",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 40
+                    }
+                }
+            }
+        },
+        {
+            "role": "winnfield",
+            "translation": "Jules Winnfield",
+            "side": "village",
+            "info": "Knows Vincent Vega. Sided with Movie Heroes.",
+            "help": "'SAY WHAT AGAIN, MOTHERF**KER!' Played by the great Samuel L. Jackson, you and Vincent Vega are mob members and really close friends. As such, you know each other. Work with him to vote out bad guys!",
+            "actions": {
+                "startup": {
+                    "revealRole": [
+                        "vega"
+                    ]
+                }
+            }
+        },
+        {
+            "role": "vega",
+            "translation": "Vincent Vega",
+            "side": "village",
+            "info": "Knows Jules Winnfield. Sided with Movie Heroes.",
+            "help": "John Travolta played you in Pulp Fiction, and he did a darn fine job. That's why you're here with your mob buddy, Jules Winnfield. Help the village by working with him to remove bad guys during the vote phase!",
+            "actions": {
+                "startup": {
+                    "revealRole": [
+                        "winnfield"
+                    ]
+                }
+            }
+        },
+        {
+            "role": "rocky",
+            "translation": "Rocky",
+            "side": "village",
+            "help": "You're the champion prizefighter, Rocky, played by Sylvester Stallone! Your remarkable strength allows you to /protect one person per night.",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 6
+                    }
+                }
+            }
+        },
+        {
+            "role": "buzz",
+            "translation": "Buzz Lightyear",
+            "side": "village",
+            "help": "To infinity, and beyond! You're the amazing space ranger Buzz Lightyear from Toy Story and voiced by Tim Allen. With your incredible space technology you can get rid of evildoers with a /laser every night!",
+            "actions": {
+                "night": {
+                    "laser": {
+                        "command": [
+                            "kill"
+                        ],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 12,
+                        "msg": "BZZZ! I AM NOT A TOY!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "gump",
+            "translation": "Forrest Gump",
+            "side": "village",
+            "help": "Run, Forrest, run! Played by Tom Hanks in one of the greatest movies of all time, you're especially known for running. You can /run [your name] during the night to protect yourself from being killed. Your vote counts as .5 since you're always on the move!",
+            "actions": {
+                "vote": 0.5,
+                "night": {
+                    "run": {
+                        "command": "protect",
+                        "target": "OnlySelf",
+                        "priority": 6,
+                        "common": "Self"
+                    }
+                }
+            }
+        },
+        {
+            "role": "schindler",
+            "translation": "Oskar Schindler",
+            "side": "village",
+            "help": "You're Oskar Schindler, played by Liam Neeson in one of the greatest movies of all time, /Schindler's/ /List/. You saved hundreds of people during the Holocaust. Your persuasive skills are very good, and you can /safeguard someone from being converted to another side, so look out for them, would you?",
+            "actions": {
+                "night": {
+                    "safeguard": {
+                        "target": "AnyButSelf",
+                        "priority": 53,
+                        "common": "Self"
+                    }
+                }
+            }
+        },
+        {
+            "role": "mcclane",
+            "translation": "John McClane",
+            "side": "village",
+            "info": "Can daykill with a number of commands. 70 percent reveal chance. Inspected as Viewer. Sided with the Movie Heroes.",
+            "help": "Played by Bruce Willis in the Die Hard series, you are John McClane. You kill people in many ways. You can use one of these methods during the day, but only one per day. These are listed in a message during the day and all have a 70% chance of revealing you. You look like a normal moviegoer, so people see you as one.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "villager"
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Use /kill, /shred, /shock, /shoot, or /glass to get rid of someone!",
+                        "killmsg": "John McClane came up on ~Target~ from behind, and snapped their neck with relative ease.",
+                        "revealChance": 0.7,
+                        "revealmsg": "~Self~ shouts 'Yippie ki yay, motherf**ker!'"
+                    },
+                    "shred": {
+                        "command": "kill",
+                        "target": "AnyButSelf",
+                        "killmsg": "John McClane shoves ~Target~ into a jet engine, and they are torn to bits!",
+                        "revealChance": 0.7,
+                        "revealmsg": "~Self~ shouts 'Yippie ki yay, motherf**ker!'"
+                    },
+                    "shock": {
+                        "command": "kill",
+                        "target": "AnyButSelf",
+                        "killmsg": "McClane presses live wires against ~Target~, and they were shocked to death!",
+                        "revealChance": 0.7,
+                        "revealmsg": "~Self~ shouts 'Yippie ki yay, motherf**ker!'"
+                    },
+                    "shoot": {
+                        "command": "kill",
+                        "target": "AnyButSelf",
+                        "killmsg": "John McClane pulls out his Beretta 92 and fires it into ~Target~'s chest several times.",
+                        "revealChance": 0.7,
+                        "revealmsg": "~Self~ shouts 'Yippie ki yay, motherf**ker!'"
+                    },
+                    "glass": {
+                        "command": "kill",
+                        "target": "AnyButSelf",
+                        "killmsg": "McClane shoots ~Target~ in both kneecaps, making them fall down and land head first on an indoor glass window. Ouch.",
+                        "revealChance": 0.7,
+                        "revealmsg": "~Self~ shouts 'Yippie ki yay, motherf**ker!'"
+                    }
+                }
+            }
+        },
+        {
+            "role": "doubtfire",
+            "translation": "Mrs. Doubtfire",
+            "side": "village",
+            "help": "DUDE LOOKS LIKE A LADY! You are the charming Mrs. Euphegenia Doubtfire, the wonderful British nanny played by none other than the late, great Robin Williams. You are a very, um, interesting person, and you can /distract one person at night.",
+            "actions": {
+                "night": {
+                    "distract": {
+                        "target": "AnyButSelf",
+                        "priority": 2,
+                        "common": "Self",
+                        "distractmsg": "You were distracted by Mrs. Doubtfire's ...stunning good looks?"
+                    }
+                }
+            }
+        },
+        {
+            "role": "doubtfiremute",
+            "translation": "Mrs. Doubtfire",
+            "side": "village",
+            "help": "DUDE LOOKS LIKE A LADY! You are the charming Mrs. Euphegenia Doubtfire, the wonderful British nanny played by none other than the late, great Robin Williams. You are a very, um, interesting person, and you can /distract one person at night.",
+            "hide": true,
+            "actions": {
+                "noVote": true,
+                "noVoteMsg": "You tried to vote for ~Target~, but you couldn't speak up!",
+                "night": {
+                    "distract": {
+                        "target": "AnyButSelf",
+                        "priority": 2,
+                        "common": "Self",
+                        "hide": true,
+                        "distractmsg": "You were distracted by Mrs. Doubtfire's ...stunning good looks?"
+                    }
+                }
+            }
+        },
+        {
+            "role": "indymute",
+            "translation": "Indiana Jones",
+            "side": "village",
+            "help": "You're the legendary treasure hunter Indiana Jones, played by Harrison Ford! Your experience with exploring ancient ruins allows you to /stalk one person per night to find out who they visited!",
+            "hide": true,
+            "actions": {
+                "noVote": true,
+                "noVoteMsg": "You tried to vote for ~Target~, but you couldn't speak up!",
+                "night": {
+                    "stalk": {
+                        "target": "AnyButSelf",
+                        "priority": 45,
+                        "common": "Self"
+                    }
+                }
+            }
+        },
+        {
+            "role": "indy",
+            "translation": "Indiana Jones",
+            "side": "village",
+            "help": "You're the legendary treasure hunter Indiana Jones, played by Harrison Ford! Your experience with exploring ancient ruins allows you to /stalk one person per night to find out who they visited!",
+            "actions": {
+                "night": {
+                    "stalk": {
+                        "target": "AnyButSelf",
+                        "priority": 45,
+                        "common": "Self"
+                    }
+                }
+            }
+        },
+        {
+            "role": "sparrow",
+            "translation": "Jack Sparrow",
+            "side": "village",
+            "help": "You're the renowned detective from Sir Arthur Conan Doyle's novels, Sherlock Holmes, as portrayed by Robert Downey, Jr.! Your excellent deductive powers allows you to /inspect one person during the night.",
+            "info": "An insane inspector that sees itself as Sherlock Holmes. Sided with the Movie Heroes.",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 40,
+                        "Sight": {
+                            "maximus": 0.05,
+                            "jaws": 0.04,
+                            "zurg": 0.03,
+                            "terminator": 0.03,
+                            "buzz": 0.03,
+                            "godzilla": 0.05,
+                            "sherlock": 0.01,
+                            "kkong": 0.05,
+                            "villager": 0.35
+                        }
+                    }
+                },
+                "startup": {
+                    "revealAs": "sherlock"
+                },
+                "inspect": {
+                    "revealAs": "sherlock"
+                }
+            }
+        },
+        {
+            "role": "maximus",
+            "translation": "Maximus",
+            "side": "village",
+            "help": "You are Maximus Decimus Meridius, the Roman General, played by Russel Crowe in Gladiator! The emperor's evil son has sentenced you to death and had your family murdered, but you've decided not to go down without a fight, and thus revenge all nightkills aimed at you!",
+            "actions": {
+                "kill": {
+                    "mode": "killattacker"
+                }
+            }
+        },
+        {
+            "role": "starling",
+            "translation": "Clarice Starling",
+            "help": "Hello, Clarice. You're the FBI agent in training (played by Jodie Foster) who was given the job of gaining information from the notorious Hannibal Lector. You have the power to do many things, but you can only do them once. You can /question someone to learn about them; /watch someone to see who they visited; /shoot someone to kill them; or /inject poison into someone so they die the next night.",
+            "side": "village",
+            "actions": {
+                "night": {
+                    "shoot": {
+                        "command": "kill",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 22,
+                        "charges": 1,
+                        "msg": "You were shot in the chest by Agent Clarice Starling!"
+                    },
+                    "question": {
+                        "command": "inspect",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 49,
+                        "charges": 1
+                    },
+                    "watch": {
+                        "command": "stalk",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 50,
+                        "charges": 1
+                    },
+                    "inject": {
+                        "command": "poison",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 51,
+                        "count": 2,
+                        "charges": 1
+                    }
+                }
+            }
+        },
+        {
+            "role": "alfred",
+            "translation": "Alfred Pennyworth",
+            "side": "village",
+            "info": "Can cure (remove poison) from one person every other night. Sided with Movie Heroes.",
+            "help": "You are Sir Alfred Pennyworth, loyal butler to Bruce Wayne! You're played by Michael Caine, and you are known as an upstanding British man. You also have a way with healing, and can patch someone up if they're bitten by a vampire or poisoned by injection by typing /cure. This can be done every other night.",
+            "actions": {
+                "night": {
+                    "cure": {
+                        "command": "detox",
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": 24,
+                        "msg": "~Target~ was cured of poison.",
+                        "targetmsg": "Alfred patched you up nicely, and you are no longer in danger of death by poison.",
+                        "detoxfailmsg": "~Target~ is not poisoned!",
+                        "silent": true,
+                        "recharge": 2
+                    }
+                }
+            }
+        },
+        {
+            "role": "j",
+            "translation": "Agent J",
+            "side": "village",
+            "info": "Can distract during the night. Poisoned for 1 day at the start of the game, and can travel back in time to get it reset. Once he travels for the fourth time, he is no longer poisoned and has a vote of 3. Sided with Movie Heroes.",
+            "help": "You're simply known as J in the Men in Black series and are played by Will Smith. You start off poisoned, but your time traveling powers allow you to go back in time with /travel to keep the poison counter from going down. You have a small chance of killing yourself when you travel! In addition, you can also /distract one person during the night.",
+            "actions": {
+                "detox": {
+                    "mode": "ignore"
+                },
+                "night": {
+                    "travel": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "newRole": "j2",
+                        "canConvert": [
+                            "j"
+                        ],
+                        "convertmsg": "Agent J has traveled back in time!",
+                        "suicideChance": 0.05
+                    },
+                    "distract": {
+                        "target": "AnyButSelf",
+                        "priority": 4,
+                        "common": "Self",
+                        "distractmsg": "J pulls out his Neuralyzer and FLASH! What were you doing again?"
+                    }
+                },
+                "initialCondition": {
+                    "poison": {
+                        "count": 2
+                    }
+                }
+            }
+        },
+        {
+            "role": "j2",
+            "translation": "Agent J",
+            "hide": true,
+            "side": "village",
+            "help": "You're simply known as J in the Men in Black series and are played by Will Smith. You start off poisoned, but your time traveling powers allow you to go back in time with /travel to keep the poison counter from going down! In addition, you can also /distract one person during the night.",
+            "actions": {
+                "detox": {
+                    "mode": "ignore"
+                },
+                "night": {
+                    "travel": {
+                        "hide": true,
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "newRole": "j3",
+                        "canConvert": [
+                            "j"
+                        ],
+                        "convertmsg": "Agent J has traveled back in time!",
+                        "suicideChance": 0.1
+                    },
+                    "distract": {
+                        "hide": true,
+                        "target": "AnyButSelf",
+                        "priority": 4,
+                        "common": "Self",
+                        "distractmsg": "J pulls out his Neuralyzer and FLASH! What were you doing again?"
+                    }
+                },
+                "initialCondition": {
+                    "poison": {
+                        "count": 2
+                    }
+                }
+            }
+        },
+        {
+            "role": "j4",
+            "translation": "Agent J",
+            "side": "village",
+            "hide": true,
+            "help": "You've finally gone so far back in time you are no longer poisoned! Not only can you still distract, but you now have a vote of 3.",
+            "actions": {
+                "initialCondition": {
+                    "clearPoison": true
+                },
+                "vote": 3,
+                "night": {
+                    "distract": {
+                        "hide": true,
+                        "target": "AnyButSelf",
+                        "priority": 4,
+                        "common": "Self",
+                        "distractmsg": "J pulls out his Neuralyzer and FLASH! What were you doing again?"
+                    }
+                }
+            }
+        },
+        {
+            "role": "j3",
+            "translation": "Agent J",
+            "side": "village",
+            "hide": true,
+            "help": "You're simply known as J in the Men in Black series and are played by Will Smith. You start off poisoned, but your time traveling powers allow you to go back in time with /travel to keep the poison counter from going down! In addition, you can also /distract one person during the night.",
+            "actions": {
+                "detox": {
+                    "mode": "ignore"
+                },
+                "night": {
+                    "travel": {
+                        "hide": true,
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "newRole": "j4",
+                        "canConvert": [
+                            "j"
+                        ],
+                        "convertmsg": "Agent J has traveled back in time!",
+                        "suicideChance": 0.15
+                    },
+                    "distract": {
+                        "hide": true,
+                        "target": "AnyButSelf",
+                        "priority": 4,
+                        "common": "Self",
+                        "distractmsg": "J pulls out his Neuralyzer and FLASH! What were you doing again?"
+                    }
+                },
+                "initialCondition": {
+                    "poison": {
+                        "count": 2
+                    }
+                }
+            }
+        },
+        {
+            "role": "bond",
+            "translation": "James Bond",
+            "side": "village",
+            "help": "The name's Bond. James Bond. As the world's most famous spy and a member of the British Secret Service, you are able to receive hax about the night's ongoings! You can also /message someone once per game to tell them who you are.",
+            "actions": {
+                "hax": {
+                    "kill": {
+                        "revealTeam": 0.2,
+                        "revealPlayer": 0.1
+                    }
+                },
+                "night": {
+                    "message": {
+                        "command": "dummy",
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": 25,
+                        "dummytargetmsg": "Out of the shadows, a man discreetly walks towards you and slips you a piece of paper which reads: 'Agent 007, ~Self~.' As you look up at them, they vanish.",
+                        "dummyusermsg": "You revealed your identity to ~Target~!",
+                        "charges": 1
+                    }
+                }
+            }
+        },
+        {
+            "role": "monsterdummy",
+            "translation": "Monster Mafia",
+            "side": "monsters",
+            "hide": true,
+            "help": "dummy role for priority",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 14
+                    }
+                }
+            }
+        },
+        {
+            "role": "serialdummy",
+            "translation": "Serial Killers",
+            "side": "serial",
+            "hide": true,
+            "help": "dummy role for priority",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 15
+                    }
+                }
+            }
+        },
+        {
+            "role": "spacedummy",
+            "translation": "Space Mafia",
+            "side": "space",
+            "hide": true,
+            "help": "dummy role for priority",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 13
+                    }
+                }
+            }
+        },
+        {
+            "role": "jaws",
+            "translation": "Jaws",
+            "side": "monsters",
+            "hide": true,
+            "help": "I think we're gonna need a bigger boat... because you're a really big and hungry shark called Jaws. Do I even need to explain why you can /kill (shared with team) during the night? You can also /chew someone every other day to kill them.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 14,
+                        "hide": true,
+                        "msg": "Oh, the horror!",
+                        "broadcast": "team",
+                        "broadcastmsg": "Jaws (~Player~) is about to chomp on ~Target~."
+                    }
+                },
+                "standby": {
+                    "chew": {
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "revealChance": 1,
+                        "msg": "You can /chew someone every other day!",
+                        "killmsg": "OH GOD! Jaws pulled ~Target~ off the stage and chewed him into little tiny pieces!",
+                        "revealmsg": "Jaws swam away, satisfied for a while.",
+                        "recharge": 2
+                    }
+                }
+            }
+        },
+        {
+            "role": "jawssmall",
+            "translation": "Jaws",
+            "side": "monsters",
+            "help": "I think we're gonna need a bigger boat... because you're a really big and hungry shark called Jaws. Does it even need to be explained why you can /kill (shared with team) during the night? You can also /chew someone every day to kill them. This may reveal you.",
+            "info": "Can nightkill and daykill every other day in big games. Can daykill with /chew every day in small but may reveal. Sided with Monster Mafia.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 14,
+                        "msg": "Oh, the horror!",
+                        "hide": true,
+                        "broadcast": "team",
+                        "broadcastmsg": "Jaws (~Player~) is about to chomp on ~Target~."
+                    }
+                },
+                "standby": {
+                    "chew": {
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "revealChance": 0.4,
+                        "msg": "You can /chew someone every day! This may reveal you (40 percent).",
+                        "killmsg": "OH GOD! Jaws pulled ~Target~ off the stage and chewed him into little tiny pieces!",
+                        "revealmsg": "~Self~ swam away, satisfied."
+                    }
+                }
+            }
+        },
+        {
+            "role": "dracula",
+            "translation": "Dracula",
+            "side": "monsters",
+            "info": "Can kill one person during the night, and can bite someone during the night to either poison them or convert them to a Vampire. Sided with the Monster Mafia.",
+            "help": "You are Bram Stoker's Dracula, played by the legendary Christopher Lee! You're the king of Vampires, and since vampires are basically monsters, you've decided to work with them. You can /kill someone during the night (shared with your team) and you can also /bite someone to make them bleed out the next night. This might even turn them into a vampire!",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 14,
+                        "hide": true,
+                        "msg": "Your life was literally sucked out of you!",
+                        "broadcast": "team",
+                        "broadcastmsg": "Count Dracula (~Player~) is about to suck on ~Target~'s delicious blood..."
+                    },
+                    "bite": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "command": {
+                            "poison": 0.8,
+                            "convert": 0.2
+                        },
+                        "newRole": "vamp",
+                        "priority": 23,
+                        "convertmsg": "~Old~ was bitten and became a Vampire.",
+                        "broadcast": "team",
+                        "broadcastmsg": "~Player~ (Count Dracula) has decided to bite ~Target~!",
+                        "poisonDeadMessage": "You bled to death from the bite of a vampire!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "vamp",
+            "translation": "Vampire",
+            "side": "monsters",
+            "help": "You've been bitten. Now all you can do is /bite others. Your thirst for blood is insatiable. This bite is shared with Dracula and the other vampires.",
+            "info": "A role that has been bitten by Dracula or another Vampire. Can bite to convert others into a vampire or poison them. Sided with the Monster Mafia.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "night": {
+                    "bite": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "command": {
+                            "poison": 0.9,
+                            "convert": 0.1
+                        },
+                        "newRole": "vamp",
+                        "priority": 23,
+                        "broadcast": "team",
+                        "convertmsg": "~Old~ was bitten and became a Vampire.",
+                        "broadcastmsg": "~Player~ (Vampire) has decided to bite ~Target~!",
+                        "poisonDeadMessage": "You bled to death from the bite of a vampire!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "godzilla",
+            "translation": "Godzilla",
+            "side": "monsters",
+            "help": "You make Tokyo your bitch. You also ignore distracters and hax because seriously? /kill people. (shared with team)",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "night": {
+                    "kill": {
+                        "hide": true,
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 14,
+                        "msg": "You were totally vaporized by atomic breath!",
+                        "broadcast": "team",
+                        "broadcastmsg": "Godzilla (~Player~) is about to annihilate ~Target~. (Godzilla can't be haxed!)"
+                    }
+                },
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "Someone tried to distract you last night, but you're Godzilla for crying out loud!"
+                },
+                "avoidHax": [
+                    "kill"
+                ]
+            }
+        },
+        {
+            "role": "kkong",
+            "translation": "King Kong",
+            "side": "monsters",
+            "help": "I think you attacked the Empire State Building or something. Wouldn't be a huge deal, but you are a really freakin' big gorilla monster! Your huge size allows you to /protect one of your fellow monsters or yourself once per night in addition to being able to kill (shared with team)!",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "teamTalk": true,
+                "updateTeam": true,
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "hide": true,
+                        "priority": 14,
+                        "msg": "You were squashed!",
+                        "broadcast": "team",
+                        "broadcastmsg": "King Kong (~Player~) is about to bash ~Target~'s skull in!"
+                    },
+                    "protect": {
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": 6,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "khan",
+            "side": "space",
+            "translation": "Khan",
+            "help": "One of, if not the most, infamous Star Trek villains, you've come to destroy the competition. In addition to being able to /kill during the night (shared with team), your amazing intellect allows you to /inspect one person during every other night as well.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "hide": true,
+                        "priority": 13,
+                        "msg": "Khan choked you to death.",
+                        "broadcast": "team",
+                        "broadcastmsg": "Khan (~Player~) has decided to take down ~Target~!"
+                    },
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "recharge": 2,
+                        "priority": 40,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "zurg",
+            "translation": "Zurg",
+            "side": "space",
+            "info": "Can kill during the night. Can try to convert Buzz to Corrupt Buzz in bigger games. Has a vote of 3 in bigger games (roles4) but 2 in games of medium size.",
+            "help": "As Evil Emperor Zurg, Sworn Enemy of the Galactic Alliance, you're here to defeat your archenemy Buzz Lightyear once and for all! Type /kill to eliminate someone during the night. You can also attempt to /control one person during the night, once per game, to convert them to your side! This only works on Buzz, so try to find him first! Being an Emperor gives you 3 votes.",
+            "actions": {
+                "vote": 3,
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "teamTalk": true,
+                "updateTeam": true,
+                "night": {
+                    "kill": {
+                        "hide": true,
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 13,
+                        "msg": "Those foam bullets hurt!",
+                        "broadcast": "team",
+                        "broadcastmsg": "The Evil Emperor Zurg (~Player~) has chosen to exterminate ~Target~!"
+                    },
+                    "control": {
+                        "command": "convert",
+                        "target": "AnyButTeam",
+                        "charges": 1,
+                        "canConvert": [
+                            "buzz"
+                        ],
+                        "newRole": "cbuzz",
+                        "convertmsg": "The Evil Emperor Zurg has taken control of Buzz Lightyear!",
+                        "common": "Self",
+                        "priority": 55
+                    }
+                }
+            }
+        },
+        {
+            "role": "zurgsmall",
+            "translation": "Zurg",
+            "side": "space",
+            "hide": true,
+            "help": "As Evil Emperor Zurg, Sworn Enemy of the Galactic Alliance, you're here to defeat your archenemy Buzz Lightyear once and for all! But, you'll settle for everyone else. Type /kill to eliminate someone during the night. Being an Emperor gives you 2 votes.",
+            "actions": {
+                "vote": 2,
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "startup": "team-reveal-with-roles",
+                "night": {
+                    "kill": {
+                        "hide": true,
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "msg": "Those foam bullets hurt!",
+                        "priority": 13,
+                        "broadcast": "team",
+                        "broadcastmsg": "The Evil Emperor Zurg (~Player~) has chosen to exterminate ~Target~!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "cbuzz",
+            "translation": "Corrupt Buzz",
+            "side": "space",
+            "help": "You've been taken over by Zurg, and are now part of his team. You've lost your kill, your vote counts as zero, and you can /protect (protect and safeguard) your teammates during the night.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "updateTeam": true,
+                "vote": 0,
+                "preventTeamvote": true,
+                "night": {
+                    "protect": {
+                        "command": [
+                            "protect",
+                            "safeguard"
+                        ],
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": 6,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "vader",
+            "translation": "Darth Vader",
+            "side": "space",
+            "help": "You are Darth Vader, one of the leaders of the Empire's Imperial starfleet! Because of your incredible power and having one of the most iconic lines in movie history, you can also /choke one person every other night as a separate kill from your team in addition to your normal /kill.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "night": {
+                    "kill": {
+                        "hide": true,
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 13,
+                        "msg": "You were sliced in half...",
+                        "broadcast": "team",
+                        "broadcastmsg": "Darth Vader (~Player~) has decreed that ~Target~ must be eliminated!"
+                    },
+                    "choke": {
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "msg": "Can't...breathe...",
+                        "priority": 21,
+                        "broadcast": "team",
+                        "broadcastmsg": "Darth Vader (~Player~) is going to choke ~Target~ with the power of the Force!",
+                        "recharge": 2
+                    }
+                }
+            }
+        },
+        {
+            "role": "lecter",
+            "side": "serial",
+            "translation": "Hannibal Lecter",
+            "help": "A cannibalistic serial killer played by Anthony Hopkins who recently broke out of prison is on the loose! Oh, wait, it's you. You can /kill someone (shared with team) during the night, and you can also /stalk someone to see who they visited.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "hide": true,
+                        "priority": 16,
+                        "msg": "Holy crap, Hannibal the Cannibal just ate your face.",
+                        "broadcast": "team",
+                        "broadcastmsg": "Hannibal (~Player~) thinks ~Target~ is looking appetizing tonight."
+                    },
+                    "stalk": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 52,
+                        "broadcast": "team",
+                        "broadcastmsg": "Hannibal (~Player~) has decided to follow ~Target~'s movements tonight."
+                    }
+                }
+            }
+        },
+        {
+            "role": "freddy",
+            "side": "serial",
+            "translation": "Freddy Kreuger",
+	    "info": "Can kill one person during the night. Kills anyone who distracts, stalks, or inspects him. Sided with Serial Killers.",
+            "help": "You're the dream-stalking murderer, Freddy Kreuger. You can /kill during the night (shared with team) and you kill anyone who distracts, stalks, or inspects you. You've put aside your differences with Jason to take over the movie industry once again!",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "hide": true,
+                        "priority": 16,
+                        "msg": "You were shredded to death!",
+                        "broadcast": "team",
+                        "broadcastmsg": "Freddy (~Player~) thinks he should enter ~Target~'s dreams tonight..."
+                    }
+                },
+                "stalk": {
+                    "mode": "killattacker"
+                },
+                "distract": {
+                    "mode": "killattacker"
+                },
+                "inspect": {
+                    "mode": "killattacker"
+                }
+            }
+        },
+        {
+            "role": "don",
+            "side": "godfather",
+            "winIfDeadRoles": [
+                "khan",
+                "zurg",
+                "vader",
+                "freddy",
+                "black",
+                "jason",
+                "lecter",
+                "starling",
+                "buzz",
+                "jaws",
+                "kkong",
+                "godzilla",
+                "terminator",
+                "terminator2",
+                "mcclane",
+                "vamp",
+                "dracula"
+            ],
+            "translation": "Don Vito Corleone",
+            "help": "I'm about to make you an offer you can't refuse: Any person you choose to vote for is immediately lynched. You can also /deal with someone during every other night to try to convert them to one of your goons. This won't work every time.",
+            "info": "Has one hundred votes. Can make a /deal with someone during the night to convert them to a Mafia Goon. Sided with the Godfather.",
+            "actions": {
+                "vote": 100,
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "night": {
+                    "deal": {
+                        "failChance": 0.3,
+                        "command": "convert",
+                        "target": "AnyButTeam",
+                        "recharge": 2,
+                        "canConvert": [
+                            "vamp",
+                            "villager",
+                            "sparrow",
+                            "j",
+                            "j2",
+                            "j3",
+                            "bond",
+                            "j4",
+                            "sherlock",
+                            "black"
+                        ],
+                        "newRole": "goon",
+                        "convertmsg": "The Godfather has made ~Old~ an offer they couldn't refuse!",
+                        "common": "Self",
+                        "priority": 54
+                    }
+                }
+            }
+        },
+        {
+            "role": "goon",
+            "side": "godfather",
+            "translation": "Mafia Goon",
+            "help": "You've been offered a job as one of Don Corleone's mafia goons, and you took it. You can now /kill during the night, which is shared with your team.",
+            "actions": {
+                "startup": "team-reveal",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 20,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "terminatorsmall",
+            "side": "terminator",
+            "translation": "Terminator",
+            "help": "Played by Arnold Schwarzenegger, you were first the antagonist in your movies, then the protagonist - so you ended up on your own side! You can use /kill to speedily dispatch of someone, killing distracters! Also, inspectors won't know who you are because your form is constantly changing.",
+            "info": "Can kill one person during the night, outspeeding bodyguards in games of 13 or more. Always kills distracters. When lynched, comes back with two kills. Sided with the Terminator.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "*"
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 7,
+                        "msg": "You have been terminated."
+                    }
+                },
+                "avoidHax": [
+                    "kill"
+                ],
+                "distract": {
+                    "mode": "ChangeTarget",
+                    "hookermsg": "You tried to stop the Terminator. Needless to say, you were terminated.",
+                    "msg": "You killed the ~Distracter~ instead, because they got in your way."
+                }
+            }
+        },
+        {
+            "role": "terminator",
+            "hide": true,
+            "side": "terminator",
+            "translation": "Terminator",
+            "help": "Played by Arnold Schwarzenegger, you were first the antagonist in your movies, then the protagonist - so you ended up on your own side! You can use /kill to speedily dispatch of someone, leaving bodyguards in the dust and killing distracters! When lynched, you'll just come back stronger. Also, inspectors won't know who you are because your form is constantly changing.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "*"
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 4,
+                        "msg": "You have been terminated."
+                    }
+                },
+                "avoidHax": [
+                    "kill"
+                ],
+                "distract": {
+                    "mode": "ChangeTarget",
+                    "hookermsg": "You tried to stop the Terminator. Needless to say, you were terminated.",
+                    "msg": "You killed the ~Distracter~ instead, because they got in your way."
+                },
+                "lynch": {
+                    "convertTo": "terminator2",
+                    "convertmsg": "±~Self~: 'I'll be back.'"
+                }
+            }
+        },
+        {
+            "role": "terminator2",
+            "side": "terminator",
+            "translation": "Terminator",
+            "hide": true,
+            "help": "You told them you'd be back! You can now /kill twice during the night! You still kill distractors and outspeed bodyguards.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "hide": true,
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 4,
+                        "limit": 2,
+                        "msg": "You have been terminated."
+                    }
+                },
+                "avoidHax": [
+                    "kill"
+                ],
+                "distract": {
+                    "mode": "killattacker",
+                    "hookermsg": "You tried to stop the Terminator. Needless to say, you were terminated.",
+                    "msg": "You killed the ~Distracter~ too, because they got in your way."
+                }
+            }
+        },
+        {
+            "role": "black",
+            "side": "serial",
+            "translation": "Bellatrix Black",
+            "help": "Ever loyal to the Dark Lord Voldemort, you are the rather attractive Death Eater Bellatrix Black, played by Helena Bonham Carter. You like to /kill people because it's fun! So, you can go ahead and do just that. This is shared with your team. You look like an innocent citizen, so that's what inspectors will see you as.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "villager"
+                },
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "night": {
+                    "kill": {
+                        "hide": true,
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 16,
+                        "broadcast": "team",
+                        "msg": "AVADA KEDAVRA!",
+                        "broadcastmsg": "Bellatrix (~Player~) takes out her wand and stalks after ~Target~."
+                    }
+                }
+            }
+        },
+        {
+            "role": "jason",
+            "side": "serial",
+	    "info": " Can kill one person during the night. Can distract OR watch one person during the night. Sided with Serial Killers.",
+            "translation": "Jason Voorhees",
+            "help": "The figure behind the deaths in the movie Friday the 13th, you can (obviously) /kill during every night, which is shared with your team, and you can /distract OR /watch someone to prevent them from acting or see who acts on them. You can only use one of these secondary actions per night, and not the same one twice in a row.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "night": {
+                    "kill": {
+                        "hide": true,
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 16,
+                        "broadcast": "team",
+                        "msg": "Shh, shh, haa, haa...",
+                        "broadcastmsg": "Jason (~Player~) grabs a machete and slowly follows ~Target~ into the darkness."
+                    },
+                    "distract": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 3,
+                        "recharge": 2,
+                        "cancel": [
+                            "watch"
+                        ],
+                        "distractmsg": "What the hell was that? You felt someone watching you all night and could not do anything."
+                    },
+                    "watch": {
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": 47,
+                        "recharge": 2,
+                        "cancel": [
+                            "distract"
+                        ],
+                        "watchmsg": "Your target (~Target~) was visited by ~Visit~ this night!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "chaplin",
+            "side": "village",
+            "translation": "Charlie Chaplin",
+            "help": "You are the world famous silent film comedian, Charlie Chaplin! Nosferatu is trying to mute everyone, but you've learned that sound films are sometimes better. This means that you can /unquiet two people per game, including yourself!",
+            "actions": {
+                "night": {
+                    "unquiet": {
+                        "command": "convert",
+                        "newRole": {
+                            "villager": [
+                                "villagermute"
+                            ],
+                            "chaplinunmute": [
+                                "chaplinmute"
+                            ],
+                            "nosfera2": [
+                                "nosferatu"
+                            ],
+                            "doubtfire": [
+                                "doubtfiremute"
+                            ],
+                            "indy": [
+                                "indymute"
+                            ]
+                        },
+                        "target": "Any",
+                        "common": "Self",
+                        "charges": 2,
+                        "convertmsg": "Charlie pressed unmute, and someone could speak again!",
+                        "convertfailmsg": "Your target was not muted.",
+			"tarmsg": "You've been unmuted.",
+                        "priority": 9
+                    }
+                }
+            }
+        },
+        {
+            "role": "chaplinunmute",
+            "side": "village",
+            "hide": true,
+            "translation": "Charlie Chaplin",
+            "help": "You are the world famous silent film comedian, Charlie Chaplin! Nosferatu is trying to mute everyone, but you've learned that sound films are sometimes better. This means that you can /unquiet two people per game, including yourself!",
+            "actions": {
+                "night": {
+                    "unquiet": {
+                        "hide": true,
+                        "command": "convert",
+                        "newRole": {
+                            "villager": [
+                                "villagermute"
+                            ],
+                            "chaplinunmute": [
+                                "chaplinmute"
+                            ],
+                            "nosfera2": [
+                                "nosferatu"
+                            ],
+                            "doubtfire": [
+                                "doubtfiremute"
+                            ],
+                            "indy": [
+                                "indymute"
+                            ]
+                        },
+                        "target": "Any",
+                        "common": "Self",
+                        "convertmsg": "Charlie pressed unmute, and someone could speak again!",
+                        "convertfailmsg": "Your target was not muted.",
+			"tarmsg": "You've been unmuted.",
+                        "priority": 9
+                    }
+                }
+            }
+        },
+        {
+            "role": "chaplinmute",
+            "side": "village",
+            "hide": true,
+            "translation": "Charlie Chaplin",
+            "help": "You are the world famous silent film comedian, Charlie Chaplin! Nosferatu is trying to mute everyone, but you've learned that sound films are sometimes better. This means that you can /unquiet two people per game, including yourself!",
+            "actions": {
+                "noVote": true,
+                "noVoteMsg": "You tried to vote for ~Target~, but you couldn't speak up!",
+                "night": {
+                    "unquiet": {
+                        "hide": true,
+                        "command": "convert",
+                        "newRole": {
+                            "villager": [
+                                "villagermute"
+                            ],
+                            "chaplinunmute": [
+                                "chaplinmute"
+                            ],
+                            "nosfera2": [
+                                "nosferatu"
+                            ],
+                            "doubtfire": [
+                                "doubtfiremute"
+                            ],
+                            "indy": [
+                                "indymute"
+                            ]
+                        },
+                        "target": "Any",
+                        "common": "Self",
+                        "convertmsg": "Charlie pressed unmute, and someone could speak again!",
+                        "convertfailmsg": "Your target was not muted.",
+			"tarmsg": "You've been unmuted.",
+                        "priority": 9
+                    }
+                }
+            }
+        },
+        {
+            "role": "nosferatu",
+            "side": "monsters",
+            "translation": "Nosferatu",
+            "help": "Originally looked down upon as a clone of Dracula, you're now considered a silent film classic. However, you cannot STAND modern films, and you think they are too showy and loud. You can /quiet someone during the night to take away their vote! You win when everyone not sided with you is muted or dead.",
+            "winIfDeadRoles": [
+                "chaplin",
+                "chaplinunmute",
+                "doubtfire",
+                "villager"
+            ],
+            "actions": {
+           	"teamTalk": true,
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "night": {
+                    "quiet": {
+                        "command": "convert",
+                        "newRole": {
+                            "villagermute": [
+                                "villager"
+                            ],
+                            "chaplinmute": [
+                                "chaplinunmute",
+                                "chaplin"
+                            ],
+                            "doubtfiremute": [
+                                "doubtfire"
+                            ],
+                            "indymute": [
+                                "indy"
+                            ]
+                        },
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "convertmsg": "Someone was muted :x",
+			"usermsg": "~Target~ was muted. They can now not vote!",
+			"silentConvert": true,
+			"broadcast": "team",
+			"broadcastmsg": "Nosferatu (~Player~) points the remote at ~Target~, ready to press the mute button!",
+                        "priority": 8
+                    }
+                }
+            }
+        },
+        {
+            "role": "nosfera2",
+            "hide": true,
+            "side": "monsters",
+            "translation": "Nosferatu2",
+            "help": "Originally looked down upon as a clone of Dracula, you're now considered a silent film classic. However, you cannot STAND modern films, and you think they are too showy and loud. You can /quiet someone during the night to take away their vote! You win when everyone not sided with you is muted or dead.  You have been unmuted and are more powerful than ever, now with 2 votes!",
+            "winIfDeadRoles": [
+                "chaplin",
+                "chaplinunmute",
+                "doubtfire",
+                "villager"
+            ],
+            "actions": {
+           	"teamTalk": true,
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "vote": 2,
+                "night": {
+                    "quiet": {
+                        "command": "convert",
+                        "newRole": {
+                            "villagermute": [
+                                "villager"
+                            ],
+                            "chaplinmute": [
+                                "chaplinunmute",
+                                "chaplin"
+                            ],
+                            "doubtfiremute": [
+                                "doubtfire"
+                            ],
+                            "indymute": [
+                                "indy"
+                            ]
+                        },
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "convertmsg": "Someone was muted :x",
+			"usermsg": "~Target~ was muted. They can now not vote!",
+			"silentConvert": true,
+			"broadcast": "team",
+			"broadcastmsg": "Nosferatu (~Player~) points the remote at ~Target~, ready to press the mute button!",
+                        "priority": 8
+                    }
+                }
+            }
+        }
+    ],
+    "roles1": [
+        "villager",
+        "villager",
+        "villager",
+        "doubtfire",
+        "nosferatu",
+        "villager"
+    ],
+    "roles2": [
+        "villager",
+        "villager",
+        "indy",
+        "doubtfire",
+        "nosferatu",
+        "chaplin",
+        "vamp",
+        "villager"
+    ],
+    "roles3": [
+        "sherlock",
+        "rocky",
+        "doubtfire",
+        "khan",
+        "zurgsmall",
+        "villager",
+        "villager",
+        "jawssmall",
+        "indy",
+        "gump",
+        "kkong",
+        "villager",
+        "terminator",
+        "bond",
+        "villager"
+    ],
+    "roles4": [
+        "sherlock",
+        "rocky",
+        "doubtfire",
+        "khan",
+        "zurg",
+        "jaws",
+        "indy",
+        "gump",
+        "godzilla",
+        "sparrow",
+        "terminator",
+        "bond",
+        "villager",
+        "j",
+        "villager",
+        "kkong",
+        "starling"
+    ],
+    "roles5": [
+        "sherlock",
+        "rocky",
+        "doubtfire",
+        "vega",
+        "winnfield",
+        "khan",
+        "zurg",
+        "jaws",
+        "indy",
+        "gump",
+        "godzilla",
+        "sparrow",
+        "terminator",
+        "bond",
+        "villager",
+        "j",
+        "freeman",
+        "kkong",
+        "vader",
+        "starling",
+        "villager",
+        "don",
+        "schindler",
+        "mcclane"
+    ],
+    "roles6": [
+        "sherlock",
+        "rocky",
+        "doubtfire",
+        "vega",
+        "winnfield",
+        "khan",
+        "zurg",
+        "jaws",
+        "indy",
+        "gump",
+        "godzilla",
+        "sparrow",
+        "terminator",
+        "schindler",
+        "j",
+        "freeman",
+        "vader",
+        "kkong",
+        "starling",
+        "villager",
+        "don",
+        "mcclane",
+        "black",
+        "jason",
+        "freddy",
+        "lecter",
+        "villager",
+        "buzz",
+        "bond",
+        "dracula",
+        "alfred",
+        "villager",
+        "goon",
+        "maximus",
+        "villager",
+        "villager",
+        "vamp",
+        "villager"
+    ],
+    "changelog": {
+        "7.2.2014": "Testing begins! Also, Schindler and Buzz are actually in the theme now, lol.",
+        "7.3.2014": "Added a tip for Jaws, lowered reveal by five percent, and fixed his day msg. Also, Space is winning too much so Zurg's big game vote was lowered to three and more changes may be made to small game. Replaced Godzilla with King Kong to buff Monsters in roles3. Then, completely swapped space mafia and monster mafia and fixed up the spawn because Space keeps winning everything, somehow. Maximus doesn't spawn until WAY late and Serial killers come in a little earlier. Also, Khan can inspect every other night and Kong can protect himself.",
+        "Special Update": "Testing a small game set up with Nosferatu and Charlie Chaplin, /tips should tell you a bit more.",
+	"8.11.2014": "Robin Williams died :( Also, fixed the tips up a little."
+    },
+    "tips": {
+        "Vincent and Jules": "You can claim if you want to connect, but don't be shocked if one or both of you dies.",
+        "John McClane": "Remember that you reveal yourself more than half of the time. Make sure to use your kills wisely and when they're needed or safe.",
+        "Jaws": "In small games, your only real hope of winning is to (help) get rid of Sherlock and Khan before they find you, so don't be afraid of that reveal...",
+        "Jack Sparrow": "Jack can inspect people as Maximus, Jaws, Zurg, Terminator, Buzz, Godzilla, Sherlock, King Kong, and Viewer. If you get any results NOT listed here, you are Sherlock Holmes.",
+        "Small Games": "Nosferatu 'mutes' people, taking away their vote. Charlie Chaplin can 'unmute' people, giving their vote back, but this will also raise Nosferatu's vote to 2 if he's targetted with Charlie.'s action. The goal is to find out who is Nosferatu by having Mrs. Doubtfire distract people and if someone is not muted, the distracted person is most likely Nosferatu.",
+	"Top Threats": "Jaws has a daykill. Darth Vader has a second kill and Zurg has extra votes. Terminator can outspeed bodyguards and when lynched, has two kills that outspeed bodyguards. Don Vito Corleone is a votekiller and can convert some roles to Mafia Goons. Freddy Kreuger kills anyone who tries to gain information about him (inspect, distract, stalk)."
+    },
+    "villageCantLoseRoles": [
+        "j4",
+        "mcclane",
+        "buzz",
+        "starling"
+    ]
+}
