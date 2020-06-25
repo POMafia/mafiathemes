@@ -1,0 +1,351 @@
+{
+	"name" : "RNG15",
+	"author" : "R​iceKirby",
+	"summary" : "Fight the other of your species to evolve until you become Arceus and win!",
+	"ticks" : {
+		"night1" : 3,
+		"night" : 3,
+		"standby" : 19
+	},
+	"minplayers" : 6,
+	"delayedConversionMsg" : true,
+	"nolynch" : true,
+	"sides" : [{
+			"side" : "1",
+			"translation" : "Solosis"
+		}, {
+			"side" : "2",
+			"translation" : "Lilligant"
+		}, {
+			"side" : "3",
+			"translation" : "Krokorok"
+		}, {
+			"side" : "4",
+			"translation" : "Minccino"
+		}, {
+			"side" : "5",
+			"translation" : "Mankey"
+		}, {
+			"side" : "6",
+			"translation" : "Arceus",
+			"winmsg" : "±Evolution: ~Players~ became an Arceus and won the game!"
+		}
+	],
+	"variables" : {
+		"failChance" : 0.33,
+		"team_1" : ["1", "1_win", "1_lose"],
+		"team_2" : ["2", "2_win", "2_lose"],
+		"team_3" : ["3", "3_win", "3_lose"],
+		"team_4" : ["4", "4_win", "4_lose"],
+		"team_5" : ["5", "5_win", "5_lose"]
+	},
+	"roles" : [{
+			"role" : "1",
+			"translation" : "Solosis",
+			"side" : "1",
+			"help" : "You can only fight other Solosis!",
+			"info" : "Can fight other Solosis. Evolves into Lilligant if win. ~Sided~",
+			"actions" : {
+				"startup" : {
+					"revealRole" : "variable:team_1"
+				},
+				"standby" : {
+					"Fight" : {
+						"command" : "expose",
+						"target" : "OnlyTeammates",
+                        "exposemsg": "~Self~: solosis solosis",
+						"copyAs" : {
+							"1_win" : "variable:team_1",
+							"1_lose" : "variable:team_1"
+						},
+                        "newRole": {
+                            "1_win" : "variable:team_1",
+							"1_lose" : "variable:team_1"
+                        },
+                        "convertRoles": {
+                            "1_win" : "2",
+							"1_lose" : "1"
+                        },
+                        "convertusermsg": "",
+                        "copyusermsg": "",
+                        "copymsg": "Two Solosis, ~Self~ and ~Target~, engaged in a fierce battle! The loser is now a Solosis! The winner is now a Lilligant!",
+                        "convertmsg": "",
+                        "tarmsg": "",
+                        "silentMassConvert": true,
+                        "singlemassconvertmsg": "",
+                        "compulsory": [3, 18],
+                        "macro": false
+					}
+				},
+				"updateTeam" : true
+			}
+		}, {
+			"role" : "1_win",
+			"translation" : "Solosis",
+			"side" : "1",
+			"startupmsg" : "You defeated another Solosis! You are now a Lilligant!",
+            "help": "",
+			"hide" : true,
+            "unique": true,
+			"actions" : {}
+		}, {
+			"role" : "1_lose",
+			"translation" : "Solosis",
+			"side" : "1",
+            "help": "",
+			"startupmsg" : "You have been defeated by another Solosis! You are now a Solosis!",
+			"hide" : true,
+            "unique": true,
+			"actions" : {}
+		}, {
+			"role" : "2",
+			"translation" : "Lilligant",
+			"side" : "2",
+			"help" : "You can only fight other Lilligant!",
+			"info" : "Can fight other Lilligant. Evolves into Krokorok if win. ~Sided~",
+			"players" : false,
+			"actions" : {
+				"startup" : {
+					"revealRole" : "variable:team_2"
+				},
+				"standby" : {
+					"Fight" : {
+						"command" : "expose",
+						"target" : "OnlyTeammates",
+                        "exposemsg": "~Self~: lilli-lilligant",
+						"copyAs" : {
+							"2_win" : "variable:team_2",
+							"2_lose" : "variable:team_2"
+						},
+                        "newRole": {
+                            "2_win" : "variable:team_2",
+							"2_lose" : "variable:team_2"
+                        },
+                        "convertRoles": {
+                            "2_win" : "3",
+							"2_lose" : "1"
+                        },
+                        "convertusermsg": "",
+                        "copyusermsg": "",
+                        "copymsg": "Two Lilligant, ~Self~ and ~Target~, engaged in a fierce battle! The loser is now a Solosis! The winner is now a Krokorok!",
+                        "convertmsg": "",
+                        "tarmsg": "",
+                        "silentMassConvert": true,
+                        "singlemassconvertmsg": "",
+                        "compulsory": [3, 18],
+                        "macro": false
+					}
+				},
+				"updateTeam" : true
+			}
+		}, {
+			"role" : "2_win",
+			"translation" : "Lilligant",
+			"side" : "2",
+            "help": "",
+			"startupmsg" : "You defeated another Lilligant! You are now a Krokorok!",
+			"hide" : true,
+            "unique": true,
+			"actions" : {}
+		}, {
+			"role" : "2_lose",
+			"translation" : "Lilligant",
+			"side" : "2",
+            "help": "",
+			"startupmsg" : "You have been defeated by another Lilligant! You are now a Solosis!",
+			"hide" : true,
+            "unique": true,
+			"actions" : {}
+		}, {
+			"role" : "3",
+			"translation" : "Krokorok",
+			"side" : "3",
+			"help" : "You can only fight other Krokorok!",
+			"info" : "Can fight other Krokorok. Evolves into Minccino if win. ~Sided~",
+			"players" : false,
+			"actions" : {
+				"startup" : {
+					"revealRole" : "variable:team_3"
+				},
+				"standby" : {
+					"Fight" : {
+						"command" : "expose",
+						"target" : "OnlyTeammates",
+                        "exposemsg": "~Self~: krokokokokorok!",
+						"copyAs" : {
+							"3_win" : "variable:team_3",
+							"3_lose" : "variable:team_3"
+						},
+                        "newRole": {
+                            "3_win" : "variable:team_3",
+							"3_lose" : "variable:team_3"
+                        },
+                        "convertRoles": {
+                            "3_win" : "4",
+							"3_lose" : "2"
+                        },
+                        "convertusermsg": "",
+                        "copyusermsg": "",
+                        "copymsg": "Two Krokorok, ~Self~ and ~Target~, engaged in a fierce battle! The loser is now a Lilligant! The winner is now a Minccino!",
+                        "convertmsg": "",
+                        "tarmsg": "",
+                        "silentMassConvert": true,
+                        "singlemassconvertmsg": "",
+                        "compulsory": [3, 18],
+                        "macro": false
+					}
+				},
+				"updateTeam" : true
+			}
+		}, {
+			"role" : "3_win",
+			"translation" : "Krokorok",
+			"side" : "3",
+            "help": "",
+			"startupmsg" : "You defeated another Krokorok! You are now a Minccino!",
+			"hide" : true,
+            "unique": true,
+			"actions" : {}
+		}, {
+			"role" : "3_lose",
+			"translation" : "Krokorok",
+			"side" : "3",
+            "help": "",
+			"startupmsg" : "You have been defeated by another Krokorok! You are now a Lilligant!",
+			"hide" : true,
+            "unique": true,
+			"actions" : {}
+		}, {
+			"role" : "4",
+			"translation" : "Minccino",
+			"side" : "4",
+			"help" : "You can only fight other Minccino!",
+			"info" : "Can fight other Minccino. Evolves into Mankey if win. ~Sided~",
+			"players" : false,
+			"actions" : {
+				"startup" : {
+					"revealRole" : "variable:team_4"
+				},
+				"standby" : {
+					"Fight" : {
+						"command" : "expose",
+						"target" : "OnlyTeammates",
+                        "exposemsg": "~Self~: minccino?",
+						"copyAs" : {
+							"4_win" : "variable:team_4",
+							"4_lose" : "variable:team_4"
+						},
+                        "newRole": {
+                            "4_win" : "variable:team_4",
+							"4_lose" : "variable:team_4"
+                        },
+                        "convertRoles": {
+                            "4_win" : "5",
+							"4_lose" : "3"
+                        },
+                        "convertusermsg": "",
+                        "copyusermsg": "",
+                        "copymsg": "Two Minccino, ~Self~ and ~Target~, engaged in a fierce battle! The loser is now a Krokorok! The winner is now a Mankey!",
+                        "convertmsg": "",
+                        "tarmsg": "",
+                        "silentMassConvert": true,
+                        "singlemassconvertmsg": "",
+                        "compulsory": [3, 18],
+                        "macro": false
+					}
+				},
+				"updateTeam" : true
+			}
+		}, {
+			"role" : "4_win",
+			"translation" : "Minccino",
+			"side" : "4",
+            "help": "",
+			"startupmsg" : "You defeated another Minccino! You are now a Mankey!",
+			"hide" : true,
+            "unique": true,
+			"actions" : {}
+		}, {
+			"role" : "4_lose",
+			"translation" : "Minccino",
+			"side" : "4",
+            "help": "",
+			"startupmsg" : "You have been defeated by another Minccino! You are now a Krokorok!",
+			"hide" : true,
+            "unique": true,
+			"actions" : {}
+		}, {
+			"role" : "5",
+			"translation" : "Mankey",
+			"side" : "5",
+			"help" : "You can only fight other Mankey!",
+			"info" : "Can fight other Mankey. Evolves into Arceus if win. ~Sided~",
+			"players" : false,
+			"actions" : {
+				"startup" : {
+					"revealRole" : "variable:team_5"
+				},
+				"standby" : {
+					"Fight" : {
+						"command" : "expose",
+						"target" : "OnlyTeammates",
+                        "exposemsg": "~Self~: ma-mankey mankey!",
+						"copyAs" : {
+							"5_win" : "variable:team_5",
+							"5_lose" : "variable:team_5"
+						},
+                        "newRole": {
+                            "5_win" : "variable:team_5",
+							"5_lose" : "variable:team_5"
+                        },
+                        "convertRoles": {
+                            "5_win" : "6",
+							"5_lose" : "4"
+                        },
+                        "convertusermsg": "",
+                        "copyusermsg": "",
+                        "copymsg": "Two Mankey, ~Self~ and ~Target~, engaged in a fierce battle! The loser is now a Minccino! The winner is now a Arceus!",
+                        "convertmsg": "",
+                        "tarmsg": "",
+                        "silentMassConvert": true,
+                        "singlemassconvertmsg": "",
+                        "compulsory": [3, 18],
+                        "macro": false
+					}
+				},
+				"updateTeam" : true
+			}
+		}, {
+			"role" : "5_win",
+			"translation" : "Mankey",
+			"side" : "5",
+            "help": "",
+			"startupmsg" : "You defeated another Mankey! You are now an Arceus!",
+			"hide" : true,
+            "unique": true,
+			"actions" : {}
+		}, {
+			"role" : "5_lose",
+			"translation" : "Mankey",
+			"side" : "5",
+            "help": "",
+			"startupmsg" : "You have been defeated by another Mankey! You are now a Minccino!",
+			"hide" : true,
+            "unique": true,
+			"actions" : {}
+		}, {
+			"role" : "6",
+			"translation" : "Arceus",
+			"side" : "6",
+			"startupmsg" : "Congratulations! You are now an Arceus and won this game!",
+            "help": "",
+			"info" : "Winner. ~Sided~",
+			"players" : false,
+			"winIfDeadRoles" : [],
+			"actions" : {}
+		}
+	],
+	"roles1" : ["1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"],
+	"villageCantLoseRoles" : ["1", "1_win", "1_lose", "2", "2_win", "2_lose", "3", "3_win", "3_lose", "4", "4_win", "4_lose", "5", "5_win", "5_lose"],
+	"killmsg" : "±Evolution: ~Player~ is out of the Evolution Line!"
+}
