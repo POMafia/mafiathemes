@@ -1,0 +1,3431 @@
+{
+  "name": "EV",
+  "altname": "Eeveelution",
+  "threadlink": "http://pokemon-online.eu/threads/eeveelutions.27373/",
+  "minplayers": 3,
+  "borderColor": "#0099ff",
+  "bot": {
+  	"name": "Eevee",
+  	"color": "#ff5050"
+  },
+  "summary": "The Evolutionary War is upon us! The Island of Eevee is being overrun by all sorts of branched evolution that want the resort for themselves! The Eevees must coordinate their evolutions to overcome them all! Meanwhile, Zorua and Zoroark lurk in the shadows, evading detection and killing all who get in their way. And lastly, the artificial life have devised a protocol to eliminate all biological material from the island!",
+  "author": "<b><i><span style='color:#005CE6'>Miki Sayaka</span></i></b>",
+  "tips": {
+    "Did you know?": "Most roles can use their commands on the same night they evolve!",
+    "Game size": "You may want to consider which evolutions are worth waiting for based on how many players there are!",
+    "Shiny Eevee": "Since you're unique, you're the most reliable claim. Additionally, you expose daykillers. You may wish to claim night 1 to get Protection!",
+    "Inspectors": "Remember that Zorua/Zoroark can copy anyone else's appearance, and Kecleon Inspects randomly!",
+    "Vaporeon": "Support your allies, but be careful to not get voted! It may be wise to not claim."
+  },
+  "delayedConversionMsg": true,
+  "lynchmsg": "~Player~ (~Role~) was exiled from the Eevee nation!",
+  "killmsg": "~Player~ (~Role~) fainted!",
+  "killusermsg": "*** Survival of the fittest, as they say!",
+  "sides": [
+    {
+      "side": "mafia",
+      "translation": "Hitmontaucracy",
+      "winmsg": "The Hitmons have knocked all opposition of out the ring! The fighting spirit lives on thanks to ~Players~!"
+    },
+    {
+      "side": "cmafia",
+      "translation": "DeepSea Alliance",
+      "winmsg": "The creatures of the sea have taken over the Eevee world, thanks to the hard work of ~Players~!"
+    },
+    {
+      "side": "smafia",
+      "translation": "Forest Dwellers",
+      "winmsg": "~Players~ have taken over the island as their own!"
+    },
+    {
+      "side": "village",
+      "translation": "Eevee Nation",
+      "winmsg": "Peace has been restored for all of Eeveekind! ~Players~ are free to be whatever type of Eevee they choose!"
+    },
+    {
+      "side": "werewolf",
+      "translation": "Master of Illusions",
+      "winmsg": "±Zorua: Kwee-kwee! Thought I was a cute little Eevee, didn't ya? Now this little resort belongs to ~Players~ :3"
+    },
+    {
+      "side": "godfather",
+      "translation": "Reptiles",
+      "winmsg": "The island has been overrun by Kecleon thanks to the subversive tactics of ~Players~!"
+    },
+    {
+      "side": "robot",
+      "translation": "Artificial Life",
+      "winmsg": "±Porygon: Finally. Robotic beings rule the world. Good work ~Players~. Bzzt."
+    }
+  ],
+  "roles": [
+    {
+      "role": "dummy",
+      "translation": "All",
+      "side": "village",
+      "hide": true,
+      "help": "",
+      "actions": {
+        "night": {
+          "evolution": {
+            "command": "convert",
+            "newRole": "villager",
+            "target": "OnlySelf",
+            "common": "Self",
+            "priority": 1
+          }
+        }
+      }
+    },
+    {
+      "role": "dummy2",
+      "translation": "Eeveelution",
+      "side": "village",
+      "hide": true,
+      "help": "",
+      "actions": {}
+    },
+    {
+      "role": "svillager",
+      "translation": "Shiny Eevee",
+      "side": "village",
+      "help": "You are a Shiny Eevee! You can use your uniqueness to call out the other Eevee. Type /Vaporeon to show how many Vaporeon there are, /Jolteon to show how many Jolteon, and so on. You can't evolve, but you are an important part of the village! Because you expose daykillers, you are the safe to claim night 1, so ask for a bodyguard!",
+      "info": "Can publicly expose how many of each role exist. Exposes daykillers. ~Sided~",
+      "actions": {
+        "daykill": "revealkiller",
+        "daykillrevengemsg": "But before they fall, ~Self~ illuminates the identity of their killer! ~Target~ is the ~Role~!",
+        "distract": {
+          "mode": "ignore",
+          "targetmsg": "The ~Role~ that tried to distract you was instead distracted by your shininess!"
+        },
+        "night": {
+          "vaporeon": {
+            "command": "massconvert",
+            "convertRoles": {
+              "bodyguard": "bodyguard",
+              "bodyguard0": "bodyguard"
+            },
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "jolteon",
+              "flareon",
+              "espeon",
+              "umbreon",
+              "leafeon",
+              "glaceon",
+              "sylveon"
+            ],
+            "hide": true,
+            "singlemassconvertmsg": "Waah! That's the call of ~Number~ Vaporeon!",
+            "silentMassConvert": true,
+            "priority": 1.2
+          },
+          "jolteon": {
+            "command": "massconvert",
+            "convertRoles": {
+              "vigi": "vigi"
+            },
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "vaporeon",
+              "flareon",
+              "espeon",
+              "umbreon",
+              "leafeon",
+              "glaceon",
+              "sylveon"
+            ],
+            "hide": true,
+            "massconvertmsg": "Owoow! That's the call of ~Number~ Jolteon!",
+            "silentMassConvert": true,
+            "priority": 1.2
+          },
+          "flareon": {
+            "command": "massconvert",
+            "convertRoles": {
+              "mayor": "mayor"
+            },
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "jolteon",
+              "vaporeon",
+              "espeon",
+              "umbreon",
+              "leafeon",
+              "glaceon",
+              "sylveon"
+            ],
+            "hide": true,
+            "massconvertmsg": "Arrarf! That's the call of ~Number~ Flareon!",
+            "silentMassConvert": true,
+            "priority": 1.2
+          },
+          "espeon": {
+            "command": "massconvert",
+            "convertRoles": {
+              "inspector": "inspector"
+            },
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "jolteon",
+              "vaporeon",
+              "flareon",
+              "umbreon",
+              "leafeon",
+              "glaceon",
+              "sylveon"
+            ],
+            "hide": true,
+            "massconvertmsg": "Yuu! That's the call of ~Number~ Espeon!",
+            "silentMassConvert": true,
+            "priority": 1.2
+          },
+          "umbreon": {
+            "command": "massconvert",
+            "convertRoles": {
+              "pl": "pl"
+            },
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "jolteon",
+              "vaporeon",
+              "espeon",
+              "flareon",
+              "leafeon",
+              "glaceon",
+              "sylveon"
+            ],
+            "hide": true,
+            "massconvertmsg": "Awooh! That's the call of ~Number~ Umbreon!",
+            "silentMassConvert": true,
+            "priority": 1.2
+          },
+          "leafeon": {
+            "command": "massconvert",
+            "convertRoles": {
+              "mason": "mason"
+            },
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "jolteon",
+              "vaporeon",
+              "espeon",
+              "flareon",
+              "umbreon",
+              "glaceon",
+              "sylveon"
+            ],
+            "hide": true,
+            "massconvertmsg": "Kyu-eep! That's the call of ~Number~ Leafeon!",
+            "silentMassConvert": true,
+            "priority": 1.2
+          },
+          "glaceon": {
+            "command": "massconvert",
+            "convertRoles": {
+              "exposer": "exposer"
+            },
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "jolteon",
+              "vaporeon",
+              "espeon",
+              "flareon",
+              "umbreon",
+              "leafeon",
+              "sylveon"
+            ],
+            "hide": true,
+            "massconvertmsg": "Kwee-ooh! That's the call of ~Number~ Glaceon!",
+            "silentMassConvert": true,
+            "priority": 1.2
+          },
+          "sylveon": {
+            "command": "massconvert",
+            "convertRoles": {
+              "samurai": "samurai",
+              "samurai0": "samurai0"
+            },
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "jolteon",
+              "vaporeon",
+              "espeon",
+              "flareon",
+              "umbreon",
+              "glaceon",
+              "sylveon"
+            ],
+            "hide": true,
+            "singlemassconvertmsg": "Byuu! That's the call of ~Number~ Sylveon!",
+            "silentMassConvert": true,
+            "priority": 1.2
+          }
+        },
+        "stalk": {
+          "mode": "noVisit"
+        }
+      }
+    },
+    {
+      "role": "villager",
+      "translation": "Eevee",
+      "side": "village",
+      "help": "You are an Eevee! Right now you can only vote, but if you choose to evolve you can gain a new power! Use /Water to become a Vaporeon (can /Protect), /Electric to become a Jolteon (can /Follow), or /Fire to become a Flareon (3 votes). Starting night 2, you can become Espeon (can /Inspect) with /Psychic or Umbreon (can /Distract) with /Dark. By night 4, you can /Grass to become Leafeon (Knows other Leafeon, 2 votes) or /Ice to become Glaceon (can /Expose). If you wait until night 6, you can /Fairy to become a Sylveon, which can kill during the day without fail! Additionally, YOU CAN USE YOUR NIGHT ACTIONS ON THE TURN YOU EVOLVE!",
+      "info": "Can evolve into Jolteon, Vaporeon, or Flareon night 1. Can evolve into Espeon or Umbreon night 2. Can evolve into Leafeon or Glaceon night 4. Can evolve into Sylveon night 6. ~Sided~",
+      "actions": {
+        "onlist": "villager",
+        "onteam": "villager",
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "villagerisalmostsamurai",
+            "curseCount": 5,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "water": {
+            "command": "convert",
+            "newRole": "bodyguard0",
+            "target": "OnlySelf",
+            "noFollow": true,
+            "common": "Self",
+            "silent": true,
+            "cancel": [
+              "electric",
+              "fire",
+              "psychic",
+              "dark",
+              "grass",
+              "ice",
+              "fairy"
+            ],
+            "hide": true,
+            "priority": 1
+          },
+          "electric": {
+            "command": "convert",
+            "newRole": "vigi",
+            "target": "OnlySelf",
+            "noFollow": true,
+            "common": "Self",
+            "silent": true,
+            "cancel": [
+              "water",
+              "fire",
+              "psychic",
+              "dark",
+              "grass",
+              "ice",
+              "fairy"
+            ],
+            "hide": true,
+            "priority": 1
+          },
+          "fire": {
+            "command": "convert",
+            "newRole": "mayor",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "water",
+              "psychic",
+              "dark",
+              "grass",
+              "ice",
+              "fairy"
+            ],
+            "silent": true,
+            "noFollow": true,
+            "hide": true,
+            "priority": 1
+          },
+          "psychic": {
+            "command": "convert",
+            "newRole": "inspector",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "fire",
+              "water",
+              "dark",
+              "grass",
+              "ice",
+              "fairy"
+            ],
+            "initialrecharge": 2,
+            "noFollow": true,
+            "silent": true,
+            "hide": true,
+            "priority": 1
+          },
+          "dark": {
+            "command": "convert",
+            "newRole": "pl",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "fire",
+              "psychic",
+              "water",
+              "grass",
+              "ice",
+              "fairy"
+            ],
+            "initialrecharge": 2,
+            "noFollow": true,
+            "silent": true,
+            "hide": true,
+            "priority": 1
+          },
+          "grass": {
+            "command": "convert",
+            "newRole": "mason",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "fire",
+              "psychic",
+              "dark",
+              "water",
+              "ice",
+              "fairy"
+            ],
+            "initialrecharge": 4,
+            "noFollow": true,
+            "silent": true,
+            "hide": true,
+            "priority": 1
+          },
+          "ice": {
+            "command": "convert",
+            "newRole": "exposer",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "fire",
+              "psychic",
+              "dark",
+              "grass",
+              "water",
+              "fairy"
+            ],
+            "initialrecharge": 4,
+            "noFollow": true,
+            "silent": true,
+            "hide": true,
+            "priority": 1
+          },
+          "fairy": {
+            "command": "convert",
+            "newRole": "samurai0",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "fire",
+              "psychic",
+              "dark",
+              "grass",
+              "ice",
+              "water"
+            ],
+            "initialrecharge": 6,
+            "noFollow": true,
+            "silent": true,
+            "hide": true,
+            "priority": 1
+          },
+          "protect": {
+            "command": [
+              "dummy2"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "noFollow": true,
+            "hide": true,
+            "priority": 5
+          },
+          "follow": {
+            "command": [
+              "dummy2"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "noFollow": true,
+            "hide": true,
+            "priority": 50
+          },
+          "inspect": {
+            "command": [
+              "dummy2"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "noFollow": true,
+            "hide": true,
+            "priority": 30
+          },
+          "distract": {
+            "command": [
+              "dummy2"
+            ],
+            "target": "AnyButSelf",
+            "noFollow": true,
+            "common": "Self",
+            "hide": true,
+            "priority": 3
+          }
+        },
+        "stalk": {
+          "mode": "noVisit"
+        }
+      }
+    },
+    {
+      "role": "villagerisalmostsamurai",
+      "translation": "Eevee",
+      "hide": true,
+      "side": "village",
+      "help": "You are an Eevee! Right now you can only vote, but if you choose to evolve you can gain a new power! Use /Water to become a Vaporeon (can /Protect), /Electric to become a Jolteon (can /Follow), or /Fire to become a Flareon (3 votes). Starting night 2, you can become Espeon (can /Inspect) with /Psychic or Umbreon (can /Distract) with /Dark. By night 4, you can /Grass to become Leafeon (78% nightkill evade, can shield, dies if shielded) or /Ice to become Glaceon (can /Freeze to Distract + Day Distract + remove Voteshield of target). If you wait until night 6, you can /Fairy to become a Sylveon, which can kill during the day without fail! Additionally, YOU CAN USE YOUR NIGHT ACTIONS ON THE TURN YOU EVOLVE!",
+      "info": "Can evolve into Jolteon, Vaporeon, or Flareon night 1. Can evolve into Espeon or Umbreon night 2. Can evolve into Leafeon or Glaceon night 4. Can evolve into Sylveon night 6. ~Sided~",
+      "actions": {
+        "onlist": "villager",
+        "onteam": "villager",
+        "night": {
+          "water": {
+            "command": "convert",
+            "newRole": "bodyguard0",
+            "target": "OnlySelf",
+            "noFollow": true,
+            "common": "Self",
+            "silent": true,
+            "cancel": [
+              "electric",
+              "fire",
+              "psychic",
+              "dark",
+              "grass",
+              "ice",
+              "fairy"
+            ],
+            "hide": true,
+            "priority": 1
+          },
+          "electric": {
+            "command": "convert",
+            "newRole": "vigi",
+            "target": "OnlySelf",
+            "noFollow": true,
+            "common": "Self",
+            "silent": true,
+            "cancel": [
+              "water",
+              "fire",
+              "psychic",
+              "dark",
+              "grass",
+              "ice",
+              "fairy"
+            ],
+            "hide": true,
+            "priority": 1
+          },
+          "fire": {
+            "command": "convert",
+            "newRole": "mayor",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "water",
+              "psychic",
+              "dark",
+              "grass",
+              "ice",
+              "fairy"
+            ],
+            "silent": true,
+            "noFollow": true,
+            "hide": true,
+            "priority": 1
+          },
+          "psychic": {
+            "command": "convert",
+            "newRole": "inspector",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "fire",
+              "water",
+              "dark",
+              "grass",
+              "ice",
+              "fairy"
+            ],
+            "noFollow": true,
+            "silent": true,
+            "hide": true,
+            "priority": 1
+          },
+          "dark": {
+            "command": "convert",
+            "newRole": "pl",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "fire",
+              "psychic",
+              "water",
+              "grass",
+              "ice",
+              "fairy"
+            ],
+            "noFollow": true,
+            "silent": true,
+            "hide": true,
+            "priority": 1
+          },
+          "grass": {
+            "command": "convert",
+            "newRole": "mason",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "fire",
+              "psychic",
+              "dark",
+              "water",
+              "ice",
+              "fairy"
+            ],
+            "noFollow": true,
+            "silent": true,
+            "hide": true,
+            "priority": 1
+          },
+          "ice": {
+            "command": "convert",
+            "newRole": "exposer",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "fire",
+              "psychic",
+              "dark",
+              "grass",
+              "water",
+              "fairy"
+            ],
+            "noFollow": true,
+            "silent": true,
+            "hide": true,
+            "priority": 1
+          },
+          "fairy": {
+            "command": "convert",
+            "newRole": "samurai0",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "fire",
+              "psychic",
+              "dark",
+              "grass",
+              "ice",
+              "water"
+            ],
+            "noFollow": true,
+            "silent": true,
+            "hide": true,
+            "priority": 1
+          },
+          "protect": {
+            "command": [
+              "dummy2"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "noFollow": true,
+            "hide": true,
+            "priority": 5
+          },
+          "follow": {
+            "command": [
+              "dummy2"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "noFollow": true,
+            "hide": true,
+            "priority": 50
+          },
+          "inspect": {
+            "command": [
+              "dummy2"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "noFollow": true,
+            "hide": true,
+            "priority": 30
+          },
+          "distract": {
+            "command": [
+              "dummy2"
+            ],
+            "target": "AnyButSelf",
+            "noFollow": true,
+            "common": "Self",
+            "hide": true,
+            "priority": 3
+          }
+        },
+        "stalk": {
+          "mode": "noVisit"
+        }
+      }
+    },
+    {
+      "role": "villagersmall",
+      "translation": "Eevee",
+      "side": "village",
+      "hide": true,
+      "help": "You are an Eevee! Right now you can only vote, but if you choose to evolve you can gain a new power! Use /Water to become a Vaporeon (can /Protect), /Electric to become a Jolteon (can /Follow), or /Fire to become a Flareon (3 votes). Starting night 2, you can become Espeon (can /Inspect) with /Psychic or Umbreon (can /Distract) with /Dark. By night 4, you can /Grass to become Leafeon (Knows other Leafeon, 2 votes) or /Ice to become Glaceon (can /Expose). If you wait until night 6, you can /Fairy to become a Sylveon, which can kill during the day without fail! Additionally, YOU CAN USE YOUR NIGHT ACTIONS ON THE TURN YOU EVOLVE!",
+      "info": "Can evolve into Jolteon, Vaporeon, or Flareon night 1. Can evolve into Espeon or Umbreon night 2. Can evolve into Leafeon or Glaceon night 4. Can evolve into Sylveon night 6. ~Sided~",
+      "actions": {
+        "onlist": "villager",
+        "onteam": "villager",
+        "night": {
+          "water": {
+            "command": "convert",
+            "newRole": "bodyguardsmall",
+            "target": "OnlySelf",
+            "noFollow": true,
+            "common": "Self",
+            "silent": true,
+            "cancel": [
+              "electric",
+              "fire",
+              "psychic",
+              "dark",
+              "grass",
+              "ice",
+              "fairy"
+            ],
+            "hide": true,
+            "priority": 1
+          },
+          "electric": {
+            "command": "convert",
+            "newRole": "vigi",
+            "target": "OnlySelf",
+            "noFollow": true,
+            "common": "Self",
+            "silent": true,
+            "cancel": [
+              "water",
+              "fire",
+              "psychic",
+              "dark",
+              "grass",
+              "ice",
+              "fairy"
+            ],
+            "hide": true,
+            "priority": 1
+          },
+          "fire": {
+            "command": "convert",
+            "newRole": "mayor",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "water",
+              "psychic",
+              "dark",
+              "grass",
+              "ice",
+              "fairy"
+            ],
+            "silent": true,
+            "noFollow": true,
+            "hide": true,
+            "priority": 1
+          },
+          "psychic": {
+            "command": "convert",
+            "newRole": "inspector",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "fire",
+              "water",
+              "dark",
+              "grass",
+              "ice",
+              "fairy"
+            ],
+            "initialrecharge": 2,
+            "noFollow": true,
+            "silent": true,
+            "hide": true,
+            "priority": 1
+          },
+          "dark": {
+            "command": "convert",
+            "newRole": "pl",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "fire",
+              "psychic",
+              "water",
+              "grass",
+              "ice",
+              "fairy"
+            ],
+            "initialrecharge": 2,
+            "noFollow": true,
+            "silent": true,
+            "hide": true,
+            "priority": 1
+          },
+          "grass": {
+            "command": "convert",
+            "newRole": "mason",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "fire",
+              "psychic",
+              "dark",
+              "water",
+              "ice",
+              "fairy"
+            ],
+            "initialrecharge": 4,
+            "noFollow": true,
+            "silent": true,
+            "hide": true,
+            "priority": 1
+          },
+          "ice": {
+            "command": "convert",
+            "newRole": "exposer",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "fire",
+              "psychic",
+              "dark",
+              "grass",
+              "water",
+              "fairy"
+            ],
+            "initialrecharge": 4,
+            "noFollow": true,
+            "silent": true,
+            "hide": true,
+            "priority": 1
+          },
+          "fairy": {
+            "command": "convert",
+            "newRole": "samurai0",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "electric",
+              "fire",
+              "psychic",
+              "dark",
+              "grass",
+              "ice",
+              "water"
+            ],
+            "initialrecharge": 6,
+            "noFollow": true,
+            "silent": true,
+            "hide": true,
+            "priority": 1
+          },
+          "protect": {
+            "command": [
+              "dummy2"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "noFollow": true,
+            "hide": true,
+            "priority": 5
+          },
+          "follow": {
+            "command": [
+              "dummy2"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "noFollow": true,
+            "hide": true,
+            "priority": 50
+          },
+          "inspect": {
+            "command": [
+              "dummy2"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "noFollow": true,
+            "hide": true,
+            "priority": 30
+          },
+          "distract": {
+            "command": [
+              "dummy2"
+            ],
+            "target": "AnyButSelf",
+            "noFollow": true,
+            "common": "Self",
+            "hide": true,
+            "priority": 3
+          },
+          "freeze": {
+            "command": [
+              "dummy2"
+            ],
+            "target": "AnyButSelf",
+            "noFollow": true,
+            "common": "Self",
+            "hide": true,
+            "priority": 3
+          },
+          "shield": {
+            "command": [
+              "dummy2"
+            ],
+            "target": "AnyButSelf",
+            "noFollow": true,
+            "common": "Self",
+            "hide": true,
+            "priority": 3
+          }
+        },
+        "stalk": {
+          "mode": "noVisit"
+        }
+      }
+    },
+    {
+      "role": "bodyguardsmall",
+      "translation": "Vaporeon",
+      "side": "village",
+      "help": "Congratulations! You have evolved into Vaporeon! You can use your majestic water moves to /Protect someone from kills and poisons during the night. You have lots of HP, so it'll take more than 1 kill to bring you down. Since you're made of fluid, you easily get washed away, so you receive two extra votes when voted for! You are so powerful that you revenge kill any daykills!",
+      "info": "Bodyguard, whose command also Safeguards. Evades a nightkill once. Bombs daykills. Receives 2 extra votes if voted for. ~Sided~",
+      "hide": true,
+      "actions": {
+        "onlist": "dummy2",
+        "onteam": "dummy2",
+        "voteshield": 2,
+        "kill": {
+          "mode": {
+            "evadeCharges": 1
+          },
+          "evadechargemsg": "Oof! You survived an attack!",
+          "msg": "Your target (~Self~) was Protected!"
+        },
+		"hax": {
+			"follow": {
+				"revealTeam": 0.33,
+				"revealPlayer": 0.07
+			}
+		},
+        "daykill": {
+          "mode": {
+            "revenge": [
+              "smafia2"
+            ]
+          }
+        },
+        "daykillrevengemsg": "~Target~ fired a ray of energy at a Vaporeon, but they were quick on the draw! \"Defensive type?\" Vaporeon exclaimed. \"My 110 Special Attack would like a word with you!\" It fires an Ice Beam (Critical hit!) at their attacker!",
+        "night": {
+          "protect": {
+            "command": [
+              "protect",
+              "safeguard"
+            ],
+            "maxHax": 1,
+            "protectmsg": "Your target (~Target~) was Protected!",
+            "target": "AnyButSelf",
+            "common": "Self",
+            "priority": 7
+          }
+        }
+      }
+    },
+    {
+      "role": "bodyguard0",
+      "translation": "Vaporeon",
+      "side": "village",
+      "help": "Congratulations! You have evolved into Vaporeon! You can use your majestic water moves to /Protect someone from kills and poisons during the night. You have lots of HP, so it'll take more than 1 kill to bring you down. Since you're made of fluid, you easily get washed away, so you receive two extra votes when voted for! You are so powerful that you revenge kill any daykills!",
+      "info": "Bodyguard, whose command also Safeguards. Evades a nightkill once. Bombs daykills. Receives 2 extra votes if voted for. ~Sided~",
+      "hide": true,
+      "actions": {
+      	"initialCondition": {"clearCurse": true},
+        "onlist": "dummy2",
+        "onteam": "dummy2",
+        "voteshield": 2,
+        "kill": {
+          "mode": {
+            "evadeCharges": 1
+          },
+          "evadechargemsg": "Oof! You survived an attack!",
+          "msg": "Your target (~Self~) was Protected!"
+        },
+		"hax": {
+			"follow": {
+				"revealTeam": 0.33,
+				"revealPlayer": 0.07
+			}
+		},
+        "daykill": "bomb",
+        "daykillrevengemsg": "~Target~ tried to ambush ~Self~! \"Defensive type?\" ~Self~ exclaimed. \"My 110 Special Attack would like a word with you!\" With their last breath, ~Self~ fires a Hydro Pump at their killer!",
+        "night": {
+          "protect": {
+            "command": [
+              "protect",
+              "safeguard"
+            ],
+            "maxHax": 1,
+            "protectmsg": "Your target (~Target~) was Protected!",
+            "target": "AnyButSelf",
+            "common": "Self",
+            "priority": 7
+          }
+        }
+      }
+    },
+    {
+      "role": "bodyguard",
+      "translation": "Vaporeon",
+      "side": "village",
+      "help": "Congratulations! You have evolved into Vaporeon! You can use your majestic water moves to /Protect someone from kills and poisons during the night. You have lots of HP, so it'll take more than 1 kill to bring you down. Since you're made of fluid, you easily get washed away, so you receive two extra votes when voted for! You are so powerful that you revenge kill any daykills!",
+      "info": "Bodyguard, whose command also Safeguards. Evades a nightkill once. Bombs daykills. Counters daykills from Bellossom. Receives 2 extra votes if voted for. Can hax follow (limited). ~Sided~",
+      "actions": {
+      	"initialCondition": {"clearCurse": true},
+        "onlist": "dummy2",
+        "onteam": "dummy2",
+        "voteshield": 2,
+        "kill": {
+          "mode": {
+            "evadeCharges": "*"
+          },
+          "evadechargemsg": "Oof! You survived an attack!",
+          "msg": "Your target (~Self~) was Protected!"
+        },
+		"hax": {
+			"follow": {
+				"revealTeam": 0.33,
+				"revealPlayer": 0.07
+			}
+		},
+        "daykill": "bomb",
+        "daykillrevengemsg": "~Target~ tried to ambush ~Self~! \"Defensive type?\" ~Self~ exclaimed. \"My 110 Special Attack would like a word with you!\" With their last breath, ~Self~ fires a Hydro Pump at their killer!",
+        "night": {
+          "protect": {
+            "command": [
+              "protect",
+              "safeguard"
+            ],
+            "protectmsg": "Your target (~Target~) was Protected!",
+            "target": "AnyButSelf",
+            "maxHax": 1,
+            "common": "Self",
+            "priority": 7
+          }
+        }
+      }
+    },
+    {
+      "role": "vigi",
+      "translation": "Jolteon",
+      "side": "village",
+      "help": "Congratulations! You have evolved into Jolteon! Your incredible speed allows you to /Follow one person during the night to see who they visit! If you are lynched, you will escape long enough to land one more kill before dying!",
+      "info": "Can follow one person during the night. Becomes vengeful (ignoring distract and immunities) if lynched. Can hax distract (limited). ~Sided~",
+      "actions": {
+        "onlist": "dummy2",
+        "onteam": "dummy2",
+      	"initialCondition": {"clearCurse": true},
+        "night": {
+          "follow": {
+            "command": [
+              "stalk"
+            ],
+            "stalkmsg": "~Target~ visited someone during the Night!",
+            "target": "AnyButSelf",
+            "common": "Self",
+            "priority": 50
+          }
+        },
+		"hax": {
+			"distract": {
+				"revealTeam": 0.25,
+				"revealPlayer": 0.05
+			}
+		},
+        "lynch": {"convertTo": "vengeful", "convertmsg": "Zap! In an instant, ~Self~ disappears and goes on a thunderous rampage!"}
+      }
+    },
+    {
+      "role": "vengeful",
+      "translation": "Vengeful Jolteon",
+      "side": "village",
+      "help": "Before being exiled, you can make one last stand for the Eevee nation! Try to /Kill one of your enemies!",
+      "hide": true,
+      "actions": {
+      	"initialCondition": {"poison": {"count": -1, "poisonDeadMessage": "You had a good run, but your electricity ran out!"}},
+        "onlist": "dummy2",
+        "onteam": "dummy2",
+        "distract": {"mode": "ignore", "silent": true},
+        "night": {
+          "kill": {
+          	"bypass": ["ignore", "evadeCharges"],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "priority": 10
+          }
+        }
+      }
+    },
+    {
+      "role": "mayor",
+      "translation": "Flareon",
+      "side": "village",
+      "help": "Congratulations! You have evolved into Flareon! You don't have any special commands during the night, but you can eliminate people during day with your impressive vote of 3!",
+      "info": "Vote counts as 3. Can hax protect (limited). ~Sided~",
+      "actions": {
+      	"initialCondition": {"clearCurse": true},
+        "onlist": "dummy2",
+        "onteam": "dummy2",
+        "vote": 3,
+		"hax": {
+			"protect": {
+				"revealTeam": 0.25,
+				"revealPlayer": 0.1
+			}
+		}
+      }
+    },
+    {
+      "role": "inspector",
+      "translation": "Espeon",
+      "side": "village",
+      "help": "Congratulations! You have evolved into Espeon! With your superior cognitive powers, you can now /Inspect to discern someone's role! You have a chance to find killers during the night!",
+      "info": "Inspector. Can hax kill. ~Sided~",
+      "actions": {
+      	"initialCondition": {"clearCurse": true},
+		"hax": {
+			"kill": {
+				"revealTeam": 0.25,
+				"revealPlayer": 0.08
+			}
+		},
+        "onlist": "dummy2",
+        "onteam": "dummy2",
+        "night": {
+          "inspect": {
+            "command": [
+              "inspect"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "priority": 30
+          }
+        }
+      }
+    },
+    {
+      "role": "pl",
+      "translation": "Umbreon",
+      "side": "village",
+      "help": "Congratulations! You have evolved into Umbreon! With your elusory powers of moonlight, you can /Distract to block someone's action!",
+      "info": "Distractor. Can't be distracted by other Umbreon. ~Sided~",
+      "actions": {
+      	"initialCondition": {"clearCurse": true},
+        "onlist": "dummy2",
+        "onteam": "dummy2",
+        "distract": {
+          "mode": {
+            "ignore": [
+              "pl"
+            ]
+          }
+        },
+        "night": {
+          "distract": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "distractmsg": "\"Nya!\" You were pounced by an Umbreon! Looks like you won't be going anywhere tonight...",
+            "teammsg": "Looks like my partner spent the whole night playing around with an Umbreon. We didn't even get to complete our mission!",
+            "priority": 4
+          }
+        }
+      }
+    },
+    {
+      "role": "exposer",
+      "translation": "Glaceon",
+      "side": "village",
+      "help": "Congratulations! You have evolved into Glaceon! You can /Freeze someone during the night, causing them to lose all their ability to use night or day actions once, and also removing their voteshield for the day!",
+      "info": "Can /freeze someone to distract + day distract + remove their voteshield. ~Sided~",
+      "actions": {
+      	"initialCondition": {"clearCurse": true},
+        "onlist": "dummy2",
+        "onteam": "dummy2",
+        "expose": "evade",
+        "exposeevademsg": "",
+        "distract": {
+          "mode": {
+            "ignore": [
+              "exposer"
+            ]
+          }
+        },
+        "night": {
+          "freeze": {
+          	"command": ["distract", "daydistract"],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "addVoteshield": 0,
+            "addVoteshieldDuration": 1,
+            "dayDistractMsg": "",
+            "distractmsg": "Brr! A Glaceon chilled you with its Ice Beam, making you unable to use any actions! What's worse, you lose any day actions or voteshields you might have had for this day!",
+            "teammsg": "Brr! Your teammate got frozen by Glaceon, so you couldn't do anything!",
+            "priority": 3
+          }
+        }
+      }
+    },
+    {
+      "role": "mason",
+      "translation": "Leafeon",
+      "side": "village",
+      "help": "Congratulations! You have evolved into Leafeon! Your foliage leaves allow you to survive kills most of the time, and you can aids your friends and /shield one person to take their kills! Don't shield other Leafeon's, or you will get in a fight and kill them!",
+      "info": "Has a 78% chance to evade nightkills. Can shield one target's kills during the night. Dies if shielded. ~Sided~",
+      "actions": {
+      	"initialCondition": {"clearCurse": true},
+        "onlist": "dummy2",
+        "onteam": "dummy2",
+        "shield": {
+			"mode": "die",
+			"msg": "Another ~Role~ came to ~Action~ you, but the two of you got caught up in a competition over a nice sunny spot to lie down in and got killed!",
+			"targetmsg": "You tried to ~Action~ ~Self~, but they were in your favorite sunny spot! You killed them instead!"
+        },
+		"kill": {
+		  "mode": {
+		  "evadeChance": 0.78
+		  },
+		  "msg": "Your target (~Self~) was Protected!"
+		},
+        "night": {
+          "shield": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "shieldActions": ["kill"],
+            "priority": 6
+          }
+        }
+      }
+    },
+    {
+      "role": "samurai0",
+      "translation": "Sylveon",
+      "side": "village",
+      "hide": true,
+      "help": "Congratulations! You have evolved into Sylveon! You can now destroy the anyone during the day with /Kill! You will be revealed when you do, so choose wisely.",
+      "actions": {
+        "onlist": "dummy2",
+        "onteam": "dummy2",
+        "poison": {
+          "mode": "die"
+        },
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Target~) can't be killed right now!"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "samurai",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    },
+    {
+      "role": "samurai",
+      "translation": "Sylveon",
+      "side": "village",
+      "help": "Congratulations! You have evolved into Sylveon! You can now destroy the anyone during the day with /Kill! You will be revealed when you do, so choose wisely.",
+      "info": "Can kill during standby. Can't be killed on the turn it evolves. ~Sided~",
+      "actions": {
+      	"initialCondition": {"clearCurse": true},
+        "onlist": "dummy2",
+        "onteam": "dummy2",
+        "standby": {
+          "kill": {
+            "target": "AnyButSelf",
+            "msg": "You can kill now using /kill [name] :",
+            "killmsg": "\"Does this look like the face of mercy!?\" says ~Self~. \"N-n-n-no -\" ~Target~ managed to answer before being being annihilated by the impending rainbow destruction beam!"
+          }
+        }
+      }
+    },
+    {
+      "role": "mafia",
+      "translation": "Tyrogue",
+      "side": "mafia",
+      "help": "You are Tyrogue! You can evolve into any of Hitmonlee, Hitmonchan, or Hitmontop by using /Lee, /Chan, and /Top respectively! As you evolve, you can /Kill. Hitmonlee can kill once during the day per game, Hitmonchan survives one kill and identifies stalkers and distracters, and Hitmontop has a -2 voteshield. You can't evolve into Hitmontop until night 2.",
+      "info": "Can evolve into Hitmonlee or Hitmonchan night 1. Can evolve into Hitmontop night 2. ~Sided~",
+      "actions": {
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "night": {
+          "lee": {
+            "command": "convert",
+            "newRole": "mafia1",
+            "target": "OnlySelf",
+            "common": "Self",
+            "priority": 1,
+            "hide": true,
+            "silent": true,
+            "noFollow": true,
+            "limit": 1,
+            "restrict": [
+              "lee",
+              "chan",
+              "top"
+            ],
+            "broadcast": "team"
+          },
+          "chan": {
+            "command": "convert",
+            "newRole": "mafia2",
+            "target": "OnlySelf",
+            "common": "Self",
+            "priority": 1,
+            "hide": true,
+            "silent": true,
+            "noFollow": true,
+            "limit": 1,
+            "restrict": [
+              "lee",
+              "chan",
+              "top"
+            ],
+            "broadcast": "team"
+          },
+          "top": {
+            "command": "convert",
+            "newRole": "mafia3",
+            "target": "OnlySelf",
+            "common": "Self",
+            "priority": 1,
+            "limit": 1,
+            "hide": true,
+            "silent": true,
+            "noFollow": true,
+            "initialrecharge": 2,
+            "restrict": [
+              "lee",
+              "chan",
+              "top"
+            ],
+            "broadcast": "team"
+          },
+          "kill": {
+            "command": [
+              "dummy2"
+            ],
+            "target": "AnyButTeam",
+            "common": "Team",
+            "hide": true,
+            "noFollow": true,
+            "priority": 13,
+            "broadcast": "team"
+          }
+        },
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "mafia1",
+      "translation": "Hitmonlee",
+      "side": "mafia",
+      "help": "Congratulations! You have evolved into Hitmonlee! Your incredible kicks allow you to /Kill during the night, and can also let you kill once during the day without being revealed!",
+      "info": "Can /Kill. Can daykill once (not revealed). ~Sided~",
+      "actions": {
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "distract": {
+          "mode": "ignore"
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 13,
+            "msg": "You were sent flying by a powerful kick!",
+            "hide": true,
+            "broadcast": "team"
+          }
+        },
+        "standby": {
+          "kill": {
+            "target": "AnyButTeam",
+            "msg": "You can now /kill someone once! You won't be revealed.",
+            "charges": 1,
+            "killmsg": "Hitmonlee leaps in the air and attacks ~Target~! ~Target~ tries to fight back, and was doing pretty well too, until that Rolling Kick!"
+          }
+        },
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "mafia2",
+      "translation": "Hitmonchan",
+      "side": "mafia",
+      "help": "Congratulations! You have evolved into Hitmonchan! With your Iron Fists, you can /Kill your enemies during the night! Your strong defensive posture allows you to survive one kill during the night. You can also identify anyone who tries to stalk or distract you!",
+      "info": "Can /Kill. Identifies any Stalker or Distracter, and evades one nightkill. ~Sided~",
+      "actions": {
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "kill": {
+          "mode": {
+            "evadeCharges": 1
+          },
+          "evadechargemsg": "Oof! You survived an attack!",
+          "msg": "Your target survived the attack. Maybe they need another hit?"
+        },
+		"distract": {
+			"mode": "identify"
+		},
+		"stalk": {
+			"mode": "identify"
+		},
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 13,
+            "broadcast": "team",
+            "noFollow": true,
+            "msg": "You were pummeled by a powerful punch!",
+            "hide": true
+          }
+        },
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "mafia3",
+      "translation": "Hitmontop",
+      "side": "mafia",
+      "help": "Congratulations! You have evolved into Hitmontop! You can /Kill to eliminate the Eevees during the night! Your balanced coordination makes you hard to keep down, so you have a voteshield of -2!",
+      "info": "Killer with a voteshield of -2. ~Sided~",
+      "actions": {
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "voteshield": -2,
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 13,
+            "msg": "You have been spun around too many times!",
+            "hide": true,
+            "broadcast": "team"
+          }
+        },
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "mafiadummy",
+      "translation": "Hitmonaucracy",
+      "side": "mafia",
+      "help": "",
+      "info": "",
+      "hide": true,
+      "actions": {
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 13,
+            "broadcast": "team"
+          }
+        },
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "werewolf",
+      "translation": "Zorua",
+      "side": "werewolf",
+      "help": "Which of these Pokémon is not like the other? Hehe! Silly, question, Zorua looks just like all the rest as long as it copies them with /Illusion! Teach those Eevees who's the boss of the vulpine world and /Kill them all! You kill anyone who tries to distract you, and you can't be nightkilled!",
+      "info": "Can Illusion to copy other roles to appear as them when Inspected. Kills Distractors unless it copies a Distractor. Can Kill. Can't be nightkilled. ~Sided~",
+      "actions": {
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "startup": "team-reveal",
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "msg": "There's no escaping the Master of Illusions!",
+            "noFollow": true,
+            "priority": 12
+          },
+          "illusion": {
+            "command": [
+              "copy",
+              "inspect"
+            ],
+            "usermsg": "You copied your target's form!",
+            "copymsg": "",
+            "target": "AnyButSelf",
+            "priority": 5,
+            "silentCopy": true,
+            "common": "Self",
+            "copyAs": {
+              "wwvilli": [
+                "villager"
+              ],
+              "wwbg": [
+                "bodyguard",
+                "bodyguard0"
+              ],
+              "wwvigi": [
+                "vigi"
+              ],
+              "wwmay": [
+                "mayor"
+              ],
+              "wwinsp": [
+                "inspector"
+              ],
+              "wwpl": [
+                "pl"
+              ],
+              "wwexp": [
+                "exposer"
+              ],
+              "wwmas": [
+                "mason"
+              ],
+              "wwsam": [
+                "samurai"
+              ],
+              "wwmaf": [
+                "mafia"
+              ],
+              "wwmaf1": [
+                "mafia1"
+              ],
+              "wwmaf2": [
+                "mafia2"
+              ],
+              "wwmaf3": [
+                "mafia3"
+              ],
+              "wwcmaf": [
+                "cmafia"
+              ],
+              "wwcmaf1": [
+                "cmafia1"
+              ],
+              "wwcmaf2": [
+                "cmafia2"
+              ],
+              "wwrobot": [
+                "truegf",
+                "truegf2",
+                "truegf3"
+              ]
+            }
+          }
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "Aw, what a cute Eevee! Wait, why is it grinning at me like tha-",
+          "msg": "Some ~Distracter~ to pounce you during the night! They were no match for your trickery!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "wwvilli",
+      "translation": "Eevee (Zorua)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "villager"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "msg": "There's no escaping the Master of Illusions!",
+            "noFollow": true,
+            "priority": 12
+          }
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "Aw, what a cute Eevee! Wait, why is it grinning at me like tha-",
+          "msg": "Some ~Distracter~ to pounce you during the night! They were no match for your trickery!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "wwbg",
+      "translation": "Vaporeon (Zorua)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "bodyguard"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "msg": "There's no escaping the Master of Illusions!",
+            "noFollow": true,
+            "priority": 12
+          }
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "Aw, what a cute Vaporeon! Wait, why is it grinning at me like tha-",
+          "msg": "Some ~Distracter~ to pounce you during the night! They were no match for your trickery!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "wwpl",
+      "translation": "Umbreon (Zorua)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "pl"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "msg": "There's no escaping the Master of Illusions!",
+            "noFollow": true,
+            "priority": 12
+          }
+        },
+        "distract": {
+          "mode": "ignore",
+          "msg": "Hah, ~Role~ tried to Distract you during the night! They were no match for your elusive maneuvers!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "wwmay",
+      "translation": "Flareon (Zorua)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "mayor"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "noFollow": true,
+            "msg": "There's no escaping the Master of Illusions!",
+            "hide": true,
+            "priority": 12
+          }
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "Aw, what a cute Flareon! Wait, why is it grinning at me like tha-",
+          "msg": "Some ~Distracter~ to pounce you during the night! They were no match for your trickery!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "wwinsp",
+      "translation": "Espeon (Zorua)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "inspector"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "noFollow": true,
+            "priority": 12
+          }
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "Aw, what a cute Espeon! Wait, why is it grinning at me like tha-",
+          "msg": "Some ~Distracter~ to pounce you during the night! They were no match for your trickery!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "wwvigi",
+      "translation": "Jolteon (Zorua)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "vigi"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "noFollow": true,
+            "msg": "There's no escaping the Master of Illusions!",
+            "priority": 12
+          }
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "Aw, what a cute Jolteon! Wait, why is it grinning at me like tha-",
+          "msg": "Some ~Distracter~ to pounce you during the night! They were no match for your trickery!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "wwexp",
+      "translation": "Glaceon (Zorua)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "exposer"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "noFollow": true,
+            "msg": "There's no escaping the Master of Illusions!",
+            "priority": 12
+          }
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "Aw, what a cute Glaceon! Wait, why is it grinning at me like tha-",
+          "msg": "Some ~Distracter~ to pounce you during the night! They were no match for your trickery!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "wwmas",
+      "translation": "Leafeon (Zorua)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "mason"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "noFollow": true,
+            "msg": "There's no escaping the Master of Illusions!",
+            "priority": 12
+          }
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "Aw, what a cute Leafeon! Wait, why is it grinning at me like tha-",
+          "msg": "Some ~Distracter~ to pounce you during the night! They were no match for your trickery!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "wwsam",
+      "translation": "Sylveon (Zorua)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "samurai"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "noFollow": true,
+            "msg": "There's no escaping the Master of Illusions!",
+            "priority": 12
+          }
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "Aw, what a cute Sylveon! Wait, why is it grinning at me like tha-",
+          "msg": "Some ~Distracter~ to pounce you during the night! They were no match for your trickery!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "wwmaf",
+      "translation": "Tyrogue (Zorua)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "mafia"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "noFollow": true,
+            "msg": "There's no escaping the Master of Illusions!",
+            "priority": 12
+          }
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "Aw, what a cute Eevee! Wait, why is it grinning at me like tha-",
+          "msg": "Some ~Distracter~ to pounce you during the night! They were no match for your trickery!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "wwmaf1",
+      "translation": "Hitmonlee (Zorua)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "mafia1"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "noFollow": true,
+            "msg": "There's no escaping the Master of Illusions!",
+            "priority": 12
+          }
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "Aw, what a cute Eevee! Wait, why is it grinning at me like tha-",
+          "msg": "Some ~Distracter~ to pounce you during the night! They were no match for your trickery!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "wwmaf2",
+      "translation": "Hitmonchan (Zorua)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "mafia2"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "noFollow": true,
+            "msg": "There's no escaping the Master of Illusions!",
+            "priority": 12
+          }
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "Aw, what a cute Eevee! Wait, why is it grinning at me like tha-",
+          "msg": "Some ~Distracter~ to pounce you during the night! They were no match for your trickery!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "wwmaf3",
+      "translation": "Hitmontop (Zorua)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "mafia3"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "noFollow": true,
+            "msg": "There's no escaping the Master of Illusions!",
+            "priority": 12
+          }
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "Aw, what a cute Eevee! Wait, why is it grinning at me like tha-",
+          "msg": "Some ~Distracter~ to pounce you during the night! They were no match for your trickery!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "wwcmaf",
+      "translation": "Clamperl (Zorua)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "cmafia"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "noFollow": true,
+            "msg": "There's no escaping the Master of Illusions!",
+            "priority": 12
+          }
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "Aw, what a cute Eevee! Wait, why is it grinning at me like tha-",
+          "msg": "Some ~Distracter~ to pounce you during the night! They were no match for your trickery!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "wwcmaf1",
+      "translation": "Gorebyss (Zorua)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "cmafia1"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "noFollow": true,
+            "hide": true,
+            "msg": "There's no escaping the Master of Illusions!",
+            "priority": 12
+          }
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "Aw, what a cute Eevee! Wait, why is it grinning at me like tha-",
+          "msg": "Some ~Distracter~ to pounce you during the night! They were no match for your trickery!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "wwcmaf2",
+      "translation": "Huntail (Zorua)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "cmafia2"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "noFollow": true,
+            "hide": true,
+            "msg": "There's no escaping the Master of Illusions!",
+            "priority": 12
+          }
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "Aw, what a cute Eevee! Wait, why is it grinning at me like tha-",
+          "msg": "Some ~Distracter~ to pounce you during the night! They were no match for your trickery!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "wwrobot",
+      "translation": "Zorua",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "truegf"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "noFollow": true,
+            "msg": "There's no escaping the Master of Illusions!",
+            "priority": 12
+          }
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "hookermsg": "Aw, what a cute Eevee! Wait, why is it grinning at me like tha-",
+          "msg": "Some ~Distracter~ to pounce you during the night! They were no match for your trickery!"
+        },
+        "avoidHax": [
+          "kill"
+        ]
+      }
+    },
+    {
+      "role": "godfather1",
+      "translation": "Kecleon",
+      "side": "godfather",
+      "help": "Who needs evolvution, anyway? You are Kecleon - always have been, always will be! You share a kill with your team to defeat the Eevees! If an Inspector tries to identify you, you will camouflage into the first Eeveelution that comes to mind.",
+      "info": "Inspects as random Eeveelution. Shares kill with team. ~Sided~",
+      "actions": {
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles",
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "godfather2",
+            "curseCount": 1,
+            "silentCurse": true
+          }
+        },
+        "inspect": {
+          "revealAs": [
+            "villager",
+            "bodyguard",
+            "vigi",
+            "mayor"
+          ]
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "broadcast": "team",
+            "priority": 11
+          }
+        }
+      }
+    },
+    {
+      "role": "godfather2",
+      "translation": "Kecleon",
+      "side": "godfather",
+      "help": "Who needs evolvution, anyway? You are Kecleon - always have been, always will be! You share a kill with your team to defeat the Eevees! If an Inspector tries to identify you, you will camouflage into the first Eeveelution that comes to mind.",
+      "info": "Inspects as random Eeveelution. Shares kill with team. ~Sided~",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles",
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "godfather2",
+            "curseCount": 1,
+            "silentCurse": true
+          }
+        },
+        "inspect": {
+          "revealAs": [
+            "villager",
+            "bodyguard",
+            "vigi",
+            "inspector",
+            "pl",
+            "mayor"
+          ]
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Team",
+            "broadcast": "team",
+            "hide": true,
+            "priority": 11
+          }
+        }
+      }
+    },
+    {
+      "role": "godfather3",
+      "translation": "Kecleon",
+      "side": "godfather",
+      "help": "Who needs evolvution, anyway? You are Kecleon - always have been, always will be! You share a kill with your team to defeat the Eevees! If an Inspector tries to identify you, you will camouflage into the first Eeveelution that comes to mind.",
+      "info": "Inspects as random Eeveelution. Shares kill with team. ~Sided~",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles",
+        "inspect": {
+          "revealAs": [
+            "villager",
+            "bodyguard",
+            "pl",
+            "inspector",
+            "mason",
+            "exposer",
+            "vigi",
+            "mayor"
+          ]
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Team",
+            "broadcast": "team",
+            "hide": true,
+            "priority": 11
+          }
+        }
+      }
+    },
+    {
+      "role": "cmafia",
+      "translation": "Clamperl",
+      "side": "cmafia",
+      "help": "Right now you are hiding in your shell, so you can't be nightkilled. However, you can choose to evolve and become Huntail or Gorebyss with /Tooth or /Scale! (hint: check /roles to decide which!)",
+      "info": "Can't be nightkilled. Can protect. Can evolve into Huntail or Gorebyss. ~Sided~",
+      "actions": {
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "kill": {
+          "mode": "ignore",
+          "msg": "Your target survived the attack. Maybe they need another hit?"
+        },
+        "night": {
+          "scale": {
+            "command": "convert",
+            "newRole": "cmafia1",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "tooth"
+            ],
+            "priority": 1,
+            "hide": true,
+            "silent": true,
+            "noFollow": true,
+            "broadcast": "team"
+          },
+          "tooth": {
+            "command": "convert",
+            "newRole": "cmafia2",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "scale"
+            ],
+            "priority": 1,
+            "hide": true,
+            "silent": true,
+            "noFollow": true,
+            "broadcast": "team"
+          },
+          "protect": {
+            "target": "OnlyTeam",
+            "common": "Self",
+            "priority": 7,
+            "broadcast": "team"
+          }
+        },
+        "stalk": {
+          "mode": "noVisit"
+        },
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "cmafia1",
+      "translation": "Gorebyss",
+      "side": "cmafia",
+      "help": "Congratulations! You evolved into Gorebyss! Type /Kill [name] to kill someone (shared with team). You can also /Inspect [name] to learn your targets role. Your popularity amongst fish lovers is enough to give you a vote of 2!",
+      "info": "Can Inspect and Kill. Vote counts as 2. ~Sided~",
+      "actions": {
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "vote": 2,
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 14,
+            "hide": true,
+            "broadcast": "team"
+          },
+          "inspect": {
+            "target": "AnyButTeam",
+            "broadcast": "team",
+            "common": "Self",
+            "priority": 25
+          }
+        },
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "cmafia2",
+      "translation": "Huntail",
+      "side": "cmafia",
+      "help": "Congratulations! You evolved into Huntail! Type /Kill [name] to kill someone (shared with team). Your strange patterns are enough to /Distract anyone during the night, causing them to fail to complete their actions!",
+      "info": "Can Distract, in addition to Kill. Sided with DeepSea Alliance.",
+      "actions": {
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 14,
+            "hide": true,
+            "broadcast": "team"
+          },
+          "distract": {
+            "target": "AnyButTeam",
+            "broadcast": "team",
+            "distractmsg": "You were mesmerized by a Huntail, so you couldn't complete your action!",
+            "teammsg": "Welp, couldn't do anything with my partner messing around with a Huntail!",
+            "common": "Self",
+            "priority": 2
+          }
+        },
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "cmafiadummy",
+      "translation": "DeepSea Alliance",
+      "side": "cmafia",
+      "help": "",
+      "hide": true,
+      "info": "",
+      "actions": {
+        "teamTalk": true,
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 14,
+            "broadcast": "team"
+          }
+        },
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "truegf",
+      "translation": "Porygon",
+      "side": "robot",
+      "help": "Bzzt! Analysis complete. Sentient life detected. Evolution of biological life must be averted. Rectify the situation by typing /Kill [name] to destroy biological material. /Upgrade as necessary to achieve a higher form.",
+      "info": "Can kill or upgrade into Porygon2. ~Sided~",
+      "actions": {
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "restrict": [
+              "upgrade2"
+            ],
+            "common": "Self",
+            "priority": 15,
+            "msg": "You were exterminated by robots!",
+            "broadcast": "team"
+          },
+          "upgrade": {
+            "command": [
+              "convert"
+            ],
+            "restrict": [
+              "kill"
+            ],
+            "target": "OnlySelf",
+            "common": "Self",
+            "hide": true,
+            "newRole": "truegf2",
+            "initialrecharge": 1,
+            "priority": 1,
+            "broadcast": "team"
+          }
+        },
+        "startup": "team-reveal"
+      }
+    },
+    {
+      "role": "truegf2",
+      "translation": "Porygon2",
+      "side": "robot",
+      "help": "Dzuu! Upgrade success. New installations include an improved armor overshield preventing destruction during the night. Dispose of biological material with /Kill. /Upgrade2 as necessary to achieve a higher form.",
+      "info": "Can kill or upgrade into Porygon-Z. Is immune to nightkills. ~Sided~",
+      "actions": {
+        "kill": {
+          "mode": "ignore",
+          "msg": "Your target survived the attack. Maybe they need another hit?"
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "restrict": [
+              "upgrade2"
+            ],
+            "common": "Self",
+            "priority": 15,
+            "hide": true,
+            "msg": "You were exterminated by robots!",
+            "broadcast": "team"
+          },
+          "upgrade2": {
+            "command": [
+              "convert"
+            ],
+            "restrict": [
+              "kill"
+            ],
+            "target": "OnlySelf",
+            "common": "Self",
+            "newRole": "truegf3",
+            "initialrecharge": 1,
+            "priority": 1,
+            "hide": true,
+            "broadcast": "team"
+          }
+        }
+      }
+    },
+    {
+      "role": "truegf3",
+      "translation": "Porygon-Z",
+      "side": "robot",
+      "help": "Bling! Upgrade finalized. New installations include extra adaptability, and a simulated persuassive algorithm to increase vote power to 99. Eradicate biological material regardless of distractions or protections using /Kill.",
+      "info": "Can kill, outpacing Protect and ignoring Distract. Vote of 99. ~Sided~",
+      "actions": {
+        "vote": 99,
+        "distract": {
+          "mode": "ignore",
+          "targetmsg": "Artificial life is superior. Distractions are futile!"
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Self",
+            "msg": "You were exterminated by robots!",
+            "priority": 6,
+            "broadcast": "team"
+          }
+        }
+      }
+    },
+    {
+      "role": "smafia",
+      "translation": "Gloom",
+      "side": "smafia",
+      "help": "Yawn... you are, for lack of kinder name, a Gloom. But do cheer up. You can evolve into Vileplume with /Leaf and /Poison 2 people during the night, in addition to having 1.5 votes. Alternatively, you can /Sun to become Bellossom, who can kill twice during the day.",
+      "info": "Can evolve into Vileplume or Bellossom. Doesn't know its team. ~Sided~",
+      "actions": {
+      	"daykill": "evade",
+        "night": {
+          "leaf": {
+            "command": "convert",
+            "newRole": "smafia1",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "sun"
+            ],
+            "priority": 1,
+            "hide": true,
+            "silent": true,
+            "noFollow": true
+          },
+          "sun": {
+            "command": "convert",
+            "newRole": "smafia2",
+            "target": "OnlySelf",
+            "common": "Self",
+            "cancel": [
+              "leaf"
+            ],
+            "priority": 1,
+            "hide": true,
+            "silent": true,
+            "noFollow": true
+          },
+          "poison": {
+            "command": [
+              "dummy2"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "noFollow": true,
+            "limit": 2,
+            "hide": true,
+            "priority": 20
+          }
+        }
+      }
+    },
+    {
+      "role": "smafia1",
+      "translation": "Vileplume",
+      "side": "smafia",
+      "help": "Congratulations! You evolved into Vileplume! You can now Poison two players during the night! Your vote also counts as 1.5.",
+      "info": "Can Poison 2 targets during the night (count: 2). Doesn't know teammates. Immune to poison. Vote counts as 1.5. ~Sided~",
+      "actions": {
+        "poison": {
+          "mode": "ignore"
+        },
+        "vote": 1.5,
+      	"daykill": "evade",
+        "night": {
+          "poison": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "limit": 2,
+            "count": 3,
+            "priority": 20
+          }
+        }
+      }
+    },
+    {
+      "role": "smafia2",
+      "translation": "Bellossom",
+      "side": "smafia",
+      "help": "Congratulations! You evolved into Bellossom! You can now /Kill twice during the day! Watch out for Vaporeon, who counter daykills!",
+      "info": "Can kill twice during standby, not revealed. Doesn't know teammates, but can't kill them. ~Sided~",
+      "actions": {
+      	"daykill": "evade",
+        "standby": {
+          "kill": {
+            "target": "AnyButSelf",
+            "limit": 2,
+            "msg": "Use /kill [name] to eliminate someone! (You will not be revealed!)",
+            "killmsg": "Bellossom harnesses power from the sun and obliterates ~Target~!"
+          }
+        }
+      }
+    },
+    {
+      "role": "werewolf2",
+      "translation": "Zoroark",
+      "side": "werewolf",
+      "help": "Which of these Pokémon is not like the other? Hehe! Silly, question, Zoroark looks just like all the rest as long as it copies them with /Illusion! Teach those Eevees who's the boss of the vulpine world and /Kill them during the day! You can't be nightkilled!",
+      "info": "Can Illusion to copy other roles to appear as them when Inspected. Can Kill during Standby. Can't be nightkilled. ~Sided~",
+      "actions": {
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "startup": "team-reveal",
+        "night": {
+          "illusion": {
+            "command": [
+              "copy",
+              "inspect"
+            ],
+            "usermsg": "You copied your target's form!",
+            "copymsg": "",
+            "target": "AnyButSelf",
+            "priority": 1.5,
+            "hide": true,
+            "silentCopy": true,
+            "common": "Self",
+            "copyAs": {
+              "ww2villi": [
+                "villager"
+              ],
+              "ww2bg": [
+                "bodyguard",
+                "bodyguard0"
+              ],
+              "ww2vigi": [
+                "vigi"
+              ],
+              "ww2may": [
+                "mayor"
+              ],
+              "ww2insp": [
+                "inspector"
+              ],
+              "ww2pl": [
+                "pl"
+              ],
+              "ww2exp": [
+                "exposer"
+              ],
+              "ww2mas": [
+                "mason"
+              ],
+              "ww2sam": [
+                "samurai"
+              ],
+              "ww2maf": [
+                "mafia"
+              ],
+              "ww2maf1": [
+                "mafia1"
+              ],
+              "ww2maf2": [
+                "mafia2"
+              ],
+              "ww2maf3": [
+                "mafia3"
+              ],
+              "ww2cmaf": [
+                "cmafia"
+              ],
+              "ww2cmaf1": [
+                "cmafia1"
+              ],
+              "ww2cmaf2": [
+                "cmafia2"
+              ],
+              "ww2robot": [
+                "truegf",
+                "truegf2",
+                "truegf3"
+              ]
+            }
+          }
+        },
+        "standby": {
+          "kill": {
+            "target": "AnyButSelf",
+            "msg": "You can now /kill someone! You won't be revealed.",
+            "killmsg": "A shadowy figure looms over ~Target~. A few quick slashes and they fall to the ground. They didn't stand a chance."
+          }
+        }
+      }
+    },
+    {
+      "role": "ww2villi",
+      "translation": "Eevee (Zoroark)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "villager"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf2",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    },
+    {
+      "role": "ww2bg",
+      "translation": "Vaporeon (Zoroark)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "bodyguard"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf2",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    },
+    {
+      "role": "ww2pl",
+      "translation": "Umbreon (Zoroark)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "pl"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf2",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    },
+    {
+      "role": "ww2may",
+      "translation": "Flareon (Zoroark)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "mayor"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf2",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    },
+    {
+      "role": "ww2insp",
+      "translation": "Espeon (Zoroark)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "inspector"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf2",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    },
+    {
+      "role": "ww2vigi",
+      "translation": "Jolteon (Zoroark)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "vigi"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf2",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    },
+    {
+      "role": "ww2exp",
+      "translation": "Glaceon (Zoroark)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "exposer"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf2",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    },
+    {
+      "role": "ww2mas",
+      "translation": "Leafeon (Zoroark)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "mason"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf2",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    },
+    {
+      "role": "ww2sam",
+      "translation": "Sylveon (Zoroark)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "samurai"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf2",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    },
+    {
+      "role": "ww2maf",
+      "translation": "Tyrogue (Zoroark)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "mafia"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf2",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    },
+    {
+      "role": "ww2maf1",
+      "translation": "Hitmonlee (Zoroark)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "mafia1"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf2",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    },
+    {
+      "role": "ww2maf2",
+      "translation": "Hitmonchan (Zoroark)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "mafia2"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf2",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    },
+    {
+      "role": "ww2maf3",
+      "translation": "Hitmontop (Zoroark)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "mafia3"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf2",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    },
+    {
+      "role": "ww2cmaf",
+      "translation": "Clamperl (Zoroark)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "cmafia"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf2",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    },
+    {
+      "role": "ww2cmaf1",
+      "translation": "Gorebyss (Zoroark)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "cmafia1"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf2",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    },
+    {
+      "role": "ww2cmaf2",
+      "translation": "Huntail (Zoroark)",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "cmafia2"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf2",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    },
+    {
+      "role": "ww2robot",
+      "translation": "Zoroark",
+      "side": "werewolf",
+      "help": "",
+      "hide": true,
+      "actions": {
+        "teamTalk": true,
+        "kill": {
+          "mode": {
+            "evadeChance": 1
+          },
+          "msg": "Your target (~Self~) was Protected!"
+        },
+        "inspect": {
+          "revealAs": "truegf"
+        },
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "werewolf2",
+            "curseCount": -1,
+            "silentCurse": true
+          }
+        }
+      }
+    }
+  ],
+  "roles1": [
+    "villagersmall",
+    "villagersmall",
+    "smafia",
+    "villagersmall",
+    "smafia",
+    "villagersmall"
+  ],
+  "roles2": [
+    "villager",
+    "villager",
+    "villager",
+    "villager",
+    "villager",
+    "mafia",
+    "mafia",
+    "werewolf",
+    "villager"
+  ],
+  "roles3": [
+    "svillager",
+    "villager",
+    "villager",
+    "villager",
+    "villager",
+    "villager",
+    "mafia",
+    "mafia",
+    "cmafia",
+    "cmafia",
+    "villager",
+    "villager",
+    "werewolf2",
+    "villager"
+  ],
+  "roles4": [
+    "svillager",
+    "villager",
+    "villager",
+    "villager",
+    "villager",
+    "villager",
+    "villager",
+    "villager",
+    "villager",
+    "mafia",
+    "mafia",
+    "cmafia",
+    "cmafia",
+    "werewolf2",
+    "truegf",
+    "villager",
+    "villager"
+  ],
+  "roles4": [
+    "svillager",
+    "villager",
+    "villager",
+    "villager",
+    "villager",
+    "villager",
+    "villager",
+    "villager",
+    "villager",
+    "mafia",
+    "mafia",
+    "cmafia",
+    "cmafia",
+    "werewolf2",
+    "truegf",
+    "godfather1",
+    "godfather1",
+    "godfather1",
+    "villager",
+    "mafia",
+    "cmafia",
+    "villager",
+    "villager",
+    "villager",
+    "cmafia",
+    "mafia",
+    "godfather1",
+    "villager",
+    "villager",
+    "werewolf",
+    "godfather1",
+    "mafia",
+    "cmafia",
+    "villager",
+    "villager",
+    "godfather1",
+    "cmafia",
+    "mafia"
+  ],
+  "villageCantLoseRoles": [
+    "mayor",
+    "villagerisalmostsamurai",
+    "samurai",
+    "bodyguardsmall"
+  ],
+  "changelog2": {
+    "May 15, 2014": "Theme created.",
+    "June 17, 2014": "Tested Shiny Eevee, disabled until it can work. Jolteon Stalks (/Follow). Espeon Watches in addition to Inspect.",
+    "June 18, 2014": "IMPORTANT: Commands may now be used OUT OF EVOLUTION. You can /Inspect the same night you evolve into Espeon for example. Or /Kill the same night you evolve into become Hitmonlee. Gorebyss and Huntail are the only exceptions, they must evolve to move.",
+    "June 19, 2014": "Hitmonlee ignores distract but has the same priority as other Hitmons. Clamperl priority moved behind Tyrogues. Glaceon evades exposes. Cleaned up the changelog. Until Shiny is available, testing Eeveelutions appearing separately as unevolved Eevees.",
+    "June 20, 2014": "Testing a new 3-6 player setup. Vaporeon bombs daykills. Testing Zoroark. Kecleon share a kill now.",
+    "June 28, 2014": "Shiny Eevee re-enabled. Added RoleTalk to Leafeon. Disabled accidental teamvotes. Zorua's and Zoroark's evade messages are now the same as Vaporeon's Protect message.",
+    "July 13, 2014": "Shiny Eevee now exposes daykillers. Porygon-Z is now a \"kefkuja\".",
+    "July 17, 2014": "Hitmonchan's special is now a once-per-game extra kill2. Bellossom no longer has a voteshield, but they can kill twice during the day. Vaporeon is VCLR in nonpeak. Bellossom can't teamkill anymore. Jolteon is vengeful.",
+    "November 8, 2014": "Vileplume's vote is now 1.5."
+    },
+  "changelog": {
+  	"April 10, 2015": "Jolteon's Stalk only tells you that your target visited someone now. Espeon no longer watches. Hitmonchan loses kill2, but appears as Eevee if Inspected and can Protect every other night. Jolteon's priority is lowered, but it still ignores Distract.",
+  	"January 20, 2016": "Hitmonchan changed again.",
+  	"November 18, 2016": "Early Eeveelutions can hax each other (but can't be spammed). Vaporeon kill survival message is the same as Protect now. Leafeon and Glaceon changed. Clamperl can protect now. Hitmonlee and Hitmonchan changed. Spawn updated so Porygon spawns earlier."
+  }
+}
