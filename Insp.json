@@ -1,0 +1,245 @@
+{
+	"name": "Insp",
+	"altname": "Coordination",
+	"author": [
+        "<b><i><span style='color:#380B61'>Crobat</span></i></b>",
+        "<b><i><span style='color:#FF00FF'>Espeon</span></i></b>",
+        "<b><i><span style='color:#FF0000'>Arcanine</span></i></b>",
+		"<b><i><span style='color:#000000'>Fate Testarossa</span></i></b>",
+		"<b><i><span style='color:#5882FA'>Amane Ohtori</span></i></b>"
+    ],
+	"minplayers": 3,
+	"nonPeak": true,
+	"ticks": {
+		"night": 20,
+		"standby": 40
+	},
+	"summary": "In this theme, it's a simple setup of inspectors against mafia! However, the mafia have the ability to cover any person to make them reveal as an inspector or a mafia when inspected! (The mafia can't kill on the first night.) Which side has the better coordination: the village's inspects or the mafia's cover ups?",
+	"sides": [
+		{
+			"side": "village",
+			"translation": "Village",
+			"winmsg": "~Players~ have successfully fended off the mafia!"
+		},
+		{
+			"side": "mafia",
+			"translation": "Mafia",
+			"winmsg": "Looks like deception is key. ~Players~ have outsmarted and taken over the village!"
+		}
+	],
+	"roles": [
+		{
+			"role": "inspector",
+			"translation": "Inspector",
+			"startupmsg": "You are an Inspector!",
+			"side": "village",
+			"help": "Use /inspect during the night to find out if someone is an inspector or a mafia, but be careful! The mafia can cover themselves to be revealed as an inspector, or cover up someone else so that they are revealed as a mafia!",
+			"info": "Can inspect one person during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"inspect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 2
+					}
+				}
+			}
+		},
+		{
+			"role": "miller",
+			"translation": "Mafia",
+			"side": "village",
+			"hide": true,
+			"help": "LOOKS LIKE ESPEON/CROBAT SCREWED UP AGAIN BECAUSE YOU SHOULDN'T BE READING THIS! Please contact him.",
+			"hide": true,
+			"actions": {
+				"night": {
+					"inspect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 2,
+						"hide": true
+					}
+				},
+				"inspect": {
+					"revealAs": "mafia"
+				},
+				"convert": {
+					"mode": {
+						"ignore": ["mafia", "mafia2"]
+					},
+					"silent": true
+				},
+				"curse": {
+					"mode": {
+						"ignore": ["mafia", "mafia2"]
+					},
+					"silent": true
+				},
+				"dummy": {
+					"mode": {
+						"ignore": ["mafia", "mafia2"]
+					},
+					"msg": "±Game: You covered ~Self~!"
+				}
+			}
+		},
+		{
+			"role": "mafia",
+			"translation": "Mafia",
+			"startupmsg": "You are a Mafia!",
+			"side": "mafia",
+			"help": "You and your teammates can /kill one person during the night, but you can't kill the first night! However, every other night, you and your teammates can also /cover one person; if this person is yourself or one of your teammates, you will reveal as an inspector if you are inspected that night! If it's someone from the village, they will reveal as a mafia if they are inspected!",
+			"info": "Can kill one person during the night starting on the second night. Can cover every 2 nights to make a Mafia inspect as Inspector or an Inspector as Mafia for that night. ~Sided~",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"broadcast": "team",
+						"initialrecharge": 2,
+						"priority": 3
+					},
+					"cover": {
+						"command": ["curse", "convert", "dummy"],
+						"target": "Any",
+						"common": "Team",
+						"recharge": 2,
+						"priority": 1,
+						"broadcast": "team",
+						"newRole": {
+							"miller": ["inspector"],
+							"mole": ["mafia", "mafia2"]
+						},
+						"cursedRole": {
+							"inspector": ["inspector"],
+							"mafia2": ["mafia", "mafia2"]
+						},
+						"curseCount": -1,
+						"cursemsg": "",
+						"usermsg": "",
+						"silent": true,
+						"silentConvert": true,
+						"silentCurse": true
+					}
+				}
+			}
+		},
+		{
+			"role": "mafia2",
+			"translation": "Mafia",
+			"startupmsg": "You are a Mafia!",
+			"side": "mafia",
+			"hide": true,
+			"help": "You and your teammates can /kill one person during the night, but you can't kill the first night! However, every other night, you and your teammates can also /cover one person; if this person is yourself or one of your teammates, you will reveal as an inspector if you are inspected that night! If it's someone from the village, they will reveal as a mafia if they are inspected!",
+			"info": "Can kill one person during the night starting on the second night. Can cover every 2 nights to make a Mafia inspect as Inspector or an Inspector as Mafia for that night. ~Sided~",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"broadcast": "team",
+						"priority": 3
+					},
+					"cover": {
+						"command": ["curse", "convert", "dummy"],
+						"target": "Any",
+						"common": "Team",
+						"recharge": 2,
+						"priority": 1,
+						"broadcast": "team",
+						"newRole": {
+							"miller": ["inspector"],
+							"mole": ["mafia", "mafia2"]
+						},
+						"cursedRole": {
+							"inspector": ["inspector"],
+							"mafia2": ["mafia", "mafia2"]
+						},
+						"curseCount": -1,
+						"cursemsg": "",
+						"usermsg": "",
+						"silent": true,
+						"silentConvert": true,
+						"silentCurse": true
+					}
+				}
+			}
+		},
+		{
+			"role": "mole",
+			"translation": "Inspector",
+			"side": "mafia",
+			"help": "LOOKS LIKE ESPEON/CROBAT SCREWED UP AGAIN BECAUSE YOU SHOULDN'T BE READING THIS! Please contact him.",
+			"hide": true,
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"broadcast": "team",
+						"priority": 3,
+						"hide": true
+					},
+					"cover": {
+						"command": "dummy",
+						"target": "OnlyTeam",
+						"common": "Team",
+						"recharge": 2,
+						"priority": 1,
+						"broadcast": "team",
+						"hide": true
+					}
+				},
+				"inspect": {
+					"revealAs": "inspector"
+				},
+				"convert": {
+					"mode": {
+						"ignore": ["mafia", "mafia2"]
+					},
+					"silent": true
+				},
+				"curse": {
+					"mode": {
+						"ignore": ["mafia", "mafia2"]
+					},
+					"silent": true
+				},
+				"dummy": {
+					"mode": {
+						"ignore": ["mafia", "mafia2"]
+					},
+					"msg": "±Game: You covered ~Self~!"
+				}
+			}
+		}
+	],
+	"roles1": [
+		"mafia",
+		"inspector",
+		"inspector",
+		"inspector",
+		"inspector",
+		"inspector",
+		"mafia",
+		"inspector",
+		"inspector",
+		"inspector",
+		"mafia",
+		"inspector",
+		"inspector"
+	],
+	"changelog": [
+		"4/22/2015: Theme created."
+	]
+}
