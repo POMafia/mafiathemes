@@ -1,0 +1,930 @@
+{
+	"name": "Xipev",
+	"author": "<b>Xipev</b>",
+	"summary": "Vepix backwards. Instead of killing during the night, you kill during the day. Unlike Daypix, you can kill an unlimited amount of times! However, you cannot kill two times in a row; someone else has to kill before you can kill again. If no kills happen during the day, everyone will die!",
+	"nolynch": true,
+	"minplayers": 3,
+	"ticks": {
+		"night": 7,
+		"standby": 53,
+		"night1": 12
+	},
+	"tips": {
+		"/myrole": "Use /myrole to check who is still alive",
+        "No Stall": "Everyone will die if no one kills during the day"
+	},
+	"sides": [{
+			"side": "1",
+			"translation": "Xipev",
+			"color": "#DC143C"
+		},
+		{
+			"side": "2",
+			"translation": "Xipev",
+			"color": "#FFA500",
+			"hide": true
+		},
+		{
+			"side": "3",
+			"translation": "Xipev",
+			"color": "#CDCD00",
+			"hide": true
+		},
+		{
+			"side": "4",
+			"translation": "Xipev",
+			"color": "#008B00",
+			"hide": true
+		},
+		{
+			"side": "5",
+			"translation": "Xipev",
+			"color": "#4876FF",
+			"hide": true
+		},
+		{
+			"side": "6",
+			"translation": "Xipev",
+			"color": "#4B0082",
+			"hide": true
+		},
+		{
+			"side": "7",
+			"translation": "Xipev",
+			"color": "#800080",
+			"hide": true
+		},
+		{
+			"side": "8",
+			"translation": "Xipev",
+			"color": "#292421",
+			"hide": true
+		},
+		{
+			"side": "9",
+			"translation": "Xipev",
+			"color": "#C1C1C1",
+			"hide": true
+		},
+		{
+			"side": "10",
+			"translation": "Xipev",
+			"color": "#8B4513",
+			"hide": true
+		},
+		{
+			"side": "11",
+			"translation": "Xipev",
+			"color": "#FF69B4",
+			"hide": true
+		},
+		{
+			"side": "12",
+			"translation": "Xipev",
+			"color": "#EEC900",
+			"hide": true
+		},
+		{
+			"side": "13",
+			"translation": "Xipev",
+			"color": "#87CEFA",
+			"hide": true
+		},
+		{
+			"side": "14",
+			"translation": "Xipev",
+			"color": "#40E0D0",
+			"hide": true
+		},
+		{
+			"side": "15",
+			"translation": "Xipev",
+			"color": "#800000",
+			"hide": true
+		},
+		{
+			"side": "16",
+			"translation": "Xipev",
+			"color": "#8E8E38",
+			"hide": true
+		},
+		{
+			"side": "17",
+			"translation": "Xipev",
+			"color": "#388E8E",
+			"hide": true
+		},
+		{
+			"side": "18",
+			"translation": "Xipev",
+			"color": "#C67171",
+			"hide": true
+		},
+		{
+			"side": "19",
+			"translation": "Xipev",
+			"color": "#C5C1AA",
+			"hide": true
+		},
+		{
+			"side": "20",
+			"translation": "Xipev",
+			"color": "#71C671",
+			"hide": true
+		},
+		{
+			"side": "21",
+			"translation": "Xipev",
+			"color": "#FCE6C9",
+			"hide": true
+		},
+		{
+			"side": "22",
+			"translation": "Xipev",
+			"color": "#DA70D6",
+			"hide": true
+		},
+		{
+			"side": "23",
+			"translation": "Xipev",
+			"color": "#00BFFF",
+			"hide": true
+		},
+		{
+			"side": "24",
+			"translation": "Xipev",
+			"color": "#DAA520",
+			"hide": true
+		},
+		{
+			"side": "25",
+			"translation": "Xipev",
+			"color": "#FF6347",
+			"hide": true
+		},
+		{
+			"side": "26",
+			"translation": "Xipev",
+			"color": "#3D59AB",
+			"hide": true
+		},
+		{
+			"side": "27",
+			"translation": "Xipev",
+			"color": "#00C5CD",
+			"hide": true
+		},
+		{
+			"side": "28",
+			"translation": "Xipev",
+			"color": "#4EEE94",
+			"hide": true
+		},
+		{
+			"side": "29",
+			"translation": "Xipev",
+			"color": "#FFFF00",
+			"hide": true
+		},
+		{
+			"side": "30",
+			"translation": "Xipev",
+			"color": "#FFDAB9",
+			"hide": true
+		},
+		{
+			"side": "31",
+			"translation": "Xipev",
+			"color": "#4DCC3B",
+			"hide": true
+		},
+		{
+			"side": "32",
+			"translation": "Xipev",
+			"color": "#1D66F5",
+			"hide": true
+		},
+		{
+			"side": "33",
+			"translation": "Xipev",
+			"color": "#C4055F",
+			"hide": true
+		},
+		{
+			"side": "34",
+			"translation": "Xipev",
+			"color": "#ED5055",
+			"hide": true
+		},
+		{
+			"side": "35",
+			"translation": "Xipev",
+			"color": "#B998EE",
+			"hide": true
+		},
+		{
+			"side": "36",
+			"translation": "Xipev",
+			"color": "#4BB102",
+			"hide": true
+		},
+		{
+			"side": "37",
+			"translation": "Xipev",
+			"color": "#3A9481",
+			"hide": true
+		},
+		{
+			"side": "38",
+			"translation": "Xipev",
+			"color": "#BD6510",
+			"hide": true
+		},
+		{
+			"side": "39",
+			"translation": "Xipev",
+			"color": "#0FE5B8",
+			"hide": true
+		},
+		{
+			"side": "40",
+			"translation": "Xipev",
+			"color": "#6AE967",
+			"hide": true
+		},
+		{
+			"side": "41",
+			"translation": "Xipev",
+			"color": "#4E3783",
+			"hide": true
+		},
+		{
+			"side": "42",
+			"translation": "Xipev",
+			"color": "#7B4E20",
+			"hide": true
+		},
+		{
+			"side": "43",
+			"translation": "Xipev",
+			"color": "#8CA003",
+			"hide": true
+		},
+		{
+			"side": "44",
+			"translation": "Xipev",
+			"color": "#7A5ABC",
+			"hide": true
+		},
+		{
+			"side": "45",
+			"translation": "Xipev",
+			"color": "#23A271",
+			"hide": true
+		},
+		{
+			"side": "46",
+			"translation": "Xipev",
+			"color": "#882F27",
+			"hide": true
+		},
+		{
+			"side": "47",
+			"translation": "Xipev",
+			"color": "#DA688E",
+			"hide": true
+		},
+		{
+			"side": "48",
+			"translation": "Xipev",
+			"color": "#0FDF37",
+			"hide": true
+		},
+		{
+			"side": "49",
+			"translation": "Xipev",
+			"color": "#9A6E29",
+			"hide": true
+		},
+		{
+			"side": "50",
+			"translation": "Xipev",
+			"color": "#16D815",
+			"hide": true
+		}
+	],
+	"variables": {
+		"xipev": {
+			"standby": {
+				"kill": {
+					"target": "AnyButSelf",
+					"msg": "Type /Kill [name] to eliminate another player!",
+					"killmsg": "~Self~ kills ~Target~!",
+					"limit": 100,
+					"charges": 1,
+					"chargesmsg": "",
+					"convertRoles": {
+						"1": "1",
+						"2": "2",
+						"3": "3",
+						"4": "4",
+						"5": "5",
+						"6": "6",
+						"7": "7",
+						"8": "8",
+						"9": "9",
+						"10": "10",
+						"11": "11",
+						"12": "12",
+						"13": "13",
+						"14": "14",
+						"15": "15",
+						"16": "16",
+						"17": "17",
+						"18": "18",
+						"19": "19",
+						"20": "20",
+						"21": "21",
+						"22": "22",
+						"23": "23",
+						"24": "24",
+						"25": "25",
+						"26": "26",
+						"27": "27",
+						"28": "28",
+						"29": "29",
+						"30": "30",
+						"31": "31",
+						"32": "32",
+						"33": "33",
+						"34": "34",
+						"35": "35",
+						"36": "36",
+						"37": "37",
+						"38": "38",
+						"39": "39",
+						"40": "40",
+						"41": "41",
+						"42": "42",
+						"43": "43",
+						"44": "44",
+						"45": "45",
+						"46": "46",
+						"47": "47",
+						"48": "48",
+						"49": "49",
+						"50": "50"
+					},
+					"singlemassconvertmsg": "",
+					"silentMassConvert": true
+				}
+			},
+			"night": {
+				"REFRESH": {
+					"command": ["convert", "poison"],
+					"target": "OnlySelf",
+					"common": "Self",
+					"priority": 1,
+					"newRole": {
+						"1": ["1"],
+						"2": ["2"],
+						"3": ["3"],
+						"4": ["4"],
+						"5": ["5"],
+						"6": ["6"],
+						"7": ["7"],
+						"8": ["8"],
+						"9": ["9"],
+						"10": ["10"],
+						"11": ["11"],
+						"12": ["12"],
+						"13": ["13"],
+						"14": ["14"],
+						"15": ["15"],
+						"16": ["16"],
+						"17": ["17"],
+						"18": ["18"],
+						"19": ["19"],
+						"20": ["20"],
+						"21": ["21"],
+						"22": ["22"],
+						"23": ["23"],
+						"24": ["24"],
+						"25": ["25"],
+						"26": ["26"],
+						"27": ["27"],
+						"28": ["28"],
+						"29": ["29"],
+						"30": ["30"],
+						"31": ["31"],
+						"32": ["32"],
+						"33": ["33"],
+						"34": ["34"],
+						"35": ["35"],
+						"36": ["36"],
+						"37": ["37"],
+						"38": ["38"],
+						"39": ["39"],
+						"40": ["40"],
+						"41": ["41"],
+						"42": ["42"],
+						"43": ["43"],
+						"44": ["44"],
+						"45": ["45"],
+						"46": ["46"],
+						"47": ["47"],
+						"48": ["48"],
+						"49": ["49"],
+						"50": ["50"]
+					},
+					"compulsory": true,
+                    "count": 1,
+					"macro": false,
+					"noRepeat": true,
+					"inputmsg": "",
+					"convertmsg": "",
+					"usermsg": "",
+                    "poisonmsg": "",
+					"silentConvert": true,
+					"silent": true,
+					"hide": true
+				},
+                "detox": {
+					"target": "OnlySelf",
+					"common": "Self",
+					"priority": 2,
+					"compulsory": true,
+					"macro": false,
+                    "charges": 1,
+                    "chargesmsg": "",
+					"inputmsg": "",
+                    "msg": "",
+                    "targetmsg": "",
+                    "detoxfailmsg": "",
+                    "silent": true,
+					"hide": true
+                }
+			},
+			"startup": {
+				"revealPlayers": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50"],
+				"revealPlayersMsg": "±Alive: ~Players~"
+			}
+		}
+	},
+	"roles": [{
+			"translation": "Xipev",
+			"role": "1",
+			"side": "1",
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"info": "Can kill during the day. Sided with Xipev.",
+			"actions": "variable:xipev"
+		},
+		{
+			"translation": "Xipev",
+			"role": "2",
+			"side": "2",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "3",
+			"side": "3",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "4",
+			"side": "4",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "5",
+			"side": "5",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "6",
+			"side": "6",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "7",
+			"side": "7",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "8",
+			"side": "8",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "9",
+			"side": "9",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "10",
+			"side": "10",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "11",
+			"side": "11",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "12",
+			"side": "12",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "13",
+			"side": "13",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "14",
+			"side": "14",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "15",
+			"side": "15",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "16",
+			"side": "16",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "17",
+			"side": "17",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "18",
+			"side": "18",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "19",
+			"side": "19",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "20",
+			"side": "20",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "21",
+			"side": "21",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "22",
+			"side": "22",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "23",
+			"side": "23",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "24",
+			"side": "24",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "25",
+			"side": "25",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "26",
+			"side": "26",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "27",
+			"side": "27",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "28",
+			"side": "28",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "29",
+			"side": "29",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "30",
+			"side": "30",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "31",
+			"side": "31",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "32",
+			"side": "32",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "33",
+			"side": "33",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "34",
+			"side": "34",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "35",
+			"side": "35",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "36",
+			"side": "36",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "37",
+			"side": "37",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "38",
+			"side": "38",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "39",
+			"side": "39",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "40",
+			"side": "40",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "41",
+			"side": "41",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "42",
+			"side": "42",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "43",
+			"side": "43",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "44",
+			"side": "44",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "45",
+			"side": "45",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "46",
+			"side": "46",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "47",
+			"side": "47",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "48",
+			"side": "48",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "49",
+			"side": "49",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}, {
+			"translation": "Xipev",
+			"role": "50",
+			"side": "50",
+			"hide": true,
+			"help": "Type /Kill [name] during the day to kill!",
+			"help2": "You can kill as many people as you like! However, you cannot kill two times in a row. You must wait for someone else to kill before you can kill again!",
+			"tutorialmsg": "You can type /myrole to see who is still alive!",
+			"actions": "variable:xipev"
+		}
+	],
+	"roles1": [
+		"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50"
+	]
+}
