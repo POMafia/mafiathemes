@@ -1,0 +1,399 @@
+{
+    "name": "MHA",
+    "altname": "My Hero Academia",
+    "author": ["Veteran Padgett", "jay z"],
+    "summary": "In a world where about 80% of the population has some kind of superpower called a \"Quirk\", the prestigious school UA was built to raise heroes to oppose villains and their crimes. I, Izuku Midoriya, am a student at this school, working hard to achieve my dream. This is the story of how I became the greatest hero!",
+    "sides": [
+        {
+            "side": "heroes",
+"color": "#00cc00",
+            "translation": "Heroes"
+        },
+        {
+            "side": "villains",
+"color": "#7c7c7c",
+            "translation": "League of Villains"
+        },
+        {
+            "side": "stain",
+"color": "red",
+            "translation": "Stain"
+        },
+        {
+            "side": "vigilantes",
+"color": "#cc00cc",
+            "translation": "Vigilantes"
+        }
+    ],
+    "variables": {
+        "help_villager": "You are a student at UA. Use /vote [name] to remove people during the day!",
+        "prio_mafia_poison": 1,
+        "prio_mafia_distract": 2,
+        "prio_town_distract": 3,
+        "prio_mafia_kill": 4,
+        "prio_serial_kill": 5,
+        "prio_town_inspect": 6,
+        "prio_town_kill": 7
+    },
+    "roles": [
+        {
+            "role": "anima",
+            "translation": "Anima",
+            "side": "heroes",
+            "help": "variable:help_villager",
+            "info": "Has no special abilities. ~Sided~",
+            "actions": {}
+        },
+        {
+            "role": "tailman",
+            "translation": "Tailman",
+            "side": "heroes",
+            "help": "variable:help_villager",
+            "info": "Has no special abilities. ~Sided~",
+            "actions": {}
+        },
+        {
+            "role": "tentacole",
+            "translation": "Tentacole",
+            "side": "heroes",
+            "help": "variable:help_villager",
+            "info": "Has no special abilities. ~Sided~",
+            "actions": {}
+        },
+        {
+            "role": "twinkle",
+            "translation": "Can't Stop Twinkling",
+            "side": "heroes",
+            "help": "variable:help_villager",
+            "info": "Has no special abilities. ~Sided~",
+            "actions": {}
+        },
+        {
+            "role": "cellophane",
+            "translation": "Cellophane",
+            "side": "heroes",
+            "help": "variable:help_villager",
+            "info": "Has no special abilities. ~Sided~",
+            "actions": {}
+        },
+        {
+            "role": "chargebolt",
+            "translation": "Chargebolt",
+            "side": "heroes",
+            "help": "variable:help_villager",
+            "info": "Has no special abilities. ~Sided~",
+            "actions": {}
+        },
+        {
+            "role": "earphone",
+            "translation": "Earphone Jack",
+            "side": "heroes",
+            "help": "variable:help_villager",
+            "info": "Has no special abilities. ~Sided~",
+            "actions": {}
+        },
+        {
+            "role": "froppy",
+            "translation": "Froppy",
+            "side": "heroes",
+            "help": "variable:help_villager",
+            "info": "Has no special abilities. ~Sided~",
+            "actions": {}
+        },
+        {
+            "role": "grape",
+            "translation": "Grape Juice",
+            "side": "heroes",
+            "help": "variable:help_villager",
+            "info": "Has no special abilities. ~Sided~",
+            "actions": {}
+        },
+        {
+            "role": "invisible",
+            "translation": "Invisible Girl",
+            "side": "heroes",
+            "help": "variable:help_villager",
+            "info": "Has no special abilities. ~Sided~",
+            "actions": {}
+        },
+        {
+            "role": "pinky",
+            "translation": "Pinky",
+            "side": "heroes",
+            "help": "variable:help_villager",
+            "info": "Has no special abilities. ~Sided~",
+            "actions": {}
+        },
+        {
+            "role": "redriot",
+            "translation": "Red Riot",
+            "side": "heroes",
+            "help": "variable:help_villager",
+            "info": "Has no special abilities. ~Sided~",
+            "actions": {}
+        },
+        {
+            "role": "shoto",
+            "translation": "Shoto",
+            "side": "heroes",
+            "help": "variable:help_villager",
+            "info": "Has no special abilities. ~Sided~",
+            "actions": {}
+        },
+        {
+            "role": "tsukuyomi",
+            "translation": "Tsukuyomi",
+            "side": "heroes",
+            "help": "variable:help_villager",
+            "info": "Has no special abilities. ~Sided~",
+            "actions": {}
+        },
+        {
+            "role": "creati",
+            "translation": "Creati",
+            "side": "heroes",
+            "help": "variable:help_villager",
+            "info": "Has no special abilities. ~Sided~",
+            "actions": {}
+        },
+        {
+            "role": "deku",
+            "translation": "Deku",
+            "side": "heroes",
+            "help": "You are Deku. You can inspect at night and know All Might.",
+            "info": "Can inspect at night. Knows All Might. ~Sided~",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "broadcast": "role",
+                        "priority": "variable:prio_town_inspect"
+                    }
+                },
+                "startup": {
+                    "revealPlayers": "allmight",
+                    "revealPlayersMsg": "~Players~ is All Might."
+                }
+            }
+        },
+        {
+            "role": "bakugo",
+            "translation": "Bakugo",
+            "side": "heroes",
+            "help": "You are Bakugo. You can kill at night.",
+            "info": "Can kill at night. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "broadcast": "role",
+                        "priority": "variable:prio_town_kill"
+                    }
+                }
+            }
+        },
+        {
+            "role": "allmight",
+            "translation": "All Might",
+            "side": "heroes",
+            "help": "You are the number one hero All Might. You can kill during the day and know Deku.",
+            "info": "Can kill during the day. Knows Deku. ~Sided~",
+            "actions": {
+                "standby":{
+                    "smash":{
+                        "command": "kill",
+                        "target":"AnyButSelf",
+                        "msg":"Now, destroy your enemies with /kill [name]!",
+                        "killmsg":"Detroit Smash! ~Target~ was blasted away!"
+                    }
+                },
+                "startup": {
+                    "revealPlayers": "deku",
+                    "revealPlayersMsg": "~Players~ is Deku."
+                }
+            }
+        },
+        {
+            "role": "uravity",
+            "translation": "Uravity",
+            "side": "heroes",
+            "help": "You are Uravity. You can use /gravity at night to both protect and distract someone. ~Sided~",
+            "info": "Can use /gravity at night to both protect and distract someone. ~Sided~",
+            "actions": {
+                "night": {
+                    "gravity": {
+                        "command": ["distract", "protect"],
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_town_distract"
+                    }
+                }
+            }
+        },
+        {
+            "role": "ingenium",
+            "translation": "Ingenium",
+            "side": "heroes",
+            "help": "You are the class mayor Ingenium. Your vote counts as 3.",
+            "info": "Vote counts as 3. ~Sided~",
+            "actions": {
+                "vote": 3
+            }
+        },
+        {
+            "role": "nomu",
+            "translation": "Nomu",
+            "side": "villains",
+            "help": "You are the creation of AFO, Nomu. You share a kill with your team and have a vote of 99.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_mafia_kill",
+                        "broadcast": "team"
+                    }
+                },
+                "vote": 99,
+                "startup": "team-reveal",
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "shigoraki",
+            "translation": "Shigoraki",
+            "side": "villains",
+            "help": "You are Shigoraki. You share a kill with your team and can poison someone each night. You also poison anyone who tries to distract you.",
+            "info": "Shares a night kill with team. Can poison at night. Poisons distractors. ~Sided~.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_mafia_kill",
+                        "broadcast": "team"
+                    },
+                    "poison": {
+                        "common": "Self",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_mafia_poison",
+                        "broadcast": "team"
+                    }
+                },
+                "distract": {
+                    "mode": "poisonattackerevenifprotected"
+                },
+                "startup": "team-reveal",
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "kurogiri",
+            "translation": "Kurogiri",
+            "side": "villains",
+            "help": "You are Kurogiri. You share a kill with your team and can distract someone at night. You also ignore night kills.",
+            "info": "Shares a night kill with team. Can distract at night. Ignores night kills. ~Sided~.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_mafia_kill",
+                        "broadcast": "team"
+                    },
+                    "distract": {
+                        "common": "Self",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_mafia_distract"
+                    }
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "startup": "team-reveal",
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "stain",
+            "translation": "Stain",
+            "side": "villains",
+            "help": "You are Stain. You share a kill with your team and can kill someone else at night using /cut. You can also distract someone at night.",
+            "info": "Shares a night kill with team. Can use /cut to kill someone at night. Can distract at night. ~Sided~.",
+            "actions": {
+                "night": {
+                    "cut": {
+                        "command": "kill",
+                        "common": "Self",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_serial_kill",
+                        "broadcast": "team"
+                    },
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_mafia_kill",
+                        "broadcast": "team"
+                    },
+                    "distract": {
+                        "common": "Self",
+                        "target": "AnyButTeam",
+                        "broadcast": "team",
+                        "priority": "variable:prio_mafia_distract"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true
+            }
+        }
+    ],
+    "minplayers": 3,
+    "roles1": [
+        "bakugo",
+        "uravity",
+        "shigoraki",
+        "ingenium"
+    ],
+    "roles2": [
+        "shigoraki",
+        "kurogiri",
+        "deku",
+        "bakugo",
+        "ingenium",
+        "anima",
+        "twinkle",
+        "cellophane"
+    ],
+    "roles3": [
+        "shigoraki",
+        "kurogiri",
+        "nomu",
+        "deku",
+        "bakugo",
+        "uravity",
+        "ingenium",
+        "allmight",
+        "chargebolt",
+        "earphone",
+        "grape",
+        "froppy",
+        "stain",
+        "invisible",
+        "pinky",
+        "redriot",
+        "nomu",
+        "tailman",
+        "tentacole",
+        "anima",
+        "twinkle",
+        "cellophane",
+        "shoto",
+        "tsukuyomi",
+        "creati"
+    ],
+    "changelog": {
+        "12.15.2018": "Theme coded."
+    }
+}
