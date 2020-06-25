@@ -1,0 +1,831 @@
+{
+    "name": "Batman",
+    "author": [
+        "<b><i><span style='color:#874587'>Water</span></i></b>",
+        "<b><i><span style='color:#008080'>Karp Karpity</span></i></b>",
+        "<b><i><span style='color:#FF0000'>MayorOfPie</span></i></b>"
+    ],
+    "minplayers": 3,
+    "killmsg": "±Kill: Gotham has seen seen the last of ~Player~ (~Role~).",
+    "killusermsg": "You died!",
+    "votemsg": "~Player~ attacks ~Target~!",
+    "lynchmsg": "±Lynch: ~Player~ (~Role~) was dragged away into the night.",
+    "drawmsg": "Well thats no good. Gotham is abandoned, the only sounds that can be heard are screams from Arkham off in the distance...",
+    "ticks": {
+        "night": 30,
+        "standby": 30
+    },
+    "summary": "Welcome to Gotham, where corruption runs rampant and justice wears black. Can Batman overcome some of his deadliest foes including the Joker, Ra'as Al Ghul and Man-Bat?",
+    "sides": [
+        {
+            "side": "village",
+            "translation": "Gotham",
+            "winmsg": "The People of Gotham (~Players~) have persevered through the dark of the night. Now they can rebuild in the daylight."
+        },
+        {
+            "side": "mafia1",
+            "translation": "Chaotic Mafia",
+            "winmsg": "Laughter fills Gotham as ~Players~ have rid the city of its worthless order and now chaos reigns supreme. "
+        },
+        {
+            "side": "mafia2",
+            "translation": "Animal Mafia",
+            "winmsg": "Humanity has seen it's last night as the top of the food chain in Gotham. Now ~Players~ can rule as the evolution begins."
+        },
+        {
+            "side": "mafia3",
+            "translation": "League of Shadows",
+            "winmsg": "Now that Gotham is clean its time for ~Players~ to come out of the shadows and take their rightful place as the true heirs of Gotham."
+        },
+        {
+            "side": "consps",
+            "translation": "Conspirators",
+            "winmsg": "Well that was fun. Time for ~Players~ to leave Gotham behind and search for more opportunnites."
+        }
+    ],
+    "roles": [
+        {
+            "role": "villager",
+            "translation": "Citizen",
+            "side": "village",
+            "help": "A citizen of Gotham you sleep during the night. There's little you can do alone but with your numbers you can help save Gotham by voting during the day.",
+            "info": "Can help save Gotham during the day with its 1 vote. Sided with Gotham.",
+            "actions": {}
+        },
+        {
+            "role": "Bat",
+            "translation": "Batman",
+            "side": "village",
+            "help": "You are the Dark Knight, Batman, Protector of Gotham. You may use /justice once per night to help right the many wrongs of the city. You also can /stalk someone during the night to discover who they visited. Sometimes to protect others you have to don your other mask that of Bruce Wayne who wields a greater voice during the day as well as an inspect. Use /bruce to change. ",
+            "info": "Can kill one person during the night.  Can stalk one person during the night.  Can convert into Bruce Wayne during the night.  Sided with Gotham.",
+            "actions": {
+                "night": {
+                    "justice": {
+                        "command": "kill",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 15,
+                        "broadcast": "role"
+                    },
+                    "stalk": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 23
+                    },
+                    "bruce": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 8,
+                        "newRole": "bruce",
+                        "canConvert": [
+                            "Bat"
+                        ],
+                        "silent": true
+                    }
+                }
+            }
+        },
+        {
+            "role": "bruce",
+            "translation": "Bruce Wayne",
+            "side": "village",
+            "help": "You are Billionare Bruce Wayne, you can use your vast resources through Wayne Enterprises to /inspect one person during the night. Unlike your other identity Batman you wield considerable influence during the day as well granting you an extra 2 votes. You may use /batman to convert back into Batman.",
+            "info": "Can inspect one person during the night. Has a vote of 3. Sided with Gotham.",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 21
+                    },
+                    "batman": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 8,
+                        "newRole": "Bat",
+                        "canConvert": [
+                            "bruce"
+                        ],
+                        "silent": true
+                    }
+                },
+                "vote": 3
+            }
+        },
+        {
+            "role": "robin1",
+            "translation": "Robin",
+            "side": "village",
+            "help": "You are Damian Wayne, son of Bruce Wayne and current Robin. Raised by the League of Shadows, you've found it hard to adapt to your father's code of never killing. However you know sometimes a sacrifice a must be made for the greater good. You can /kill once per game.",
+            "info": "Can kill one person per game. Sided with Gotham.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": 16,
+                        "broadcast": "role",
+                        "charges": 1
+                    }
+                }
+            }
+        },
+        {
+            "role": "Jim",
+            "translation": "Jim Gordon",
+            "side": "village",
+            "help": "You are James Gordon, Commisioner of the GCPD. You know your somewhat pigheaded partner Harvey Bullock and can expose someone during the night using /spotlight. You will not be revealed but be careful you don't reveal an ally!",
+            "info": "Can expose one person during the night. Knows Harvey. Sided with Gotham.",
+            "actions": {
+                "startup": {
+                    "revealRole": [
+                        "Harvey"
+                    ]
+                },
+                "night": {
+                    "spotlight": {
+                        "command": "dummy",
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": 1,
+                        "dummybroadcastmsg": "A helicopter's spotlight shines down on ~Target~ revealing them to be ~TargetRole~!",
+                        "pierce": true
+                    }
+                }
+            }
+        },
+        {
+            "role": "Harvey",
+            "translation": "Harvey Bullock",
+            "side": "village",
+            "help": "You are Harvey Bullock a former corrupt cop who has begun to put his past behind him. You are Jim Gordon's most trusted Detective and thus know his identity. You can /shield one person during the night to protect them from kills and poison although things might not always work out as fortunately for you.",
+            "info": "Can protect and safeguard one person during the night (same command).  Knows Jim. Is killed if person protected is chosen to be killed. Sided with Gotham.",
+            "actions": {
+                "startup": {
+                    "revealRole": [
+                        "Jim"
+                    ]
+                },
+                "night": {
+                    "shield": {
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": 10,
+                        "shieldActions": [
+                            "kill",
+                            "poison"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "role": "Batgirl",
+            "translation": "Batgirl",
+            "side": "village",
+            "help": "You are Barbara Gordon, aka Batgirl. You recently regained use of your legs after a terrible incident left you paralyzed. Although you aren't quite up to tip-top fighting shape yet you can certainly do enough to /distract someone for the night. ",
+            "info": "Can distract one person during the night. Sided with Gotham.",
+            "actions": {
+                "night": {
+                    "distract": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 5,
+                        "distractmsg": "You got into a fight with Batgirl during the night!",
+                        "teammsg": "Your partner was too busy chasing Batgirl around during the night to complete your ~Action~!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "bulletproof",
+            "translation": "Nightwing",
+            "side": "village",
+            "help": "You are Dick Grayson, also known as Nightwing. Recent events have put you in great danger so you can /protect yourself at night up to 3 times. ",
+            "info": "Can protect itself three times per game. Sided with Gotham.",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "OnlySelf",
+                        "common": "Role",
+                        "priority": 11.5,
+                        "broadcast": "role",
+                        "charges": 3
+                    }
+                },
+                "updateCharges": true
+            }
+        },
+        {
+            "role": "Fox",
+            "translation": "Lucius Fox",
+            "side": "village",
+            "help": "You are Lucius Fox. You run Wayne Enterprises in the absence of Bruce who seems to get most of his messages to you through his butler, Alfred.",
+            "info": "Knows Alfred. Sided with Gotham.",
+            "actions": {
+                "startup": {
+                    "revealRole": [
+                        "alfred"
+                    ]
+                }
+            }
+        },
+        {
+            "role": "Woman",
+            "translation": "Batwoman",
+            "side": "village",
+            "help": "You are Kate Kane also known as Batwoman. Although not a member of the offical Bat Family you can use your military training to /watch someone at night. You also have a chance to see any fights that break out at night.",
+            "info": "Can watch one person during the night. Has a slight chance on getting hax on kills.  Sided with Gotham.",
+            "actions": {
+                "hax": {
+                    "kill": {
+                        "revealTeam": 0.2,
+                        "revealPlayer": 0.05
+                    }
+                },
+                "night": {
+                    "watch": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 25
+                    }
+                }
+            }
+        },
+        {
+            "role": "alfred",
+            "translation": "Alfred",
+            "side": "village",
+            "help": "You are Alfred Pennyworth, Bruce Wayne's butler. Because of this if Batman changes into Bruce Wayne you will be alerted. You also convey his wishes to Lucius Fox who maintains Wayne Enterprises during his absence.",
+            "info": "Knows Lucius Fox. Knows Bruce Wayne upon Conversion. Sided with Gotham.",
+            "actions": {
+                "startup": {
+                    "revealRole": [
+                        "Fox",
+                        "bruce"
+                    ]
+                }
+            }
+        },
+        {
+            "role": "RR",
+            "translation": "Red Robin",
+            "side": "village",
+            "help": "You are Tim Drake, also known as Red Robin. Regarded as the smartest of the former Robins you can use your foresight to /protect someone every other night.",
+            "info": "Can protect one person every other night. Sided with Gotham.",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 9,
+                        "broadcast": "role",
+                        "recharge": 2
+                    }
+                }
+            }
+        },
+        {
+            "role": "Jason",
+            "translation": "Jason Todd",
+            "side": "village",
+            "help": "You are Jason Todd. Killed once by the Joker, you were revived in the Lazarus Pits and have returned to wreak vengenance against the scum of Gotham without the pathetic antiquitated morality of your former idol. You can use /kill during the night to kill a person but be careful as you will be revealed.",
+            "info": "Can kill once person during the night (reveals). Sided with Gotham.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": 17,
+                        "killmsg": "A rare smile crosses ~Player~'s lips. A button press later and ~Target~ (~TargetRole~) is blown sky high."
+                    }
+                }
+            }
+        },
+        {
+            "role": "Jason2",
+            "translation": "Jason Todd",
+            "side": "village",
+             "help": "You are Jason Todd. Killed once by the Joker, you were revived  in the Lazarus Pits and have returned to wreak vengenance against the  scum of Gotham without the pathetic antiquitated morality of your former  idol. You can use /kill during the night to kill a person but be  careful as you will be revealed.",
+            "info": "Can kill once person during the night (reveals). Sided with Gotham.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": 11,
+                         "killmsg": "A rare smile crosses ~Player~'s lips. A button press later and ~Target~ (~TargetRole~) is blown sky high."
+                    }
+                }
+            }
+        },
+        {
+            "role": "Joker",
+            "translation": "The Joker",
+            "side": "mafia1",
+            "help": "WHY. SO. SERIOUS? You are the Joker, some call you the Crown Prince of Crime, but you see yourself as a humble comedian doing whatever it takes to get a good laugh out of this colorless city. In addition to a kill shared with your teammates, you can /stab one person every other night (unrevealed) and /gas someone (revealed.)",
+            "info": "Can kill one person during the night (shared with team). Can kill another person every other night (not shared with team). Can gas one person during the night (reveals). Sided with Chaotic Mafia.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 14,
+                        "broadcast": "team"
+                    },
+                    "stab": {
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "broadcast": "team",
+                        "recharge": 2
+                    },
+                    "gas": {
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 19,
+                        "killmsg": "A cloud of green gas surronds ~Target~ (~TargetRole~), and their screams quickly turn into giggles before culminating in uproarious laughter. ~Player~ takes a bow."
+                    }
+                },
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "Riddler",
+            "translation": "The Riddler",
+            "side": "mafia1",
+            "help": "You are Edward Nygma, also known as the Riddler. Your superior intellect allows you to inspect someone during the night as well as granting you a vote of 2 during the day.",
+            "info": "Can inspect one person during the night. Has a vote of 2. Sided with Chaotic Mafia.",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 20
+                    }
+                },
+                "vote": 2,
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "Ivy",
+            "translation": "Poison Ivy",
+            "side": "mafia1",
+            "help": "You are Poison Ivy, formerly brilliant biochemist Pamela Ivey an accident has transformed you into 'mother earth'. In addition to a kill shared with your team you can /distract anyone who would get in your way. You also have the ability to /poison with your deadly plants.",
+            "info": "Can poison one person during the night. Can distract one person during the night.  Can kill one person during the night (shared with team). Sided with Chaotic Mafia.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 14,
+                        "broadcast": "team"
+                    },
+                    "poison": {
+                        "target": "AnyButTeam",
+                        "common": "Role",
+                        "priority": 26,
+                        "broadcast": "team",
+                        "limit": 1,
+                        "count": 2
+                    },
+                    "distract": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 5,
+                        "distractmsg": "You couldn't resist Poison Ivy's charms. . .",
+                        "teammsg": "Your partner was distracted by Poison Ivy so you couldn't finish your actions for the night!"
+                    }
+                },
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "Croc",
+            "translation": "Killer Croc",
+            "side": "mafia2",
+            "help": "You are Waylon Jones, also known as Killer Croc. A mutation caused you to revert to a more primal condition recieving among other things superhuman strength but causing you to gain a reptilian appearance. In addition to a kill shared with your team you destroy anyone dumb enough to attempt to distract you., ",
+            "info": "Can kill one person during the night (shared with team). Kills any distractors. Sided with Animal Mafia",
+            "actions": {
+                "distract": {
+                    "mode": "ChangeTarget",
+                    "hookermsg": "Oh Crocy what large teeth you have. . .",
+                    "msg": "~Distracter~ attempted to distract you! You had yourself a nice snack."
+                },    
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 13,
+                        "broadcast": "team"
+                    }
+                },
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "Kirk",
+            "translation": "Kirk Langstrom",
+            "side": "mafia2",
+            "help": "You are Kirk Langstrom a brilliant scientist who worked for Wayne Enterprises attempting to develop a serum to cure deafness. Besides the minor side effect of transforming into a giant raging bat you have recently become addicted to your serum and will transform every night between your roles. ",
+            "info": "Can convert into Man-Bat during the night. Sided with Animal Mafia.",
+            "actions": {
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "MB",
+                        "curseCount": 1,
+                        "curseConvertMessage": "~Old~ has injected himself with the serum again and changed into ~New~!"
+                    }
+                },
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "MB",
+            "translation": "Man-Bat",
+            "side": "mafia2",
+            "help": "You are Man-Bat (the fierce transformation of Kirk Langstrom). You evade all kills and have a voteshield of -2.",
+            "info": "Can kill one person during the night (shared with team). Ignores any kills. Deconverts back into Kirk Langstrom after one night. Has a -2 voteshield. Sided with Animal Mafia.",
+            "actions": {
+                "kill": {
+                    "mode": {
+                        "evadeChance": 1
+                    }
+                },
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "Kirk",
+                        "curseCount": 1,
+                        "curseConvertMessage": "Kirk has fallen back down to the earth, completely drained after his transformation."
+                    }
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 13,
+                        "broadcast": "team"
+                    }
+                },
+                "voteshield": -2,
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "Copper",
+            "translation": "Copperhead",
+            "side": "mafia2",
+            "help": "You are Copperhead, an assassin and thief who sold his soul to a demon to become more powerful. You can /strike once per game for a kill that bypasses all protects. In addition you share a /kill with your team and ignore any distractions. ",
+            "info": "Can use a kill once per game that bypasses all protects. Can kill one person during the night (shared with team) while ignoring all distracts that come its way. Sided with Animal Mafia.",
+            "actions": {
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "~Distracter~ tried to interrupt you but you slithered on your way. "
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 13,
+                        "broadcast": "team"
+                    },
+                    "strike": {
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 7,
+                        "broadcast": "team",
+                        "charges": 1
+                    }
+                },
+                "updateCharges": true,
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "Ra's",
+            "translation": "Ra's Al Ghul",
+            "side": "mafia3",
+            "help": "You are Ra's Al Ghul, The Demon Head of the League of Shadows. You can kill once per night and gain a vote of 100 once all citizens are dead.",
+            "info": "Can kill one person during the night (shared with team). Gains 100 votes once all citizens are dead. Sided with League of Shadows.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "broadcast": "team"
+                    }
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "Ra's2": [
+                            "villager"
+                        ]
+                    },
+                    "convertmsg": "'Now the cleansing can begin in earnest!' shouts Ra's Al Ghul."
+                },
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "Ra's2",
+            "translation": "Ra's Al Ghul",
+            "side": "mafia3",
+            "help": "You are Ra's Al Ghul, The  Demon Head of the League of Shadows. Emboldened by the deaths of the citizens of Gotham, now is the time to assert your control over Gotham with your vote of 100. You still have a kill shared with your team.",
+            "info": "Can kill one person during the night (shared with team). Has a vote of 100. Sided with League of Shadows.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "broadcast": "team"
+                    }
+                },
+                "vote": 100,
+                "teamUtilities": true
+            },
+            "winIfDeadRoles": [
+                "Bat",
+                "robin1",
+                "Jason",
+                "Joker",
+                "Jason2",
+                "Ivy",
+                "Croc",
+                "MB",
+                "Copper"
+            ]
+        },
+        {
+            "role": "Talia",
+            "translation": "Talia Al Ghul",
+            "side": "mafia3",
+            "help": "You are Talia Al Ghul, Daughter of Ra's and a mole inserted to bring down Gotham from within. You reveal as villager if exposed or inspected as well as sharing a kill with your team.",
+            "info": "Can kill one person during the night (shared with team). Gets revealed as citizen. Sided with League of Shadows.",
+            "actions": {
+                "inspect": {
+                    "revealAs": [
+                        "villager"
+                    ]
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "broadcast": "team"
+                    }
+                },
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "Death",
+            "translation": "Deathstroke",
+            "side": "mafia3",
+            "help": "You are Slade Wilson, known as Deathstroke, the deadliest assassin in the world. You rival Batman in physical abilites and are able to use up to 90% of your brain. You have sided with the League of Shadows and share a kill with them.",
+            "info": "Can kill one person during the night (shared with team). Sided with League of Shadows.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "broadcast": "team"
+                    }
+                },
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "Two",
+            "translation": "Two-Face",
+            "side": "consps",
+            "winningSides": [
+                "mafia1",
+                "mafia2",
+                "mafia3"
+            ],
+            "help": "You are Two-Face, once known as Harvey Dent a bright young prosecuter, you have since learned that the only true equality in life is chance. You can dispense justice at night by using /decide which will either expose or kill your target. You win with any mafia side.",
+            "info": "Can expose or kill one person during the night. Wins with winning mafia team.  Sided with Winning Mafias.",
+            "actions": {
+                "night": {
+                    "decide": {
+                        "command": {
+                            "dummy": 0.5,
+                            "kill": 0.5
+                        },
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": 19.5,
+                        "dummybroadcastmsg": " Two-Face flips a coin! After examining his coin toss he puts his gun down and instead announces that ~Target~ is ~TargetRole~!",
+                        "pierce": true
+                    }
+                }
+            }
+        },
+        {
+            "role": "Cat",
+            "translation": "Catwoman",
+            "side": "consps",
+            "winningSides": "*",
+            "help": "You are Catwoman, also known as Selina Kyle. You look out for #1 and are adaptive enough to survive in this city regardless of what happens. If you are lynched you gain new abilites. You win with any side.",
+            "info": "If it survives lynch, it gains commands that it can use during the night. Wins with any side. Sided with Winning Team.",
+            "actions": {
+                "lynch": {
+                    "convertTo": "Cat2",
+                    "convertmsg": "±Lynch: ~Self~ was dragged away into the night. Since cats have 9 lives, ~Old~ became an even stronger ~New~!"
+                }
+            }
+        },
+        {
+            "role": "Cat2",
+            "translation": "Catwoman",
+            "side": "consps",
+            "winningSides": "*",
+            "help": "You are Catwoman, also known as Selina Kyle. After surviving that angry mob its your turn to strike back. You can /safeguard, /distract, /protect, /inspect, /poison, /stalk, and /kill once per game. You win with any side. ",
+            "info": "Can safeguard, distract, protect, kill, inspect, poison or stalk one person during the night. Wins with any side. Sided with Winning Team.",
+            "actions": {
+                "night": {
+                    "safeguard": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "charges": 1,
+                        "priority": 3
+                    },
+                    "distract": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "charges": 1,
+                        "priority": 6
+                    },
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "charges": 1,
+                        "priority": 11
+                    },
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "charges": 1,
+                        "priority": 18
+                    },
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "charges": 1,
+                        "priority": 22
+                    },
+                    "poison": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "charges": 1,
+                        "priority": 27
+                    },
+                    "stalk": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "charges": 1,
+                        "priority": 24
+                    }
+                }
+            }
+        }
+    ],
+    "roles1": [
+        "Ra's",
+        "villager",
+        "Jason2",
+        "villager"
+    ],
+    "roles2": [
+        "Ra's",
+        "RR",
+        "villager",
+        "Jason2",
+        "villager"
+    ],
+    "roles3": [
+        "Bat",
+        "Joker",
+        "robin1",
+        "Croc",
+        "villager",
+        "Batgirl",
+        "villager",
+        "Jim",
+        "Riddler",
+        "Kirk",
+        "Harvey",
+        "villager"
+    ],
+    "roles4": [
+        "Bat",
+        "Joker",
+        "robin1",
+        "Croc",
+        "villager",
+        "Batgirl",
+        "Ra's",
+        "villager",
+        "Jim",
+        "Two",
+        "Riddler",
+        "Harvey",
+        "villager",
+        "Kirk",
+        "bulletproof",
+        "Fox",
+        "villager",
+        "Talia",
+        "alfred",
+        "villager"
+    ],
+    "roles5": [
+        "Bat",
+        "Joker",
+        "villager",
+        "robin1",
+        "Croc",
+        "Batgirl",
+        "Ra's",
+        "villager",
+        "Jim",
+        "Two",
+        "Riddler",
+        "villager",
+        "Harvey",
+        "Kirk",
+        "bulletproof",
+        "villager",
+        "Fox",
+        "villager",
+        "alfred",
+        "Talia",
+        "villager",
+        "Woman",
+        "Ivy",
+        "RR",
+        "Copper",
+        "villager"
+    ],
+    "roles6": [
+        "Bat",
+        "villager",
+        "Joker",
+        "robin1",
+        "Croc",
+        "villager",
+        "Batgirl",
+        "Kirk",
+        "villager",
+        "Two",
+        "Jim",
+        "Ra's",
+        "Harvey",
+        "villager",
+        "robin1",
+        "Riddler",
+        "bulletproof",
+        "Talia",
+        "villager",
+        "Fox",
+        "Cat",
+        "Woman",
+        "Ivy",
+        "villager",
+        "alfred",
+        "Harvey",
+        "Copper",
+        "bulletproof",
+        "Death",
+        "RR",
+        "Ivy",
+        "Woman",
+        "Jason",
+        "villager",
+        "RR"
+    ],
+    "villageCantLoseRoles": [
+        "Bat",
+        "bruce",
+        "robin1",
+        "Jason",
+        "Jason2"
+    ],
+    "changelog": {
+        "17.06.15": "Theme created.",
+        "23.06.15": "Made it so the theme is a little bit more balanced and fixed some small errors.",
+        "24.06.15": "Fixed some small errors so the theme runs more smoothly. Made The Joker's stab be every other night instead of every night.",
+        "25.06.15": "Made Two-Face's /decide also kill and made Jason's kill be faster",
+        "27.07.15": "Made the Jason with higher priority be on the WinifDeadlist for Ra's Al Ghul and be a villageCantLoseRole."
+    }
+}
