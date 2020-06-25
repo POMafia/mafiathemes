@@ -1,0 +1,2434 @@
+{
+    "name": "Zero",
+    "altname": "Fate/Zero",
+    "author": [
+        "Withoutatrace",
+        "Windblown"
+    ],
+    "minplayers": 3,
+	"nonPeak": true,
+    "threadlink": "http://pokemon-online.eu/threads/fate-zero.31437/#post-441026",
+    "summary": "The Fourth Holy Grail War is about to begin, and seven teams of Masters and Servants will duke it out in a battle royale in the quest to attain the Grail! Beware, mafia players: people die when they are killed.",
+    "sides": [
+        {
+            "side": "sab",
+            "translation": "Saber & Kiritsugu",
+            "winmsg": "~Players~ have secured the Holy Grail and will restore the world into a utopian state!"
+        },
+        {
+            "side": "gil",
+            "translation": "Gilgamesh & Tokiomi",
+            "winmsg": "Everything is as it should be. ~Players~ has finally shown those filthy mongrels their place!"
+        },
+        {
+            "side": "gil2",
+            "translation": "Gilgamesh",
+            "winmsg": "Everything is as it should be. ~Players~ has finally shown those filthy mongrels their place!"
+        },
+        {
+            "side": "gil3",
+            "translation": "Gilgamesh & Kirei",
+            "winmsg": "'Are you not entertained, Kotomine?' ~Players~ have left the competition behind in a bloody swath of conquest!"
+        },
+        {
+            "side": "ber",
+            "translation": "Berserker & Kariya",
+            "winmsg": "Cut down all those who stand in your way! ~Players~ have emerged atop a mountain of their fallen enemies with the Grail in hand!"
+        },
+        {
+            "side": "ride",
+            "translation": "Rider & Waver",
+            "winmsg": "He who is worthy of all heroes' envy, and he who leads the way is king! ~Players~ sought their conquest and demonstrated it!"
+        },
+        {
+            "side": "lan",
+            "translation": "Lancer & Kayneth",
+            "winmsg": "Victory has been granted to the honorable knight and his master, ~Players~! The Holy Grail truly belongs to those of noble blood!"
+        },
+                {
+                        "side": "ass",
+                        "translation": "Assassin & Kirei",
+                        "winmsg": "And he was just supposed to be a decoy! Oh well, apparently ~Players~ were just that much superior to their competition."
+                },
+                {
+                        "side": "cas",
+                        "translation": "Caster & Ryuunosuke",
+                        "winmsg": "So these guys (~Players~) who like to kill everyone basically did just that. The world has fallen into darkness oh no!"
+                }
+    ],
+    "roles": [
+				{
+					"role": "gilgamesh_placeholder",
+					"translation": "Gilgamesh",
+					"side": "gil2",
+					"help": "",
+					"info": "Can kill one person during the day (user is not revealed). In 3p: 2 votes. In 4p: counters daykills. In 7p or more: on Saber's death, becomes immune to nightkills. Sided with Gilgamesh & Tokiomi or Gilgamesh & Kirei in 4p.",
+					"actions": {}
+				},
+                {
+                        "role": "Gil1",
+                        "translation": "Gilgamesh",
+                        "side": "gil2",
+						"hide": true,
+                        "help": "You are the King of Heroes, Gilgamesh! Bent on preventing those mongrels from stealing your precious Holy Grail, you can kill during the day without being revealed. You have 2 votes. If Saber copies Berserker, then you will gain her immunity to nightkills upon her death!",
+                        "info": "Can kill one person during the day (user is not revealed). Counters daykills in 4p. Becomes immune to nightkills upon Saber's death in 7p or more. Sided with Gilgamesh.",
+                        "actions": {
+								"vote": 2,
+                                "standby": {
+                                        "kill": {
+                                                "target": "AnyButSelf",
+                                                "msg": "You can now /kill during the day. You won't be revealed!",
+                                                "killmsg": "Gilgamesh summons his Noble Phantasm, the Gate of Babylon, revealing thousands of swords in a transparent wall. They fly forward at a high velocity, impaling themselves into ~Target~!"
+                                         }
+                                }
+                        }
+                },
+				{
+                        "role": "Gil2",
+                        "translation": "Gilgamesh",
+                        "side": "gil2",
+						"hide": true,
+                        "help": "You are the King of Heroes, Gilgamesh! Bent on preventing those mongrels from stealing your precious Holy Grail, you can daykill once per game without being revealed. You have 2 votes and evade nightkills.",
+                        "actions": {
+								"vote": 2,
+								"kill": {
+									"mode": "ignore"
+								},
+                                "standby": {
+                                        "kill": {
+                                                "target": "AnyButSelf",
+                                                "msg": "You can now /kill during the day. You won't be revealed!",
+                                                "killmsg": "Gilgamesh summons his Noble Phantasm, the Gate of Babylon, revealing thousands of swords in a transparent wall. They fly forward at a high velocity, impaling themselves into ~Target~!"
+                                         }
+                                }
+                        }
+                },
+				{
+					"role": "berserker_3",
+					"translation": "Berserker",
+					"side": "ber",
+					"help": "A fearsome warrior who has lost his sanity in his quest for the Holy Grail. You can /berserk yourself to counter lynches, or /berserk2 to counter daykills. You can also /kill during the night starting night 2.",
+					"info": "Can convert into a form that counters lynches, or counters daykills. Can kill one person during the night (beginning night 2). Sided with Berserker & Kariya.",
+					"actions": {
+						"night": {
+							"kill": {
+								"target": "AnyButSelf",
+								"common": "Self",
+								"priority": 10,
+								"initialrecharge": 2
+							},
+							"berserk": {
+								"command": "convert",
+								"target": "OnlySelf",
+								"common": "Self",
+								"priority": 1,
+								"cancel": ["berserk2"],
+								"newRole": "berserker_counterlynch",
+								"convertmsg": "Berserker has changed forms!"
+							},
+							"berserk2": {
+								"command": "convert",
+								"target": "OnlySelf",
+								"common": "Self",
+								"priority": 1,
+								"cancel": ["berserk"],
+								"newRole": "berserker_counterdaykill",
+								"convertmsg": "Berserker has changed forms!"
+							}
+						}
+					}
+				},
+				{
+					"role": "berserker_counterlynch",
+					"translation": "Berserker",
+					"side": "ber",
+					"hide": true,
+					"help": "You now counter lynches! When Gilgamesh dies, you will receive an /enrage command which poisons you but increases your vote to 99.",
+					"info": "Can nightkill starting night 2. Counters lynches. When Gilgamesh dies, receives a self-poison action which, if used, increases his vote to 99. Sided with Berserker & Kariya.",
+					"actions": {
+						"night": {
+							"kill": {
+								"target": "AnyButSelf",
+								"common": "Self",
+								"priority": 10,
+								"hide": true
+							}
+						},
+						"lynch": {
+							"killVoters": {
+								"first": 1,
+								"message": "The force of the votes against him have only shattered his armor! Enraged, ~Self~ tears himself away from the noose, swinging the scaffolding at ~Target~ instead!"
+							},
+							"convertTo": "berserker_counterlynch",
+							"convertmsg": "Berserker has hardly been satisfied! More blood will surely be shed..."
+						},
+						"onDeadRoles": {
+									"convertTo": {
+										"berserker_enrage": ["Gil1"]
+									},
+									"convertmsg": "berserker is tired of this shit"
+							}
+					}
+				},
+				{
+					"role": "berserker_counterlynch2",
+					"translation": "Berserker",
+					"side": "ber",
+					"hide": true,
+					"help": "You now counter lynches! When Gilgamesh dies, you will receive an /enrage command which poisons you but increases your vote to 99.",
+					"info": "Can nightkill starting night 2. Counters lynches. When Gilgamesh dies, receives a self-poison action which, if used, increases his vote to 99. Sided with Berserker & Kariya.",
+					"actions": {
+						"night": {
+							"kill": {
+								"target": "AnyButSelf",
+								"common": "Self",
+								"priority": 10,
+								"hide": true
+							}
+						},
+						"lynch": {
+							"killVoters": {
+								"first": 1,
+								"message": "The force of the votes against him have only shattered his armor! Enraged, ~Self~ tears himself away from the noose, swinging the scaffolding at ~Target~ instead!"
+							},
+							"convertTo": "berserker_counterlynch",
+							"convertmsg": "help"
+						}
+					}
+				},
+				{
+					"role": "berserker_counterdaykill",
+					"translation": "Berserker",
+					"side": "ber",
+					"hide": true,
+					"help": "You now counter daykills! When Gilgamesh dies, you will receive an /enrage command which poisons you but increases your vote to 99.",
+					"info": "Can nightkill starting night 2. Counters daykills. When Gilgamesh dies, receives a self-poison actoin which, if used, increases his vote to 99. Sided with Berserker & Kariya.",
+					"actions": {
+						"night": {
+							"kill": {
+								"target": "AnyButSelf",
+								"common": "Self",
+								"priority": 10,
+								"hide": true
+							}
+						},
+						"daykill": "revenge",
+						"daykillrevengemsg": "Gilgamesh fires his Noble Phantasm at Berserker, but ~Self~ is able to dodge all of the swords, leaping into the air and cleaving ~Target~'s skull in half!"
+					}
+				},
+				{
+					"role": "berserker_enrage",
+					"translation": "Berserker",
+					"side": "ber",
+					"hide": true,
+					"help": "You can still kill during the night. You can now /enrage yourself to give yourself 99 votes. This will also poison you for one day!",
+					"info": "Can kill during the night. Can /enrage self to receive 99 votes, but poison self for 1 day. Sided with Berserker & Kariya.",
+					"actions": {
+						"night": {
+							"kill": {
+								"target": "AnyButSelf",
+								"common": "Self",
+								"priority": 10,
+								"hide": true
+							},
+							"enrage": {
+								"command": "convert",
+								"target": "OnlySelf",
+								"common": "Self",
+								"priority": 1,
+								"newRole": "berserker_99vote",
+								"convertmsg": "Enraged, Berserker has made a desperate move, increasing his vote to 99!"
+							}
+						}
+					}
+				},
+				{
+					"role": "berserker_99vote",
+					"translation": "Berserker",
+					"side": "ber",
+					"hide": true,
+					"help": "You now have 99 votes! However, you are poisoned, and if Saber has chosen to avalon herself, you will lose, so watch out! You can still /kill during the night, I suppose...",
+					"info": "Can kill during the night. Has 99 votes and dies the next night. Sided with Berserker & Kariya.",
+					"actions": {
+						"vote": 99,
+						"initialCondition": {
+							"poison": {
+								"count": 1,
+								"poisonDeadMessage": "You have been defeated!"
+							}
+						},
+						"night": {
+							"kill": {
+								"target": "AnyButSelf",
+								"common": "Self",
+								"priority": 10,
+								"hide": true
+							}
+						}
+					}
+				},
+                {
+                        "role": "Sab1",
+                        "translation": "Saber",
+                        "side": "sab",
+                        "help": "You are the King of Knights, Arturia Pendragon, who swore to win the Holy Grail in order to save her country from disintegrating from the horrors of civil war. You can unleash the power of your holy scabbard, Avalon, by using /avalon to turn the powers of your enemies against them! Copying Gilgamesh will allow you to counter daykills, copying Berserker will allow you to counter nightkills, and copying yourself will give you a -99 voteshield.",
+                        "info": "3p: Can copy (avalon) one person during the night. Copying Gilgamesh gives a daykill counter. Copying Berserker gives a nightkill counter. Copying herself gives her a -99 voteshield. 4p: Can daykill and revenge daykills. 5p: Can nightkill, evades poison and Lancer's kill. 6p: Revenges nightkills. 7p: Evades nightkills and can daykill once per game. Gains the ability to kill during the night upon Lancer's death. Sided with Saber & Kiritsugu.",
+                        "actions": {
+                                "night": {
+									"avalon": {
+                                        "command": "copy",
+                                        "target": "Any",
+                                        "common": "Self",
+                                        "priority": 1,
+                                        "copyAs": {
+											"SabA": ["Sab1"],
+                                            "Sab2": ["Gil1"],
+                                            "Sab3": ["berserker_3", "berserker_counterlynch", "berserker_counterlynch2", "berserker_enrage", "berserker_99vote"]
+                                           },
+                                        "copymsg": "Saber has changed forms!",
+                                        "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!"
+                                   }
+                              },
+							  "onDeadRoles": {
+									"convertTo": {
+										"saber_daykill": ["Gil1"]
+									},
+									"convertmsg": "saber is tired of this gonna daykill"
+							}
+                        }
+                },
+				{
+					"role": "SabA",
+					"translation": "Saber",
+					"side": "sab",
+					"hide": true,
+					"help": "You have chosen to protect yourself, giving yourself a voteshield of -99! You can continue to /avalon other targets if you wish to change forms (Gilgamesh allows you to counter daykills, Berserker allows you to counter nightkills).",
+					"info": "",
+					"actions": {
+						"voteshield": -99,
+						"night": {
+									"avalon": {
+                                        "command": "copy",
+                                        "target": "Any",
+                                        "common": "Self",
+                                        "priority": 1,
+                                        "copyAs": {
+											"SabA": ["Sab1"],
+                                            "Sab2": ["Gil1"],
+                                            "Sab3": ["berserker_3", "berserker_counterlynch", "berserker_counterlynch2", "berserker_enrage", "berserker_99vote"]
+                                           },
+                                        "copymsg": "Saber has changed forms!",
+                                        "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!"
+                                   }
+                           },
+						   "onDeadRoles": {
+									"convertTo": {
+										"saber_daykilla": ["Gil1"]
+									},
+									"convertmsg": "With Gilgamesh dead, Saber channels her power into her own Noble Phantasm! She can now daykill!"
+							}
+					}
+				},
+                {
+                        "role": "Sab2",
+                        "translation": "Saber",
+                        "side": "sab",
+						"hide": true,
+                        "help": "You now counter daykills! You can continue to /avalon yourself or other targets (targetting yourself gives you a -99 voteshield, targetting Berserker allows you to counter nightkills)",
+                        "actions": {
+                                "daykill": "revenge",
+                                "daykillrevengemsg": "'You thought you could strike me down with your Gate of Babylon? Face the fury of my sword! EXCALIBUR!' Saber deflects the swords coming from ~Target~, obliterating him with her own Noble Phantasm.",
+								"night": {
+									"avalon": {
+                                        "command": "copy",
+                                        "target": "Any",
+                                        "common": "Self",
+                                        "priority": 1,
+										"hide": true,
+                                        "copyAs": {
+											"SabA": ["Sab2"],
+                                            "Sab2": ["Gil1"],
+                                            "Sab3": ["berserker_3", "berserker_counterlynch", "berserker_counterlynch2", "berserker_enrage", "berserker_99vote"]
+                                           },
+                                        "copymsg": "Saber has changed forms!",
+                                        "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!"
+                                   }
+                               },
+							   "onDeadRoles": {
+									"convertTo": {
+										"saber_daykillb": ["Gil1"]
+									},
+									"convertmsg": "With Gilgamesh dead, Saber channels her power into her own Noble Phantasm! She can now daykill!"
+							}
+                        }
+                },
+                {
+                        "role": "Sab3",
+                        "translation": "Saber",
+                        "side": "sab",
+						"hide": true,
+                        "help": "You now counter nightkills! You can continue to /avalon yourself or other targets (targetting yourself gives you a voteshield of -99, targetting Gilgamesh allows you to counter daykills).",
+                        "actions": {
+                                "kill": {
+                                        "mode": "ChangeTarget"
+                                },
+								"night": {
+									"avalon": {
+                                        "command": "copy",
+                                        "target": "Any",
+                                        "common": "Self",
+                                        "priority": 1,
+										"hide": true,
+                                        "copyAs": {
+											"SabA": ["Sab3"],
+                                            "Sab2": ["Gil1"],
+                                            "Sab3": ["berserker_3", "berserker_counterlynch", "berserker_counterlynch2", "berserker_enrage", "berserker_99vote"]
+                                           },
+                                        "copymsg": "Saber has changed forms!",
+                                        "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!"
+                                   }
+                                },
+								"onDeadRoles": {
+									"convertTo": {
+										"saber_daykillc": ["Gil1"]
+									},
+									"convertmsg": "With Gilgamesh dead, Saber channels her power into her own Noble Phantasm! She can now daykill!"
+							}
+                        }
+                },
+				{
+					"role": "saber_daykill",
+					"translation": "Saber",
+					"side": "sab",
+					"hide": true,
+					"help": "You can now daykill! You can still /avalon yourself or another.",
+					"actions": {
+						"standby": {
+							"kill": {
+								"target": "AnyButSelf",
+								"msg": "You can now /kill without being revealed!",
+								"killmsg": "Saber raises her sword in concentration, summoning the fury of the winds and unleashing a gigantic beam of energy at ~Target~, incinerating them in Excalibur's holy light!"
+							}
+						},
+						"night": {
+							"avalon": {
+                                "command": "copy",
+                                "target": "Any",
+                                "common": "Self",
+                                "priority": 1,
+								"hide": true,
+                                "copyAs": {
+									"saber_daykilla": ["saber_daykill"],
+									"saber_daykillb": ["Gil1"],
+                                    "saber_daykillc": ["berserker_3", "berserker_counterlynch", "berserker_counterlynch2", "berserker_enrage", "berserker_99vote"]
+                                },
+                                "copymsg": "",
+                                "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!"
+                            }
+						}
+					}
+				},
+				{
+					"role": "saber_daykilla",
+					"translation": "Saber",
+					"side": "sab",
+					"hide": true,
+					"help": "You can now daykill! You still retain your -99 voteshield, and can still /avalon Berserker.",
+					"actions": {
+						"voteshield": -99,
+						"standby": {
+							"kill": {
+								"target": "AnyButSelf",
+								"msg": "You can now /kill without being revealed!",
+								"killmsg": "Saber raises her sword in concentration, summoning the fury of the winds and unleashing a gigantic beam of energy at ~Target~, incinerating them in Excalibur's holy light!"
+							}
+						},
+						"night": {
+							"avalon": {
+                                "command": "copy",
+                                "target": "Any",
+                                "common": "Self",
+                                "priority": 1,
+								"hide": true,
+                                "copyAs": {
+                                    "saber_daykillc": ["berserker_3", "berserker_counterlynch", "berserker_counterlynch2", "berserker_enrage", "berserker_99vote"]
+                                },
+                                "copymsg": "",
+                                "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!"
+                            }
+						}
+					}
+				},
+				{
+					"role": "saber_daykillb",
+					"translation": "Saber",
+					"side": "sab",
+					"hide": true,
+					"help": "You can now daykill! There's no point in revenging daykills now, but you can still /avalon Berserker or yourself.",
+					"actions": {
+						"standby": {
+							"kill": {
+								"target": "AnyButSelf",
+								"msg": "You can now /kill without being revealed!",
+								"killmsg": "Saber raises her sword in concentration, summoning the fury of the winds and unleashing a gigantic beam of energy at ~Target~, incinerating them in Excalibur's holy light!"
+							}
+						},
+						"night": {
+							"avalon": {
+                                "command": "copy",
+                                "target": "Any",
+                                "common": "Self",
+                                "priority": 1,
+								"hide": true,
+                                "copyAs": {
+									"saber_daykilla": ["saber_daykillb"],
+                                    "saber_daykillc": ["berserker_3", "berserker_counterlynch", "berserker_counterlynch2", "berserker_enrage", "berserker_99vote"]
+                                },
+                                "copymsg": "",
+                                "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!"
+                            }
+						}
+					}
+				},
+				{
+					"role": "saber_daykillc",
+					"translation": "Saber",
+					"side": "sab",
+					"hide": true,
+					"help": "You can now daykill! You still revenge nightkills, but you can still /avalon yourself for the -99 voteshield.",
+					"actions": {
+						"standby": {
+							"kill": {
+								"target": "AnyButSelf",
+								"msg": "You can now /kill without being revealed!",
+								"killmsg": "Saber raises her sword in concentration, summoning the fury of the winds and unleashing a gigantic beam of energy at ~Target~, incinerating them in Excalibur's holy light!"
+							}
+						},
+						"night": {
+							"avalon": {
+                                "command": "copy",
+                                "target": "Any",
+                                "common": "Self",
+                                "priority": 1,
+								"hide": true,
+                                "copyAs": {
+									"saber_daykilla": ["saber_daykillc"]
+								},
+                                "copymsg": "",
+                                "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!"
+                            }
+						}
+					}
+				},
+                {
+                        "role": "sab4",
+                        "translation": "Saber",
+                        "side": "sab",
+						"hide": true,
+                        "help": "You are the King of Knights, Arturia Pendragon, who swore to win the Holy Grail in order to save her country from disintegrating from the horrors of civil war. You can /kill one person during the day with your holy sword, Excalibur, without being revealed, and your Noble Phantasm, the scabbard Avalon, allows you to counter daykills!",
+                        "info": "Can kill one person during the day (user is not revealed). Revenges daykills. Sided with Saber & Kiritsugu.",
+                        "actions": {
+								"teamTalk": true,
+								"preventTeamvote": true,
+                                "startup": {
+                                        "revealRole": ["kiritsugu"]
+                                },
+                                 "standby": {
+									"kill": {
+										"target": "AnyButSelf",
+										"msg": "You can now /kill without being revealed!",
+										"killmsg": "Saber raises her sword in concentration, summoning the fury of the winds and unleashing a gigantic beam of energy at ~Target~, incinerating them in Excalibur's holy light!"
+										}
+								},
+                                "daykill": "revenge",
+                                "daykillrevengemsg": "'You thought you could strike me down with your Gate of Babylon? Face the fury of my sword! EXCALIBUR!' Saber deflects the swords coming from ~Target~, obliterating him with her own Noble Phantasm."
+                        },
+						"winIfDeadRoles": ["kirei1"]
+                },
+                {
+                        "role": "gil3",
+                        "translation": "Gilgamesh",
+                        "side": "gil3",
+						"hide": true,
+                        "help": "You are the King of Heroes, Gilgamesh! Bent on preventing those mongrels from stealing your precious Holy Grail, you can daykill once per day without being revealed. Your status as the first king grants you the power to counter daykills!",
+                        "info": "Can kill one person during the day (user is not revealed). Revenges daykills. Sided with Gilgamesh & Kirei.",
+                        "actions": {
+								"teamTalk": true,
+								"preventTeamvote": true,
+                                "startup": {
+                                        "revealRole": ["kirei1"]
+                                },
+                                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You can now /kill without being revealed!",
+                        "killmsg": "Gilgamesh summons his Noble Phantasm, the Gate of Babylon, revealing thousands of swords in a transparent wall. They fly forward at a high velocity, impaling themselves into ~Target~!"
+                    }
+                },
+                                "daykill": "revenge",
+                                "daykillrevengemsg": "'All things belong to me. Well, if you won't be with me, Saber, no one will.' Gilgamesh deflects the strike of Excalibur and counters with his own Noble Phantasm, cutting ~Target~ to pieces!"
+                        },
+						"winIfDeadRoles": ["kiritsugu"]
+                },
+                {
+                        "role": "kiritsugu",
+                        "translation": "Kiritsugu",
+                        "side": "sab",
+                        "help": "A 'magus killer' hired by the Einzbern family to obtain the Grail, you are Saber's master. With three Command Seals, you can do one of three things during the night: /inspect, /distract, or /safeguard!",
+                        "info": "Can inspect, safeguard, or distract during the night. All commands have one charge and only one can be used per night. Knows Saber. Sided with Saber & Kiritsugu.",
+                        "actions": {
+								"teamTalk": true,
+								"preventTeamvote": true,
+                                "startup": {
+                                        "revealRole": ["sab4"]
+                                },
+                                "night": {
+                                        "inspect": {
+                                                "target": "AnyButTeam",
+                                                "common": "Self",
+                                                "priority": 30,
+                                                "charges": 1,
+                                                "restrict": [
+                                                        "distract",
+                                                        "safeguard"
+                                                ]
+                                        },
+                                        "distract": {
+                                                "target": "AnyButTeam",
+                                                "common": "Self",
+                                                "priority": 5,
+                                                "charges": 1,
+                                                "restrict": [        
+                                                        "inspect",
+                                                        "safeguard"
+                                                ]
+                                        },
+                                        "safeguard": {
+                                                "target": "Any",
+                                                "common": "Self",
+                                                "priority": 4,
+                                                "charges": 1,
+                                                "restrict": [
+                                                        "inspect",
+                                                        "distract"
+                                                ]
+                                        }
+                                }
+                        },
+						"winIfDeadRoles": ["kirei1"]
+                },
+                {
+                        "role": "kirei1",
+                        "translation": "Kirei",
+                        "side": "gil3",
+                        "help": "A priest chosen to participate in the Holy Grail War, you have darker intentions to pursue. With your three Command Seals, you may either /inspect, /distract, or /safeguard during the night. Each action has one use and only one can be used per night.",
+                        "info": "Can inspect, safeguard, or distract during the night. All commands have one charge and only one can be used per night. Sided with Gilgamesh & Kirei.",
+                        "actions": {
+								"teamTalk": true,
+								"preventTeamvote": true,
+                                 "startup": {
+                                        "revealRole": ["gil3"]
+                                },
+                                "night": {
+                                        "inspect": {
+                                                "target": "AnyButTeam",
+                                                "common": "Self",
+                                                "priority": 30,
+                                                "charges": 1,
+                                                "restrict": [
+                                                        "distract",
+                                                        "safeguard"
+                                                ]
+                                        },
+                                        "distract": {
+                                                "target": "AnyButTeam",
+                                                "common": "Self",
+                                                "priority": 5,
+                                                "charges": 1,
+                                                "restrict": [        
+                                                        "inspect",
+                                                        "safeguard"
+                                                ]
+                                        },
+                                        "safeguard": {
+                                                "target": "Any",
+                                                "common": "Self",
+                                                "priority": 4,
+                                                "charges": 1,
+                                                "restrict": [
+                                                        "inspect",
+                                                        "distract"
+                                                ]
+                                        }
+                                }
+                        },
+						"winIfDeadRoles": ["kiritsugu"]
+                },
+                {
+                    "role": "rider1",
+                    "translation": "Rider",
+                    "side": "ride",
+                    "help": "You are Iskandar, King of Conquerors. With your Noble Phantasm you can /trample one person during the night to weaken them to a point where you can /kill them during the day. You will not be revealed. You cannot use this method to kill Lancer, so be careful!",
+                    "info": "Can trample one person during the night (cannot trample Lancer). Can only daykill roles that have been trampled (user is not revealed). Sided with Rider & Waver.",
+                    "actions": {
+                        "night": {
+                            "trample": {
+                                "command": "convert",
+                                "common": "Self",
+                                "target": "AnyButSelf",
+                                "priority": 10,
+                                "newRole": {
+                                    "ber3": ["ber2"],
+                                    "sab6": ["saber-5", "saber-5a", "saber-5b", "saber-5c", "saber-5e", "saber-6", "saber-6a", "saber-6b"],
+									"Gil1": ["gil4"]
+                                },
+								"convertmsg": "Rider sends out his Ionian Hetairoi towards ~Target~, causing them to cower fear and leave themselves vulnerable!",
+								"usermsg": ""
+                            }
+						},
+                        "standby": {
+                            "kill": {
+                                "target": "AnyButSelf",
+                                "msg": "You can /kill roles that you have successfully trampled! You will not be revealed.",
+                                "killmsg": "~Target~ is thrown into a reality marble - Rider's Ionian Hetairoi! Iskandar's legions of soldiers quickly surround them and cut down ~Target~ as Rider takes to the skies in his chariot!"
+							}	
+                        },
+						"startup": {
+							"revealRole": ["wav"]
+						},
+						"preventTeamvote": true,
+						"teamTalk": true,
+						"poison": {
+									"mode": {
+										"ignore": [
+											"ryu"
+										],
+									"identify": [
+										"ryu"
+										]
+									},
+								"identify": "You notice a shady looking boy slip away from the wine you just drank. It was ~Target~, that blasted little Master, ~Role~!"
+							},
+						"dummy": {
+								"mode": "ignore",
+								"msg": "?Illya: Silly Daddy, they're not a mage!"
+						},
+						"onDeath": {
+							"convertRoles": {
+								"wav": "wav2"
+							},
+						"convertmsg": "Refusing to be outdone, Waver's votes have increased by 0.7!"
+						}
+                    }    
+                },
+                {
+                    "role": "saber-5",
+                    "translation": "Saber",
+                    "side": "sab",
+					"hide": true,
+                    "help": "You are the King of Knights, Arturia Pendragon, who swore to win the Holy Grail in order to save her country from disintegrating from the horrors of civil war. Your holy scabbard, Avalon, makes you immune to poisons and Lancer's Gae Bola, and you can also /avalon one person during the night to counter their action! (Copying Gilgamesh allows you to counter daykills, copying Rider prevents you from being converted, copying Berserker allows you to counter nightkills, and copying Lancer gives you a nightkill). You can also /avalon yourself to get a voteshield of -99!",
+                    "info": "",
+                    "actions": {
+                         "night": {
+							"avalon": {
+                                "command": "copy",
+                                "target": "Any",
+                                "common": "Self",
+                                "priority": 1,
+                                "copyAs": {
+									"saber-5a": ["saber-5"],
+                                    "saber-5b": ["gil4", "gil5"],
+                                    "saber-5c": ["ber2", "ber3"],
+									"saber-5d": ["rider1"],
+									"saber-5e": ["lan1"]
+                                    },
+                                    "copymsg": "Saber has changed forms!",
+                                    "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!",
+									"copyfailmsg": ""
+                                   }
+                              },
+                        "daykill": {
+                            "mode": {
+                                "ignore": ["rider1"]
+                            }
+                        },
+                        "poison": {
+                            "mode": "ignore"
+						}
+                    }
+                },
+				{
+                    "role": "saber-5a",
+                    "translation": "Saber",
+                    "side": "sab",
+					"hide": true,
+                    "help": "You now have a voteshield of -99. You can still /avalon one person during the night to counter their action! (Copying Gilgamesh allows you to counter daykills, copying Rider prevents you from being converted, copying Berserker allows you to counter nightkills, and copying Lancer gives you a nightkill).",
+                    "info": "",
+                    "actions": {
+						"voteshield": -99,
+                         "night": {
+							"avalon": {
+                                "command": "copy",
+                                "target": "Any",
+                                "common": "Self",
+                                "priority": 1,
+								"hide": true,
+                                "copyAs": {
+                                    "saber-5b": ["gil4", "gil5"],
+                                    "saber-5c": ["ber2", "ber3"],
+									"saber-5d": ["rider1"],
+									"saber-5e": ["lan1"]
+                                    },
+                                    "copymsg": "Saber has changed forms!",
+                                    "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!",
+									"copyfailmsg": ""
+                                   }
+                              },
+                        "daykill": {
+                            "mode": {
+                                "ignore": ["rider1"]
+                            }
+                        },
+                        "poison": {
+                            "mode": "ignore"
+						}
+                    }
+                },
+				{
+                    "role": "saber-5b",
+                    "translation": "Saber",
+                    "side": "sab",
+					"hide": true,
+                    "help": "You now counter daykills. You can still /avalon one person during the night to counter their action! (Copying Rider prevents you from being converted, copying Berserker allows you to counter nightkills, and copying Lancer gives you a nightkill). Copying yourself gives you a voteshield of -99.",
+                    "info": "",
+                    "actions": {
+                         "night": {
+							"avalon": {
+                                "command": "copy",
+                                "target": "Any",
+                                "common": "Self",
+                                "priority": 1,
+								"hide": true,
+                                "copyAs": {
+                                    "saber-5a": ["saber-5b"],
+                                    "saber-5b": ["gil4", "gil5"],
+									"saber-5d": ["rider1"],
+									"saber-5e": ["lan1"]
+                                    },
+                                    "copymsg": "Saber has changed forms!",
+                                    "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!",
+									"copyfailmsg": ""
+                                   }
+                              },
+                        "daykill": "revenge",
+						"daykillrevengemsg": "'You thought you could strike me down with your Noble Phantasm? Face the fury of my sword! EXCALIBUR!' Saber deflects the swords coming from ~Target~, obliterating him with her own Noble Phantasm.",
+                        "poison": {
+                            "mode": "ignore"
+						}
+                    }
+                },
+				{
+                    "role": "saber-5c",
+                    "translation": "Saber",
+                    "side": "sab",
+					"hide": true,
+                    "help": "You now counter nightkills. You can still /avalon one person during the night to counter their action! (Copying Rider prevents you from being converted, copying Gilgamesh allows you to counter daykills, and copying Lancer gives you a nightkill). Copying yourself gives you a voteshield of -99.",
+                    "info": "",
+                    "actions": {
+                         "night": {
+							"avalon": {
+                                "command": "copy",
+                                "target": "Any",
+                                "common": "Self",
+                                "priority": 1,
+								"hide": true,
+                                "copyAs": {
+                                    "saber-5a": ["saber-5c"],
+									"saber-5b": ["gil4", "gil5"],
+                                    "saber-5d": ["rider1"],
+									"saber-5e": ["lan1"]
+                                    },
+                                    "copymsg": "Saber has changed forms!",
+                                    "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!",
+									"copyfailmsg": ""
+                                   }
+                              },
+                        "daykill": {
+                            "mode": {
+                                "ignore": ["rider1"]
+                            }
+                        },
+                        "poison": {
+                            "mode": "ignore"
+						},
+						"kill": {
+							"mode": "ChangeTarget"
+						}
+                    }
+                },
+				{
+                    "role": "saber-5d",
+                    "translation": "Saber",
+                    "side": "sab",
+					"hide": true,
+                    "help": "You cannot be converted. You can still /avalon one person during the night to counter their action! (Copying Berserker allows you to counter nightkills, copying Gilgamesh allows you to counter daykills, and copying Lancer gives you a nightkill). Copying yourself gives you a voteshield of -99.",
+                    "info": "",
+                    "actions": {
+                         "night": {
+							"avalon": {
+                                "command": "copy",
+                                "target": "Any",
+                                "common": "Self",
+                                "priority": 1,
+								"hide": true,
+                                "copyAs": {
+                                    "saber-5a": ["saber-5d"],
+									"saber-5b": ["gil4", "gil5"],
+                                    "saber-5c": ["ber2", "ber3"],
+									"saber-5e": ["lan1"]
+                                    },
+                                    "copymsg": "Saber has changed forms!",
+                                    "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!",
+									"copyfailmsg": ""
+                                   }
+                              },
+                        "daykill": {
+                            "mode": {
+                                "ignore": ["rider1"]
+                            }
+                        },
+                        "poison": {
+                            "mode": "ignore"
+						}
+                    }
+                },
+				{
+                    "role": "saber-5e",
+                    "translation": "Saber",
+                    "side": "sab",
+					"hide": true,
+                    "help": "You can now /kill during the night. You can still /avalon one person during the night to counter their action! (Copying Rider prevents you from being converted, copying Gilgamesh allows you to counter daykills, and copying Berserker allows you to counter nightkills). Copying yourself gives you a voteshield of -99.",
+                    "info": "",
+                    "actions": {
+                         "night": {
+							"avalon": {
+                                "command": "copy",
+                                "target": "Any",
+                                "common": "Self",
+                                "priority": 1,
+								"hide": true,
+                                "copyAs": {
+                                    "saber-5a": ["saber-5d"],
+									"saber-5b": ["gil4", "gil5"],
+                                    "saber-5c": ["ber2", "ber3"],
+									"saber-5d": ["rider1"]
+                                   },
+                                "copymsg": "Saber has changed forms!",
+                                "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!",
+								"copyfailmsg": ""
+                             },
+							 "kill": {
+								"target": "AnyButSelf",
+								"common": "Self",
+								"priority": 10
+							}
+                        },
+                        "daykill": {
+                            "mode": {
+                                "ignore": ["rider1"]
+                            }
+                        },
+                        "poison": {
+                            "mode": "ignore"
+						}
+                    }
+                },
+                {
+                    "role": "sab6",
+                    "translation": "Saber",
+                    "side": "sab",
+					"hide": true,
+                    "help": "You are the King of Knights, Arturia Pendragon, who swore to win the Holy Grail in order to save her country from disintegrating from the horrors of civil war. Your holy scabbard, Avalon, makes you immune to poisons and Lancer's Gae Bola. With Excalibur, you can /kill one person during the night.",
+                    "info": "Can kill one person during the night. Immune to poison and Lancer's kill. Sided with Saber & Kirei.",
+                    "actions": {
+                        "night": {
+                            "kill": {
+                                "target": "AnyButSelf",
+                                "common": "Self",
+                                "priority": 20,
+                                "msg": ""
+                            }
+                        },
+                        "poison": {
+                            "mode": "ignore"
+						}
+                     }
+                },
+				{
+                    "role": "saber-6",
+                    "translation": "Saber",
+                    "side": "sab",
+					"hide": true,
+                    "help": "You are the King of Knights, Arturia Pendragon, who swore to win the Holy Grail in order to save her country from disintegrating from the horrors of civil war. Your holy scabbard, Avalon, allows you to /avalon one person during the night to counter their action! (Copying Gilgamesh allows you to counter daykills and copying Rider prevents you from being converted). You can also /avalon yourself to get a voteshield of -99! Targetting other Masters will have no effect.",
+                    "info": "",
+                    "actions": {
+						"teamTalk": true,
+						"preventTeamvote": true,
+                        "startup": {
+                            "revealRole": ["kiritsugu_6a"]
+                         },
+                         "night": {
+							"avalon": {
+                                "command": "copy",
+                                "target": "Any",
+                                "common": "Self",
+                                "priority": 1,
+								"hide": true,
+                                "copyAs": {
+									"saber-6a": ["saber-6"],
+                                    "saber-6b": ["gil4", "gil5"],
+									"saber-6d": ["rider1"]
+                                    },
+                                    "copymsg": "Saber has changed forms!",
+                                    "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!",
+									"copyfailmsg": ""
+                                   }
+                              },
+                        "daykill": {
+                            "mode": {
+                                "ignore": ["rider1"]
+                            }
+                        },
+                        "poison": {
+                            "mode": "ignore"
+						}
+                    }
+                },
+				{
+                    "role": "saber-6a",
+                    "translation": "Saber",
+                    "side": "sab",
+					"hide": true,
+                    "help": "You now have a voteshield of -99. You can still /avalon one person during the night to counter their action! (Copying Gilgamesh allows you to counter daykills and copying Rider prevents you from being converted). Targetting other Masters will have no effect.",
+                    "info": "",
+                    "actions": {
+						"voteshield": -99,
+						"teamTalk": true,
+						"preventTeamvote": true,
+                        "startup": {
+                            "revealRole": ["kiritsugu_6a"]
+                         },
+                         "night": {
+							"avalon": {
+                                "command": "copy",
+                                "target": "Any",
+                                "common": "Self",
+                                "priority": 1,
+								"hide": true,
+                                "copyAs": {
+                                    "saber-6b": ["gil4", "gil5"],
+									"saber-6d": ["rider1"]
+                                    },
+                                    "copymsg": "Saber has changed forms!",
+                                    "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!",
+									"copyfailmsg": ""
+                                   }
+                              },
+                        "daykill": {
+                            "mode": {
+                                "ignore": ["rider1"]
+                            }
+                        },
+                        "poison": {
+                            "mode": "ignore"
+						}
+                    }
+                },
+				{
+                    "role": "saber-6b",
+                    "translation": "Saber",
+                    "side": "sab",
+					"hide": true,
+                    "help": "You now counter daykills. You can still /avalon one person during the night to counter their action! Copying Rider prevents you from being converted. Targetting other Masters will have no effect. Targetting yourself gives you a voteshield of -99.",
+                    "info": "",
+                    "actions": {
+						"voteshield": -99,
+						"teamTalk": true,
+						"preventTeamvote": true,
+                        "startup": {
+                            "revealRole": ["kiritsugu_6a"]
+                         },
+                         "night": {
+							"avalon": {
+                                "command": "copy",
+                                "target": "Any",
+                                "common": "Self",
+                                "priority": 1,
+								"hide": true,
+                                "copyAs": {
+                                    "saber-6a": ["saber-6b"],
+									"saber-6d": ["rider1"]
+                                    },
+                                    "copymsg": "Saber has changed forms!",
+                                    "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!",
+									"copyfailmsg": ""
+                                   }
+                              },
+							"daykill": "revenge",
+							"daykillrevengemsg": "'You thought you could strike me down with your Noble Phantasm? Face the fury of my sword! EXCALIBUR!' Saber deflects the swords coming from ~Target~, obliterating him with her own Noble Phantasm.",
+							"poison": {
+								"mode": "ignore"
+						}
+					}
+                },
+				{
+                    "role": "saber-6d",
+                    "translation": "Saber",
+                    "side": "sab",
+					"hide": true,
+                    "help": "You cannot be converted. You can still /avalon one person during the night to counter their action! Copying Gilgamesh allows you to counter daykills. Targetting other Masters will have no effect. Targetting yourself gives you a voteshield of -99.",
+                    "info": "",
+                    "actions": {
+						"voteshield": -99,
+						"teamTalk": true,
+						"preventTeamvote": true,
+                        "startup": {
+                            "revealRole": ["kiritsugu_6a"]
+                         },
+                         "night": {
+							"avalon": {
+                                "command": "copy",
+                                "target": "Any",
+                                "common": "Self",
+                                "priority": 1,
+								"hide": true,
+                                "copyAs": {
+                                    "saber-6b": ["gil4", "gil5"],
+									"saber-6a": ["saber-6d"]
+                                    },
+                                    "copymsg": "Saber has changed forms!",
+                                    "usermsg": "You have copied the attacks of an enemy and have adapted to take them down!",
+									"copyfailmsg": ""
+                                }
+							},	
+							"daykill": "revenge",
+							"daykillrevengemsg": "'You thought you could strike me down with your Noble Phantasm? Face the fury of my sword! EXCALIBUR!' Saber deflects the swords coming from ~Target~, obliterating him with her own Noble Phantasm.",
+							"poison": {
+								"mode": "ignore"
+                        }
+                    }
+                },
+                {
+                    "role": "ber2",
+                    "translation": "Berserker",
+                    "side": "ber",
+					"hide": true,
+                    "help": "A fearsome warrior corrupted in his pursuit for the Holy Grail. You can kill one person during the night! In addition, you evade all daykills!",
+                    "info": "Can kill one person during the night (starting night 2 in 7p). Evades daykills. In 7p, gains the power to daykill upon Gilgamesh's death and has 2 votes. Sided with Berserker & Kariya.",
+                    "actions": {
+                        "night": {
+                            "kill": {
+                                 "common": "Self",
+                                 "target": "AnyButSelf",
+                                 "priority": 15
+                               }
+                           },
+                           "daykill": {
+                              "mode": {
+                                 "ignore": ["rider1"]
+                            }
+						}
+                    }
+                },
+                {
+                        "role": "ber3",
+                        "translation": "Berserker",
+                        "side": "ber",
+                        "help": "A fearsome warrior corrupted in his pursuit for the Holy Grail. You can kill one person during the night! In addition, you evade all daykills!",
+                        "info": "",
+                        "hide": true,
+                        "actions": {
+                                "night": {    
+                                     "kill": {
+                                        "common": "Self",
+                                        "target": "AnyButSelf",
+                                        "priority": 15,
+                                        "hide": true
+                                    }
+                                }
+                        }
+                },
+                {
+                        "role": "gil4",
+                        "translation": "Gilgamesh",
+                        "side": "gil2",  
+						"hide": true,
+                        "help": "You are the King of Heroes, Gilgamesh! Bent on preventing those mongrels from stealing your precious Holy Grail, you can daykill without being revealed.",
+                        "info": "Can kill one person during the day (user is not revealed). Counters daykills in 4p. In 7p, becomes immune to nightkills upon Saber's death. Sided with Gilgamesh.",
+                        "actions": {
+                            "daykill": "evade",
+							"startup": {
+								"revealRole": ["tokiomi_6a"]
+							},
+							"preventTeamvote": true,
+							"teamTalk": true,
+							"poison": {
+								"mode": {
+									"identify": [
+										"ryu"
+										]
+									},
+								"identifymsg": "You notice a shady looking boy slip away from the wine you just drank. It was ~Target~, that blasted little Master!"
+							},
+							"dummy": {
+								"mode": "ignore",
+								"msg": "?Illya: Silly Daddy, they're not a mage!"
+							},
+                            "standby": {
+                                 "kill": {
+                                    "target": "AnyButTeam",
+                                    "msg": "You can now /kill during the day (60% chance of being revealed!)",
+									"revealChance": 0.6,
+									"revealmsg": "'A filthy worm like you should face the ground, crawl on your stomach... and die.' ~Self~ walks away in disgust.",
+                                    "killmsg": "Gilgamesh summons his Noble Phantasm, the Gate of Babylon, revealing thousands of swords in a transparent wall. They fly forward at a high velocity, impaling themselves into ~Target~!"
+                                }
+                            },
+							"onDeath": {
+								"convertRoles": {
+									"tokiomi_6a": "tokiomi_6b",
+									"tokiomi_6_plusvotesa": "tokiomi_6_plusvotesb"
+								},
+							"convertmsg": "Refusing to be outdone, Tokiomi's votes have increased by 0.5!"
+                        }
+                    }
+                },
+                 {
+                        "role": "gil5",
+                        "translation": "Gilgamesh",
+                        "side": "gil2",  
+                        "hide": true,
+                        "help": "You are the King of Heroes, Gilgamesh! Bent on preventing those mongrels from stealing your precious Holy Grail, you can daykill during the day without being revealed.",
+                        "info": "Can kill one person during the day (user is not revealed). Sided with Gilgamesh.",
+                        "actions": {
+                            "standby": {
+                                        "kill": {
+                                                "target": "AnyButSelf",
+                                                "msg": "You can now /kill during the day. You won't be revealed!",
+                                                "killmsg": "Gilgamesh summons his Noble Phantasm, the Gate of Babylon, revealing thousands of swords in a transparent wall. They fly forward at a high velocity, impaling themselves into ~Target~!"
+                                         }
+                                }
+                        }
+                },
+                {
+                        "role": "lan1",
+                        "translation": "Lancer",
+                        "side": "lan",
+                        "help": "You are Diarmuid, a legendary Irish hero who wields the deadly lance Gae Bola. You can /poison one person during the night and you have the ability to /kill one person during the night, once per game.",
+                        "info": "Can poison one person during the night. Can kill one person during the game (Saber evades this). Sided with Lancer & Kayneth.",
+                        "actions": {
+                            "night": {
+                               "poison": {
+									"common": "Role",
+                                    "target": "AnyButSelf",
+                                    "priority": 9
+                                },
+                                "kill": {
+									"common": "Role",
+                                        "target": "AnyButSelf",
+                                        "priority": 4,
+                                        "charges": 1
+                                    }
+                             }
+                       }
+				},
+				{
+                        "role": "saber_6",
+                        "translation": "Saber",
+                        "side": "sab",
+						"hide": true,
+                        "help": "You are the King of Knights, Arturia Pendragon, who swore to win the Holy Grail in order to save her country from disintegrating from the horrors of civil war. Your Noble Phantasm, the scabbard Avalon, allows you to counter nightkills and the ability to /protect your master, Kiritsugu, during the night.",
+                        "info": "Counters nightkills. Can protect one person during the night. Sided with Saber & Kiritsugu.",
+                        "actions": {
+								"teamTalk": true,
+								"preventTeamvote": true,
+                                "startup": {
+                                        "revealRole": ["kiritsugu_6a"]
+                                },
+                                "kill": {
+									"mode": "ChangeTarget"
+								},
+								"night": {
+									"protect": {
+										"target": "AnyButSelf",
+										"common": "Team",
+										"priority": 7
+									}
+								},
+								"poison": {
+									"mode": {
+										"ignore": [
+											"ryu"
+										],
+									"identify": [
+										"ryu"
+										]
+									},
+								"identify": "You notice a shady looking boy slip away from the wine you just drank. It was ~Target~, that blasted little Master, ~Role~!"
+							},
+							"onDeath": {
+								"convertRoles": {
+									"kiritsugu_6a": "kiritsugu_6b"
+								},
+								"convertmsg": "Refusing to be outdone, Kiritsugu's vote has changed to 1.5!"
+							}
+					   }
+                },
+				{
+					"role": "kiritsugu_6a",
+					"translation": "Kiritsugu",
+					"side": "sab",
+					"help": "You are Kiritsugu Emiya, the magus killer. Work together with your Servant Saber to take down all the other Masters and Servants! You can /sabotage one person during the night - if they are a magus like Tokiomi, Kayneth, or Kariya, they will automatically die! If not, you will still know their identity. If Saber dies, your vote becomes 1.5.",
+					"info": "Can sabotage one person during the night (kills Tokiomi, Kayneth, and Kariya, inspects the rest.) Knows Saber. Vote becomes 1.5 upon Saber's death. Sided with Saber and Kiritsugu.",
+					"actions": {
+						"startup": {
+								"revealRole": ["saber-6"]
+						},
+						"teamTalk": true,
+						"preventTeamvote": true,
+						"night": {
+							"sabotage": {
+								"command": ["dummy", "inspect"],
+								"common": "Self",
+								"target": "AnyButTeam",
+								"priority": 11,
+								"dummytargetmsg": "Kiritsugu sent Maiya out to mess with your plans tonight! It may not have worked, but she brought back some valuable info..."	
+							}
+						}
+					}
+				},
+				{
+					"role": "kiritsugu_6b",
+					"translation": "Kiritsugu",
+					"side": "sab",
+					"hide": true,
+					"help": "You are Kiritsugu Emiya, the magus killer. You can /sabotage one person during the night - if they are a magus like Tokiomi, Kayneth, or Kariya, they will automatically die! If not, you will still know their identity. Now that you're alone, your vote is 1.5.",
+					"info": "Can sabotage one person during the night (kills Tokiomi, Kayneth, and Kariya, inspects the rest.) Knows Saber. Vote becomes 1.5 upon Saber's death. Sided with Saber and Kiritsugu.",
+					"actions": {
+						"startup": {
+								"revealRole": ["saber_6"]
+						},
+						"teamTalk": true,
+						"preventTeamvote": true,
+						"vote": 1.5,
+						"night": {
+							"sabotage": {
+								"command": ["dummy", "inspect"],
+								"common": "Self",
+								"target": "AnyButTeam",
+								"priority": 11,
+								"hide": true,
+								"dummytargetmsg": "Kiritsugu sent Maiya out to mess with your plans tonight! It may not have worked, but she brought back some valuable info..."	
+							}
+						}
+					}
+				},
+				{
+                        "role": "gilgamesh_6",
+                        "translation": "Gilgamesh",
+                        "side": "gil",  
+                        "hide": true,
+                        "help": "You are the King of Heroes, Gilgamesh! Bent on preventing those mongrels from stealing your precious Holy Grail, you can daykill during the day. Because your attacks are so flashy, you have a 60% chance of being revealed!",
+                        "info": "Can kill one person during the day (60% chance to reveal). Sided with Gilgamesh & Tokiomi.",
+                        "actions": {
+							"startup": {
+								"revealRole": ["tokiomi_6a"]
+							},
+							"preventTeamvote": true,
+							"teamTalk": true,
+							"poison": {
+								"mode": {
+									"identify": [
+										"ryu"
+										]
+									},
+								"identifymsg": "You notice a shady looking boy slip away from the wine you just drank. It was ~Target~, that blasted little Master!"
+							},
+							"dummy": {
+								"mode": "ignore",
+								"msg": "?Illya: Silly Daddy, they're not a mage!"
+							},
+                            "standby": {
+                                 "kill": {
+                                    "target": "AnyButTeam",
+                                    "msg": "You can now /kill during the day (60% chance of being revealed!)",
+									"revealChance": 0.6,
+									"revealmsg": "'A filthy worm like you should face the ground, crawl on your stomach... and die.' ~Self~ walks away in disgust.",
+                                    "killmsg": "Gilgamesh summons his Noble Phantasm, the Gate of Babylon, revealing thousands of swords in a transparent wall. They fly forward at a high velocity, impaling themselves into ~Target~!"
+                                }
+                            },
+							"onDeath": {
+								"convertRoles": {
+									"tokiomi_6a": "tokiomi_6b",
+									"tokiomi_6_plusvotesa": "tokiomi_6_plusvotesb"
+								},
+								"convertmsg": "Refusing to be outdone, Tokiomi's votes have increased by 0.5!"
+							}
+                        }
+                },
+				{
+                        "role": "gil6k",
+                        "translation": "Gilgamesh",
+                        "side": "gil3",  
+                        "hide": true,
+                        "help": "You are the King of Heroes, Gilgamesh! Bent on preventing those mongrels from stealing your precious Holy Grail, you can daykill during the day without being revealed.",
+                        "info": "Can kill one person during the day (user is not revealed). Sided with Gilgamesh & Tokiomi.",
+                        "actions": {
+							"startup": {
+								"revealRole": ["kirei_9"]
+							},
+							"preventTeamvote": true,
+							"teamTalk": true,
+							"poison": {
+								"mode": {
+									"identify": [
+										"ryu"
+										]
+									},
+								"identifymsg": "You notice a shady looking boy slip away from the wine you just drank. It was ~Target~, that blasted little Master!"
+							},
+							"dummy": {
+								"mode": "ignore",
+								"msg": "?Illya: Silly Daddy, they're not a mage!"
+							},
+                            "standby": {
+                                        "kill": {
+                                                "target": "AnyButTeam",
+                                                "msg": "You can now /kill during the day. You won't be revealed!",
+                                                "killmsg": "Gilgamesh summons his Noble Phantasm, the Gate of Babylon, revealing thousands of swords in a transparent wall. They fly forward at a high velocity, impaling themselves into ~Target~!"
+                                         }
+                                }
+                        }
+                },
+				{
+                        "role": "gilgamesh_8",
+                        "translation": "Gilgamesh",
+                        "side": "gil",  
+                        "hide": true,
+                        "help": "You are the King of Heroes, Gilgamesh! Bent on preventing those mongrels from stealing your precious Holy Grail, you can daykill during the day. Because your attacks are so flashy, you have a 60% chance of being revealed!",
+                        "info": "Can kill one person during the day (60% chance to reveal). Sided with Gilgamesh & Tokiomi.",
+                        "actions": {
+							"startup": {
+								"revealRole": ["tokiomi_6a"]
+							},
+							"preventTeamvote": true,
+							"teamTalk": true,
+							"poison": {
+								"mode": {
+									"identify": [
+										"ryu"
+										]
+									},
+								"identifymsg": "You notice a shady looking boy slip away from the wine you just drank. It was ~Target~, that blasted little Master!"
+							},
+							"dummy": {
+								"mode": "ignore",
+								"msg": "?Illya: Silly Daddy, they're not a mage!"
+							},
+                            "standby": {
+                                 "kill": {
+                                    "target": "AnyButTeam",
+                                    "msg": "You can now /kill during the day (60% chance of being revealed!)",
+									"revealChance": 0.6,
+									"revealmsg": "'A filthy worm like you should face the ground, crawl on your stomach... and die.' ~Self~ walks away in disgust.",
+                                    "killmsg": "Gilgamesh summons his Noble Phantasm, the Gate of Babylon, revealing thousands of swords in a transparent wall. They fly forward at a high velocity, impaling themselves into ~Target~!"
+                                }
+                            }
+                        }
+                },
+				{
+                        "role": "gilgamesh_8k",
+                        "translation": "Gilgamesh",
+                        "side": "gil3",  
+                        "hide": true,
+                        "help": "You are the King of Heroes, Gilgamesh! Bent on preventing those mongrels from stealing your precious Holy Grail, you can daykill during the day. Because your attacks are so flashy, you have a 60% chance of being revealed!",
+                        "info": "Can kill one person during the day (60% chance to reveal). Sided with Gilgamesh & Tokiomi.",
+                        "actions": {
+							"startup": {
+								"revealRole": ["kirei_9"]
+							},
+							"preventTeamvote": true,
+							"teamTalk": true,
+							"poison": {
+								"mode": {
+									"identify": [
+										"ryu"
+										]
+									},
+								"identifymsg": "You notice a shady looking boy slip away from the wine you just drank. It was ~Target~, that blasted little Master!"
+							},
+							"dummy": {
+								"mode": "ignore",
+								"msg": "?Illya: Silly Daddy, they're not a mage!"
+							},
+                            "standby": {
+                                 "kill": {
+                                    "target": "AnyButTeam",
+                                    "msg": "You can now /kill during the day (60% chance of being revealed!)",
+									"revealChance": 0.6,
+									"revealmsg": "'A filthy worm like you should face the ground, crawl on your stomach... and die.' ~Self~ walks away in disgust.",
+                                    "killmsg": "Gilgamesh summons his Noble Phantasm, the Gate of Babylon, revealing thousands of swords in a transparent wall. They fly forward at a high velocity, impaling themselves into ~Target~!"
+                                }
+                            }
+                        }
+                },
+				{
+					"role": "rider_6a",
+					"translation": "Rider",
+					"side": "ride",
+					"help": "You are Iskandar, King of Conquerors. With your Noble Phantasm, the Ionian Hetairoi, you can /kill one person during the night.",
+					"info": "Can kill one person during the night. In 7p: dies instantly to poison and gains immunity to daykills upon Berserker's death. Sided with Rider & Waver.",
+					"actions": {
+						"startup": {
+							"revealRole": ["wav"]
+						},
+						"preventTeamvote": true,
+						"teamTalk": true,
+						"poison": {
+									"mode": {
+										"ignore": [
+											"ryu"
+										],
+									"identify": [
+										"ryu"
+										]
+									},
+								"identify": "You notice a shady looking boy slip away from the wine you just drank. It was ~Target~, that blasted little Master, ~Role~!"
+							},
+						"dummy": {
+								"mode": "ignore",
+								"msg": "?Illya: Silly Daddy, they're not a mage!"
+							},
+						"night": {
+							"kill": {
+								"common": "Role",
+								"target": "AnyButTeam",
+								"priority": 10
+							}
+						},
+						"onDeath": {
+							"convertRoles": {
+								"wav": "wav2"
+							},
+						"convertmsg": "Refusing to be outdone, Waver's votes have increased by 0.7!"
+					}
+				}
+			},
+			{
+				"role": "wav",
+				"translation": "Waver",
+				"side": "ride",
+				"help": "You are Waver Velvet, a student at the Department of Evocation, but you have proven you skills by summoning the Servant Rider! You can /inspect and /distract during the night. If Rider dies, your vote will become 1.7!",
+				"info": "Can inspect during the night. Can distract during the night. Vote becomes 1.7 if Rider dies. Sided with Rider and Waver.",
+				"actions": {
+						"startup": {
+								"revealRole": ["rider_6a"]
+						},
+						"preventTeamvote": true,
+						"teamTalk": true,
+						"dummy": {
+								"mode": "ignore",
+								"msg": "?Illya: Silly Daddy, they're not a mage!"
+							},
+						"night": {
+								"inspect": {
+									"target": "AnyButTeam",
+									"common": "Self",
+									"priority": 30
+								},
+								"distract": {
+									"target": "AnyButTeam",
+									"common": "Self",
+									"priority": 8,
+									"distractmsg": "Waver cast a hypnosis spell on you, causing you to forget what you were doing tonight."
+								}
+						}
+				}
+		},
+		{
+				"role": "wav2",
+				"translation": "Waver",
+				"side": "ride",
+				"hide": true,
+				"help": "You are Waver Velvet, a student at the Department of Evocation, but you have proven you skills by summoning the Servant Rider! You can /inspect and /distract during the night. Your vote is 1.5!",
+				"info": "Can inspect other players. Sided with Rider and Waver.",
+				"actions": {
+					"vote": 1.7,
+					"startup": {
+							"revealRole": ["rider_6a"]
+					},
+					"preventTeamvote": true,
+					"teamTalk": true,
+					"dummy": {
+							"mode": "ignore",
+							"msg": "?Illya: Silly Daddy, they're not a mage!"
+						},
+					"night": {
+							"inspect": {
+								"target": "AnyButTeam",
+								"common": "Self",
+								"priority": 30
+							},
+							"distract": {
+								"target": "AnyButTeam",
+								"common": "Self",
+								"priority": 8,
+								"distractmsg": "Waver cast a hypnosis spell on you, causing you to forget what you were doing tonight."
+						}
+					}
+				}
+		},
+		{
+				"role": "tokiomi_6a",
+				"translation": "Tokiomi",
+				"side": "gil",
+				"help": "Leader of the Tohsaka magus family, you control the servant Gilgamesh. You can /inspect one person during the night. If that person is Waver, your vote will also change to 1.5. You cannot be distracted! If Gilgamesh dies, your vote will increase by 0.5 regardless of your current vote.",
+				"info": "Can inspect one person during the night. If that person is Waver, vote increases by 1.5. Cannot be distracted. Vote becomes 1.5 if Gilgamesh dies. Sided with Gilgamesh & Tokiomi.",
+				"actions": {
+						"startup": {
+								"revealRole": ["gilgamesh_6"]
+						},
+						"preventTeamvote": true,
+						"teamTalk": true,
+						"dummy": {
+							"mode": "die",
+							"targetmsg": "Looks like your target was a magus after all. Good riddance."
+						},
+						"night": {
+								"inspect": {
+									"command": ["copy", "inspect"],
+									"target": "AnyButTeam",
+									"common": "Role",
+									"priority": 30,
+									"canCopy": ["wav", "wav2"],
+									"copyAs": "tokiomi_6_plusvotesa",
+									"copymsg": "'As brilliant a student as you may be, you are no match for a true Master!' Tokiomi's vote has increased by 0.5!"
+								}
+							},
+						"onDeath": {
+							"convertRoles": {
+								"gilgamesh_6": "gilgamesh_8k",
+								"gilgamesh_8": "gilgamesh_8k"
+							},
+							"convertmsg": "'Weakling. I think I shall follow another Master with a little more backbone.' Gilgamesh has joined Kirei Kotomine!"
+						}
+				}
+		},
+		{
+				"role": "tokiomi_6b",
+				"translation": "Tokiomi",
+				"side": "gil",
+				"hide": true,
+				"help": "Leader of the Tohsaka magus family, you control the servant Gilgamesh. You can /inspect one person during the night. If that person is Waver, your vote will also change to 1.5. You cannot be distracted! Your vote is now 1.5!",
+				"info": "Can convert Saber into a form abled to be killed by Gilgamesh. Sided with Gilgamesh and Tokiomi.",
+				"actions": {
+						"vote": 1.5,
+						"startup": {
+								"revealRole": ["gilgamesh_6"]
+						},
+						"preventTeamvote": true,
+						"teamTalk": true,
+						"dummy": {
+							"mode": "die",
+							"targetmsg": "Looks like your target was a magus after all. Good riddance."
+						},
+						"night": {
+								"inspect": {
+									"command": ["copy", "inspect"],
+									"target": "AnyButTeam",
+									"common": "Role",
+									"priority": 30,
+									"canCopy": ["wav", "wav2"],
+									"copyAs": "tokiomi_6_plusvotesa"
+								}
+							},
+						"onDeath": {
+							"convertRoles": {
+								"gilgamesh_8": "gilgamesh_8k"
+							},
+							"convertmsg": "'Weakling. I think I shall follow another Master with a little more backbone.' Gilgamesh has joined Kirei Kotomine!"
+						}
+				}
+		},
+		{
+				"role": "tokiomi_6_plusvotesa",
+				"translation": "Tokiomi",
+				"side": "gil",
+				"hide": true,
+				"help": "Leader of the Tohsaka magus family, you control the servant Gilgamesh. You can /inspect one person during the night. Your vote is now 1.5. You cannot be distracted! If Gilgamesh dies, your vote will increase by 0.5 regardless of your current vote.",
+				"info": "Can inspect one person during the night. If that person is Waver, vote increases by 1.5. Cannot be distracted. Vote becomes 1.5 if Gilgamesh dies. Sided with Gilgamesh & Tokiomi.",
+				"actions": {
+						"vote": 1.5,
+						"startup": {
+								"revealRole": ["gilgamesh_6"]
+						},
+						"preventTeamvote": true,
+						"teamTalk": true,
+						"dummy": {
+							"mode": "die",
+							"targetmsg": "Looks like your target was a magus after all. Good riddance."
+						},
+						"night": {
+								"inspect": {
+									"target": "AnyButTeam",
+									"common": "Role",
+									"priority": 30,
+									"hide": true
+								}
+							},
+						"onDeath": {
+							"convertRoles": {
+								"gilgamesh_8": "gilgamesh_8k"
+							},
+							"convertmsg": "'Weakling. I think I shall follow another Master with a little more backbone.' Gilgamesh has joined Kirei Kotomine!"
+						}
+				}
+		},
+		{
+				"role": "tokiomi_6_plusvotesb",
+				"translation": "Tokiomi",
+				"side": "gil",
+				"hide": true,
+				"help": "Leader of the Tohsaka magus family, you control the servant Gilgamesh. You can /inspect one person during the night. Your vote is now 2 You cannot be distracted!",
+				"info": "Can inspect one person during the night. If that person is Waver, vote increases by 1.5. Cannot be distracted. Vote becomes 1.5 if Gilgamesh dies. Sided with Gilgamesh & Tokiomi.",
+				"actions": {
+						"vote": 2,
+						"startup": {
+								"revealRole": ["gilgamesh_6"]
+						},
+						"preventTeamvote": true,
+						"teamTalk": true,
+						"dummy": {
+							"mode": "die",
+							"targetmsg": "Looks like your target was a magus after all. Good riddance."
+						},
+						"night": {
+								"inspect": {
+									"target": "AnyButTeam",
+									"common": "Role",
+									"priority": 30,
+									"hide": true
+								}
+							}
+				}
+		},
+		{
+			"role": "sab9",
+			"translation": "Saber",
+			"side": "sab",
+			"hide": true,
+			"help": "You are the King of Knights, Arturia Pendragon, who swore to win the Holy Grail in order to save her country from disintegrating from the horrors of civil war. You can unleash the power of your holy blade, Excalibur, once per game by using /kill during the day (you will not be revealed). You evade nightkills and will power-up on Lancer's death!",
+			"info": "Can kill during the day without being revealed once per game. Evades nightkills. Gains Lancer's power (nightkill) upon his death. Sided with Saber & Kiritsugu.",
+			"actions": {
+				"kill": {
+					"mode": "ignore"
+				},
+				"standby": {
+					"kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You can now /kill without being revealed!",
+                        "killmsg": "Saber raises her sword in concentration, summoning the fury of the winds and unleashing a gigantic beam of energy at ~Target~, incinerating them in Excalibur's holy light!",
+						"charges": 1
+					}
+				},
+				"onDeath": {
+					"convertRoles": {
+						"gil7": "gil8"
+					},
+					"convertmsg": "Upon ~Self~'s death, Gilgamesh has absorbed her powers and grown stronger!"
+				}					
+			}
+		},
+		{
+			"role": "sab10",
+			"translation": "Saber",
+			"side": "sab",
+			"help": "You are the King of Knights, Arturia Pendragon, who swore to win the Holy Grail in order to save her country from disintegrating from the horrors of civil war. You can unleash the power of your holy blade, Excalibur, once per game by using /kill during the day (you will not be revealed). You evade nightkills and you can now kill during the night!",
+			"hide": true,
+			"actions": {
+				"kill": {
+					"mode": "ignore"
+				},
+				"standby": {
+					"kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You can now /kill without being revealed!",
+                        "killmsg": "Saber raises her sword in concentration, summoning the fury of the winds and unleashing a gigantic beam of energy at ~Target~, incinerating them in Excalibur's holy light!",
+						"charges": 1
+					}
+				},
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 10
+					}
+				},
+				"onDeath": {
+					"convertRoles": {
+						"gil7": "gil8"
+					},
+					"convertmsg": "Upon ~Self~'s death, Gilgamesh has absorbed her powers and grown stronger!"
+				}					
+			}
+		},
+		{
+			"role": "cas1",
+			"translation": "Caster",
+			"side": "cas",
+			"help": "You are Gilles de Rais, former comrade of Jeanne d'Arc who eventually turned into a serial killer of children. Because of your ability to combine your monsters into one monstrous form, you have 3 votes! You can also /expose during the day by luring other Servants with the threat of killing innocent children. You will gain two poisons upon Assassin's death. If your master Ryuunosuke is in the game, you will know him from the start!",
+			"info": "Has 3 votes. Immune to poison. Can expose one person during the day without being revealed. Gains two poisons per night upon Assassin's death. Sided with Caster & Ryuunosuke.",
+			"actions": {
+				"startup": {
+					"revealRole": ["ryu"]
+				},
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"vote": 3,
+				"poison": {
+					"mode": "ignore"
+				},
+				"onDeath": {
+					"convertRoles": {
+						"lan2": "lan3"
+					},
+					"convertmsg": "Upon ~Self~'s death, Lancer has absorbed his powers and grown stronger!"
+				},
+				"standby": {
+					"expose": {
+						"target": "AnyButSelf",
+						"msg": "You can now /expose without being revealed!",
+						"exposemsg": "Caster is holding a young child hostage! Fortunately, ~Target~ swoops down out of nowhere to save them, but in doing so exposes themselves as ~Role~!"
+					}
+				}
+			}
+		},
+		{
+			"role": "cas2",
+			"translation": "Caster",
+			"side": "cas",
+			"help": "You are Gilles de Rais, former comrade of Jeanne d'Arc who eventually turned into a serial killer of children. Because of your ability to combine your monsters into one monstrous form, you have 3 votes and can still /expose during the day! You can also /poison two people per night.",
+			"hide": true,
+			"actions": {
+				"startup": {
+					"revealRole": ["ryu"]
+				},
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"poison": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 18,
+						"limit": 2
+					}
+				},
+				"vote": 3,
+					"poison": {
+						"mode": "ignore"
+					},
+					"onDeath": {
+						"convertRoles": {
+							"lan2": "lan3"
+						},
+						"convertmsg": "Upon ~Self~'s death, Lancer has absorbed his powers and grown stronger!"
+					},
+					"standby": {
+					"expose": {
+						"target": "AnyButSelf",
+						"msg": "You can now /expose without being revealed!",
+						"exposemsg": "Caster is holding a young child hostage! Fortunately, ~Target~ swoops down out of nowhere to save them, but in doing so exposes themselves as ~Role~!"
+					}
+				}
+				}
+		},
+		{
+			"role": "ass1",
+			"translation": "Assassin",
+			"side": "ass",
+			"help": "The Hundred-Faced Hassan, you are a multi-person entity that assumes different forms. With your sleight of hand, you can /poison two people during the night. Upon Rider's death, you will gain the ability to kill during the night. If your master Kirei is in the game, you will know him from the start!",
+			"info": "Can poison two people during the night. Can kill one person during the night upon Rider's death. Sided with Assassin & Kirei.",
+			"winningSides": [
+                "gil3"
+            ],
+			"actions": {
+				"startup": {
+					"revealRole": ["kirei_9"]
+				},
+				"preventTeamvote": true,
+				"teamTalk": true,
+				"poison": {
+									"mode": {
+										"ignore": [
+											"ryu"
+										],
+									"identify": [
+										"ryu"
+										]
+									},
+								"identify": "You notice a shady looking boy slip away from the wine you just drank. It was ~Target~, that blasted little Master, ~Role~!"
+							},
+				"dummy": {
+								"mode": "ignore",
+								"msg": "?Illya: Silly Daddy, they're not a mage!"
+				},
+				"night": {
+					"poison": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 18,
+						"limit": 2
+					}
+				},
+				"onDeath": {
+					"convertRoles": {
+						"cas1": "cas2"
+					},
+					"convertmsg": "Upon ~Self~'s death, Caster has absorbed his powers and grown stronger!"
+				}
+			}
+		},
+		{
+			"role": "ass2",
+			"translation": "Assassin",
+			"side": "ass",
+			"hide": true,
+			"help": "The Hundred-Faced Hassan, you are a multi-person entity that assumes different forms. With your sleight of hand, you can /poison two people during the night. Upon Rider's death, you will gain the ability to /kill during the night.",
+			"actions": {
+				"startup": {
+					"revealRole": ["kirei_9"]
+				},
+				"preventTeamvote": true,
+				"poison": {
+									"mode": {
+										"ignore": [
+											"ryu"
+										],
+									"identify": [
+										"ryu"
+										]
+									},
+								"identify": "You notice a shady looking boy slip away from the wine you just drank. It was ~Target~, that blasted little Master, ~Role~!"
+							},
+				"dummy": {
+								"mode": "ignore",
+								"msg": "?Illya: Silly Daddy, they're not a mage!"
+				},
+				"night": {
+					"poison": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 18,
+						"limit": 2
+					},
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 10
+					}
+				},
+				"onDeath": {
+					"convertRoles": {
+						"cas1": "cas2"
+					},
+					"convertmsg": "Upon ~Self~'s death, Caster has absorbed his powers and grown stronger!"
+				}
+			}
+		},
+		{
+		"role": "lan2",
+		"translation": "Lancer",
+		"side": "lan",
+		"help": "You are Diarmuid, a legendary Irish hero who wields the deadly lance Gae Bola. You can /kill one person during the night starting night 2, and you evade one nightkill. Upon Caster's death, you will have your vote changed to 3!",
+		"info": "Can kill during the night starting night 2. Evades one nightkill. When Caster dies, vote becomes 3. Sided with Lancer & Kayneth.",
+		"actions": {
+			"startup": {
+				"revealRole": [
+					"kay"
+				]
+			},
+			"preventTeamvote": true,
+			"teamTalk": true,
+			"night": {
+				"kill": {
+					"target": "AnyButTeam",
+					"common": "Self",
+					"priority": 15,
+					"initialrecharge": 2
+				}
+			},
+			"onDeath": {
+				"convertRoles": {
+					"sab9": "sab10"
+				},
+				"convertmsg": "Upon ~Self~'s death, Saber has absorbed his powers and grown stronger!"
+			},
+			"poison": {
+				"mode": {
+					"ignore": [
+						"ryu"
+					],
+					"identify": [
+						"ryu"
+					]
+				},
+				"identify": "You notice a shady looking boy slip away from the wine you just drank. It was ~Target~, that blasted little Master, ~Role~!"
+			},
+			"kill": {
+				"mode": {
+					"evadeCharges": 1
+				}
+			}
+		}
+	},
+	{
+		"role": "lan3",
+		"translation": "Lancer",
+		"side": "lan",
+		"hide": true,
+		"help": "You are Diarmuid, a legendary Irish hero who wields the deadly lance Gae Bola. You can /kill one person during the night. Your vote is now 3!",
+		"info": "",
+		"actions": {
+			"startup": {
+				"revealRole": [
+					"kay"
+				]
+			},
+			"preventTeamvote": true,
+			"teamTalk": true,
+			"night": {
+				"kill": {
+					"target": "AnyButSelf",
+					"common": "Self",
+					"priority": 15
+				}
+			},
+			"onDeath": {
+				"convertRoles": {
+					"sab9": "sab10"
+				},
+				"convertmsg": "Upon ~Self~'s death, Caster has absorbed his powers and grown stronger!"
+			},
+			"vote": 3,
+			"poison": {
+									"mode": {
+										"ignore": [
+											"ryu"
+										],
+									"identify": [
+										"ryu"
+										]
+									},
+								"identify": "You notice a shady looking boy slip away from the wine you just drank. It was ~Target~, that blasted little Master, ~Role~!"
+							},
+			"kill": {
+				"mode": {
+					"evadeCharges": 1
+				}
+			}
+		}
+	},
+	{
+		"role": "ber4",
+		"translation": "Berserker",
+		"side": "ber",
+		"hide": true,
+		"help": "A fearsome warrior corrupted in his pursuit for the Holy Grail. You have 2 votes and cannot be daykilled. Upon Gilgamesh's death, you will gain the ability to daykill. If your master, Kariya, is present, you willl know him from the start!",
+		"info": "Has 2 votes. Cannot be daykilled. Gains a daykill upon Gilgamesh's death. Sided with Berserker & Kariya.",
+		"actions": {
+			"startup": {
+					"revealRole": ["kar"]
+					},
+			"preventTeamvote": true,
+			"teamTalk": true,
+			"vote": 2,
+			"daykill": {
+				"mode": {
+					"ignore": [
+						"gil3",
+						"gilgamesh_6",
+						"gil7"
+					]
+				},
+				"msg": "You evaded a kill!",
+				"targetmsg": ""
+			},
+			"onDeath": {
+				"convertRoles": {
+					"ride3": "ride4"
+				},
+				"convertmsg": "Upon ~Self~'s death, Rider has absorbed his powers and grown stronger!"
+			},
+			"poison": {
+									"mode": {
+										"ignore": [
+											"ryu"
+										],
+									"identify": [
+										"ryu"
+										]
+									},
+								"identify": "You notice a shady looking boy slip away from the wine you just drank. It was ~Target~, that blasted little Master, ~Role~!"
+							}
+		}
+	},
+	{
+		"role": "ber5",
+		"translation": "Berserker",
+		"side": "ber",
+		"help": "A fearsome warrior corrupted in his pursuit for the Holy Grail. You have 2 votes and cannot be daykilled. You now have the power to /kill during the day without being revealed!",
+		"hide": true,
+		"info": "",
+		"actions": {
+			"vote": 2,
+			"daykill": {
+				"mode": {
+					"ignore": [
+						"gil7",
+						"gil8"
+					]
+				}
+			},
+			"standby": {
+				"kill": {
+					"target": "AnyButSelf",
+					"msg": "You can now /kill without being revealed!",
+					"killmsg": "Berserker savagely lunges at ~Target~, cleaving off their head with one swift strike before disappearing just as quickly into the night!"
+				}
+			},
+			"onDeath": {
+				"convertRoles": {
+					"ride3": "ride4"
+				},
+				"convertmsg": "Upon ~Self~'s death, Caster has absorbed his powers and grown stronger!"
+			}
+		}
+	},
+	{
+		"role": "gil7",
+		"translation": "Gilgamesh",
+		"side": "gil2",
+		"hide": true,
+		"help": "You are the King of Heroes, Gilgamesh! Bent on preventing those mongrels from stealing your precious Holy Grail, you can /kill one person during the day without being revealed. On Saber's death, you will gain immmunity to nightkills.",
+		"info": "Can kill one person during the day (user is not revealed). Gains nightkill immunity upon Saber's death. Sided with Gilgamesh.",
+		"actions": {
+			"standby": {
+				"kill": {
+					"target": "AnyButSelf",
+					"msg": "You can now /kill during the day. You won't be revealed!",
+					"killmsg": "Gilgamesh summons his Noble Phantasm, the Gate of Babylon, revealing thousands of swords in a transparent wall. They fly forward at a high velocity, impaling themselves into ~Target~!"
+				}
+			},
+			"onDeath": {
+				"convertRoles": {
+					"ber4": "ber5"
+				},
+				"convertmsg": "Upon ~Self~'s death, Berserker has absorbed their power and grown stronger!"
+			}
+		}
+	},
+	{
+		"role": "gil8",
+		"translation": "Gilgamesh",
+		"side": "gil",
+		"hide": true,
+		"help": "You are the King of Heroes, Gilgamesh! Bent on preventing those mongrels from stealing your precious Holy Grail, you can /kill one person during the day without being revealed. On Saber's death, you will gain immmunity to nightkills.",
+		"info": "",
+		"actions": {
+			"standby": {
+				"kill": {
+					"target": "AnyButSelf",
+					"msg": "You can now /kill during the day. You won't be revealed!",
+					"killmsg": "Gilgamesh summons his Noble Phantasm, the Gate of Babylon, revealing thousands of swords in a transparent wall. They fly forward at a high velocity, impaling themselves into ~Target~!"
+				}
+			},
+			"kill": {
+				"mode": "ignore"
+			},
+			"onDeath": {
+				"convertRoles": {
+					"ber4": "ber5"
+				},
+				"convertmsg": "Upon ~Self~'s death, Berserker has absorbed their power and grown stronger!"
+			}
+		}
+	},
+	{
+		"role": "ride3",
+		"translation": "Rider",
+		"side": "ride",
+		"hide": true,
+		"help": "You are Iskandar, King of Conquerors. With your Noble Phantasm, the Ionian Hetairoi, you can /kill one person during the night starting night 2. Because you died at an early age, you immediately die to poison, but you have a voteshield of -2. Upon Berserker's death, you will gain immunity to daykills.",
+		"info": "Can kill one person during the night starting night 2. Voteshield of -2. Dies instantly to poison. Gains daykill immunity upon Berserker's death.",
+		"actions": {
+			"voteshield": -2,
+			"night": {
+				"kill": {
+					"target": "AnyButSelf",
+					"common": "Self",
+					"priority": 10,
+					"initialrecharge": 2
+				}
+			},
+			"poison": {
+				"mode": "die",
+				"msg": "",
+				"targetmsg": ""
+			},
+			"onDeath": {
+				"convertRoles": {
+					"ass1": "ass2"
+				},
+				"convertmsg": "Upon ~Self~'s death, Assassin has absorbed their power and grown stronger!"
+			}
+		}
+	},
+	{
+		"role": "ride4",
+		"translation": "Rider",
+		"side": "ride",
+		"hide": true,
+		"help": "You are Iskandar, King of Conquerors. With your Noble Phantasm, the Ionian Hetairoi, you can /kill one person during the night. You now have 2 votes!",
+		"info": "",
+		"actions": {
+			"night": {
+				"kill": {
+					"target": "AnyButSelf",
+					"common": "Self",
+					"priority": 10
+				}
+			},
+			"poison": {
+				"mode": "die",
+				"msg": "",
+				"targetmsg": ""
+			},
+			"onDeath": {
+				"convertRoles": {
+					"ass1": "ass2"
+				},
+				"convertmsg": "Upon ~Self~'s death, Assassin has absorbed their power and grown stronger!"
+			},
+			"vote": 2
+			}
+		},
+		{
+			"role": "kay",
+			"translation": "Kayneth",
+			"side": "lan",
+			"help": "You are the lecturer Kayneth Archibald of the Magus Association, partnered with your servant Lancer. Because you like to keep yourself out of the action, you inspect as Lancer and can /expose one person during the day without being revealed.",
+			"info": "Inspects as Lancer. Can expose one person during the day (user is not revealed). Sided with Lancer & Kayneth.",
+			"actions": {
+				"startup": {
+					"revealRole": ["lan1"]
+					},
+				"preventTeamvote": true,
+				"teamTalk": true,
+				"inspect": {
+					"revealAs": "lan1"
+				},
+				"dummy": {
+								"mode": "die",
+								"targetmsg": "Looks like they were a magus after all. Good riddance."
+							},
+				"standby": {
+					"expose": {
+						"target": "AnyButTeam",
+						"msg": "You can now /expose one person! You won't be revealed.",
+						"exposemsg": "Kayneth sends his Volumen Hydrargyrum to seek out the identity of ~Target~. As they try to defend themselves, the mercury identifies them as ~Role~!"
+					}
+				}
+			}
+		},
+		{
+			"role": "kirei_9",
+			"translation": "Kirei",
+			"side": "gil3",
+			"help": "You are Kirei Kotomine, a priest of the Church who was supposedly eliminated, but is very much still in it. You receive hax on every night action and cannot be nightkilled. If Tokiomi dies, Gilgamesh will join your side!",
+			"info": "Receives hax on every night action. Cannot be nightkilled. Gilgamesh will join him if Tokiomi dies.",
+			"winningSides": [
+                "ass"
+            ],
+			"actions": {
+				"startup": {
+					"revealRole": ["ass1"]
+				},
+				"preventTeamvote": true,
+				"teamTalk": true,
+				"dummy": {
+								"mode": "ignore",
+								"msg": "?Illya: Silly Daddy, they're not a mage!"
+							},
+				"hax": {
+					"kill": {
+						"revealPlayer": 0.7
+					},
+					"sabotage": {
+						"revealPlayer": 0.55
+					},
+					"inspect": {
+						"revealPlayer": 0.8
+					},
+					"convert": {
+						"revealPlayer": 0.5
+					},
+					"poison": {
+						"revealPlayer": 0.6
+					}
+				},
+				"kill": {
+					"mode": "ignore"
+				}
+			}
+		},
+		{
+			"role": "kar",
+			"translation": "Kariya",
+			"side": "ber",
+			"help": "The estranged member of the Matou family, you're on borrowed time. You can /kill during the night with a 70% chance of succeeding and a 10% chance of agitating the worms in your body too much and killing yourself. You know your servant, Berserker, from the start.",
+			"info": "Can kill during the night (70% chance to work, 10% chance to suicide). Sided with Berserker & Kariya.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Role",
+						"priority": 21,
+						"failChance": 0.3,
+						"suicideChance": 0.1
+					}
+				},
+				"startup": {
+					"revealRole": ["ber4"]
+					},
+				"preventTeamvote": true,
+				"teamTalk": true,
+				"dummy": {
+					"mode": "die",
+					"targetmsg": "Looks like your target was a magus after all. Good riddance."
+				}
+			}
+		},
+		{
+			"role": "ryu",
+			"translation": "Ryuunosuke",
+			"side": "cas",
+			"help": "A sadistic boy who enjoys the sight of blood, you work with Caster not for the Holy Grail, but to terrorize all of humanity. You can /torture one person during the night. If it is another Master, they will become poisoned, but if it is a Servant, you will reveal yourself to them. You know Caster from the start!",
+			"info": "Can torture one person during the night (poisons Masters, reveals himself to Servants). Knows Caster. Sided with Caster & Ryunnosuke.",
+			"actions": {
+				"night": {
+					"torture": {
+						"command": "poison",
+						"target": "AnyButTeam",
+						"common": "Role",
+						"priority": 22
+					}
+				},
+				"startup": {
+					"revealRole": [
+						"cas1"
+					]
+				},
+				"preventTeamvote": true,
+				"teamTalk": true,
+				"dummy": {
+					"mode": "ignore",
+					"msg": "?Illya: Silly Daddy, they're not a mage!"
+				}
+			}
+		}
+	
+        ],
+        "roles1": [
+                "Sab1",
+                "Gil1",
+                "berserker_3"
+        ],
+        "roles2": [
+                "sab4",
+                "gil3",
+                "kiritsugu",
+                "kirei1"
+        ],
+		"roles3": [
+				"saber-5",
+				"gil4",
+				"rider1",
+				"ber2",
+				"lan1"
+			],
+		"roles4": [
+				"saber-5",
+				"gil4",
+				"rider1",
+				"tokiomi_6a",
+				"kiritsugu_6a",
+				"wav"
+		],
+		"roles5": [
+			"sab9",
+			"gil7",
+			"ride3",
+			"ber4",
+			"cas1",
+			"ass1",
+			"lan2"
+		],
+		"roles6": [
+			"saber_6",
+			"gilgamesh_6",
+			"rider_6a",
+			"tokiomi_6a",
+			"kiritsugu_6a",
+			"wav",
+			"lan2",
+			"kay",
+			"kirei_9",
+			"ass1"
+		],
+		"roles7": [
+			"saber_6",
+			"gilgamesh_6",
+			"rider_6a",
+			"tokiomi_6a",
+			"kiritsugu_6a",
+			"wav",
+			"lan2",
+			"kay",
+			"kar",
+			"ber4",
+			"kirei_9",
+			"ass1"
+		],
+		"roles8": [
+			"saber_6",
+			"gilgamesh_6",
+			"rider_6a",
+			"tokiomi_6a",
+			"kiritsugu_6a",
+			"wav",
+			"lan2",
+			"kay",
+			"kar",
+			"ber4",
+			"cas1",
+			"ryu",
+			"kirei_9"
+		],
+	"tips": {
+		"Setup - 3p": "It's a 1 v 1 v 1 where Saber can choose one of three forms: counter daykills and 1.1 vote, counter nightkills and 1.1 vote, or voteshield of -99. However Saber chooses to go affects the actions of Gilgamesh and Berserker.",
+		"Setup - 4p": "WIP. As of now it's a 2 v 2 where the Servants (Saber and Gilgamesh) have to kill the other Master (Kiritsugu and Kirei) and not kill themselves by hitting the opposing Servant.",
+		"Setup - 5p": "A free-for-all. Each role is designed to counter another: Gilgamesh > Saber > Lancer > Rider > Berserker > Gilgamesh.",
+		"Setup - 6p": "A 2 v 2 v 2. It's more advantageous to take out the Servants (Saber, Gilgamesh, Rider) if you can, as the Masters are weaker, but do powerup upon their Servants' death.",
+		"Setup - 7p": "A free-for-all. Each role is designed to counter another: Gilgamesh > Saber > Lancer > Caster > Assassin > Rider > Berserker > Gilgamesh. If the person you counter dies, you power-up.",
+		"Setup - 8p": "Only God knows how the balance in this one works."
+	}
+}
