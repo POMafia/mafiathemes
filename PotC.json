@@ -1,0 +1,1416 @@
+{
+  "name": "PotC",
+  "altname": "Pirates of the Caribbean",
+  "author": "Miki Sayaka",
+  "minplayers": 5,
+  "tips": {
+    "Claiming": "Norrington is always the safest claim. However, due to Barbossa's ability to pierce, it may be wisest to wait until the day to claim.",
+    "Motley Crew": "Jack escapes a single lynch and a single daykill. It may be best to lynch Murtogg/Mullroy to kill him.",
+    "EITC": "The East India Trading Company. The key role here is Beckett, who has 99 votes and has various ways of defending himself.",
+    "Redcoats": "Murtogg, Mullroy, and Privateers are all redcoats, but when they are lynched, who knows what will happen?"
+  },
+  "summary": "We pillage, we plunder, we rifle and loot - drink up me 'earties, yo-ho! The pirates of the seven seas are clashing in a battle of epic stories yet to be told! Will the dreaded Barbossa capture Port Royal and take the Pearl for himself? Or will Jack Sparrow reclaim his freedom and his dearly beloved ship? Can the Royal Navy rid the world of pirate scum forever? Who will remain at the end of this vicious tale?",
+  "variables": {
+    "haxescannon": {
+      "cannon": {
+        "revealPlayer": 0.05
+      }
+    }
+  },
+  "sides": [
+    {
+      "side": "mafia1",
+      "translation": "Cursed Crew",
+      "winmsg": "Ye best start believin' in ghost stories; ~Players~ are living proof!"
+    },
+    {
+      "side": "mafia2",
+      "translation": "Motley Crew",
+      "winmsg": "Yo-ho, yo-ho, a pirates life for ~Players~!"
+    },
+    {
+      "side": "village",
+      "translation": "Royal Navy",
+      "winmsg": "The scourge of piracy has been eradicated! Good work ~Players~."
+    },
+    {
+      "side": "mafia3",
+      "translation": "Flying Dutchman",
+      "winmsg": "You'll see no mercy from ~Players~! The Flying Dutchman sails freely from now on!"
+    },
+    {
+      "side": "mafia4",
+      "translation": "Dragon of Singapore",
+      "winmsg": "Don't you dare underestimate ~Players~! They be the fiercest pirates of South China Sea!"
+    },
+    {
+      "side": "EITC",
+      "translation": "East India Trading Company",
+      "winmsg": "At last, peace and prosperity. The East India Trading Company has taken over the seas thanks to ~Players~!"
+    },
+    {
+      "side": "pirate",
+      "translation": "Pirates",
+      "winmsg": "The Goddess Calypso has reclaimed the seas! Now ~Players~ is unstoppable!"
+    },
+    {
+      "side": "godfather",
+      "translation": "Blackbeard",
+      "winmsg": "Really now? At least 30 roles and you couldn't stop just this one? Congratulations ~Players~!"
+    }
+  ],
+  "killmsg": "~Player~ (~Role~) has been dragged to the Locker!",
+  "killusermsg": "*** DEAD MEN TELL NO TALES!",
+  "lynchmsg": "~Player~ (~Role~) has been hanged!",
+  "roles": [
+    {
+      "role": "villager",
+      "translation": "Redcoat",
+      "side": "village",
+      "help": "You are a recruit in the Royal Navy! Help find pirates and vote off them off!",
+      "actions": {
+        "hax": "variable:haxescannon"
+      }
+    },
+    {
+      "role": "miller",
+      "translation": "Privateer",
+      "side": "village",
+      "help": "You are a recruit in the Royal Navy! Help find pirates and vote off them off!",
+      "info": "Appears as a pirate if Inspected. Bombs last to vote if lynched. ~Sided~",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "startup": {
+          "revealAs": "villager"
+        },
+        "inspect": {
+          "seenSide": "pirate"
+        },
+        "lynch": {
+          "killVoters": {
+            "last": 1
+          }
+        }
+      }
+    },
+    {
+      "role": "merchant",
+      "translation": "Merchant Sailor",
+      "side": "EITC",
+      "help": "Although you have no actions, your allegiance is with the EITC! Vote to remove Beckett's threats during the day!",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "teamUtilities": true
+      }
+    },
+    {
+      "role": "vengeful1",
+      "translation": "Murtogg",
+      "side": "village",
+      "help": "You are a recruit in the Royal Navy! Help find pirates and vote off them off!",
+      "info": "If lynched, can kill once before dying. ~Sided~",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "inspect": {
+          "seenSide": "pirate"
+        },
+        "startup": {
+          "revealAs": "villager"
+        },
+        "lynch": {
+          "convertTo": "vengeful1-lynched",
+          "convertmsg": "\"ARR!! SHIVER ME TIMBERS!\" ~Self~ gets to kill someone before execution!"
+        }
+      }
+    },
+    {
+      "role": "vengeful1-lynched",
+      "translation": "Murtogg",
+      "side": "village",
+      "help": "You've got one shot to kill someone! Don't waste it!",
+      "hide": true,
+      "actions": {
+        "hax": "variable:haxescannon",
+        "initialCondition": {
+          "poison": {
+            "count": -1,
+            "poisonDeadMessage": "Your dying antics are over, now off to the gallows!"
+          }
+        },
+        "kill": {
+          "mode": "ignore"
+        },
+        "distract": {
+          "mode": "ignore"
+        },
+        "avoidHax": [
+          "kill"
+        ],
+        "night": {
+          "kill": {
+            "command": [
+              "kill"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "restrict": [
+              "kill"
+            ],
+            "broadcast": "all",
+            "broadcastmsg": "*** Murtogg aims his rifle at ~Target~...",
+            "priority": 4
+          }
+        }
+      }
+    },
+    {
+      "role": "vengeful2",
+      "translation": "Mullroy",
+      "side": "village",
+      "help": "You are a recruit in the Royal Navy! Help find pirates and vote off them off!",
+      "info": "If lynched, can kill once before dying. ~Sided~",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "inspect": {
+          "seenSide": "pirate"
+        },
+        "startup": {
+          "revealAs": "villager"
+        },
+        "distract": {
+          "mode": "ignore"
+        },
+        "lynch": {
+          "convertTo": "vengeful2-lynched",
+          "convertmsg": "\"ARR!! DEAD MEN TELL NO TALES!\" ~Self~ gets to kill someone before execution!"
+        }
+      }
+    },
+    {
+      "role": "vengeful2-lynched",
+      "translation": "Mullroy",
+      "side": "village",
+      "help": "You've got one shot to kill someone! Don't waste it!",
+      "hide": true,
+      "actions": {
+        "hax": "variable:haxescannon",
+        "initialCondition": {
+          "poison": {
+            "count": -1,
+            "poisonDeadMessage": "Your dying antics are over, now off to the gallows!"
+          }
+        },
+        "kill": {
+          "mode": "ignore"
+        },
+        "distract": {
+          "mode": "ignore"
+        },
+        "avoidHax": [
+          "kill"
+        ],
+        "night": {
+          "kill": {
+            "command": [
+              "kill"
+            ],
+            "restrict": [
+              "kill"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "broadcast": "all",
+            "broadcastmsg": "*** Mullroy aims his rifle at ~Target~...",
+            "priority": 4
+          }
+        }
+      }
+    },
+    {
+      "role": "inspector",
+      "translation": "Norrington",
+      "side": "village",
+      "help": "Commodore James Norrington, it is up to you to defend Port Royal from the scourge of pirates! As such, you can /Inspect people during the night to uncover any noxious misdeeds they may have done! You may choose to expose your own identity with /Reveal. If anyone dare try to kill you during the day, you will expose them! Additionally, your command on the battlefield gives you a vote of 2. It may be wise to claim and get your comrades to /Watch and /Protect you!",
+      "info": "Can Inspect at night. Can self-reveal during day. Exposes daykillers. Vote counts as 2. ~Sided~",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "vote": 2,
+        "daykill": "revealkiller",
+        "daykillrevengemsg": "±Norrington: Let it be known... ~Target~, or should I say, ~Role~, was the one who killed me!",
+        "night": {
+          "inspect": {
+            "target": "AnyButSelf",
+            "priority": 15,
+            "common": "Self"
+          	}
+          },
+          "standby": {
+          "reveal": {
+            "msg": "You may choose to /Reveal yourself if the village needs a leader!",
+            "revealmsg": "~Self~ raises their sword in the air. \"I am Commodore Norrington, follow my lead!\""
+          }
+        }
+      }
+    },
+    {
+      "role": "bodyguard",
+      "translation": "Gillette",
+      "side": "village",
+      "help": "Lieutenant Gillette! You are the right-hand man of Commodore Norrington, the local head of the Royal Navy. Defend the port in the name of the King with your /Protect! You are also able to protect during the day with your vote of -2.",
+      "info": "Bodyguard with a vote of -2. ~Sided~",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "vote": -2,
+        "avoidHax": [
+          "protect"
+        ],
+        "night": {
+          "protect": {
+            "command": [
+              "protect",
+              "guard"
+            ],
+            "guardActions": [
+              "curse"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "priority": 5,
+            "broadcast": "role"
+          }
+        }
+      }
+    },
+    {
+      "role": "watcher",
+      "translation": "Groves",
+      "side": "village",
+      "help": "Theodore Groves! Keep your vigil over the town of Port Royal and /Watch your comrades to see by whom they're visited. If you find any pirates, you can tell the village to lynch them during the day with /Pirate [name]!",
+      "info": "Can Watch. Can decry someone during the day with /Pirate. ~Sided~",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "night": {
+          "watch": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "watchLast": 1,
+            "watchFirst": 0,
+            "priority": 50,
+            "broadcast": "role"
+          }
+        },
+        "standby": {
+          "pirate": {
+            "command": "expose",
+            "target": "AnyButSelf",
+            "msg": "Did you see any suspicious activity? If so, expose the /Pirate!",
+            "exposemsg": "Groves gapes and points at ~Target~. \"That's got to be the best pirate I've ever seen!\""
+          }
+        }
+      }
+    },
+    {
+      "role": "pl",
+      "translation": "Elizabeth Swann",
+      "side": "village",
+      "help": "You have always dreamed of meeting a pirate. But now that you finally have, it's time stop them from plundering your hometown! Use your wits and bravery to /Distract someone during the night. You double the vote count of whomever you vote, thanks to your courage and charisma (though being the governor's daughter doesn't hurt)!",
+      "info": "Distractor. Vote multiplier of 2. ~Sided~",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "voteMultiplier": 2,
+        "night": {
+          "distract": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "distractmsg": "\"I've come to make an accord.\" These were the last words you heard before finding yourself unconscious under a pair of oars!",
+            "priority": 3
+          }
+        }
+      }
+    },
+    {
+      "role": "samurai",
+      "translation": "Will Turner",
+      "side": "village",
+      "help": "A Blacksmith, a Pirate, a Pretty Boy - who cares what they call you, you must rescue Elizabeth! You can use your refined sword skills to /Kill someone during the standby phase! Be warned that your rash behaviour will cause you to be seen as a pirate.",
+      "info": "Appears as a Pirate if Inspected. Can kill (revealing) during standby. ~Sided~",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "inspect": {
+          "seenSide": "pirate"
+        },
+        "standby": {
+          "kill": {
+            "target": "AnyButSelf",
+            "msg": "You can now /Kill, but be warned that you will be exposed!",
+            "killmsg": "±Will Turner: I, ~Self~, practice with swords 3 hours a day, so that when I meet ~TargetRole~, I can kill it!!"
+          }
+        }
+      }
+    },
+    {
+      "role": "mayor",
+      "translation": "Governor Swann",
+      "side": "village",
+      "help": "Wetherby Swann, duly appointed Governor of Port Royal, your political prestige is more than enough to give you the power to cancel any lynch! Whomever you vote for WILL NOT be hanged!",
+      "info": "Can negate a vote (vote multiplier = 0). ~Sided~.",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "voteMultiplier": 0
+      }
+    },
+    {
+      "role": "beckett",
+      "translation": "Cutler Beckett",
+      "side": "EITC",
+      "help": "You are the head of the East India Trading company. All who oppose you shall face the gallows. As such, your vote counts for 99. Since you're such an upstanding citizen, the Royal Navy will see you as an ally. The vast amount of resources at your disposal allow you to /Protect, /Distract, /Inspect and /Poison on non-consecutive nights. It's just good business.",
+      "info": "Vote counts as 99. Can Protect, Distract, Inspect, and Poison on non-consecutive nights. If exposed, shown to be sided with the Royal Navy. Sided with EITC.",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "vote": 99,
+        "inspect": {
+          "seenSide": "village"
+        },
+        "night": {
+          "protect": {
+            "command": [
+              "protect",
+              "guard"
+            ],
+            "guardActions": [
+              "curse"
+            ],
+            "target": "OnlySelf",
+            "recharge": 2,
+            "cancel": [
+              "distract",
+              "poison"
+            ],
+            "priority": 5,
+            "common": "Self",
+            "broadcast": "team"
+          },
+          "distract": {
+            "target": "AnyButTeam",
+            "common": "Self",
+            "recharge": 2,
+            "cancel": [
+              "protect",
+              "poison",
+              "inspect"
+            ],
+            "priority": 2,
+            "broadcast": "team"
+          },
+          "inspect": {
+            "target": "AnyButTeam",
+            "common": "Self",
+            "recharge": 2,
+            "cancel": [
+              "protect",
+              "poison",
+              "distract"
+            ],
+            "priority": 15,
+            "broadcast": "team"
+          },
+          "poison": {
+            "target": "AnyButTeam",
+            "common": "Self",
+            "recharge": 2,
+            "cancel": [
+              "protect",
+              "distract",
+              "inspect"
+            ],
+            "priority": 10,
+            "poisonDeadMessage": "You succumbed to an insidious poison. This is what happens when you accept drinks from Beckett.",
+            "broadcast": "team"
+          }
+        },
+        "avoidHax": [
+          "protect"
+        ],
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles"
+      },
+      "winIfDeadRoles": [
+        "samurai",
+        "mayor",
+        "vengeful1",
+        "vengeful1-lynched",
+        "vengeful2",
+        "vengeful2-lynched",
+        "mayor",
+        "barbossa",
+        "pintel",
+        "ragetti",
+        "davy",
+        "kraken",
+        "sparrow",
+        "sparrow2",
+        "gibbs",
+        "cotton"
+      ]
+    },
+    {
+      "role": "mercer",
+      "translation": "Mercer",
+      "side": "EITC",
+      "help": "Ian Mercer, you are the right-hand man of Lord Beckett. The most devious and underhanded tasks are left to you. You may /Kill during the night. In addition, you have a chance of finding killers!",
+      "info": "Haxes kill. Can kill. ~Sided~",
+      "actions": {
+        "inspect": {
+          "seenSide": "pirate"
+        },
+        "hax": {
+          "kill": {
+            "revealTeam": 0.5,
+            "revealPlayer": 0.2
+          },
+          "cutlass": {
+            "revealTeam": 0.5,
+            "revealPlayer": 0.2
+          },
+          "cannon": {
+            "revealTeam": 0.5,
+            "revealPlayer": 0.2
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Team",
+            "broadcast": "team",
+            "priority": 18
+          }
+        },
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "badspy",
+      "translation": "Steng",
+      "side": "EITC",
+      "help": "The Spy of the East India Trading Company, you can /Inspect people during the night to see if they are pirates! Pass this information onto your partners with /tt. You can also /kill during standby, but you will be revealed!",
+      "info": "Can Inspect and can kill during Standby. Sided with EITC.",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "inspect": {
+          "seenSide": "pirate"
+        },
+        "night": {
+          "inspect": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "Sight": "Team",
+            "broadcast": "team",
+            "priority": 30
+          }
+        },
+        "standby": {
+          "kill": {
+            "target": "AnyButTeam",
+            "msg": "You can now /kill, but you will be exposed if you do!",
+            "killmsg": "~Self~ pulls out a gun and shoots at ~Target~'s chest! I am Steng, long live the East India Trading Company!"
+          }
+        },
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "davy",
+      "translation": "Davy Jones",
+      "side": "mafia3",
+      "help": "To ferry the souls of the dead to the other world, that was your charter given to you by the goddess Calypso. But now the Flying Dutchman serves a different purpose. /Curse the scoundrels and so they join your crew once every two nights! With your heart locked away, you feel no pain and cannot be killed during the night!",
+      "info": "Can convert someone into a Cursed Crewman once every two nights. Cannot be nightkilled. Sided with the Flying Dutchman.",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "inspect": {
+          "seenSide": "pirate"
+        },
+        "night": {
+          "curse": {
+            "command": "convert",
+            "target": "AnyButSelf",
+            "common": "Self",
+            "recharge": 2,
+            "newRole": "cursed",
+            "priority": 40
+          }
+        },
+        "onDeath": {
+          "killRoles": [
+            "cursed"
+          ],
+          "convertRoles": {
+            "kraken": "kraken2"
+          },
+          "exposeRoles": [
+            "kraken"
+          ],
+          "killmsg": "With Jones dead, the crew of the Flying Dutchman have moved on.",
+          "convertmsg": "There is no one around to tame the Kraken anymore! It may now kill twice per day!",
+          "exposemsg": "*** ~Self~ (the Kraken) has been unleashed!"
+        },
+        "kill": {
+          "mode": "ignore"
+        },
+        "dummy": {
+          "mode": "die",
+          "msg": "You have been killed!"
+        },
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles",
+        "updateTeam": true
+      }
+    },
+    {
+      "role": "cursed",
+      "translation": "Cursed Crewman",
+      "side": "mafia3",
+      "help": "You are now chartered to sail the seas for 100 years under the Flying Dutchman! You can /Kill during the night.",
+      "info": "A converted role recruited by Davy Jones. Can kill. ~Sided~",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles",
+        "updateTeam": true,
+        "inspect": {
+          "seenSide": "pirate"
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "broadcast": "team",
+            "priority": 15
+          }
+        }
+      }
+    },
+    {
+      "role": "kraken",
+      "translation": "Kraken",
+      "side": "mafia3",
+      "help": "The most feared beast in all the seas, the Kraken - that is you! /Kill your enemies during standby while the deep dark sea keeps you hidden. You cannot be killed during the night!",
+      "info": "Can kill during standby (non-revealing). Powers up if Davy Jones dies. Sided with the Flying Dutchman.",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "inspect": {
+          "seenSide": "pirate"
+        },
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles",
+        "updateTeam": true,
+        "kill": {
+          "mode": "ignore"
+        },
+        "dummy": {
+          "mode": "die",
+          "msg": "You have been killed!"
+        },
+        "standby": {
+          "kill": {
+            "target": "AnyButSelf",
+            "msg": "Type /Kill [name] to kill someone! You won't be exposed.",
+            "killmsg": "The Kraken surfaces and drags ~Target~'s ship down to the abyss!"
+          }
+        }
+      }
+    },
+    {
+      "role": "kraken2",
+      "translation": "Kraken",
+      "side": "mafia3",
+      "help": "The most feared beast in all the seas, the Kraken - that is you! /Kill your enemies twice during standby, though you may be exposed now (20%). You cannot be killed during the night!",
+      "info": "Can kill during standby (non-revealing). Sided with the Flying Dutchman.",
+      "hide": true,
+      "actions": {
+        "hax": "variable:haxescannon",
+        "inspect": {
+          "seenSide": "pirate"
+        },
+        "kill": {
+          "mode": "ignore"
+        },
+        "dummy": {
+          "mode": "die",
+          "msg": "You have been killed!"
+        },
+        "standby": {
+          "kill": {
+            "target": "AnyButSelf",
+            "msg": "Type /Kill [name] to kill someone! You can now do this twice per day, but you may be exposed!",
+            "limit": 2,
+            "killmsg": "The Kraken surfaces and drags ~Target~'s ship down to the abyss!",
+            "revealChance": 0.2,
+            "revealmsg": "~Self~, the ~Role~, returns to the sea."
+          }
+        }
+      }
+    },
+    {
+      "role": "barbossa",
+      "translation": "Barbossa",
+      "side": "mafia1",
+      "help": "Aye, Captain Barbossa of the Black Pearl, that be yer name; whose insatiable greed brought a curse of immortality upon yerself, you cannot be killed while the moon shines! You can use your /Cannon the welp who dare oppose you, outpacing all the bodyguards, but there's a chance you'll be seen, so it's safer to use your /Cutlass on most nights! Quite the eloquent talker y'are, so you double the vote count on whomever you vote for!",
+      "info": "Leader of the Ghost Crew. Can Kill (command: Cutlass). Can use /Cannon to kill before Protect, but has a chance of being haxed by any other role. Cannot be nightkilled. Kills distractors. Vote multiplier of 2.",
+      "actions": {
+        "voteMultiplier": 2,
+        "night": {
+          "cutlass": {
+            "command": [
+              "kill"
+            ],
+            "target": "AnyButTeam",
+            "common": "Role",
+            "priority": 12,
+            "restrict": [
+              "cannon"
+            ],
+            "broadcast": "team"
+          },
+          "cannon": {
+            "command": [
+              "kill"
+            ],
+            "target": "AnyButTeam",
+            "common": "Role",
+            "priority": 1,
+            "restrict": [
+              "cutlass"
+            ],
+            "broadcast": "team"
+          }
+        },
+        "inspect": {
+          "seenSide": "pirate"
+        },
+        "kill": {
+          "mode": "ignore"
+        },
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "ragetti",
+      "translation": "Ragetti",
+      "side": "mafia1",
+      "help": "Cursed pirates be your team! You can /Kill one person during the night (shared with Pintel). Be sure to not lose your eye!",
+      "info": "Shares kill with Pintel. Sided with Cursed Crew.",
+      "actions": {
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Role",
+            "priority": 13,
+            "broadcast": "team"
+          }
+        },
+        "inspect": {
+          "seenSide": "pirate"
+        },
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "pintel",
+      "translation": "Pintel",
+      "side": "mafia1",
+      "help": "Cursed pirates be your team! You can /Kill one person during the night (shared with Ragetti). Blast the madmen that came up with \"parlay\"!",
+      "info": "Shares kill with Ragetti. Sided with Cursed Crew.",
+      "actions": {
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Role",
+            "priority": 13,
+            "broadcast": "team"
+          }
+        },
+        "inspect": {
+          "seenSide": "pirate"
+        },
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "monkey",
+      "translation": "Jack the Monkey",
+      "side": "mafia1",
+      "help": "What? You're just a harmless monkey! Well, perhaps a harmless monkey that can't die! You're pretty nimble, so you can /Stalk two people per night! Due to being a subordinate species of primate, your vote only counts for 0.5.",
+      "info": "Can stalk twice per night. Ignores nightkills. Sided with Cursed Crew.",
+      "actions": {
+        "kill": {
+          "mode": "ignore"
+        },
+        "dummy": {
+          "mode": "die",
+          "msg": "You have been killed!"
+        },
+        "vote": 0.5,
+        "night": {
+          "stalk": {
+            "target": "AnyButTeam",
+            "common": "Role",
+            "limit": 2,
+            "priority": 60,
+            "broadcast": "team"
+          }
+        },
+        "inspect": {
+          "seenSide": "pirate"
+        },
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "sparrow",
+      "translation": "Jack Sparrow",
+      "side": "mafia2",
+      "help": "Captain, CAPTAIN Jack Sparrow!! They need to fix the bloody roles list. In the meantime, /Kill the welp that try to capture the infamous Captain you are! You also carry a pistol carrying with a single shot, so you can /Shoot the one person you want to dead the most during the day! And of course, if you do happen to get caught by the Navy, you can conjure up some brilliant scheme to escape the gallows at least once!",
+      "info": "Can kill. Escapes a single lynch. Evades a single daykill. Ignores Distractors after being lynched. Has a single daykill. ~Sided~",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "daykill": {
+          "mode": {
+            "evadeCharges": 1
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 11,
+            "broadcast": "team",
+            "broadcastmsg": "±Jack Sparrow: Ready the cannons, me lads. Let's sink ~Target~'s vessel."
+          }
+        },
+        "standby": {
+          "shoot": {
+            "command": "kill",
+            "target": "AnyButSelf",
+            "msg": "You have one bullet to /Shoot someone during the day. Do not waste it!",
+            "charges": 1,
+            "killmsg": "±Jack Sparrow: Ten years I've carried this pistol with only a single bullet. Just so that I could kill ~Target~."
+          }
+        },
+        "inspect": {
+          "seenSide": "pirate"
+        },
+        "lynch": {
+          "convertTo": "sparrow2",
+          "convertmsg": "±Jack Sparrow: \"Gentlemen, ladies, I am ~Self~, and this will be the day that you will always remember as the day that you almost caught Captain Jack Sparrow!!\""
+        },
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "sparrow2",
+      "translation": "Jack Sparrow",
+      "side": "mafia2",
+      "help": "Have you forgot something very important? I'm Captain Jack Sparrow! Well, they'll not be making the same mistake twice, so it's best to avoid the gallows at all costs from this point on! Continue to /Protect yourself and /Kill your enemies!",
+      "hide": true,
+      "actions": {
+        "hax": "variable:haxescannon",
+        "daykill": {
+          "mode": {
+            "evadeCharges": "*"
+          }
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 11,
+            "broadcast": "team",
+            "broadcastmsg": "±Jack Sparrow: Ready the cannons, me lads. Let's sink ~Target~'s vessel."
+          }
+        },
+        "standby": {
+          "shoot": {
+            "command": "kill",
+            "target": "AnyButSelf",
+            "msg": "You have one bullet to /Shoot someone during the day. Do not waste it!",
+            "killmsg": "±Jack Sparrow: Ten years I've carried this pistol with only a single bullet. Just so that I could kill ~Target~."
+          }
+        },
+        "inspect": {
+          "seenSide": "pirate",
+          "revealAs": "villager"
+        },
+        "distract": {
+          "mode": "ignore",
+          "msg": "The one who did the distracting was the one who was not distracted while the distracted one tried to distract them!"
+        },
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "gibbs",
+      "translation": "Gibbs",
+      "side": "mafia2",
+      "help": "Joshamee Gibbs, former Royal Navy sailor, first mate to Jack Sparrow of whatever ship he happens to be commandeering at the time. You share the team's /kill! Additionally, your loyalty to your Captain allows you to /Protect (+Safeguard) one person during the night! Because of your former affiliation with the Navy, you appear to be sided with them when Exposed.",
+      "info": "Can kill. Can /Protect. Appears as Royal Navy when exposed. Sided with the Motley Crew.",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 11,
+            "broadcast": "team",
+            "broadcastmsg": "±Gibbs: Permission to open fire sir? Let's sink ~Target~'s vessel."
+          },
+          "protect": {
+            "command": [
+              "protect",
+              "safeguard"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "priority": 5
+          }
+        },
+        "inspect": {
+          "seenSide": "village"
+        },
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "cotton",
+      "translation": "Cotton",
+      "side": "mafia2",
+      "help": "Mr. Cotton, the mute, you are a trusted member of the Motley Crew. You share the team's /kill! With your parrot as your voice, you can /Expose a player during the day! You can also fake them as /Redcoat, /Privateer, /Barbossa, /DavyJones, /Norrington, /Will, /Elizabeth, or /TiaDalma!",
+      "info": "Can kill. Can Expose or fake Expose during standby (can fake Redcoat, Privateer, Barbossa, DavyJones, Norrington, Will, Elizabeth, or Tia Dalma). Sided with the Motley Crew.",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 11,
+            "broadcast": "team",
+            "broadcastmsg": "±Cotton: Permission to open fire sir? Let's sink ~Target~'s vessel."
+          }
+        },
+        "avoidStandbyHax": [
+          "expose"
+        ],
+        "standby": {
+          "expose": {
+            "target": "AnyButTeam",
+            "msg": "/Expose, /Redcoat, /Privateer, /Barbossa, /DavyJones, /Norrington, /Will, /Elizabeth, or /TiaDalma to reveal or fake someone's role!",
+            "exposemsg": "\"Aack! Shiver me timbers! ~Target~ is ~Role~!\""
+          },
+          "redcoat": {
+            "command": "expose",
+            "target": "AnyButTeam",
+            "exposemsg": "\"Aack! Shiver me timbers! ~Target~ is Redcoat!\""
+          },
+          "privateer": {
+            "command": "expose",
+            "target": "AnyButTeam",
+            "exposemsg": "\"Aack! Shiver me timbers! ~Target~ is Privateer!\""
+          },
+          "barbossa": {
+            "command": "expose",
+            "target": "AnyButTeam",
+            "exposemsg": "\"Aack! Shiver me timbers! ~Target~ is Barbossa!\""
+          },
+          "davyjones": {
+            "command": "expose",
+            "target": "AnyButTeam",
+            "exposemsg": "\"Aack! Shiver me timbers! ~Target~ is Davy Jones!\""
+          },
+          "norrington": {
+            "command": "expose",
+            "target": "AnyButTeam",
+            "exposemsg": "\"Aack! Shiver me timbers! ~Target~ is Norrington!\""
+          },
+          "will": {
+            "command": "expose",
+            "target": "AnyButTeam",
+            "exposemsg": "\"Aack! Shiver me timbers! ~Target~ is Will Turner!\""
+          },
+          "elizabeth": {
+            "command": "expose",
+            "target": "AnyButTeam",
+            "exposemsg": "\"Aack! Shiver me timbers! ~Target~ is Elizabeth Swann!\""
+          },
+          "tiadalma": {
+            "command": "expose",
+            "target": "AnyButTeam",
+            "exposemsg": "\"Aack! Shiver me timbers! ~Target~ is Tia Dalma!\""
+          }
+        },
+        "inspect": {
+          "seenSide": "pirate"
+        },
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "marty",
+      "translation": "Marty",
+      "side": "mafia2",
+      "help": "You sail for Captain Jack Sparrow! Use the teams /Kill to eliminate his enemies!",
+      "info": "Can kill. ~Sided~",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 11,
+            "broadcast": "team",
+            "broadcastmsg": "±Marty: Permission to open fire sir? Let's sink ~Target~'s vessel."
+          }
+        },
+        "inspect": {
+          "seenSide": "pirate"
+        },
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles"
+      }
+    },
+    {
+      "role": "saofeng",
+      "translation": "Sao Feng",
+      "side": "mafia4",
+      "help": "The Pirate Lord of Singapore, and fiercest Captain to sail the Seven Seas, that you are, indeed! Like all pirates, you may /Kill during the night, and this is shared with your team. Hidden away in the depths of Singapore, you possess a voteshield of -2!",
+      "info": "Can kill. Has a voteshield of -2. ~Sided~",
+      "actions": {
+        "voteshield": -2,
+        "hax": "variable:haxescannon",
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 14,
+            "broadcast": "team"
+          }
+        },
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles",
+        "inspect": {
+          "seenSide": "pirate"
+        }
+      }
+    },
+    {
+      "role": "taihuang",
+      "translation": "Tai Huang",
+      "side": "mafia4",
+      "help": "The First Mate to Sao Feng, it is your duty to /Protect him at all costs! You share the team's kill, and you possess a vote of 2!",
+      "info": "Can Protect and shares Kill. Has a vote of 2. ~Sided~",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "vote": 2,
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 14,
+            "broadcast": "team"
+          },
+          "protect": {
+            "target": "AnyButSelf",
+            "command": [
+              "protect",
+              "guard"
+            ],
+            "guardActions": [
+              "curse"
+            ],
+            "common": "Self",
+            "priority": 5,
+            "broadcast": "team"
+          }
+        },
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles",
+        "inspect": {
+          "seenSide": "pirate"
+        }
+      }
+    },
+    {
+      "role": "lian",
+      "translation": "Lian",
+      "side": "mafia4",
+      "help": "You and your twin sister Park are the personal aides of Sao Feng! You share the teams /Kill. You will not go down without a fight, killing whoever brings you down during the night, or during the vote phase!",
+      "info": "Shares Kill. Bombs nightkills and the first person to vote her if lynched. ~Sided~",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 14,
+            "broadcast": "team"
+          }
+        },
+        "kill": {
+          "mode": "killattacker"
+        },
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles",
+        "lynch": {
+          "killVoters": {
+            "first": 1,
+            "last": 0,
+            "message": "~Self~ (Lian) was sent to the gallows, but not before she found her way to ~Target~'s throat!"
+          }
+        },
+        "inspect": {
+          "seenSide": "pirate"
+        }
+      }
+    },
+    {
+      "role": "park",
+      "translation": "Park",
+      "side": "mafia4",
+      "help": "You and your twin sister Lian are the personal aides of Sao Feng! You share the teams /Kill. You will not go down without a fight, killing whoever brings you down during the night, or during the vote phase!",
+      "info": "Shares Kill. Bombs nightkills and the first person to vote her if lynched. ~Sided~",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 14,
+            "broadcast": "team"
+          }
+        },
+        "kill": {
+          "mode": "killattacker"
+        },
+        "teamTalk": true,
+        "preventTeamvote": true,
+        "startup": "team-reveal-with-roles",
+        "lynch": {
+          "killVoters": {
+            "first": 1,
+            "last": 0,
+            "message": "~Self~ (Park) was sent to the gallows, but not before she found her way to ~Target~'s throat!"
+          }
+        },
+        "inspect": {
+          "seenSide": "pirate"
+        }
+      }
+    },
+    {
+      "role": "conspirator",
+      "translation": "Tia Dalma",
+      "side": "pirate",
+      "help": "Deep within the bayou swamps of Cuba resides the legendary soothsayer Tia Dalma. Long have the pirates been oppressed by the national governments and corporate interests. No longer! /Inspect twice per night to seek your pirate allies. You with with anyone except Blackbeard, the East India Trading Company, and the Royal Navy, and your vote counts as 4!",
+      "info": "Wins with the Motley Crew, the Cursed Crew, Sao Feng, and the Flying Dutchman. Can Inspect to see whether or not someone is a pirate twice per night. Vote counts as 4.",
+      "winningSides": [
+        "mafia1",
+        "mafia2",
+        "mafia3",
+        "mafia4"
+      ],
+      "actions": {
+        "hax": "variable:haxescannon",
+        "vote": 4,
+        "night": {
+          "inspect": {
+            "target": "AnyButSelf",
+            "Sight": "Team",
+            "limit": 2,
+            "common": "Self",
+            "priority": 30,
+            "broadcast": "role"
+          }
+        }
+      }
+    },
+    {
+      "role": "blackbeard",
+      "translation": "Blackbeard",
+      "side": "godfather",
+      "help": "If you don't kill a man every now and then they'll forget who you are, so you better /kill two people every night! Your vote counts as 3.5, and you can only die to Barbossa or the Kraken!",
+      "info": "Can kill twice during the night. Ignores nightkills from everyone except Barbossa, Will, and Vengefuls. Ignores Hax. Vote counts as 3.5. ~Sided~",
+      "actions": {
+        "hax": "variable:haxescannon",
+        "vote": 3.5,
+        "kill": {
+          "mode": {
+            "ignore": [
+              "sparrow",
+              "sparrow2",
+              "gibbs",
+              "samurai",
+              "cotton",
+              "pintel",
+              "ragetti",
+              "vengeful1-lynched",
+              "vengeful2-lynched",
+              "saofeng",
+              "taihuang",
+              "lian",
+              "park",
+              "badspy"
+            ]
+          }
+        },
+        "avoidHax": [
+          "kill"
+        ],
+        "dummy": {
+          "mode": "die",
+          "msg": "You have been killed!"
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButTeam",
+            "common": "Self",
+            "limit": 2,
+            "priority": 16,
+            "broadcast": "team"
+          }
+        },
+        "inspect": {
+          "seenSide": "pirate"
+        }
+      }
+    }
+  ],
+  "spawnPacks": {
+    "cursedcrew": {
+      "roles": [
+        [
+          "pintel",
+          "ragetti"
+        ],
+        [
+          "ragetti",
+          "pintel"
+        ]
+      ],
+      "chance": [
+        0.5,
+        0.5
+      ]
+    },
+    "vengefuls": {
+      "roles": [
+        [
+          "vengeful1",
+          "vengeful2"
+        ],
+        [
+          "vengeful2",
+          "vengeful1"
+        ]
+      ],
+      "chance": [
+        0.5,
+        0.5
+      ]
+    }
+  },
+  "roles1": [
+    "sparrow",
+    "pack:vengefuls",
+    "pack:vengefuls",
+    "inspector",
+    "samurai",
+    "miller"
+  ],
+  "roles2": [
+    "sparrow",
+    "barbossa",
+    "pack:vengefuls",
+    "pack:vengefuls",
+    "inspector",
+    "samurai",
+    "bodyguard",
+    "miller"
+  ],
+  "roles3": [
+    "sparrow",
+    "barbossa",
+    "samurai",
+    "inspector",
+    "mayor",
+    "pack:vengefuls",
+    "pack:vengefuls",
+    "watcher",
+    "beckett",
+    "miller",
+    "pack:vengefuls",
+    "pack:vengefuls"
+  ],
+  "roles4": [
+    "sparrow",
+    "gibbs",
+    "barbossa",
+    "beckett",
+    "pack:cursedcrew",
+    "mayor",
+    "pl",
+    "samurai",
+    "inspector",
+    "bodyguard",
+    "watcher",
+    "pack:vengefuls",
+    "pack:vengefuls",
+    "pack:vengefuls",
+    "miller",
+    "pack:vengefuls"
+  ],
+  "roles5": [
+    "pack:vengefuls",
+    "pack:vengefuls",
+    "pack:vengefuls",
+    "mayor",
+    "inspector",
+    "bodyguard",
+    "pl",
+    "samurai",
+    "watcher",
+    "barbossa",
+    "pack:cursedcrew",
+    "sparrow",
+    "gibbs",
+    "beckett",
+    "mercer",
+    "davy",
+    "kraken",
+    "pack:vengefuls",
+    "miller",
+    "merchant",
+    "villager"
+  ],
+  "roles6": [
+    "pack:vengefuls",
+    "pack:vengefuls",
+    "pack:vengefuls",
+    "pack:vengefuls",
+    "pack:vengefuls",
+    "inspector",
+    "bodyguard",
+    "samurai",
+    "pl",
+    "watcher",
+    "mayor",
+    "barbossa",
+    "pack:cursedcrew",
+    "pack:cursedcrew",
+    "sparrow",
+    "gibbs",
+    "cotton",
+    "beckett",
+    "mercer",
+    "davy",
+    "kraken",
+    "villager",
+    "badspy",
+    "villager",
+    "miller",
+    "conspirator",
+    "merchant",
+    "villager",
+    "miller",
+    "villager",
+    "blackbeard",
+    "merchant",
+    "villager"
+  ],
+  "roles7": [
+    "sparrow",
+    "gibbs",
+    "cotton",
+    "barbossa",
+    "pintel",
+    "ragetti",
+    "beckett",
+    "mercer",
+    "badspy",
+    "davy",
+    "kraken",
+    "pack:vengefuls",
+    "pack:vengefuls",
+    "pack:vengefuls",
+    "pack:vengefuls",
+    "pack:vengefuls",
+    "pack:vengefuls",
+    "pack:vengefuls",
+    "miller",
+    "miller",
+    "pl",
+    "samurai",
+    "inspector",
+    "bodyguard",
+    "watcher",
+    "mayor",
+    "saofeng",
+    "taihuang",
+    "lian",
+    "park",
+    "conspirator",
+    "blackbeard",
+    "pack:vengefuls",
+    "miller",
+    "marty",
+    "monkey",
+    "merchant",
+    "pack:vengefuls",
+    "miller",
+    "merchant",
+    "pack:vengefuls",
+    "merchant",
+    "pack:vengefuls"
+  ],
+  "villageCantLoseRoles": [
+    "samurai",
+    "pl",
+    "inspector"
+  ],
+  "changelog": {
+    "July 15, 2014": "Norrington is given a vote of 2. Beckett gets 3 self-protects for now. Changed nonpeak 5-8 player a bit (and minplayers to 5). Beckett has a -99 voteshield now.",
+    "July 16, 2014": "Beckett's command is now /Defend. It Protects him and kills any attackers (it can still be pierced however). Gilette's Protect also works like Neighbour's /Greet. Removed Gilette's hax. Swapped Mercer and Steng's abilities.",
+    "July 18, 2014": "Gibbs now appears as village-sided if exposed. Norrington and Gilette are connected on startup. Smoothed some flavour issues.",
+    "July 19, 2014": "Beckett has limited BGs based on how many nightkilling pirates there are, and doesn't counter nightkills. Tweaked spawn. Experimental nonpeak added.",
+    "July 21, 2014": "Will's kill doesn't pierce anymore. He can get Liz to PL roles that can Protect themselves for the same effect. Will (and also Vengefuls Mullroy and Murtogg) can kill Barbossa, Davey Jones, the Kraken, and Blackbeard now.",
+    "July 27, 2014": "Tweaked spawn. Norrington exposes daykillers.",
+    "August 9, 2014": "Jack can Protect while Killing. Removed cooldown on Barbossa's Cannon; however, he can be haxed (5%) by anyone any time he uses it. Barbossa can be PL'd now, but Cannon outspeeds. Reversed Jack's distract immunity (now is only after lynch). Removed Gilette/Norrington startup and Liz/Will hax.",
+    "August 25, 2014": "Will is now a Samurai. Jack evades one daykill. Murtogg/Mullroy appear as Pirates when exposed. New nonpeak!",
+    "January 24, 2014": "Major update. Norrington now Inspects. Jack no longer Protects. Gibbs no longer Distracts and now Protects. Beckett is now a JOAT and can Poison, Protect, Inspect, or Distract every night but must alternate. Spawn is pretty different now too. Privateers bomb last voter. Mullroy/Murtogg can't kill immunes, but their kill is broadcast. Gilette has -2 vote again."
+  }
+}
