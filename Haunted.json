@@ -1,0 +1,1625 @@
+{
+    "name": "Haunted",
+    "author": "Miki Sayaka",
+    "borderColor": "#9842f4",
+    "bot": {
+    	"name": "???",
+    	"color": "#ef9d17"
+    },
+    "closedSetup": "night1",
+    "killmsg": "~Player~ (???) died!",
+    "lynchmsg": "~Player~ (???) died!",
+    "summary": "The battle for Halloween is just getting underway, as some nice trick-or-treaters have to contend with the forces of evil and many weird costumes! Remember, people can't talk when they are killed!",
+    "sides": [
+        {
+            "side": "costumes",
+            "translation": "Costumes Mafia",
+            "winmsg": "~Players~ have proven that a good Halloween Costume is the key to success in life!",
+            "color": "#0c995e"
+        },
+        {
+            "side": "undead",
+            "translation": "Undead",
+            "winmsg": "~Players~ have taken control of everyone's candy and become the evilest Undead ever!!",
+            "color": "#67d121"
+        },
+        {
+            "side": "good",
+            "translation": "Spookers",
+            "winmsg": "~Players~ have saved Halloween from all threats of evil!",
+            "color": "#058ca8"
+        },
+        {
+            "side": "night",
+            "color": "#d80d5b",
+            "winmsg": "~Players~ have consumed the world in eternal night! Congratulations!",
+            "translation": "Creatures of the Night"
+        },
+        {
+            "side": "clown",
+            "color": "#e104e5",
+            "winmsg": "Oh my god is that a clown? Good job ~Players~!!",
+            "translation": "Clown"
+        }
+    ],
+    "tips": {
+        "Claiming Is Bad": "Well, risky anyway. Laughing Child becomes a major target if it claims as Lunar Witch has a near free win from eliminating it. Random wishes can kill PRs that claim and Laughing Child itself cannot gain wishes.",
+        "Connecting Is Good": "There are no Moles, so if you find a good role as a Smart Pumpkin or Laughing Child, you should connect with them. Lunar Witch can disguise other roles as herself so be careful!",
+        "Reviving": "As a Charming Coffin, Usually it's a good idea to revive people killed during the night. As the Druid, you should save your Revive to use on Lunar Witch if she falls. Trickster should revive confirmed Mafia only.",
+        "Vote Power": "Village should have more vote power when the Dying Damsel is revived. That means during days when she is dead, the village may be in trouble. Also, the Pumpkin King can Kuja up if he squashed all the Pumpkins.",
+        "Pumpkin Flips": "When the Laughing Child dies, the Pumpkins become sided with the Lunar Witch. Then, if the Laughing Child is revived, all dead Pumpkins come back as Great Pumpkins, allowing for a comeback victory. However, living Pumpkins remain under control of the Lunar Witch even if the Laughing Child is revived."
+    },
+    "memory": {
+        "seen": "player"
+    },
+    "variables": {
+        "wishKill": {
+            "wish": {
+                "command": "kill", 
+                "target": "AnyButSelf",
+                "msg": "", 
+                "macro": false,
+                "killmsg": "By the power vested in me by the stars, I, ~Self~, hereby banish ~Target~ into the void!", 
+                "revealChance": 0.15, 
+                "revealmsg": "Or, something like that, ~Self~ says." 
+            } 
+        },
+        "noWish": {
+            "command": ["daydistract"],
+            "target": "OnlySelf",
+            "common": "Self",
+            "priority": 100,
+            "hide": true,
+            "macro": false,
+            "inputmsg": "",
+            "compulsory": true,
+            "dayDistractMsg": "You don't have any wishes to use!"
+        }
+    },
+    "roles": [
+        {
+            "role": "smart",
+            "translation": "Smart Pumpkin",
+            "side": "good",
+            "help": "You are a Smart Pumpkin, so you can inspect during the night to find out somone's role! However, be careful, as you may actually be the Creepy Pumpkin who sees everyone as the Pumpkin King!",
+            "info": "Can inspect during the night. If the Laughing Child dies while the Lunar Witch is alive, becomes a Spirit sided with the Lunar Witch. If the Laughing Child is revived while this is dead, this revives as a Great Pumpkin. ~Sided~",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 25
+                    },
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "creepy",
+            "translation": "Creepy Pumpkin",
+            "side": "good",
+            "help": "You are a Smart Pumpkin, so you can inspect during the night to find out somone's role! However, be careful, as you may actually be the Creepy Pumpkin who sees everyone as the Pumpkin King!",
+            "info": "Can inspect during the night, but sees Pumpkin King 90% of the time. Sees self as Smart Pumpkin on startup. If the Laughing Child dies while the Lunar Witch is alive, becomes a Spirit sided with the Lunar Witch. If the Laughing Child is revived while this is dead, this revives as a Great Pumpkin. ~Sided~",
+            "actions": {
+                "startup": {
+                    "revealAs": "smart"
+                },
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 25,
+                        "hide": true,
+                        "Sight": {
+                            "true": 0.1,
+                            "king": 0.9
+                        }
+                    },
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "friendly",
+            "translation": "Friendly Pumpkin",
+            "side": "good",
+            "help": "You are a Friendly Pumpkin, so you can reveal yourself to another player during the night by using /greet [name]! You can also find the Smart and Creepy Pumpkins when they inspect.",
+            "info": "Can greet during the night. Haxes inspect. If the Laughing Child dies while the Lunar Witch is alive, becomes a Spirit sided with the Lunar Witch. If the Laughing Child is revived while this is dead, this revives as a Great Pumpkin. ~Sided~",
+            "actions": {
+                "hax": {
+                    "inspect": {
+                        "revealTeam": 0.33,
+                        "revealPlayer": 0.17
+                    }
+                },
+                "night": {
+                    "greet": {
+                        "command": ["dummy"],
+                        "target": "AnyButSelf",
+                        "dummytargetmsg": "~Self~, the Friendly Pumpkin, came to knock on your door! Trick-or-treat!",
+                        "common": "Self",
+                        "priority": 8,
+                        "hide": true
+                    },
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "scary",
+            "translation": "Scary Pumpkin",
+            "side": "good",
+            "help": "You are a Scary Pumpkin, so you can /scream [name] at someone to redirect all their actions onto you during the night!",
+            "info": "Can scream someone during the night (broadcast redirects actions onto self). If the Laughing Child dies while the Lunar Witch is alive, becomes a Spirit sided with the Lunar Witch. If the Laughing Child is revived while this is dead, this revives as a Great Pumpkin. ~Sided~",
+            "actions": {
+                "night": {
+                    "scream": {
+                        "command": ["redirect", "dummy"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "redirectTarget": "OnlySelf",
+                        "redirectActions": ["kill", "protect", "distract", "inspect", "revive", "squash"],
+                        "redirectMsg": "",
+                        "dummybroadcastmsg": "~Target~ was screamed at by the Scary Pumpkin! Yikes!",
+                        "priority": 5
+                    },
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "great",
+            "translation": "Great Pumpkin",
+            "side": "good",
+            "help": "You are a Great Pumpkin, so your vote counts as 3! Once per game, you can also use /revive [name] to resurrect another player with your Greatness!",
+            "info": "Can revive an ally during the night once per game. Vote counts as 3. If the Laughing Child dies while the Lunar Witch is alive, becomes a Spirit sided with the Lunar Witch. If the Laughing Child is revived while this is dead, this revives as a Great Pumpkin. ~Sided~",
+            "actions": {
+                "vote": 3,
+                "night": {
+                    "revive": {
+                        "command": ["revive"],
+                        "charges": 1,
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "reviveBroadcastMsg": "~Target~ has returned from the Afterlife!",
+                        "reviveMsg": "You revived ~Target~ (the ~TargetRole~)!",
+                        "reviveTargetMsg": "The Great Pumpkin revived you!",
+                        "priority": 9
+                    },
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "odd",
+            "translation": "Odd Pumpkin",
+            "side": "good",
+            "help": "You are an Odd Pumpkin, but I must say, you steam a good ham. /Protect [name] once every two nights to save your friends! You can hax the target of kills, making this easier. Your vote counts as -3 because you are so funny.",
+            "info": "Can protect one person every other night. Vote counts as -3. If the Laughing Child dies while the Lunar Witch is alive, becomes a Spirit sided with the Lunar Witch. If the Laughing Child is revived while this is dead, this revives as a Great Pumpkin. ~Sided~",
+            "actions": {
+                "vote": -3,
+                "night": {
+                    "protect": {
+                        "command": ["guard"],
+                        "target": "AnyButSelf",
+                        "guardActions": ["kill"],
+                        "guardmsg": "Your target (~Target~) was protected!",
+                        "common": "Self",
+                        "priority": 7,
+                        "hide": true
+                    },
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "explosive",
+            "translation": "Explosive Pumpkin",
+            "side": "good",
+            "help": "OMG THIS PUMPKIN IS SO HOT IT'S GONNA GO BOOM I WONDER WHO WILL HIT YOU AND DIE??",
+            "info": "Bombs kill. If the Laughing Child dies while the Lunar Witch is alive, becomes a Spirit sided with the Lunar Witch. If the Laughing Child is revived while this is dead, this revives as a Great Pumpkin. ~Sided~",
+            "actions": {
+                "kill": {
+                    "mode": "killattacker",
+                    "msg": "You tried to kill the Explosive Pumpkin! Ka-bloom!"
+                },
+                "night": {
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "squashed",
+            "translation": "Squashed Pumpkin",
+            "side": "good",
+            "help": "You've been squashed ): so now your vote only counts as 0.4. At the end of the next night you will unsquash into a new role hopefully.",
+            "players": "When a Pumpkin is squashed by the Pumpkin King",
+            "info": "Vote counts as 0.4. Becomes a random Pumpkin at the end of the night. If the Laughing Child dies while the Lunar Witch is alive, becomes a Spirit sided with the Lunar Witch. If the Laughing Child is revived while this is dead, this revives as a Great Pumpkin. ~Sided~",
+            "actions": {
+                "vote": 0.4,
+                "night": {
+                    "Evolve": {
+                        "command": ["convert"],
+                        "target": "AnyButSelf",
+                        "hide": true,
+                        "compulsory": true,
+                        "macro": false,
+                        "inputmsg": "",
+                        "common": "OnlySelf",
+                        "convertmsg": "",
+                        "convertfailmsg": "",
+                        "newRole": {
+                            "random": {
+                                "smart": 0.2,
+                                "creepy": 0.2,
+                                "scary": 0.2,
+                                "explosive": 0.15,
+                                "great": 0.1,
+                                "odd": 0.2,
+                                "silly": 0.05
+                            }
+                        },
+                        "convertusermsg": "You converted into a ~New~!",
+                        "priority": 50
+                    },
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "silly",
+            "translation": "Silly Pumpkin",
+            "side": "good",
+            "help": "Silly Pumpkin you are, your vote counts as anything between -3 and 5. Try and make your team win by voting with them (or against them).",
+            "info": "Vote counts randomly between -3 and 5. If the Laughing Child dies while the Lunar Witch is alive, becomes a Spirit sided with the Lunar Witch. If the Laughing Child is revived while this is dead, this revives as a Great Pumpkin. ~Sided~",
+            "actions": {
+                "vote": [-3, -2, -1, 1, 2, 3, 4, 5],
+                "night": {
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "smart_a",
+            "translation": "Smart Pumpkin",
+            "side": "good",
+            "help": "You are a Smart Pumpkin, so you can inspect during the night to find out somone's role! However, be careful, as you may actually be the Creepy Pumpkin who sees everyone as the Pumpkin King!",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 25
+                    },
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "creepy_a",
+            "translation": "Creepy Pumpkin",
+            "side": "good",
+            "help": "You are a Smart Pumpkin, so you can inspect during the night to find out somone's role! However, be careful, as you may actually be the Creepy Pumpkin who sees everyone as the Pumpkin King!",
+            "hide": true,
+            "actions": {
+                "startup": {
+                    "revealAs": "smart_a"
+                },
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 25,
+                        "hide": true,
+                        "Sight": {
+                            "true": 0.1,
+                            "king": 0.9
+                        }
+                    },
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "friendly_a",
+            "translation": "Friendly Pumpkin",
+            "side": "good",
+            "hide": true,
+            "help": "You are a Friendly Pumpkin, so you can reveal yourself to another player during the night by using /greet [name]! You can also find the Smart and Creepy Pumpkins when they inspect.",
+            "actions": {
+                "hax": {
+                    "inspect": {
+                        "revealTeam": 0.33,
+                        "revealPlayer": 0.17
+                    }
+                },
+                "night": {
+                    "greet": {
+                        "command": ["dummy"],
+                        "target": "AnyButSelf",
+                        "dummytargetmsg": "~Self~, the Friendly Pumpkin, came to knock on your door! Trick-or-treat!",
+                        "common": "Self",
+                        "priority": 8,
+                        "hide": true
+                    },
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "scary_a",
+            "translation": "Scary Pumpkin",
+            "side": "good",
+            "hide": true,
+            "help": "You are a Scary Pumpkin, so you can /scream [name] at someone to redirect all their actions onto you during the night!",
+            "actions": {
+                "night": {
+                    "scream": {
+                        "command": ["redirect", "dummy"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "redirectTarget": "OnlySelf",
+                        "redirectActions": ["kill", "protect", "distract", "poison", "inspect", "revive", "squash"],
+                        "redirectMsg": "",
+                        "hide": true,
+                        "dummybroadcastmsg": "~Target~ was screamed at by the Scary Pumpkin! Yikes!",
+                        "priority": 5
+                    },
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "great_a",
+            "translation": "Great Pumpkin",
+            "side": "good",
+            "hide": true,
+            "help": "You are a Great Pumpkin, so your vote counts as 3! Once per game, you can also use /revive [name] to resurrect another player with your Greatness!",
+            "actions": {
+                "vote": 3,
+                "night": {
+                    "revive": {
+                        "command": ["revive"],
+                        "charges": 1,
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "reviveBroadcastMsg": "~Target~ has returned from the Afterlife!",
+                        "reviveMsg": "You revived ~Target~ (the ~TargetRole~)!",
+                        "reviveTargetMsg": "The Great Pumpkin revived you!",
+                        "priority": 9
+                    },
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "odd_a",
+            "translation": "Odd Pumpkin",
+            "side": "good",
+            "help": "You are an Odd Pumpkin, but I must say, you steam a good ham. /Protect [name] once every two nights to save your friends! You can hax the target of kills, making this easier. Your vote counts as -3 because you are so funny.",
+            "hide": true,
+            "actions": {
+                "vote": -3,
+                "night": {
+                    "protect": {
+                        "command": ["guard"],
+                        "target": "AnyButSelf",
+                        "guardActions": ["kill"],
+                        "guardmsg": "Your target (~Target~) was protected!",
+                        "common": "Self",
+                        "priority": 7,
+                        "hide": true
+                    },
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "explosive_a",
+            "translation": "Explosive Pumpkin",
+            "side": "good",
+            "help": "OMG THIS PUMPKIN IS SO HOT IT'S GONNA GO BOOM I WONDER WHO WILL HIT YOU AND DIE??",
+            "hide": true,
+            "actions": {
+                "kill": {
+                    "mode": "killattacker",
+                    "msg": "You tried to kill the Explosive Pumpkin! Ka-bloom!"
+                },
+                "night": {
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "squashed_a",
+            "translation": "Squashed Pumpkin",
+            "side": "good",
+            "help": "You've been squashed ): so now your vote only counts as 0.4. At the end of the next night you will unsquash into a new role hopefully.",
+            "hide": true,
+            "actions": {
+                "vote": 0.4,
+                "night": {
+                    "Evolve": {
+                        "command": ["convert"],
+                        "target": "AnyButSelf",
+                        "hide": true,
+                        "compulsory": true,
+                        "macro": false,
+                        "inputmsg": "",
+                        "common": "OnlySelf",
+                        "convertmsg": "",
+                        "convertfailmsg": "",
+                        "newRole": {
+                            "random": {
+                                "smart_a": 0.2,
+                                "creepy_a": 0.2,
+                                "scary_a": 0.2,
+                                "explosive_a": 0.15,
+                                "great_a": 0.1,
+                                "odd_a": 0.2,
+                                "silly_a": 0.05
+                            }
+                        },
+                        "convertusermsg": "You converted into a ~New~!",
+                        "priority": 50
+                    },
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "silly_a",
+            "translation": "Silly Pumpkin",
+            "side": "good",
+            "hide": true,
+            "help": "You are a normal citizen of Hyrule. Vote to remove people in the day!",
+            "actions": {
+                "vote": [-3, -2, -1, 1, 2, 3, 4, 5],
+                "night": {
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "smart_b",
+            "translation": "Smart Pumpkin Spirit",
+            "side": "night",
+            "hide": true,
+            "help": "You are a Smart Pumpkin, so you can inspect during the night to find out somone's role! However, be careful, as you may actually be the Creepy Pumpkin who sees everyone as the Pumpkin King!",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 25
+                    },
+                    "WS": "variable:noWish"
+                },
+                "team-revealif": ["night"],
+                "preventTeamvote": true,
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "creepy_b",
+            "translation": "Creepy Pumpkin Spirit",
+            "side": "night",
+            "hide": true,
+            "help": "You are a Smart Pumpkin, so you can inspect during the night to find out somone's role! However, be careful, as you may actually be the Creepy Pumpkin who sees everyone as the Pumpkin King!",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 25,
+                        "hide": true,
+                        "Sight": {
+                            "true": 0.1,
+                            "king": 0.9
+                        }
+                    },
+                    "WS": "variable:noWish"
+                },
+                "team-revealif": ["night"],
+                "preventTeamvote": true,
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "scary_b",
+            "translation": "Scary Pumpkin Spirit",
+            "side": "night",
+            "hide": true,
+            "help": "You are a Scary Pumpkin, so you can /scream [name] at someone to redirect all their actions onto you during the night!",
+            "actions": {
+                "hax": {
+                    "inspect": {
+                        "revealTeam": 0.33,
+                        "revealPlayer": 0.17
+                    }
+                },
+                "night": {
+                    "scream": {
+                        "command": ["redirect", "dummy"],
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "redirectTarget": "OnlySelf",
+                        "redirectActions": ["kill", "protect", "distract", "poison", "inspect", "revive", "squash"],
+                        "redirectMsg": "",
+                        "hide": true,
+                        "dummybroadcastmsg": "~Target~ was screamed at by the Scary Pumpkin! Yikes!",
+                        "priority": 5
+                    },
+                    "WS": "variable:noWish"
+                },
+                "team-revealif": ["night"],
+                "preventTeamvote": true,
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "friendly_b",
+            "translation": "Friendly Pumpkin Spirit",
+            "side": "night",
+            "hide": true,
+            "help": "You are a Friendly Pumpkin, so you can reveal yourself to another player during the night by using /greet [name]! You can also find the Smart and Creepy Pumpkins when they inspect.",
+            "actions": {
+                "night": {
+                    "greet": {
+                        "command": ["dummy"],
+                        "target": "AnyButSelf",
+                        "dummytargetmsg": "~Self~, the Friendly Pumpkin Spirit, came to knock on your door! Trick-or-treat!",
+                        "common": "Self",
+                        "priority": 30,
+                        "hide": true
+                    },
+                    "WS": "variable:noWish"
+                },
+                "preventTeamvote": true,
+                "team-revealif": ["night"],
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "great_b",
+            "translation": "Great Pumpkin Spirit",
+            "side": "night",
+            "hide": true,
+            "help": "You are a Great Pumpkin, so your vote counts as 3! Once per game, you can also use /revive [name] to resurrect another player with your Greatness!",
+            "actions": {
+                "vote": 3,
+                "night": {
+                    "revive": {
+                        "command": ["revive"],
+                        "charges": 1,
+                        "target": "AnyButSelf",
+                        "hide": true,
+                        "common": "Self",
+                        "reviveBroadcastMsg": "~Target~ has returned from the Afterlife!",
+                        "reviveMsg": "You revived ~Target~ (the ~TargetRole~)!",
+                        "reviveTargetMsg": "The Great Pumpkin revived you!",
+                        "priority": 9
+                    },
+                    "WS": "variable:noWish"
+                },
+                "preventTeamvote": true,
+                "team-revealif": ["night"],
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "odd_b",
+            "translation": "Odd Pumpkin Spirit",
+            "side": "night",
+            "hide": true,
+            "help": "You are a normal citizen of Hyrule. Vote to remove people in the day!",
+            "actions": {
+                "vote": -3,
+                "night": {
+                    "protect": {
+                        "command": ["guard"],
+                        "target": "AnyButSelf",
+                        "guardActions": ["kill"],
+                        "guardmsg": "Your target (~Target~) was protected!",
+                        "common": "Self",
+                        "priority": 7,
+                        "hide": true
+                    },
+                    "WS": "variable:noWish"
+                },
+                "team-revealif": ["night"],
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "explosive_b",
+            "translation": "Explosive Pumpkin Spirit",
+            "side": "night",
+            "hide": true,
+            "help": "OMG THIS PUMPKIN IS SO HOT IT'S GONNA GO BOOM I WONDER WHO WILL HIT YOU AND DIE??",
+            "actions": {
+                "kill": {
+                    "mode": "killattacker",
+                    "msg": "You tried to kill the Explosive Pumpkin! Ka-bloom!"
+                },
+                "night": {
+                    "WS": "variable:noWish"
+                },
+                "preventTeamvote": true,
+                "team-revealif": ["night"],
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "squashed_b",
+            "translation": "Squashed Pumpkin Spirit",
+            "side": "night",
+            "hide": true,
+            "help": "You've been squashed ): so now your vote only counts as 0.4. At the end of the next night you will unsquash into a new role hopefully.",
+            "actions": {
+                "night": {
+                    "Evolve": {
+                        "command": ["convert"],
+                        "target": "AnyButSelf",
+                        "hide": true,
+                        "compulsory": true,
+                        "macro": false,
+                        "inputmsg": "",
+                        "common": "OnlySelf",
+                        "convertmsg": "",
+                        "convertfailmsg": "",
+                        "newRole": {
+                            "random": {
+                                "smart_b": 0.2,
+                                "creepy_b": 0.2,
+                                "scary_b": 0.2,
+                                "explosive_b": 0.15,
+                                "great_b": 0.1,
+                                "odd_b": 0.2,
+                                "silly_b": 0.05
+                            }
+                        },
+                        "convertusermsg": "You converted into a ~New~!",
+                        "priority": 50
+                    },
+                    "WS": "variable:noWish"
+                },
+                "team-revealif": ["night"],
+                "preventTeamvote": true,
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "silly_b",
+            "translation": "Silly Pumpkin Spirit",
+            "side": "night",
+            "hide": true,
+            "help": "Silly Pumpkin you are, your vote counts as anything between -3 and 5. Try and make your team win by voting with them (or against them).",
+            "actions": {
+                "vote": [-3, -2, -1, 1, 2, 3, 4, 5],
+                "team-revealif": ["night"],
+                "night": {
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "inspector",
+            "translation": "Laughing Child",
+            "side": "good",
+            "help": "You are the good hero of Halloween! Sneak around during the day to learn people's roles! Get the Friendly Ghost to protect you so you don't die! Also, you cannot receive wishes from the Starry-Eyed Wish because you are too naughty.",
+            "info": "Can sneak (day inspect) during the day. Knows Friendly Ghost on startup. Cannot receive Wishes. If revived, revives all dead Pumpkins as Great Pumpkins. ~Sided~",
+            "actions": {
+                "startup": {
+                    "revealPlayers": "bodyguard",
+                    "revealPlayersMsg": "The Friendly Ghost is ~Players~."
+                },
+                "standby": {
+                    "sneak": {
+                        "command": "expose",
+                        "target": "AnyButSelf",
+                        "msg": "You can type /sneak [name] to learn someone's role!",
+                        "exposemsg": "Hehehehe! The Laughing Child can be heard, but not seen, as they sneak around to learn who ~Target~ is!",
+                        "newRole": {
+                            "silly": ["trickster"]
+                        },
+                        "convertmsg": "",
+                        "convertusermsg": "You found ~Target~ (the Trickster)! When you found them, they became a Silly Pumpkin and joined your side! (HINT: DO NOT VOTE THEM THEY ARE YOUR TEAMMATE NOW).",
+                        "exposedtargetmsg": "~Target~ is the ~Role~!"
+                    }
+                },
+                "onRevive": {
+                    "reviveRoles": ["great", "odd", "friendly", "silly", "squashed", "smart", "creepy", "scary", "great_b", "odd_b", "friendly_b", "silly_b", "squashed_b", "smart_b", "creepy_b", "scary_b", "great_a", "odd_a", "friendly_a", "silly_a", "squashed_a", "smart_a", "creepy_a", "scary_a" ],
+                    "reviveAs": "great",
+                    "revivemsg": "~Self~ (The Laughing Child) has returned! With them comes a Great Pumpkin (~Target~)!"
+                },
+                "onDeath": {
+                    "convertRoles": {
+                        "smart": "smart_b",
+                        "creepy": "creepy_b",
+                        "scary": "scary_b",
+                        "great": "great_b",
+                        "odd": "odd_b",
+                        "friendly": "friendly_b",
+                        "explosive": "explosive_b",
+                        "squashed": "squashed_b",
+                        "silly": "silly_b"
+                    },
+                    "convertmsg": ""
+                }
+            }
+        },
+        {
+            "role": "bodyguard",
+            "translation": "Friendly Ghost",
+            "side": "good",
+            "help": "You are a friendly ghost :) Protect the Laughing Child at all costs! You have a big vote of 5 but if you are voted you also receive 5 extra votes because you are shy... also you're already dead so you can't die to a nightkill.",
+            "info": "Can protect one person during the night. Cannot be nightkilled. Knows Laughing Child on startup. Vote counts as 5. Receives 5 extra votes if voted for. ~Sided~",
+            "actions": {
+                "startup": {
+                    "revealPlayers": "inspector",
+                    "revealPlayersMsg": "The Laughing Child is ~Players~."
+                },
+                "night": {
+                    "protect": {
+                        "command": ["guard"],
+                        "target": "AnyButSelf",
+                        "guardActions": ["kill"],
+                        "guardmsg": "Your target (~Target~) was protected!",
+                        "common": "Role",
+                        "priority": 7,
+                        "hide": true,
+                        "broadcast": "role"
+                    },
+                    "Immortal": {
+                        "command": ["guard"],
+                        "hide": true,
+                        "target": "OnlySelf",
+                        "guardActions": ["kill"],
+                        "guardmsg": "Your target (~Target~) cannot be killed!",
+                        "common": "Self",
+                        "macro": false,
+                        "inputmsg": "",
+                        "compulsory": true,
+                        "priority": 0
+                    },
+                    "WS": "variable:noWish"
+                },
+                "vote": 5,
+                "voteshield": 5,
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "goodwitch",
+            "translation": "Starry-Eyed Witch",
+            "side": "good",
+            "info": "Can grant one person a wish during the night. Target may kill once during the day (can NOT be saved for a later day). Can protect self during the night. ~Sided~",
+            "help": "Under the cover of darkness, you may /grant someone a wish! This will allow them to make one wish, killing any one person they choose during the day. You may grant one wish per night. Try to only grant wishes to your fellow friendly folk, not the evil ones! You can also /protect yourself during the night.",
+            "actions": { 
+                "night": {
+                    "grant": {
+                        "command": ["guard", "dummy3"],
+                        "target": "AnyButRole",
+                        "common": "Role",
+                        "priority": 98,
+                        "hide": true,
+                        "guardActions": ["WS"],
+                        "dummy3targetmsg": "The Starry-Eyed Witch granted you a wish! Use /wish [name] to kill someone during the day now!",
+                        "dummy3usermsg": "You granted ~Target~ a wish! Now let's just hope they use it wisely..."
+                    },
+                    "protect": {
+                        "command": ["guard"],
+                        "guardActions": ["kill"],
+                        "guardmsg": "Your target (~Target~) was protected!",
+                        "target": "OnlySelf",
+                        "common": "Role",
+                        "priority": 7,
+                        "broadcast": "role"
+                    },
+                    "WS": "variable:noWish"
+                }
+            }
+        },
+        {
+            "role": "pharaoh",
+            "translation": "Youthful Pharaoh",
+            "side": "good",
+            "info": "Vote counts as -99. ~Sided~",
+            "players": "When Slimy Mummy is revived",
+            "help": "You have remembered your old identity, the Youthful Pharaoh! Now you are sided with the good guys and your vote counts as -99! Use this to help defeat the Pumpkin Emperor and other powerful vote threats!",
+            "actions": { 
+                "vote": -99,
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "coffin",
+            "translation": "Charming Coffin",
+            "side": "good",
+            "info": "Can revive one player during the night. Knows other Coffins, but they cannot Revive each other. Cannot be killed while the Dying Damsel is alive. ~Sided~",
+            "help": "You are a Coffin where people go when they die, but you can spit them out and make them alive again by targetting a dead player with /revive [name]! This is shared with your other Coffin friends. You cannot be killed while the Damsel is alive (which is not very often, unforunately).",
+            "actions": { 
+                "night": {
+                    "revive": {
+                        "command": ["revive"],
+                        "target": "AnyButRole",
+                        "common": "Role",
+                        "reviveBroadcastMsg": "~Target~ has returned from the Afterlife!",
+                        "reviveMsg": "Bleh! You spit that ~Target~ (the ~TargetRole~) right back out!",
+                        "reviveTargetMsg": "You must've done something wrong (or right?) because the Charming Coffin spit you right back out!",
+                        "priority": 9
+                    },
+                    "Immortal": {
+                        "command": ["guard"],
+                        "hide": true,
+                        "target": "OnlySelf",
+                        "guardActions": ["kill"],
+                        "guardmsg": "Your target (~Target~) cannot be killed!",
+                        "common": "Self",
+                        "macro": false,
+                        "inputmsg": "",
+                        "compulsory": true,
+                        "priority": 0
+                    },
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "coffin2",
+            "translation": "Charming Coffin",
+            "side": "good",
+            "hide": true,
+            "info": "Can revive one player during the night. Knows other Coffins, but they cannot Revive each other. ~Sided~",
+            "help": "You are a Coffin where people go when they die, but you can spit them out and make them alive again by targetting a dead player with /revive [name]! This is shared with your other Coffin friends. You cannot be killed while the Damsel is alive (which is not very often, unforunately).",
+            "actions": { 
+                "night": {
+                    "revive": {
+                        "command": ["revive"],
+                        "target": "AnyButRole",
+                        "common": "Role",
+                        "reviveBroadcastMsg": "~Target~ has returned from the Afterlife!",
+                        "reviveMsg": "Bleh! You spit that ~Target~ (the ~TargetRole~) right back out!",
+                        "reviveTargetMsg": "You must've done something wrong (or right?) because the Charming Coffin spit you right back out!",
+                        "priority": 9
+                    },
+                    "WS": "variable:noWish"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "damsel",
+            "translation": "Dying Damsel",
+            "side": "good",
+            "info": "Can distract one person during the night. Dies at the end of every night. Vote multiplier of 2. ~Sided~",
+            "help": "You are the heiress to the Tomb of Trinity, but unfortunately you cannot live through the night! Therefore, you must be revived to stay in the game. You can distract during the night. If you are revived, you will be able to defeat your enemies with a powerful vote multiplier of 2!",
+            "actions": { 
+                "night": {
+                    "distract": {
+                        "command": ["distract", "memory"],
+                        "setMemory": {
+                            "seen": "~Target~"
+                        },
+                        "memoryFor": "self",
+                        "target": "AnyButRole",
+                        "common": "Role",
+                        "priority": 4
+                    },
+                    "Die": {
+                        "command": ["kill"],
+                        "target": "OnlySelf",
+                        "macro": false,
+                        "compulsory": true,
+                        "pierce": true,
+                        "common": "Role",
+                        "inputmsg": "Oh no! You are dying!",
+                        "priority": 14
+                    },
+                    "WS": "variable:noWish"
+                },
+                "onDeath": {
+                    "convertRoles": {
+                        "coffin": "coffin2"
+                    },
+                    "convertmsg": ""
+                },
+                "onRevive": {
+                    "convertRoles": {
+                        "coffin2": "coffin"
+                    }
+                },
+                "voteMultiplier": 2,
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "heroic",
+            "translation": "Heroic Spirit",
+            "side": "good",
+            "info": "Can kill one person during the night. If revived, can kill during the day additionally (is revealed). Is revived whenever a Druid dies. ~Sided~",
+            "help": "You are the hero of the good guys, so you can kill during the night! Rawwwr.",
+            "actions": { 
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 11
+                    },
+                    "WS": "variable:noWish"
+                },
+                "reviveAs": "heroic2",
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "heroic2",
+            "translation": "Heroic Spirit",
+            "side": "good",
+            "hide": true,
+            "help": "You are the hero of the good guys, so you can kill during the night! Also, now that you have been revived, you can also kill during the day!",
+            "actions": { 
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 11
+                    }
+                },
+                "standby": {
+                    "excalibur": {
+                        "command": "kill",
+                        "killmsg": "EXXXXXXCALLIBUUUUUUUUUUUUR!!! The Heroic Spirit ~Self~ draws the legendary sword and fires a laser beam at ~Target~, who dies!", 
+                        "target": "AnyButSelf",
+                        "msg": "You can now use /excalibur to kill someone during the day!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "lunar",
+            "translation": "Lunar Witch",
+            "side": "night",
+            "winIfDeadRoles": [
+                "great", "odd", "friendly", "silly", "squashed", "smart", "creepy", "scary", 
+                "great_a", "odd_a", "friendly_a", "silly_a", "squashed_a", "smart_a", "creepy_a", "scary_a", 
+                "inspector",
+                "bodyguard",
+                "goodwitch",
+                "coffin",
+                "coffin2",
+                "damsel",
+                "heroic",
+                "heroic2",
+                "pharaoh"
+            ],
+            "help": "You are a witch so powerful that you lead the Creatures of the Night! Cackle. Cackle. You can /kill [name] during the night to eliminate your enemies, and /disguise [name] during the night to make other people appear to be you! If the Laughing Child falls, you will gain control of all the Pumpkins! If the good guys are ever fully defeated, you win automatically!",
+			"info": "Can kill one person during the night. Can disguise one player as Lunar Witch during the night. Gains control of Pumpkins when the Laughing Child dies. Kills controlled Pumpkins on death. Wins if village is defeated. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "command": ["memory", "kill"],
+                        "setMemory": {
+                            "seen": "~Target~"
+                        },
+                        "memoryFor": "self",
+                        "target": "AnyButTeam",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate (the Lunar Witch) has decided to kill ~Target~!",
+                        "common": "Self",
+                        "priority": 12
+                    },
+                    "disguise": {
+                        "disguiseRole": "lunar",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 8
+                    },
+                    "WS": "variable:noWish"
+                },
+                "onDeath": {
+                    "convertRoles": {
+                        "smart": "smart_a",
+                        "creepy": "creepy_a",
+                        "scary": "scary_a",
+                        "great": "great_a",
+                        "odd": "odd_a",
+                        "friendly": "friendly_a",
+                        "explosive": "explosive_a",
+                        "squashed": "squashed_a",
+                        "silly": "silly_a"
+                    },
+                    "killRoles": ["smart_b", "creepy_b", "scary_b", "great_b", "odd_b", "friendly_b", "explosive_b", "squashed_b", "silly_b"],
+                    "convertmsg": ""
+                },
+                "onRevive": {
+                    "convertRoles": {
+                        "smart_a": "smart",
+                        "creepy_a": "creepy",
+                        "scary_a": "scary",
+                        "great_a": "great",
+                        "odd_a": "odd",
+                        "friendly_a": "friendly",
+                        "explosive_a": "explosive",
+                        "squashed_a": "squashed",
+                        "silly_a": "silly"
+                    },
+                    "convertmsg": ""
+                },
+                "teamUtilities": true,
+                "updateTeam": true,
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "druid",
+            "translation": "Druid",
+            "side": "night",
+            "info": "Can use one of the following actions per night: revive, inspect, distract, on non-consecutive nights. Revives Heroic Spirit on death. ~Sided~",
+            "help": "You are a scary Druid who wants the world to be eclipsed in eternal night. Type /inspect [name], /distract [name], or /revive [name] to use an action during the night. You can only use one, and it cannot be used consecutive nights.",
+            "actions": { 
+                "night": {
+                    "revive": {
+                        "command": ["revive"],
+                        "target": "AnyButRole",
+                        "common": "Self",
+                        "reviveBroadcastMsg": "~Target~ has returned from the Afterlife!",
+                        "reviveMsg": "You resurrected ~Target~ (the ~TargetRole~)!",
+                        "reviveTargetMsg": "You've been revived by the Druid!",
+                        "cancel": ["distract", "inspect"],
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate (the Druid) has decided to revive ~Target~!",
+                        "recharge": 2,
+                        "priority": 9
+                    },
+                    "inspect": {
+                        "command": ["inspect"],
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate (the Druid) has decided to inspect ~Target~!",
+                        "cancel": ["distract", "revive"],
+                        "recharge": 2,
+                        "priority": 25
+                    },
+                    "distract": {
+                        "command": ["distract"],
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "cancel": ["revive", "inspect"],
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate (the Druid) has decided to distract ~Target~!",
+                        "recharge": 2,
+                        "priority": 3
+                    },
+                    "WS": "variable:noWish"
+                },
+                "onDeath": {
+                    "reviveRoles": ["heroic", "heroic2"],
+                    "revivemsg": "~Target~ has returned from the Afterlife!"
+                },
+                "teamUtilities": true,
+                "updateTeam": true,
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "vampire",
+            "translation": "Bloodsucker",
+            "side": "night",
+            "info": "Can poison one player during the night. Immune to nightkills. ~Sided~",
+            "help": "You are sided vith de creatures of de night, because you are a vampire who hates the sun with a burning passion. Type /poison [name] to poison de enemies. You cannot be killed during the night because you are 500 years old.",
+            "actions": { 
+                "night": {
+                    "poison": {
+                        "target": "AnyButTeam",
+                        "common": "Role",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate (the Bloodsucker) has decided to poison ~Target~!",
+                        "priority": 30
+                    },
+                    "Immortal": {
+                        "command": ["guard"],
+                        "hide": true,
+                        "target": "OnlySelf",
+                        "guardActions": ["kill"],
+                        "guardmsg": "Your target (~Target~) cannot be killed!",
+                        "common": "Self",
+                        "macro": false,
+                        "inputmsg": "",
+                        "compulsory": true,
+                        "priority": 0
+                    },
+                    "WS": "variable:noWish"
+                },
+                "teamUtilities": true,
+                "updateTeam": true,
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "king",
+            "translation": "Pumpkin King",
+            "side": "undead",
+            "info": "Shared kill. Kills distracters. Can squash two players per night (turns any Pumpkin into a Squashed Pumpkin. Revives most recently killed player on death. ~Sided~",
+            "help": "You are the Pumpkin King, which makes you the greatest leader of the undead! Type /kill [name] to steal someone's soul, and then /squash [name] up to twice per night to squash Pumpkins! You don't care for distracters, so you just kill them if they come to you. If all the Pumpkins are squashed or, you will become the Great Pumpkin Emperor and win easily!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "command": ["memory", "dummy", "kill"],
+                        "setMemory": {
+                            "seen": "~Target~"
+                        },
+                        "memoryFor": "self",
+                        "dummyusermsg": "You stole ~Target~'s soul! If you are killed, they can still be revived!",
+                        "target": "AnyButTeam",
+                        "common": "Role",
+                        "priority": 13,
+                        "broadcast": "team"
+                    },
+                    "squash": {
+                        "command": ["convert"],
+                        "limit": 2,
+                        "target": "AnyButTeam",
+                        "newRole": {
+                            "squashed": ["great", "odd", "friendly", "silly", "smart", "creepy", "scary"],
+                            "squashed_a": ["great_a", "odd_a", "friendly_a", "silly_a", "smart_a", "creepy_a", "scary_a"],
+                            "squashed_b": ["great_b", "odd_b", "friendly_b", "silly_b", "smart_b", "creepy_b", "scary_b"]
+                        },
+                        "common": "Role",
+                        "convertmsg": "",
+                        "convertusermsg": "You squashed ~Target~ flat! Mwahaha. They are now a Squashed Pumpkin.",
+                        "convertfailmsg": "",
+                        "convertuserfailmsg": "You couldn't squash ~Target~!",
+                        "hide": true,
+                        "priority": 45,
+                        "broadcast": "team"
+                    },
+                    "WS": "variable:noWish"
+                },
+                "onDeath": {
+                    "reviveMemory": ["seen"],
+                    "revivemsg": "~Target~ has returned from the Afterlife!"
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "emperor": ["great", "odd", "friendly", "silly", "smart", "creepy", "scary", "great_a", "odd_a", "friendly_a", "silly_a", "smart_a", "creepy_a", "scary_a", "great_b", "odd_b", "friendly_b", "silly_b", "smart_b", "creepy_b", "scary_b"]
+                    },
+                    "convertmsg": "The Pumpkin King has ascended and is now the Great Pumpkin Emperor!!"
+                },
+                "distract": {
+                    "mode": "ChangeTarget",
+                    "msg": "What an idea, trying to distract the Pumpkin King. You were destroyed!"
+                },
+                "teamUtilities": true,
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "emperor",
+            "translation": "Great Pumpkin Emperor",
+            "side": "undead",
+            "info": "Inherits Pumpkin King. Vote counts as 100. ~Sided~",
+            "help": "You are now the Great Pumpkin Emperor! You can still /kill [name] to steal someone's soul, and then /squash [name] up to twice per night to squash Pumpkins! All that's changed is now your vote counts for 100!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "command": ["memory", "dummy", "kill"],
+                        "setMemory": {
+                            "seen": "~Target~"
+                        },
+                        "memoryFor": "self",
+                        "dummyusermsg": "You stole ~Target~'s soul! If you are killed, they can still be revived!",
+                        "target": "AnyButTeam",
+                        "hide": true,
+                        "common": "Role",
+                        "priority": 13,
+                        "broadcast": "team"
+                    },
+                    "squash": {
+                        "command": ["convert"],
+                        "limit": 2,
+                        "target": "AnyButTeam",
+                        "newRole": {
+                            "squashed": ["great", "odd", "friendly", "silly", "smart", "creepy", "scary"],
+                            "squashed_a": ["great_a", "odd_a", "friendly_a", "silly_a", "smart_a", "creepy_a", "scary_a"],
+                            "squashed_b": ["great_b", "odd_b", "friendly_b", "silly_b", "smart_b", "creepy_b", "scary_b"]
+                        },
+                        "common": "Role",
+                        "convertmsg": "",
+                        "convertusermsg": "You squashed ~Target~ flat! Mwahaha. They are now a Squashed Pumpkin.",
+                        "convertfailmsg": "",
+                        "convertuserfailmsg": "You couldn't squash ~Target~!",
+                        "hide": true,
+                        "priority": 55,
+                        "broadcast": "team"
+                    },
+                    "WS": "variable:noWish"
+                },
+                "onDeath": {
+                    "reviveMemory": ["seen"],
+                    "revivemsg": "~Target~ has returned from the Afterlife!"
+                },
+                "vote": 100,
+                "distract": {
+                    "mode": "ChangeTarget",
+                    "msg": "What an idea, trying to distract the Great Pumpkin Emperor. You were destroyed!"
+                },
+                "teamUtilities": true,
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "skeleton",
+            "translation": "Spooky Scary Skeleton",
+            "side": "undead",
+            "info": "Can protect one person during the night. Shared kill. Cannot be nightkilled. ~Sided~",
+            "help": "Try singing \"Spooky Scary Skeletons\" and someone will probably ignore you. /Protect [name] your king and try to win! You also share the team's kill, for what that's worth. Also you're already dead so you can't be killed.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "hide": true,
+                        "priority": 13,
+                        "broadcast": "team"
+                    },
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "hide": true,
+                        "priority": 5,
+                        "broadcast": "team"
+                    },
+                    "Immortal": {
+                        "command": ["guard"],
+                        "hide": true,
+                        "target": "OnlySelf",
+                        "guardActions": ["kill"],
+                        "guardmsg": "Your target (~Target~) cannot be killed!",
+                        "common": "Self",
+                        "macro": false,
+                        "inputmsg": "",
+                        "compulsory": true,
+                        "priority": 0
+                    },
+                    "WS": "variable:noWish"
+                },
+                "teamUtilities": true,
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "mummy",
+            "translation": "Slimy Mummy",
+            "side": "undead",
+            "info": "Can bind (distract) one person during the night. Shared kill. If Revived, comes back as Youthful Pharaoh. ~Sided~",
+            "help": "You are an old Egyptian prince who died, so now you are sided with the Undead! You share the team's kill and can also /bind [name] to distract someone. If you ever die and come back, though, you will come back as your old self!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "hide": true,
+                        "priority": 13,
+                        "broadcast": "team"
+                    },
+                    "bind": {
+                        "command": ["distract"],
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "distractmsg": "The Slimy Mummy wrapped you up so you couldn't do anything!",
+                        "priority": 2,
+                        "broadcast": "team"
+                    },
+                    "WS": "variable:noWish"
+                },
+                "reviveAs": "pharaoh",
+                "teamUtilities": true,
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "trickster",
+            "translation": "Trickster",
+            "side": "night",
+            "winningSides": ["undead", "night"],
+            "info": "Can inspect twice per night. Can revive (50% chance to succeeed) once per night. Ignores distract. Voteshield of -3. Immune to nightkills and daykills. Becomes a Silly Pumpkin if exposed. Can win with the Undead or the Creatures of the Night.",
+            "help": "You are evil but you don't care whether it's the Undead or the Creatures of the Nights who win! You can't be killed and you have a voteshield of -3. You can /inspect [name] twice per night to gain info, and you revive someone during the night with a 50% chance of success! If you are exposed, you will transform into a Silly Pumpkin as a disguise to save yourself!",
+            "actions": { 
+                "night": {
+                    "revive": {
+                        "command": ["revive"],
+                        "target": "AnyButRole",
+                        "common": "Role",
+                        "reviveBroadcastMsg": "~Target~ has returned from the Afterlife!",
+                        "reviveMsg": "You brought back ~Target~ (the ~TargetRole~)!",
+                        "reviveTargetMsg": "You've been revived by the Trickster!",
+                        "failChance": 0.5,
+                        "priority": 9
+                    },
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Role",
+                        "limit": 2,
+                        "priority": 25
+                    },
+                    "WS": "variable:noWish"
+                },
+                "voteshield": -3,
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "Someone tried to distract you, but you just duplicated yourself and had no problem continuing to your tasks!"
+                },
+                "daykill": {
+                    "mode": {
+                        "evadeChance": 1
+                    }
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "jesus",
+            "translation": "Jesus",
+            "side": "costumes",
+            "info": "Can kill one person during the night. Can revive one person during the night. ~Sided~",
+            "help": "You are Jesus, but you're actually just a normal person in a costume. You can /kill [name] someone in the name of the holy land. You can also revive one player during the night because the bible sayeth.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 15,
+                        "broadcast": "team"
+                    },
+                    "revive": {
+                        "command": ["revive"],
+                        "target": "AnyButRole",
+                        "common": "Role",
+                        "reviveBroadcastMsg": "~Target~ has returned from the Afterlife!",
+                        "reviveMsg": "You Jesus'd ~Target~ (the ~TargetRole~) back to life!",
+                        "reviveTargetMsg": "#JesusSaves",
+                        "priority": 9
+                    },
+                    "WS": "variable:noWish"
+                },
+                "teamUtilities": true,
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "bob",
+            "translation": "Bob Ross",
+            "side": "costumes",
+            "info": "Can knife (priority pierce kill) one person during the night once per life. Vote counts as 10. ~Sided~",
+            "help": "Thank you all for joining us today, my name is Bob Ross and every day is a good day when you paint. Use your vote of 10 to control the vote phase! Your paintbrush can also turn into a knife so you can stab people very fast, but you can only do this once per game so use it wisely.",
+            "actions": {
+                "night": {
+                    "knife": {
+                        "command": ["kill"],
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 1,
+                        "charges": 1,
+                        "broadcast": "team"
+                    },
+                    "WS": "variable:noWish"
+                },
+                "vote": 10,
+                "teamUtilities": true,
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "clown",
+            "translation": "Evil Clown",
+            "side": "clown",
+            "info": "Can kill twice per night. If killed, becomes the Very Evil Clown. ~Sided~",
+            "help": "You are an Evil Clown, so you have to kill everyone. Use kill twice per night to have lots of fun. If you die, you come back as a Very Evil Clown.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 16,
+                        "limit": 2
+                    },
+                    "WS": "variable:noWish"
+                },
+                "onDeath": {
+                    "convert": {
+                        "newRole": "clown2",
+                        "msg": "The ~Old~ survived dying and became a ~New~!"
+                    }
+                },
+                "teamUtilities": true,
+                "standby": "variable:wishKill"
+            }
+        },
+        {
+            "role": "clown2",
+            "translation": "Very Evil Clown",
+            "side": "clown",
+            "info": "Can kill thrice per night. Voteshield of -9999999999999. ~Sided~",
+            "help": "Wow now you are so evil that you can kill three times in one night and you have a voteshield of over 9000.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 16,
+                        "limit": 3
+                    },
+                    "WS": "variable:noWish"
+                },
+                "voteshield": -9999999999999,
+                "teamUtilities": true,
+                "standby": "variable:wishKill"
+            }
+        }
+    ],
+    "spawnPacks": {
+        "villagers": {
+            "roles": [
+                ["smart", "creepy"],
+                ["scary", "great"],
+                ["odd", "explosive"]
+            ],
+            "chance": [0.2, 0.7, 0.1]
+        }
+    }, 
+	"roles1": [
+		"smart",
+		"scary",
+		"lunar",
+        "druid",
+        "heroic",
+        "coffin2",
+        "smart",
+        "king",
+        "creepy"
+	],
+    "roles2": [
+        "bodyguard",
+        "goodwitch",
+        "inspector",
+        "smart",
+        "creepy",
+        "coffin2",
+        "lunar",
+        "druid",
+        "king",
+        "skeleton",
+        "creepy",
+        "friendly"
+    ],
+    "roles3": [
+        "bodyguard",
+        "goodwitch",
+        "inspector",
+        "damsel",
+        "coffin",
+        "smart",
+        "scary",
+        "explosive",
+        "lunar",
+        "druid",
+        "king",
+        "skeleton",
+        "trickster",
+        "creepy"
+    ],
+    "roles4": [
+        "bodyguard",
+        "goodwitch",
+        "inspector",
+        "damsel",
+        "coffin",
+        "smart",
+        "scary",
+        "friendly",
+        "heroic",
+        "lunar",
+        "druid",
+        "king",
+        "skeleton",
+        "trickster",
+        "druid",
+        "skeleton",
+        "creepy",
+        "odd"
+    ],
+    "roles5": [
+        "bodyguard",
+        "goodwitch",
+        "inspector",
+        "damsel",
+        "coffin",
+        "heroic",
+        "smart",
+        "friendly",
+        "explosive",
+        "lunar",
+        "druid",
+        "king",
+        "skeleton",
+        "trickster",
+        "vampire",
+        "mummy",
+        "bob",
+        "jesus",
+        "creepy",
+        "scary",
+        "smart",
+        "creepy"
+    ],
+    "roles6": [
+        "bodyguard",
+        "goodwitch",
+        "inspector",
+        "damsel",
+        "coffin",
+        "coffin",
+        "smart",
+        "friendly",
+        "great",
+        "heroic",
+        "creepy",
+        "smart",
+        "odd",
+        "lunar",
+        "druid",
+        "king",
+        "skeleton",
+        "trickster",
+        "vampire",
+        "mummy",
+        "bob",
+        "jesus",
+        "clown",
+        "scary",
+        "creepy",
+        "druid",
+        "smart",
+        "silly",
+        "skeleton",
+        "great",
+        "creepy",
+        "smart"
+    ],
+    "villageCantLoseRoles": [
+    ],
+	"minplayers": 6,
+	"changelog": {
+
+		}
+	}
