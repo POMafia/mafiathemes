@@ -1,0 +1,3126 @@
+{
+  "name": "MM",
+  "altname": "Madoka Magica",
+  "author": "<b><i><span style='color:#005CE6'>Miki Sayaka</span></i></b>",
+  "minplayers": 4,
+  "bot": {
+  	"name": "Kyubey",
+  	"color": "#0099ff"
+  },
+  "borderColor": "magenta",
+  "summary": "Hi there! I'm on the lookout for those with a need to become Magical Girls! It seems you have enough potential to do so, so you should make a contract with me and type /Join! Of course, I can't 100% guarantee your safety, but you are being given a chance to save the world from curses! If everyone can work together and follow Madoka's lead, surely nothing bad will happen. You might even get to battle the legendary Walpurgisnacht! Doesn't that sound fun?",
+  "killmsg": "±Kyubey: ~Player~, ~Role~, was killed!",
+  "killusermsg": "*** Not all who wish rejoice!",
+  "votemsg": "±Kyubey: ~Player~ wishes that ~Target~ would disappear!",
+  "lynchmsg": "±Kyubey: ~Player~, ~Role~, has been erased from existence!",
+  "drawmsg": "±Kyubey: Magical Girls, Magical Girls everyw- I mean, nowehere...",
+  "border": "/ 人º ‿‿ º人 |﻿~~~ ~~~ ~~~ ~~~ ~~~ ~~~ ~~~ ~~~ ~~~ ~~~ ~~~ ~~~ ~~~ ~~~ ~~~ ~~~ / 人º ‿‿ º人 |",
+  "quickOnDeadRoles": true,
+  "tips": {
+    "Unique Commands": "This theme uses some uncommon commands, so please familiarize yourself with them. Hitomi's Gossip reveals the role to the target, but the user is killed if used on a Witch. Sayaka can Shield, but this also blocks and cures poison. Shroud is a command that some Witches have to protect them from Power Roles.",
+    "Claiming": "Nope!",
+    "Expose": "Magical Girls are usually good - however, Kirika and Oriko are Magical Girls not aligned with the Village!",
+    "Lynch": "Because a lot of unpredictable things can happen during the lynch phase, think before you vote."
+  },
+  "variables": {
+    "villagerhelp": "I certainly can't deny your absence of special abilities. However, even your small wishes are significant, so /Vote off Witches during the Vote Phase!",
+    "madokahelp": "The scale of power your abilities are on is quite befuddling, even for me. You possess the ability to illuminate the darkness and /Expose someone during the day. With such power, you're a natural leader for those who fear the Witches! It's beyond my understanding why you should have such latent power, but if anything attempts to remove you from existence during the vote phase, they will all be erased as well!",
+    "madokahelp2": "The scale of power your abilities are on is quite befuddling, even for me. You possess the ability to illuminate the darkness and /Expose someone during the day. With such power, you're a natural leader for those who fear the Witches! It's beyond my understanding why you should have such latent power, but if anything attempts to remove you from existence during the vote phase, they will all be erased as well! You are a beacon of hope to your fellow Magical Girls, so all who follow your vote in the vote phase will have their vote strength doubled!",
+    "sayakahelp": "The self-proclaimed heroine of justice - that's you! You are willing to put your life on the line for your friends, and you can thus /Shield them to take their kills and heal of Poison! This is of course risky, but your healing magic will allow you to survive a single nightkill. Additionally, if you are voted off during the day, you will be able to exact your own definition 'vigilante justice'!",
+    "sayaka2help": "Now that you're fighting like this, you can strike down enemies with an extremely fast /Kill! However, you've probably exposed yourself to gain this power, so you should ask for someone to protect you!",
+    "hitomihelp": "Well, you don't have to be a Magical Girl to stand against the world's curses. In fact, you are perfectly capable of helping your friends fight witches! You can /Gossip to anyone else, causing them to identify you. However, I should warn you that I can't predict what will happen if you use it on a Witch...",
+    "mamihelp": "Your years of experience make you quite the veteran, Mami! With your expertise, you can /Inspect [name] during the night to find out someone's role! You can also distract someone during the night, but be careful, though, because Kirika will kill you if you try to Distract her...",
+    "nagisahelp": "You're a cute little Magical Girl, and you are known to be Mami's closest friend in the world of Rebellion! Unfortunately, others may still think you are a Witch. Work with Mami to save the Magical Girls with your /Protect and /Watch!",
+    "kyoukohelp": "Wow, I didn't know the human body could metabolize food that fast. That side, your agility and strength make you a powerful adversary for any Witch or Magical Girl! So much so, that you can ruthlessly /Kill anyone during the day. Additionally, thanks to your illusory powers (Rosse Phantom), you will not be seen when you do so!",
+    "homurahelp": "You sure are a curious one, Akemi Homura. I'd really like to know where you got your mysterious powers! Somehow you are able to protect yourself without fail every night! No one believes the things you say, so your vote counts as -2. It seems that your latent magical power is on such a scale that I can't even predict what will happen if you get lynched...",
+    "yumahelp": "You are quite the nimble one, Chitose Yuma! Though you may be small, you are always willing to stand up for your friends! Use your low profile to /stalk one person during the night! Due to your healing magic, you will survive the first nightkill you receive. Addtionally, your vote counts as -3.",
+    "kirikahelp": "Since I have no means of predicting your emotional patterns, I can't tell if you're homicidal or completely harmless; you clearly have the capacity to be both. Naturally, no one would be able to recognize you as a threat; you appear as a Magical Girl if exposed! However, you can /Kill them with ease during the night, and due to your time-slowing magic, you can strike before most Bodyguards and escape all Distractors! If someone tries to Inspect you during the night, you'll simply obliterate them.",
+    "orikohelp": "I must say, your ability of prescience makes this help message somewhat obsolete. But in case it should present a time paradox, I'd better explain your abilities. Since you are able to foresee disaster, you can /Protect anyone during the night. You also possess the karmic strength to alter fate itself with your magnificent vote of 1000! You can also kill during the day, but you will definitely be revealed if you do.",
+    "akumahelp": "Just what kind of entity are you!? The best guess I can offer is: a Demon! Now you cannot be killed at all, and in fact will only die in the circumstance that Madoka does; your fates are completely intertwined! You devilish powers of memory manipulation allow you to vote almost anyone off with a vote 666, and you can also obliterate literally anything in the universe during the day with your /Kill! Now then, I think I'll be leaving until this is all sorted out...",
+    "gertrudehelp": "The Distrustful Witch, born of all negative emotion, you must /Kill the pitiful humans and feed them to the roses within your barrier, and they will be beautiful roses!! Additionally, your psychedelic SHAFT effects are more than enough to /Distract one person per night.",
+    "anthonyhelp": "The fuzzball with a mustache, you are tasked with landscaping the barrier's interior, you can mysteriously make someone appear to be a witch with /Shroud [name]! You also share the team's /Kill, and can /Protect you master (this is shared with other Anthonies)!",
+    "kirstenhelp": "As the Covetous Witch, you have a tendency to steal from others. Thus, in addition to your /Kill, you can /Drain [name] to demote a Magical Girl into a Bystander, while also increasing your own strength! The first boost will increase your vote to 2; the second will make you appear as an Innocent Bystander; the third will make you immune to Distract; and the fourth will grant you a non-revealing daykill!",
+    "elsahelp": "The Shadow Witch, who embodies all-consuming self-righteousness, you can spread darkness with /Shroud, blocking out all the Magical Girl's enchantments, in addition to your /Kill! You will also kill the first to vote you if lynched, and possess a vote of 2. You are protected from normal kills during the night.",
+    "sebasthelp": "The Shadow Witch's minion, whose duty it is to blindly believe, you must follow your leader at all costs! Help Elsa Maria kill during the Night, and additionally /Shroud [name] to obscure someone's identity.",
+    "charlottehelp": "Your tenacity is matched only by your own insatiability for desserts! Your sweet tooth allows you to /poison one target during the night, and /fake poison on another! You are incapable of giving up or losing heart, so you cannot be killed like normal witches, and if you are lynched, you will transform into your second form!",
+    "walpurgishelp": "The amalgamation of all Witches, the epitome of helplessness and despair, you are the fear of all who pray for hope! Like most Witches, you can /Shroud, but unlike other Witches, you have no need to hide, because you barely be killed at all! If you are lynched you will bring down two of those who voted you as well! Starting day 4, you can kill up to 3 times during the day, and you will not be revealed!",
+    "sayakabombmessage": "For all the hope you can wish on one, you cannot help but bring an equal amount of despair onto another!",
+    "madokabombmessage": "With Madoka gone, it seems Homura has disappeared as well...",
+    "sayakarevengemessage": "±Sayaka: I, Magical Girl Sayaka, will devote myself to Justice!",
+    "homuraconvertmsg": "This darkness... it bears more curse than Sin itself! What has become of ~Self~ (Akuma Homura)!?",
+    "onlyPRs": [
+      "inspector",
+      "visitor",
+      "visitor2",
+      "visitor3",
+      "visitor4",
+      "pl",
+      "samurai",
+      "samurai1",
+      "samurai2",
+      "samurai3",
+      "samurai4",
+      "samurai5",
+      "miller",
+      "watcher",
+      "watcher2",
+      "watcher_v2",
+      "watcher_solo",
+      "vengeful",
+      "cleric"
+    ],
+    "sayakaforms": [
+      "cleric",
+      "vengeful"
+    ],
+    "kyoukoforms": [
+      "samurai",
+      "samurai1",
+      "samurai2",
+      "samurai3",
+      "samurai4",
+      "samurai5"
+    ],
+    "walpurgisforms": [
+      "helpless"
+    ],
+    "covetousforms": [
+      "covetous",
+      "covetous1a",
+      "covetous1",
+      "covetous2",
+      "covetous2a",
+      "covetous3",
+      "covetous3a",
+      "covetous4",
+      "covetous4a"
+    ],
+    "oriko_winifdead": [
+      "shadow",
+      "shadowmin1",
+      "oblivion",
+      "distrust",
+      "dessert",
+      "dessert2",
+      "helpless",
+      "pl",
+      "vengeful",
+      "samurai",
+      "samurai1",
+      "samurai2",
+      "samurai3",
+      "samurai4",
+      "samurai5",
+      "cleric",
+      "watcher",
+      "akuma",
+      "shadow_s",
+      "shadowmin1_s",
+      "oblivion_s",
+      "distrust_s",
+      "dessert_s",
+      "dessert2_s",
+      "pl_s",
+      "vengeful_s",
+      "samurai_s",
+      "samurai1_s",
+      "samurai2_s",
+      "samurai3_s",
+      "samurai4_s",
+      "samurai5_s",
+      "cleric_s",
+      "watcher_s"
+    ],
+    "akuma_winifdead": [
+      "shadow_s",
+      "oblivion_s",
+      "distrust_s",
+      "vengeful_s",
+      "samurai_s",
+      "samurai1_s",
+      "samurai2_s",
+      "samurai3_s",
+      "samurai4_s",
+      "samurai5_s",
+      "cleric_s",
+      "vengeful_s",
+      "oriko_s",
+      "shadow",
+      "oblivion",
+      "distrust",
+      "helpless",
+      "vengeful",
+      "samurai",
+      "samurai1",
+      "samurai2",
+      "samurai3",
+      "samurai4",
+      "samurai5",
+      "cleric",
+      "vengeful",
+      "oriko"
+    ],
+    "walpurgissides": [
+      "distrust",
+      "delusional",
+      "dessert",
+      "covetous",
+      "elegance",
+      "shadow",
+      "cat",
+      "oblivion",
+      "witch"
+    ],
+    "ignorehomura": {
+      "mode": {
+        "ignore": [
+          "watcher",
+          "akuma"
+        ]
+      }
+    },
+    "changetohitomi": {
+      "mode": "ChangeTarget",
+      "targetmsg": "Did you really think it was a good idea to chat with a Witch?",
+      "msg": "Some schoolgirl wandered into your labyrinth. You killed her instead!"
+    },
+    "shroudcommand": {
+      "command": [
+        "guard",
+        "curse",
+        "convert"
+      ],
+      "target": "Any",
+      "common": "Self",
+      "newRole": {
+        "villager_s": [
+          "villager",
+          "villager_s"
+        ],
+        "inspector_s": [
+          "inspector",
+          "inspector_s"
+        ],
+        "cleric_s": [
+          "cleric",
+          "cleric_s"
+        ],
+        "vengeful_s": [
+          "vengeful",
+          "vengeful_s"
+        ],
+        "bg_s": [
+          "bg",
+          "bg_s"
+        ],
+        "pl_s": [
+          "pl",
+          "pl_s"
+        ],
+        "watcher_s": [
+          "watcher_s",
+          "watcher"
+        ],
+        "miller_s": [
+          "miller",
+          "miller_s"
+        ],
+        "samurai_s": [
+          "samurai5",
+          "samurai5_s"
+        ],
+        "samurai1_s": [
+          "samurai",
+          "samurai_s"
+        ],
+        "samurai2_s": [
+          "samurai1",
+          "samurai1_s"
+        ],
+        "samurai3_s": [
+          "samurai2",
+          "samurai2_s"
+        ],
+        "samurai4_s": [
+          "samurai3",
+          "samurai3_s"
+        ],
+        "samurai5_s": [
+          "samurai4",
+          "samurai4_s"
+        ],
+        "visitor_s": [
+          "visitor",
+          "visitor_s"
+        ],
+        "visitor2_s": [
+          "visitor2",
+          "visitor2_s"
+        ],
+        "visitor3_s": [
+          "visitor3",
+          "visitor3_s"
+        ],
+        "visitor4_s": [
+          "visitor4",
+          "visitor4_s"
+        ],
+        "kirika_s": [
+          "kirika",
+          "kirika_s"
+        ],
+        "oriko_s": [
+          "oriko",
+          "oriko_s"
+        ],
+        "distrust_s": [
+          "distrust",
+          "distrust_s"
+        ],
+        "distrustmin1_s": [
+          "distrustmin1",
+          "distrustmin1_s"
+        ],
+        "delusional_s": [
+          "delusional",
+          "delusional_s"
+        ],
+        "delusionalmin1_s": [
+          "delusionalmin1",
+          "delusionalmin1_s"
+        ],
+        "dessert_s": [
+          "dessert",
+          "dessert_s"
+        ],
+        "shadow_s": [
+          "shadow",
+          "shadow_s"
+        ],
+        "shadowmin1_s": [
+          "shadowmin1_s",
+          "shadowmin1"
+        ]
+      },
+      "cursedRole": {
+        "villager": [
+          "villager",
+          "villager_s"
+        ],
+        "inspector": [
+          "inspector",
+          "inspector_s"
+        ],
+        "cleric_nots": [
+          "cleric",
+          "cleric_nots",
+          "cleric_s"
+        ],
+        "vengeful": [
+          "vengeful",
+          "vengeful_s"
+        ],
+        "pl": [
+          "pl",
+          "pl_s"
+        ],
+        "bg": [
+          "bg",
+          "bg_s"
+        ],
+        "watcher": [
+          "watcher_s",
+          "watcher"
+        ],
+        "miller": [
+          "miller",
+          "miller_s"
+        ],
+        "samurai": [
+          "samurai4",
+          "samurai4_s"
+        ],
+        "samurai1": [
+          "samurai5",
+          "samurai5_s"
+        ],
+        "samurai2": [
+          "samurai",
+          "samurai_s"
+        ],
+        "samurai3": [
+          "samurai1",
+          "samurai1_s"
+        ],
+        "samurai4": [
+          "samurai2",
+          "samurai2_s"
+        ],
+        "samurai5": [
+          "samurai3",
+          "samurai3_s"
+        ],
+        "visitor": [
+          "visitor",
+          "visitor_s"
+        ],
+        "visitor2": [
+          "visitor2",
+          "visitor2_s"
+        ],
+        "visitor3": [
+          "visitor3",
+          "visitor3_s"
+        ],
+        "visitor4": [
+          "visitor4",
+          "visitor4_s"
+        ],
+        "kirika": [
+          "kirika",
+          "kirika_s"
+        ],
+        "oriko": [
+          "oriko",
+          "oriko_s"
+        ],
+        "distrust": [
+          "distrust",
+          "distrust_s"
+        ],
+        "distrustmin1": [
+          "distrustmin1",
+          "distrustmin1_s"
+        ],
+        "delusional": [
+          "delusional",
+          "delusional_s"
+        ],
+        "delusionalmin1": [
+          "delusionalmin1",
+          "delusionalmin1_s"
+        ],
+        "dessert": [
+          "dessert",
+          "dessert_s"
+        ],
+        "shadow": [
+          "shadow",
+          "shadow_s"
+        ],
+        "shadowmin1": [
+          "shadowmin1",
+          "shadowmin1_s"
+        ]
+      },
+      "silent": true,
+      "silentConvert": true,
+      "silentCurse": true,
+      "convertmsg": "",
+      "cursefailmsg": "",
+      "convertfailmsg": "",
+      "usermsg": "",
+      "cursemsg": "",
+      "curseCount": 2,
+      "guardActions": [
+        "watch",
+        "inspect",
+        "gossip",
+        "stalk"
+      ],
+      "priority": 1,
+      "hide": true,
+      "broadcast": "team"
+    },
+    "shroudcommand2": {
+      "command": [
+        "guard",
+        "curse",
+        "inspect",
+        "convert"
+      ],
+      "limit": 2,
+      "target": "Any",
+      "common": "Self",
+      "newRole": {
+        "villager_s": [
+          "villager"
+        ],
+        "inspector_s": [
+          "inspector"
+        ],
+        "cleric_s": [
+          "cleric"
+        ],
+        "vengeful_s": [
+          "vengeful"
+        ],
+        "pl_s": [
+          "pl"
+        ],
+        "bg_s": [
+          "bg"
+        ],
+        "miller_s": [
+          "miller"
+        ],
+        "samurai_s": [
+          "samurai5"
+        ],
+        "samurai1_s": [
+          "samurai"
+        ],
+        "samurai2_s": [
+          "samurai1"
+        ],
+        "samurai3_s": [
+          "samurai2"
+        ],
+        "samurai4_s": [
+          "samurai3"
+        ],
+        "samurai5_s": [
+          "samurai4"
+        ],
+        "visitor_s": [
+          "visitor"
+        ],
+        "visitor2_s": [
+          "visitor2"
+        ],
+        "visitor3_s": [
+          "visitor3"
+        ],
+        "visitor4_s": [
+          "visitor4"
+        ],
+        "kirika_s": [
+          "kirika"
+        ],
+        "oriko_s": [
+          "oriko"
+        ],
+        "distrust_s": [
+          "distrust"
+        ],
+        "distrustmin1_s": [
+          "distrustmin1"
+        ],
+        "delusional_s": [
+          "delusional"
+        ],
+        "delusionalmin1_s": [
+          "delusionalmin1"
+        ],
+        "dessert_s": [
+          "dessert"
+        ],
+        "shadow_s": [
+          "shadow"
+        ],
+        "shadowmin1_s": [
+          "shadowmin1"
+        ]
+      },
+      "cursedRole": {
+        "villager": [
+          "villager",
+          "villager_s"
+        ],
+        "inspector": [
+          "inspector",
+          "inspector_s"
+        ],
+        "cleric_nots": [
+          "cleric",
+          "cleric_nots",
+          "cleric_s"
+        ],
+        "vengeful": [
+          "vengeful",
+          "vengeful_s"
+        ],
+        "pl": [
+          "pl",
+          "pl_s"
+        ],
+        "bg": [
+          "bg",
+          "bg_s"
+        ],
+        "miller": [
+          "miller",
+          "miller_s"
+        ],
+        "samurai": [
+          "samurai4",
+          "samurai4_s"
+        ],
+        "samurai1": [
+          "samurai5",
+          "samurai5_s"
+        ],
+        "samurai2": [
+          "samurai",
+          "samurai_s"
+        ],
+        "samurai3": [
+          "samurai1",
+          "samurai1_s"
+        ],
+        "samurai4": [
+          "samurai2",
+          "samurai2_s"
+        ],
+        "samurai5": [
+          "samurai3",
+          "samurai3_s"
+        ],
+        "visitor": [
+          "visitor",
+          "visitor_s"
+        ],
+        "visitor2": [
+          "visitor2",
+          "visitor2_s"
+        ],
+        "visitor3": [
+          "visitor3",
+          "visitor3_s"
+        ],
+        "visitor4": [
+          "visitor4",
+          "visitor4_s"
+        ],
+        "kirika": [
+          "kirika",
+          "kirika_s"
+        ],
+        "oriko": [
+          "oriko",
+          "oriko_s"
+        ],
+        "distrust": [
+          "distrust",
+          "distrust_s"
+        ],
+        "distrustmin1": [
+          "distrustmin1",
+          "distrustmin1_s"
+        ],
+        "delusional": [
+          "delusional",
+          "delusional_s"
+        ],
+        "delusionalmin1": [
+          "delusionalmin1",
+          "delusionalmin1_s"
+        ],
+        "dessert": [
+          "dessert",
+          "dessert_s"
+        ],
+        "shadow": [
+          "shadow",
+          "shadow_s"
+        ],
+        "shadowmin1": [
+          "shadowmin1",
+          "shadowmin1_s"
+        ]
+      },
+      "silent": true,
+      "silentConvert": true,
+      "silentCurse": true,
+      "convertmsg": "",
+      "usermsg": "",
+      "cursemsg": "",
+      "cursefailmsg": "",
+      "convertfailmsg": "",
+      "curseCount": 2,
+      "hide": true,
+      "guardActions": [
+        "watch",
+        "gossip",
+        "stalk"
+      ],
+      "priority": 1,
+      "broadcast": "team"
+    },
+    "shrouded": {"seenSide": "shroudedRole"},
+    "notshrouded": {
+      "mode": {
+        "ignore": [
+          "delusional",
+          "delusional_s",
+          "shadow",
+          "shadow_s"
+        ]
+      },
+      "msg": "You can only /Expose someone you shrouded!"
+    },
+    "kyoukokill": {
+      "target": "AnyButSelf",
+      "msg": "The weak give way to the strong! /Kill [name] to eliminate someone; you won't be revealed!",
+      "revealChance": 1,
+      "killmsg": "A blur of red flashes by ~Target~. \"It's over!\" Kyouko yells, and her crimson spear pierces ~Target~'s heart!",
+      "revealmsg": "*** Kyouko pulls out a bundle of Cake Pop. Want some?"
+    },
+    "kyoukokill1": {
+      "target": "AnyButSelf",
+      "msg": "The weak give way to the strong! /Kill [name] to eliminate someone; you won't be revealed!",
+      "revealChance": 1,
+      "killmsg": "A blur of red flashes by ~Target~. \"It's over!\" Kyouko yells, and her crimson spear pierces ~Target~'s heart!",
+      "revealmsg": "*** Kyouko chomps on an apple."
+    },
+    "kyoukokill2": {
+      "target": "AnyButSelf",
+      "msg": "The weak give way to the strong! /Kill [name] to eliminate someone; you won't be revealed!",
+      "revealChance": 1,
+      "killmsg": "A blur of red flashes by ~Target~. \"It's over!\" Kyouko yells, and her crimson spear pierces ~Target~'s heart!",
+      "revealmsg": "*** Kyouko continues eating some fries. Want some?"
+    },
+    "kyoukokill3": {
+      "target": "AnyButSelf",
+      "msg": "The weak give way to the strong! /Kill [name] to eliminate someone; you won't be revealed!",
+      "revealChance": 1,
+      "killmsg": "A blur of red flashes by ~Target~. \"It's over!\" Kyouko yells, and her crimson spear pierces ~Target~'s heart!",
+      "revealmsg": "*** Kyouko stuffs some takoyaki in her mouth."
+    },
+    "kyoukokill4": {
+      "target": "AnyButSelf",
+      "msg": "The weak give way to the strong! /Kill [name] to eliminate someone; you won't be revealed!",
+      "revealChance": 1,
+      "killmsg": "A blur of red flashes by ~Target~. \"It's over!\" Kyouko yells, and her crimson spear pierces ~Target~'s heart!",
+      "revealmsg": "*** Kyouko pulls out a bag of apples. Want some?"
+    },
+    "kyoukokill5": {
+      "target": "AnyButSelf",
+      "msg": "The weak give way to the strong! /Kill [name] to eliminate someone; you won't be revealed!",
+      "revealChance": 1,
+      "killmsg": "A blur of red flashes by ~Target~. \"It's over!\" Kyouko yells, and her crimson spear pierces ~Target~'s heart!",
+      "revealmsg": "*** Kyouko chows down various take-out fast food!"
+    }
+  },
+  "sides": [
+    {
+      "side": "village",
+      "translation": "a Magical Girl",
+      "winmsg": "~Players~ have proven that miracles and magic do exist! Hope has been restored for Magical Girls everywhere!"
+    },
+    {
+      "side": "magical",
+      "translation": "Homicidal Magical Girl",
+      "winmsg": "It is human emotion that created the gods and the demons. Only by discarding emotion itself could ~Players~ avert the world's impending demise!"
+    },
+    {
+      "side": "oblivion",
+      "translation": "Oblivion Witch",
+      "winmsg": "All is erased! The end is the beginning, and so the beginning shall end! ~Players~ has left the universe in shambles."
+    },
+    {
+      "side": "witch",
+      "translation": "a Witch",
+      "winmsg": "The world is now consumed in a labyrinth devised by ~Players~!"
+    },
+    {
+      "side": "delusional",
+      "translation": "Dark Witch",
+      "winmsg": "In total darkness, the world is truly beautiful!! ~Players~ have extinguished all the light from the world!"
+    },
+    {
+      "side": "cat",
+      "translation": "Cat Witch",
+      "winmsg": "meow"
+    },
+    {
+      "side": "elegance",
+      "translation": "Elegance Witch",
+      "winmsg": "Are you not impressed? Learn this from ~Players~ - there is grace in destruction!"
+    },
+    {
+      "side": "helpless",
+      "translation": "Stage-Construction Witch",
+      "winmsg": "If all is an act, no sadness may exist... for the tragedy herein, is a part of the script! ~Players~ is all that remains."
+    },
+    {
+      "side": "shadow",
+      "translation": "Shadow Witch",
+      "winmsg": "Finally... a happy prayer... the world is now a haven for the endless shadows of ~Players~!"
+    },
+    {
+      "side": "dessert",
+      "translation": "Dessert Witch",
+      "winmsg": "And finally, ~Players~ was able to experience Cheese again!"
+    },
+    {
+      "side": "distrust",
+      "translation": "Distrust Witch",
+      "winmsg": "~Players~ have taught us that you can't count anyone these days!"
+    },
+    {
+      "side": "covetous",
+      "translation": "Covetous Witch",
+      "winmsg": "Now all of your soul gems belong to ~Players~!"
+    },
+    {
+      "side": "akuma_homura",
+      "translation": "Demon of Love",
+      "winmsg": "Something that could bring down a God and imprison her... I suppose, you could only call such a being a Demon! ~Players~ has reset the universe according to their desires!"
+    },
+    {
+      "side": "shroudedRole",
+      "translation": "surrounded by a mysterious darkness!",
+      "winmsg": "meow"
+    }
+  ],
+  "roles": [
+    {
+      "role": "villagersimplified",
+      "translation": "Bystander",
+      "side": "village",
+      "help": "variable:villagerhelp",
+      "hide": true,
+      "actions": {}
+    },
+    {
+      "role": "villager",
+      "translation": "a Bystander",
+      "startupmsg": "You are an Innocent Bystander!",
+      "side": "village",
+      "help": "variable:villagerhelp",
+      "info": "Can vote. ~Sided~",
+      "actions": {
+        "onlist": "villagersimplified",
+        "onteam": "villagersimplified",
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded"
+      }
+    },
+    {
+      "role": "villager_s",
+      "translation": "a Bystander",
+      "startupmsg": "You are an Innocent Bystander!",
+      "side": "village",
+      "hide": true,
+      "help": "variable:villagerhelp",
+      "info": "Can vote. ~Sided~",
+      "actions": {
+        "onlist": "villagersimplified",
+        "onteam": "villagersimplified",
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded"      }
+    },
+    {
+      "role": "inspector",
+      "translation": "Madoka",
+      "startupmsg": "You are Kaname Madoka!",
+      "side": "village",
+      "help": "variable:madokahelp",
+      "info": "Can /Expose someone during the day without being revealed. Bombs all voters if lynched. Vote multiplier of 2. Evades 1 daykill. ~Sided~",
+      "hide": true,
+      "actions": {
+        "voteMultiplier": 2,
+        "standby": {
+          "expose": {
+            "target": "Any",
+            "msg": "You can type /Expose [name] to reveal someone's role! You will not be revealed!",
+            "exposemsg": "Madoka draws her angelic bow and shoots a bright pink arrow past ~Target~, revealing them to be ~Side~!"
+          }
+        },
+        "expose": "variable:notshrouded",
+        "lynch": {
+          "killVoters": {
+            "first": 99,
+            "last": 99,
+            "message": "Wow, I never would have predicted that someone would try to lynch the most powerful magical girl in history. What an unexpected outcome!"
+          }
+        },
+        "daykill": {
+          "mode": {
+            "evadeCharges": 1
+          },
+          "msg": "You cannot kill ~Target~! They are ~Role~! Try again later!"
+        },
+        "onDeath": {
+          "killRoles": [
+            "akuma"
+          ],
+          "killmsg": "variable:madokabombmessage"
+        }
+      }
+    },
+    {
+      "role": "inspector_s",
+      "translation": "Madoka",
+      "startupmsg": "You are Kaname Madoka!",
+      "side": "village",
+      "help": "variable:madokahelp",
+      "info": "Can /Expose someone during the day without being revealed. Bombs all voters if lynched. Vote multiplier of 2 in games of 15+. ~Sided~",
+      "hide": true,
+      "actions": {
+        "voteMultiplier": 2,
+        "inspect": "variable:shrouded",
+        "standby": {
+          "expose": {
+            "target": "Any",
+            "msg": "You can type /Expose [name] to reveal someone's role! You will not be revealed!",
+            "exposemsg": "Madoka draws her angelic bow and shoots a bright pink arrow past ~Target~, revealing them to be ~Side~!"
+          }
+        },
+        "lynch": {
+          "killVoters": {
+            "first": 99,
+            "last": 99,
+            "message": "Wow, I never would have predicted that someone would try to lynch the most powerful magical girl in history. What an unexpected outcome!"
+          }
+        },
+        "daykill": {
+          "mode": {
+            "evadeCharges": "*"
+          },
+          "msg": "You cannot kill ~Target~! They are ~Role~! Try again later!"
+        },
+        "onDeath": {
+          "killRoles": [
+            "akuma"
+          ],
+          "killmsg": "variable:madokabombmessage"
+        }
+      }
+    },
+    {
+      "role": "visitor",
+      "translation": "Hitomi",
+      "startupmsg": "You are Shizuki Hitomi!",
+      "side": "village",
+      "help": "variable:hitomihelp",
+      "info": "Can /Gossip to someone during the night, causing them to identify her. However, any Witch will kill her instead. ~Sided~",
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "night": {
+          "gossip": {
+            "command": [
+              "dummy3"
+            ],
+            "target": "AnyButSelf",
+            "priority": 6,
+            "dummy3usermsg": "You spent the night talking to ~Target~! By now they will know your identity...",
+            "dummy3targetmsg": "±Hitomi: Oh, it's truly troublesome to be such a complex side-character! ~Self~ (aka Hitomi) just kept gossiping... ",
+            "common": "Self"
+          }
+        }
+      }
+    },
+    {
+      "role": "visitor_s",
+      "translation": "Hitomi",
+      "startupmsg": "You are Shizuki Hitomi!",
+      "side": "village",
+      "hide": true,
+      "help": "variable:hitomihelp",
+      "info": "Can /Gossip to someone during the night, causing them to identify her. However, any Witch will kill her instead. ~Sided~",
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "night": {
+          "gossip": {
+            "command": [
+              "dummy3"
+            ],
+            "target": "AnyButSelf",
+            "priority": 6,
+            "dummy3usermsg": "You spent the night talking to ~Target~! By now they will know your identity...",
+            "dummy3targetmsg": "±Hitomi: Oh, it's truly troublesome to be such a complex side-character! ~Self~ (aka Hitomi) just kept gossiping... ",
+            "common": "Self"
+          }
+        }
+      }
+    },
+    {
+      "role": "visitor2",
+      "translation": "Hitomi",
+      "startupmsg": "You are Shizuki Hitomi!",
+      "side": "village",
+      "help": "variable:hitomihelp",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "night": {
+          "gossip": {
+            "command": [
+              "dummy3"
+            ],
+            "target": "AnyButSelf",
+            "priority": 6,
+            "dummy3usermsg": "You spent the night talking to ~Target~! By now they will know your identity...",
+            "dummy3targetmsg": "±Hitomi: I was thinking, next Halloween do you want to go as a witch? ~Self~ (aka Hitomi) just kept gossiping... ",
+            "common": "Self"
+          }
+        }
+      }
+    },
+    {
+      "role": "visitor2_s",
+      "translation": "Hitomi",
+      "startupmsg": "You are Shizuki Hitomi!",
+      "side": "village",
+      "help": "variable:hitomihelp",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "night": {
+          "gossip": {
+            "command": [
+              "dummy3"
+            ],
+            "target": "AnyButSelf",
+            "priority": 6,
+            "dummy3usermsg": "You spent the night talking to ~Target~! By now they will know your identity...",
+            "dummy3targetmsg": "±Hitomi: I was thinking, next Halloween do you want to go as a witch? ~Self~ (aka Hitomi) just kept gossiping... ",
+            "common": "Self"
+          }
+        }
+      }
+    },
+    {
+      "role": "visitor3",
+      "translation": "Hitomi",
+      "startupmsg": "You are Shizuki Hitomi!",
+      "side": "village",
+      "help": "variable:hitomihelp",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "night": {
+          "gossip": {
+            "command": [
+              "dummy3"
+            ],
+            "target": "AnyButSelf",
+            "priority": 6,
+            "dummy3usermsg": "You spent the night talking to ~Target~! By now they will know your identity...",
+            "dummy3targetmsg": "±Hitomi: Is it just déjà vu or have we met before? ~Self~ (aka Hitomi) just kept gossiping... ",
+            "common": "Self"
+          }
+        }
+      }
+    },
+    {
+      "role": "visitor3_s",
+      "translation": "Hitomi",
+      "startupmsg": "You are Shizuki Hitomi!",
+      "side": "village",
+      "help": "variable:hitomihelp",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "night": {
+          "gossip": {
+            "command": [
+              "dummy3"
+            ],
+            "target": "AnyButSelf",
+            "priority": 6,
+            "dummy3usermsg": "You spent the night talking to ~Target~! By now they will know your identity...",
+            "dummy3targetmsg": "±Hitomi: Is it just déjà vu or have we met before? ~Self~ (aka Hitomi) just kept gossiping... ",
+            "common": "Self"
+          }
+        }
+      }
+    },
+    {
+      "role": "visitor4",
+      "translation": "Hitomi",
+      "startupmsg": "You are Shizuki Hitomi!",
+      "side": "village",
+      "help": "variable:hitomihelp",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "night": {
+          "gossip": {
+            "command": [
+              "dummy3"
+            ],
+            "target": "AnyButSelf",
+            "priority": 6,
+            "dummy3usermsg": "You spent the night talking to ~Target~! By now they will know your identity...",
+            "dummy3targetmsg": "±Hitomi: GIRS CAN'T LOVE GIRLS ;_; ~Self~ (aka Hitomi) runs away gossiping... ",
+            "common": "Self"
+          }
+        }
+      }
+    },
+    {
+      "role": "visitor4_s",
+      "translation": "Hitomi",
+      "startupmsg": "You are Shizuki Hitomi!",
+      "side": "village",
+      "help": "variable:hitomihelp",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "night": {
+          "gossip": {
+            "command": [
+              "dummy3"
+            ],
+            "target": "AnyButSelf",
+            "priority": 6,
+            "dummy3usermsg": "You spent the night talking to ~Target~! By now they will know your identity...",
+            "dummy3targetmsg": "±Hitomi: GIRS CAN'T LOVE GIRLS ;_; ~Self~ (aka Hitomi) runs away gossiping... ",
+            "common": "Self"
+          }
+        }
+      }
+    },
+    {
+      "role": "cleric",
+      "translation": "Sayaka",
+      "startupmsg": "You are Miki Sayaka!",
+      "side": "village",
+      "help": "variable:sayakahelp",
+      "info": "Can /Shield someone (also blocks Poison and Detoxes). Survives a single nightkill. If lynched, becomes a vigilante. ~Sided~",
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "night": {
+          "shield": {
+            "command": [
+              "shield",
+              "detox",
+              "guard"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "shieldActions": [
+              "kill"
+            ],
+            "guardActions": [
+              "poison"
+            ],
+            "priority": 5
+          }
+        },
+        "kill": {
+          "mode": {
+            "evadeCharges": 1
+          }
+        },
+        "lynch": {
+          "convertTo": "vengeful",
+          "convertmsg": "variable:sayakarevengemessage"
+        }
+      }
+    },
+    {
+      "role": "cleric_s",
+      "translation": "Sayaka",
+      "startupmsg": "You are Miki Sayaka!",
+      "side": "village",
+      "hide": true,
+      "help": "variable:sayakahelp",
+      "info": "Can /Shield someone (also blocks Poison and Detoxes). Survives a single nightkill. If lynched, becomes a vigilante. ~Sided~",
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "night": {
+          "shield": {
+            "command": [
+              "shield",
+              "detox",
+              "guard"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "shieldActions": [
+              "kill"
+            ],
+            "guardActions": [
+              "poison"
+            ],
+            "priority": 5
+          }
+        },
+        "kill": {
+          "mode": {
+            "evadeCharges": 1
+          }
+        },
+        "lynch": {
+          "convertTo": "vengeful",
+          "convertmsg": "variable:sayakarevengemessage"
+        }
+      }
+    },
+    {
+      "role": "cleric_nots",
+      "translation": "Sayaka",
+      "startupmsg": "You are Miki Sayaka!",
+      "side": "village",
+      "hide": true,
+      "help": "variable:sayakahelp",
+      "info": "Can /Shield someone (also blocks Poison and Detoxes). Survives a single nightkill. If lynched, becomes a vigilante. ~Sided~",
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "night": {
+          "shield": {
+            "command": [
+              "shield",
+              "detox",
+              "guard"
+            ],
+            "target": "AnyButSelf",
+            "common": "Self",
+            "shieldActions": [
+              "kill"
+            ],
+            "guardActions": [
+              "poison"
+            ],
+            "priority": 5
+          }
+        },
+        "kill": {
+          "mode": {
+            "evadeCharges": "*"
+          }
+        },
+        "lynch": {
+          "convertTo": "vengeful",
+          "convertmsg": "variable:sayakarevengemessage"
+        }
+      }
+    },
+    {
+      "role": "vengeful",
+      "translation": "Sayaka",
+      "side": "village",
+      "help": "variable:sayaka2help",
+      "hide": true,
+      "actions": {
+        "initialCondition": { "clearCurse": true },
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "kill": {
+          "mode": {
+            "evadeCharges": "*"
+          }
+        },
+        "night": {
+          "kill": {
+            "priority": 9,
+            "pierce": true,
+            "common": "Self",
+            "target": "AnyButSelf"
+          }
+        }
+      }
+    },
+    {
+      "role": "vengeful_s",
+      "translation": "Sayaka",
+      "side": "village",
+      "help": "variable:sayaka2help",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "kill": {
+          "mode": {
+            "evadeCharges": "*"
+          }
+        },
+        "night": {
+          "kill": {
+            "priority": 9,
+            "pierce": true,
+            "common": "Self",
+            "target": "AnyButSelf"
+          }
+        }
+      }
+    },
+    {
+      "role": "pl",
+      "startupmsg": "You are Tomoe Mami!",
+      "translation": "Mami",
+      "side": "village",
+      "help": "variable:mamihelp",
+      "info": "Can /Inspect. Can distract once every 2 nights. ~Sided~",
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "startup": {"revealRole": ["bg", "bg_s"] },
+        "night": {
+          "inspect": {
+            "priority": 30,
+            "common": "Self",
+            "target": "AnyButSelf"
+          },
+          "distract": {
+            "priority": 4,
+            "recharge": 2,
+            "distractmsg": "The Magical Girl Mami used her ribbons to tie you up, preventing you from taking action during the night!",
+            "teammsg": "You partner was tied up by Mami, so you couldn't take actions during the night!",
+            "common": "Self",
+            "target": "AnyButSelf"
+          }
+        }
+      }
+    },
+    {
+      "role": "pl_s",
+      "startupmsg": "You are Tomoe Mami!",
+      "translation": "Mami",
+      "side": "village",
+      "hide": true,
+      "help": "variable:mamihelp",
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "startup": {"revealRole": ["bg", "bg_s"] },
+        "night": {
+        	"inspect": {
+        		"priority": 30,
+        		"common": "Self",
+            "broadcast": ["bg", "bg_s"],
+        		"target": "AnyButSelf"
+        	},
+          "distract": {
+            "priority": 4,
+            "recharge": 2,
+            "distractmsg": "The Magical Girl Mami used her ribbons to tie you up, preventing you from taking action during the night!",
+            "teammsg": "You partner was tied up by Mami, so you couldn't take actions during the night!",
+            "broadcast": ["bg", "bg_s"],
+            "common": "Self",
+            "target": "AnyButSelf"
+          }
+        }
+      }
+    },
+    {
+      "role": "bg",
+      "startupmsg": "You are Momoe Nagisa!",
+      "translation": "Nagisa",
+      "side": "village",
+      "help": "variable:nagisahelp",
+      "info": "Can /Protect or /Watch. Autoconnects with Mami. Appears as Witch if exposed. ~Sided~",
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "startup": {"revealRole": ["pl", "pl_s"] },
+        "inspect": {
+          "seenSide": "witch"
+        },
+        "night": {
+          "protect": {
+            "priority": 10,
+            "cancel": ["watch"],
+            "broadcast": ["pl", "pl_s"],
+            "common": "Self",
+            "target": "AnyButSelf"
+          },
+          "watch": {
+            "priority": 99,
+            "cancel": ["protect"],
+            "common": "Self",
+            "broadcast": ["pl", "pl_s"],
+            "target": "AnyButSelf"
+          }
+        }
+      }
+    },
+    {
+      "role": "bg_s",
+      "startupmsg": "You are Momoe Nagisa!",
+      "translation": "Nagisa",
+      "side": "village",
+      "help": "variable:nagisahelp",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "startup": {"revealRole": ["pl", "pl_s"] },
+        "inspect": "variable:shrouded",
+        "night": {
+          "protect": {
+            "priority": 10,
+            "cancel": ["watch"],
+            "broadcast": ["pl", "pl_s"],
+            "common": "Self",
+            "target": "AnyButSelf"
+          },
+          "watch": {
+            "priority": 99,
+            "cancel": ["protect"],
+            "common": "Self",
+            "broadcast": ["pl", "pl_s"],
+            "target": "AnyButSelf"
+          }
+        }
+      }
+    },
+    {
+      "role": "samurai",
+      "translation": "Kyouko",
+      "side": "village",
+      "startupmsg": "You are Sakura Kyouko!",
+      "help": "variable:kyoukohelp",
+      "info": "Can kill one person during standby (is not revealed). ~Sided~",
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "samurai1",
+            "curseCount": 1,
+            "silentCurse": true
+          }
+        },
+        "standby": {
+          "kill": "variable:kyoukokill"
+        }
+      }
+    },
+    {
+      "role": "samurai_s",
+      "translation": "Kyouko",
+      "side": "village",
+      "hide": true,
+      "startupmsg": "You are Sakura Kyouko!",
+      "help": "variable:kyoukohelp",
+      "info": "Can kill one person during standby (is not revealed). ~Sided~",
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "standby": {
+          "kill": "variable:kyoukokill"
+        }
+      }
+    },
+    {
+      "role": "samurai1",
+      "translation": "Kyouko",
+      "side": "village",
+      "startupmsg": "You are Sakura Kyouko!",
+      "help": "variable:kyoukohelp",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "samurai2",
+            "curseCount": 1,
+            "silentCurse": true
+          }
+        },
+        "standby": {
+          "kill": "variable:kyoukokill1"
+        }
+      }
+    },
+    {
+      "role": "samurai1_s",
+      "translation": "Kyouko",
+      "side": "village",
+      "startupmsg": "You are Sakura Kyouko!",
+      "help": "variable:kyoukohelp",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "standby": {
+          "kill": "variable:kyoukokill1"
+        }
+      }
+    },
+    {
+      "role": "samurai2",
+      "translation": "Kyouko",
+      "side": "village",
+      "startupmsg": "You are Sakura Kyouko!",
+      "help": "variable:kyoukohelp",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "samurai3",
+            "curseCount": 1,
+            "silentCurse": true
+          }
+        },
+        "standby": {
+          "kill": "variable:kyoukokill2"
+        }
+      }
+    },
+    {
+      "role": "samurai2_s",
+      "translation": "Kyouko",
+      "side": "village",
+      "startupmsg": "You are Sakura Kyouko!",
+      "help": "variable:kyoukohelp",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "standby": {
+          "kill": "variable:kyoukokill2"
+        }
+      }
+    },
+    {
+      "role": "samurai3",
+      "translation": "Kyouko",
+      "side": "village",
+      "startupmsg": "You are Sakura Kyouko!",
+      "help": "variable:kyoukohelp",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "samurai4",
+            "curseCount": 1,
+            "silentCurse": true
+          }
+        },
+        "standby": {
+          "kill": "variable:kyoukokill3"
+        }
+      }
+    },
+    {
+      "role": "samurai3_s",
+      "translation": "Kyouko",
+      "side": "village",
+      "startupmsg": "You are Sakura Kyouko!",
+      "help": "variable:kyoukohelp",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "standby": {
+          "kill": "variable:kyoukokill3"
+        }
+      }
+    },
+    {
+      "role": "samurai4",
+      "translation": "Kyouko",
+      "side": "village",
+      "startupmsg": "You are Sakura Kyouko!",
+      "help": "variable:kyoukohelp",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "samurai5",
+            "curseCount": 1,
+            "silentCurse": true
+          }
+        },
+        "standby": {
+          "kill": "variable:kyoukokill4"
+        }
+      }
+    },
+    {
+      "role": "samurai4_s",
+      "translation": "Kyouko",
+      "side": "village",
+      "startupmsg": "You are Sakura Kyouko!",
+      "help": "variable:kyoukohelp",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "standby": {
+          "kill": "variable:kyoukokill4"
+        }
+      }
+    },
+    {
+      "role": "samurai5",
+      "translation": "Kyouko",
+      "side": "village",
+      "startupmsg": "You are Sakura Kyouko!",
+      "help": "variable:kyoukohelp",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "samurai",
+            "curseCount": 1,
+            "silentCurse": true
+          }
+        },
+        "standby": {
+          "kill": "variable:kyoukokill5"
+        }
+      }
+    },
+    {
+      "role": "samurai5_s",
+      "translation": "Kyouko",
+      "side": "village",
+      "startupmsg": "You are Sakura Kyouko!",
+      "help": "variable:kyoukohelp",
+      "hide": true,
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "initialCondition": {
+          "curse": {
+            "cursedRole": "samurai",
+            "curseCount": 1,
+            "silentCurse": true
+          }
+        },
+        "standby": {
+          "kill": "variable:kyoukokill5"
+        }
+      }
+    },
+    {
+      "role": "miller",
+      "translation": "Yuma",
+      "startupmsg": "You are an Innocent Bystander!",
+      "side": "village",
+      "help": "variable:villagerhelp",
+      "info": "Startup as Innocent Bystander. Evades one nightkill. Appears as Witch if exposed. ~Sided~",
+      "actions": {
+      	"startup": {"revealAs": "villager"},
+        "protect": "variable:ignorehomura",
+        "inspect": {"seenSide": "witch"},
+        "expose": "variable:notshrouded",
+        "kill": {
+          "mode": {
+            "evadeCharges": 1
+          },
+          "evadechargemsg": "",
+          "msg": "",
+          "targetmsg": ""
+        }
+      }
+    },
+    {
+      "role": "miller_s",
+      "translation": "Yuma",
+      "startupmsg": "You are an Innocent Bystander!",
+      "side": "village",
+      "hide": true,
+      "help": "variable:villagerhelp",
+      "info": "~Sided~",
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "kill": {
+          "mode": {
+            "evadeCharges": 1
+          },
+          "evadechargemsg": "",
+          "msg": "",
+          "targetmsg": ""
+        }
+      }
+    },
+    {
+      "role": "watcherdummy",
+      "translation": "Homura",
+      "side": "village",
+      "help": "",
+      "hide": true,
+      "actions": {
+      }
+    },
+    {
+      "role": "watcher",
+      "translation": "Homura",
+      "startupmsg": "You are Akemi Homura!",
+      "side": "village",
+      "help": "variable:homurahelp",
+      "info": "Self-protects. Can protect. Vote of -2. Knows Madoka on startup. If lynched while Madoka is alive, becomes Akuma Homura. ~Sided~",
+      "actions": {
+        "startup": {
+            "revealPlayers": ["inspector", "inspector_s" ],
+            "revealPlayersMsg": "Madoka is ~Players~."
+        },
+        "night": {
+          "AutoProtect": {
+            "target": "OnlySelf",
+            "compulsory": true,
+            "command": ["protect"],
+            "inputmsg": "",
+            "common": "Self",
+            "hide": true,
+            "macro": false,
+            "priority": 5
+          },
+          "protect": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "priority": 5
+          }
+        },
+        "expose": "variable:notshrouded",
+        "onDeadRoles": {
+          "convertTo": {
+            "watcher_solo": [
+              "inspector",
+              "inspector_s"
+            ]
+          },
+          "convertmsg": ""
+        },
+        "vote": -2,
+        "lynch": {
+          "convertTo": "akuma",
+          "convertmsg": "variable:homuraconvertmsg"
+        }
+      }
+    },
+    {
+      "role": "watcher_solo",
+      "translation": "Homura",
+      "side": "village",
+      "help": "variable:homurahelp",
+      "hide": true,
+      "actions": {
+        "startup": {
+            "revealPlayers": ["inspector", "inspector_s" ],
+            "revealPlayersMsg": "Madoka is ~Players~."
+        },
+        "night": {
+          "AutoProtect": {
+            "target": "OnlySelf",
+            "compulsory": true,
+            "inputmsg": "",
+            "command": ["protect"],
+            "common": "Self",
+            "hide": true,
+            "macro": false,
+            "priority": 5
+          },
+          "protect": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "priority": 5
+          }
+        },
+        "expose": "variable:notshrouded",
+        "vote": -2
+      }
+    },
+    {
+      "role": "watcher_s",
+      "translation": "Homura",
+      "startupmsg": "You are Akemi Homura!",
+      "side": "village",
+      "help": "variable:homurahelp",
+      "hide": true,
+      "actions": {
+        "startup": {
+            "revealPlayers": ["inspector", "inspector_s" ],
+            "revealPlayersMsg": "Madoka is ~Players~."
+        },
+        "inspect": "variable:shrouded",
+        "night": {
+          "AutoProtect": {
+            "target": "OnlySelf",
+            "compulsory": true,
+            "inputmsg": "",
+            "command": ["protect"],
+            "common": "Self",
+            "hide": true,
+            "macro": false,
+            "priority": 5
+          },
+          "protect": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "priority": 5
+          }
+        },
+        "onDeadRoles": {
+          "convertTo": {
+            "watcher_solo": [
+              "inspector",
+              "inspector_s"
+            ]
+          },
+          "convertmsg": ""
+        },
+        "vote": -2,
+        "lynch": {
+          "convertTo": "akuma",
+          "convertmsg": "variable:homuraconvertmsg"
+        }
+      }
+    },
+    {
+      "role": "watcher_solo_s",
+      "translation": "Homura",
+      "side": "village",
+      "help": "variable:homurahelp",
+      "hide": true,
+      "actions": {
+        "startup": {
+            "revealPlayers": ["inspector", "inspector_s" ],
+            "revealPlayersMsg": "Madoka is ~Players~."
+        },
+        "inspect": "variable:shrouded",
+        "night": {
+          "AutoProtect": {
+            "target": "OnlySelf",
+            "compulsory": true,
+            "inputmsg": "",
+            "command": ["protect"],
+            "common": "Self",
+            "hide": true,
+            "macro": false,
+            "priority": 5
+          },
+          "protect": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "priority": 5
+          }
+        },
+        "vote": -2
+      }
+    },
+    {
+      "role": "akuma",
+      "translation": "Akuma Homura",
+      "side": "akuma_homura",
+      "startupmsg": "You are Akuma Homura",
+      "help": "variable:akumahelp",
+      "info": "Can Protect before all standard nightkills. Can Kill during standby. Vote counts as 666. Cannot be killed; only dies when Madoka dies.",
+      "winIfDeadRoles": "variable:akuma_winifdead",
+      "actions": {
+        "startup": {
+            "revealPlayers": ["inspector", "inspector_s" ],
+            "revealPlayersMsg": "Madoka is ~Players~."
+        },
+        "vote": 666,
+        "expose": "variable:notshrouded",
+        "distract": {
+          "mode": "ignore",
+          "msg": "Someone tried to distract you... how futile... "
+        },
+        "initialCondition": {"clearPoison": true},
+        "kill": {
+          "mode": "ignore",
+          "msg": "Someone tried to kill you... how redundant...",
+          "targetmsg": "That's a Demon you're trying to kill!"
+        },
+        "poison": {"mode": "ignore"},
+        "daykill": {
+          "mode": {
+            "evadeChance": 1
+          }
+        },
+        "standby": {
+          "kill": {
+            "target": "AnyButSelf",
+            "msg": "Dispose of anyone who threatens Madoka with your /Kill!",
+            "revealChance": 1,
+            "killmsg": "~Self~ clapped their hands and ~Target~ vanished!",
+            "revealmsg": "*** For Madoka's sake..."
+          }
+        },
+        "night": {
+          "protect": {
+            "command": [
+              "safeguard",
+              "protect"
+            ],
+            "hide": true,
+            "target": "AnyButSelf",
+            "common": "Self",
+            "priority": 0
+          }
+        }
+      }
+    },
+    {
+      "role": "kirika",
+      "translation": "Kirika",
+      "startupmsg": "You are Kure Kirika!",
+      "side": "magical",
+      "info": "Can kill one person during the night. Changes Target on Distract. Ignores kill. Appears as Magical Girl if Exposed. Doesn't know Oriko on startup. ~Sided~",
+      "help": "variable:kirikahelp",
+      "actions": {
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "inspect": {
+          "seenSide": "village"
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "msg": "Foolish ~Target~ tried to distract you! You destroyed them!"
+        },
+        "kill": {
+          "mode": "ignore",
+          "msg": ""
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "priority": 7
+          }
+        }
+      }
+    },
+    {
+      "role": "kirika_s",
+      "translation": "Kirika",
+      "startupmsg": "You are Kure Kirika!",
+      "side": "magical",
+      "help": "variable:kirikahelp",
+      "hide": true,
+      "actions": {
+        "teamUtilities": true,
+        "protect": "variable:ignorehomura",
+        "inspect": {
+          "seenSide": "shroudedRole"
+        },
+        "distract": {
+          "mode": "ChangeTarget",
+          "msg": "Foolish ~Target~ tried to distract you! You destroyed them!"
+        },
+        "kill": {
+          "mode": "ignore",
+          "msg": ""
+        },
+        "night": {
+          "kill": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "priority": 7
+          }
+        }
+      }
+    },
+    {
+      "role": "oriko",
+      "translation": "Oriko",
+      "startupmsg": "You are Mikuni Oriko!",
+      "side": "magical",
+      "help": "variable:orikohelp",
+      "info": "Vote counts as 1000. Can Protect any player during the night. Can kill during standby (is revealed). Appears as Magical Girl if exposed. Doesn't know Kirika. ~Sided~",
+      "winIfDeadRoles": "variable:oriko_winifdead",
+      "actions": {
+        "vote": 1000,
+      	"preventTeamvote": true,
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "inspect": {
+          "seenSide": "village"
+        },
+        "kill": {
+			"mode": {
+				"ignore": ["kirika"]
+				},
+				"msg": "Kirika, you should avoid attacking your teammate. ~Self~ is Oriko!"
+			},
+        "night": {
+          "protect": {
+            "command": [
+              "protect",
+              "safeguard"
+            ],
+            "target": "Any",
+            "limit": 1,
+            "noFollow": true,
+            "common": "Self",
+            "priority": 10
+          }
+        },
+        "standby": {
+          "kill": {
+            "target": "AnyButTeam",
+            "msg": "You can risk yourself to /Kill someone during the day! Be warned; you will be exposed!",
+            "revealChance": 1,
+            "killmsg": "A psychic maelstrom lifts ~Target~ into the air, and a silver arrow pierces their heart!",
+            "revealmsg": "*** ~Self~'s soul gem flickers from overexertion..."
+          }
+        }
+      }
+    },
+    {
+      "role": "oriko_s",
+      "translation": "Oriko",
+      "startupmsg": "You are Mikuni Oriko!",
+      "side": "magical",
+      "hide": true,
+      "help": "variable:orikohelp",
+      "info": "Vote counts as 1000. Can Protect self and one other player every night. Can kill during standby (is revealed). ~Sided~",
+      "winIfDeadRoles": "variable:oriko_winifdead",
+      "actions": {
+      	"preventTeamvote": true,
+        "vote": 1000,
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "kill": {
+			"mode": {
+				"ignore": ["kirika"]
+				},
+				"msg": "Kirika, you should avoid attacking your teammate. ~Self~ is Oriko!"
+			},
+        "night": {
+          "protect": {
+            "command": [
+              "protect",
+              "safeguard"
+            ],
+            "target": "Any",
+            "limit": 2,
+            "noFollow": true,
+            "common": "Self",
+            "priority": 10
+          }
+        },
+        "standby": {
+          "kill": {
+            "target": "AnyButTeam",
+            "msg": "You can risk yourself to /Kill someone during the day! Be warned; you will be exposed!",
+            "revealChance": 1,
+            "killmsg": "A psychic maelstrom lifts ~Target~ into the air, and a silver arrow pierces their heart!",
+            "revealmsg": "*** ~Self~'s soul gem flickers from overexertion..."
+          }
+        }
+      }
+    },
+    {
+      "role": "distrust",
+      "translation": "Gertrude",
+      "side": "distrust",
+      "startupmsg": "You are Gertrude!",
+      "help": "variable:gertrudehelp",
+      "info": "The Distrustful Witch. She can kill and distract one person during the night.",
+      "actions": {
+        "teamUtilities": true,
+        "dummy3": "variable:changetohitomi",
+        "inspect": {
+          "seenSide": "witch"
+        },
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "night": {
+          "kill": {
+            "command": [
+              "kill",
+              "dummy"
+            ],
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 14,
+            "broadcast": "team",
+            "broadcastmsg": "~Player~ (Gertrude) has decided to kill ~Target~!"
+          },
+          "distract": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "priority": 3,
+            "broadcast": "team"
+          }
+        }
+      }
+    },
+    {
+      "role": "distrust_s",
+      "translation": "Gertrude",
+      "side": "distrust",
+      "startupmsg": "You are Gertrude!",
+      "help": "variable:gertrudehelp",
+      "hide": true,
+      "info": "The Distrustful Witch. She can kill and distract one person during the night.",
+      "actions": {
+        "teamUtilities": true,
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "night": {
+          "kill": {
+            "command": [
+              "kill",
+              "dummy"
+            ],
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 14,
+            "broadcast": "team",
+            "broadcastmsg": "~Player~ (Gertrude) has decided to kill ~Target~!"
+          },
+          "distract": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "priority": 3,
+            "broadcast": "team"
+          }
+        }
+      }
+    },
+    {
+      "role": "distrustmin1",
+      "translation": "Anthony",
+      "side": "distrust",
+      "startupmsg": "You are Anthony!",
+      "help": "variable:anthonyhelp",
+      "info": "Gertrude's minion; he shares her Kill. Also shrouds. ~Sided~",
+      "actions": {
+        "teamUtilities": true,
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "inspect": {
+          "seenSide": "witch"
+        },
+        "night": {
+          "kill": {
+            "command": [
+              "kill",
+              "dummy"
+            ],
+            "target": "AnyButTeam",
+            "hide": true,
+            "common": "Team",
+            "priority": 14,
+            "broadcast": "team",
+            "broadcastmsg": "~Player~ (Anthony) has decided to kill ~Target~!"
+          },
+          "shroud": "variable:shroudcommand",
+          "protect": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "common": "Role",
+            "priority": 5
+          }
+        }
+      }
+    },
+    {
+      "role": "distrustmin1_s",
+      "translation": "Anthony",
+      "side": "distrust",
+      "hide": true,
+      "startupmsg": "You are Anthony!",
+      "help": "variable:anthonyhelp",
+      "actions": {
+        "teamUtilities": true,
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "night": {
+          "kill": {
+            "command": [
+              "kill",
+              "dummy"
+            ],
+            "target": "AnyButTeam",
+            "hide": true,
+            "common": "Team",
+            "priority": 14,
+            "broadcast": "team",
+            "broadcastmsg": "~Player~ (Anthony) has decided to kill ~Target~!"
+          },
+          "shroud": "variable:shroudcommand",
+          "protect": {
+            "target": "AnyButSelf",
+            "common": "Self",
+            "hide": true,
+            "common": "Role",
+            "priority": 5
+          }
+        }
+      }
+    },
+    {
+      "role": "dessert",
+      "translation": "Charlotte",
+      "side": "dessert",
+      "help": "variable:charlottehelp",
+      "info": "The Dessert Witch. Cannot be killed during the day or night. Can poison once per night. Can fake poison once per night. If voted off, becomes Charlotte Form 2.",
+      "actions": {
+        "kill": {
+          "mode": "ignore"
+        },
+        "poison": {
+          "mode": "ignore"
+        },
+        "inspect": {
+          "seenSide": "witch"
+        },
+        "daykill": "evade",
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "night": {
+          "poison": {
+            "target": "AnyButTeam",
+            "common": "Role",
+            "priority": 25,
+            "count": 2,
+            "broadcast": "team"
+          },
+          "fake": {
+          	"command": ["dummy9"],
+            "target": "AnyButTeam",
+            "common": "Role",
+            "priority": 200,
+            "hide": true,
+            "dummy9targetmsg": "You have 1 days to live.",
+            "broadcast": "team"
+          }
+        },
+        "lynch": {
+          "convertTo": "dessert2",
+          "convertmsg": "The Dessert Witch isn't happy about being wished away... she has transformed!"
+        },
+        "teamUtilities": true
+      }
+    },
+    {
+      "role": "dessert_s",
+      "translation": "Charlotte",
+      "side": "dessert",
+      "hide": true,
+      "help": "variable:charlottehelp",
+      "info": "The Dessert Witch. Cannot be killed during the day or night. Can poison twice per night. If voted off, becomes Charlotte Form 2.",
+      "actions": {
+        "kill": {
+          "mode": "ignore"
+        },
+        "poison": {
+          "mode": "ignore"
+        },
+        "daykill": "evade",
+        "inspect": "variable:shrouded",
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "night": {
+          "poison": {
+            "target": "AnyButTeam",
+            "common": "Role",
+            "priority": 25,
+            "count": 2,
+            "limit": 1,
+            "broadcast": "team"
+          }
+        },
+        "lynch": {
+          "convertTo": "dessert2",
+          "convertmsg": "The Dessert Witch isn't happy about being wished away... she has transformed!"
+        },
+        "teamUtilities": true
+      }
+    },
+    {
+      "role": "dessert2",
+      "translation": "Charlotte [Second Form]",
+      "side": "dessert",
+      "help": "You have transformed into your second form! You can now kill faster than bodyguards and kill distractors, and your kill cannot be evaded!",
+      "info": "The Dessert Witch. Once transformed, she can strike without warning, outpacing protectors and killing distractors. However, she becomes susceptible to kills during the day and night.",
+      "actions": {
+        "distract": {
+          "mode": "ChangeTarget",
+          "msg": "You tried to distract Charlotte in her second form... a grave mistake!"
+        },
+        "initialCondition": { "clearCurse": true },
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "inspect": {
+          "seenSide": "witch"
+        },
+        "night": {
+          "kill": {
+            "command": [
+              "kill",
+              "dummy"
+            ],
+            "target": "AnyButTeam",
+            "common": "Team",
+            "killmsg": "Oh my, did ~Target~ (~TargetRole~)'s head just get bitten off?",
+            "priority": 8,
+            "broadcast": "team"
+          }
+        },
+        "teamUtilities": true
+      }
+    },
+    {
+      "role": "dessert2_s",
+      "translation": "Charlotte [Second Form]",
+      "side": "dessert",
+      "hide": true,
+      "help": "You have transformed into your second form! You can now kill faster than bodyguards and kill distractors, and your kill cannot be evaded!",
+      "info": "The Dessert Witch. Once transformed, she can strike without warning, outpacing protectors and killing distractors. However, she becomes susceptible to kills during the day and night.",
+      "actions": {
+        "distract": {
+          "mode": "ChangeTarget",
+          "msg": "You tried to distract Charlotte in her second form... a grave mistake!"
+        },
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "night": {
+          "kill": {
+            "command": [
+              "kill",
+              "dummy"
+            ],
+            "target": "AnyButTeam",
+            "common": "Team",
+            "killmsg": "Oh my, did ~Target~ (~TargetRole~)'s head just get bitten off?",
+            "priority": 8,
+            "broadcast": "team"
+          }
+        },
+        "teamUtilities": true
+      }
+    },
+    {
+      "role": "elegance",
+      "translation": "Cecil",
+      "side": "elegance",
+      "hide": true,
+      "help": "You are the Elegance Witch, whose curiosity and advertence make you one of the most intelligent of your kind. You may use your abilities to /Lure someone during the night (Distract+Inspect), in addition to your /Kill. Your powers of manipulation grant you a vote of 3.",
+      "info": "The Elegance Witch. In addition to her kill, she can Lure targets to Distract and Inspect them. Her manipulative powers grant her a vote of 3.",
+      "actions": {
+        "teamUtilities": true,
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "vote": 3,
+        "night": {
+          "kill": {
+            "command": [
+              "kill",
+              "dummy"
+            ],
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 15,
+            "broadcast": "team",
+            "broadcastmsg": "Your partner (Cecil) has decided to kill ~Target~!"
+          },
+          "lure": {
+            "command": [
+              "distract",
+              "inspect"
+            ],
+            "target": "AnyButTeam",
+            "common": "Self",
+            "priority": 2,
+            "broadcast": "team"
+          }
+        }
+      }
+    },
+    {
+      "role": "delusional_s",
+      "translation": "Suleika",
+      "side": "delusional",
+      "hide": true,
+      "help": "The starless sky shines in comparison to the darkness in which you thrive. As the Dark Witch, you can spread delusion twice per night with your /Shroud command, which will shield your target from Magical Girls' enchantments! Once you /Shroud someone, you can /Expose them during the day to learn what their role is! The darkness around you is so bleak that you counter any kills during the Day. You can also /Kill during the night.",
+      "info": "The Delusinal Witch. In addition to her kill, she can /Shroud twice per night. Can Day-Inspect. Counters Day-Kills.",
+      "actions": {
+        "teamUtilities": true,
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "night": {
+          "kill": {
+            "command": [
+              "kill",
+              "dummy"
+            ],
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 13,
+            "broadcast": "team",
+            "broadcastmsg": "~Player~ (Suleika) has decided to kill ~Target~!"
+          },
+          "shroud": "variable:shroudcommand2"
+        },
+        "daykill": {
+          "mode": {
+            "revenge": [
+              "samurai",
+              "samurai1",
+              "samurai2",
+              "samurai3",
+              "samurai4",
+              "samurai5",
+              "oriko",
+              "samurai_s",
+              "samurai1_s",
+              "samurai2_s",
+              "samurai3_s",
+              "samurai4_s",
+              "samurai5_s",
+              "oriko_s"
+            ]
+          }
+        },
+        "daykillrevengemsg": "~Target~ tried to attack Suleika, but got lost in her labyrinth and never came back!",
+        "standby": {
+          "expose": {
+            "target": "Any",
+            "msg": "You can /Expose anyone you shrouded to learn their role!",
+            "exposemsg": "Suleika descends into the darkness surrounding ~Target~!",
+            "exposedtargetmsg": "~Target~ is ~Role~!"
+          }
+        }
+      }
+    },
+    {
+      "role": "delusional",
+      "translation": "Suleika",
+      "side": "delusional",
+      "help": "The starless sky shines in comparison to the darkness in which you thrive. As the Dark Witch, you can spread delusion twice per night with your /Shroud command, which will shield your target from Magical Girls' enchantments! Once you /Shroud someone, you can /Expose them during the day to learn what their role is! The darkness around you is so bleak that you counter any kills during the Day. You can also /Kill during the night.",
+      "info": "The Delusinal Witch. In addition to her kill, she can /Shroud twice per night. Can Day-Inspect. Can Inspect self. Counters Day-Kills.",
+      "actions": {
+        "teamUtilities": true,
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "inspect": {
+          "seenSide": "witch"
+        },
+        "night": {
+          "kill": {
+            "command": [
+              "kill",
+              "dummy"
+            ],
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 13,
+            "broadcast": "team",
+            "broadcastmsg": "~Player~ (Suleika) has decided to kill ~Target~!"
+          },
+          "shroud": "variable:shroudcommand2"
+        },
+        "daykill": {
+          "mode": {
+            "revenge": [
+              "samurai",
+              "samurai1",
+              "samurai2",
+              "samurai3",
+              "samurai4",
+              "samurai5",
+              "oriko",
+              "samurai_s",
+              "samurai1_s",
+              "samurai2_s",
+              "samurai3_s",
+              "samurai4_s",
+              "samurai5_s",
+              "oriko_s"
+            ]
+          }
+        },
+        "daykillrevengemsg": "~Target~ tried to attack Suleika, but got lost in her labyrinth and never came back!",
+        "standby": {
+          "expose": {
+            "target": "Any",
+            "msg": "You can /Expose anyone you shrouded to learn their role!",
+            "exposemsg": "Suleika descends into the darkness surrounding ~Target~!",
+            "exposedtargetmsg": "~Target~ is ~Role~!"
+          }
+        }
+      }
+    },
+    {
+      "role": "delusionalmin1",
+      "translation": "Ulla",
+      "side": "delusional",
+      "help": "The familiar of dreaming, who serves the Dark Witch Suleika. You can spread delusion with your /Shroud command, which will shield your target from Magical Girls' enchantments! You also share the team's /Kill.",
+      "info": "The Delusional Witch's minion. Can shroud once per night. Shares Suleika's kill.",
+      "actions": {
+        "teamUtilities": true,
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "inspect": {
+          "seenSide": "witch"
+        },
+        "night": {
+          "kill": {
+            "command": [
+              "kill",
+              "dummy"
+            ],
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 13,
+            "hide": true,
+            "broadcast": "team",
+            "broadcastmsg": "~Player~ (Ulla) has decided to kill ~Target~!"
+          },
+          "shroud": "variable:shroudcommand"
+        }
+      }
+    },
+    {
+      "role": "delusionalmin1_s",
+      "translation": "Ulla",
+      "side": "delusional",
+      "hide": true,
+      "help": "The familiar of dreaming, who serves the Dark Witch Suleika. You can spread delusion with your /Shroud command, which will shield your target from Magical Girls' enchantments! You also share the team's /Kill.",
+      "actions": {
+        "teamUtilities": true,
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "night": {
+          "kill": {
+            "command": [
+              "kill",
+              "dummy"
+            ],
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 13,
+            "hide": true,
+            "broadcast": "team",
+            "broadcastmsg": "~Player~ (Ulla) has decided to kill ~Target~!"
+          },
+          "shroud": "variable:shroudcommand"
+        }
+      }
+    },
+    {
+      "role": "cat",
+      "translation": "Stacy",
+      "side": "cat",
+      "help": "",
+      "info": "Can poison. Inspects as a Bystander.",
+      "actions": {
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "night": {
+          "poison": {
+            "target": "AnyButTeam",
+            "common": "Role",
+            "priority": 25,
+            "broadcast": "team",
+            "broadcastmsg": "Your partner (Stacy) have decided to poison ~Target~!"
+          }
+        },
+        "teamUtilities": true
+      }
+    },
+    {
+      "role": "shadow",
+      "translation": "Elsa Maria",
+      "startupmsg": "You are Elsa Maria!",
+      "side": "shadow",
+      "help": "variable:elsahelp",
+      "info": "The Shadow Witch. In addition to her nightkill, she can shroud. Automatically self-protects. Vote counts as 2. Bombs first voter on lynch. ",
+      "actions": {
+        "inspect": {
+          "seenSide": "witch"
+        },
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "night": {
+          "shroud": "variable:shroudcommand",
+          "AutoProtect": {
+            "target": "OnlySelf",
+            "compulsory": true,
+            "inputmsg": "",
+            "command": ["protect"],
+            "common": "Self",
+            "hide": true,
+            "macro": false,
+            "priority": 5
+          },
+          "kill": {
+            "command": [
+              "kill",
+              "dummy"
+            ],
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 12,
+            "broadcast": "team",
+            "broadcastmsg": "~Player~ (Elsa Maria) has decided to kill ~Target~!"
+          }
+        },
+        "standby": {
+          "expose": {
+            "target": "Any",
+            "msg": "You can /Expose anyone you shrouded to learn their role!",
+            "exposemsg": "Elsa Maria descends into the darkness surrounding ~Target~!",
+            "exposedtargetmsg": "~Target~ is ~Role~!"
+          }
+        },
+        "lynch": {
+          "killVoters": {
+            "last": 0,
+            "first": 1,
+            "message": "As Elsa Maria was destroyed, ~Target~ was sucked into the void as well!"
+          }
+        },
+        "teamUtilities": true
+      }
+    },
+    {
+      "role": "shadow_s",
+      "translation": "Elsa Maria",
+      "startupmsg": "You are Elsa Maria!",
+      "side": "shadow",
+      "hide": true,
+      "help": "variable:elsahelp",
+      "info": "The Shadow Witch. In addition to her nightkill, she can shroud. Can /Expose someone they shrouded during the day to learn their role. Bombs first voter if lynched.",
+      "actions": {
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "night": {
+          "shroud": "variable:shroudcommand",
+          "AutoProtect": {
+            "target": "OnlySelf",
+            "compulsory": true,
+            "inputmsg": "",
+            "command": ["protect"],
+            "common": "Self",
+            "hide": true,
+            "macro": false,
+            "priority": 5
+          },
+          "kill": {
+            "command": [
+              "kill",
+              "dummy"
+            ],
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 12,
+            "broadcast": "team",
+            "broadcastmsg": "~Player~ (Elsa Maria) has decided to kill ~Target~!"
+          }
+        },
+        "standby": {
+          "expose": {
+            "target": "Any",
+            "msg": "You can /Expose anyone you shrouded to learn their role!",
+            "exposemsg": "Elsa Maria descends into the darkness surrounding ~Target~!",
+            "exposedtargetmsg": "~Target~ is ~Role~!"
+          }
+        },
+        "lynch": {
+          "killVoters": {
+            "last": 0,
+            "first": 1,
+            "message": "As Elsa Maria was destroyed, ~Target~ was sucked into the void as well!"
+          }
+        },
+        "teamUtilities": true
+      }
+    },
+    {
+      "role": "shadowmin1",
+      "translation": "Sebastian",
+      "startupmsg": "You are Sebastian!",
+      "side": "shadow",
+      "help": "variable:sebasthelp",
+      "info": "Can /Shroud and shares kill with Elsa Maria. ~Sided~",
+      "actions": {
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "night": {
+          "shroud": "variable:shroudcommand",
+          "kill": {
+            "command": [
+              "kill",
+              "dummy"
+            ],
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 12,
+            "hide": true,
+            "broadcast": "team",
+            "broadcastmsg": "~Player~ (Sebastian) has decided to kill ~Target~!"
+          }
+        },
+        "inspect": {
+          "seenSide": "witch"
+        },
+        "teamUtilities": true
+      }
+    },
+    {
+      "role": "shadowmin1_s",
+      "translation": "Sebastian",
+      "startupmsg": "You are Sebastian!",
+      "side": "shadow",
+      "hide": true,
+      "help": "variable:sebasthelp",
+      "actions": {
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "night": {
+          "shroud": "variable:shroudcommand",
+          "kill": {
+            "command": [
+              "kill",
+              "dummy"
+            ],
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 12,
+            "hide": true,
+            "broadcast": "team",
+            "broadcastmsg": "~Player~ (Sebastian) has decided to kill ~Target~!"
+          }
+        },
+        "inspect": {
+          "seenSide": "witch"
+        },
+        "teamUtilities": true
+      }
+    },
+    {
+      "role": "oblivion",
+      "translation": "Itzli",
+      "startupmsg": "You are Itzli!",
+      "side": "oblivion",
+      "info": "Can kill twice during the night. Vote counts as 5. 70% chance to evade nightkills. ~Sided~",
+      "help": "The Witch of Oblivion - little is known about you, but you clearly have no need to explain yourself. Since you can /Kill twice per night, we can assume you're bent on annihilating all Magical Girls, and even other Witches, if necessary. Furthermore, you possess a dramatic vote of 5. Where exactly did you get such destructive powers?",
+      "actions": {
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "vote": 5,
+        "inspect": {
+          "seenSide": "witch"
+        },
+        "kill": {
+          "mode": {
+            "evadeChance": 0.7
+          }
+        },
+        "night": {
+          "kill": {
+            "command": [
+              "kill",
+              "dummy"
+            ],
+            "limit": 2,
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 11
+          }
+        },
+        "teamUtilities": true
+      }
+    },
+    {
+      "role": "oblivion_s",
+      "translation": "Itzli",
+      "startupmsg": "You are Itzli!",
+      "side": "oblivion",
+      "hide": true,
+      "info": "Can kill twice during the night. ~Sided~",
+      "help": "The Witch of Oblivion - little is known about you, but you clearly have no need to explain yourself. Since you can /Kill twice per night, we can assume you're bent on annihilating all Magical Girls, and even other Witches, if necessary. Where exactly did you get such destructive powers?",
+      "actions": {
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "inspect": "variable:shrouded",
+        "kill": {
+          "mode": {
+            "evadeChance": 0.7
+          }
+        },
+        "night": {
+          "kill": {
+            "command": [
+              "kill",
+              "dummy"
+            ],
+            "limit": 2,
+            "target": "AnyButTeam",
+            "common": "Team",
+            "priority": 11,
+            "broadcast": "team"
+          }
+        },
+        "teamUtilities": true
+      }
+    },
+    {
+      "role": "helpless",
+      "translation": "Walpurgisnacht",
+      "side": "helpless",
+      "help": "variable:walpurgishelp",
+      "info": "Cannot be daykilled except by Akuma Homura. Automatically self-protects. Cannot be shrouded. Can shroud once per night. If lynched, she kills 2 random people who voted her. Starting day 4, can kill 3 times per day. Vote counts as 0",
+      "winningSides": "variable:walpurgissides",
+      "actions": {
+        "vote": 0,
+        "dummy3": "variable:changetohitomi",
+        "protect": "variable:ignorehomura",
+        "expose": "variable:notshrouded",
+        "night": {
+          "shroud": "variable:shroudcommand",
+          "AutoProtect": {
+            "target": "OnlySelf",
+            "compulsory": true,
+            "inputmsg": "",
+            "command": ["protect"],
+            "common": "Self",
+            "hide": true,
+            "macro": false,
+            "priority": 5
+          }
+        },
+        "inspect": {"seenSide": "witch"},
+        "poison": {"mode": "ignore"},
+        "daykill": {
+          "mode": {
+            "ignore": [
+              "samurai",
+              "samurai1",
+              "samurai2",
+              "samurai3",
+              "samurai4",
+              "samurai5",
+              "pl",
+              "oriko"
+            ]
+          }
+        },
+        "standby": {
+          "kill": {
+            "target": "AnyButSelf",
+            "msg": "Bring doom to the world! /Kill [name] them all!",
+            "initialrecharge": 5,
+            "limit": 3,
+            "killmsg": "*** Hahahaha ahahaha "
+          }
+        },
+        "kill": {
+          "mode": "ignore",
+          "msg": "Hahahahaaa ~"
+        },
+        "convert": {
+          "mode": "ignore",
+          "msg": "Hahahahaaa ~"
+        },
+        "lynch": {
+          "killVoters": {
+            "random": 2,
+            "message": "~Target~ died while valiantly defeating Walpurgisnacht! :("
+          }
+        }
+      }
+    }
+  ],
+  "spawnPacks": {
+    "samurai": {
+      "roles": [
+        [
+          "samurai"
+        ],
+        [
+          "samurai1"
+        ],
+        [
+          "samurai2"
+        ],
+        [
+          "samurai3"
+        ],
+        [
+          "samurai4"
+        ],
+        [
+          "samurai5"
+        ]
+      ],
+      "chance": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "visitor": {
+      "roles": [
+        [
+          "visitor"
+        ],
+        [
+          "visitor2"
+        ],
+        [
+          "visitor3"
+        ],
+        [
+          "visitor4"
+        ]
+      ],
+      "chance": [
+        0.85,
+        0.1,
+        0.04,
+        0.01
+      ]
+    }
+  },
+  "roles1": [
+    "visitor",
+    "villager",
+    "villager",
+    "delusionalmin1"
+  ],
+  "roles2": [
+    "inspector",
+    "cleric",
+    "pack:samurai",
+    "oriko",
+    "dessert"
+  ],
+  "roles3": [
+    "inspector",
+    "cleric",
+    "pack:samurai",
+    "oriko",
+    "dessert",
+    "villager"
+  ],
+  "roles4": [
+    "inspector",
+    "watcher",
+    "pack:samurai",
+    "cleric",
+    "dessert",
+    "oriko",
+    "kirika",
+
+    "villager"
+  ],
+  "roles5": [
+    "inspector",
+    "watcher",
+    "pl",
+    "cleric",
+    "pack:samurai",
+    "oriko",
+    "dessert",
+    "shadow",
+    "shadowmin1"
+  ],
+  "roles6": [
+    "inspector",
+    "watcher",
+    "pl",
+    "cleric",
+    "pack:samurai",
+    "villager",
+    "oriko",
+    "dessert",
+    "shadow",
+    "shadowmin1",
+
+    "villager"
+  ],
+  "roles7": [
+    "inspector",
+    "watcher",
+    "pl",
+    "cleric",
+    "pack:samurai",
+    "pack:visitor",
+    "villager",
+    "oriko",
+    "kirika",
+    "dessert",
+    "shadow",
+    "shadowmin1",
+
+    "villager",
+    "villager"
+  ],
+  "roles8": [
+    "inspector",
+    "cleric",
+    "pl",
+    "pack:samurai",
+    "watcher",
+    "bg",
+    "villager",
+    "villager",
+    "kirika",
+    "oriko",
+    "dessert",
+    "shadow",
+    "shadowmin1",
+    "distrust",
+    "distrustmin1",
+
+    "villager"
+  ],
+  "roles9": [
+    "inspector",
+    "cleric",
+    "pl",
+    "watcher",
+    "pack:samurai",
+    "pack:visitor",
+    "bg",
+    "miller",
+    "villager",
+    "kirika",
+    "oriko",
+    "dessert",
+    "shadow",
+    "shadowmin1",
+    "helpless",
+    "distrust",
+    "distrustmin1",
+
+    "villager",
+    "villager",
+    "villager"
+  ],
+  "roles10": [
+    "inspector",
+    "cleric",
+    "pl",
+    "watcher",
+    "pack:samurai",
+    "pack:visitor",
+    "bg",
+    "miller",
+    "villager",
+    "villager",
+    "villager",
+    "villager",
+    "kirika",
+    "oriko",
+    "dessert",
+    "shadow",
+    "shadowmin1",
+    "shadowmin1",
+    "distrust",
+    "distrustmin1",
+    "helpless",
+
+    "distrustmin1",
+    "villager",
+    "villager",
+    "villager"
+  ],
+  "roles11": [
+    "inspector",
+    "cleric",
+    "pl",
+    "watcher",
+    "pack:samurai",
+    "pack:visitor",
+    "bg",
+    "miller",
+    "villager",
+    "villager",
+    "villager",
+    "villager",
+    "villager",
+    "kirika",
+    "oriko",
+    "dessert",
+    "shadow",
+    "shadowmin1",
+    "shadowmin1",
+    "distrust",
+    "distrustmin1",
+    "helpless",
+    "distrustmin1",
+    "delusional",
+    "delusionalmin1",
+    "delusionalmin1",
+
+    "villager",
+    "villager",
+    "villager",
+    "oblivion",
+    "villager",
+    "villager",
+    "villager",
+    "delusionalmin1",
+    "distrustmin1",
+    "villager",
+    "shadowmin1",
+    "villager",
+    "villager",
+    "villager",
+    "shadowmin1",
+    "villager",
+    "delusionalmin1",
+    "distrustmin1",
+    "villager"
+  ],
+  "villageCantLoseRoles": [
+    "inspector",
+    "inspector_s",
+    "samurai",
+    "samurai1",
+    "samurai2",
+    "samurai3",
+    "samurai4",
+    "samurai5",
+    "vengeful",
+    "cleric",
+    "samurai_s",
+    "samurai1_s",
+    "samurai2_s",
+    "samurai3_s",
+    "samurai4_s",
+    "samurai5_s",
+    "vengeful_s",
+    "cleric_s"
+  ],
+  "changelog": {
+    "August 11, 2018": "Role tweaks to Madoka, Homura, Mami, Elsa Maria, Walpurgisnacht, Itzli. Added Nagisa, adjusted spawn.",
+    "November 7, 2014": "Several flavor updates. Spawn adjusted. Madoka now Exposes during the day. Mami now can only Protect or Bind. Sayaka's kill is lower priority than Kirkia and Charlotte form 2, but now pierces Protect.",
+    "November 14, 2014": "A couple flavor tweaks. Oriko can kill Madoka.",
+    "December 1, 2014": "Shroud now confuses Expose, and Suleika/Elsa Maria can Inspect whomever they shroud. Spawn tweaked. Sayaka can't self-detox.",
+    "January 16, 2016": "Homura changed, and 7-15 spawn changed. Mami changed to Inspector."
+  }
+}
