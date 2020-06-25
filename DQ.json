@@ -1,0 +1,1495 @@
+{
+   "name":"DQ",
+   "altname":"Dragon Quest",
+   "author":"Sky Sentinel",
+   "summary":"In this topsy-turvy theme, the many monsters of this stellar series make up a very vicious village! Team up with the dastardly Dragonlord himself in his questionable quest to take the world by the wings! A copious amount of chaos and alliteration aplenty make this one to remember. Am I trying too hard yet? The heroes are trying to make it through the dungeon to retrieve the treasure before the other parties do, but can they make it through the endless hordes of monsters?",
+   "minplayers":3,
+   "tips":{
+      "Village":"The monsters are the village in this theme! The heroes make up the mafia. The village starts out very weak, being made up of mostly \"trash mobs\", but can be powered up in time through promotion from the Platinum King Jewel.",
+      "Promotion":"The Platinum King Jewel (PKJ) can promote villagers, permanently buffing their main action. Slimes will become Slime Stacks, Hunter Mechs will become Killing Machines, and so forth. If the PKJ uses promote on a mafia, he will be unable to perform the action during the next night. This serves as a form of inspect, as it shows what role the villager was converted to, but it does not show the role of the mafia that could not be promoted. Some village roles cannot be promoted, as well.",
+      "Heroes":"The Heroes each have a specific skill called a Coup de Grace that serves as a powerful action or a convert. Some, like the Minstrel's, will raise their defensive skills (specifically allowing the Minstrel to evade 50% of kills that they are targeted with). Some, like the Jester's, are just powerful actions (specifically, the Jester's Killer Joke is a daykill). These are listed in the info of a role, which can be accessed with /roles DQ:Role.",
+      "Day Actions":"If everyone saves their Coup de Grace for one specific day, it may certainly seem like all hell has broken loose. Worry not, most of these are just messages displayed during the day and have no immediate effects other than converting the user to a role with their Coup unleashed.",
+      "Coup de Grace":"The Performing Heroes all have a Coup de Grace that is activated during the day. The Warrior Heroes have one that is activated during the night. The Magical Heroes have some that are activated during the day, and some that are activated at night.",
+      "Coup de Grace (cont.)":"Some classes have a Coup de Grace that is canon. Other classes were not present in DQIX and as such do not canonically have a Coup de Grace, so I gave them one.",
+      "Magical Kills":"The only thing that is affected by whether or not a kill is magical is the Magus's Fizzle, which will fail on the Hammerheads, the Warrior Heroes, the Armamentalist, and Erdrick. Magic can also kill a Golem, whereas a regular attack cannot.",
+      "Erdrick":"Erdrick very strong and wins with every mafia side, but he \"leaves the dungeon\" on the end of the sixth night. His role is revealed to everybody but he is immune to all forms of removal other than simply surviving five days."
+   },
+   "sides":[
+      {
+         "side":"village",
+         "translation":"Monsters",
+         "winmsg":"All the heroes have been defeated! The Monsters (~Players~) have protected the dungeon!"
+      },
+      {
+         "side":"heroes1",
+         "translation":"Performing Heroes",
+         "winmsg":"The party of performing heroes (~Players~) have reached the end of the dungeon and pilfered the treasure!"
+      },
+      {
+         "side":"heroes2",
+         "translation":"Warrior Heroes",
+         "winmsg":"The party of warrior heroes (~Players~) have reached the end of the dungeon and whisked away the treasure!"
+      },
+      {
+         "side":"heroes3",
+         "translation":"Magical Heroes",
+         "winmsg":"The party of magical heroes (~Players~) have reached the end of the dungeon and mobilized the treasure!"
+      },
+      {
+         "side":"heroes4",
+         "translation":"Thief",
+         "winmsg":"The Thief (~Players~) has made out like a bandit!"
+      },
+      {
+         "side":"erdrick",
+         "translation":"Legendary Hero",
+         "winmsg":"The Legendary Hero, (~Players~), has reached the end of the dungeon by himself, and escaped with the treasure."
+      }
+   ],
+   "variables":{
+      "startups":"±King Slime: Goo are a ~Role~!",
+      "startupm":"±Dragonlord: You are a ~Role~!",
+      "startuph":"±Erdrick: Hero! You are a ~Role~!",
+      "nofizzle":{
+         "mode":{
+            "ignore":[
+               "magus"
+            ]
+         }
+      }
+   },
+   "roles":[
+      {
+         "role":"slime",
+         "startupmsg":"variable:startups",
+         "translation":"Slime",
+         "side":"village",
+         "info":"Has no special abilities. May become a Metal Slime at night (8% chance). ~Sided~",
+         "help":"Goo are a slithering slime. Goo are not very important yet, but given some slime you may become a goo-reat warrior, too.",
+         "help2":"You're just a simple slime. You have no special abilities, but you may become a Metal Slime on any night. It's random, so don't bother worrying about it. The Platinum King Jewel may promote you to a Slime Stack if he's in the game.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "night":{
+               "become a Metal Slime":{
+                  "compulsory":true,
+                  "failChance":0.92,
+                  "command":"copy",
+                  "silent":true,
+                  "target":"OnlySelf",
+                  "common":"Self",
+                  "macro":false,
+                  "inputmsg":"",
+                  "copyfailmsg":"",
+                  "copymsg":"Goo have finally done it!",
+                  "copyAs":"metal",
+                  "priority":0
+               }
+            }
+         }
+      },
+      {
+         "role":"metal",
+         "startupmsg":"variable:startups",
+         "translation":"Metal Slime",
+         "side":"village",
+         "info":"A slime that has empowered itself randomly, letting it avoid 30% of nightkills. ~Sided~",
+         "help":"Through pure willpower, goo have become a silvery slime, a step up from all other simple slimes. Goo are known to have goonormous defense and blistering speed, and will avoid 30% of all nightkills.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "kill":{
+               "mode":{
+                  "evadeChance":0.3
+               }
+            }
+         }
+      },
+      {
+         "role":"stack",
+         "startupmsg":"variable:startups",
+         "translation":"Slime Stack",
+         "side":"village",
+         "info":"A promoted slime that has a vote of three. ~Sided~",
+         "help":"Goo have been promoted by the Platinum King Jewel and have become a... stack of three slimes? How does that help? Anygoo, your vote is now three. Goo nuts.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "vote":3
+         }
+      },
+      {
+         "role":"medley",
+         "startupmsg":"variable:startups",
+         "translation":"Metal Medley",
+         "side":"village",
+         "info":"A promoted metal slime that has a vote of three and evades 30% of nightkills. ~Sided~",
+         "help":"Goo have been promoted by the Platinum King Jewel and have become a... stack of three metal slimes? How does that help? Anygoo, your vote is now three. Goo nuts. You still evade 30% of nightkills.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "vote":3,
+            "kill":{
+               "mode":{
+                  "evadeChance":0.3
+               }
+            }
+         }
+      },
+      {
+         "role":"bubble",
+         "startupmsg":"±King Slime: Goo are a Slime!",
+         "translation":"Bubble Slime",
+         "side":"village",
+         "info":"Poisons attackers. Cannot be promoted. Sees itself as a Slime. Will never become a Metal Slime. ~Sided~",
+         "help":"Goo are a slithering slime. Goo are not very important yet, but given some slime you may become a goo-reat warrior, too.",
+         "help2":"You're just a simple slime. You have no special abilities, but you may become a Metal Slime on any night. It's random, so don't bother worrying about it. The Platinum King Jewel may promote you to a Slime Stack if he's in the game.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "kill":{
+               "mode":"poisonattacker"
+            },
+            "night":{
+               "Double Bubble":{
+                  "hide":true,
+                  "compulsory":true,
+                  "failChance":0.92,
+                  "command":"dummy5",
+                  "common":"Self",
+                  "macro":false,
+                  "target":"OnlySelf",
+                  "inputmsg":"",
+                  "dummy5usermsg":"You couldn't become a Metal Slime tonight!",
+                  "priority":0
+               }
+            }
+         }
+      },
+      {
+         "role":"heal",
+         "startupmsg":"variable:startups",
+         "translation":"Healslime",
+         "side":"village",
+         "info":"Can squelch (detox) during the night. ~Sided~",
+         "help":"Goo are a slime with a degree in medicine. Okay, maybe not, but it's high slime goo got on your tentacles and did something. Goo can /squelch one person during the night to cure them of poison (no, this isn't canon either lol). Yes, this is a very situational ability, but there's nothing else to goo.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "night":{
+               "squelch":{
+                  "command":"detox",
+                  "target":"Any",
+                  "priority":30,
+                  "common":"Self"
+               }
+            }
+         }
+      },
+      {
+         "role":"cure",
+         "startupmsg":"variable:startups",
+         "translation":"Cureslime",
+         "side":"village",
+         "info":"A promoted Healslime that can poison as well as squelch (detox). ~Sided~",
+         "help":"Goo have been promoted by the Platinum King Jewel, and now goo have studied up so much on poisons that goo can now /poison one person per night, in addition to your /squelch.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "night":{
+               "squelch":{
+                  "command":"detox",
+                  "hide":true,
+                  "target":"Any",
+                  "priority":30,
+                  "common":"Self"
+               },
+               "poison":{
+                  "target":"AnyButSelf",
+                  "common":"Self",
+                  "priority":26
+               }
+            }
+         }
+      },
+      {
+         "role":"beware",
+         "startupmsg":"variable:startupm",
+         "translation":"Bewarewolf",
+         "side":"village",
+         "info":" Can protect one person during the night. Has a 10% chance of failing. ~Sided~",
+         "help":"You are a blood-curdling Bewarewolf, which is just a werewolf but scarier. You're so spooky and powerful, you can /protect people by placing yourself at a particular proximity from their person, scaring off poser pups that would pummel them posthaste. I really am trying too hard. Your protect has a 10% chance of being ineffective",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "night":{
+               "protect":{
+                  "protectmsg":"The Bewarewolf scared you away from your target!",
+                  "failChance":0.1,
+                  "target":"AnyButSelf",
+                  "priority":4,
+                  "common":"Self"
+               }
+            }
+         }
+      },
+      {
+         "role":"scare",
+         "startupmsg":"variable:startupm",
+         "translation":"Scarewolf",
+         "side":"village",
+         "info":"Can protect+dayprotect one person during the night. Has a 10% chance of failing. ~Sided~",
+         "help":"You have been promoted by the Platinum King Jewel and are now a scream-inducing Scarewolf. Your /protect will now protect your patron during the night AND the day. It still has a 10% chance of not working.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "night":{
+               "protect":{
+                  "hide":true,
+                  "command":[
+                     "protect",
+                     "dayprotect"
+                  ],
+                  "protectmsg":"The Scarewolf scared you away from your target!",
+                  "dayProtectMsg":"The Scarewolf scared you away from your target!",
+                  "failChance":0.1,
+                  "target":"AnyButSelf",
+                  "priority":4,
+                  "common":"Self"
+               }
+            }
+         }
+      },
+      {
+         "role":"grinade",
+         "startupmsg":"variable:startupm",
+         "translation":"Grinade",
+         "side":"village",
+         "info":"Bombs nightkills. ~Sided~",
+         "help":"You are a grimacing Grinade. Basically, you blow up when you are attacked. Daykills will kill you quicker than you can selfdestruct, though, so only nightkillers will die when they attack you.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "kill":{
+               "mode":"killattacker"
+            }
+         }
+      },
+      {
+         "role":"rockbomb",
+         "startupmsg":"variable:startupm",
+         "translation":"Rockbomb",
+         "side":"village",
+         "info":"A promoted Grinade that bombs day AND nightkills. ~Sided~",
+         "help":"You have been promoted by the Platinum King Jewel and now are a rambunctious Rockbomb! You will now kill anybody who attacks you during the day as well as during the night.",
+         "actions":{
+            "kill":{
+               "mode":"killattacker"
+            },
+            "daykill":"bomb"
+         }
+      },
+      {
+         "role":"golem",
+         "startupmsg":"variable:startupm",
+         "translation":"Golem",
+         "side":"village",
+         "help":"You are a mighty Golem! Made up of impenetrable stone bricks, you will simply shrug off any attack that comes towards you during the night, unless it's magic. Daykills will get the best of you, though. You cannot be promoted by the Platinum King Jewel because you feel like you are a great golem, as good as you can get. Your vote counts as 0.5 because you are so stubborn people rarely listen to you.",
+         "actions":{
+            "vote":0.5,
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "kill":{
+               "mode":{
+                  "ignore":[
+                     "hammer",
+                     "warrior",
+                     "tamer",
+                     "martial",
+                     "brownie",
+                     "erdrick",
+                     "armamentalist"
+                  ]
+               }
+            }
+         }
+      },
+      {
+         "role":"platking",
+         "startupmsg":"variable:startups",
+         "translation":"Platinum King Jewel",
+         "side":"village",
+         "info":"Avoids 70% of nightkills. Can promote one person during the night. This will fail on Heroes and convert monsters to a more powerful role. If promote is used on a hero, the PKJ will be unable to promote during the following night. Has a vote of 4. ~Sided~",
+         "help":"Your Sliminess, goo are the King of all Slimes. Goo are able to /promote one person every night. This will make a Slime become a Slime Stack, a Hammerhood become a Brownie, and so forth. Your vote counts as 4, because goo are royalty. Be careful, Your Stickiness, for if goo promote an enemy, goo will have to spend the next night un-gooing it!",
+         "help2":"You can /promote people sided with you, and if you promote a hero you will not be able to promote the next night (they will not actually be promoted). You can use this to gather information as to who is a hero and thus should be voted off. Also, you are nearly impossible to kill, evading 70% of all nightkills.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "indoctrinate":{
+               "mode":"ignore"
+            },
+            "distract":"variable:nofizzle",
+            "kill":{
+               "mode":{
+                  "evadeChance":0.7
+               }
+            },
+            "vote":4,
+            "night":{
+               "promote":{
+                  "command":[
+                     "convert",
+                     "copy"
+                  ],
+                  "canCopy":[
+                     "minstrel",
+                     "minstrel2",
+                     "luminary",
+                     "luminary2",
+                     "jester",
+                     "bubble",
+                     "mage",
+                     "priest",
+                     "priest2",
+                     "armamentalist",
+                     "druid",
+                     "martial",
+                     "warrior",
+                     "tamer",
+                     "erdrick"
+                  ],
+                  "copyAs":"platking2",
+                  "newRole":{
+                     "stack":[
+                        "slime"
+                     ],
+                     "medley":[
+                        "metal"
+                     ],
+                     "sorcerer":[
+                        "magus"
+                     ],
+                     "brownie":[
+                        "hammer"
+                     ],
+                     "machine":[
+                        "mech"
+                     ],
+                     "cure":[
+                        "heal"
+                     ],
+                     "rockbomb":[
+                        "grinade"
+                     ]
+                  },
+                  "copyfailmsg":"",
+                  "copymsg":"",
+                  "copyusermsg":"Goo heavens, ~Target~ should not have been promoted!",
+                  "convertmsg":"A ~Old~ has been promoted to a ~New~.",
+                  "convertusermsg":"",
+                  "convertfailmsg":"",
+                  "convertusermsg":"You promoted ~Target~!",
+                  "common":"Self",
+                  "priority":20,
+                  "target":"AnyButSelf"
+               }
+            }
+         }
+      },
+      {
+         "role":"platking2",
+         "hide":true,
+         "startupmsg":"Your Sliminess, goo promoted an enemy and must spend one night un-gooing it. Goo will be able to resume promoting after the next night. Your vote is still 4.",
+         "translation":"Platinum King Jewel",
+         "side":"village",
+         "help":"",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "indoctrinate":{
+               "mode":"ignore"
+            },
+            "vote":4,
+            "initialCondition":{
+               "curse":{
+                  "cursedRole":"platking",
+                  "curseCount":2,
+                  "silentCurse":true
+               }
+            }
+         }
+      },
+      {
+         "role":"hammer",
+         "startupmsg":"variable:startupm",
+         "translation":"Hammerhood",
+         "side":"village",
+         "info":"Shares a smash (kill) with the other Hammerhood/Brownie. This has a 50% chance to fail ~Sided~",
+         "help":"You are a hapless hammerhood! Though you tote a terrifying tool, you are, in truth, a terribly timid thing. You know your fellow hammerhood brothers, and you can coordinate with them to /smash (kill) one person during the night. This is shared with them, and you have a 50% chance of tripping over your own hammer and failing anyway. Also, everyone will know who you are killing, so use it wisely. Use /tt to talk to your fellow hammerhoods.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "distract":"variable:nofizzle",
+            "startup":{
+               "revealRole":[
+                  "hammer",
+                  "brownie"
+               ]
+            },
+            "teamTalk":[
+               "hammer",
+               "brownie"
+            ],
+            "night":{
+               "smash":{
+                  "command":"kill",
+                  "target":"AnyButRole",
+                  "common":"Role",
+                  "broadcast":"*",
+                  "broadcastmsg":"The Hammerhoods are planning to smash ~Target~!",
+                  "failChance":0.5,
+                  "priority":10
+               }
+            }
+         }
+      },
+      {
+         "role":"brownie",
+         "startupmsg":"variable:startupm",
+         "translation":"Brownie",
+         "side":"village",
+         "info":"A promoted Hammerhood. Shares a smash (kill) with the other Hammerhood/Brownie. This has a 10% chance to fail. ~Sided~",
+         "help":"You have been promoted by the Platinum King Jewel. Brashly brawl those brutes, brave Brownie! Use /smash to kill someone. This is still shared with the other hammerhoods and brownies, but you should submit the command because you only have a 10% chance of tripping. Use /tt to talk to your fellow hammerhoods.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "distract":"variable:nofizzle",
+            "startup":{
+               "revealRole":[
+                  "hammer",
+                  "brownie"
+               ]
+            },
+            "teamTalk":[
+               "hammer",
+               "brownie"
+            ],
+            "night":{
+               "smash":{
+                  "command":"kill",
+                  "target":"AnyButRole",
+                  "common":"Role",
+                  "broadcast":"*",
+                  "broadcastmsg":"The Hammerhoods are planning to smash ~Target~!",
+                  "failChance":0.1,
+                  "priority":10
+               }
+            }
+         }
+      },
+      {
+         "role":"magus",
+         "startupmsg":"variable:startupm",
+         "translation":"Magus",
+         "side":"village",
+         "info":"Can distract. Cannot distract the Warrior, Martial Artist, Monster Tamer, Armamentalist, Hammerhood, or Brownie. ~Sided~",
+         "help":"As the marvelous magus, you can stop things before they start by casting /fizzle on someone, locking their magic for the night. If they do not use magic, they will not be affected, but you can sure as hell try anyway.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "night":{
+               "fizzle":{
+                  "command":"distract",
+                  "common":"Self",
+                  "target":"AnyButSelf",
+                  "priority":3,
+                  "distractmsg":"The Magus casts Fizzle! Your magic was sealed for the night!",
+                  "teammsg":"Your teammate ~Target~ had their magic sealed last night by Fizzle!"
+               }
+            }
+         }
+      },
+      {
+         "role":"sorcerer",
+         "startupmsg":"variable:startupm",
+         "translation":"Sorcerer",
+         "side":"village",
+         "info":"A promoted Magus. Can distract anyone. ~Sided~",
+         "help":"You have been promoted by the Platinum King Jewel. As the stupendous sorcerer, you can stop things before they start by casting /snooze on someone, putting them to sleep for the night. If they do not use magic, they will still be affected.",
+         "help2":"NOTE- Your command is now /snooze!",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "night":{
+               "snooze":{
+                  "command":"distract",
+                  "common":"Self",
+                  "target":"AnyButSelf",
+                  "priority":3,
+                  "distractmsg":"The Sorcerer casts Snooze! You fell asleep for the night!",
+                  "teammsg":"Your teammate ~Target~ was put to sleep last night by Snooze!"
+               }
+            }
+         }
+      },
+      {
+         "role":"mech",
+         "startupmsg":"variable:startupm",
+         "translation":"Hunter Mech",
+         "side":"village",
+         "info":"Can daykill every other day (revealing). ~Sided~",
+         "help":"More of a machine than a monster, you have mauled many a mortal. Normally you spend your days hunting Metal Slimes, but for now you've resolved to stop these heroes from advancing. You can /slash someone during the day to remove them from a game with a booming bombardment of blows and arrows, but this will reveal you. You must recharge yourself after doing this.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "standby":{
+               "slash":{
+                  "command":"kill",
+                  "target":"AnyButSelf",
+                  "killmsg":"\"ACQUIRING TARGET...\" ~Self~ (~Role~) slashes violently in the direction of ~Target~, before pouncing back into position to unleash a violent volley of arrows!",
+                  "recharge":2
+               }
+            }
+         }
+      },
+      {
+         "role":"machine",
+         "startupmsg":"variable:startupm",
+         "translation":"Killing Machine",
+         "side":"village",
+         "info":"A promoted Hunter Mech. Can daykill every day (revealing). ~Sided~",
+         "help":"You have been promoted by the Platinum King Jewel! Once a simple mech trained to hunt down Metal Slimes, you've become an unstoppable Killing Machine! You can now /slash every day to remove someone from the game!",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "standby":{
+               "slash":{
+                  "command":"kill",
+                  "target":"AnyButSelf",
+                  "killmsg":"\"ACQUIRING TARGET...\" ~Self~ (~Role~) slashes violently in the direction of ~Target~, before pouncing back into position to unleash a violent volley of arrows!"
+               }
+            }
+         }
+      },
+      {
+         "role":"musicplaceholder",
+         "hide":true,
+         "startupmsg":"variable:startuph",
+         "translation":"Performing Heroes",
+         "side":"heroes1",
+         "help":"Simplifies /priority. Does not appear in game.",
+         "actions":{
+            "teamUtilities":true,
+            "night":{
+               "kill":{
+                  "priority":9,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"minstrel",
+         "startupmsg":"variable:startuph",
+         "translation":"Minstrel",
+         "side":"heroes1",
+         "info":"Can sing (distract) to one person during the night. Shares a kill with its team. Coup de Grace: Activated during the day, allows the Minstrel to avoid 50% of day and nightkills for two nights. Can be activated after three nights and again after three nights. ~Sided~",
+         "help":"You are a musical Minstrel. You are a performing artist, able to dazzle your foes with /sing, which prevents them from performing any actions at NIGHT. You also share a /kill at night with your team. This kill is magical. Your Coup de Grace is Rough and Tumble, which can be activated during the day after three nights with /coup [YourName].",
+         "help2":"Your Coup de Grace, Rough and Tumble, will help you evade most kills (day and night) when you activate it with /coup [YourName]. It will last 2 nights and be available again after another 3.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "indoctrinate":{
+               "mode":"ignore"
+            },
+            "teamUtilities":true,
+            "night":{
+               "kill":{
+                  "hide":true,
+                  "priority":9,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               },
+               "sing":{
+                  "command":"distract",
+                  "priority":2,
+                  "target":"AnyButTeam",
+                  "common":"Self",
+                  "broadcast":"team",
+                  "distractmsg":"The Minstrel sang to you last night and you forgot what you were doing...",
+                  "teammsg":"The Minstrel sang to your teammate last night."
+               }
+            },
+            "standby":{
+               "coup":{
+                  "command":"expose",
+                  "target":"OnlySelf",
+                  "newRole":"minstrel2",
+                  "exposemsg":"The Minstrel unleashes their Coup de Grace! Rough and Tumble!",
+                  "silent":true,
+                  "convertmsg":"",
+                  "convertusermsg":"",
+                  "initialrecharge":4,
+                  "msg":"After three nights you will be primed to perform a Coup de Grâce!"
+               }
+            }
+         }
+      },
+      {
+         "role":"minstrel2",
+         "hide":true,
+         "startupmsg":"Your Coup de Grace has been activated, and your evasion has skyrocketed. You will avoid 50% of all kills, and you can still /sing during the night to prevent someone from acting. You can also still /kill (shared). This kill is magical. In 2 days, your Coup de Grace will wear off.",
+         "translation":"Minstrel [Coup]",
+         "side":"heroes1",
+         "help":"",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "indoctrinate":{
+               "mode":"ignore"
+            },
+            "teamUtilities":true,
+            "teamUtilities":true,
+            "initialCondition":{
+               "curse":{
+                  "cursedRole":"minstrel",
+                  "curseCount":2,
+                  "silentCurse":true
+               }
+            },
+            "kill":{
+               "mode":{
+                  "evadeChance":0.5
+               }
+            },
+            "daykill":{
+               "mode":{
+                  "evadeChance":0.5
+               }
+            },
+            "night":{
+               "kill":{
+                  "hide":true,
+                  "priority":9,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               },
+               "sing":{
+                  "hide":true,
+                  "command":"distract",
+                  "priority":2,
+                  "target":"AnyButTeam",
+                  "common":"Self",
+                  "broadcast":"team",
+                  "distractmsg":"The Minstrel sang to you last night and you forgot what you were doing...",
+                  "teammsg":"The Minstrel sang to your teammate last night."
+               }
+            }
+         }
+      },
+      {
+         "role":"luminary",
+         "startupmsg":"variable:startuph",
+         "translation":"Luminary",
+         "side":"heroes1",
+         "info":"Can dance (daydistract) one person during the day. Shares a kill with its team. Coup de Grace: Allows the Luminary to dance with FIVE people during the following night. Can be activated during the day after two nights and again after two nights. ~Sided~",
+         "help":"You are a legendary Luminary. Having mastered the art of song and dance, you can /dance with one person per night, stopping them from acting during the DAY, as they will be tuckered out from dancing all night. You share a /kill with your team. This kill is magical. Your Coup de Grace is Disco Tech, which can be activated during the day after two nights with /coup [YourName].",
+         "help2":"Your Coup de Grace, Disco Tech, will allow you to /dance with up to five people during the night after you activate it with /coup [YourName]. It will last 1 night only and be available again after another 2.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "indoctrinate":{
+               "mode":"ignore"
+            },
+            "teamUtilities":true,
+            "night":{
+               "kill":{
+                  "hide":true,
+                  "priority":9,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               },
+               "dance":{
+                  "command":"daydistract",
+                  "priority":35,
+                  "target":"AnyButTeam",
+                  "common":"Self",
+                  "dayDistractMsg":"You spent the night dancing with the Luminary and are too tired to act today."
+               }
+            },
+            "standby":{
+               "coup":{
+                  "command":"expose",
+                  "target":"OnlySelf",
+                  "newRole":"luminary2",
+                  "exposemsg":"The Luminary unleashes their Coup de Grace! Disco Tech!",
+                  "silent":true,
+                  "convertmsg":"",
+                  "convertusermsg":"",
+                  "initialrecharge":3,
+                  "msg":"After two nights you will be primed to perform a Coup de Grâce!"
+               }
+            }
+         }
+      },
+      {
+         "role":"luminary2",
+         "hide":true,
+         "startupmsg":"Your Coup de Grace has been activated, and you can now /dance with FIVE people during the next night. You should use this to block some other Coup de Graces or prevent the Hunter Mech from killing during the standby. You still share a /kill with your team. This kill is magical.",
+         "translation":"Luminary [Coup]",
+         "side":"heroes1",
+         "help":"",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "indoctrinate":{
+               "mode":"ignore"
+            },
+            "teamUtilities":true,
+            "initialCondition":{
+               "curse":{
+                  "cursedRole":"luminary",
+                  "curseCount":1,
+                  "silentCurse":true
+               }
+            },
+            "night":{
+               "kill":{
+                  "hide":true,
+                  "priority":9,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               },
+               "dance":{
+                  "hide":true,
+                  "command":"daydistract",
+                  "priority":35,
+                  "target":"AnyButTeam",
+                  "common":"Self",
+                  "limit":5,
+                  "dayDistractMsg":"You spent the night dancing with the Luminary and are too tired to act today."
+               }
+            }
+         }
+      },
+      {
+         "role":"jester",
+         "startupmsg":"variable:startuph",
+         "translation":"Jester",
+         "side":"heroes1",
+         "info":"Shares a kill with its team. Can expose one person during the day. Coup de Grace: daykill. Can be activated after four nights and again after four more. ~Sided~",
+         "help":"You are a jaunty Jester! Your main goal is to have tons and tons of fun! Your secondary goal is to get to the treasure at the end of the dungeon. You should help your team by using /expose to reveal someone during the day. This will not reveal you! However, it takes a while to think of a good joke, so you can only do this every other day. You also share a /kill with your team. This kill is magical. Your Coup de Grace is Killer Joke, which can be activated during the day after four nights with /coup [Target].",
+         "help2":"NOTE- Your Coup de Grace is a daykill. It differs from many other Coups in that it does not convert you. You must target somebody else with this action (/coup [Target]). After using this command, you will need to wait four days before using it again. This will also not reveal you.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "indoctrinate":{
+               "mode":"ignore"
+            },
+            "teamUtilities":true,
+            "night":{
+               "kill":{
+                  "hide":true,
+                  "priority":9,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               }
+            },
+            "standby":{
+               "expose":{
+                  "target":"AnyButTeam",
+                  "exposemsg":"The Jester tells ~Target~ the funniest joke they've ever heard, and their laugh sounded a lot like that of a ~Role~!",
+                  "recharge":2
+               },
+               "coup":{
+                  "command":"kill",
+                  "target":"AnyButTeam",
+                  "killmsg":"The Jester unleashes their Coup de Grace! Killer Joke!",
+                  "initialrecharge":5,
+                  "recharge":4
+               }
+            }
+         }
+      },
+      {
+         "role":"warriorplaceholder",
+         "hide":true,
+         "startupmsg":"variable:startuph",
+         "translation":"Warrior Heroes",
+         "side":"heroes2",
+         "help":"Simplifies /priority. Does not appear in game.",
+         "actions":{
+            "distract":"variable:nofizzle",
+            "teamUtilities":true,
+            "night":{
+               "kill":{
+                  "priority":8,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"warrior",
+         "startupmsg":"variable:startuph",
+         "translation":"Warrior",
+         "side":"heroes2",
+         "info":"Shares a kill with its team. Can shield one person from all actions during the night. Coup de Grace: nightkill. Can be activated after three days and again after three more. Coup ignores distracts and protects. ~Sided~",
+         "help":"You are the wise and wonderful Warrior. You have mastered the art of fighting, and you can /kill during the night. This is not a magical kill. It is also shared with your team. You can also /shield someone using your skill Whipping Boy, which will allow you to take all the non-distract actions (including kills!) they would have taken. Your Coup De Grace is Critical Claim, and can be activated after three days (so, on night 4) with /coup [Target].",
+         "help2":"NOTE- Your Coup de Grace is a nightkill. It differs from many other Coups in that it does not convert you. You must target somebody else with this action (/coup [Target]). After using this command, you will need to wait three days before using it again. This kill is not shared, ignores distracts, and will pierce protection.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "distract":"variable:nofizzle",
+            "teamUtilities":true,
+            "night":{
+               "kill":{
+                  "hide":true,
+                  "priority":8,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               },
+               "shield":{
+                  "priority":6,
+                  "common":"Team",
+                  "target":"AnyButSelf",
+                  "broadcast":"team"
+               },
+               "coup":{
+                  "ignoreDistract":true,
+                  "pierce":true,
+                  "command":"kill",
+                  "priority":7,
+                  "initialrecharge":4,
+                  "recharge":4,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team",
+                  "broadcastmsg":"~Self~ is planning to unleash their Coup de Grace!",
+                  "killmsg":"The Warrior unleashes their Coup de Grace! Critical Claim! ~Target~ (~TargetRole~) is defeated."
+               }
+            }
+         }
+      },
+      {
+         "role":"martial",
+         "startupmsg":"variable:startuph",
+         "translation":"Martial Artist",
+         "side":"heroes2",
+         "info":"Shares a kill with its team. Can protect during the night, including itself. Coup de Grace: distract+daydistract. Can be activated on night two and then every other day afterward. ~Sided~",
+         "help":"You are a most amazing Martial Artist. You have mastered many martial arts, and as such you will often know who is going to be killed. You share a /kill with your team. This is not a magical kill. You can also /protect one person during the night, including yourself, performing the skill War cry on any enemies that dare come near your target. Your Coup De Grace is Roaring Tirade, and can be activated after just one day (so, on night 2) with /coup [Target].",
+         "help2":"NOTE- Your Coup de Grace is a distract+daydistract. It differs from many other Coups in that it does not convert you. You must target somebody else with this action (/coup [Target]). After using this command, you will need to wait one day before using it again. This distracts someone during the day AND the night.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "distract":"variable:nofizzle",
+            "teamUtilities":true,
+            "hax":{
+               "kill":{
+                  "revealRole":0.4
+               }
+            },
+            "night":{
+               "kill":{
+                  "hide":true,
+                  "priority":7,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               },
+               "protect":{
+                  "protectmsg":"The Martial Artist stunned you as you approached your target, protecting them!",
+                  "priority":5,
+                  "common":"Team",
+                  "target":"Any",
+                  "broadcast":"team"
+               },
+               "coup":{
+                  "command":[
+                     "daydistract",
+                     "distract",
+                     "dummy"
+                  ],
+                  "dummybroadcastmsg":"The Martial Artist unleashes their Coup de Grace! Roaring Tirade!",
+                  "distractmsg":"The Martial Artist stunned you with Roaring Tirade!",
+                  "teammsg":"The Martial Artist stunned your teammate with Roaring Tirade!",
+                  "dayDistractMsg":"You couldn't use your action due to the Roaring Tirade!",
+                  "priority":1,
+                  "target":"AnyButTeam",
+                  "common":"Self",
+                  "broadcast":"team",
+                  "broadcastmsg":"~Self~ is planning to unleash their Coup de Grace!",
+                  "initialrecharge":2,
+                  "recharge":2
+               }
+            }
+         }
+      },
+      {
+         "role":"tamer",
+         "startupmsg":"variable:startuph",
+         "translation":"Monster Tamer",
+         "side":"heroes2",
+         "info":"Shares a kill with its team. Can tame (indoctrinate) one monster during the game. Coup de Grace: inspect. Can be activated immediately, and has a two night recharge. ~Sided~",
+         "help":"You are a mildly terrifying Monster Tamer! You share a non-magical /kill with your team every night. As the name suggests, you can /tame one monster during the game to bring them over to your side. Be careful, as you can only use it once. If the Platinum King Jewel is around, try to use this on a promoted monster Otherwise, you risk them being promoted after you tame them, at which point they will rejoin the monsters. Try gathering information first with your Coup de Grace, Hunter Sense, which can be activated immediately and then every 2 nights with /coup [Target].",
+         "help2":"NOTE- Your Coup de Grace is an inspect. It differs from many other Coups in that it does not convert you. You must target somebody else with this action (/coup [Target]). After using this command, you will need to wait two days before using it again. Use this to gather information on which monster to /tame.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "distract":"variable:nofizzle",
+            "teamUtilities":true,
+            "night":{
+               "kill":{
+                  "priority":8,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               },
+               "coup":{
+                  "command":[
+                     "inspect",
+                     "dummy2"
+                  ],
+                  "dummy2broadcastmsg":"The Monster Tamer unleashes their Coup de Grace! Hunter Sense!",
+                  "priority":18,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team",
+                  "broadcastmsg":"~Self~ is planning to unleash their Coup de Grace!",
+                  "recharge":2
+               },
+               "tame":{
+                  "command":"indoctrinate",
+                  "priority":50,
+                  "common":"Self",
+                  "target":"AnyButTeam",
+                  "broadcast":"team",
+                  "charges":1,
+                  "newSide":"heroes2"
+               }
+            }
+         }
+      },
+      {
+         "role":"magicalplaceholder",
+         "hide":true,
+         "startupmsg":"variable:startuph",
+         "translation":"Magical Heroes",
+         "side":"heroes3",
+         "help":"Simplifies /priority. Does not appear in game.",
+         "actions":{
+            "indoctrinate":{
+               "mode":"ignore"
+            },
+            "teamUtilities":true,
+            "night":{
+               "kill":{
+                  "priority":11,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"mage",
+         "startupmsg":"variable:startuph",
+         "translation":"Mage",
+         "side":"heroes3",
+         "info":"Shares a kill with its team. Can kafrizzle (kill) one other person, but must activate its Coup de Grace during the day after three nights (and again after two more) to refresh its charge of Kafrizzle. ~Sided~",
+         "help":"You are the magical Mage. While you share a /kill at night with your fellow party members, your real power lies in your /kafrizzle skill, which you can use to kill someone... once. Then... you run out of MP. Uh... No matter, for your Coup de Grace, 0 Zone, will allow you to cast it for a cost of zero MP!",
+         "help2":"NOTE- Your Coup de Grace simply adds a charge of your /kafrizzle command. Use /coup [YourName] during the day to refresh your charge of /kafrizzle! This can be unleashed after three nights, and has a two night recharge afterward",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "indoctrinate":{
+               "mode":"ignore"
+            },
+            "teamUtilities":true,
+            "night":{
+               "kill":{
+                  "hide":true,
+                  "priority":11,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               },
+               "kafrizzle":{
+                  "command":"kill",
+                  "priority":12,
+                  "common":"Team",
+                  "charges":1,
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               }
+            },
+            "standby":{
+               "coup":{
+                  "command":"expose",
+                  "target":"OnlySelf",
+                  "copyAs":"mage",
+                  "exposemsg":"The Mage unleashes their Coup de Grace! 0 Zone!",
+                  "silent":true,
+                  "copymsg":"",
+                  "copymsg":"",
+                  "silentCopy":true,
+                  "initialrecharge":4,
+                  "recharge":2,
+                  "msg":"After three nights you will be primed to perform a Coup de Grâce!"
+               }
+            }
+         }
+      },
+      {
+         "role":"priest",
+         "startupmsg":"variable:startuph",
+         "translation":"Priest",
+         "side":"heroes3",
+         "info":"Can protect during the night. Cannot kill, but has a vote of 2. Coup de Grace: can be activated during the day after three nights, lasts for 2 days, and has a three night recharge. Increases vote to three and allows unlimited protects during the two nights.",
+         "help":"You are the pious Priest. You do not share a kill with your team, but your connection to the gods grants you a vote of 2. You can /protect your teammates and yourself, using the command once per night. Your Coup de Grace, Choir of Angels, grants you the ability to /protect as many people as you can manage to type during the night, and is able to be activated on the third day, and every three days thereafter.",
+         "help2":"NOTE- Your Coup de Grace simply unlocks unlimited use of your /protect command. Use /coup [YourName] during the day to do this! This can be unleashed after three nights, lasts for 2 days, and has a three night recharge afterward. Your vote will also be increased to 3 when you do this.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "vote":2,
+            "indoctrinate":{
+               "mode":"ignore"
+            },
+            "teamUtilities":true,
+            "night":{
+               "protect":{
+                  "protectmsg":"The Priest outhealed all of your damage, protecting your target!",
+                  "priority":5,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               }
+            },
+            "standby":{
+               "coup":{
+                  "command":"expose",
+                  "target":"OnlySelf",
+                  "newRole":"priest2",
+                  "exposemsg":"The Priest unleashes their Coup de Grace! Choir of Angels!",
+                  "silent":true,
+                  "initialrecharge":4,
+                  "recharge":2,
+                  "msg":"After three nights you will be primed to perform a Coup de Grâce!"
+               }
+            }
+         }
+      },
+      {
+         "role":"priest2",
+         "hide":true,
+         "startupmsg":"You have used your Coup de Grace and have granted yourself unlimited use of the /protect command for the next 2 nights! Your vote has also increased to 3.",
+         "translation":"Priest",
+         "side":"heroes3",
+         "help":"",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "vote":3,
+            "initialCondition":{
+               "curse":{
+                  "cursedRole":"priest",
+                  "curseCount":2,
+                  "silentCurse":true
+               }
+            },
+            "indoctrinate":{
+               "mode":"ignore"
+            },
+            "teamUtilities":true,
+            "night":{
+               "protect":{
+                  "priority":5,
+                  "limit":999,
+                  "hide":true,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"armamentalist",
+         "startupmsg":"variable:startuph",
+         "translation":"Armamentalist",
+         "side":"heroes3",
+         "info":"Shares a kill with its team. Can track (stalk+watch) during the night. Coup de Grace: Increases its own vote to five. Can be activated on the second night and has a cooldown of three days. Lasts one night. ~Sided~",
+         "help":"You are the awesome Armamentalist. You share a /kill with your team, but you prefer to use a sword and thus your kill is NOT magical. You can use /track to gather information on who your target visited and who they were visited by. Your Coup de Grace, Voice of Experience, can be used after 1 day (so, the second night) to give yourself a vote of 5, but use it carefully because it has a long cooldown of 3 days.",
+         "help2":"NOTE- Your Coup de Grace simply increases your vote to 5. Use /coup during the night to do this! This can be unleashed after one night, lasts for one day only, and has a three night recharge afterward.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "distract":"variable:nofizzle",
+            "indoctrinate":{
+               "mode":"ignore"
+            },
+            "teamUtilities":true,
+            "night":{
+               "kill":{
+                  "hide":true,
+                  "priority":11,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               },
+               "track":{
+                  "command":[
+                     "stalk",
+                     "watch"
+                  ],
+                  "priority":55,
+                  "common":"Team",
+                  "target":"Any",
+                  "broadcast":"team"
+               },
+               "coup":{
+                  "command":"dummy4",
+                  "addVote":5,
+                  "addVoteDuration":1,
+                  "common":"Self",
+                  "initialrecharge":2,
+                  "recharge":3,
+                  "target":"OnlySelf",
+                  "dummy4broadcastmsg":"The Armamentalist unleashes his Coup de Grace! Voice of Experience!",
+                  "dummy4usermsg":"You increased your vote to 5!",
+                  "dummy4targetmsg":"",
+                  "broadcast":"team",
+                  "broadcastmsg":"~Self~ is planning to unleash their Coup de Grace!",
+                  "priority":40
+               }
+            }
+         }
+      },
+      {
+         "role":"druid",
+         "startupmsg":"variable:startuph",
+         "translation":"Druid",
+         "side":"heroes3",
+         "info":"Shares a kill with its team. Coup de Grace: Poison. Can be activated after on night three and then every other day afterward. ~Sided~",
+         "help":"You are the dreaded Druid. You share magical /kill with the other members of your team. Your Coup De Grace is Wave of Corruption, and can be activated after two days (so, on night 3) with /coup [Target].",
+         "help2":"NOTE- Your Coup de Grace is a poison. It differs from many other Coups in that it does not convert you. You must target somebody else with this action (/coup [Target]). You can unleash this starting night 3, and you can use this every other day after your first Coup unleash.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "indoctrinate":{
+               "mode":"ignore"
+            },
+            "teamUtilities":true,
+            "night":{
+               "kill":{
+                  "hide":true,
+                  "priority":11,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               },
+               "coup":{
+                  "command":[
+                     "poison",
+                     "dummy3"
+                  ],
+                  "dummy3broadcastmsg":"The Druid unleashes their Coup de Grace! Wave of Corruption!",
+                  "priority":25,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team",
+                  "broadcastmsg":"~Self~ is planning to unleash their Coup de Grace!",
+                  "initialrecharge":4,
+                  "recharge":2
+               }
+            }
+         }
+      },
+      {
+         "role":"erdrick",
+         "startupmsg":"You are the Legendary Hero, Erdrick.",
+         "translation":"Erdrick",
+         "side":"erdrick",
+         "winningSides":[
+            "heroes1",
+            "heroes2",
+            "heroes3",
+            "erdrick"
+         ],
+         "help":"You have assumed the role of the ever-famous Erdrick, scion of the gods, deliverer of justice. Everyone has heard of you and thus, everybody knows who you are. You have delved into this devious dungeon and demanded that the treasure be shared with you. You cannot be killed, during the night OR the day, and you cannot be voted off. You will win with any Heroes that win. However, you must help them complete their task by the sixth night, or you will have to return to your duties.",
+         "help2":"As Erdrick, you can't be removed from the game. You win as long as any Heroes win. You can also /kill someone during the day. However, after five nights, you must return to your heroic duties and will leave the dungeon (essentially, win in five nights or you will die at the end of the sixth). You can also die by attacking a Rockbomb (but not a Grinade).",
+         "actions":{
+            "voteshield":-99,
+            "indoctrinate":{
+               "mode":"ignore"
+            },
+            "kill":{
+               "mode":"ignore"
+            },
+            "daykill":"evade",
+            "initialCondition":{
+               "poison":{
+                  "count":6,
+                  "poisonDeadMessage":"You must return to your post at the palace!"
+               }
+            },
+            "standby":{
+               "kill":{
+                  "target":"AnyButTeam",
+                  "killmsg":"The Legendary Hero lands gracefully in front of ~Target~! The crowd cheers! Erdrick unleashes a Falcon Slash, striking four times with his Über Falcon Blade! He finishes off ~Target~ with a mighty Kazapple!",
+                  "revealChance":1,
+                  "revealmsg":"Erdrick (~Self~) has defeated yet another enemy!"
+               }
+            }
+         }
+      },
+      {
+         "role":"roto",
+         "startupmsg":"You are the Legendary Hero, Loto.",
+         "translation":"Loto",
+         "side":"village",
+         "info":"Can kill during the night. This kill cannot be stopped. Cannot be promoted. ~Sided~",
+         "help":"Named after your descendant, the even more legendary Loto, you are the first Hero to ever confront the Dragonlord head-on and live. You greedily accepted his offer to make peace with him rule \"Half of the World\", but what you didn't know is that it was really just the name of a small castle outside of his own. Over the hundreds of years you have lived after accepting his offer, you have grown to become mad and monstrous. You work for the Dragonworld now.",
+         "help2":"You are primed and prepared to assault any adventurer that approaches your area. You may /kill during the night, bypassing all protects and bodyguards. You cannot be promoted by the Platinum King Jewel.",
+         "actions":{
+            "startup":{
+               "revealRole":"erdrick"
+            },
+            "indoctrinate":{
+               "mode":"ignore"
+            },
+            "night":{
+               "kill":{
+                  "pierce":true,
+                  "ignoreDistract":true,
+                  "priority":0,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"thief",
+         "startupmsg":"variable:startuph",
+         "translation":"Thief",
+         "side":"heroes4",
+         "winningSides":[
+            "heroes1",
+            "heroes2",
+            "heroes3",
+            "heroes4",
+            "erdrick"
+         ],
+         "info":"A hero for very small games that can poison once per night. Has no Coup de Grace. Wins with any heroes. ~Sided~",
+         "help":"You are a through-and-through Thief. You cannot kill, but you can /poison someone during the night with Poison Needle. However, your Coup de Grace, Itemized Kill, does not function here. You win with any other heroes, because you just want that treasure!",
+         "actions":{
+            "teamUtilities":true,
+            "distract":"variable:nofizzle",
+            "teamUtilities":true,
+            "night":{
+               "poison":{
+                  "priority":24,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               }
+            }
+         }
+      }
+   ],
+   "killmsg":"±Dragonlord: ~Player~ (~Role~) is defeated.",
+   "killusermsg":"You took 999,999 points of damage!",
+   "lynchmsg":"±Dragonlord: ~Player~ (~Role~) received ~Count~ points of damage! ~Role~ is defeated.",
+   "drawmsg":"±Dragonlord: wtf lol",
+   "votemsg":"~Player~ casts Vote on ~Target~!",
+   "roles1":[
+      "slime",
+      "slime",
+      "thief",
+      "slime"
+   ],
+   "roles2":[
+      "slime",
+      "hammer",
+      "minstrel",
+      "magus",
+      "thief",
+      "slime",
+      "slime"
+   ],
+   "roles3":[
+      "hammer",
+      "beware",
+      "minstrel",
+      "magus",
+      "mage",
+      "slime",
+      "druid",
+      "jester",
+      "slime"
+   ],
+   "roles4":[
+      "hammer",
+      "beware",
+      "minstrel",
+      "magus",
+      "mage",
+      "slime",
+      "grinade",
+      "slime",
+      "jester",
+      "slime",
+      "druid",
+      "slime"
+   ],
+   "roles5":[
+      "hammer",
+      "bubble",
+      "minstrel",
+      "magus",
+      "mage",
+      "heal",
+      "grinade",
+      "platking",
+      "jester",
+      "slime",
+      "druid",
+      "beware",
+      "thief",
+      "slime"
+   ],
+   "roles6":[
+      "hammer",
+      "slime",
+      "minstrel",
+      "magus",
+      "mage",
+      "heal",
+      "grinade",
+      "platking",
+      "jester",
+      "bubble",
+      "druid",
+      "slime",
+      "beware",
+      "tamer",
+      "warrior",
+      "slime",
+      "slime",
+      "thief"
+   ],
+   "roles7":[
+      "hammer",
+      "hammer",
+      "minstrel",
+      "magus",
+      "mage",
+      "heal",
+      "grinade",
+      "platking",
+      "jester",
+      "bubble",
+      "druid",
+      "slime",
+      "beware",
+      "tamer",
+      "warrior",
+      "golem",
+      "mech",
+      "luminary",
+      "priest",
+      "slime",
+      "martial",
+      "armamentalist",
+      "slime"
+   ],
+   "roles8":[
+      "hammer",
+      "hammer",
+      "minstrel",
+      "magus",
+      "mage",
+      "heal",
+      "grinade",
+      "platking",
+      "jester",
+      "bubble",
+      "druid",
+      "slime",
+      "beware",
+      "tamer",
+      "warrior",
+      "golem",
+      "mech",
+      "luminary",
+      "priest",
+      "slime",
+      "martial",
+      "armamentalist",
+      "roto",
+      "erdrick",
+      "slime",
+      "bubble",
+      "thief",
+      "slime",
+      "thief",
+      "golem",
+      "slime",
+      "bubble",
+      "thief",
+      "slime"
+   ],
+   "villageCantLoseRoles":[
+      "mech",
+      "machine",
+      "brownie",
+      "hammer",
+      "platking",
+      "stack"
+   ]
+}
