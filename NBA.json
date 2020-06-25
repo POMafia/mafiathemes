@@ -1,0 +1,1241 @@
+{
+    "altname": "NBA Finals 2018",
+    "name": "NBA",
+    "author": "Miki Sayaka",
+    "borderColor": "#b17902",
+    "bot": {
+    	"name": "Referee",
+    	"color": "#b17902"
+    },
+	"killmsg": "~Player~ (~Role~) will not be seen in the NBA anymore!",
+    "lynchmsg": "~Player~ (~Role~) received ~Count~ Technical Fouls and was removed from the series!",
+    "summary": "The battle for the NBA Championship continues! The Warriors, starring Steph Curry, Klay Thompson, and Kevin Durant are fighting for their tournament lives, while the hungry Cavs (led by LeBron James) and Rockets (led by James Harden) try to take the title. While all hell is loose, Shaq appears and destroy anyone who opposes him!",
+    "sides": [
+        {
+            "side": "mafia1",
+            "translation": "Rockets",
+            "color": "#d30033"
+        },
+        {
+            "side": "mafia2",
+            "translation": "Cavaliers",
+            "color": "#860038"
+        },
+        {
+            "side": "village",
+            "translation": "Golden State Warriors",
+            "color": "#006BB6"
+        },
+        {
+            "side": "mafia3",
+            "color": "#008853",
+            "translation": "Celtics"
+        },
+        {
+            "side": "godfather",
+            "color": "#542583",
+            "translation": "Lakers ???"
+        }
+    ],
+    "tips": {
+	"Main Threats": "LeBron (Ganon pierce kill mayor + becomes kuja when Iguodala is defeated). Harden (mayor, counter daykills, gains Curry's daykill if Curry is defeated).",
+	"Main Threats 2": "Irving joins the Cavs when Steph, Klay, and Draymond are removed by end of night 3 are out and knows those 3 on startup. JR Smith has -1 vote and gains priority kill if voted off.",
+	"Connecting": "Klay can spam /block to get Curry. Draymond autoconnects them if he's in.",
+	"Autoconnecting": "In addition to Curry+Klay+Draymond, other village cores are Iguodala+Cook and KD+McGee. The Cavs are not connected on startup.",
+	"Votes": "LeBron (2) Durant (2) Harden (2) JR Smith (-1). Jordan Bell (10% chance for 100). Draymond Green receives 2 extra votes if voted for. LeBron gains 1000000 votes if Iguodala is defeated. Curry counters lynch. JR Smith evaeds 1 lynch.",
+	"Converts": "90% of roles convert when other roles die, DO NOT PANIC"
+    },
+    "roles": [
+        {
+            "role": "shaq",
+            "translation": "Shaq",
+            "side": "godfather",
+            "info": "Can dunk twice per night. Vote counts as 4. Ignores dunks (nightkills). ~Sided~",
+            "help": "SHAQ WHAT ARE YOU DOING PLS DONT ITS 2018.... oh whatever who cares, time to teach these newbie scrubs who's right and /Dunk [name] up to 2 players during the night to destroy their careers! You yourself can't be dunked on, and you possess as vote of 4!",
+            "actions": {
+                "night": {
+                    "dunk": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "command": "kill",
+                        "priority": 19,
+                        "limit": 2,
+                        "broadcast": "team"
+                    }
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "vote": 4,
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "irving",
+            "translation": "Kyrie Irving",
+            "side": "mafia3",
+            "help2": "Eliminate the Splash Brothers and Draymond to join the Cavs! Be careful because Draymond bombs you.",
+            "info": "Knows Steph Curry, Klay Thompson, and Draymond Green on startup (but not who is which). If all 3 are defeated in the first 3 nights, can win with the Cavaliers. If not, he gains a revealing daykill. Can /dunk (kill). Can /protect (any). Evades daykills. ~Sided~",
+            "help": "You used to be on the Cavs, but now you're with the Celtics! You remember the Warriors well, so you already know who are the Splash Brothers + Draymond Green is (but you can't remember who is which!) If all 3 are eliminated within the first three nights, you will be able to win with the Cavaliers like it's 2016! Until then, /dunk [name] to defeat someone and /protect [name] to defend someone (even yourself)!",
+            "actions": {
+		        "initialCondition": {
+		          "curse": {
+		            "cursedRole": "irving-solo",
+		            "curseCount": 3,
+		            "silentCurse": true
+		          }
+		        },
+                "night": {
+                    "dunk": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "command": "kill",
+                        "priority": 15,
+                        "broadcast": "team"
+                    },
+                    "protect": {
+                        "target": "Any",
+                        "common": "Team",
+                        "priority": 5,
+                        "broadcast": "team"
+                    }
+                },
+				"daykill": {
+					"mode": {
+						"evadeChance": 1
+					}
+				},
+                "onDeadRoles": {
+                    "convertTo": {
+                        "irving2": [
+							"samurai",
+							"hooker",
+							"hooker2",
+							"bomb"
+						]
+                    },
+                    "convertmsg": "±Game: Finally, Irving can dominate the court with his vicious 3-point shots!!"
+                },
+                "startup": {
+                    "revealPlayers": ["samurai", "hooker", "bomb"],
+					"revealPlayersMsg": "The Steph Curry, Klay Thompson, and Draymond Green are ~Players~! (Hint: You need to get rid of all 3 of them to power-up and join the Cavs!!)"
+                },
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "irving2",
+            "translation": "Kyrie Irving",
+            "side": "mafia3",
+            "winningSides": ["mafia2", "mafia3"],
+            "hide": true,
+            "help": "You have rejoined LeBron James and Cavaliers! Continue to /dunk [name] your enemies and /protect [name] your teammates!",
+            "actions": {
+      			"initialCondition": {"clearCurse": true},
+                "night": {
+                    "dunk": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "command": "kill",
+                        "priority": 15,
+                        "hide": true,
+                        "broadcast": "team"
+                    },
+                    "protect": {
+                        "target": "Any",
+                        "common": "Team",
+                        "priority": 5,
+                        "broadcast": "team"
+                    }
+                },
+				"daykill": {
+					"mode": {
+						"evadeChance": 1
+					}
+				},
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "irving-solo",
+            "translation": "Kyrie Irving",
+            "side": "mafia3",
+            "hide": true,
+            "info": "Knows Steph Curry, Klay Thompson, and Draymond Green on startup (but not who is which). If all 3 are defeated, gains 3x daykills. Can /dunk (kill). Can /protect (any). Evades daykills. ~Sided~",
+            "help": "You used to be on the Cavs, but now you're with the Celtics! You remember the Warriors well from your time with the Cavs, so you already know who are the Splash Brothers + Draymond Green is (but you can't remember who is which!) If all 3 are eliminated, you can gain the ability to shoot 3 /threes during the day! Until then, all you can do is /dunk [name] to defeat someone.",
+            "actions": {
+                "night": {
+                    "dunk": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "command": "kill",
+                        "priority": 15,
+                        "broadcast": "team"
+                    },
+                    "protect": {
+                        "target": "Any",
+                        "common": "Team",
+                        "priority": 5,
+                        "broadcast": "team"
+                    }
+                },
+				"daykill": {
+					"mode": {
+						"evadeChance": 1
+					}
+				},
+                "standby": {
+                    "three": {
+                    	"command": "kill",
+                        "target": "AnyButTeam",
+                        "msg": "You can defeat someone now using /three [name] (you WILL be revealed):",
+                        "killmsg": "~Self~ (Kyrie Irving) jumps up into the air and fires a three right past ~Target~!"
+                    }
+                },
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "gordon",
+            "translation": "Eric Gordon",
+            "side": "mafia1",
+            "info": "Can shoot a /three during the day (will not be revealed). ~Sided~",
+            "help": "You are the point guard of the Rockets! You can shoot a /three during the day without being revealed! ",
+            "actions": {
+                "teamUtilities": true,
+                "standby": {
+                    "three": {
+                    	"command": "kill",
+                        "target": "AnyButTeam",
+                        "msg": "You can defeat someone now using /three [name] (you will not be revealed):",
+                        "killmsg": "Eric Gordon jumps up into the air and fires a three right past ~Target~!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "ariza",
+            "translation": "Trevor Ariza",
+            "side": "mafia1",
+            "info": "Can block. Gains Harden's /dunk if he is defeated. ~Sided~",
+            "help": "You are a Rocket's player, so your job is to sit around and watch Harden dribble for 22 seconds! Because of that, you can't actually do anything while he is on the court. Use Block (distract) to help your team slow down other players! If Harden is removed from the game, you can gain his /dunk!",
+            "actions": {
+                "teamUtilities": true,
+                "night": {
+                    "block": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "command": "distract",
+                        "priority": 2,
+                        "broadcast": "team"
+                    }
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "ariza-solo": [
+							"harden", "harden2"
+						]
+                    },
+                    "convertmsg": "±Game: Finally Trevor Ariza gets to touch the ball!"
+                }
+            }
+        },
+        {
+            "role": "ariza-solo",
+            "translation": "Trevor Ariza",
+            "side": "mafia1",
+            "hide": true,
+            "info": "Can block. Gains Harden's /dunk if he is defeated. Gains Kevin Durant's vote of 2 if he is defeated. ~Sided~",
+            "help": "You are a Rocket's player, but now that Harden is out you can finally /dunk to defeat someone! Use Block (distract) to help your team slow down other players!",
+            "actions": {
+                "teamUtilities": true,
+                "night": {
+                    "block": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "command": "distract",
+                        "priority": 2,
+                        "hide": true,
+                        "broadcast": "team"
+                    },
+                    "dunk": {
+                        "target": "AnyButTeam",
+                        "command": "kill",
+                        "common": "Team",
+                        "priority": 14,
+                        "hide": true,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "paul",
+            "translation": "Chris Paul",
+            "side": "mafia1",
+            "info": "Can inspect. Gains Harden's /dunk if he is defeated. Gains Kevin Durant's vote of 2 if he is defeated. ~Sided~",
+            "help": "You are a Rocket's player, so your job is to sit around and watch Harden dribble for 22 seconds! Because of that, you can't actually do anything while he is on the court. Use Inspect to help your team gain information on other players! If Harden is removed from the game, you can gain his /dunk, and also if Kevin Durant is removed, you gain his vote of 2!",
+            "actions": {
+                "teamUtilities": true,
+                "night": {
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 30,
+                        "broadcast": "team"
+                    }
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "paul-solo": [
+							"harden", "harden2"
+						],
+                        "paul-kd": [
+							"bodyguard"
+						]
+                    },
+                    "convertmsg": "±Game: Finally Chris Paul gets to touch the ball!"
+                }
+            }
+        },
+        {
+            "role": "paul-kd",
+            "translation": "Chris Paul",
+            "hide": true,
+            "side": "mafia1",
+            "info": "Can dunk (kill) during the night (shared with team). Gains Kevin Durant's vote of 2 if he is defeated. ~Sided~",
+            "help2": "Your vote now counts as 2!",
+            "help": "You are a Rocket's player, so your job is to sit around and watch Harden dribble for 22 seconds! Because of that, you can't actually do anything while he is on the court. Use Inspect to help your team gain information on other players! If he is removed from the game, you can gain his /dunk.",
+            "actions": {
+            	"vote": 2,
+                "night": {
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 30,
+                        "hide": true,
+                        "broadcast": "team"
+                    }
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "paul-solo-kd": [
+							"harden", "harden2"
+						]
+                    },
+                    "convertmsg": "±Game: Finally Chris Paul gets to touch the ball!"
+                },
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "paul-solo",
+            "translation": "Chris Paul",
+            "side": "mafia1",
+            "hide": true,
+            "help2": "Your can now /dunk [name] during the night to defeat someone!",
+            "help": "You are a Rocket's player, but now that Harden is out you can finally /dunk to defeat someone! Use Inspect to help your team gain information on other players! If Kevin Durant is removed, you gain his vote of 2!",
+            "actions": {
+                "night": {
+                    "dunk": {
+                        "target": "AnyButTeam",
+                        "command": "kill",
+                        "common": "Team",
+                        "priority": 14,
+                        "hide": true,
+                        "broadcast": "team"
+                    },
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 30,
+                        "hide": true,
+                        "broadcast": "team"
+                    }
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "paul-solo-kd": [
+							"bodyguard"
+						]
+                    },
+                    "convertmsg": "±Game: Finally Chris Paul gets to touch the ball!"
+                },
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "paul-solo-kd",
+            "translation": "Chris Paul",
+            "side": "mafia1",
+            "help2": "Your can now /dunk [name] during the night to defeat someone AND your vote counts as 2!",
+            "hide": true,
+            "help": "You are a Rocket's player, and now that both KD and Harden are gone, you can /dunk and have a vote of 2!! Continue to Inspect to find information on other players!",
+            "actions": {
+                "night": {
+                    "dunk": {
+                        "target": "AnyButTeam",
+                        "command": "kill",
+                        "common": "Team",
+                        "priority": 14,
+                        "hide": true,
+                        "broadcast": "team"
+                    },
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 30,
+                        "hide": true,
+                        "broadcast": "team"
+                    }
+                },
+                "vote": 2,
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "harden",
+            "translation": "James Harden",
+            "side": "mafia1",
+            "info": "Can dunk (kill) during the night (shared with team). Counters threes (daykills). Vote counts as 2. Gains a three (daykill) if Curry is defeated. ~Sided~",
+            "help": "You are the Rocket's MVP and the beard! Type /dunk [name] to defeat someone's career during the night. If someone tries to shoot a 3 on you, they will be fouled and ejected from the game! If Steph Curry is defeated, you can steal his ability to shoot 3s! Your vote counts as 2 because of your beard.",
+            "actions": {
+                "night": {
+                    "dunk": {
+                        "target": "AnyButTeam",
+                        "command": "kill",
+                        "common": "Team",
+                        "priority": 14,
+                        "broadcast": "team"
+                    }
+                },
+                "vote": 2,
+                "onDeadRoles": {
+                    "convertTo": {
+                        "harden2": [
+							"samurai"
+						]
+                    },
+                    "convertmsg": "±Game: With Steph Curry off the court, Harden can now shoot /threes!"
+                },
+                "daykill": "revenge",
+                "daykillrevengemsg": "~Target~ (~TargetRole~) fires a 3! And it's good! But what's this!? James Harden was fouled! ~Target~ was ejected from the game forever!",
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "harden2",
+            "translation": "James Harden",
+            "side": "mafia1",
+            "hide": true,
+            "help2": "You can now use /three [name] to defeat someone during the day (you will not be revealed)!",
+            "help": "You are the Rocket's MVP and the beard! You can shoot a 3 during the day now with /three [name] during the day! Type /dunk [name] to defeat someone's career during the night. If someone tries to shoot a 3 on you, they will be fouled and ejected from the game!",
+            "actions": {
+                "night": {
+                    "dunk": {
+                        "target": "AnyButTeam",
+                        "command": "kill",
+                        "common": "Team",
+                        "priority": 14,
+                        "hide": true,
+                        "broadcast": "team"
+                    }
+                },
+                "vote": 2,
+                "standby": {
+                    "three": {
+                    	"command": "kill",
+                        "target": "AnyButTeam",
+                        "msg": "You can defeat someone now using /three [name] (you will not be revealed):",
+                        "killmsg": "James Harden jumps up into the air and fires a three right past ~Target~!"
+                    }
+                },
+                "daykill": "revenge",
+                "daykillrevengemsg": "~Target~ (~TargetRole~) fires a 3! And it's good! But what's this!? James Harden was fouled! ~Target~ was exiled from the game forever!",
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "hill",
+            "translation": "George Hill",
+            "side": "mafia2",
+            "info": "Can shoot a /three during the day (will not be revealed). Doesn't know team but can't hit them or be hit by them. ~Sided~",
+            "help": "You are the point guard of the Cavaliers! You can shoot a /three during the day without being revealed! ",
+            "actions": {
+                "standby": {
+                    "three": {
+                    	"command": "kill",
+                        "target": "AnyButTeam",
+                        "msg": "You can defeat someone now using /three [name] (you will not be revealed):",
+                        "killmsg": "George Hill jumps up into the air and fires a three right past ~Target~!"
+                    }
+                },
+                "kill": {
+                    "mode": {
+                        "ignore": ["lebron", "lebron2", "smith2"]
+                    }
+                }
+            }
+        },
+        {
+            "role": "smith",
+            "translation": "JR Smith",
+            "side": "mafia2",
+            "info": "Vote of -1 because he thinks he's ahead. First time he gets voted off he gains a priority /dunk. Doesn't know teammates. Ignores LeBron's dunks. ~Sided~",
+            "help": "You thought you were ahead! Thus, your vote counts as -1. But no worries, because if you are voted off, you will be able to /dunk faster than anyone! LeBron is still mad at you so you don't know who he is lol.",
+            "actions": {
+                "vote": -1,
+                "lynch": {
+                    "convertTo": "smith2",
+                    "lynchmsg": "~Self~: RUN AWAY - wait I thought we were ahead? OH NO I'M JUST THE JR SMITH. WEEWOO!!"
+                },
+                "kill": {
+                    "mode": {
+                        "ignore": ["lebron", "lebron2"]
+                    }
+                }
+            }
+        },
+        {
+            "role": "smith2",
+            "translation": "JR Smith",
+            "side": "mafia2",
+            "hide": true,
+            "help": "Don't worry, your vote still counts as -1. Now you can /dunk during the night before anyone can block you! If you are voted off you will be disqualified now.",
+            "actions": {
+                "night": {
+                    "dunk": {
+                        "target": "AnyButTeam",
+                        "command": "kill",
+                        "common": "Self",
+                        "priority": 3,
+                        "broadcast": "team"
+                    }
+                },
+                "vote": -1,
+                "kill": {
+                    "mode": {
+                        "ignore": ["lebron", "lebron2"]
+                    }
+                }
+            }
+        },
+        {
+            "role": "lebronsmall",
+            "translation": "LeBron James",
+            "side": "mafia2",
+            "hide": true,
+            "info": "Ignores dunks, defeats blockers, and has a vote of 2. Can /dunk during the night (high priority, can't be haxed). Gains a vote of 1000000 if Iguodala is defeated. ~Sided~",
+            "help": "You are the GOAT!!! You can use /Dunk [name] to ruin someone's career and can't be defeated yourself except by a 3-point shot! You also kill anyone who tries to block you and have a vote of 2, because you're the GOAT :)",
+            "help2": "If Iguodala is defeated, your vote will increase to 1000000!",
+            "actions": {
+                "night": {
+                    "dunk": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "common": "Team",
+                        "pierce": true,
+                        "hide": true,
+                        "priority": 18
+                    }
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "vote": 2,
+                "distract": {
+                    "mode": "ChangeTarget",
+                    "hookermsg": "You tried to block the LeBron James (what an idea, srsly), he just ran over you instead!", 
+                    "msg": "The ~Distracter~ came to stop you during the night, but couldn't stop you from your DUNKS!"
+                },
+                "avoidHax": [
+                    "dunk"
+                ]
+            }
+        },
+        {
+            "role": "lebron",
+            "translation": "LeBron James",
+            "side": "mafia2",
+            "info": "Ignores dunks, defeats blockers, and has a vote of 2. Can /dunk during the night (pierces protect, can't be haxed). Gains a vote of 1000000 if Iguodala is defeated. ~Sided~",
+            "help": "You are the GOAT!!! You can use /Dunk [name] to ruin someone's career and can't be defeated yourself except by a 3-point shot! You also kill anyone who tries to block you and have a vote of 2, because you're the GOAT :)",
+            "help2": "If Iguodala is defeated, your vote will increase to 1000000!",
+            "actions": {
+                "night": {
+                    "dunk": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "common": "Team",
+                        "pierce": true,
+                        "priority": 18
+                    }
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "lebron2": [
+							"inspector", "inspector2"
+						]
+                    },
+                    "convertmsg": "±Game: Iguodala has been defeated! Now who on earth can hope to stop LeBron James from defeating everyone..."
+                },
+                "vote": 2,
+                "distract": {
+                    "mode": "ChangeTarget",
+                    "hookermsg": "You tried to block the LeBron James (what an idea, srsly), he just ran over you instead!", 
+                    "msg": "The ~Distracter~ came to stop you during the night, but couldn't stop you from your DUNKS!"
+                },
+                "avoidHax": [
+                    "dunk"
+                ]
+            }
+        },
+        {
+            "role": "lebron2",
+            "translation": "LeBron James",
+            "side": "mafia2",
+            "winIfDeadRoles": [
+            	"samurai",
+            	"hooker2",
+            	"gordon",
+            	"harden2",
+            	"spy2",
+            	"irving-solo",
+            	"bomb",
+            	"irving"
+            ],
+            "hide": true,
+            "help": "You are the GOAT!!! You can use /Dunk [name] to ruin someone's career and can't be defeated yourself except by a 3-point shot! You also kill anyone who tries to block you and have a vote of 2, because you're the GOAT :)",
+            "help2": "If Iguodala is defeated, your vote will increase to 1000000!",
+            "actions": {
+                "night": {
+                    "dunk": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "common": "Team",
+                        "priority": 18,
+                        "pierce": true
+                    }
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "vote": 10000000,
+                "distract": {
+                    "mode": "ChangeTarget",
+                    "hookermsg": "You tried to block the LeBron James (what an idea, srsly), he just ran over you instead!", 
+                    "msg": "The ~Distracter~ came to stop you during the night, but couldn't stop you from your duties!"
+                },
+                "avoidHax": [
+                    "dunk"
+                ]
+            }
+        },
+        {
+            "role": "samurai",
+            "translation": "Steph Curry",
+            "side": "village",
+            "info": "Can /three during the day to defeat someone. Can hax block. Counters lynch on first voter. ~Sided~",
+            "help": "You are the hero of the Golden State franchise and one of the Splash Brothers! Use your powerful range to /three [name] someone during the day, ending their career permanently! You evade technical fouls with your sweet demeanor, so anyone who tries to vote you off will be defeated!",
+            "actions": {
+                "standby": {
+                    "three": {
+                    	"command": "kill",
+                        "target": "AnyButSelf",
+                        "msg": "You can defeat someone now using /three [name] :",
+                        "killmsg": "~Self~ (Steph Curry) jumps up into the air and fires a three right past ~Target~!"
+                    }
+                },
+                "lynch": {
+                    "convertTo": "samurai",
+                    "killVoters": {
+                        "first": 1,
+                        "message": "~Target~ tried to give Steph Curry a technical foul. BIG MISTAKE!"
+                    },
+                    "lynchmsg": "~Self~: I'm Steph Curry, and I shoot from the parking lot!"
+                },
+                "hax": {
+                    "block": {
+                        "revealTeam": 0.35,
+                        "revealPlayer": 0.2
+                    }
+                },
+                "startup": {
+                    "revealPlayers": "bomb",
+					"revealPlayersMsg": "Draymond Green is ~Players~! (Hint: Whisper to them so they can tell you who Klay Thompson is!)"
+                }
+            }
+        },
+        {
+            "role": "hooker",
+            "translation": "Klay Thompson",
+            "side": "village",
+            "info": "Can block (distract) one person during the night. If Curry and Harden are defeated, gains their ability to shoot a /three (kill) during the day (but loses /block). ~Sided~",
+            "help": "You are one of the Splash Brothers, but right now you're on defense! Type /block name to stop someone from taking action during the night! There is a chance that your fellow Splash Brother Steph Curry will find you! If Curry and Harden leave the court, you will be able to shoot a /three during the day!",
+            "actions": {
+                "night": {
+                    "block": {
+                        "target": "AnyButSelf",
+                        "command": "distract",
+                        "distractmsg": "Klay came to block you and you were forced to drink Chocolate Milk until he went away! (You couldn't take any actions!)",
+                        "common": "Self",
+                        "priority": 1
+                    }
+                },
+                "startup": {
+                    "revealPlayers": "bomb",
+					"revealPlayersMsg": "Draymond Green is ~Players~! (Hint: Whisper to them so they can tell you who Steph Curry is!)"
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "hooker2": [
+							"samurai",
+							"harden",
+							"harden2"
+						]
+                    },
+                    "convertmsg": "±Game: Now that the best three-point shooter on the field is Klay, he can shoot a /three during the day!"
+                }
+            }
+        },
+        {
+            "role": "hooker2",
+            "translation": "Klay Thompson",
+            "side": "village",
+            "hide": true,
+            "help2": "You can now use /three [name] to defeat someone during the day!",
+            "help": "You are one of the Splash Brothers. Now that Curry and Harden are off the court, it's your time to shine! You can now shoot 3s with impunity!",
+            "actions": {
+                "standby": {
+                    "three": {
+                    	"command": "kill",
+                        "target": "AnyButSelf",
+                        "msg": "You can defeat someone now using /three [name] :",
+                        "killmsg": "~Self~ (Klay Thompson) jumps up into the air and fires a three right past ~Target~!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "bomb",
+            "translation": "Draymond Green",
+            "side": "village",
+            "info": "Can protect three times per game (may be same night). Knows Steph Curry and Klay Thompson on startup. Gains extra 2 votes if voted for. Bombs nightkills. ~Sided~",
+            "help": "You are the power forward for the Golden State Warriors! You can /protect [name] up to three times per game (may be used on same night). You know the Splash Brothers well, so be sure to connect them! If anyone tries to dunk on you at night, they will be defeated as well! Since you get a lot of technical fouls, you will be more easily voted during the day (voteshield of +2)!",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 6,
+                        "charges": 3,
+                        "limit": 3,
+                        "broadcast": ["samurai", "hooker", "hooker2"]
+                    }
+                },
+                "voteshield": 2,
+				"kill": {
+				  "mode": "killattackerevenifprotected",
+				  "msg": "You tried to dunk on Draymond, but got up there and said NO BYE and ended your career!"
+				},
+                "startup": {
+                    "revealPlayers": ["samurai", "hooker", "hooker2"],
+					"revealPlayersMsg": "The Steph Curry and Klay Thompson are ~Players~! (Hint: Whisper to them and tell them they are allies!)"
+                }
+            }
+        },
+        {
+            "role": "bodyguard",
+            "translation": "Kevin Durant",
+            "side": "village",
+            "info": "Can protect. Vote counts as 2. Haxes dunk (only target). Reveals as Harden if inspected. Knows JaVale McGee on startup if he's in. ~Sided~",
+            "help": "You are the Warriors' central force! Your powerful game-changing presence gives you a vote of 2, and allows you to /protect [name] someone during the night to protect their career! Your presence of mind helps you know when people are dunking during the night. However, if you are inpsected you will appear as James Harden because you kind of play like him sometimes.",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 6,
+                        "broadcast": "role"
+                    }
+                },
+                "hax": {
+                    "dunk": {
+                        "revealTeam": 0.275
+                    }
+                },
+                "vote": 2,
+                "startup": {
+                    "revealPlayers": "vigilante",
+					"revealPlayersMsg": "Your friend JaVale McGee is ~Players~!"
+                },
+            	"inspect": {"revealAs": "harden"}
+            }
+        },
+        {
+            "role": "vigilante",
+            "translation": "JaVale McGee",
+            "side": "village",
+            "info": "Can dunk (kill) during the night. Can't be haxed. Knows Kevin Durant on startup. ~Sided~",
+            "help": "You like to dunk, but you are sided with the Golden State Warriors! Team up with your friend Kevin Durant and /dunk on the bad guys!",
+            "actions": {
+                "night": {
+                    "dunk": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 16,
+                        "command": "kill",
+                        "broadcast": ["bodyguard"]
+                    }
+                },
+                "avoidHax": [
+                    "dunk"
+                ],
+                "startup": {
+                    "revealPlayers": "bodyguard",
+					"revealPlayersMsg": "Your friend Kevin Durant is ~Players~!"
+                }
+            }
+        },
+        {
+            "role": "inspector",
+            "translation": "Andre Iguodala",
+            "side": "village",
+            "info": "Can inspect. Evades 1 dunk (nightkill). Vote counts as 0.5. After night 4, vote counts as 3. ~Sided~",
+            "help": "Just you being around makes LeBron less of a threat! You can /inspect [name] to find someone's role during the night! Your mad defensive skills allow you to survive one dunk during the night. Because you are not warmed up, your vote only counts as 0.5. But after the 4th night, your vote will count as 3!",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 30,
+                        "broadcast": "role"
+                    }
+                },
+                "kill": {
+                    "mode": {
+                        "evadeCharges": 1
+                    }
+                },
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "inspector2",
+                        "curseCount": 4,
+                        "silentCurse": true,
+                        "silent": true
+                    }
+                },
+                "startup": {
+                    "revealPlayers": "spy",
+                    "revealPlayersMsg": "Your friend Quinn Cook is ~Players~!"
+                },
+                "vote": 0.5
+            }
+        },
+        {
+            "role": "inspector2",
+            "translation": "Andre Iguodala",
+            "side": "village",
+            "hide": true,
+            "info": "Can inspect. Evades 1 dunk (nightkill). Vote counts as 0.5. ~Sided~",
+            "help": "Just you being around makes LeBron less of a threat! You can /inspect [name] to find someone's role during the night! Your mad defensive skills allow you to survive one dunk during the night. Now that you are warmed up, your vote counts as 3.",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 30,
+                        "broadcast": "role"
+                    }
+                },
+                "kill": {
+                    "mode": {
+                        "evadeCharges": "*"
+                    }
+                },
+                "startup": {
+                    "revealPlayers": "spy",
+                    "revealPlayersMsg": "Your friend Quinn Cook is ~Players~!"
+                },
+                "vote": 3
+            }
+        },
+        {
+            "role": "spy",
+            "translation": "Quinn Cook",
+            "side": "village",
+            "info": "Haxes dunk. Knows Iguodala on startup. Gains the ability to shoot threes without being revealed if all of the Jordan Bells are defeated. ~Sided~",
+            "help": "You are a backup Point Guard for the Warriors, but you don't get to play much! You can work with Igudodala to defeat the other teams, and if Jordan Bell leaves the court, you will be able to shoot threes!",
+            "actions": {
+                "hax": {
+                    "dunk": {
+                        "revealTeam": 0.3,
+                        "revealPlayer": 0.12
+                    }
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "spy2": [
+							"villager",
+							"villager-inspector",
+							"villager-vigilante",
+							"villager-bodyguard",
+							"villager-hooker",
+							"villager2"
+						]
+                    },
+                    "convertmsg": "Quinn Cook has prepared himself to shoot threes to replace Jordan Bell!"
+                },
+                "startup": {
+                    "revealPlayers": "inspector",
+					"revealPlayersMsg": "Your friend Andre Iguodala is ~Players~!"
+                }
+            }
+        },
+        {
+            "role": "spy2",
+            "translation": "Quinn Cook",
+            "side": "village",
+            "hide": true,
+            "info": "Haxes dunk. Knows Iguodala on startup. Gains the ability to shoot threes without being revealed if all of the Jordan Bells are defeated. ~Sided~",
+            "help": "You are a backup Point Guard for the Warriors! You will now be able to shoot threes during the day!",
+            "actions": {
+                "hax": {
+                    "dunk": {
+                        "revealTeam": 0.3,
+                        "revealPlayer": 0.12
+                    }
+                },
+                "standby": {
+                    "three": {
+                    	"command": "kill",
+                        "target": "AnyButSelf",
+                        "msg": "You can defeat someone now using /three [name] (you will not be revealed) :",
+                        "killmsg": "Quinn Cook jumps up into the air and fires a three right past ~Target~!"
+                    }
+                },
+                "startup": {
+                    "revealPlayers": "inspector",
+					"revealPlayersMsg": "Your friend Andre Iguodala is ~Players~!"
+                }
+            }
+        },
+        {
+            "role": "villager4",
+            "translation": "Jordan Bell",
+            "side": "village",
+            "hide": true,
+            "info": "Vote has a 10% chance to count as 100. May gain an ally's power if they are defeated (Curry: Vigilante. Durant: Bodyguard. Klay: Distracter. Iguodala: Inspector). ~Sided~",
+            "help": "You are the rookie with a plan! Although you aren't active right now, if one of your teammates comes off the court, you may gain their power as a substitute! Vote to remove the bad guys during the day (you have a 10% chance of having a supervote of 100)!",
+            "actions": {
+            	"vote": [1, 1, 1, 1, 1, 1, 1, 1, 1, 100],
+                "onDeadRoles": {
+                    "convertTo": {
+                        "villager-inspector": [
+							"inspector", "villager2", "villager3", "villager-inspector"
+						],
+                        "villager-bodyguard": [
+							"bodyguard", "villager2", "villager3", "villager-bodyguard"
+						],
+                        "villager-hooker": [
+							"hooker", "villager2", "villager3", "villager-hooker"
+						],
+                        "villager-vigilante": [
+							"vigilante", "villager2", "villager3", "villager-vigilante"
+						]
+                    },
+                    "convertmsg": "With one of his teammates removed, Jordan Bell has come on to the court as a substitute!"
+                }
+            }
+        },
+        {
+            "role": "villager3",
+            "translation": "Jordan Bell",
+            "side": "village",
+            "hide": true,
+            "info": "Vote has a 10% chance to count as 100. May gain an ally's power if they are defeated (Curry: Vigilante. Durant: Bodyguard. Klay: Distracter. Iguodala: Inspector). ~Sided~",
+            "help": "You are the rookie with a plan! Although you aren't active right now, if one of your teammates comes off the court, you may gain their power as a substitute! Vote to remove the bad guys during the day (you have a 10% chance of having a supervote of 100)!",
+            "actions": {
+            	"vote": [1, 1, 1, 1, 1, 1, 1, 1, 1, 100],
+                "onDeadRoles": {
+                    "convertTo": {
+                        "villager-inspector": [
+							"inspector", "villager2", "villager-inspector"
+						],
+                        "villager-bodyguard": [
+							"bodyguard", "villager2", "villager-bodyguard"
+						],
+                        "villager-hooker": [
+							"hooker", "villager2", "villager-hooker"
+						],
+                        "villager-vigilante": [
+							"vigilante", "villager2", "villager-vigilante"
+						]
+                    },
+                    "convertmsg": "With one of his teammates removed, Jordan Bell has come on to the court as a substitute!"
+                }
+            }
+        },
+        {
+            "role": "villager2",
+            "translation": "Jordan Bell",
+            "side": "village",
+            "info": "Vote has a 10% chance to count as 100. May gain an ally's power if they are defeated (Curry: Vigilante. Durant: Bodyguard. Klay: Distracter. Iguodala: Inspector). ~Sided~",
+            "help": "You are the rookie with a plan! Although you aren't active right now, if one of your teammates comes off the court, you may gain their power as a substitute! Vote to remove the bad guys during the day (you have a 10% chance of having a supervote of 100)!",
+            "actions": {
+            	"vote": [1, 1, 1, 1, 1, 1, 1, 1, 1, 100],
+                "onDeadRoles": {
+                    "convertTo": {
+                        "villager-inspector": [
+							"inspector"
+						],
+                        "villager-bodyguard": [
+							"bodyguard"
+						],
+                        "villager-hooker": [
+							"hooker"
+						],
+                        "villager-vigilante": [
+							"samurai"
+						]
+                    },
+                    "convertmsg": "With one of his teammates removed, Jordan Bell has come on to the court as a substitute!"
+                }
+            }
+        },
+        {
+            "role": "villager",
+            "translation": "Jordan Bell",
+            "side": "village",
+            "hide": true,
+            "help": "You are the rookie with a plan! Although you aren't active right now, if one of your teammates comes off the court, you may gain their power as a substitute! Vote to remove the bad guys during the day (you have a 10% chance of having a supervote of 100)!",
+            "actions": {
+            	"vote": [1, 1, 1, 1, 1, 1, 1, 1, 1, 100]
+            }
+        },
+        {
+            "role": "villager-inspector",
+            "translation": "Jordan Bell (Substitute)",
+            "side": "village",
+            "hide": true,
+            "help": "You filling in to substitute Iguodala, so you can now use /inspect [name] during the night. Your vote may still count as 100 (10% chance)!",
+            "actions": {
+            	"vote": [1, 1, 1, 1, 1, 1, 1, 1, 1, 100],
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 30
+                    }
+                }
+            }
+        },
+        {
+            "role": "villager-bodyguard",
+            "translation": "Jordan Bell (Substitute)",
+            "side": "village",
+            "hide": true,
+            "help": "You filling in to substitute Kevin Durant, so you can now use /protect [name] during the night. Your vote may still count as 100 (10% chance)!",
+            "actions": {
+            	"vote": [1, 1, 1, 1, 1, 1, 1, 1, 1, 100],
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 6
+                    }
+                }
+            }
+        },
+        {
+            "role": "villager-hooker",
+            "translation": "Jordan Bell (Substitute)",
+            "side": "village",
+            "hide": true,
+            "help": "You filling in to substitute Klay Thompson, so you can now use /block [name] during the night. Your vote may still count as 100 (10% chance)!",
+            "actions": {
+            	"vote": [1, 1, 1, 1, 1, 1, 1, 1, 1, 100],
+                "night": {
+                    "block": {
+                        "target": "AnyButSelf",
+                        "command": ["distract"],
+                        "common": "Role",
+                        "priority": 4
+                    }
+                }
+            }
+        },
+        {
+            "role": "villager-vigilante",
+            "translation": "Jordan Bell (Substitute)",
+            "side": "village",
+            "hide": true,
+            "help": "You filling in to substitute Steph Curry, so you can now use /dunk [name] during the night to defeat someone. Your vote may still count as 100 (10% chance)!",
+            "actions": {
+            	"vote": [1, 1, 1, 1, 1, 1, 1, 1, 1, 100],
+                "night": {
+                    "dunk": {
+                        "target": "AnyButSelf",
+                        "command": ["kill"],
+                        "common": "Role",
+                        "priority": 17
+                    }
+                }
+            }
+        }
+    ],
+	"roles1": [
+        "samurai",
+        "hooker",
+        "bodyguard",
+        "lebronsmall",
+        "harden",
+
+		"villager2"
+	],
+	"roles2": [
+        "samurai",
+        "hooker",
+        "inspector",
+		"bodyguard",
+        "lebron",
+        "harden",
+        "paul",
+
+		"villager2",
+		"villager"
+	],
+	"roles3": [
+        "samurai",
+        "hooker",
+		"bomb",
+        "inspector",
+		"bodyguard",
+		"villager2",
+        "lebron",
+        "harden",
+        "paul",
+		"irving",
+
+		"villager"
+	],
+    "roles4": [
+        "samurai",
+        "hooker",
+		"bomb",
+        "inspector",
+		"bodyguard",
+		"vigilante",
+		"villager2",
+        "lebron",
+        "smith",
+        "harden",
+        "paul",
+		"irving",
+
+		"villager",
+		"villager"
+    ],
+    "roles5": [
+        "samurai",
+        "hooker",
+		"bomb",
+        "inspector",
+		"bodyguard",
+		"vigilante",
+		"spy",
+		"villager2",
+		"villager3",
+        "lebron",
+        "smith",
+        "harden",
+        "paul",
+		"ariza",
+		"irving",
+
+		"villager",
+		"villager"
+    ],
+    "roles6": [
+        "samurai",
+        "hooker",
+		"bomb",
+        "inspector",
+		"bodyguard",
+		"vigilante",
+		"spy",
+		"villager2",
+		"villager3",
+		"villager",
+		"villager",
+        "lebron",
+        "smith",
+        "harden",
+        "paul",
+		"ariza",
+		"irving",
+		"shaq",
+
+		"villager",
+		"villager",
+		"villager"
+    ],
+    "roles7": [
+        "samurai",
+        "hooker",
+		"bomb",
+        "inspector",
+		"bodyguard",
+		"vigilante",
+		"spy",
+		"villager2",
+		"villager3",
+		"villager4",
+		"villager",
+        "lebron",
+        "smith",
+        "hill",
+        "harden",
+        "paul",
+		"ariza",
+		"gordon",
+		"irving",
+		"shaq",
+		"villager",
+		"villager",
+		"villager",
+		"villager",
+		"villager",
+		"villager",
+		"villager",
+		"villager",
+		"villager",
+		"villager",
+		"villager",
+		"villager",
+		"villager",
+		"villager",
+		"villager"
+    ],
+    "villageCantLoseRoles": [
+        "villager",
+        "villager2",
+        "villager3",
+        "villager4",
+        "villager-vigilante",
+        "villager-hooker",
+        "villager-bodyguard",
+        "villager-inspector",
+        "spy2",
+        "inspector2",
+        "vigilante",
+        "hooker2",
+        "samurai",
+        "bodyguard"
+    ],
+	"minplayers": 5,
+	"changelog": {
+		}
+	}
