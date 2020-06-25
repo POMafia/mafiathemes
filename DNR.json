@@ -1,0 +1,1851 @@
+{
+    "name": "DNR",
+    "author": "Miki Sayaka",
+    "threadlink": "",
+    "altname": "Death Note (Rewrite)",
+    "minplayers": 5,
+    "borderColor": "#6600cc",
+    "bot": {
+      "color": "red",
+      "name": "Ryuk"
+    },
+    "ticks": {
+      "night1": 45,
+      "night": 45
+    },
+    "killmsg": "~Player~'s name was found in the Death Note!! ~Player~ (~Role~) falls over and dies.",
+    "closedSetup": "full",
+    "summary": "It's Death Note Mafia! The Task Force is good, while everyone else is morally ambiguous! Can L catch Kira before he and his allies take over the Task Force? Or will everyone's name end up in Light's Death Note?! Guide here: http://pokemon-online.eu/threads/theme-guides.30711/#post-456136",
+    "sides": [
+        {
+            "side": "kira",
+            "translation": "Kira",
+            "color": "red",
+            "winmsg": "±Ryuk: Yes! Kira is justice! ~Players~ have emerged as the gods of the new world!"
+        },
+        {
+            "side": "higuchi",
+            "translation": "Yotsuba",
+            "color": "green",
+            "winmsg": "±Ryuk: Well, that's interesting. ~Players~ has used the Death Note to help the Yotsuba group take over the world!"
+        },
+        {
+            "side": "shinigami",
+            "translation": "Shinigami",
+            "color": "purple",
+            "winmsg": "±Ryuk: Wat. How did Sidoh win alone, and who broke the theme. I'm coming after you Miki..."
+        },
+        {
+            "side": "village",
+            "translation": "Investigators",
+            "color": "#0033cc",
+            "winmsg": "±Ryuk: Well that's a boring ending. The Kira Case has been solved... good work ~Players~ I guess."
+        },
+        {
+            "side": "taskforce",
+            "translation": "Task Force",
+            "hide": true,
+            "color": "#0033cc",
+            "winmsg": "±Ryuk: Well that's a boring ending. The Kira Case has been solved... good work ~Players~ I guess."
+        }
+    ],
+    "tips": {
+      "Startup": "Kira team is not connected on startup. Naomi and Raye know each other on startup.",
+      "Win Condition": "For Kira to win, Light must eliminate L, or every other member of the Task Force. For the Task Force to win, L must /arrest Light during the day. However, if L arrests anyone else, it's game over for the Task Force.",
+      "BIG GAMES": "Rem protects Light automatically (he cannot be arrested while she is alive). She dies if voted off, but kills one person before dying. Matt and Rester can Inspect, but they see Light 90% (true 10%) of the time until the other dies, at which time they get 70% true 30% Light. Mason has 5 vote and dies if other FBI roles die. Higuchi has a hitlist of people he kills if he inspects, and he wins when those are all removed.",
+      "Command Input": "In order to target someone with the Death Note in this theme, you have to supply their name (username) and face (role). You can do this like /write fiery espeon:matsuda. L's command is also like this.",
+      "Startup": "Villagers can hax who voted for who (18%). L and Investigators can hax the role of someone who votes (3%, can't hax Kira team)."
+    },
+    "variables": {
+      "villagerHax": {
+        "msg": "~Player~ was the one who voted for ~Target~!",
+        "chance": 0.15
+      },
+      "investigatorHax": {
+        "msg": "~Player~ (~Role~) was the one who voted for ~Target~!",
+        "chance": 0.03
+      },
+    
+      "lynchSurviveMsg": "The consensus agreed that ~Self~ should show their face. ~Self~ is ~New~!!",
+      "lynchSurviveMsgMatsuda": "The consensus agreed that ~Self~ should show their face. ~Self~ is Matsuda!!",
+      "lynchSurviveMsgAizawa": "The consensus agreed that ~Self~ should show their face. ~Self~ is Aizawa!!",
+      "lynchSurviveMsgUkita": "The consensus agreed that ~Self~ should show their face. ~Self~ is Ukita!!",
+      "lynchSurviveMsgMogi": "The consensus agreed that ~Self~ should show their face. ~Self~ is Mogi!!",
+      "lynchIgnore": "The consensus agreed that ~Self~ should show their face. ~Self~ refused, claiming that their identity was too important to reveal!",
+      "lynchRemMsg": "~Self~ (Rem) has been exposed as an ally of Kira! They can now kill once during the night, and then they will be gone forever!",
+      
+      "failL": {
+          "mode": {
+            "revenge": [
+              "l", "near", "mello", "ryuuzaki"
+            ]
+          }
+        },
+        
+        "failLMsg": "~Target~ (~TargetRole~) has captured Kira! The culrpit: ~Self~!! Or so they thought. ~Self~ was actually a part of the Task Force, and with their wrongful conviction, ~Target~ was exiled by the Task Force!",
+        "failLMsgKira": "~Target~ (~TargetRole~) has captured Kira! The culrpit: ~Self~!! That's right, ~Self~ is Kira!! However, they are not the First Kira! Light Yagami used ~Self~'s arrest to take control of the Task Force, and like that, exiled ~Target~ from ever coming back!",
+        "winLMsg": "~Self~ (~Role~) has captured Kira! The culrpit: ~Target~!! That's right, ~Target~ is Kira!! Light goes for his notebook, but he was no match for L's butler. Light goes on a maniacal rampage of megalomaniac angst before finally conceding to arrest.",
+        
+        "villager_spawn": {
+          "matsuda": 1,
+          "aizawa": 1,
+          "ukita": 1,
+          "mogi": 1
+        },
+        "villager_spawn2": {
+          "ide": 1,
+          "wedy": 1,
+          "aiber": 1
+        },
+        "terupack": {
+          "teru": 1,
+          "teru_aizawa": 1,
+          "teru_ukita": 1,
+          "teru_mogi": 1
+        }
+    },
+    "roles": [
+        {
+            "role": "matsuda",
+            "translation": "Matsuda",
+            "side": "taskforce",
+            "unique": true,
+            "info": "~Sided~",
+            "help": "As a member of the Task Force, it is your job to help catch Kira! Type /vote during the day to suggest someone to have their role revealed before the Task Force.",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "matsuda",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  },  
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+                "voteHax": "variable:villagerHax",
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "ukita",
+            "translation": "Ukita",
+            "side": "taskforce",
+            "unique": true,
+            "info": "~Sided~",
+            "help": "As a member of the Task Force, it is your job to help catch Kira! Type /vote during the day to suggest someone to have their role revealed before the Task Force.",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "ukita",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  },
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+                "voteHax": "variable:villagerHax",
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "aizawa",
+            "translation": "Aizawa",
+            "side": "taskforce",
+            "unique": true,
+            "info": "~Sided~",
+            "help": "As a member of the Task Force, it is your job to help catch Kira! Type /vote during the day to suggest someone to have their role revealed before the Task Force.",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "aizawa",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  },
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+                "voteHax": "variable:villagerHax",
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "mogi",
+            "translation": "Mogi",
+            "side": "taskforce",
+            "unique": true,
+            "info": "~Sided~",
+            "help": "As a member of the Task Force, it is your job to help catch Kira! Type /vote during the day to suggest someone to have their role revealed before the Task Force.",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "mogi",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  },  
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+                "voteHax": "variable:villagerHax",
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "ide",
+            "translation": "Ide",
+            "side": "taskforce",
+            "info": "~Sided~",
+            "help": "As a member of the Task Force, it is your job to help catch Kira! Type /vote during the day to suggest someone to have their role revealed before the Task Force.",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "ide",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  },  
+                "voteHax": "variable:villagerHax",
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "watari",
+            "translation": "Watari",
+            "side": "taskforce",
+            "info": "Cannot vote for L, Near, Mello, or Ryuuzaki. ~Sided~",
+            "help": "You are L's most trusted butler! Type /vote during the day to suggest someone to have their role revealed before the Task Force. Because of your relationship with L, Near, and Mello, you will be unable to vote them during the day. If someone avoids your vote, PM them!",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "watari",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  },  
+                  "preventTeamvote": ["l", "near", "mello", "ryuuzaki"],
+                "voteHax": "variable:villagerHax",
+                "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "wedy",
+            "translation": "Wedy",
+            "side": "taskforce",
+            "help": "As a member of the Task Force, it is your job to help catch Kira! Type /vote during the day to suggest someone to have their role revealed before the Task Force.",
+            "info": "Knows Aiber on startup. Dies if Aiber dies. ~Sided~",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "wedy",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  },  
+              "onDeath": {
+                "killRoles": ["aiber"],
+                "killmsg": "As Wedy dies, their partner in crime ~Target~ (Aiber) is taken down as well!"
+                },
+              "startup": {"revealRole": ["aiber"] },
+                "voteHax": "variable:villagerHax",
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "aiber",
+            "translation": "Aiber",
+            "side": "taskforce",
+            "help": "As a member of the Task Force, it is your job to help catch Kira! Type /vote during the day to suggest someone to have their role revealed before the Task Force.",
+            "info": "Knows Wedy on startup. Dies if Wedy dies. ~Sided~",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "aiber",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  }, 
+              "onDeath": {
+                "killRoles": ["wedy"],
+                "killmsg": "As Aiber dies, their partner in crime ~Target~ (Wedy) is taken down as well!"
+                },
+              "startup": {"revealRole": ["wedy"] },
+                "voteHax": "variable:villagerHax",
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "raye",
+            "translation": "Raye",
+            "side": "taskforce",
+            "info": "Mason-lover with Naomi (knows Naomi on startup, reveals Naomi if he dies). Can Question (distract) one person during the night (shared with Naomi) but this doesn't affect Light or L.",
+            "help": "You are a member of the FBI assigned to the Kira case! Although you begged your lover, Naomi, not to get involved, it is now up to the two of you to assist L by detaining suspects! Type /Question [name] during the night to block someone from taking action. This won't stop Light or L from their actions, but it can be used to keep Misa or Teru at bay! This action is shared with Naomi.",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "raye",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  },  
+              "startup": {"revealRole": ["naomi"] },
+              "preventTeamvote": ["naomi", "mason"],
+              "teamTalk": ["naomi", "mason"],
+              "onDeath": {
+                "exposeRoles": ["naomi"],
+                "exposemsg": "As Raye dies, Naomi Misora (~Target~) swears that she will avenge her lover!",
+                "convertRoles": {"mason": "mason2"},
+                "convertmsg": "",
+                "killRoles": ["mason2"],
+                "killmsg": "Now that there are no more FBI agents, the director Mason has been exposed and killed as well!"
+                },
+                "night": {
+                  "question": {
+                    "command": ["distract"],
+                    "target": "AnyButSelf",
+                    "distractmsg": "The FBI called you in for questioning... you were unable to complete any actions during the night!",
+                    "common": "Team",
+                    "priority": 1,
+                    "broadcast": ["naomi"]
+                    }
+                  },
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "naomi",
+            "translation": "Naomi",
+            "side": "taskforce",
+            "info": "Mason-lover with Raye (knows Raye on startup, reveals Raye if she dies). Can Question (distract) one person during the night (shared with Raye) but this doesn't affect Light or L.",
+            "help": "You are a former member of the FBI, and now that Raye has become involved with Kira case, it's time to get back into the game! Although your lover, Raye, begged you not to get involved, it is now up to the two of you to assist L by detaining suspects! Type /Question [name] during the night to block someone from taking action. This won't stop Light or L from their actions, but it can be used to keep Misa or Teru at bay! This action is shared with Raye.",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "naomi",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  },  
+              "startup": {"revealRole": ["raye"] },
+              "preventTeamvote": ["raye", "mason"],
+              "teamTalk": ["raye", "mason"],
+              "onDeath": {
+                "exposeRoles": ["raye"],
+                "exposemsg": "As Naomi dies, Raye Penber (~Target~) swears that he will avenge his lover!",
+                "convertRoles": {"mason": "mason2"},
+                "convertmsg": "",
+                "killRoles": ["mason2"],
+                "killmsg": "Now that there are no more FBI agents, the director Mason has been exposed and killed as well!"
+                },
+                "night": {
+                  "question": {
+                    "command": "distract",
+                    "target": "AnyButSelf",
+                    "distractmsg": "The FBI called you in for questioning... you were unable to complete any actions during the night!",
+                    "common": "Team",
+                    "priority": 1,
+                    "broadcast": ["raye"]
+                    }
+                  },
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "mason",
+            "translation": "Mason",
+            "side": "taskforce",
+            "info": "Vote counts as 5. Knows Raye and Naomi on startup. Dies when Raye and Naomi are killed. ~Sided~",
+            "help": "You are the head of the FBI, Steve Mason! Your word is law (at least in America, but who cares, this is mafia), so your vote counts as 5! Type /vote [name] to try and get who you think is bad! You know who the FBI agents are, and if they die, you will be forced to leave the investigation!",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "mason",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  },  
+                "startup": {"revealRole": ["raye", "naomi"] },
+                "preventTeamvote": ["raye", "naomi"],
+                "teamTalk": ["raye", "naomi"],
+                "vote": 5,
+                "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "mason2",
+            "translation": "Mason",
+            "side": "taskforce",
+            "hide": true,
+            "info": "Vote counts as 5. Knows Raye and Naomi on startup. Dies when Raye and Naomi are killed. ~Sided~",
+            "help": "You are the head of the FBI, Steve Mason! Your word is law (at least in America, but who cares, this is mafia), so your vote counts as 5! Type /vote [name] to try and get who you think is bad! You know who the FBI agents are, and if they die, you will be forced to leave the investigation!",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "mason",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  },  
+                "startup": {"revealRole": ["raye", "naomi"] },
+                "preventTeamvote": ["raye", "naomi"],
+                "vote": 5,
+                "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "matt",
+            "translation": "Matt",
+            "side": "taskforce",
+            "info": "Can Inspect one person during the night (sees Light 90% of the time, true the other 10%). When Rester dies, Light seen 30% of the time, true seen 70% of the time. Knows Rester on startup. ~Sided~",
+            "help": "You are a member of the mafia, but are actually sided with the Task Force! Help L, Near, Mello, and Ryuuzaki find Kira! Type /inspect [name] to find out someone's role, but beware, as you will SEE PEOPLE AS LIGHT 90% OF THE TIME! You know who the SPK member Rester is, and if he happens to... disappear... your inspect will be a more accurate inspector and only see people as Light 30% of the time (the rest of the time, your inspect will be true)!",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "matt",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  },  
+              "onDeath": {
+                "convertRoles": {
+                  "rester": "rester2"
+                },
+                "convertmsg": "Now that Matt is gone, Rester can inspect more freely, and he can trust in his results more securely!"
+                },
+              "startup": {"revealRole": ["rester"] },
+                "night": {
+                  "inspect": {
+                    "target": "AnyButSelf",
+                    "inspectMsg": "It seems that ~Target~ is ~Result~.",
+                    "common": "Team",
+                    "priority": 5,
+                    "Sight": {
+                        "true": 0.1,
+                        "light": 0.9
+                      }
+                    }
+                  },
+            "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "rester",
+            "translation": "Rester",
+            "side": "taskforce",
+            "info": "Can Inspect one person during the night (sees Light 90% of the time, true the other 10%). When Matt dies, Light seen 30% of the time, true seen 70% of the time. Knows Matt on startup. ~Sided~",
+            "help": "You are a member of the SPK, which means you are working with the Task Force! Help L, Near, Mello, and Ryuuzaki find Kira! Type /inspect [name] to find out someone's role, but beware, as you will SEE PEOPLE AS LIGHT 90% OF THE TIME! You know who the Mafia member Matt is, and if he happens to... disappear... your inspect will be a more accurate inspector and only see people as Light 30% of the time (the rest of the time, your inspect will be true)!",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "rester",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  },  
+              "onDeath": {
+                "convertRoles": {
+                  "matt": "matt2"
+                },
+                "convertmsg": "Now that Rester is gone, Matt can inspect more freely, and he can trust in his results more securely!"
+                },
+              "startup": {"revealRole": ["matt"] },
+                "night": {
+                  "inspect": {
+                    "target": "AnyButSelf",
+                    "inspectMsg": "It seems that ~Target~ is ~Result~.",
+                    "common": "Team",
+                    "priority": 5,
+                    "Sight": {
+                        "true": 0.1,
+                        "light": 0.9
+                      }
+                    }
+                  },
+            "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "matt2",
+            "translation": "Matt",
+            "side": "taskforce",
+            "hide": true,
+            "info": "",
+            "help": "You are a member of the mafia, but are actually sided with the Task Force! Help L, Near, Mello, and Ryuuzaki find Kira! Type /inspect [name] to find out someone's role, but beware, as you will SEE PEOPLE AS LIGHT 90% OF THE TIME! You know who the SPK member Rester is, and if he happens to... disappear... your inspect will be a more accurate inspector and only see people as Light 30% of the time (the rest of the time, your inspect will be true)!",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "matt2",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  },  
+                "night": {
+                  "inspect": {
+                    "target": "AnyButSelf",
+                    "inspectMsg": "It seems that ~Target~ is ~Result~.",
+                    "common": "Team",
+                    "priority": 5,
+                    "Sight": {
+                        "true": 0.7,
+                        "light": 0.3
+                      }
+                    }
+                  },
+            "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "rester2",
+            "translation": "Rester",
+            "side": "taskforce",
+            "hide": true,
+            "info": "",
+            "help": "You are a member of the SPK, which means you are working with the Task Force! Help L, Near, Mello, and Ryuuzaki find Kira! Type /inspect [name] to find out someone's role, but beware, as you will SEE PEOPLE AS LIGHT 90% OF THE TIME! You know who the Mafia member Matt is, and if he happens to... disappear... your inspect will be a more accurate inspector and only see people as Light 30% of the time (the rest of the time, your inspect will be true)!",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "rester2",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  },  
+                "night": {
+                  "inspect": {
+                    "target": "AnyButSelf",
+                    "inspectMsg": "It seems that ~Target~ is ~Result~.",
+                    "common": "Team",
+                    "priority": 5,
+                    "Sight": {
+                        "true": 0.7,
+                        "light": 0.3
+                      }
+                    }
+                  },
+            "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "soichiro",
+            "translation": "Soichiro",
+            "side": "taskforce",
+            "help": "As the Task Force's leader, you command much respect, and it is your job to vote during the day to suggest someone to have their role revealed! Your command of the police force allows you declare someone a Person of Interest with /Safeguard [name] during the night. This protects them from Inspection!",
+            "actions": {   
+                "night": {
+                    "safeguard": {
+                      "command": ["guard"],
+                      "guardActions": ["inspect"],
+                      "guardmsg": "~Target~ was in police custody under identity confidentiality! You couldn't Inspect them!",
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": 3
+                    }
+                },
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+                "lynch": {
+                  "convertTo": "soichiro",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  },  
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "l",
+            "translation": "L",
+            "side": "village",
+            "info": "Can guess two people's roles per night (/is). Immune to kill unless Inspected by Misa on the same night. Ignores FBI's Question. Avoids Near and Mello's hax as well as their /is. Doesn't reveal himself if voted off. ~Sided~",
+            "help": "You are the world's greatest Detective - L! Twice per night, you can guess someone's role with /is [name]:[role]. This will help you find most people's role, but beware - even if you guess Light's role correctly, he will be able to fool you into thinking he's innocent. When you think you know who Light is, use /arrest [name] to end the case during the day.",
+            "actions": {
+                "voteHax": "variable:investigatorHax",
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+                "night": {
+                    "is": {
+                      "command": ["inspect"],
+                      "inspectMsg": "Yes, it seems ~Target~ is ~Result~!!",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "inputmsg": "Running an Investigation for whether ~Target~ is ~GuessedRole~.",
+                "limit": 2,
+                        "pinpoint": true,
+                        "pinpointFailMsg": "Hm, it appears ~Target~ isn't ~GuessedRole~...",
+                        "priority": 2
+                    }
+                },
+        "standby": {
+          "arrest": {
+            "command": "kill",
+          "target": "AnyButSelf",
+          "copyAs": "lwin",
+          "copymsg": "",
+          "silent": true,
+          "msg": "Are you ready to end the Kira case? Type /Arrest [name] to capture Light, but only use if you're sure it's him! You lose if you guess wrong.",
+          "killmsg": "variable:winLMsg"
+          }
+        },
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg",
+                "avoidVoteHax": ["near", "mello"],
+                "kill": {
+                    "mode": "ignore",
+                    "broadcastMsg": "~Self~'s name was found in the Death Note!! Fortunately, ~Self~ is still alive.",
+                    "msg": ""
+                },
+                "inspect": {
+                    "mode": "ignore",
+                    "msg": "±Info: Hm, it appears ~Self~ isn't ~GuessedRole~...",
+                    "targetmsg": "Someone ran an investigation on you! He tried to figure out if you were ~GuessedRole~. Of course, it was futile."
+                },
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "The FBI called you in for questioning... how mundane. Their amateur investigation didn't keep you from your deductions."
+                },
+                "lynch": {
+                  "convertTo": "l",
+                  "convertmsg": "variable:lynchIgnore"
+                  }
+            }
+        },
+        {
+            "role": "l2",
+            "translation": "L",
+            "side": "village",
+            "winIfDeadRoles": ["light"],
+      "help": "",
+      "hide": true,
+            "actions": {
+              "initialCondition": {
+                "curse": {
+                  "cursedRole": "l",
+                  "curseCount": -1,
+                  "silentCurse": true
+                  }
+                }
+            }
+        },
+        {
+            "role": "lwin",
+            "translation": "L",
+            "side": "taskforce",
+            "winIfDeadRoles": [],
+      "help": "",
+      "hide": true,
+            "actions": {
+            }
+        },
+        {
+            "role": "ryuuzaki",
+            "translation": "Ryuuzaki",
+            "side": "village",
+            "info": "Can guess two people's roles per night (/is). Immune to kill unless Inspected by Misa on the same night. Ignores FBI's Question. Avoids Near and Mello's hax as well as their /is. Doesn't reveal himself if voted off. ~Sided~",
+            "help": "You are the world's greatest Detective - L! Except you have somehow reincarnated as Ryuuzaki! Twice per night, you can guess someone's role with /is [name]:[role]. This will help you find most people's role, but beware - even if you guess Light's role correctly, he will be able to fool you into thinking he's innocent. When you think you know who Light is, use /arrest [name] to end the case during the day.",
+            "actions": {
+                "voteHax": "variable:investigatorHax",
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+                "night": {
+                    "is": {
+                      "command": ["inspect"],
+                      "inspectMsg": "Yes, it seems ~Target~ is ~Result~!!",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "inputmsg": "Running an Investigation for whether ~Target~ is ~GuessedRole~.",
+                        "limit": 2,
+                        "pinpoint": true,
+                        "pinpointFailMsg": "Hm, it appears ~Target~ isn't ~GuessedRole~...",
+                        "priority": 2
+                    }
+                },
+        "standby": {
+          "arrest": {
+            "command": "kill",
+          "target": "AnyButSelf",
+          "copyAs": "ryuuzakiwin",
+          "copymsg": "",
+          "silent": true,
+          "msg": "Are you ready to end the Kira case? Type /Arrest [name] to capture Light, but only use if you're sure it's him! You lose if you guess wrong.",
+          "killmsg": "variable:winLMsg"
+          }
+        },
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg",
+                "avoidVoteHax": ["near", "mello"],
+                "kill": {
+                    "mode": "ignore",
+                    "broadcastMsg": "~Self~'s name was found in the Death Note!! Fortunately, ~Self~ is still alive.",
+                    "msg": ""
+                },
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "The FBI called you in for questioning... how mundane. Their amateur investigation didn't keep you from your deductions."
+                },
+                "lynch": {
+                  "convertTo": "ryuuzaki",
+                  "convertmsg": "variable:lynchIgnore"
+                  }
+            }
+        },
+        {
+            "role": "ryuuzaki2",
+            "translation": "Ryuuzaki",
+            "side": "village",
+            "winIfDeadRoles": ["light"],
+      "help": "",
+      "hide": true,
+            "actions": {
+              "initialCondition": {
+                "curse": {
+                  "cursedRole": "ryuuzaki",
+                  "curseCount": -1,
+                  "silentCurse": true
+                  }
+                }
+            }
+        },
+        {
+            "role": "ryuuzakiwin",
+            "translation": "Ryuuzaki",
+            "side": "taskforce",
+            "winIfDeadRoles": [],
+      "help": "",
+      "hide": true,
+            "actions": {
+            }
+        },
+        {
+            "role": "near",
+            "translation": "Near",
+            "side": "village",
+            "info": "Can guess two people's roles per night (/is). Immune to kill unless Inspected by Kiyomi on the same night. Ignores FBI's Question. Doesn't reveal himself if voted off. ~Sided~",
+            "help": "You are one of L's successors! Twice per night, you can guess someone's role with /is [name]:[role]. This well help you find most people's role, but beware - even if you guess Light's role correctly, he will be able to fool you into thinking he's innocent. When you think you know who Light is, use /arrest [name] to end the case during the day.",
+            "actions": {
+                "voteHax": "variable:investigatorHax",
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+                "night": {
+                    "is": {
+                      "command": ["inspect"],
+                      "inspectMsg": "Just as I suspected, ~Target~ is ~Result~.",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "inputmsg": "Running an Investigation for whether ~Target~ is ~GuessedRole~.",
+                        "limit": 2,
+                        "pinpoint": true,
+                        "pinpointFailMsg": "±Info: Hm, it appears ~Target~ isn't ~GuessedRole~...",
+                        "priority": 2
+                    }
+                },
+        "standby": {
+          "arrest": {
+            "command": "kill",
+          "target": "AnyButSelf",
+          "copyAs": "nearwin",
+          "copymsg": "",
+          "silent": true,
+          "msg": "Are you ready to end the Kira case? Type /Arrest [name] to capture Light, but only use if you're sure it's him! You lose if you guess wrong.",
+          "killmsg": "variable:winLMsg"
+          }
+        },
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg",
+                "kill": {
+                    "mode": "ignore",
+                    "broadcastMsg": "~Self~'s name was found in the Death Note!! Fortunately, ~Self~ is still alive.",
+                    "msg": ""
+                },
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "The FBI called you in for questioning... how mundane. Their amateur investigation didn't keep you from your deductions."
+                },
+                "lynch": {
+                  "convertTo": "near",
+                  "convertmsg": "variable:lynchIgnore"
+                  }
+            }
+        },
+        {
+            "role": "near2",
+            "translation": "Near",
+            "side": "village",
+      "help": "",
+      "hide": true,
+            "actions": {
+              "initialCondition": {
+                "curse": {
+                  "cursedRole": "near",
+                  "curseCount": -1,
+                  "silentCurse": true
+                  }
+                }
+            }
+        },
+        {
+            "role": "nearwin",
+            "translation": "Near",
+            "side": "taskforce",
+            "winIfDeadRoles": [],
+      "help": "",
+      "hide": true,
+            "actions": {
+            }
+        },
+        {
+            "role": "mello",
+            "translation": "Mello",
+            "side": "village",
+            "info": "Can guess two people's roles per night (/is). Immune to kill unless Inspected by Kiyomi on the same night. Ignores FBI's Question. Doesn't reveal himself if voted off. ~Sided~",
+            "help": "You are one of L's successors! Twice per night, you can guess someone's role with /is [name]:[role]. This well help you find most people's role, but beware - even if you guess Light's role correctly, he will be able to fool you into thinking he's innocent. When you think you know who Light is, use /arrest [name] to end the case during the day.",
+            "actions": {
+                "voteHax": "variable:investigatorHax",
+                "night": {
+                    "is": {
+                      "command": ["inspect"],
+                      "inspectMsg": "Of course, ~Target~ IS ~Result~!!",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "inputmsg": "Running an Investigation for whether ~Target~ is ~GuessedRole~.",
+                        "limit": 2,
+                        "pinpoint": true,
+                        "pinpointFailMsg": "±Info: Hm, it appears ~Target~ isn't ~GuessedRole~...",
+                        "priority": 2
+                    }
+                },
+        "standby": {
+          "arrest": {
+            "command": "kill",
+          "target": "AnyButSelf",
+          "copyAs": "mellowin",
+          "copymsg": "",
+          "silent": true,
+          "msg": "Are you ready to end the Kira case? Type /Arrest [name] to capture Light, but only use if you're sure it's him! You lose if you guess wrong.",
+          "killmsg": "variable:winLMsg"
+          }
+        },
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg",
+                "kill": {
+                    "mode": "ignore",
+                    "broadcastMsg": "~Self~'s name was found in the Death Note!! Fortunately, ~Self~ is still alive.",
+                    "msg": ""
+                },
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "The FBI called you in for questioning... how mundane. Their amateur investigation didn't keep you from your deductions."
+                },
+                "lynch": {
+                  "convertTo": "mello",
+                  "convertmsg": "variable:lynchIgnore"
+                  }
+            }
+        },
+        {
+            "role": "mello2",
+            "translation": "Mello",
+            "side": "village",
+      "help": "",
+      "hide": true,
+            "actions": {
+              "initialCondition": {
+                "curse": {
+                  "cursedRole": "mello",
+                  "curseCount": -1,
+                  "silentCurse": true
+                  }
+                }
+            }
+        },
+        {
+            "role": "mellowin",
+            "translation": "Mello",
+            "side": "taskforce",
+            "winIfDeadRoles": [],
+      "help": "",
+      "hide": true,
+            "actions": {
+            }
+        },
+        {
+            "role": "light",
+            "translation": "Light",
+            "side": "kira",
+            "winIfDeadRoles": ["l", "l2", "near", "near2", "mello", "mello2", "ryuuzaki", "ryuuzaki2"],
+            "info": "Can write 2 people during the night, killing them if he guesses their role correctly. Cannot kill L. Appears as 'not Light' to L's investigation. Ignores FBI's Question. Doesn't reveal himself if voted off. Cannot be arrested while Rem is alive (appears as Task Force if arrested). ~Sided~",
+            "help": "You are Light Yagami, the brightest student in Japan! Use your wits to carry out justice by using /write to eliminate the enemies of Kira. Type /write [name]:[role] to write someone's name in your Death Note twice per night. In order to win, you must either kill off the entire Task Force or eliminate L. Because you don't know L's true name, you can't kill him without Misa's help!",
+            "actions": {
+                "night": {
+                    "write": {
+                      "command": ["kill"],
+                        "target": "Any",
+                        "limit": 2,
+                        "common": "Self",
+                        "pierce": true,
+                        "inputmsg": "You wrote ~Target~'s name in your notebook while picturing ~GuessedRole~'s face!",
+                        "pinpoint": true,
+                        "pinpointFailMsg": "",
+                        "killmsg": "~Target~'s name was found in the Death Note!! ~Target~ (~TargetRole~) falls over and dies.",
+                        "pinpointBroadcastFailMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                        "priority": 5
+                    }
+                },
+                "avoidVoteHax": ["l", "near", "mello", "ryuuzaki"],
+                "inspect": {
+                    "mode": "ignore",
+                    "msg": "±Info: Hm, it appears ~Self~ isn't ~GuessedRole~...",
+                    "targetmsg": "Someone ran an investigation on you! He tried to figure out if you were ~GuessedRole~. Of course, you avoided all suspicion."
+                },
+                "kill": {
+                    "mode": "ignore",
+                    "msg": "Sorry, can't let you kill Light right now. I'll be the one to write his name in my book!",
+                    "targetmsg": ""
+                },
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "The FBI called you in for questioning... but it was futile. You had already written the times of deaths for your targets."
+                },
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+                "lynch": {
+                  "convertTo": "light",
+                  "convertmsg": "variable:lynchIgnore"
+                  }
+            }
+        },
+        {
+            "role": "light2",
+            "translation": "Light",
+            "hide": true,
+            "side": "kira",
+            "winIfDeadRoles": ["l", "l2", "near", "near2", "mello", "mello2", "ryuuzaki", "ryuuzaki2"],
+            "info": "Can write 2 people during the night, killing them if he guesses their role correctly. Cannot kill L. Appears as 'not Light' to L's investigation. Ignores FBI's Question. Doesn't reveal himself if voted off. Cannot be arrested while Rem is alive (appears as Task Force if arrested). ~Sided~",
+            "help": "You are Light Yagami, the brightest student in Japan! Use your wits to carry out justice by using /write to eliminate the enemies of Kira. Type /write [name]:[role] to write someone's name in your Death Note twice per night. In order to win, you must either kill off the entire Task Force or eliminate L. Because you don't know L's true name, you can't kill him without Misa's help!",
+            "actions": {
+                "night": {
+                    "write": {
+                      "command": ["kill"],
+                        "target": "Any",
+                        "limit": 2,
+                        "common": "Self",
+                        "pierce": true,
+                        "inputmsg": "You wrote ~Target~'s name in your notebook while picturing ~GuessedRole~'s face!",
+                        "pinpoint": true,
+                        "pinpointFailMsg": "",
+                        "killmsg": "~Target~'s name was found in the Death Note!! ~Target~ (~TargetRole~) falls over and dies.",
+                        "pinpointBroadcastFailMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                        "priority": 5
+                    }
+                },
+                "avoidVoteHax": ["l", "near", "mello", "ryuuzaki"],
+                "inspect": {
+                    "mode": "ignore",
+                    "msg": "±Info: Hm, it appears ~Self~ isn't ~GuessedRole~...",
+                    "targetmsg": "Someone ran an investigation on you! He tried to figure out if you were ~GuessedRole~. Of course, you avoided all suspicion."
+                },
+                "kill": {
+                    "mode": "ignore",
+                    "msg": "Sorry, can't let you kill Light right now. I'll be the one to write his name in my book!",
+                    "targetmsg": ""
+                },
+                "daykill": "variable:failL",
+                "daykillrevengemsg": "variable:failLMsg",
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "The FBI called you in for questioning... but it was futile. You had already written the times of deaths for your targets."
+                },
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+                "lynch": {
+                  "convertTo": "light",
+                  "convertmsg": "variable:lynchIgnore"
+                  }
+            }
+        },
+        {
+            "role": "misa",
+            "translation": "Misa",
+            "side": "kira",
+            "info": "Can inspect one person during the night. This inspect causes L to become vulnerable to the Death Note and can be killed during the night. ~Sided~",
+            "help": "Just a fashion model by day, Kira worshipper by night. Use your Shinigami Eyes to /inspect [name] during the night. If you find Light, tell him your information! If you inspect L, he will temporarily become vulnerable to the Death Note.",
+            "actions": {
+                "kill": {
+                    "mode": "ignore",
+                    "broadcastMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                    "msg": ""
+                },
+                "night": {
+                    "inspect": {
+                      "command": ["dummy", "convert"],
+                      "newRole": {
+                        "l2": ["l"],
+                        "ryuuzaki2": ["ryuuzaki"]
+                        },
+                      "convertmsg": "",
+                      "convertfailmsg": "",
+                      "convertusermsg": "By seeing ~Target~'s true name, you made him vulnerable to the Death Note!",
+                      "silentConvert": true,
+                      "silent": true,
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "dummyusermsg": "You used your Shinigami Eyes to identify ~Target~ as ~TargetRole~!",
+                      "priority": 4
+                    }
+                },
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+                "avoidVoteHax": ["l", "near", "mello", "ryuuzaki"],
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsgKira",
+                "lynch": {
+                  "convertTo": "misa",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  }
+            }
+        },
+        {
+            "role": "kiyomi",
+            "translation": "Kiyomi",
+            "side": "kira",
+            "info": "Can inspect one person during the night. This inspect causes Near and Mello to become vulnerable to the Death Note and can be killed during the night. ~Sided~",
+            "help": "Just a news anchor by day, Kira worshipper by night. Use your Shinigami Eyes to /inspect [name] during the night. If you find Light, tell him your information! If you inspect Near or Mello, they will temporarily become vulnerable to the Death Note.",
+            "actions": {
+                "kill": {
+                    "mode": "ignore",
+                    "broadcastMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                    "msg": ""
+                },
+                "night": {
+                    "inspect": {
+                      "command": ["dummy", "convert"],
+                      "newRole": {
+                        "near2": ["near"],
+                        "mello2": ["mello"]
+                        },
+                      "convertmsg": "",
+                      "convertfailmsg": "",
+                      "convertusermsg": "By seeing ~Target~'s true name, you made him vulnerable to the Death Note!",
+                      "silentConvert": true,
+                      "silent": true,
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "dummyusermsg": "You used your Shinigami Eyes to identify ~Target~ as ~TargetRole~!",
+                      "priority": 4
+                    }
+                },
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+                "avoidVoteHax": ["l", "near", "mello", "ryuuzaki"],
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsgKira",
+                "lynch": {
+                  "convertTo": "kiyomi",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  }
+            }
+        },
+        {
+            "role": "teru",
+            "translation": "Teru",
+            "side": "kira",
+            "info": "Can write one person during the night. Reveals as Matsuda, Aizawa, Ukita, or Mogi on lynch (consistently). ~Sided~",
+            "help": "You are here to help God deliver His divine justice! Type /write [name]:[role] to eliminate someone during the night! Appearing a well-adjusted member of society, you are seen as the Task Force member Matsuda if voted off!",
+            "actions": {
+                "kill": {
+                    "mode": "ignore",
+                    "broadcastMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                    "msg": ""
+                },
+                "night": {
+                    "write": {
+                      "command": ["kill"],
+                        "target": "Any",
+                        "common": "Self",
+                        "pierce": true,
+                        "pinpoint": true,
+                        "inputmsg": "You wrote ~Target~'s name in your notebook while picturing ~GuessedRole~'s face!",
+                        "pinpointFailMsg": "",
+                        "killmsg": "~Target~'s name was found in the Death Note!! ~Target~ (~TargetRole~) falls over and dies.",
+                        "pinpointBroadcastFailMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                        "priority": 6
+                    }
+                },
+                "avoidVoteHax": ["l", "near", "mello", "ryuuzaki"],
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsgKira",
+                "lynch": {
+                  "convertTo": "teru",
+                  "convertmsg": "variable:lynchSurviveMsgMatsuda"
+                  }
+            }
+        },
+        {
+            "role": "teru_aizawa",
+            "translation": "Teru",
+            "side": "kira",
+            "hide": true,
+            "info": "Can write one person during the night. ~Sided~",
+            "help": "You are here to help God deliver His divine justice! Type /write [name]:[role] to eliminate someone during the night! Appearing a well-adjusted member of society, you are seen as the Task Force member Aizawa if voted off!",
+            "actions": {
+                "kill": {
+                    "mode": "ignore",
+                    "broadcastMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                    "msg": ""
+                },
+                "night": {
+                    "write": {
+                      "command": ["kill"],
+                        "target": "Any",
+                        "common": "Self",
+                        "pierce": true,
+                        "pinpoint": true,
+                        "inputmsg": "You wrote ~Target~'s name in your notebook while picturing ~GuessedRole~'s face!",
+                        "pinpointFailMsg": "",
+                        "killmsg": "~Target~'s name was found in the Death Note!! ~Target~ (~TargetRole~) falls over and dies.",
+                        "pinpointBroadcastFailMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                        "priority": 6
+                    }
+                },
+                "avoidVoteHax": ["l", "near", "mello", "ryuuzaki"],
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsgKira",
+                "lynch": {
+                  "convertTo": "teru",
+                  "convertmsg": "variable:lynchSurviveMsgAizawa"
+                  }
+            }
+        },
+        {
+            "role": "teru_ukita",
+            "translation": "Teru",
+            "side": "kira",
+            "hide": true,
+            "info": "Can write one person during the night. ~Sided~",
+            "help": "You are here to help God deliver His divine justice! Type /write [name]:[role] to eliminate someone during the night! Appearing a well-adjusted member of society, you are seen as the Task Force member Ukita if voted off!",
+            "actions": {
+                "kill": {
+                    "mode": "ignore",
+                    "broadcastMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                    "msg": ""
+                },
+                "night": {
+                    "write": {
+                      "command": ["kill"],
+                        "target": "Any",
+                        "common": "Self",
+                        "pierce": true,
+                        "pinpoint": true,
+                        "inputmsg": "You wrote ~Target~'s name in your notebook while picturing ~GuessedRole~'s face!",
+                        "pinpointFailMsg": "",
+                        "killmsg": "~Target~'s name was found in the Death Note!! ~Target~ (~TargetRole~) falls over and dies.",
+                        "pinpointBroadcastFailMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                        "priority": 6
+                    }
+                },
+                "avoidVoteHax": ["l", "near", "mello", "ryuuzaki"],
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsgKira",
+                "lynch": {
+                  "convertTo": "teru",
+                  "convertmsg": "variable:lynchSurviveMsgUkita"
+                  }
+            }
+        },
+        {
+            "role": "teru_mogi",
+            "translation": "Teru",
+            "side": "kira",
+            "hide": true,
+            "info": "Can write one person during the night. ~Sided~",
+            "help": "You are here to help God deliver His divine justice! Type /write [name]:[role] to eliminate someone during the night! Appearing a well-adjusted member of society, you are seen as the Task Force member Mogi if voted off!",
+            "actions": {
+                "kill": {
+                    "mode": "ignore",
+                    "broadcastMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                    "msg": ""
+                },
+                "night": {
+                    "write": {
+                      "command": ["kill"],
+                        "target": "Any",
+                        "common": "Self",
+                        "pierce": true,
+                        "pinpoint": true,
+                        "inputmsg": "You wrote ~Target~'s name in your notebook while picturing ~GuessedRole~'s face!",
+                        "pinpointFailMsg": "",
+                        "killmsg": "~Target~'s name was found in the Death Note!! ~Target~ (~TargetRole~) falls over and dies.",
+                        "pinpointBroadcastFailMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                        "priority": 6
+                    }
+                },
+                "avoidVoteHax": ["l", "near", "mello", "ryuuzaki"],
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsgKira",
+                "lynch": {
+                  "convertTo": "teru",
+                  "convertmsg": "variable:lynchSurviveMsgMogi"
+                  }
+            }
+        },
+        {
+            "role": "rem",
+            "translation": "Rem",
+            "side": "kira",
+            "info": "Can inspect one person during the night (cannot make any vulnerable to Death Note). Ignores distract. If voted off, can write one person during the night before dying (kills even evaders). Light cannot be arrested while Rem is alive. Receives 2 extra votes if voted for. ~Sided~",
+            "help": "Use your Shinigami Eyes to /inspect [name] during the night. If you find Light or another Kira, tell them your information! If you are voted off, you will be able to kill one person, but then you will die forever! As long as you are alive, Light cannot be arrested! However, you are suspicious as a death god so you receive 2 extra votes if voted for!",
+            "actions": {
+                "kill": {
+                    "mode": "ignore",
+                    "broadcastMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                    "msg": ""
+                },
+                "night": {
+                    "inspect": {
+                      "command": ["dummy"],
+                      "target": "AnyButSelf",
+                      "common": "Self",
+                        "dummyusermsg": "You used your Shinigami Eyes to identify ~Target~ as ~TargetRole~!",
+                      "priority": 7
+                    }
+                },
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "The FBI called you in for questioning... but you ignored them!"
+                },
+                "voteshield": 2,
+                "avoidVoteHax": ["l", "near", "mello", "ryuuzaki"],
+              "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsgKira",
+                "lynch": {
+                  "convertTo": "rem2",
+                  "convertmsg": "variable:lynchRemMsg"
+                  }
+            }
+        },
+        {
+            "role": "rem2",
+            "translation": "Rem",
+            "side": "kira",
+            "hide": true,
+            "info": "Can inspect one person during the night (cannot make any vulnerable to Death Note). If voted off, can write one person during the night before dying. Light cannot be arrested while Rem is alive. ~Sided~",
+            "help": "You are able to /write [name] ONCE to kill ONE PLAYER. You do not need to know their role, but it can kill anyone, even L! YOU CANNOT CHANGE YOUR KILL AFTER CHOOSING ONE.",
+            "actions": {
+                "kill": {
+                    "mode": "ignore",
+                    "broadcastMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                    "msg": ""
+                },
+                "initialCondition": {
+                    "poison": {
+                        "count": -1,
+                        "poisonDeadMessage": "Now that you have killed, you can pass from this world forever..."
+                    }
+                },
+                "night": {
+                    "write": {
+                      "command": ["kill"],
+                      "target": "AnyButTeam",
+                      "common": "Self",
+                      "bypass": ["ignore"],
+                      "restrict": ["write"],
+                        "killmsg": "~Target~'s name was found in the Death Note!! ~Target~ (~TargetRole~) falls over and dies.",
+                      "priority": 8
+                    }
+                },
+              "onDeath": {
+                "convertRoles": {
+                  "light2": "light"
+                },
+                "convertmsg": "Now that Rem is gone, Light CAN NOW be arrested by the Investigators!"
+                },
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "The FBI called you in for questioning... but you ignored them!"
+                },
+                "avoidVoteHax": ["l", "near", "mello", "ryuuzaki"],
+              "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsgKira"
+            }
+        },
+        {
+            "role": "demegawa",
+            "translation": "Demegawa",
+            "side": "kira",
+            "info": "Can expose or fake-expose one person during the day. ~Sided~",
+            "help": "Kira, shmira, all you care about is increasing your viewerbase! And the best way to get suckers tuning in is to make sure Kira gets his way. Help Kira by exposing or fake-exposing during the day! Be careful not to expose your allies!",
+            "actions": {
+                "kill": {
+                    "mode": "ignore",
+                    "broadcastMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                    "msg": ""
+                },
+        "standby": {
+          "expose": {
+          "msg": "Type /expose [name] to expose someone, or /[role] [name] to fake someone as another role!",
+          "revealChance": 0.6,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is ~Role~!"
+          },
+          "matsuda": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Matsuda!"
+          },
+          "aizawa": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Aizawa!"
+          },
+          "mogi": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Mogi!"
+          },
+          "ukita": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Ukita!"
+          },
+          "ide": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Ide!"
+          },
+          "wedy": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Wedy!"
+          },
+          "aiber": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Aiber!"
+          },
+          "naomi": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Naomi!"
+          },
+          "raye": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Raye!"
+          },
+          "soichiro": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Soichiro!"
+          },
+          "l": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is L!"
+          },
+          "ryuuzaki": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Ryuuzaki!"
+          },
+          "near": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Near!"
+          },
+          "mello": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Mello!"
+          },
+          "light": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Light!"
+          },
+          "misa": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Misa!"
+          },
+          "teru": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Teru!"
+          },
+          "kiyomi": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Kiyomi!"
+          },
+          "demegawa": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Demegawa!"
+          },
+          "higuchi": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Higuchi!"
+          },
+          "watari": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Watari!"
+          },
+          "mason": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Mason!"
+          },
+          "matt": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Matt!"
+          },
+          "rester": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Rester!"
+          },
+          "rem": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Rem!"
+          },
+          "lelouch": {
+            "command": "expose",
+          "revealChance": 0.75,
+          "target": "Any",
+          "revealmsg": "*** 'That show is all bogus anyway,' someone mutters",
+          "exposemsg": "A breaking news special from Kira's Kingdom! Demegawa decrees that ~Target~ is Lelouch!"
+          }
+        },
+                "avoidVoteHax": ["l", "near", "mello", "ryuuzaki"],
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsgKira",
+                "lynch": {
+                  "convertTo": "demegawa",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  }
+            }
+        },
+        {
+            "role": "higuchi",
+            "translation": "Higuchi",
+            "side": "higuchi",
+            "winIfDeadRoles": [
+              "ide",
+              "aiber",
+              "wedy",
+              "watari",
+              "rester",
+              "matt",
+              "mason",
+              "teru",
+              "teru_aizawa",
+              "teru_mogi",
+              "teru_ukita",
+              "demegawa"
+            ],
+            "info": "Can inspect one person during the night (kills them if they are on his hitlist). Wins when everyone on his hitlist dies. Hit list is Ide, Wedy, Aiber, Watari, Rester, Matt, Mason, Teru, and Demegawa. Ignores the Death Note. Dies if lynched. ~Sided~",
+            "help": "You are the Death Note holder of the Yotsuba group. Eliminate your enemies! Gain MORE POWER!! Type /inspect [name] during the night to find out someone's role, and if they are your enemy, they will be killed immediately. You win when Ide, Wedy, Aiber, Watari, Rester, Matt, Mason, Teru, and Demegawa are removed.",
+            "actions": {
+                "kill": {
+                    "mode": "ignore",
+                    "broadcastMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                    "msg": ""
+                },
+                "night": {
+                    "inspect": {
+                      "command": ["dummy", "poison"],
+                      "count": -1,
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "dummyusermsg": "You used your Shinigami Eyes to identify ~Target~ as ~TargetRole~!",
+                      "priority": 3
+                    }
+                },
+                "avoidVoteHax": ["l", "near", "mello", "ryuuzaki"],
+            "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsgKira"
+            }
+        },
+        {
+            "role": "sidoh",
+            "translation": "Sidoh",
+            "side": "shinigami",
+            "unique": true,
+            "info": "Can win with Kira if voted off. Can't be killed. Prevents Kira from winning unless all Investigators are dead. ~Sided~",
+            "help": "You're the Shinigami who lost your notebook! You don't care what the humans are doing, and you're pretty useless without your notebook anyway, so all you can do is try to get voted off during the day! If you are, you can win with Kira.",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "sidoh2",
+                  "convertmsg": "Hehe... ~Self~ (Sidoh) played you all for fools! Now he can win with Kira's team."
+                  },  
+                "kill": {
+                    "mode": "ignore",
+                    "broadcastMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                    "msg": ""
+                },
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "sidoh2",
+            "translation": "Sidoh",
+            "side": "shinigami",
+            "unique": true,
+            "winningSides": ["kira"],
+            "hide": true,
+            "info": "Can win with Kira if voted off. Prevents Kira from winning unless all Investigators are dead. ~Sided~",
+            "help": "Wonderful, now you can win with Kira! Try and confuse the Task Force with useless rands to win!",
+            "actions": {   
+                "lynch": {
+                  "convertTo": "sidoh2",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  },  
+                "kill": {
+                    "mode": "ignore",
+                    "broadcastMsg": "~Target~'s name was found in the Death Note!! Fortunately, ~Target~ is still alive.",
+                    "msg": ""
+                },
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+        "daykill": "variable:failL",
+            "daykillrevengemsg": "variable:failLMsg"
+            }
+        },
+        {
+            "role": "potato",
+            "translation": "Potato Chip",
+            "side": "taskforce",
+            "unique": true,
+            "info": "Can win with Kira if it gets eat by Light during the day. ~Sided~",
+            "help": "You are a snack. Type /crunch during the day to get eaten by someone. If you are eaten by Light, you switch sides to Kira!",
+            "actions": {   
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+                "standby": {
+                  "crunch": {
+                    "command": "expose",
+                    "target": "AnyButSelf",
+                    "copyAs": {
+                      "potato2": ["light", "light2"]
+                    },
+                    "copymsg": "",
+                    "copyusermsg": "",
+                    "silent": true,
+                    "msg": "You can now /Crunch [name] to try and find Light!",
+                    "exposemsg": "~Target~ takes a potato chip... and eats it!"
+                  }
+                },
+                "avoidVoteHax": ["l", "near", "mello", "ryuuzaki"],
+              "daykill": "variable:failL",
+                "daykillrevengemsg": "variable:failLMsg",
+                "lynch": {
+                  "convertTo": "potato",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  }
+            }
+        },
+        {
+            "role": "potato2",
+            "translation": "Potato Chip",
+            "side": "kira",
+            "unique": true,
+            "hide": true,
+            "help": "You are a snack, and you are now sided with Kira! You can still get eaten, but it's not very useful anymore.",
+            "actions": {   
+                "poison": {
+                    "mode": "ignore",
+                    "msg": ""
+                },
+                "standby": {
+                  "crunch": {
+                    "command": "expose",
+                    "target": "AnyButSelf",
+                    "msg": "You can now /Crunch [name] to try and find Light!",
+                    "exposemsg": "~Target~ takes a potato chip... and eats it!"
+                  }
+                },
+                "avoidVoteHax": ["l", "near", "mello", "ryuuzaki"],
+              "daykill": "variable:failL",
+                "daykillrevengemsg": "variable:failLMsgKira",
+                "lynch": {
+                  "convertTo": "potato2",
+                  "convertmsg": "variable:lynchSurviveMsg"
+                  }
+            }
+        }
+    ],
+    "spawnPacks": {
+      "fbi": {
+        "roles": [
+        ["raye", "naomi"],
+        ["naomi", "raye"]
+        ]
+      },  
+      "successor": {
+        "roles": [
+        ["near", "mello"],
+        ["mello", "near"]
+        ]
+      }
+    },
+    "roles1": [
+      "l",
+      "light",
+      "misa",
+      "pack:fbi",
+      {"matsuda": 0.25, "aizawa": 0.25, "ukita": 0.25, "mogi": 0.25}
+    ],
+    "roles2": [
+      "l",
+      "light",
+      "misa",
+      "pack:fbi",
+      "variable:villager_spawn",
+      "variable:villager_spawn",
+      "variable:villager_spawn"
+    ],
+    "roles3": [
+      "l",
+      "soichiro",
+      "light",
+      "misa",
+      "variable:terupack",
+      "naomi",
+      "raye",
+      "variable:villager_spawn",
+      "variable:villager_spawn"
+    ],
+    "roles4": [
+      "l",
+      "pack:successor",
+      "light",
+      "misa",
+      "kiyomi",
+      "naomi",
+      "raye",
+      "variable:villager_spawn",
+      "variable:villager_spawn",
+      "variable:villager_spawn",
+      "variable:villager_spawn"
+    ],
+    "roles5": [
+      "l",
+      "pack:successor",
+      "soichiro",
+      "light",
+      "misa",
+      "variable:terupack",
+      "kiyomi",
+      "naomi",
+      "raye",
+      "variable:villager_spawn",
+      "variable:villager_spawn",
+      "variable:villager_spawn",
+      "variable:villager_spawn",
+      "variable:villager_spawn2"
+    ],
+    "roles6": [
+      "l",
+      "near",
+      "mello",
+      "soichiro",
+      "light",
+      "misa",
+      "variable:terupack",
+      "kiyomi",
+      "demegawa",
+      "naomi",
+      "raye",
+      "matsuda",
+      "aizawa",
+      "mogi",
+      "ukita",
+      
+      "variable:villager_spawn2"
+    ],
+    "roles7": [
+      "l",
+      "near",
+      "mello",
+      "soichiro",
+      "light",
+      "misa",
+      "variable:terupack",
+      "kiyomi",
+      "demegawa",
+      "higuchi",
+      "naomi",
+      "raye",
+      "watari",
+      "ide",
+      "wedy",
+      "aiber",
+      "variable:villager_spawn",
+
+      "variable:villager_spawn",
+      "variable:villager_spawn"
+    ],
+    "roles8": [
+      "l",
+      "near",
+      "mello",
+      "soichiro",
+      "light",
+      "misa",
+      "variable:terupack",
+      "kiyomi",
+      "demegawa",
+      "higuchi",
+      "naomi",
+      "raye",
+      "watari",
+      "ide",
+      "wedy",
+      "aiber",
+      "matsuda",
+      "aizawa",
+      "mogi",
+      "ukita"
+    ],
+    "roles9": [
+      "l",
+      "near",
+      "mello",
+      "ryuuzaki",
+      "soichiro",
+      "light2",
+      "misa",
+      "variable:terupack",
+      "kiyomi",
+      "demegawa",
+      "rem",
+      "higuchi",
+      "naomi",
+      "raye",
+      "watari",
+      "mason",
+      "matt",
+      "rester",
+      "ide",
+      "wedy",
+      "aiber",
+
+      "variable:villager_spawn",
+      "sidoh",
+      "variable:villager_spawn",
+      "potato",
+      "variable:villager_spawn"
+    ],
+    "roles10": [
+      "l",
+      "near",
+      "mello",
+      "ryuuzaki",
+      "soichiro",
+      "light2",
+      "misa",
+      "variable:terupack",
+      "kiyomi",
+      "demegawa",
+      "rem",
+      "higuchi",
+      "naomi",
+      "raye",
+      "watari",
+      "mason",
+      "matt",
+      "rester",
+      "ide",
+      "wedy",
+      "aiber",
+      "sidoh",
+      "potato",
+      "matsuda",
+      "aizawa",
+      "mogi",
+      "ukita"
+    ],
+    "villageCantLoseRoles": [
+    ],
+    "silentVote": true,
+    "rolesAreNames": true,
+    "votemsg": "Someone demanded that ~Target~ reveal themselves!",
+    "lynchmsg": "~Player~ (~Role~) was discovered! They do their best to escape, but L's butler tracks them down and ends their villainous career forever!",
+    "noplur": true,
+    "changelog": {
+      "10.18.2016": "Misa can only make L vulnerable to the Death Note, while Kiyomi affects Near and Mello. Villagers can hax who voted for who, while L/Near/Mello can find villagers when they vote. Teru reveals as Matsuda, Ukita, Aizawa, or Mogi on lynch.",
+      "6.03.2018": "Added Higuchi and Watari. Wedy and Aiber updated.",
+      "6.22.2018": "Rem, Ryuuzaki, Matt, Rester, Mason added."
+    }
+}
