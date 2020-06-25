@@ -1,0 +1,1307 @@
+{
+    "name": "Paranormal",
+    "author": [
+        "Angel Flonne",
+        "Balm"
+    ],
+    "summary": "It's the Ghost Village pitted against the Witch, the Futuristic objects and the Haunts of Halloween! Who will win? Find out in this spooky theme.",
+    "sides": [
+        {
+            "side": "village",
+            "translation": "Animated Animism",
+            "winmsg": "~Players~ have scared everyone else away, and the ghosts are safe! Yay!"
+        },
+        {
+            "side": "witch",
+            "translation": "The Witch's Crew",
+            "winmsg": "And with an evil cackle, the Witch's Crew (~Players~) fly off into the night!"
+        },
+        {
+            "side": "scifi",
+            "translation": "Futuristic Sci-Fi",
+            "winmsg": "The Sci-Fi creatures have abducted all the good guys, and the land now belongs to ~Players~!"
+        },
+        {
+            "side": "halloween",
+            "translation": "Halloween Haunts",
+            "winmsg": "Well, it looks like the Halloween Haunts (~Players~) have arrived early!"
+        },
+        {
+            "side": "helldemon",
+            "translation": "Hell Demon",
+            "winmsg": "From the depths of Hell, the barbaric cheers of ~Players~ can be heard!"
+        },
+        {
+            "side": "angel",
+            "translation": "Celestial Angel",
+            "winmsg": "The Celestial Angel of Light won by herself. And you wonder, how did she do that?"
+        },
+        {
+            "side": "hero",
+            "translation": "Earth Hero",
+            "winmsg": "The Earth Hero, ~Players~, got rid of all the ghosts and monsters and now only the alive people is allowed at Earth!"
+        }
+    ],
+    "roles": [
+        {
+            "role": "lilghost",
+            "translation": "Little Ghost",
+            "side": "village",
+            "info": "Can stalk others once per game. Sided with Animated Animism",
+            "help": "Oooh! You're the little ghost. You can't really do anything, besides using /haunt [name] to follow them and find out what they did. However, you can only use this once per game.",
+            "actions": {
+                "avoidHax": [
+                    "haunt"
+                ],
+                "night": {
+                    "haunt": {
+                        "command": "stalk",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "charges": 1,
+                        "priority": 110
+                    }
+                }
+            }
+        },
+        {
+            "role": "sillyspookz",
+            "translation": "Confused Ghost",
+            "side": "village",
+            "help": "Boo! Wait, what? Oh well. You're the most foolish one around, so your vote counts as -2! You tend to scare away all your stalkers, so you know who stalked you the previous night!",
+            "info": "Vote counts as -2. Sided with Animated Animism.",
+            "actions": {
+                "vote": -2,
+                "stalk": {
+                    "mode": "identify",
+                    "msg": "~Target~, the ~Role~, tried to ~Action~ you during this night!"
+                }
+            }
+        },
+        {
+            "role": "banshee",
+            "translation": "Mansion Banshee",
+            "side": "village",
+            "help": "You are the ghost girl of the Lost Mansion. You turned into a banshee after losing your family. Screaming deafeningly in someone's ear with /scream [name] usually prevents someone from moving, but it will kill them 15% of the time!",
+            "info": "Can distract once per night (may kill 15% of the time). Sided with Animated Animism.",
+            "actions": {
+                "onDeath": {
+                    "convertRoles": {
+                        "darkveng5": "helldemon",
+                        "darkveng4": "darkveng5",
+                        "darkveng3": "darkveng4",
+                        "darkveng2": "darkveng3",
+                        "darkveng1": "darkveng2",
+                        "darkveng": "darkveng1"
+                    },
+                    "convertmsg": "±Paranormal: When ~Self~ died, the Dark Vengeance absorbed his soul, getting his votes too! "
+                },
+                "night": {
+                    "scream": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "command": {
+                            "distract": 0.85,
+                            "kill": 0.15
+                        },
+                        "msg": "The Mansion Banshee tried to distract you with a loud scream! However, it was too much for your ears and you died!!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "potspirit",
+            "translation": "Potential Spirit",
+            "side": "village",
+            "help": "Potential is your name, and you sure live up to it! You can choose to change into Explosive Spirit (/explode [yourname]), Fiery Spirit (/fire [yourname]), Cool Spirit (/cool [yourname]), Lunar Spirit (/lunar [yourname]) or Star Spirit (/star [yourname]).",
+            "info": "Can choose to turn into Explosive Spirit, Fiery Spirit, Cool Spirit, Lunar Spirit or Star Spirit.",
+            "actions": {
+                "onDeath": {
+                    "convertRoles": {
+                        "darkveng5": "helldemon",
+                        "darkveng4": "darkveng5",
+                        "darkveng3": "darkveng4",
+                        "darkveng2": "darkveng3",
+                        "darkveng1": "darkveng2",
+                        "darkveng": "darkveng1"
+                    },
+                    "convertmsg": "±Paranormal: When ~Self~ died, the Dark Vengeance absorbed his soul, getting his votes too! "
+                },
+                "initialCondition": {
+                    "clearPoison": true
+                },
+                "night": {
+                    "explode": {
+                        "command": "convert",
+                        "convertmsg": "The Potential Spirit is now a Explosive Spirit!",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 150,
+                        "newRole": "espirit",
+                        "canConvert": [
+                            "potspirit"
+                        ],
+                        "silent": false
+                    },
+                    "fire": {
+                        "command": "convert",
+                        "convertmsg": "The Potential Spirit is now a Fiery Spirit!",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 150,
+                        "newRole": "fspirit",
+                        "canConvert": [
+                            "potspirit"
+                        ],
+                        "silent": false
+                    },
+                    "cool": {
+                        "command": "convert",
+                        "convertmsg": "The Potential Spirit is now a Cool Spirit!",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 150,
+                        "newRole": "cspirit",
+                        "canConvert": [
+                            "potspirit"
+                        ],
+                        "silent": false
+                    },
+                    "lunar": {
+                        "command": "convert",
+                        "convertmsg": "The Potential Spirit is now a Lunar Spirit!",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 150,
+                        "newRole": "lspirit",
+                        "canConvert": [
+                            "potspirit"
+                        ],
+                        "silent": false
+                    },
+                    "star": {
+                        "command": "convert",
+                        "convertmsg": "The Potential Spirit is now a Star Spirit!",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 150,
+                        "newRole": "sspirit",
+                        "canConvert": [
+                            "potspirit"
+                        ],
+                        "silent": false
+                    }
+                }
+            }
+        },
+        {
+            "role": "espirit",
+            "translation": "Explosive Spirit",
+            "side": "village",
+            "help": "Warning! Warning! You die in five nights! To remedy this, you can change back to the Potential Spirit with /clear [yourname]! Your abilities consist of being able to revenge day and night kills!",
+            "info": "Dies in five nights. Can clear itself to turn back into Potential Spirit. Can revenge day and night kills.  Sided with Animated Animism.",
+            "actions": {
+                "onDeath": {
+                    "convertRoles": {
+                        "darkveng5": "helldemon",
+                        "darkveng4": "darkveng5",
+                        "darkveng3": "darkveng4",
+                        "darkveng2": "darkveng3",
+                        "darkveng1": "darkveng2",
+                        "darkveng": "darkveng1"
+                    },
+                    "convertmsg": "±Paranormal: When ~Self~ died, the Dark Vengeance absorbed his soul, getting his votes too! "
+                },
+                "night": {
+                    "clear": {
+                        "command": "convert",
+                        "convertmsg": "The Explosive Spirit is now a Potential Spirit!",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 150,
+                        "newRole": "potspirit",
+                        "canConvert": [
+                            "espirit"
+                        ],
+                        "silent": false
+                    }
+                },
+                "kill": {
+                    "mode": "killattackerevenifprotected"
+                },
+                "daykill": "bomb",
+                "daykillrevengemsg": "~Target~ tried to kill ~Self~, but both exploded and died!",
+                "initialCondition": {
+                    "poison": {
+                        "count": 5,
+                        "poisonDeadMessage": "You died after five nights!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "fspirit",
+            "translation": "Fiery Spirit",
+            "side": "village",
+            "help": "Warning! Warning! You die in five nights! To remedy this, you can change back to the Potential Spirit with /clear [yourname]! Anyway, you can guard others by using /guard [name], and they won't be killed or poisoned.",
+            "info": "Dies in five nights. Can clear itself to turn back into Potential Spirit. Can protect and safeguard (one command) other players. Sided with Animated Animism.",
+            "actions": {
+                "onDeath": {
+                    "convertRoles": {
+                        "darkveng5": "helldemon",
+                        "darkveng4": "darkveng5",
+                        "darkveng3": "darkveng4",
+                        "darkveng2": "darkveng3",
+                        "darkveng1": "darkveng2",
+                        "darkveng": "darkveng1"
+                    },
+                    "convertmsg": "±Paranormal: When ~Self~ died, the Dark Vengeance absorbed his soul, getting his votes too! "
+                },
+                "initialCondition": {
+                    "poison": {
+                        "count": 5,
+                        "poisonDeadMessage": "You died after five nights!"
+                    }
+                },
+                "night": {
+                    "guard": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 10,
+                        "command": [
+                            "protect",
+                            "safeguard"
+                        ]
+                    },
+                    "clear": {
+                        "command": "convert",
+                        "convertmsg": "The Fiery Spirit is now a Potential Spirit!",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 150,
+                        "newRole": "potspirit",
+                        "canConvert": [
+                            "fspirit"
+                        ],
+                        "silent": false
+                    }
+                }
+            }
+        },
+        {
+            "role": "cspirit",
+            "translation": "Cool Spirit",
+            "side": "village",
+            "help": "Warning! Warning! You die in five nights! To remedy this, you can change back to the Potential Spirit with /clear [yourname]! You have the ability of getting hax on nightkills and distracts. You also have a vote of 2.",
+            "info": "Dies in five nights. Can clear itself to turn back into Potential Spirit. Gets hax on nightkills and distracts. Has a vote of 2. Sided with Animated Animism.",
+            "actions": {
+                "onDeath": {
+                    "convertRoles": {
+                        "darkveng5": "helldemon",
+                        "darkveng4": "darkveng5",
+                        "darkveng3": "darkveng4",
+                        "darkveng2": "darkveng3",
+                        "darkveng1": "darkveng2",
+                        "darkveng": "darkveng1"
+                    },
+                    "convertmsg": "±Paranormal: When ~Self~ died, the Dark Vengeance absorbed his soul, getting his votes too! "
+                },
+                "initialCondition": {
+                    "poison": {
+                        "count": 5,
+                        "poisonDeadMessage": "You died after five nights!"
+                    }
+                },
+                "hax": {
+                    "haunt": {
+                        "revealTeam": 0.2,
+                        "revealPlayer": 0.1
+                    },
+                    "bite": {
+                        "revealTeam": 0.2,
+                        "revealPlayer": 0.1
+                    },
+                    "beam": {
+                        "revealTeam": 0.2,
+                        "revealPlayer": 0.1
+                    },
+                    "scream": {
+                        "revealTeam": 0.25,
+                        "revealPlayer": 0.15
+                    }
+                },
+                "vote": 2,
+                "night": {
+                    "clear": {
+                        "command": "convert",
+                        "convertmsg": "The Cool Spirit is now a Potential Spirit!",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 150,
+                        "newRole": "potspirit",
+                        "canConvert": [
+                            "cspirit"
+                        ],
+                        "silent": false
+                    }
+                }
+            }
+        },
+        {
+            "role": "lspirit",
+            "translation": "Lunar Spirit",
+            "side": "village",
+            "help": "Warning! Warning! You die in five nights! To remedy this, you can change back to the Potential Spirit with /clear [yourname]! You can find out a person's identity and what they had done with /moon [name]!",
+            "info": "Dies in five nights. Can clear itself to turn back into Potential Spirit. Can stalk and inspect (one command) once per night. Sided with Animated Animism.",
+            "actions": {
+                "onDeath": {
+                    "convertRoles": {
+                        "darkveng5": "helldemon",
+                        "darkveng4": "darkveng5",
+                        "darkveng3": "darkveng4",
+                        "darkveng2": "darkveng3",
+                        "darkveng1": "darkveng2",
+                        "darkveng": "darkveng1"
+                    },
+                    "convertmsg": "±Paranormal: When ~Self~ died, the Dark Vengeance absorbed his soul, getting his votes too! "
+                },
+                "initialCondition": {
+                    "poison": {
+                        "count": 5,
+                        "poisonDeadMessage": "Your died after five nights!"
+                    }
+                },
+                "night": {
+                    "moon": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 170,
+                        "command": [
+                            "inspect",
+                            "stalk"
+                        ]
+                    },
+                    "clear": {
+                        "command": "convert",
+                        "convertmsg": "The Lunar Spirit is now a Potential Spirit!",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 150,
+                        "newRole": "potspirit",
+                        "canConvert": [
+                            "lspirit"
+                        ],
+                        "silent": false
+                    }
+                }
+            }
+        },
+        {
+            "role": "sspirit",
+            "translation": "Star Spirit",
+            "side": "village",
+            "help": "Warning! Warning! You die in five nights! To remedy this, you can change back to the Potential Spirit with /clear [yourname]! You get to control a shooting star so that it hits the next turn with /drop [name]!",
+            "info": "Dies in five nights. Can clear itself to turn back into Potential Spirit. Can poison once per night, and the enemy will die the next night. Sided with Animated Animism.",
+            "actions": {
+                "onDeath": {
+                    "convertRoles": {
+                        "darkveng5": "helldemon",
+                        "darkveng4": "darkveng5",
+                        "darkveng3": "darkveng4",
+                        "darkveng2": "darkveng3",
+                        "darkveng1": "darkveng2",
+                        "darkveng": "darkveng1"
+                    },
+                    "convertmsg": "±Paranormal: When ~Self~ died, the Dark Vengeance absorbed his soul, getting his votes too! "
+                },
+                "initialCondition": {
+                    "poison": {
+                        "count": 5,
+                        "poisonDeadMessage": "You died after five nights!"
+                    }
+                },
+                "night": {
+                    "drop": {
+                        "command": "poison",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 100
+                    },
+                    "clear": {
+                        "command": "convert",
+                        "convertmsg": "The Star Spirit is now a Potential Spirit!",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 150,
+                        "newRole": "potspirit",
+                        "canConvert": [
+                            "sspirit"
+                        ],
+                        "silent": false
+                    }
+                }
+            }
+        },
+        {
+            "role": "phantom",
+            "translation": "Phantom",
+            "side": "village",
+            "help": "Squeee! You're a strange one, so that allows you to slip away from kills in the night which would otherwise leave you dead! Sometimes if you're lucky, your vote counts as 2!",
+            "info": "Evades nightkills. Has a vote of 1, but sometimes can be 2. Sided with Animated Animism.",
+            "actions": {
+                "onDeath": {
+                    "convertRoles": {
+                        "darkveng5": "helldemon",
+                        "darkveng4": "darkveng5",
+                        "darkveng3": "darkveng4",
+                        "darkveng2": "darkveng3",
+                        "darkveng1": "darkveng2",
+                        "darkveng": "darkveng1"
+                    },
+                    "convertmsg": "±Paranormal: When ~Self~ died, the Dark Vengeance absorbed his soul, getting his votes too! "
+                },
+                "vote": [
+                    1,
+                    2,
+                    2
+                ],
+                "kill": {
+                    "mode": "ignore"
+                }
+            }
+        },
+        {
+            "role": "phenomena",
+            "translation": "Unexplained Phenomena",
+            "side": "village",
+            "help": "What? Where? When? Who? Why? It's all these questions that have formed you. You have a vote of -5, and in addition, you can magically turn Little Ghosts into Potential Spirits with /convert [name].",
+            "info": "Has a vote of -5. Can turn Little Ghosts into Potential Spirits. Fails 40% of the time. Sided with Animated Animism.",
+            "actions": {
+                "vote": -5,
+                "night": {
+                    "convert": {
+                        "convertmsg": "The Phenomena strikes... A mere Little Ghost has turned into an important Potential Spirit! Thanks!",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 150,
+                        "newRole": "potspirit",
+                        "canConvert": [
+                            "lilghost"
+                        ],
+                        "silent": false
+                    }
+                }
+            }
+        },
+        {
+            "role": "lostsouls",
+            "translation": "Lost Souls",
+            "side": "village",
+            "help": "I don't know, you don't know, no-one knows. You just bump into walls most of the time. All this bumping has made you see the unseeable, so you get hax on most night actions! Sad thing is, if one you die, the Departed Souls die too, and vice versa. You know them from the start.",
+            "info": "Gets hax on most night actions. Knows the Departed Souls. If Departed Souls dies, Lost Souls die too, and vice versa. Sided with Animated Animism.",
+            "actions": {
+                "onDeath": {
+                    "killRoles": [
+                        "departedsouls"
+                    ],
+                    "killmsg": "±Game:  When ~Self~, the Lost Souls, died, all the Departed Souls (~Target~) died too!",
+                    "convertRoles": {
+                        "darkveng5": "helldemon",
+                        "darkveng4": "darkveng5",
+                        "darkveng3": "darkveng4",
+                        "darkveng2": "darkveng3",
+                        "darkveng1": "darkveng2",
+                        "darkveng": "darkveng1"
+                    },
+                    "convertmsg": "±Paranormal: When ~Self~ died, the Dark Vengeance absorbed his soul, getting his votes too! "
+                },
+                "startup": {
+                    "revealRole": "departedsouls"
+                },
+                "hax": {
+                    "haunt": {
+                        "revealTeam": 0.1,
+                        "revealPlayer": 0.05
+                    },
+                    "doom": {
+                        "revealTeam": 0.1,
+                        "revealPlayer": 0.05
+                    },
+                    "protect": {
+                        "revealTeam": 0.1,
+                        "revealPlayer": 0.05
+                    },
+                    "guard": {
+                        "revealTeam": 0.1,
+                        "revealPlayer": 0.05
+                    },
+                    "bite": {
+                        "revealTeam": 0.1,
+                        "revealPlayer": 0.05
+                    },
+                    "beam": {
+                        "revealTeam": 0.1,
+                        "revealPlayer": 0.05
+                    },
+                    "scream": {
+                        "revealTeam": 0.2,
+                        "revealPlayer": 0.05
+                    }
+                }
+            }
+        },
+        {
+            "role": "departedsouls",
+            "translation": "Departed Souls",
+            "side": "village",
+            "help": "You're the partner of the Lost Souls, and as such, you know them from the start. You can haunt someone at night to freak them out and kill them with /haunt [name]! One last thing, when you die, Lost Souls die too, and vice versa.",
+            "info": "Can kill once per night. Knows Lost Souls from the start. If Lost Souls die, Departed Souls dies too and vice versa. Sided with Animated Animism.",
+            "actions": {
+                "onDeath": {
+                    "killRoles": [
+                        "lostsouls"
+                    ],
+                    "killmsg": "±Game:  When ~Self~, the Departed Souls, died, all the Lost Souls (~Target~) did it too!",
+                    "convertRoles": {
+                        "darkveng5": "helldemon",
+                        "darkveng4": "darkveng5",
+                        "darkveng3": "darkveng4",
+                        "darkveng2": "darkveng3",
+                        "darkveng1": "darkveng2",
+                        "darkveng": "darkveng1"
+                    },
+                    "convertmsg": "±Paranormal: When ~Self~ died, the Dark Vengeance absorbed his soul, getting his votes too! "
+                },
+                "startup": {
+                    "revealRole": "lostsouls"
+                },
+                "night": {
+                    "haunt": {
+                        "command": "kill",
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 60
+                    }
+                }
+            }
+        },
+        {
+            "role": "grimreaper",
+            "translation": "Grim Reaper",
+            "side": "village",
+            "help": "You're the reaper of the souls. You have saved them. However, there are still some that resist, and you can type /reap [name] to destroy them during the day! You can also protect yourself every two nights with /protect [name], but it has a 10% chance of you dying instead!",
+            "info": "Can daykill once per day. Can protect once every two nights, but there's a 10% chance of killing himself instead. Sided with Animated Animism.",
+            "actions": {
+                "onDeath": {
+                    "convertRoles": {
+                        "darkveng5": "helldemon",
+                        "darkveng4": "darkveng5",
+                        "darkveng3": "darkveng4",
+                        "darkveng2": "darkveng3",
+                        "darkveng1": "darkveng2",
+                        "darkveng": "darkveng1"
+                    },
+                    "convertmsg": "±Paranormal: When ~Self~ died, the Dark Vengeance absorbed his soul, getting his votes too! "
+                },
+                "night": {
+                    "protect": {
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 10,
+                        "recharge": 2,
+                        "command": {
+                            "protect": 0.9,
+                            "kill": 0.1
+                        },
+                        "msg": "You tried to protect yourself, but you killed yourself instead!"
+                    }
+                },
+                "standby": {
+                    "reap": {
+                        "command": "kill",
+                        "target": "AnyButSelf",
+                        "msg": "Now, you can use /reap [name] in order to get rid of your enemies!:",
+                        "killmsg": "~Self~, the Grim Reaper, killed ~Target~!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "helldemon",
+            "translation": "Hell Demon",
+            "side": "helldemon",
+            "help": "Yes.... YES...! You have absorbed all you need... And now, you can finally be free. Now, you're on your own, away from the silly ghosts. You're too powerful for them. You have 666 votes, and you can daykill once every two days with /kill [name]. Show them the power of the awakened Hell Demon.",
+            "info": "Has a vote of 666. Can daykill once every two nights. Sided with himself.",
+            "actions": {
+                "vote": 666,
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Now, you can get rid of your enemies with /kill [name]! :",
+                        "killmsg": "±Hell Demon: Suddenly, an evil mist surrounded ~Target~ ... and a blazing fire burnt him up! More souls for me, the Hell Demon!! Muahahaha!!",
+                        "recharge": 2
+                    }
+                }
+            }
+        },
+        {
+            "role": "darkveng5",
+            "translation": "Dark Vengeance",
+            "side": "village",
+            "hide": true,
+            "help": "This is a whole new level of power! One more and you will truly become the true demon of hell.",
+            "info": "Has a vote of 5. If a power role dies, he becomes Hell Demon.",
+            "actions": {
+                "vote": 5
+            }
+        },
+        {
+            "role": "darkveng4",
+            "translation": "Dark Vengeance",
+            "side": "village",
+            "hide": true,
+            "help": "You feel the overflowing power from all your dead companions... The 4 votes will dominate!",
+            "info": "Has a vote of 4. If a power role dies, he will gain another vote.",
+            "actions": {
+                "vote": 4
+            }
+        },
+        {
+            "role": "darkveng3",
+            "translation": "Dark Vengeance",
+            "side": "village",
+            "hide": true,
+            "help": "With 3 votes, you can feel yourself bubbling with strength and confidence.",
+            "info": "Has a vote of 3. If a power role dies, he will gain another vote.",
+            "actions": {
+                "vote": 3
+            }
+        },
+        {
+            "role": "darkveng2",
+            "translation": "Dark Vengeance",
+            "side": "village",
+            "hide": true,
+            "help": "You feel more powerful. More awesome. You need more! More!",
+            "info": "Has a vote of 2. If a power role dies, he will gain another vote.",
+            "actions": {
+                "vote": 2
+            }
+        },
+        {
+            "role": "darkveng1",
+            "translation": "Dark Vengeance",
+            "side": "village",
+            "hide": true,
+            "help": "The first of many have fallen. You feel your power rising.",
+            "info": "Has a vote of 1. If a power role dies, he will gain another vote.",
+            "actions": {
+                "vote": 1
+            }
+        },
+        {
+            "role": "darkveng",
+            "translation": "Dark Vengeance",
+            "side": "village",
+            "help": "You are the creature made from all the hatred and the revenge. As such, you learnt to do so as well, and when any of your partners bar the Little Ghost die, you get their vote, making you a bigger and stronger monster. For now you have 0. When you reach 6 votes, you turn into something stronger...",
+            "info": "Has a vote of 0. If a power role dies, he will gain another vote. When he gains 6 votes, he converts to Hell Demon on his own side, away from the village.",
+            "actions": {
+                "vote": 0
+            }
+        },
+        {
+            "role": "blackcat",
+            "translation": "Black Cat",
+            "side": "witch",
+            "help": "Meow. You're a scary black cat. You can bring bad luck to somebody if they use any night action on you, barring protects and safeguards, and they will die the next night.",
+            "info": "Poisons all roles that use any night action on it, barring protects and safeguards. Sided with Witch's Crew.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "kill": {
+                    "mode": "poisonattackerevenifprotected",
+                    "count": 2,
+                    "poisonDeadMessage": "Suddenly, a thunderbolt struck you! Seems like you have some bad luck..."
+                },
+                "curse": {
+                    "mode": "poisonattackerevenifprotected",
+                    "count": 2,
+                    "poisonDeadMessage": "Suddenly, a thunderbolt struck you! Seems like you have some bad luck..."
+                },
+                "inspect": {
+                    "mode": "poisonattackerevenifprotected",
+                    "count": 2,
+                    "poisonDeadMessage": "Suddenly, a thunderbolt struck you! Seems like you have some bad luck..."
+                },
+                "distract": {
+                    "mode": "poisonattackerevenifprotected",
+                    "count": 2,
+                    "poisonDeadMessage": "Suddenly, a thunderbolt struck you! Seems like you have some bad luck..."
+                },
+                "stalk": {
+                    "mode": "poisonattackerevenifprotected",
+                    "count": 2,
+                    "poisonDeadMessage": "Suddenly, a thunderbolt struck you! Seems like you have some bad luck..."
+                },
+                "poison": {
+                    "mode": "poisonattackerevenifprotected",
+                    "count": 2,
+                    "poisonDeadMessage": "Suddenly, a thunderbolt struck you! Seems like you have some bad luck..."
+                }
+            }
+        },
+        {
+            "role": "broom",
+            "translation": "Enchanted Broom",
+            "side": "witch",
+            "help": "Huh? You're just a broom... But wait! You can fly because you've been enchanted by the witch! Type /protect [name] during the night in order to prevent your partners from being killed, keeping them away from dangers in the air!",
+            "info": "Can protect its partners once per night. If dies, Witch turns into Fallen Witch. If Witch dies, turns into Spirit Broom. Sided with Witch's Crew.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "onDeath": {
+                    "convertRoles": {
+                        "witch": "fallenwitch"
+                    },
+                    "convertmsg": "±Paranormal: When the Enchanted Broom died, ~Target~, the Witch, fell from the air and became enraged, becoming a Fallen Witch!!"
+                },
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 10,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "sbroom",
+            "translation": "Spirit Broom",
+            "side": "witch",
+            "help": "After your master died, you had no choice but to become independent! As such, you have got a very slow kill, but a kill nonetheless! Type /kill [name] to use it!",
+            "info": "Can kill once per night. Sided with Witch's Crew.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "onDeath": {
+                    "convertRoles": {
+                        "witch": "fallenwitch"
+                    },
+                    "convertmsg": "±Paranormal: When the Enchanted Broom died, ~Target~, the Witch, fell from the air and became enraged, becoming a Fallen Witch!!"
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Role",
+                        "priority": 190,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "witch",
+            "translation": "Witch",
+            "side": "witch",
+            "help": "Ohohohoh! Who will be victim to my potions today? You can use your magic to destroy someone one per night with /beam [name]. If your broom fails, you will fall to the ground. This will reveal you, but also you'll get a daykill because you'll have better aim!",
+            "info": "Can kill once per night. If Enchanted Broom dies, Witch turns into Fallen Witch. If she dies, Enchanted Broom turns into Spirit Broom. Sided with Witch's Crew.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "onDeath": {
+                    "convertRoles": {
+                        "broom": "sbroom"
+                    },
+                    "convertmsg": "±Paranormal: When the Witch died, the Enchanted Broom became independent and became the Spirit Broom!"
+                },
+                "night": {
+                    "beam": {
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "common": "Role",
+                        "priority": 55,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "fallenwitch",
+            "translation": "Fallen Witch",
+            "side": "witch",
+            "help": "Oh no! Your enchanted broom stopped working, and you dropped to the ground! Everyone knows your identity now! In addition, you get a daykill with your better aim by using /beam [name]! Protect yourself once per game with /protect [yourname].",
+            "info": "Everyone knows her identity. Can daykill once per day. Can protect herself once per game. Sided with Witch's Crew.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "night": {
+                    "protect": {
+                        "target": "Self",
+                        "common": "Self",
+                        "priority": 10,
+                        "charges": 1
+                    }
+                },
+                "standby": {
+                    "beam": {
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "msg": "Now, you can get rid of your enemies with /beam [name]! :",
+                        "killmsg": "~Self~, the Fallen Witch, used his beam on ~Target~, who was reduced to ashes!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "jack",
+            "translation": "Jack o' Lantern",
+            "side": "halloween",
+            "help": "You're the creepy ol' Pumpkin. No one really knows how you came about. Anyway, you can protect and safeguard someone with your hard skin by using /guard [name]. You evade daykills 20% of the time and have a vote of 6.",
+            "info": "Can protect and safeguard (one command) a teammate. Evades daykills 20% of the time. Has a vote of 6. Sided with Halloween Haunts.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "daykill": {
+                    "mode": {
+                        "evadeChance": 0.2
+                    }
+                },
+                "vote": 6,
+                "night": {
+                    "guard": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 10,
+                        "command": [
+                            "protect",
+                            "safeguard"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "role": "nosferatu",
+            "translation": "Nosferatu Curse",
+            "side": "halloween",
+            "help": "Fufufufu.... You're the curse of doom. You can type /doom [name] someone, and they'll die two nights later. Also, twice per game, you can use /curse [name] on anyone in the Animated Animism so they turn into a normal Little Ghost two nights later!",
+            "info": "Can poison any role and they will die two nights later. Can curse any role in the Animated Animism twice per game so they'll turn into Little Ghost two nights later. Sided with Halloween Haunts.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "night": {
+                    "doom": {
+                        "command": "poison",
+                        "target": "AnyButTeam",
+                        "common": "Role",
+                        "priority": 150,
+                        "broadcast": "team",
+                        "count": 3
+                    },
+                    "curse": {
+                        "target": "AnyButTeam",
+                        "common": "Role",
+                        "priority": 90,
+                        "charges": 2,
+                        "broadcast": "team",
+                        "broadcastmsg": "±Paranormal: Nosferatu has decided to curse ~Target~!",
+                        "cursedRole": "lilghost",
+                        "curseCount": 3,
+                        "canCurse": [
+                            "sillyspookz",
+                            "banshee",
+                            "potspirit",
+                            "espirit",
+                            "fspirit",
+                            "cspirit",
+                            "lspirit",
+                            "sspirit",
+                            "phantom",
+                            "phenomena",
+                            "lostsouls",
+                            "departedsouls",
+                            "grimreaper",
+                            "darkveng",
+                            "darkveng1",
+                            "darkveng2",
+                            "darkveng3",
+                            "darkveng4",
+                            "darkveng5"
+                        ],
+                        "curseConvertMessage": "±Curse: Here is the Nosferatu's curse!! An Animated Animism was converted into a Little Ghost!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "dracula",
+            "translation": "Deadly Dracula",
+            "side": "halloween",
+            "help": "Myaaaaah! Whose blood should we take? You can kill someone every night with /bite [name]! By the way, when you bite them, they can't move at all, so you don't need to worry about them killing you first!",
+            "info": "Can quick-kill and distract (one command) once per night. Sided with Halloween Haunts.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "night": {
+                    "bite": {
+                        "target": "AnyButTeam",
+                        "common": "Role",
+                        "broadcast": "Team",
+                        "priority": 5,
+                        "command": [
+                            "distract",
+                            "kill"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "role": "ufo",
+            "translation": "UFO",
+            "side": "scifi",
+            "help": "You are the mysterious flying saucer who likes to steal people with /abduct [name]! They'll be sucked up and they'll turn into a mini-UFO! Beware, as this only works 3 times in a game, and it fails 20% of the time.",
+            "info": "Can convert others into Mini-UFO 3 times per game. Sided with Futuristic Sci-Fi.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "night": {
+                    "abduct": {
+                        "command": "convert",
+                        "common": "Role",
+                        "priority": 200,
+                        "failChance": 0.2,
+						"limit": 3,
+                        "broadcast": "team",
+                        "broadcastmsg": "+Game: UFO has decided to abduct ~Target~!",
+                        "newRole": "ufobaby",
+                        "target": "AnyButTeam"
+                    }
+                }
+            }
+        },
+        {
+            "role": "ufobaby",
+            "translation": "Mini-UFO",
+            "side": "scifi",
+            "help": "You got abducted and converted into a Mini-UFO by the UFO! You have a vote of -1, and you can stop someone in their tracks for one night, and they'll die 2 nights later. Type /abduct [name] to do so!",
+            "info": "Can distract and poison with one command, and the target will die 2 nights later. Sided with Futuristic Sci-Fi.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "night": {
+                    "abduct": {
+                        "command": [
+                            "distract",
+                            "poison"
+                        ],
+                        "common": "Role",
+                        "broadcastmsg": "+Game: Mini UFO has decided to abduct ~Target~!",
+                        "count": 3,
+                        "broadcast": "team",
+                        "priority": 30,
+                        "target": "AnyButTeam"
+                    }
+                },
+                "vote": -1
+            }
+        },
+        {
+            "role": "robot",
+            "translation": "Self-Destructive Robot",
+            "side": "scifi",
+            "help": "Robo. Robo. You can start the self-explosion countdown with /destruct [yourname], and the 3-turn process of you dying, while being able to bring down 4 other people down with you, will begin.",
+            "info": "If he chooses to self-destruct, he will take 3 turns to die, while being able to bring bring 4 other players down on the night where he dies. When he starts to self-destruct, he cannot be killed or poisoned and identifies distractors. Sided with Futuristic Sci-Fi.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "night": {
+                    "destruct": {
+                        "command": "convert",
+                        "common": "Role",
+                        "broadcast": "team",
+                        "priority": 250,
+                        "target": "OnlySelf",
+                        "convertmsg": "Warning. Warning. Self-Destructive Robot has initiated self-destruction, and is entering Phase 1. Get ready for lots of casualties on the third night.",
+                        "newRole": "robot1"
+                    }
+                }
+            }
+        },
+        {
+            "role": "robot1",
+            "translation": "Exploding Robot (Phase 1)",
+            "side": "scifi",
+            "hide": true,
+            "help": "Robo. Robo. You have initiated the self-destructive process. During this phase, you are not able to die in any way. This is turn 1, and you may choose to bring down 2 other players with /explode [name]. You have a vote of 0.",
+            "info": "Will die in three turns. Can poison two others to die in two turns. Identifies distractors. Evades nightkills, daykills and cannot be voted off. Turns into Exploding Robot (Phase 2) in 1 turn. Sided with Futuristic Sci-Fi.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "robot2",
+                        "curseCount": 2,
+                        "curseConvertMessage": "Warning. Warning. Robot has selected its first 2 victims and is now entering Phase 2."
+                    }
+                },
+                "distract": {
+                    "mode": "identify",
+                    "msg": "Someone came to you last night, but they were scared when they heard a ticking sound. You looked up and saw ~Player~ running away like a little girl!"
+                },
+				"poison": {
+					"mode": "ignore"
+				},	
+                "kill": {
+                    "mode": "ignore"
+                },
+                "vote": 0,
+                "night": {
+                    "explode": {
+                        "command": "poison",
+                        "count": 3,
+                        "broadcast": "team",
+                        "limit": 2,
+                        "common": "Role",
+                        "priority": 300,
+                        "target": "AnyButTeam"
+                    }
+                }
+            }
+        },
+        {
+            "role": "robot2",
+            "translation": "Exploding Robot (Phase 2)",
+            "side": "scifi",
+            "hide": true,
+            "help": "Robo. Robo. You are now in the second phase. During this phase, you are not able to die in any way. This is turn 2, and you may choose to bring down 1 other player with /explode [name].",
+            "info": "Will die in two turns. Can poison one other to die the next turn. Identifies distractors. Evades nightkills, daykills and cannot be voted off. Turns into Exploding Robot (Phase 3) in 1 turn. Sided with Futuristic Sci-Fi.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "robot3",
+                        "curseCount": 1,
+                        "curseConvertMessage": "Warning. Warning. Robot has selected its next victim and is now entering the final phase."
+                    }
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "distract": {
+                    "mode": "identify",
+                    "msg": "Someone came to you last night, but they were scared when they heard a ticking sound. You looked up and saw ~Player~ running away like a little girl!"
+                },
+				"poison": {
+					"mode": "ignore"
+				},	
+                "night": {
+                    "explode": {
+                        "command": "poison",
+                        "count": 2,
+                        "broadcast": "team",
+                        "common": "Role",
+                        "priority": 300,
+                        "target": "AnyButTeam"
+                    }
+                },
+                "vote": 0
+            }
+        },
+        {
+            "role": "robot3",
+            "translation": "Exploding Robot (Final Phase)",
+            "side": "scifi",
+            "hide": true,
+            "help": "Robo. Robo. You will explode in this phase. You may choose to bring down 1 last player with /explode [name].",
+            "info": "Will die in two turns. Can poison one other to die in one turn. Evades nightkills, distracts, daykills and cannot be voted off. Turns into Exploding Robot (Phase 3) in 1 turn. Sided with Futuristic Sci-Fi.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "initialCondition": {
+                    "poison": {
+                        "count": 1,
+                        "poisonDeadMessage": "Boom. You exploded. Goodbye."
+                    }
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "distract": {
+                    "mode": "ignore"
+                },
+				"poison": {
+					"mode": "ignore"
+				},	
+                "vote": 0,
+                "night": {
+                    "explode": {
+                        "command": "kill",
+                        "common": "Role",
+                        "priority": 300,
+                        "broadcast": "team",
+                        "target": "AnyButTeam"
+                    }
+                }
+            }
+        },
+        {
+            "role": "angel",
+            "translation": "Angel of Light",
+            "side": "angel",
+            "info": "Can protect and safeguard (one command) to prevent them from being poisoned or killed. Evades nightkills 20% of the time. Wins with everyone.",
+            "help": "Love, peace, happiness! You win with everyone, and you're real keen on helping them, so you can /guard [name] to prevent them from being poisoned or killed! Also, you evade nightkills 20% of the time.",
+            "winningSides": [
+                "village",
+                "halloween",
+                "helldemon",
+                "witch",
+                "hero"
+            ],
+            "actions": {
+                "night": {
+                    "guard": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 10,
+                        "command": [
+                            "protect",
+                            "safeguard"
+                        ]
+                    }
+                },
+                "kill": {
+                    "mode": {
+                        "evadeChance": 0.2
+                    }
+                }
+            }
+        },
+        {
+            "role": "hero",
+            "translation": "Earth Hero",
+            "side": "hero",
+            "info": "Can kill once per night. Kills distractors. Avoids hax and evades kills 20% of the time. Sided with Earth Hero.",
+            "help": "You are a hero, and you will defeat these ghosts for Earth! Type /kill [name] once per night to defeat them. Also, you kill anyone who dare distract you! You avoid hax and evade kills 20% of the time!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 50
+                    }
+                },
+                "distract": {
+                    "mode": "ChangeTarget",
+                    "hookermsg": "You tried to distract the Earth Hero, but he wasn't interested and killed you instead!",
+                    "msg": "The ~Distracter~ tried to distract you the last night, but you killed him instead!"
+                },
+                "kill": {
+                    "mode": {
+                        "evadeChance": 0.2
+                    }
+                },
+                "avoidHax": [
+                    "kill"
+                ]
+            }
+        },
+        {
+            "role": "hero2",
+            "translation": "Earth Hero",
+            "side": "hero",
+            "info": "Can kill once per night. Kills distractors. Avoids hax and evades kills 50% of the time. Sided with Earth Hero.",
+            "help": "You are a hero, and you will defeat these ghosts for Earth! Type /kill [name] once per night to defeat them. Also, you kill anyone who dare distract you! You avoid hax and evade kills 50% of the time!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 50
+                    }
+                },
+                "distract": {
+                    "mode": "ChangeTarget",
+                    "hookermsg": "You tried to distract the Earth Hero, but he wasn't interested and killed you instead!",
+                    "msg": "The ~Distracter~ tried to distract you the last night, but you killed him instead!"
+                },
+                "kill": {
+                    "mode": {
+                        "evadeChance": 0.5
+                    }
+                },
+                "avoidHax": [
+                    "kill"
+                ]
+            }
+        }
+    ],
+    "roles1": [
+        "potspirit",
+        "lilghost",
+        "potspirit",
+        "hero",
+        "witch",
+        "banshee",
+        "lilghost",
+        "blackcat",
+        "broom",
+        "phenomena"
+    ],
+    "roles2": [
+        "potspirit",
+        "lilghost",
+        "potspirit",
+        "lostsouls",
+        "witch",
+        "banshee",
+        "lilghost",
+        "blackcat",
+        "phenomena",
+        "broom",
+        "departedsouls",
+        "angel",
+        "lilghost",
+        "darkveng",
+        "ufo"
+    ],
+    "roles3": [
+        "potspirit",
+        "dracula",
+        "potspirit",
+        "lostsouls",
+        "witch",
+        "banshee",
+        "jack",
+        "blackcat",
+        "phenomena",
+        "broom",
+        "departedsouls",
+        "angel",
+        "lilghost",
+        "darkveng",
+        "ufo",
+        "sillyspookz",
+        "lilghost",
+        "phantom",
+        "robot",
+        "grimreaper",
+        "lilghost",
+        "hero2",
+        "nosferatu",
+        "lilghost",
+        "potspirit",
+        "lilghost",
+        "phenomena",
+        "potspirit"
+    ],
+    "villageCantLoseRoles": [
+        "sillyspookz",
+        "banshee",
+        "potspirit",
+        "espirit",
+        "fspirit",
+        "lspirit",
+        "sspirit",
+        "cspirit",
+        "grimreaper",
+        "darkveng2",
+        "darkveng3",
+        "darkveng4",
+        "darkveng5",
+        "departedsouls",
+        "lostsouls",
+        "phantom"
+    ],
+    "killmsg": "±Paranormal: Boo! ~Role~ can be seen fading off! So much for ~Player~!",
+    "killusermsg": "***Oh noez~! You died!"
+}
