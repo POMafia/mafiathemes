@@ -1,0 +1,145 @@
+{
+    "name": "SI3",
+    "altname":"Space Invaders",
+    "author":["Fiery Espeon"
+    ],
+	"minplayers": 4,
+    "summary":"http://wiki.pokemon-online.eu/wiki/Theme:Space_Invaders",
+    "threadlink": "http://pokemon-online.eu/forums/showthread.php?15941-Space-Invaders",
+    "sides":[{
+            "side":"aliens",
+            "translation":"Space Invaders",
+            "winmsg":"The Space Invaders (~Players~) destroyed all the human's forces and now they control the Earth! https://www.youtube.com/watch?v=1ytCEuuW2_A"
+        },
+        {
+            "side":"village",
+            "translation":"Defenders",
+            "winmsg":"The Defenders (~Players~) won and now the Earth it's a safe place!"
+        }
+    ],
+    "roles":[{
+            "role":"laser",
+            "translation":"Laser Cannon",
+            "side":"aliens",
+            "help":"You're the Laser Cannon! Destroy your enemies with your laser typing /kill during the standby! However, make sure you don't get lynched by the Bunkers, as you're sided with the Aliens! You have gone rogue, and your daykill no longer reveals you!",
+            "info":"Can kill one player during the standby. Sided with the Aliens.",
+            "actions":{
+                "standby":{
+                    "kill":{
+                        "target":"AnyButTeam",
+                        "msg":"Now, destroy your enemies with /kill [name]!",
+                        "killmsg":" ~Target~ says, Diamonds pls no. Diamondslight casts a spell on the Laser Cannon. Laser Cannon aimed at ~Target~ and destroyed him with a laser shot!! IMMA FIRIN MAH LAZER!!!"
+                    }
+                }
+			}	
+        },
+        {
+            "role":"bunker",
+            "translation":"Bunker",
+            "side":"village",
+            "help":"You're Bunker! Sturdy and resistant, you can block the Alien's attack! The Laser Cannon has gone rogue, and has started killing all the Bunkers! It is your job to lynch the Aliens and Laser Cannon, and /protect another Bunker, which you can do 3 times! You should note that you have a 1, 1.5 or 2 vote to lynch your enemies. Remember, if all the Bunkers die, the Aliens and Laser Cannon win!",
+            "info":"Can protect one player during the night up to 3 times. Has a vote of either 1, 1.5 or 2. Sided with the Defenders",
+            "actions":{
+                "night":{
+                    "protect":{
+                        "target":"AnyButSelf",
+                        "common":"Self",
+                        "priority":1,
+			"charges":3,
+			"chargesmsg": "You can only protect ~Charges~ more times!"
+                    }
+                },
+                "vote": [1, 1.5, 2],
+				"startup": {
+                }
+            }
+        },
+        {
+            "role":"alien",
+            "translation":"Alien",
+            "side":"aliens",
+		"winIfDeadRoles": ["bunker"],
+            "help":"You're an alien! Time to kill all that stupid humans and control the Earth! Type /kill during the night! Also, each 2 nights you have an extra nightkill with /kill2, and that's not shared with your team! However, you can't use it the first or second night ! You can use /tt [message] to talk to your teammates.",
+            "info":"Can kill one player during the night (Shared). Can kill one player each 2 nights, but not the first or second night (Not-Shared). Sided with the Space Invaders.",
+            "actions":{
+                "night":{
+                    "kill":{
+                        "target":"AnyButTeam",
+                        "common":"Team",
+                        "priority":2,
+                        "broadcast":"team"
+                    },
+                    "kill2": {
+                        "recharge": 2,
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 3,
+                        "initialrecharge":3,
+                        "broadcast": "team"
+                    }
+                },
+				"startup": {
+                    "revealRole": ["laser", "alien"]
+                },
+                "teamTalk": true
+            }
+        }
+    ],
+    "roles1":["laser",
+        "bunker",
+        "bunker",
+        "bunker",
+        "bunker",
+        "alien",
+        "bunker",
+        "bunker",
+        "bunker",
+        "bunker",
+        "alien",
+	"bunker",
+        "bunker",
+        "bunker",
+        "bunker",
+        "alien",
+        "bunker",
+        "bunker",
+        "bunker",
+	"alien",
+        "bunker",
+        "bunker",
+        "bunker",
+        "bunker",
+	"bunker",
+        "bunker",
+        "alien",
+        "bunker",
+	"bunker",
+        "bunker",
+        "bunker",
+	"alien",
+        "bunker",
+        "bunker",
+        "bunker",
+        "bunker",
+        "bunker",
+        "bunker",
+	"alien",
+        "bunker",
+        "bunker",
+        "bunker",
+        "bunker",
+        "bunker",
+	"alien",
+        "bunker",
+        "bunker",
+        "bunker",
+        "bunker"
+    ],
+    "killmsg":"±Space Invaders: ~Player~ (~Role~) was destroyed!",
+    "killusermsg":" You were destroyed!",
+    "border":"***¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦",	
+        "villageCantLoseRoles": [
+		"bunker"
+	]
+}
