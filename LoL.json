@@ -1,0 +1,4193 @@
+{
+	"name": "LoL",
+	"altname": "League of Legends",
+	"author": [
+		"Windblown"
+		],
+	"threadlink": "http://pokemon-online.eu/threads/league-of-legends.28465/",
+	"summary": "Welcome to Summoner's Rift! Emulate the popular MOBA's playing experience without the hassle of actually installing League! Demacia is attemtping to bring peace to the war-torn continent of Runeterra and stop the warring states of Noxus, Zaun, and a warped Yordle army from Bandle City. Meanwhile, invaders from the Void have arrived to assert their dominance! Have fun and kill Teemo n1.",
+	"sides": [
+		{
+			"side": "village",
+			"translation": "Demacia",
+			"winmsg": "For the cause! The champions of Demacia (~Players~) have successfully defended their great city!"
+		},
+		{
+			"side": "mafia1",
+			"translation": "Noxus",
+			"winmsg": "Blood for Noxus! Violence solves everything, and ~Players~ have clearly showed us that!"
+		},
+		{
+			"side": "mafia2",
+			"translation": "Zaun",
+			"winmsg": "The messed-up creatures of Zaun, ~Players~, have overrun Runeterra!"
+		},
+		{
+			"side": "mafia3",
+			"translation": "The Void",
+			"winmsg": "NOM NOM NOM NOM NOM! ~Players~ have ate everything. That is all."
+		},
+		{
+			"side": "mafia4",
+			"translation": "Bandle City",
+			"winmsg": "Teemo's evil horde of Yordles, ~Players~, have - surprisingly - won this game!"
+		},
+		{
+			"side": "mafia5",
+			"translation": "Shadow Isles",
+			"winmsg": "Weather forecast for tonight: Dark, with a chance of PAIN! The Shadow Isles, ~Players~, have brought total damnation to Runeterra!"
+		},
+		{
+			"side": "undeath",
+			"translation": "Undeath",
+			"winmsg": "FEEL THE FRAILITY OF LIFE"
+		},
+		{
+			"side": "lamp",
+			"translation": "Jax",
+			"winmsg": "You lost to Jax (~Players~) this easily? Imagine if he had a real weapon."
+		},
+		{
+			"side": "wanderer",
+			"translation": "Wanderer",
+			"winmsg": "Yasuo (~Players~) won again? Why didn't you ban him? Rito pls nerf."
+		}
+	],
+	"variables": {
+		"feast copy": {
+			"chogathd": [
+				"villager",
+				"lux",
+				"garen",
+				"jarvan",
+				"xinzhao",
+				"quinn",
+				"valor",
+				"valors",
+				"vayne",
+				"sona",
+				"shyvana",
+				"dragonshyvana",
+				"fiora",
+				"fiorar",
+				"fiorav",
+				"lucian",
+				"lucians",
+				"ashe",
+				"ashes",
+				"ez",
+				"cait"
+			],
+			"chogathn": [
+				"kat",
+				"swain",
+				"darius",
+				"draven"
+			],
+			"chogathz": [
+				"singed",
+				"singedi",
+				"mundo",
+				"mundos",
+				"warwick",
+				"viktor",
+				"viktorh",
+				"viktorh2",
+				"viktorh3"
+			],
+			"chogathb": [
+				"teemo",
+				"lulu",
+				"ziggs"
+			]
+		}
+	},
+	"roles": [
+		{
+			"role": "villager",
+			"translation": "Minion",
+			"side": "village",
+			"help": "You're a minion who mindless heads towards the enemy Nexus and tries to destroy anything in your way. But you're not very strong, so all you can do is /vote during the day!",
+			"actions": {
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				}
+			}
+		},
+		{
+			"role": "villagerd",
+			"translation": "Minion",
+			"hide": true,
+			"side": "village",
+			"help": "You're a minion who mindless heads towards the enemy Nexus and tries to destroy anything in your way. But you're not very strong, so all you can do is /vote during the day!",
+			"actions": {
+				"voteshield": 9999,
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "villager"
+					}
+				}
+			}
+		},
+		{
+			"role": "lux",
+			"translation": "Lux",
+			"side": "village",
+			"help": "The Lady of Luminosity, your shining light is an aid to Demacia during this war. You can /expose one person during the day, but you will be revealed, so watch out! Starting night 4, you are able to /distract as many people during the night as you want, but you can only use these distracts one night per game.",
+			"info": "Can expose one person during the day. User is revealed. Sided with Demacia.",
+			"actions": {
+				"standby": {
+					"expose": {
+						"target": "AnyButSelf",
+						"msg": "You can expose someone now with /expose! You will be revealed.",
+						"exposemsg": "Lux, ~Self~, throws her Lucent Singularity into an area and reveals ~Target~ as ~Role~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"night": {
+					"distract": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 6,
+						"limit": 99,
+						"initialrecharge": 4,
+						"recharge": 99
+					}
+				}
+			}
+		},
+		{
+			"role": "luxd",
+			"translation": "Lux",
+			"side": "village",
+			"hide": true,
+			"help": "The Lady of Luminosity, your shining light is an aid to Demacia during this war. You can /expose one person during the day, but you will be revealed, so watch out! On night 4, you can use your ultimate, Final Spark, to /distract as many targets as you can (but only on this night).",
+			"info": "Can expose one person during the day. User is revealed. Sided with Demacia.",
+			"actions": {
+				"voteshield": 9999,
+				"standby": {
+					"expose": {
+						"target": "AnyButSelf",
+						"msg": "You can expose someone now with /expose! You will be revealed.",
+						"exposemsg": "Lux, ~Self~, throws her Lucent Singularity into an area and reveals ~Target~ as ~Role~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "lux"
+					}
+				},
+				"night": {
+					"distract": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 6,
+						"limit": 99,
+						"initialrecharge": 4,
+						"recharge": 99
+					}
+				}
+			}
+		},
+		{
+			"role": "garen",
+			"translation": "Garen",
+			"side": "village",
+			"help": "The Might of Demacia. You charge into battle without fear and your great strength allows you to resist two night kills during a game. Starting on day 4, you can use /judgment to call upon the forces of Demacia and daykill one person (you won't be revealed). You can only do this once per game.",
+			"info": "Evades two nightkills. Starting day 4, can judgment (daykill) one person once per game. You will not be revealed.",
+			"actions": {
+				"standby": {
+					"judgment": {
+						"command": "kill",
+						"target": "AnyButSelf",
+						"msg": "Staring day 4, you can call upon the Demacian military to /judgment one person during the day. You can only do this once per game, but you will not be revealed.",
+						"killmsg": "'Justice!' Garen summons forth a reserve of strength to execute ~Target~!",
+						"initialrecharge": 5,
+						"charges": 1,
+						"addCharges": 0
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeCharges": 2
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"updateCharges": true
+			}
+		},
+		{
+			"role": "garend",
+			"translation": "Garen",
+			"side": "village",
+			"hide": true,
+			"help": "The Might of Demacia. You charge into battle without fear and your great strength allows you to resist two night kills during a game. Starting on day 4, you can use /judgment to call upon the forces of Demacia and daykill one person (you won't be revealed). You can only do this once per game.",
+			"info": "Evades two nightkills. Starting day 4, can judgment (daykill) one person once per game. You will not be revealed.",
+			"actions": {
+				"voteshield": 9999,
+				"standby": {
+					"judgment": {
+						"command": "kill",
+						"target": "AnyButSelf",
+						"msg": "Staring day 4, you can call upon the Demacian military to /judgment one person during the day. You can only do this once per game, but you will not be revealed.",
+						"killmsg": "'Justice!' Garen summons forth a reserve of strength to execute ~Target~!",
+						"initialrecharge": 5,
+						"addCharges": 0
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeCharges": 2
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "garen"
+					}
+				},
+				"updateCharges": true
+			}
+		},
+		{
+			"role": "garens",
+			"translation": "Garen",
+			"side": "village",
+			"hide": true,
+			"help": "The Might of Demacia. You charge into battle without fear and your great strength allows you to resist two night kills during a game. Starting on day 4, you can use /judgment to call upon the forces of Demacia and daykill one person (you won't be revealed). You can only do this once per game.",
+			"info": "Evades two nightkills. Starting day 4, can judgment (daykill) one person once per game. You will not be revealed.",
+			"actions": {
+				"standby": {
+					"judgment": {
+						"command": "kill",
+						"target": "AnyButSelf",
+						"msg": "Staring day 4, you can call upon the Demacian military to /judgment one person during the day. You can only do this once per game, but you will not be revealed.",
+						"killmsg": "'Justice!' Garen summons forth a reserve of strength to execute ~Target~!",
+						"initialrecharge": 5,
+						"addCharges": 1
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"updateCharges": true
+			}
+		},
+		{
+			"role": "jarvan",
+			"translation": "Jarvan IV",
+			"side": "village",
+			"help": "The Exemplar of Demacia. Because you are next in line to the Demacian throne, you have a vote of 4. You also know your seneschal & protector, Xin Zhao, from the start.",
+			"info": "Vote of 4. Knows Xin Zhao. Sided with Demacia.",
+			"actions": {
+				"vote": 4,
+				"startup": {
+					"revealRole": ["xinzhao"]
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "jarvand",
+			"translation": "Jarvan IV",
+			"side": "village",
+			"hide": true,
+			"help": "The Exemplar of Demacia. Because you are next in line to the Demacian throne, you have a vote of 4. You also know your seneschal & protector, Xin Zhao, from the start.",
+			"info": "Vote of 4. Knows Xin Zhao. Sided with Demacia.",
+			"actions": {
+				"voteshield": -9999,
+				"vote": 4,
+				"startup": {
+					"revealRole": ["xinzhao"]
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "jarvan"
+					}
+				}
+			}
+		},
+		{
+			"role": "xinzhao",
+			"translation": "Xin Zhao",
+			"side": "village",
+			"help": "The Seneschal of Demacia. You have sworn your service to protecting the royal line of Demacia, therefore you can /protect one person every night and you know the prince, Jarvan IV, from the start!",
+			"info": "Can protect one person during the night. Knows Jarvan IV. Sided with Demacia.",
+			"actions": {
+				"night": {
+					"protect": {
+						"command": ["protect", "guard"],
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": 7,
+						"guardActions": [
+							"tempest"
+						]
+					}
+				},
+				"startup": {
+					"revealRole": ["jarvan"]
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "xinzhaod",
+			"translation": "Xin Zhao",
+			"side": "village",
+			"hide": true,
+			"help": "The Seneschal of Demacia. You have sworn your service to protecting the royal line of Demacia, therefore you can /protect one person every night and you know the prince, Jarvan IV, from the start!",
+			"info": "Can protect one person during the night. Knows Jarvan IV. Sided with Demacia.",
+			"actions": {
+				"voteshield": -9999,
+				"night": {
+					"protect": {
+						"command": ["protect", "guard"],
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": 7,
+						"hide": true,
+						"guardActions": [
+							"tempest"
+						]
+					}
+				},
+				"startup": {
+					"revealRole": ["jarvan"]
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "xinzhao"
+					}
+				}
+			}
+		},
+		{
+			"role": "quinn",
+			"translation": "Quinn",
+			"side": "village",
+			"help": "Demacia's Wings. With the help of your eagle, Valor, you can /watch one person during the night to see who visited them. On night 3, you can choose to /convert into Valor to gain two nightkills during the game, but you cannot transform back.",
+			"info": "Can watch one person during the night. Starting night 3, can convert herself into Valor (has two nightkill charges). Sided with Demacia.",
+			"actions": {
+				"night": {
+					"watch": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 70
+					},
+					"convert": {
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 40,
+						"pierce": true,
+						"initialrecharge": 3,
+						"newRole": "valor",
+						"convertmsg": "Valor, to me!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "quinnd",
+			"translation": "Quinn",
+			"side": "village",
+			"hide": true,
+			"help": "Demacia's Wings. With the help of your eagle, Valor, you can /watch one person during the night to see who visited them. On night 4, you can choose to /convert into Valor to gain two nightkills during the game, but you cannot transform back.",
+			"info": "Can watch one person during the night. Starting night 4, can convert herself into Valor (has two nightkill charges). Sided with Demacia.",
+			"actions": {
+				"voteshield": 9999,
+				"night": {
+					"watch": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 70,
+						"hide": true
+					},
+					"convert": {
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 40,
+						"hide": true,
+						"pierce": true,
+						"initialrecharge": 4,
+						"newRole": "valord",
+						"convertmsg": "Valor, to me!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "quinn"
+					}
+				}
+			}
+		},
+		{
+			"role": "valor",
+			"translation": "Valor",
+			"side": "village",
+			"help": "Quinn's eagle. You can /kill one person during the night, but you only have two charges of this.",
+			"info": "Can kill one person during the night, with two charges. Sided with Demacia.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 17,
+						"limit": 1,
+						"charges": 2
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				},
+				"updateCharges": true
+			}
+		},
+		{
+			"role": "valord",
+			"translation": "Valor",
+			"side": "village",
+			"hide": true,
+			"help": "Quinn's eagle. You can /kill one person during the night, but you only have two charges of this.",
+			"info": "Can kill one person during the night, with two charges. Sided with Demacia.",
+			"actions": {
+				"voteshield": 9999,
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 17,
+						"hide": true,
+						"limit": 1,
+						"addCharges": 0
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "valor2"
+					}
+				},
+				"updateCharges": true
+			}
+		},
+		{
+			"role": "valor2",
+			"translation": "Valor",
+			"side": "village",
+			"hide": true,
+			"help": "Quinn's eagle. You can /kill one person during the night, but you only have two charges of this.",
+			"info": "Can kill one person during the night, with two charges. Sided with Demacia.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 18,
+						"hide": true,
+						"limit": 1,
+						"addCharges": 0
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				},
+				"updateCharges": true
+			}
+		},
+		{
+			"role": "valors",
+			"translation": "Valor",
+			"side": "village",
+			"hide": true,
+			"help": "Quinn's eagle. You can /kill one person during the night, but you only have two charges of this.",
+			"info": "Can kill one person during the night, with two charges. Sided with Demacia.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 18,
+						"hide": true,
+						"limit": 1,
+						"addCharges": 1
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				},
+				"updateCharges": true
+			}
+		},
+		{
+			"role": "vayne",
+			"translation": "Vayne",
+			"side": "village",
+			"help": "The Night Hunter, you ruthlessly hunt evildoers to take revenge for a witch having killed your parents while you were young. You can /stalk one person during the night; starting night 4, you can /hunt to kill one person during the night.",
+			"info": "Can stalk one person during the night. Starting night 4, can hunt (kill) one person during the night. Sided with Demacia.",
+			"actions": {
+				"night": {
+					"stalk": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 60
+					},
+					"hunt": {
+						"command": "kill",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 17,
+						"initialrecharge": 4
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "vayned",
+			"translation": "Vayne",
+			"side": "village",
+			"hide": true,
+			"help": "The Night Hunter, you ruthlessly hunt evildoers to take revenge for a witch having killed your parents while you were young. You can /stalk one person during the night; starting night 4, you can /hunt to kill one person during the night.",
+			"info": "Can stalk one person during the night. Starting night 4, can hunt (kill) one person during the night. Sided with Demacia.",
+			"actions": {
+				"voteshield": 9999,
+				"night": {
+					"stalk": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 60,
+						"hide": true
+					},
+					"hunt": {
+						"command": "kill",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 17,
+						"hide": true,
+						"initialrecharge": 4
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "vayne"
+					}
+				}
+			}
+		},
+		{
+			"role": "sona",
+			"translation": "Sona",
+			"side": "village",
+			"help": "The Maven of the Strings. Although you are a mute, you dazzle thousands of people with your ability to play your instrument, the etwahl. Thus, you can /distract one person during the night!",
+			"info": "Can distract one person during the night. Sided with Demacia.",
+			"actions": {
+				"night": {
+					"distract": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 6,
+						"distractmsg": "Before you could carry out your night action, you were struck by a crescendo of musical energy and couldn't resist spending the whole night dancing instsead."
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "sonad",
+			"translation": "Sona",
+			"side": "village",
+			"hide": true,
+			"help": "The Maven of the Strings. Although you are a mute, you dazzle thousands of people with your ability to play your instrument, the etwahl. Thus, you can /distract one person during the night!",
+			"info": "Can distract one person during the night. Sided with Demacia.",
+			"actions": {
+				"voteshield": 9999,
+				"night": {
+					"distract": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 4,
+						"distractmsg": "Before you could carry out your night action, you were struck by a crescendo of musical energy and couldn't resist spending the whole night dancing instsead.",
+						"hide": true
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "sona"
+					}
+				}
+			}
+		},
+		{
+			"role": "shyvana",
+			"translation": "Shyvana",
+			"side": "village",
+			"help": "The Half-Dragon, taken into Demacia's royal guard by Jarvan IV. Every other night, you can /kill one person, and starting night 3 you can /convert yourself into your dragon form, which is immune to nightkills and can kill every night, but only lasts for 2 turns.",
+			"info": "Can kill one person every other night. Starting night 3, can convert into Dragon Form, which is immune to nightkills and can kill every night. Sided with Demacia.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 17,
+						"recharge": 2
+					},
+					"convert": {
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 40,
+						"pierce": true,
+						"initialrecharge": 3,
+						"newRole": "dragonshyvana",
+						"convertmsg": "What do you get when a dragon sneezes? ...Out of the way. Shyvana has converted into her Dragon Form!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "shyvanad",
+			"translation": "Shyvana",
+			"side": "village",
+			"hide": true,
+			"help": "The Half-Dragon, taken into Demacia's royal guard by Jarvan IV. Every other night, you can /kill one person, and starting night 3 you can /convert yourself into your dragon form, which is immune to nightkills and can kill every night, but only lasts for 2 turns.",
+			"info": "Can kill one person every other night. Starting night 3, can convert into Dragon Form, which is immune to nightkills and can kill every night. Sided with Demacia.",
+			"actions": {
+				"voteshield": 9999,
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 17,
+						"recharge": 2,
+						"hide": true
+					},
+					"convert": {
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 40,
+						"hide": true,
+						"pierce": true,
+						"initialrecharge": 3,
+						"newRole": "dragonshyvana",
+						"convertmsg": "What do you get when a dragon sneezes? ...Out of the way. Shyvana has converted into her Dragon Form!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "shyvana"
+					}
+				}
+			}
+		},
+		{
+			"role": "dragonshyvana",
+			"translation": "Shyvana (Dragon)",
+			"side": "village",
+			"help": "Now in your Dragon Form, you can kill every night and cannot be nightkilled back. You will convert back in 2 turns, however!",
+			"info": "Can kill one person during the night. Immune to nightkills. Converts back in 2 days. Sided with Demacia.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 17,
+						"hide": true
+					}
+				},
+				"kill": {
+					"mode": "ignore"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 3,
+						"cursedRole": "shyvana"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "fiora",
+			"translation": "Fiora",
+			"side": "village",
+			"help": "Demacia's most renown duelist, you long for a worthy opponent! You can /duel one person a night to increase both of your voteshields to +9999, meaning one of you will be lynched; alternatively, you can /riposte to grant yourself a -3 voteshield.",
+			"info": "Can duel one person to increase both of their voteshields to +9999, meaning only either of them can be lynched, OR can riposte one person to gain a -3 voteshield for one night. Sided with Demacia.",
+			"actions": {
+				"night": {
+					"riposte": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": 5,
+						"pierce": true,
+						"newRole": "fiorar",
+						"convertmsg": "'En garde!' Fiora taunts her enemies to come at her!"
+					},
+					"duel": {
+						"command": ["copy", "convert"],
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 9,
+						"restrict": ["riposte"],
+						"canCopy": [
+							"villager",
+							"lux",
+							"garen",
+							"garens",
+							"jarvan",
+							"xinzhao",
+							"quinn",
+							"valor",
+							"valors",
+							"sona",
+							"vayne",
+							"lucian",
+							"shyvana",
+							"dragonshyvana",
+							"fiora",
+							"ashe",
+							"ashes",
+							"cait",
+							"ez",
+							"irelia",
+							"leesin",
+							"kat",
+							"swain",
+							"swainult",
+							"darius",
+							"draven",
+							"singed",
+							"singedi",
+							"mundo",
+							"mundos",
+							"warwick",
+							"viktor",
+							"viktorh",
+							"viktorh2",
+							"viktorh3",
+							"kogmaw",
+							"khazix",
+							"khazixc",
+							"khazixs",
+							"khazixw",
+							"chogath",
+							"chogathd",
+							"chogathn",
+							"chogathz",
+							"chogathb",
+							"malzahar",
+							"lulu",
+							"ziggs",
+							"ziggs2",
+							"nocturne",
+							"jax",
+							"jaxu",
+							"yasuo",
+							"yasuolb",
+							"yasuolb2"
+						],
+						"newRole": {
+							"villagerd": ["villager"],
+							"luxd": ["lux"],
+							"garend": ["garen", "garens"],
+							"jarvand": ["jarvan"],
+							"xinzhaod": ["xinzhao"],
+							"vayned": ["vayne"],
+							"sonad": ["sona"],
+							"luciand": ["lucian", "lucians"],
+							"shyvanad": ["shyvana", "dragonshyvana"],
+							"quinnd": ["quinn"],
+							"valord": ["valor", "valors"],
+							"ashed": ["ashe", "ashes"],
+							"ezd": ["ez"],
+							"caitd": ["cait"],
+							"ireliad": ["irelia"],
+							"leesind": ["leesin"],
+							"katd": ["kat"],
+							"dravend": ["draven"],
+							"dariusd": ["darius"],
+							"swaind": ["swain", "swainult"],
+							"singedd": ["singed", "singedi"],
+							"mundod": ["mundo", "mundos"],
+							"warwickd": ["warwick"],
+							"viktord": ["viktor", "viktorh", "viktorh2", "viktorh3"],
+							"kogmawd": ["kogmaw"],
+							"khazixd": ["khazix", "khazixc", "khazixs", "khazixw"],
+							"chogathdd": ["chogath", "chogathd", "chogathn", "chogathz", "chogathb"],
+							"malzahard": ["malzahar"],
+							"lulud": ["lulu"],
+							"ziggsd": ["ziggs", "ziggs2"],
+							"nocturned": ["nocturne"],
+							"mordekaiserd": ["mordekaiser"],
+							"jaxd": ["jax", "jaxu"],
+							"yasuod": ["yasuo", "yasuolb", "yasuolb2"]
+						},
+						"copyAs": "fiorav",
+						"copymsg": "",
+						"convertmsg": "'To the death.' Fiora, ~Self~, has challenged ~Target~ to a duel!",
+						"tarmsg": "'Your move.' Fiora and you both have voteshields of 9999, which means only one of you can be lynched today!",
+						"usermsg": "Your opponent has accepted your challenge. The ball is in your court, mademoiselle."
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "fiorar",
+			"translation": "Fiora",
+			"hide": true,
+			"side": "village",
+			"help": "Demacia's most renown duelist, you long for a worthy opponent! You have prepared to parry the enemy's next strike, granting you a voteshield of -3 for one day.",
+			"actions": {
+				"voteshield": -3,
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "fiora"
+					}
+				}
+			}
+		},
+		{
+			"role": "fiorav",
+			"translation": "Fiora",
+			"side": "village",
+			"hide": true,
+			"help": "You've challenged someone to a duel and your voteshields are both 9999. Prove to them that you're the greatest duelist in Valoran by lynching them and not getting lynched back! Your voteshield will expire next night.",
+			"actions": {
+				"voteshield": 9999,
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "fiora"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "lucian",
+			"translation": "Lucian",
+			"side": "village",
+			"help": "The Purifier, you vow to purge the Shadow Isles of its evil after they took the soul of your wife, Senna. You can /purify one person during the night to both detox and safeguard them, while you cannot be poisoned yourself. Starting day 4, you can daykill once per game with /cull, but you will be revealed!",
+			"info": "Can purify (detox + safeguard) one person during the night. Cannot be poisoned. Starting day 4, can daykill (cull) one person once per game. User is revealed. Sided with Demacia.",
+			"actions": {
+				"poison": {
+					"mode": "ignore"
+				},
+				"night": {
+					"purify": {
+						"command": ["detox", "safeguard"],
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 8
+					}
+				},
+				"standby": {
+					"cull": {
+						"command": "kill",
+						"target": "AnyButSelf",
+						"msg": "You can unleash The Culling starting day 4 to daykill someone! You only have one shot though, and you will be revealed.",
+						"killmsg": "'Ashes and dust!' ~Self~, Lucian, pulls out his twin relic weapons and unleashes a barrage of light onto ~Target~, incinerating them!",
+						"initialrecharge": 5,
+						"charges": 1,
+						"addCharges": 0
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"updateCharges": true
+			}
+		},
+		{
+			"role": "luciand",
+			"translation": "Lucian",
+			"side": "village",
+			"hide": true,
+			"help": "The Purifier, you vow to purge the Shadow Isles of its evil after they took the soul of your wife, Senna. You can /purify one person during the night to both detox and safeguard them, while you cannot be poisoned yourself. Starting day 4, you can daykill once per game with /cull, but you will be revealed!",
+			"info": "Can purify (detox + safeguard) one person during the night. Cannot be poisoned. Starting day 4, can daykill (cull) one person once per game. User is revealed. Sided with Demacia.",
+			"actions": {
+				"voteshield": 9999,
+				"poison": {
+					"mode": "ignore"
+				},
+				"night": {
+					"purify": {
+						"command": ["detox", "safeguard"],
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 6,
+						"hide": true
+					}
+				},
+				"standby": {
+					"cull": {
+						"command": "kill",
+						"target": "AnyButSelf",
+						"msg": "You can unleash The Culling starting day 4 to daykill someone! You only have one shot though, and you will be revealed.",
+						"killmsg": "'Ashes and dust!' ~Self~, Lucian, pulls out his twin relic weapons and unleashes a barrage of light onto ~Target~, incinerating them!",
+						"initialrecharge": 5,
+						"charges": 1,
+						"addCharges": 0
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "lucian"
+					}
+				},
+				"updateCharges": true
+			}
+		},
+		{
+			"role": "lucians",
+			"translation": "Lucian",
+			"side": "village",
+			"hide": true,
+			"help": "The Purifier, you vow to purge the Shadow Isles of its evil after they took the soul of your wife, Senna. You can /purify one person during the night to both detox and safeguard them, while you cannot be poisoned yourself. Starting day 4, you can daykill once per game with /cull, but you will be revealed!",
+			"info": "Can purify (detox + safeguard) one person during the night. Cannot be poisoned. Starting day 4, can daykill (cull) one person once per game. User is revealed. Sided with Demacia.",
+			"actions": {
+				"poison": {
+					"mode": "ignore"
+				},
+				"night": {
+					"purify": {
+						"command": ["detox", "safeguard"],
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 6,
+						"hide": true
+					}
+				},
+				"standby": {
+					"cull": {
+						"command": "kill",
+						"target": "AnyButSelf",
+						"msg": "You can unleash The Culling starting day 4 to daykill someone! You only have one shot though, and you will be revealed.",
+						"killmsg": "'Ashes and dust!' ~Self~, Lucian, pulls out his twin relic weapons and unleashes a barrage of light onto ~Target~, incinerating them!",
+						"initialrecharge": 5,
+						"addCharges": 1
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"updateCharges": true
+			}
+		},
+		{
+			"role": "ashe",
+			"translation": "Ashe",
+			"side": "village",
+			"help": "The Frost Archer of the Frejlord, you've come to help Demacia in this battle. You can /hawk one person during the night to inspect them with your Hawkshot; starting day 4, you can /arrow someone to daykill them, but you only have one shot of this.",
+			"info": "Can hawk (inspect) one person during the night. Can arrow (kill) one person during the day (one charge). Sided with Demacia.",
+			"actions": {
+				"night": {
+					"hawk": {
+						"command": "inspect",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 30
+					}
+				},
+				"standby": {
+					"arrow": {
+						"target": "AnyButSelf",
+						"command": "kill",
+						"initialrecharge": 3,
+						"msg": "Starting day 4, you can shoot your Enchanted Crystal Arrow with /arrow! You won't be revealed!",
+						"killmsg": "Ashe readies her Enchanted Crystal Arrow and shoots it across the map, freezing ~Target~ in place as they are subsequently overrun by super minions.",
+						"charges": 1,
+						"addCharges": 0
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"updateCharges": true
+			}
+		},
+		{
+			"role": "ashed",
+			"translation": "Ashe",
+			"side": "village",
+			"hide": true,
+			"help": "The Frost Archer of the Frejlord, you've come to help Demacia in this battle. You can /hawk one person during the night to inspect them with your Hawkshot; starting day 4, you can /arrow someone to daykill them, but you only have one shot of this.",
+			"info": "Can hawk (inspect) one person during the night. Can arrow (kill) one person during the day (one charge). Sided with Demacia.",
+			"actions": {
+				"voteshield": 9999,
+				"night": {
+					"hawk": {
+						"command": "inspect",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 30,
+						"hide": true
+					}
+				},
+				"standby": {
+					"arrow": {
+						"target": "AnyButSelf",
+						"command": "kill",
+						"initialrecharge": 3,
+						"msg": "Starting day 4, you can shoot your Enchanted Crystal Arrow with /arrow! You won't be revealed!",
+						"killmsg": "Ashe readies her Enchanted Crystal Arrow and shoots it across the map, freezing ~Target~ in place as they are subsequently overrun by super minions.",
+						"addCharges": 0
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "ashe"
+					}
+				},
+				"updateCharges": true
+			}
+		},
+		{
+			"role": "ashes",
+			"translation": "Ashe",
+			"side": "village",
+			"hide": true,
+			"help": "The Frost Archer of the Frejlord, you've come to help Demacia in this battle. You can /hawk one person during the night to inspect them with your Hawkshot; starting day 4, you can /arrow someone to daykill them, but you only have one shot of this.",
+			"info": "Can hawk (inspect) one person during the night. Can arrow (kill) one person during the day (one charge). Sided with Demacia.",
+			"actions": {
+				"night": {
+					"hawk": {
+						"command": "inspect",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 30,
+						"hide": true
+					}
+				},
+				"standby": {
+					"arrow": {
+						"command": "kill",
+						"target": "AnyButSelf",
+						"initialrecharge": 3,
+						"msg": "Starting day 4, you can shoot your Enchanted Crystal Arrow with /arrow! You won't be revealed!",
+						"killmsg": "Ashe readies her Enchanted Crystal Arrow and shoots it across the map, freezing ~Target~ in place as they are subsequently overrun by super minions.",
+						"addCharges": 1
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"updateCharges": true
+			}
+		},
+		{
+			"role": "ez",
+			"translation": "Ezreal",
+			"side": "village",
+			"help": "The Prodigal Explorer, you journey across Runeterra finding various artifacts. Your prowess in exploration allows you to /inspect someone to reveal their side, and your quick reflexes make you evade one nightkill!",
+			"info": "Can inspect one person during the night (reveals side). Evades one nightkill. Sided with Demacia.",
+			"actions": {
+				"night": {
+					"inspect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 30,
+						"Sight": "Team"
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeCharges": 1
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "ezd",
+			"translation": "Ezreal",
+			"side": "village",
+			"hide": true,
+			"help": "The Prodigal Explorer, you journey across Runeterra finding various artifacts. Your prowess in exploration allows you to /inspect someone to reveal their side, and your quick reflexes make you evade one nightkill!",
+			"info": "Can inspect one person during the night (reveals side). Evades one nightkill. Sided with Demacia.",
+			"actions": {
+				"voteshield": 9999,
+				"night": {
+					"inspect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 30,
+						"hide": true,
+						"Sight": "Team"
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeCharges": 1
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "ez"
+					}
+				}
+			}
+		},
+		{
+			"role": "cait",
+			"translation": "Caitlyn",
+			"side": "village",
+			"help": "The Sheriff of Piltover, who stops criminals flat in their tracks. You can set a /trap for someone to see if they're the kind to fall for it (See Info for complete list); you can also /snare (distract) someone during the night with your 50 Caliber Net.",
+			"info": "Can set a /trap for one person during the night to attempt to identify them (Minions, Bandle City roles, Void creatures (besides Malzahar), Dr. Mundo, Valor, and Gnar will all be trapped). Can snare (distract) one person during the night. Sided with Demacia.",
+			"actions": {
+				"night": {
+					"snare": {
+						"command": "distract",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 6,
+						"distractmsg": "As you made your way into the jungle, a 90 Caliber Net flew at you. You spent the night untangling yourself."
+					},
+					"trap": {
+						"command": "dummy",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 30
+					}
+				}
+			}
+		},
+		{
+			"role": "caitd",
+			"translation": "Caitlyn",
+			"side": "village",
+			"hide": true,
+			"help": "The Sheriff of Piltover, who stops criminals flat in their tracks. You can set a /trap for someone to see if they're the kind to fall for it (See Info for complete list); you can also /snare (distract) someone during the night with your 50 Caliber Net.",
+			"info": "Can set a /trap for one person during the night to attempt to identify them (Minions, Bandle City roles, Void creatures (besides Malzahar), Dr. Mundo, Valor, and Gnar will all be trapped). Can snare (distract) one person during the night. Sided with Demacia.",
+			"actions": {
+				"voteshield": 9999,
+				"night": {
+					"snare": {
+						"command": "distract",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 4,
+						"distractmsg": "As you made your way into the jungle, a 90 Caliber Net flew at you. You spent the night untangling yourself.",
+						"hide": true
+					},
+					"trap": {
+						"command": "dummy",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 30,
+						"hide": true
+					}
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "cait"
+					}
+				}
+			}
+		},
+		{
+			"role": "irelia",
+			"translation": "Irelia",
+			"side": "village",
+			"help": "The Will of the Blades, you represent Ionia, the city-state focused on maintaining balance. As such, you can /surge one person during the night to add one charge to any action or ability of theirs that has an action. (Keep in mind that this  does nothing if the role has used up all their charges).",
+			"info": "Can surge (add charges to) one person during the night. Sided with Demacia.",
+			"actions": {
+				"night": {
+					"surge": {
+						"command": "convert",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 50,
+						"silentConvert": true,
+						"convertmsg": "'True will cannot be defeated.' A role has had a charge added to its action! (not you Draven, you greedy little mustachio).",
+						"usermsg": "You have successfully added a charge to the role's action!",
+						"newRole": {
+							"garens": ["garen"],
+							"valors": ["valor"],
+							"lucians": ["lucian"],
+							"ashes": ["ashe"]
+						}
+					}
+				}
+			}
+		},		
+		{
+			"role": "ireliad",
+			"translation": "Irelia",
+			"side": "village",
+			"hide": true,
+			"help": "The Will of the Blades, you represent Ionia, the city-state focused on maintaining balance. As such, you can /surge one person during the night to add one charge to any action or ability of theirs that has an action. (Keep in mind that this  does nothing if the role has used up all their charges).",
+			"info": "Can surge (add charges to) one person during the night. Sided with Demacia.",
+			"actions": {
+				"voteshield": 9999,
+				"night": {
+					"surge": {
+						"command": "convert",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 50,
+						"hide": true,
+						"silentConvert": true,
+						"convertmsg": "'True will cannot be defeated.' A role has had a charge added to its action! (not you Draven, you greedy little mustachio).",
+						"usermsg": "You have successfully added a charge to the role's action!",
+						"newRole": {
+							"garens": ["garen"],
+							"valors": ["valor"],
+							"lucians": ["lucian"],
+							"ashes": ["ashe"]
+						}
+					}
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "irelia"
+					}
+				}
+			}
+		},		
+		{
+			"role": "leesin",
+			"translation": "Lee Sin",
+			"side": "village",
+			"help": "An Ionian monk, you are blinded, but that's no impairment against a scummy opponent. Your skill is top-notch, so you have two charges each of /kick (kill), /protect, /safeguard, and /distract.",
+			"info": "Can kill, safeguard, protect, or distract twice per game. Sided with Demacia.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 19,
+						"charges": 2,
+						"limit": 1
+					},
+					"safeguard": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 8,
+						"charges": 2,
+						"limit": 1
+					},
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 7,
+						"charges": 2,
+						"limit": 1
+					},
+					"distract": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 6,
+						"charges": 2,
+						"limit": 1
+					}
+				},
+				"updateCharges": true
+			}
+		},
+		{
+			"role": "leesind",
+			"translation": "Lee Sin",
+			"side": "village",
+			"hide": true,
+			"help": "An Ionian monk, you are blinded, but that's no impairment against a scummy opponent. Your skill is top-notch, so you have two charges each of /kick (kill), /protect, /safeguard, and /distract.",
+			"info": "Can kill, safeguard, protect, or distract twice per game. Sided with Demacia.",
+			"actions": {
+				"voteshield": 9999,
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 21,
+						"hide": true,
+						"charges": 2,
+						"limit": 1
+					},
+					"safeguard": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 8,
+						"hide": true,
+						"charges": 2,
+						"limit": 1
+					},
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 7,
+						"hide": true,
+						"charges": 2,
+						"limit": 1
+					},
+					"distract": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 6,
+						"hide": true,
+						"charges": 2,
+						"limit": 1
+					}
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "leesin"
+					}
+				},
+				"updateCharges": true
+			}
+		},
+		{
+			"role": "kat",
+			"translation": "Katarina",
+			"side": "mafia1",
+			"help": "The Sinister Blade, you're one of Noxus' most skilled assassins. In addition to being able to /kill during the night, you can use /lotus three times per game (starting night 3) to poison an enemy. (You can only poison one person a night).",
+			"info": "Can kill one person during the night. Starting night 3, can lotus (poison) three times during the game, with one poison per night. Sided with Noxus.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 13	,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Katarina) has decided to kill ~Target~!"
+					},
+					"lotus": {
+						"command": "poison",
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": 10,
+						"restrict": ["lotus"],
+						"initialrecharge": 3,
+						"charges": 3,
+						"poisonmsg": "Next time, run.",
+						"broadcast": "team",
+						"broadcastmsg": "Katarina is unleashing the Death Lotus on ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "katd",
+			"translation": "Katarina",
+			"side": "mafia1",
+			"hide": true,
+			"help": "The Sinister Blade, you're one of Noxus' most skilled assassins. In addition to being able to /kill during the night, you can use /lotus three times per game (starting night 3) to poison an enemy. (You can only poison one person a night).",
+			"info": "Can kill one person during the night. Starting night 3, can lotus (poison) three times during the game, with one poison per night. Sided with Noxus.",
+			"actions": {
+				"voteshield": 9999,
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 13,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Katarina) has decided to kill ~Target~!"
+					},
+					"lotus": {
+						"command": "poison",
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": 10,
+						"hide": true,
+						"restrict": ["lotus"],
+						"initialrecharge": 3,
+						"charges": 3,
+						"poisonmsg": "Next time, run.",
+						"broadcast": "team",
+						"broadcastmsg": "Katarina is unleashing the Death Lotus on ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "kat"
+					}
+				}
+			}
+		},
+		{
+			"role": "swain",
+			"translation": "Swain",
+			"side": "mafia1",
+			"help": "The Grand Tactician of Noxus, your crippled stature does not prevent you from achieving victory after victory on the battlefield. You can /root one person during the night to stop them from using their actions. You can also /kill during the night (shared with team). When you are lynched, you will instead turn into your crow form, which is immune to nightkills.",
+			"info": "Can kill one person during the night. Can root (distract) one person during the night. Converts into crow form upon lynch. Sided with Noxus.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 13,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Swain) has decided to kill ~Target~!"
+					},
+					"root": {
+						"command": "distract",
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 6,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Swain) has decided to root ~Target~!",
+						"distractmsg": "A circle of purple energy ensnared you. Swain's Nevermove spell rooted you in place for the whole night!"
+					}
+				},
+                "lynch": {
+                    "convertTo": "swainult",
+                    "convertmsg": "'If you have not yet lost the ability to ask, you may not ask for relief.' Despite being lynched, Swain, ~Self~, merely used his ultimate to convert into his crow form!"
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "swaind",
+			"translation": "Swain",
+			"side": "mafia1",
+			"hide": true,
+			"help": "The Grand Tactician of Noxus, your crippled stature does not prevent you from achieving victory after victory on the battlefield. You can /root one person during the night to stop them from using their actions. You can also /kill during the night (shared with team). When you are lynched, you will instead turn into your crow form, which is immune to nightkills.",
+			"info": "Can kill one person during the night. Can root (distract) one person during the night. Converts into crow form upon lynch. Sided with Noxus.",
+			"actions": {
+				"voteshield": 9999,
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 13,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Swain) has decided to kill ~Target~!"
+					},
+					"root": {
+						"command": "distract",
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 4,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Swain) has decided to root ~Target~!",
+						"distractmsg": "A circle of purple energy ensnared you. Swain's Nevermove spell rooted you in place for the whole night!"
+					}
+				},
+                "lynch": {
+                    "convertTo": "swainult",
+                    "convertmsg": "'If you have not yet lost the ability to ask, you may not ask for relief.' Despite being lynched, Swain, ~Self~, merely used his ultimate to convert into his crow form!"
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "swain"
+					}
+				}
+			}
+		},
+		{
+			"role": "swainult",
+			"translation": "Swain",
+			"side": "mafia1",
+			"help": "You've now unlocked your final form. You can /kill during the night without fear of being killed back. Why does a giant demon bird need help on what to do? Think logically for one sec-CAW CAW CAW!",
+			"info": "Can kill once person during the night. Immune to nightkills. Sided with Noxus.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 13,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Swain) has decided to kill ~Target~!"
+					}
+				},
+				"kill": {
+					"mode": "ignore"
+				}
+			}
+		},
+		{
+			"role": "talon",
+			"translation": "Talon",
+			"side": "mafia1",
+			"help": "Live and die by the blade. As the Blade's Shadow, you can /kill during the night without being tracked down.",
+			"actions": {}
+		},
+		{
+			"role": "darius",
+			"translation": "Darius",
+			"side": "mafia1",
+			"help": "The Hand of Noxus and Draven's older brother, your resilience in battle allows you to /protect one person during the night in addition to sharing the nightly factional /kill. Your passive ability Hemmorage poisons anyone who kills you!",
+			"info": "Can kill one person during the night. Can protect one person during the night. Poisons nightkillers. Sided with Noxus.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 13,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Darius) has decided to kill ~Target~!"
+					},
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 7,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Darius) has decided to protect ~Target~!"
+					}
+				},
+				"kill": {
+					"mode": "poisonattacker"
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},			
+		{
+			"role": "dariusd",
+			"translation": "Darius",
+			"side": "mafia1",
+			"hide": true,
+			"help": "The Hand of Noxus and Draven's older brother, your resilience in battle allows you to /protect one person during the night in addition to sharing the nightly factional /kill. Your passive ability Hemmorage poisons anyone who kills you!",
+			"info": "Can kill one person during the night. Can protect one person during the night. Poisons nightkillers. Sided with Noxus.",
+			"actions": {	
+				"voteshield": 9999,
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 13,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Darius) has decided to kill ~Target~!"
+					},
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 5,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Darius) has decided to protect ~Target~!"
+					}
+				},
+				"kill": {
+					"mode": "poisonattacker"
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "darius"
+					}
+				}
+			}
+		},			
+		{
+			"role": "draven",
+			"translation": "Draven",
+			"side": "mafia1",
+			"help": "Welcome to the League of Draven! With your /execute command you can kill one person during the day without being revealed. Your fanbase protects you from being daykilled in return!",
+			"info": "Can execute one person during the day. Cannot be daykilled. Sided with Noxus.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"standby": {
+					"execute": {
+						"command": "kill",
+						"target": "AnyButTeam",
+						"msg": "You can now /execute someone! You will not be revealed.",
+						"killmsg": "Draven gives ~Target~ a chance to run as he readies his ax. As ~Target~ is about to escape, he throws his ax and fells them with one strike. An enemy has been slain!"
+					}
+				},
+				"daykill": "evade",
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "dravend",
+			"translation": "Draven",
+			"side": "mafia1",
+			"hide": true,
+			"help": "Welcome to the League of Draven! With your /execute command you can kill one person during the day without being revealed. Your fanbase protects you from being daykilled in return!",
+			"info": "Can execute one person during the day. Cannot be daykilled. Sided with Noxus.",
+			"actions": {
+				"voteshield": 9999,
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"standby": {
+					"execute": {
+						"command": "kill",
+						"target": "AnyButTeam",
+						"msg": "You can now /execute someone! You will not be revealed.",
+						"killmsg": "Draven gives ~Target~ a chance to run as he readies his ax. As ~Target~ is about to escape, he throws his ax and fells them with one strike. Welcome to the League of Draven!"
+					}
+				},
+				"daykill": "evade",
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "draven"
+					}
+				}
+			}
+		},
+		{
+			"role": "singed",
+			"translation": "Singed",
+			"side": "mafia2",
+			"help": "The Mad Chemist of Zaun, your experiments are highly dangerous to both friend and foe! You can /poison one person during the night with your chemicals (shared with team); starting night 4, you will drink your Insanity Potion and transform into a more potent version of yourself!",
+			"info": "Can poison one person during the night (shared with team). Automatically converts to a more potent form on night 4, with 3 votes and a one-shot nightkill immunity. Sided with Zaun.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"poison": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 20,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Singed) has decided to poison ~Target~!"
+					}
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 4,
+						"cursedRole": "singedi",
+						"curseConvertMessage": "Singed has drank the Insanity Potion and gained enhanced abilities!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "singedd",
+			"translation": "Singed",
+			"side": "mafia2",
+			"hide": true,
+			"help": "The Mad Chemist of Zaun, your experiments are highly dangerous to both friend and foe! You can /poison one person during the night with your chemicals (shared with team); starting night 4, you will drink your Insanity Potion and transform into a more potent version of yourself!",
+			"info": "Can poison one person during the night (shared with team). Automatically converts to a more potent form on night 4, with 3 votes and a one-shot nightkill immunity. Sided with Zaun.",
+			"actions": {
+				"voteshield": 9999,
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"poison": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 20,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Singed) has decided to poison ~Target~!"
+					}
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "singed"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "singedi",
+			"translation": "Singed",
+			"side": "mafia2",
+			"hide": "side",
+			"help": "You've taken the Insanity Potion and you now have a vote of 3 and a one-shot immunity to nightkills. You can still poison during the night!",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"vote": 3,
+				"night": {
+					"poison": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 20,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Singed) has decided to poison ~Target~!"
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeCharges": 1
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "mundo",
+			"translation": "Dr. Mundo",
+			"side": "mafia2",
+			"help": "Mundo! You love to perform live experimentation in order to produce the perfect science-enhanced killer. You can /cleave to poison one person during the night (shared with Singed). Starting night 3, you can choose to /sadism yourself; see /roles :mundo for more information.",
+			"info": "Can cleave (poison) one person during the night (shared with Singed). Can sadism on night 3: Sadism poisons Mundo for 3 days, but he can kill during the night without being distracted and gains a -99 voteshield. Sided with Zaun.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"cleave": {
+						"command": "poison",
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 20,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Dr. Mundo) has decided to poison ~Target~!"
+					},
+					"sadism": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"pierce": true,
+						"priority": 40,
+						"initialrecharge": 3,
+						"newRole": "mundos",
+						"convertmsg": "Dr. Mundo has used his Sadism, draining his health but giving him increased speed and killing prowess! He cannot be stopped!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				}
+			}
+		},
+		{
+			"role": "mundod",
+			"translation": "Dr. Mundo",
+			"side": "mafia2",
+			"hide": true,
+			"help": "Mundo! You love to perform live experimentation in order to produce the perfect science-enhanced killer. You can /cleave to poison one person during the night (shared with Singed). Starting night 3, you can choose to /sadism yourself; see /roles :mundo for more information.",
+			"info": "Can cleave (poison) one person during the night (shared with Singed). Can sadism on night 3: Sadism poisons Mundo for 3 days, but he can kill during the night without being distracted and gains a -99 voteshield. Sided with Zaun.",
+			"actions": {
+				"voteshield": 9999,
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"cleave": {
+						"command": "poison",
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 20,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Dr. Mundo) has decided to poison ~Target~!"
+					},
+					"sadism": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": 40,
+						"initialrecharge": 3,
+						"hide": true,
+						"pierce": true,
+						"newRole": "mundos",
+						"convertmsg": "Dr. Mundo has used his Sadism, draining his health but giving him increased speed and killing prowess! He cannot be stopped!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "mundo"
+					}
+				}
+			}
+		},
+		{
+			"role": "mundos",
+			"translation": "Dr. Mundo",
+			"side": "mafia2",
+			"help": "Mundo believe inflicting pain best way to experiment. You are now poisoned with 3 days to live but you can still /cleave during the night and now /kill without being distracted! You also have a voteshield of -99.",
+			"hide": "true",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"voteshield": -99,
+				"night": {
+					"cleave": {
+						"command": "poison",
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 20,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Dr. Mundo) has decided to poison ~Target~!"
+					},
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 16,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Dr. Mundo) has decided to poison ~Target~!"
+					}
+				},
+				"initialCondition": {
+                    "poison": {
+                        "count": 3
+                    }
+				},
+				"distract": {
+					"mode": "ignore"
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				}
+			}
+		},
+		{
+			"role": "warwick",
+			"translation": "Warwick",
+			"side": "mafia2",
+			"help": "The Blood Hunter, a man whose quest for strength turned him into a figure half-man and half-beast. You can /kill one person during the night; once during the game, you can /suppress one person, a kill with high priority to outspeed bodyguards and distractors.",
+			"info": "Can kill one person during the night. Can suppress one person once per game (kill which outspeeds distracts and protects). Sided with Zaun.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 16,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Warwick) has decided to kill ~Target~!"
+					},
+					"suppress": {
+						"command": "kill",
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": 3,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Warwick) has decided to suppress ~Target~!",
+						"charges": 1
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "warwickd",
+			"translation": "Warwick",
+			"side": "mafia2",
+			"hide": true,
+			"help": "The Blood Hunter, a man whose quest for strength turned him into a figure half-man and half-beast. You can /kill one person during the night; once during the game, you can /suppress one person, a kill with high priority to outspeed bodyguards and distractors.",
+			"info": "Can kill one person during the night. Can supress one person once per game (kill which outspeeds distracts and protects). Sided with Zaun.",
+			"actions": {
+				"voteshield": 9999,
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 16,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Warwick) has decided to kill ~Target~!"
+					},
+					"suppress": {
+						"command": "kill",
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": 1.5,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Warwick) has decided to suppress ~Target~!",
+						"charges": 1
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "warwick"
+					}
+				}
+			}
+		},
+		{
+			"role": "viktor",
+			"translation": "Viktor",
+			"side": "mafia2",
+			"help": "A techmaturgical scientist of Zaun, your Hex Core allows you to gain one of three abilities: /hex gives you a distract every night; /hex2 gives you 2 extra votes, and /hex3 gives you a protect. You can /kill normally with your team every night as well.",
+			"info": "Can kill one person during the night. Can use Hex Core to gain either: a distract, 2 extra votes, or a protect. Sided with Zaun.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"hex": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 40,
+						"pierce": true,
+						"silent": true,
+						"newRole": "viktorh"
+					},
+					"hex2": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 40,
+						"pierce": true,
+						"hide": true,
+						"silent": true,
+						"newRole": "viktorh2"
+					},
+					"hex3": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"pierce": true,
+						"priority": 40,
+						"hide": true,
+						"silent": true,
+						"newRole": "viktorh3"
+					},
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 16,
+						"broadcast": "team",
+						"broadcastmsg": "Your teammate (Viktor) has decided to kill ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "viktord",
+			"translation": "Viktor",
+			"side": "mafia2",
+			"hide": true,
+			"help": "A techmaturgical scientist of Zaun, your Hex Core allows you to gain one of three abilities: /hex gives you a distract every night; /hex2 gives you 2 extra votes, and /hex3 gives you a protect. You can /kill normally with your team every night as well.",
+			"info": "Can kill one person during the night. Can use Hex Core to gain either: a distract, 2 extra votes, or a protect. Sided with Zaun.",
+			"actions": {
+				"voteshield": 9999,
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"hex": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 40,
+						"pierce": true,
+						"hide": true,
+						"silent": true,
+						"newRole": "viktorh"
+					},
+					"hex2": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 40,
+						"pierce": true,
+						"hide": true,
+						"silent": true,
+						"newRole": "viktorh2"
+					},
+					"hex3": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 40,
+						"pierce": true,
+						"hide": true,
+						"silent": true,
+						"newRole": "viktorh3"
+					},
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 16,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your teammate (Viktor) has decided to kill ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "viktor"
+					}
+				}
+			}
+		},
+		{
+			"role": "viktorh",
+			"translation": "Viktor",
+			"side": "mafia3",
+			"hide": true,
+			"help": "You have gained a /distract once per night in addition to your nightly /kill.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 16,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your teammate (Viktor) has decided to kill ~Target~!"
+					},
+					"distract": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 6,
+						"broadcast": "team",
+						"broadcastmsg": "Your teammate (Viktor) has decided to distract ~Target!",
+						"distractmsg": "A field of gravity materialized under your feet, preventing you from raising your feet to move anywhere this night."
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "viktorh2",
+			"translation": "Viktor",
+			"side": "mafia3",
+			"hide": true,
+			"help": "You have gained 2 votes (so your vote is 3 in total) in addition to your nightly /kill.",
+			"actions": {
+				"vote": 3,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 16,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your teammate (Viktor) has decided to kill ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "viktorh3",
+			"translation": "Viktor",
+			"side": "mafia3",
+			"hide": true,
+			"help": "You have gained a /protect every night in addition to your nightly /kill.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 16,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your teammate (Viktor) has decided to kill ~Target~!"
+					},
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 7,
+						"broadcast": "team",
+						"broadcastmsg": "Your teammate (Viktor) has decided to kill ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "kogmaw",
+			"translation": "Kog'Maw",
+			"side": "mafia3",
+			"help": "The Mouth of the Abyss, you arrived in Runeterra and devoured literally everyone. You can /kill one person during the night - upon being lynched, you will activate your Icathian Surprise and gain a separate /surprise kill with highest priority before dying!",
+			"info": "Can kill one person during the night. Upon lynch, can surprise (separate kill) one person before dying. Sided with The Void.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 15,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Kog'Maw) has decided to kill ~Target~!"
+					}
+				},
+				"lynch": {
+					"convertTo": "kogmaw2",
+					"convertmsg": "Kog'Maw's (~Self~) HP dropped to 0! He has activated his Icathian Surprise, which will allow him to kill one more person before dying..."
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				}
+			}
+		},
+		{
+			"role": "kogmawd",
+			"translation": "Kog'Maw",
+			"side": "mafia3",
+			"hide": true,
+			"help": "The Mouth of the Abyss, you arrived in Runeterra and devoured literally everyone. You can /kill one person during the night - upon being lynched, you will activate your Icathian Surprise and gain a separate /surprise kill with highest priority before dying!",
+			"info": "Can kill one person during the night. Upon lynch, can surprise (separate kill) one person before dying. Sided with The Void.",
+			"actions": {
+				"voteshield": 9999,
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 15,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Kog'Maw) has decided to kill ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				},
+				"lynch": {
+					"convertTo": "kogmaw2",
+					"convertmsg": "Kog'Maw's (~Self~) HP dropped to 0! He has activated his Icathian Surprise, which will allow him to kill one more person before dying..."
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "kogmaw"
+					}
+				}
+			}
+		},
+		{
+			"role": "kogmaw2",
+			"translation": "Kog'Maw",
+			"side": "mafia3",
+			"hide": "true",
+			"help": "You've been lynched but you can still /kill one person regularly and can /surprise one person separately to kill them with high priority! Use it wisely!",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 15,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Kog'Maw) has decided to kill ~Target~!"
+					},
+					"surprise": {
+						"command": "kill",
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 2,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Kog'Maw) has decided to surprise ~Target~!"
+					}
+				},
+				"initialCondition": {
+					"poison": {
+						"count": -1
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				}
+			}
+		},
+		{
+			"role": "khazix",
+			"translation": "Kha'Zix",
+			"side": "mafia3",
+			"help": "The Voidreaver. You can /kill during the night with your team. Your ability to evolve to adapt to your prey allows you a choice after 3 turns: /claws gives you a kill that can't be distracted; /spikes gives you a /poison every two nights; /wings gives you a voteshield of -2. You can only choose to evolve one of these per game.",
+			"info": "Can kill one person during the night. Starting night 3, can choose to evolve /claws (avoid distracts), /spikes (poison every night), or /wings (-2 voteshield). Can only evolve one of these per game. Sided with The Void.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 15,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Kha'Zix) has decided to kill ~Target~!"
+					},
+					"claws": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": 40,
+						"pierce": true,
+						"newRole": "khazixc",
+						"silentConvert": true,
+						"restrict": ["spikes", "wings"]
+					},
+					"spikes": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": 40,
+						"pierce": true,
+						"newRole": "khazixs",
+						"silentConvert": true,
+						"restrict": ["claws", "wings"]
+					},
+					"wings": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": 40,
+						"pierce": true,
+						"newRole": "khazixw",
+						"silentConvert": true,
+						"restrict": ["claws", "spikes"]
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				}
+			}
+		},
+		{
+			"role": "khazixd",
+			"translation": "Kha'Zix",
+			"side": "mafia3",
+			"hide": true,
+			"help": "The Voidreaver. You can /kill during the night with your team. Your ability to evolve to adapt to your prey allows you a choice after 3 turns: /claws gives you a kill that can't be distracted; /spikes gives you a /poison every two nights; /wings gives you a voteshield of -2. You can only choose to evolve one of these per game.",
+			"info": "Can kill one person during the night. Starting night 3, can choose to evolve /claws (avoid distracts), /spikes (poison every night), or /wings (-2 voteshield). Can only evolve one of these per game. Sided with The Void.",
+			"actions": {
+				"voteshield": 9999,
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 15,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Kha'Zix) has decided to kill ~Target~!"
+					},
+					"claws": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": 40,
+						"pierce": true,
+						"hide": true,
+						"newRole": "khazixc",
+						"silentConvert": true,
+						"restrict": ["spikes", "wings"]
+					},
+					"spikes": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": 40,
+						"pierce": true,
+						"hide": true,
+						"newRole": "khazixs",
+						"silentConvert": true,
+						"restrict": ["claws", "wings"]
+					},
+					"wings": {
+						"command": "convert",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": 40,
+						"pierce": true,
+						"hide": true,
+						"newRole": "khazixw",
+						"silentConvert": true,
+						"restrict": ["claws", "spikes"]
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "khazix"
+					}
+				}
+			}
+		},
+		{
+			"role": "khazixc",
+			"translation": "Kha'Zix",
+			"side": "mafia3",
+			"help": "You have evolved your claws and now you cannot be distracted when you /kill during the night!",
+			"hide": true,
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 15,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Kha'Zix) has decided to kill ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				},
+				"distract": {
+					"mode": "ignore",
+					"msg": "Someone attempted to invade you while you were jungling, but you kept farming and really didn't care."
+				}
+			}
+		},
+		{
+			"role": "khazixs",
+			"translation": "Kha'Zix",
+			"side": "mafia3",
+			"help": "You have evolved your spikes and you can now /poison every night in addition to your nightly /kill!",
+			"hide": true,
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 15,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Kha'Zix) has decided to kill ~Target~!"
+					},
+					"poison": {
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": 20,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Kha'Zix) has decided to poison ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				}
+			}
+		},
+		{
+			"role": "khazixw",
+			"translation": "Kha'Zix",
+			"side": "mafia3",
+			"help": "You have evolved your wings and now you have a -2 voteshield in addition to your nightly kill!",
+			"hide": true,
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"voteshield": -2,
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 15,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Kha'Zix) has decided to kill ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				}
+			}
+		},
+		{
+			"role": "chogath",
+			"translation": "Cho'Gath",
+			"side": "mafia3",
+			"help": "The Terror of the Void. Consuming your enemies only makes you stronger. You have a separate /feast kill from your team every other night. Based on the side of the role you kill with /feast, you will gain a different power: Demacia = -2 voteshield; Noxus = /feast becomes every night; Zaun = /poison every night; Bandle City = 50% nightkill evasion.",
+			"info": "Can feast (kill) one person every other night. Killing a unit with Feast gives abilities based on the side killed. Demacia = -2 voteshield; Noxus = /feast becomes every night; Zaun = /poison every night; Bandle City = 50% nightkill evasion. Sided with the Void.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"feast": {
+						"command": "kill",
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": 15,
+						"recharge": 2,
+						"canCopy": [
+							"villager",
+							"lux",
+							"garen",
+							"jarvan",
+							"xinzhao",
+							"vayne",
+							"sona",
+							"shyvana",
+							"fiora",
+							"fiorar",
+							"fiorav",
+							"lucian",
+							"kat",
+							"swain",
+							"darius",
+							"draven",
+							"singed",
+							"singedi",
+							"mundo",
+							"mundos",
+							"warwick",
+							"teemo",
+							"lulu",
+							"ziggs"
+						],
+						"copyAs": "variable:feast copy",
+						"silentCopy": true,
+						"silent": true,
+						"command": [
+							"copy",
+							"kill"
+						]
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				}
+			}
+		},
+		{
+			"role": "chogathdd",
+			"translation": "Cho'Gath",
+			"side": "mafia3",
+			"hide": true,
+			"help": "The Terror of the Void. Consuming your enemies only makes you stronger. You have a separate /feast kill from your team every other night. Based on the side of the role you kill with /feast, you will gain a different power: Demacia = -2 voteshield; Noxus = /feast becomes every night; Zaun = /poison every night; Bandle City = 50% nightkill evasion.",
+			"info": "Can feast (kill) one person every other night. Killing a unit with Feast gives abilities based on the side killed. Demacia = -2 voteshield; Noxus = /feast becomes every night; Zaun = /poison every night; Bandle City = 50% nightkill evasion. Sided with the Void.",
+			"actions": {
+				"voteshield": 9999,
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"feast": {
+						"command": "kill",
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": 15,
+						"hide": true,
+						"recharge": 2,
+						"canCopy": [
+							"villager",
+							"lux",
+							"garen",
+							"jarvan",
+							"xinzhao",
+							"vayne",
+							"sona",
+							"shyvana",
+							"fiora",
+							"fiorar",
+							"fiorav",
+							"lucian",
+							"kat",
+							"swain",
+							"darius",
+							"draven",
+							"singed",
+							"singedi",
+							"mundo",
+							"mundos",
+							"warwick",
+							"teemo",
+							"lulu",
+							"ziggs"
+						],
+						"copyAs": "variable:feast copy",
+						"silentCopy": true,
+						"silent": true,
+						"command": [
+							"copy",
+							"kill"
+						]
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "chogath"
+					}
+				}
+			}
+		},
+		{
+			"role": "chogathd",
+			"translation": "Cho'Gath",
+			"side": "mafia3",
+			"hide": true,
+			"help": "",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"voteshield": -2,
+				"night": {
+					"feast": {
+						"command": "kill",
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": 15,
+						"hide": true,
+						"recharge": 2,
+						"broadcast": "team",
+						"broadcastmsg": "NOM NOM NOM! Cho'Gath has decided to feast on ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				}
+			}
+		},
+		{
+			"role": "chogathn",
+			"translation": "Cho'Gath",
+			"side": "mafia3",
+			"hide": true,
+			"help": "",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"feast": {
+						"command": "kill",
+						"common": "Self",
+						"hide": true,
+						"target": "AnyButTeam",
+						"priority": 15,
+						"broadcast": "team",
+						"broadcastmsg": "NOM NOM NOM! Cho'Gath has decided to feast on ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				}
+			}
+		},
+		{
+			"role": "chogathz",
+			"translation": "Cho'Gath",
+			"side": "mafia3",
+			"hide": true,
+			"help": "",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"feast": {
+						"command": "kill",
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": 15,
+						"hide": true,
+						"recharge": 2,
+						"broadcast": "team",
+						"broadcastmsg": "NOM NOM NOM! Cho'Gath has decided to feast on ~Target~!"
+					},
+					"poison": {
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": 20,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Cho'Gath) has decided to poison ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				}
+			}
+		},
+		{
+			"role": "chogathb",
+			"translation": "Cho'Gath",
+			"side": "mafia3",
+			"hide": true,
+			"help": "",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"feast": {
+						"command": "kill",
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": 15,
+						"hide": true,
+						"recharge": 2,
+						"broadcast": "team",
+						"broadcastmsg": "NOM NOM NOM! Cho'Gath has decided to feast on ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.5
+					}
+				}
+			}
+		},
+		{
+			"role": "malzahar",
+			"translation": "Malzahar",
+			"side": "mafia3",
+			"help": "As the Prophet of the Void, you herald the coming of its creatures to Runeterra. Because your fellow Void champions have accompanied you, your vote is 3. You can /kill every night and starting night 3, /grasp someone once per game to both distract and poison them (this poison kills them on the same night).",
+			"info": "Vote of 3. Can kill one person during the night. Starting night 3, can grasp (0 turn poison + distract) one person during the night, once per game. Sided with The Void.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"vote": 3,
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 15,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Malzahar) has decided to kill ~Target~!"
+					},
+					"grasp": {
+						"command": ["poison", "distract"],
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": 4,
+						"count": -1,
+						"initialrecharge": 3,
+						"charges": 1,
+						"broadcast": "team",
+						"broadcastmsg": "Malzahar has decided to use his Nether Grasp on ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "malzahard",
+			"translation": "Malzahar",
+			"side": "mafia3",
+			"hide": true,
+			"help": "As the Prophet of the Void, you herald the coming of its creatures to Runeterra. Because your fellow Void champions have accompanied you, your vote is 3. You can /kill every night and starting night 3, /grasp someone once per game to both distract and poison them (this poison kills them on the same night).",
+			"info": "Vote of 3. Can kill one person during the night. Starting night 3, can grasp (0 turn poison + distract) one person during the night, once per game. Sided with The Void.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"voteshield": 9999,
+				"night": {
+					"kill": {
+						"common": "Team",
+						"target": "AnyButTeam",
+						"priority": 15,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Malzahar) has decided to kill ~Target~!"
+					},
+					"grasp": {
+						"command": ["poison", "distract"],
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": 2,
+						"hide": true,
+						"count": -1,
+						"initialrecharge": 3,
+						"charges": 1,
+						"broadcast": "team",
+						"broadcastmsg": "Malzahar has decided to use his Nether Grasp on ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "malzahar"
+					}
+				}
+			}
+		},
+		{
+			"role": "teemo",
+			"translation": "Teemo",
+			"side": "mafia4",
+			"help": "Size doesn't mean everything. When it comes to you, you can be one of the most infuriating champions to play against. You can /run every night to evade nightkills, OR you can /blind someone to poison and distract them at the same time (poison takes 2 nights rather than 1). Because of your stealth, you have a -3 voteshield and inspect as a Minion. Lastly, you will escape one lynch.",
+			"info": "Can run (target self) to evade nightkills, OR blind (poison + distract) one person during the night. Poison takes two nights to kill. Voteshield of -3. Inspects as Minion. Survives one lynch. Sided with Bandle City.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"voteshield": -3,
+				"night": {
+					"run": {
+						"command": "protect",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": 8,
+						"restrict": ["blind"]
+					},
+					"blind": {
+						"command": ["poison", "distract"],
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": 6,
+						"count": 2,
+						"restrict": ["run"],
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Teemo) has decided to blind ~Target~!",
+						"distractmsg": "Teemo materialized out of nowhere and shot you with one of his poisonous blowdarts. You were unable to retaliate as the poison slowly drains your body of energy."
+					}
+				},
+				"inspect": {
+					"revealAs": "villager"
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				},
+				"lynch": {
+					"convertTo": "teemol",
+					"convertmsg": "You lynched Teemo! Except he managed to run away and you couldn't finish him off because you walked into all of his shrooms."
+				}
+			}
+		},
+		{
+			"role": "teemo2",
+			"translation": "Teemo",
+			"side": "mafia4",
+			"hide": true,
+			"help": "",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"voteshield": -3,
+				"vote": 3,
+				"night": {
+					"run": {
+						"command": "protect",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": 8,
+						"hide": true,
+						"restrict": ["blind"]
+					},
+					"blind": {
+						"command": ["poison", "distract"],
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": 6,
+						"count": 2,
+						"hide": true,
+						"restrict": ["run"],
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Teemo) has decided to blind ~Target~!",
+						"distractmsg": "Teemo materialized out of nowhere and shot you with one of his poisonous blowdarts. You were unable to retaliate as the poison slowly drains your body of energy."
+					}
+				},
+				"inspect": {
+					"revealAs": "villager"
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				}
+			}
+		},
+		{
+			"role": "teemol",
+			"translation": "Teemo",
+			"side": "mafia4",
+			"hide": true,
+			"help": "You survived one lynch, but you won't escape the next! You still retain all your old abilities but you'll have no more protection from votes this time around.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"run": {
+						"command": "protect",
+						"common": "Self",
+						"target": "OnlySelf",
+						"priority": 8,
+						"hide": true,
+						"restrict": ["blind"]
+					},
+					"blind": {
+						"command": ["poison", "distract"],
+						"common": "Self",
+						"target": "AnyButTeam",
+						"priority": 6,
+						"hide": true,
+						"restrict": ["run"],
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Teemo) has decided to blind ~Target~!",
+						"distractmsg": "Teemo materialized out of nowhere and shot you with one of his poisonous blowdarts. You were unable to retaliate as the poison slowly drains your body of energy."
+					}
+				},
+				"inspect": {
+					"revealAs": "villager"
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				}
+			}
+		},
+		{
+			"role": "lulu",
+			"translation": "Lulu",
+			"side": "mafia4",
+			"help": "The Fae Sorceress, your fairy companion Pix always accompanies you, giving you 2 votes instead of 1. You can use /whimsy on a person twice per game to transform them into a squirel which has no actions and cannot vote; you can also /enlarge an ally to grant them 2 extra votes.",
+			"info": "Has 2 votes. Can whimsy twice a game to transform someone into a squirrel (no votes or actions). Can enlarge an ally to give them 2 extra votes (does not stack). Sided with Bandle City.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"vote": 2,
+				"night": {
+					"whimsy": {
+						"command": "convert",
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 60,
+						"broadcast": "team",
+						"broadcastmsg": "Delightify! Lulu has chosen to turn ~Target~ into a squirrel!",
+						"newRole": "squirrel",
+						"charges": 2
+					},
+					"enlarge": {
+						"command": "convert",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 60,
+						"newRole": {
+							"teemo2": ["teemo"],
+							"ziggs2": ["ziggs"]
+						},
+						"broadcast": "team",
+						"broadcastmsg": "Zip-zip! Lulu has chosen to enlarge ~Target~!",
+						"silentConvert": true,
+						"silent": true
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				}
+			}
+		},
+		{
+		"role": "lulud",
+		"translation": "Lulu",
+		"side": "mafia4",
+		"hide": true,
+		"help": "The Fae Sorceress, your fairy companion Pix always accompanies you, giving you 2 votes instead of 1. You can use /whimsy on a person twice per game to transform them into a squirel which has no actions and cannot vote; you can also /enlarge an ally to grant them 2 extra votes.",
+		"info": "Has 2 votes. Can whimsy twice a game to transform someone into a squirrel (no votes or actions). Can enlarge an ally to give them 2 extra votes (does not stack). Sided with Bandle City.",
+		"actions": {
+			"startup": "team-reveal-with-roles",
+			"teamTalk": true,
+			"preventTeamvote": true,
+			"voteshield": 9999,
+				"night": {
+					"whimsy": {
+						"command": "convert",
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 60,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Delightify! Lulu has chosen to turn ~Target~ into a squirrel!",
+						"newRole": "squirrel",
+						"charges": 2
+					},
+					"enlarge": {
+						"command": "convert",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 60,
+						"hide": true,
+						"newRole": {
+							"teemo2": ["teemo"],
+							"ziggs2": ["ziggs"]
+						},
+						"broadcast": "team",
+						"broadcastmsg": "Zip-zip! Lulu has chosen to enlarge ~Target~!",
+						"silentConvert": true,
+						"silent": true
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "lulu"
+					}
+				}
+			}
+		},
+		{
+			"role": "ziggs",
+			"translation": "Ziggs",
+			"side": "mafia4",
+			"help": "The Hexplosives Expert, you have a real knack for destruction. You can /kill one person during the night and bomb nightkillers back! On night 3, you can start using your Mega Inferno Bomb every other night to /bomb someone for a separate nightkill which passes through protection.",
+			"info": "Can kill one person during the night. Bombs nightkills. Starting night 3, can bomb someone every other night for an additional nightkill which pierces protects. Sided with Bandle City.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 14,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Ziggs) has chosen to kill ~Target~!"
+					},
+					"bomb": {
+						"command": "kill",
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 14,
+						"initialrecharge": 3,
+						"recharge": 2,
+						"broadcast": "team",
+						"broadcastmsg": "INCOMING! Ziggs is unleashing the Mega Inferno Bomb on ~Target~!"
+					}
+				},
+				"kill": {
+					"mode": "killattacker",
+					"msg": "You tried to take down Ziggs, but in doing so you triggered all the explosives he had with him so you both blew up!"
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				}
+			}
+		},
+		{
+			"role": "ziggsd",
+			"translation": "Ziggs",
+			"side": "mafia4",
+			"hide": true,
+			"help": "The Hexplosives Expert, you have a real knack for destruction. You can /kill one person during the night and bomb nightkillers back! On night 3, you can start using your Mega Inferno Bomb every other night to /bomb someone for a separate nightkill which passes through protection.",
+			"info": "Can kill one person during the night. Bombs nightkills. Starting night 3, can bomb someone every other night for an additional nightkill which pierces protects. Sided with Bandle City.",
+			"actions": {
+				"voteshield": 9999,
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 14,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Ziggs) has chosen to kill ~Target~!"
+					},
+					"bomb": {
+						"command": "kill",
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 14,
+						"hide": true,
+						"initialrecharge": 3,
+						"recharge": 2,
+						"broadcast": "team",
+						"broadcastmsg": "INCOMING! Ziggs is unleashing the Mega Inferno Bomb on ~Target~!"
+					}
+				},
+				"kill": {
+					"mode": "killattacker",
+					"msg": "You tried to take down Ziggs, but in doing so you triggered all the explosives he had with him so you both blew up!"
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "ziggs"
+					}
+				}
+			}
+		},
+		{
+			"role": "ziggs2",
+			"translation": "Ziggs",
+			"side": "mafia4",
+			"hide": true,
+			"help": "",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"vote": 3,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 11,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Ziggs) has chosen to kill ~Target~!"
+					},
+					"bomb": {
+						"command": "kill",
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 11,
+						"hide": true,
+						"initialrecharge": 3,
+						"recharge": 2,
+						"broadcast": "team",
+						"broadcastmsg": "INCOMING! Ziggs is unleashing the Mega Inferno Bomb on ~Target~!"
+					}
+				},
+				"kill": {
+					"mode": "killattacker",
+					"msg": "You tried to take down Ziggs, but in doing so you triggered all the explosives he had with him so you both blew up!"
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Hey Cait, you trapped someone! Nice shot, cupcake!"
+				}
+			}
+		},
+		{
+			"role": "squirrel",
+			"translation": "Squirrel",
+			"side": "village",
+			"hide": true,
+			"help": "You are a squirrel. You will convert back the next day, but for now you can't do anything, and your vote is 0!",
+			"actions": {
+				"vote": 0
+			}
+		},
+		{
+			"role": "nocturne",
+			"translation": "Nocturne",
+			"side": "mafia5",
+			"help": "The Eternal Nightmare. During the day, you can /kill someone without being revealed thanks to your Paranoia skill. You can also /kill one person during the night, and because people are so afraid of you, you will be inspected as a Minion; you can't be distracted or stalked!",
+			"info": "Can kill during the day without being revealed. Can kill one person during the night. Inspects as Minion. Cannot be distracted. Cannot be stalked. Sided with Shadow Isles.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 18
+					}
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"msg": "You can kill someone with /kill! You won't be revealed.",
+						"killmsg": "'All alone...' You hear Nocturne's voice somewhere, but can't see him. Even though it's bright outside, the world suddenly fades to black. When the light comes back, all you see is ~Target~ lying in a pool of their own blood. Nocturne then laughs. Maybe you're next?"
+					}
+				},
+				"inspect": {
+					"revealAs": "villager"
+				},
+				"distract": {
+					"mode": "ignore"
+				},
+				"stalk": {
+					"mode": "ignore"
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},		
+		{
+			"role": "nocturned",
+			"translation": "Nocturne",
+			"side": "mafia5",
+			"hide": true,
+			"help": "The Eternal Nightmare. During the day, you can /kill someone without being revealed thanks to your Paranoia skill. You can also /kill one person during the night, and because people are so afraid of you, you will be inspected as a Minion; you can't be distracted or stalked!",
+			"info": "Can kill during the day without being revealed. Can kill one person during the night. Inspects as Minion. Cannot be distracted. Cannot be stalked. Sided with Shadow Isles.",
+			"actions": {	
+				"voteshield": 9999,
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 17,
+						"hide": true
+					}
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"msg": "You can kill someone with /kill! You won't be revealed.",
+						"killmsg": "'All alone...' You hear Nocturne's voice somewhere, but can't see him. Even though it's bright outside, the world suddenly fades to black. When the light comes back, all you see is ~Target~ lying in a pool of their own blood. Nocturne then laughs. Maybe you're next?"
+					}
+				},
+				"inspect": {
+					"revealAs": "villager"
+				},
+				"distract": {
+					"mode": "ignore"
+				},
+				"stalk": {
+					"mode": "ignore"
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "nocturne"
+					}
+				}
+			}
+		},
+		{
+			"role": "mordekaiser",
+			"translation": "Mordekaiser",
+			"side": "mafia5",
+			"help": "The Master of Metal, you lead an army of the undead with such force that the foes you cut down are bound to follow you anyways. With /curse you can turn someone into a Ghost to join your team, then die in 2 nights. Ghosts can shield actions directed towards you.",
+			"info": "Can convert one person into a Ghost; this also poisons them, killing them in 2 nights. Sided with Shadow Isles.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"curse": {
+						"command": ["convert", "poison"],
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 35,
+						"newRole": "ghost",
+						"broadcast": "team",
+						"broadcastmsg": "Your teammate (Mordekaiser) has decided to curse ~Target~!"
+					}
+				}
+			}
+		},
+		{
+			"role": "ghost",
+			"translation": "Ghost",
+			"side": "mafia5",
+			"help": "You've been captured by Mordekaiser and your soul is his for the short time you're alive. All you can do is /shield for your team.",
+			"info": "Can shield one person during the night. Sided with Shadow Isles.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"shield": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 7	,
+						"broadcast": "team",
+						"broadcastmsg": "Your teammate (Ghost) has decided to shield ~Target~!"
+					}
+				}
+			}
+		},
+		{
+			"role": "mordekaiserd",
+			"translation": "Mordekaiser",
+			"side": "mafia5",
+			"help": "The Master of Metal, you lead an army of the undead with such force that the foes you cut down are bound to follow you anyways. With /curse you can turn someone into a Ghost to join your team, then die in 2 nights. Ghosts can shield actions directed towards you.",
+			"info": "Can convert one person into a Ghost; this also poisons them, killing them in 2 nights. Sided with Shadow Isles.",
+			"actions": {
+				"voteshield": 9999,
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"curse": {
+						"command": ["convert", "poison"],
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 35,
+						"hide": true,
+						"newRole": "ghost",
+						"broadcast": "team",
+						"broadcastmsg": "Your teammate (Mordekaiser) has decided to curse ~Target~!"
+					}
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "nocturne"
+					}
+				}
+			}
+		},
+		{
+			"role": "thresh",
+			"translation": "Thresh",
+			"side": "mafia5",
+			"help": "The Chain Warden of the Shadow Isles, you support your team with hooks and your life-saving lantern, which you can use to /protect one person during the night. You can also /flay one person during the night to distract them.",
+			"info": "Can protect one person during the night. Can flay (distract) one person during the night. Sided with Shadow Isles.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"protect": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": 7,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Thresh) has decided to protect ~Target~!"
+					},
+					"flay": {
+						"command": "distract",
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 6,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Thresh) has decided to distract ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "threshd",
+			"translation": "Thresh",
+			"side": "mafia5",
+			"hide": true,
+			"help": "The Chain Warden of the Shadow Isles, you support your team with hooks and your life-saving lantern, which you can use to /protect one person during the night. You can also /flay one person during the night to distract them.",
+			"info": "Can protect one person during the night. Can flay (distract) one person during the night. Sided with Shadow Isles.",
+			"actions": {
+				"voteshield": 9999,
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"protect": {
+						"common": "Self",
+						"target": "AnyButSelf",
+						"priority": 7,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Thresh) has decided to protect ~Target~!"
+					},
+					"flay": {
+						"command": "distract",
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 6,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "Your partner (Thresh) has decided to distract ~Target~!"
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "karthus",
+			"translation": "Karthus",
+			"side": "undeath",
+			"help": "",
+			"info": "Every 4 nights, can requiem (kill) 5 people every night. Sided with Undeath.",
+			"actions": {}
+		},
+		{
+			"role": "jax",
+			"translation": "Jax",
+			"side": "lamp",
+			"help": "A mysterious champion that appeared in the League of Legends without much of a trial. With your Counter Strike, you can either /counter to evade nightkills or /kill normally during the night. You can evade daykills twice per game. On night 5, you will gain a -999 voteshield as you realize your full potential. Lastly, you inspect as a Minion!",
+			"info": "Can /counter to counter nightkills OR can kill one person during the night. Inspects as Minion. Converts on night 5 to a form with -999 voteshield. Sided with Jax.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 12,
+						"restrict": ["counter"]
+					},
+					"counter": {
+						"command": "protect",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 1,
+						"restrict": ["kill"]
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"daykill": {
+					"mode": {
+						"evadeCharges": 2
+					}
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 5,
+						"cursedRole": "jaxu"
+					}
+				}
+			}		
+		},
+		{
+			"role": "jaxd",
+			"translation": "Jax",
+			"side": "lamp",
+			"hide": true,
+			"help": "A mysterious champion that appeared in the League of Legends without much of a trial. With your Counter Strike, you can either /counter to evade nightkills or /kill normally during the night. You can evade daykills twice per game. On night 5, you will gain a -999 voteshield as you realize your full potential. Lastly, you inspect as a Minion!",
+			"info": "Can /counter to counter nightkills OR can kill one person during the night. Inspects as Minion. Converts on night 5 to a form with -999 voteshield. Sided with Jax.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 12,
+						"hide": true,
+						"restrict": ["counter"]
+					},
+					"counter": {
+						"command": "protect",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 0.5,
+						"hide": true,
+						"restrict": ["kill"]
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				},
+				"daykill": {
+					"mode": {
+						"evadeCharges": 2
+					}
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "jax"
+					}
+				}
+			}		
+		},
+		{
+			"role": "jaxu",
+			"translation": "Jax",
+			"side": "lamp",
+			"help": "You now have a -999 voteshield and can still choose between /kill or /counter; you also still inspect as a Minion. You should be able to steamroll late game, so go for it!",
+			"info": "Voteshield of -999 when converted. Can kill one person during the night OR counter (protect) himself from all nightkills. Inspects as Minion. Sided with Jax.",
+			"actions": {
+				"voteshield": -999,
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 9,
+						"hide": true,
+						"restrict": ["counter"]
+					},
+					"counter": {
+						"command": "protect",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 0.5,
+						"hide": true,
+						"restrict": ["kill"]
+					}
+				},
+				"dummy": {
+					"mode": "ignore",
+					"msg": "±Vi: Come on Cait, was that supposed to be a trap?"
+				}
+			}
+		},
+		{
+			"role": "yasuo",
+			"translation": "Yasuo",
+			"side": "wanderer",
+			"help": "The Unforgiven, you left Ionia after being falsely accused of murdering the elder you were charged to protect. You can /tempest one person during the night - if you land it successfully, you will convert into a form that can /kill twice per night the next day. Keep landing /tempest to continue killing! Your Wind Wall also protects you from nightkills 70% of the time.",
+			"info": "Can tempest one person during the night (Tempest is a Copy command.) If landed succesfully, Yasuo can kill twice during the next night (Tempest is still active). Evades 70% of nightkills. Sided with Wanderer.",
+			"actions": {
+				"night": {
+					"tempest": {
+						"command": "copy",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 80,
+						"canCopy": [
+							"villager",
+							"lux",
+							"jarvan",
+							"quinn",
+							"valor",
+							"valors",
+							"sona",
+							"vayne",
+							"shyvana",
+							"dragonshyvana",
+							"fiora",
+							"ashe",
+							"ashes",
+							"cait",
+							"ez",
+							"irelia",
+							"kat",
+							"swain",
+							"swainult",
+							"darius",
+							"draven",
+							"singed",
+							"singedi",
+							"mundo",
+							"mundos",
+							"warwick",
+							"viktor",
+							"viktorh",
+							"viktorh2",
+							"viktorh3",
+							"kogmaw",
+							"khazix",
+							"khazixc",
+							"khazixs",
+							"khazixw",
+							"chogath",
+							"chogathd",
+							"chogathn",
+							"chogathz",
+							"chogathb",
+							"malzahar",
+							"lulu",
+							"ziggs",
+							"ziggs2",
+							"nocturne",
+							"mordekaiser",
+							"thresh",
+							"jax"
+						],
+						"copyAs": "yasuolb",
+						"silent": true
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.7
+					}
+				}
+			}
+		},
+		{
+			"role": "yasuod",
+			"translation": "Yasuo",
+			"side": "wanderer",
+			"hide": true,
+			"help": "The Unforgiven, you left Ionia after being falsely accused of murdering the elder you were charged to protect. You can /tempest one person during the night - if you land it successfully, you will convert into a form that can /kill twice per night the next day. Keep landing /tempest to continue killing! Your Wind Wall also protects you from nightkills 70% of the time.",
+			"info": "Can tempest one person during the night (Tempest is a Copy command.) If landed succesfully, Yasuo can kill twice during the next night (Tempest is still active). Evades 70% of nightkills. Sided with Wanderer.",
+			"actions": {	
+				"voteshield": 9999,
+				"night": {
+					"tempest": {
+						"command": "copy",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 80,
+						"hide": true,
+						"canCopy": [
+							"villager",
+							"villagerd",
+							"lux",
+							"luxd",
+							"jarvan",
+							"jarvand",
+							"quinn",
+							"quinnd",
+							"valor",
+							"valord",
+							"valors",
+							"sona",
+							"sonad",
+							"vayne",
+							"vayned",
+							"shyvana",
+							"shyvanad",
+							"dragonshyvana",
+							"fiora",
+							"fiorav",
+							"fiorar",
+							"ashe",
+							"ashed",
+							"ashes",
+							"cait",
+							"caitd",
+							"ez",
+							"ezd",
+							"irelia",
+							"ireliad",
+							"leesin",
+							"leesind",
+							"kat",
+							"katd",
+							"swain",
+							"swaind",
+							"swainult",
+							"darius",
+							"dariusd",
+							"draven",
+							"dravend",
+							"singed",
+							"singedi",
+							"singedd",
+							"mundo",
+							"mundod",
+							"mundos",
+							"warwick",
+							"warwickd",
+							"viktor",
+							"viktord",
+							"viktorh",
+							"viktorh2",
+							"viktorh3",
+							"kogmaw",
+							"kogmawd",
+							"khazix",
+							"khazixd",
+							"khazixc",
+							"khazixs",
+							"khazixw",
+							"chogath",
+							"chogathd",
+							"chogathn",
+							"chogathz",
+							"chogathb",
+							"malzahar",
+							"malzahard",
+							"lulu",
+							"lulud",
+							"ziggs",
+							"ziggs2",
+							"ziggsd",
+							"nocturne",
+							"nocturned",
+							"mordekaiser",
+							"mordekaiserd",
+							"thresh",
+							"threshd",
+							"jax",
+							"jaxd"
+						],
+						"copyAs": "yasuolb",
+						"silent": true
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.7
+					}
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "yasuo"
+					}
+				}
+			}
+		},
+		{		
+			"role": "yasuolb",
+			"translation": "Yasuo",
+			"side": "wanderer",
+			"hide": true,
+			"help": "You've landed Steel Tempest. You can now /kill twice a night, but if you don't land /tempest again you'll be unable to kill! Your Wind Wall still protects you 70% of the time though.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 11,
+						"limit": 2,
+						"killmsg": "Sorye ge ton!"
+					},
+					"tempest": {
+						"command": "copy",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 80,
+						"hide": true,
+						"canCopy": [
+							"villager",
+							"villagerd",
+							"lux",
+							"luxd",
+							"jarvan",
+							"jarvand",
+							"quinn",
+							"quinnd",
+							"valor",
+							"valord",
+							"valors",
+							"sona",
+							"sonad",
+							"vayne",
+							"vayned",
+							"shyvana",
+							"shyvanad",
+							"dragonshyvana",
+							"fiora",
+							"fiorav",
+							"fiorar",
+							"ashe",
+							"ashed",
+							"ashes",
+							"cait",
+							"caitd",
+							"ez",
+							"ezd",
+							"irelia",
+							"ireliad",
+							"leesin",
+							"leesind",
+							"kat",
+							"katd",
+							"swain",
+							"swaind",
+							"swainult",
+							"darius",
+							"dariusd",
+							"draven",
+							"dravend",
+							"singed",
+							"singedi",
+							"singedd",
+							"mundo",
+							"mundod",
+							"mundos",
+							"warwick",
+							"warwickd",
+							"viktor",
+							"viktord",
+							"viktorh",
+							"viktorh2",
+							"viktorh3",
+							"kogmaw",
+							"kogmawd",
+							"khazix",
+							"khazixd",
+							"khazixc",
+							"khazixs",
+							"khazixw",
+							"chogath",
+							"chogathd",
+							"chogathn",
+							"chogathz",
+							"chogathb",
+							"malzahar",
+							"malzahard",
+							"lulu",
+							"lulud",
+							"ziggs",
+							"ziggs2",
+							"ziggsd",
+							"nocturne",
+							"nocturned",
+							"mordekaiser",
+							"mordekaiserd",
+							"thresh",
+							"threshd",
+							"jax",
+							"jaxd"
+						],
+						"copyAs": "yasuolb2",
+						"silent": true
+					}
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "yasuo"
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.7
+					}
+				}
+			}
+		},
+		{		
+			"role": "yasuolb2",
+			"translation": "Yasuo",
+			"side": "wanderer",
+			"hide": true,
+			"help": "You've landed Steel Tempest. You can now /kill twice a night, but if you don't land /tempest again you'll be unable to kill! Your Wind Wall still protects you 70% of the time though.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 11,
+						"hide": true,
+						"limit": 2,
+						"killmsg": "Sorye ge ton!"
+					},
+					"tempest": {
+						"command": "copy",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 80,
+						"hide": true,
+						"canCopy": [
+							"villager",
+							"villagerd",
+							"lux",
+							"luxd",
+							"jarvan",
+							"jarvand",
+							"quinn",
+							"quinnd",
+							"valor",
+							"valord",
+							"valors",
+							"sona",
+							"sonad",
+							"vayne",
+							"vayned",
+							"shyvana",
+							"shyvanad",
+							"dragonshyvana",
+							"fiora",
+							"fiorav",
+							"fiorar",
+							"ashe",
+							"ashed",
+							"ashes",
+							"cait",
+							"caitd",
+							"ez",
+							"ezd",
+							"irelia",
+							"ireliad",
+							"leesin",
+							"leesind",
+							"kat",
+							"katd",
+							"swain",
+							"swaind",
+							"swainult",
+							"darius",
+							"dariusd",
+							"draven",
+							"dravend",
+							"singed",
+							"singedi",
+							"singedd",
+							"mundo",
+							"mundod",
+							"mundos",
+							"warwick",
+							"warwickd",
+							"viktor",
+							"viktord",
+							"viktorh",
+							"viktorh2",
+							"viktorh3",
+							"kogmaw",
+							"kogmawd",
+							"khazix",
+							"khazixd",
+							"khazixc",
+							"khazixs",
+							"khazixw",
+							"chogath",
+							"chogathd",
+							"chogathn",
+							"chogathz",
+							"chogathb",
+							"malzahar",
+							"malzahard",
+							"lulu",
+							"lulud",
+							"ziggs",
+							"ziggs2",
+							"ziggsd",
+							"nocturne",
+							"nocturned",
+							"mordekaiser",
+							"mordekaiserd",
+							"thresh",
+							"threshd",
+							"jax",
+							"jaxd"
+						],
+						"copyAs": "yasuolb",
+						"silent": true
+					}
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "yasuo"
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.7
+					}
+				}
+			}
+		}
+	],
+	"roles1": [
+		"shyvana",
+		"lucian",
+		"ashe",
+		"viktor",
+		"nocturne",
+		"villager"
+	],
+	"roles2": [
+		"lucian",
+		"kat",
+		"darius",
+		"quinn",
+		"jarvan",
+		"villager",
+		"mundo",
+		"villager",
+		"xinzhao",
+		"warwick",
+		"sona",
+		"garen",
+		"teemo",
+		"lux",
+		"villager",
+		"draven",
+		"singed",
+		"vayne",
+		"yasuo",
+		"shyvana",
+		"nocturne",
+		"mordekaiser"
+	],
+	"roles3": [
+		"lucian",
+		"kat",
+		"darius",
+		"quinn",
+		"jarvan",
+		"villager",
+		"mundo",
+		"villager",
+		"warwick",
+		"xinzhao",
+		"sona",
+		"garen",
+		"teemo",
+		"lux",
+		"villager",
+		"draven",
+		"singed",
+		"vayne",
+		"yasuo",
+		"shyvana",
+		"kogmaw",
+		"khazix",
+		"chogath",
+		"fiora",
+		"ashe",
+		"nocturne",
+		"mordekaiser",
+		"ez",
+		"ziggs",
+		"lulu",
+		"villager",
+		"cait",
+		"swain",
+		"viktor",
+		"irelia",
+		"malzahar",
+		"villager",
+		"jax",
+		"leesin",
+		"villager"
+	],
+	"villageCantLoseRoles": [
+		"valor",
+		"valord",
+		"valors",
+		"shyvana",
+		"dragonshyvana",
+		"shyvanad",
+		"fiorar",
+		"jarvan",
+		"ashe",
+		"ashed",
+		"ashes",
+		"lucian",
+		"lucians",
+		"garen",
+		"garend",
+		"garens",
+		"leesin",
+		"leesind",
+		"vayne"
+	],
+	"lynchmsg": "An enemy ~Role~ (~Player~) has been slain!",
+	"tips": {
+		"Claiming": "If Nocturne and Draven are alive, be wary of claiming as Garen. Otherwise, feel free to do so. Lucian is your safeguarder while Xin Zhao is the Bodyguard.",
+		"Ultimates": "A lot of characters gain additional powers when they reach night 3 or night 4 - in League of Legends, these skills are their ultimates. Try to stick around if you have such a power!",
+		"Yasuo": "If Yasuo hits a target protected by Xin Zhao, his Tempest will fail."
+	}
+}
