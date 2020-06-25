@@ -1,0 +1,104 @@
+{
+    "name": "Minesweeper",
+    "author": "Zzyzx Road",
+    "summary": "Only one word can describe this game... BOMBS! Almost everyone can kill, but if you killers die, you take your killer together! Your goal is to get rid of the Flags before you destroy yourselves. Who will get out as the winner? (suggestions about team balance? PM Zzyzx Road)",
+    "border": "*** mine mine flag mine mine flag mine mine flag mine mine flag mine mine flag mine mine flag ***",
+    "ticks": {
+        "standby": 1
+    },
+    "sides": [
+        {
+            "side": "village",
+            "translation": "Flags"
+        },
+        {
+            "side": "mafia",
+            "translation": "Mines"
+        }
+    ],
+    "roles": [
+        {
+            "role": "bomb",
+            "translation": "Mine",
+            "side": "mafia",
+            "help": "You're a killer, and also a bomb! Try to hit your enemies, the flags, until you Mines kill yourselves. Let there be minefields!",
+            "actions": {
+                "kill": {
+                    "mode": "killattacker"
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "priority": 2,
+                        "common": "Self"
+                    }
+                }
+            }
+        },
+        {
+            "role": "villager",
+            "translation": "Flag",
+            "side": "village",
+            "help": "You're just a flag in the mine field, threatened by the Mines. Being the clean tile, the first vote on you is not any worth, and thus you can outvote a Mine! You can /distract twice as well, but you may die if it fails...",
+            "actions": {
+                "voteshield": -1,
+                "night": {
+                    "distract": {
+                        "priority": 1,
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "charges": 2,
+                        "chargesmsg": "You can distract ~Charges~ more times!",
+                        "command": {
+                            "kill": 0.25,
+                            "distract": 0.75
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "roles1": [
+        "bomb",
+        "bomb",
+        "bomb",
+        "villager",
+        "villager",
+        "bomb",
+        "bomb",
+        "bomb",
+        "villager",
+        "bomb",
+        "bomb",
+        "bomb",
+        "villager",
+        "bomb",
+        "bomb",
+        "bomb",
+        "villager",
+        "bomb",
+        "bomb",
+        "villager",
+        "bomb",
+        "bomb",
+        "villager",
+        "bomb",
+        "bomb",
+        "villager",
+        "bomb",
+        "bomb",
+        "villager",
+        "bomb",
+        "bomb",
+        "villager",
+        "bomb",
+        "bomb",
+        "villager",
+        "bomb",
+        "bomb",
+        "villager"
+    ],
+    "villageCantLoseRoles": [
+        "villager"
+    ]
+}
