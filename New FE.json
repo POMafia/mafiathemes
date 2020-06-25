@@ -1,0 +1,4100 @@
+{
+    "name": "New FE",
+    "altname": "Fire Emblem (Generation III)",
+    "author": [
+    	"Miki Sayaka"
+    ],
+	  "bot": {
+	  	"name": "Anna",
+	  	"color": "#D00B29"
+	  },
+	 "borderColor": "#0BB5D0",
+	 "border": "=== ^---^ === ^---^ === ^---^ === ^---^ === ^---^ === ^---^ === ^---^ === ^---^ === ^---^ === ^---^ ===",
+    "tips": {
+    	"Spawn Packs": "Various roles may or not spawn based on random packs. Check /spawn to see who those are.",
+    	"Fates": "Either Hoshido and Nohr is hostile to the Heroes. Whichever one is an enemy, the other is an ally.",
+    	"Fates 2": "The Enemy Hoshido or Nohr can kill during the night, while the good Hoshido or Nohr can win alongside the Heroes."
+    },
+    "minplayers": 3,
+    "threadlink": "http://pokemon-online.eu/threads/15904/page-3",
+    "summary": "The world is at war! Join your favorite Fire Emblem heroes as they team up to fight some of the most nefarious and powerful villains in the series. Defeat them and return peace to the Earth! [Note: This is newly updated with characters from Fates, Awakening and Heroes. Be sure to check the changelog. Post here for suggestions: http://pokemon-online.eu/threads/15904/page-3",
+    "sides": [
+        {
+            "side": "village",
+            "translation": "Heroes",
+            "color": "#0BB5D0",
+            "winmsg": "Fighting against all odds, the Heroes (~Players~) have cleansed the land of the forces of evil!"
+        },
+        {
+            "side": "nohr",
+            "translation": "Heroes (Nohr)",
+            "color": "#ed8734",
+            "winmsg": "Fighting against all odds, the Heroes of Nohr (~Players~) have cleansed the land of the forces of evil!"
+        },
+        {
+            "side": "hoshido",
+            "translation": "Heroes (Hoshido)",
+            "color": "#a06206",
+            "winmsg": "Fighting against all odds, the Heroes of Hoshido (~Players~) have cleansed the land of the forces of evil!"
+        },
+        {
+            "side": "nohr_enemy",
+            "translation": "Enemy Nohr",
+            "color": "#ed8734",
+            "winmsg": "The time for Conquest has come... ~Players~ have taken over the world!"
+        },
+        {
+            "side": "hoshido_enemy",
+            "translation": "Enemy Hoshido",
+            "color": "#a06206",
+            "winmsg": "The Hoshido have reclaimed their Birthright... ~Players~ now reign supreme over all!"
+        },
+        {
+            "side": "duma",
+            "translation": "Duma",
+            "color": "red",
+            "winmsg": "Duma has resurrected through the vessel of ~Players~!"
+        },
+        {
+            "side": "bern",
+            "translation": "Kingdom of Bern",
+            "color": "#c4073a",
+            "winmsg": "A wide smile is seen all over the faces of ~Players~ - the dragons have been reawakened!"
+        },
+        {
+            "side": "fang",
+            "translation": "Dread Isle",
+            "color": "#e835b2",
+            "winmsg": "'Humans... they are so very fragile'... The Dread Isle, ~Players~, has won!"
+        },
+        {
+            "side": "emblian",
+            "translation": "Veronica",
+            "color": "#00d618",
+            "winmsg": "'At last... the Heroes of this realm have been sealed away forever'... Veronica (~Players~) has won!"
+        },
+        {
+            "side": "grado",
+            "translation": "Grado Empire",
+            "color": "#9242f4",
+            "winmsg": "The sheer power of the Demon King allows ~Players~ to destroy all opposition! A thousand-year reign of evil has begun!"
+        },
+        {
+            "side": "daein",
+            "translation": "Kingdom of Daein",
+            "color": "#0819b2",
+            "winmsg": "'One blow. For nameless wretches like you, one blow is more than enough.' The Kingdom of Daein, lead by ~Players~, has destroyed all opposition! "
+        },
+        {
+            "side": "begnion",
+            "translation": "Begnion Empire",
+            "color": "#5707c6",
+            "winmsg": "Did you really think you could stop the largest and most grand nation in the world? The Begnion Empire, led by ~Players~, has won!"
+        },
+        {
+            "side": "grima",
+            "translation": "Fell Dragon",
+            "color": "#028450",
+            "winmsg": "'AHAHAHA!' The Fell Dragon Grima has been awoken, and the destruction of the world has begun, thanks to ~Players~!"
+        }
+    ],
+    "variables": {
+
+        "awakeningHax": {
+        	"awakening": {
+                "~Player~ (Chrom) is summoning his allies! Whisper to them and let them know who you are!": 0.25
+        	}
+        },
+        "blazingHax": {
+        	"blazing": {
+                "~Player~ (Eliwood) is summoning his allies! Whisper to them and let them know who you are!": 0.25
+        	}
+        },
+        "radiantHax": {
+        	"radiant": {
+                "~Player~ (Ike) is summoning his allies! Whisper to them and let them know who you are!": 0.2
+        	}
+        },
+        "fatesHax": {
+        	"fates": {
+                "~Player~ (Corrin) is summoning their allies! Whisper to them and let them know who you are!": 0.35
+        	}
+        },
+
+		"strongHeroSpawn": {
+				"corrin": 2,
+				"robin": 2,
+				"lucina": 1,
+				"eirika": 1,
+				"nowi": 1,
+				"tiki": 1
+			},
+		"supportHeroSpawn": {
+				"lucina": 1,
+				"marth": 1,
+				"nowi": 1,
+				"tiki": 1
+			},
+		"roy_caeda": {
+				"roy": 0.55,
+				"caeda": 0.45
+			},
+		"marth_lucina": {
+				"marth": 0.5,
+				"lucina": 0.5
+			},
+		"alm_celica": {
+				"alm": 0.45,
+				"celica": 0.55
+			},
+		"micaiah_linde": {
+				"micaiah": 0.5,
+				"linde": 0.5
+			},
+		"chrom_eliwood": {
+				"chrom": 0.5,
+				"eliwood": 0.5
+			},
+		"hector_cordelia": {
+				"hector": 0.5,
+				"cordelia": 0.5
+			},
+
+		"ryoma_spawn": {
+				"ryoma": 0.5,
+				"ryoma_enemy": 0.5
+			},
+		"hinoka_spawn": {
+				"hinoka": 0.5,
+				"hinoka_enemy": 0.5
+			},
+		"big_hoshido_spawn": {
+				"ryoma": 0.25,
+				"ryoma_enemy": 0.25,
+				"hinoka": 0.25,
+				"hinoka_enemy": 0.25
+			},
+		"big_nohr_spawn": {
+				"xander": 0.25,
+				"xander_enemy": 0.25,
+				"camilla": 0.25,
+				"camilla_enemy": 0.25
+			},
+		"small_hoshido_spawn": {
+				"takumi": 0.25,
+				"takumi_enemy": 0.25,
+				"sakura": 0.25,
+				"sakura_enemy": 0.25
+			},
+		"small_nohr_spawn": {
+				"leo": 0.25,
+				"leo_enemy": 0.25,
+				"elise": 0.25,
+				"elise_enemy": 0.25
+			},
+		"camilla_spawn": {
+				"camilla": 0.5,
+				"camilla_enemy": 0.5
+			},
+		"leo_spawn": {
+				"leo": 0.5,
+				"leo_enemy": 0.5
+			},
+			"anyVillage": ["tiki", "nowi", "corrin", "robin", "robin2", "lucina", "marth", "chrom", "ike", "soren", "sophia", "disgruntled", "roy", "roy2", "hector", "cordelia", "lyndis", "eliwood", "chrom", "lyndis", "linde", "ephraim", "celica", "azura", "eirika", "cordelia"],
+
+    	"allRoles": ["villager", "disgruntled", "berserk"],
+
+    	"redHair": {
+    		"mode": "ignore",
+    		"msg": "~Self~ has red, orange, or purple hair!"
+    	},
+    	"blueHair": {
+    		"mode": "ignore",
+    		"msg": "~Self~ has blue or green hair!"
+    	},
+    	"darkHair": {
+    		"mode": "ignore",
+    		"msg": "~Self~ has dark brown or black hair!"
+    	},
+    	"whiteHair": {
+    		"mode": "ignore",
+    		"msg": "~Self~ has blonde or white hair!"
+    	},
+
+    	"isMale": {
+    		"mode": "ignore",
+    		"msg": "~Self~ is a boy... *nosebleed*!"
+    	},
+    	"isFemale": {
+    		"mode": "ignore",
+    		"msg": "~Self~ is a girl... how cute!"
+    	},
+    	"isUnknown": {
+    		"mode": "ignore",
+    		"msg": "~Self~ could be a boy or a girl?"
+    	},
+
+    	"isSacred": {
+    		"mode": "ignore",
+    		"msg": "~Self~ is in the game Sacred Stones!"
+    	},
+    	"isBlazing": {
+    		"mode": "ignore",
+    		"msg": "~Self~ is in the game Blazing Blade or Binding Blade!"
+    	},
+    	"isAwakening": {
+    		"mode": "ignore",
+    		"msg": "~Self~ is in the game Awakening!"
+    	},
+    	"isHeroes": {
+    		"mode": "ignore",
+    		"msg": "~Self~ is from the game Heroes!"
+    	},
+    	"isRadiant": {
+    		"mode": "ignore",
+    		"msg": "~Self~ is in the game Path of Radiance or Radiant Dawn!"
+    	},
+    	"isMystery": {
+    		"mode": "ignore",
+    		"msg": "~Self~ is in the game Mystery of the Emblem!"
+    	},
+    	"isFates": {
+    		"mode": "ignore",
+    		"msg": "~Self~ is in the games Fates: Conquest and Fates: Birthright!"
+    	},
+    	"isGaiden": {
+    		"mode": "ignore",
+    		"msg": "~Self~ is in the game Gaiden or Shadows of Valentia!"
+    	}
+    },
+    "roles": [
+        {
+            "role": "villager",
+            "translation": "Soldier",
+            "side": "village",
+            "help": "You're a soldier fighting against the forces of evil. You aren't very strong and have no special commands.",
+            "info": "Sided with The Heroes."
+        },
+        {
+            "role": "disgruntled",
+            "translation": "Disgruntled Soldier",
+            "side": "daein",
+            "winningSides": [
+                "fang",
+                "bern",
+                "grado",
+                "begnion",
+                "grima"
+            ],
+            "help": "You've just about had it with these naïve heroes! You don't care who wins any more - so long as it isn't them! If you get lynched, you will turn into a Berserk Soldier!",
+            "info": "Converts to Berserk Soldier when lynched. Wins the game with any side, excluding The Heroes. Sided with The Kingdom of Daein.",
+            "actions": {
+                "teamUtilities": true,
+                "lynch": {
+                    "convertTo": "berserk",
+                    "convertmsg": "The Disgruntled Soldier, ~Self~,  is hit with a Berserk Staff after receiving ~Count~ votes. He has gone insane and now kills at night."
+                }
+            }
+        },
+        {
+            "role": "berserk",
+            "translation": "Berserk Soldier",
+            "side": "daein",
+            "winningSides": [
+                "fang",
+                "bern",
+                "grado",
+                "begnion",
+                "grima"
+            ],
+            "help": "You've lost all sense of self-preservation. The side of justice has just tried to rid themselves of you...and you are completely enraged! The time for talk is over - you now have one swift kill per night.",
+            "info": "Can kill one person during the night. Wins the game with any side, excluding The Heroes. Sided with The Kingdom of Daein.",
+            "actions": {
+                "teamUtilities": true,
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Role",
+                        "priority": 3,
+                        "msg": "±Tactician: After being hit with a Berserk Staff, the unit will attack the closest, weakest unit. That happened to be you."
+                    }
+                }
+            }
+        },
+        {
+            "role": "lyndis",
+            "translation": "Lyndis",
+            "side": "village",
+            "unique": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "You're Lady Lyn of House Caelin. Despite being of noble blood, you spent almost the entirety of your life as a nomad on the plains of Sacae. Due to this, you've mastered the ability to /kill one person during the night. As a swift attacker, you can also take down the first person to vote you off during the day.",
+            "info": "Can kill one person during the night. Kills first voter on lynch. ~Sided~",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isBlazing",
+            	"hax": "variable:blazingHax",
+       			"lynch": {
+					"killVoters": {"first": 1, "message": "Lyndis will never go down without a fight. She draws her sword and slices through ~Target~ for one last kill." }
+				},
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 11,
+                        "msg": "±Tactician: Lyn's speed in unparalled. You saw only a glint of light reflecting off of her Sol Katti before you breathed your last."
+                    }
+                }
+            }
+        },
+        {
+            "role": "alm",
+            "translation": "Alm",
+            "side": "village",
+            "unique": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "You are Alm, the ram village hero! Draw your Falchion during the night to /protect [name] an ally! If you are killed during the day, you will fight valiantly to bring down your attacker as well!",
+            "info": "Can protect another player during the night. Bombs daykills. ~Sided~",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isGaiden",
+                "night": {
+                    "protect": {
+                        "command": ["guard"],
+                        "target": "Any",
+                        "guardActions": ["kill"],
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 10
+                    }
+                },
+                "daykill": "bomb",
+                "daykillrevengemsg": "Someone tried to attack ~Self~ (Alm)! ~Self~, refusing to die without a fight, draws their sword and vanquishes ~Target~!!"
+            }
+        },
+        {
+            "role": "celica",
+            "translation": "Celica",
+            "side": "village",
+            "startupmsg": "You are ~Role~!",
+            "help": "Princess Anteze of Zofia, you are a powerful leader wise in the way of combat. You can predict enemy attacks with ease. Use either /protect to block melee Attacks, or /safeguard to block magical Anima aimed at your allies during the night! Be wary, as if you are voted off, you will become consumed by the soul of Duma and have no ally!",
+            "info": "Can protect or safeguard another player during the night. Strong hax on kill. If lynched, becomes Duma Soul. ~Sided~",
+            "actions": {
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isGaiden",
+                "night": {
+                    "protect": {
+                        "command": ["guard"],
+                        "target": "Any",
+                        "guardActions": ["kill"],
+                        "cancel": ["safeguard"],
+                        "hide": true,
+                        "common": "Self",
+                        "priority": 10
+                    },
+                    "safeguard": {
+                        "command": ["guard"],
+                        "target": "Any",
+                        "guardActions": ["anima", "poison", "morph"],
+                        "cancel": ["protect"],
+                        "hide": true,
+                        "common": "Self",
+                        "priority": 10
+                    }
+                },
+       			"lynch": {
+       				"convertTo": "duma", 
+       				"convertmsg": "~Self~: Alm... please kill me... I have been possessed by the Duma Soul!"
+       			}, 	
+				"hax": {
+					"attack": {
+			          "~Role~ is going to to attack ~Target~!": 0.33,
+			          "~Player~ is the ~Role~!": 0.1
+					}
+				}
+            }
+        },
+        {
+            "role": "duma",
+            "translation": "Duma Soul",
+            "side": "duma",
+            "startupmsg": "You are ~Role~!",
+            "help": "Whaaa... haa... HAAA!!! No... you have to obey the soul of Duma! Use your newfound powers to /Anima [name] during the night. You cannot be lynched!",
+            "info": "Can kill during the night. Can't be lynched. ~Sided~",
+            "actions": {
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isGaiden",
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 13
+                    }
+                },
+       			"lynch": {
+       				"convertTo": "duma", 
+       				"convertmsg": "~Self~: ahahaHAHAHAH!! I, DUMA, CAN'T DIE SO EASILY!!"
+       			}, 	
+                "expend": true
+            }
+        },
+        {
+            "role": "hector",
+            "translation": "Hector",
+            "side": "village",
+            "unique": ["hector", "chrom"],
+            "startupmsg": "You are ~Role~!",
+            "help": "You're Lord Hector of House Ostia. You're rash and stubborn but fiercely loyal to your friends. You possess incredibly strong armor and defensive capabilities, and as such, you can protect up to two allies per night, seven times per game! Your determination gives you a vote of 2.",
+            "info": "Can protect up to 2 people per night, up to 7 times per game. Vote counts as 2. Sided with The Heroes.",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isBlazing",
+            	"hax": "variable:blazingHax",
+                "vote": 2,
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "limit": 2,
+                        "hide": true,
+                        "charges": 7,
+                        "common": "Self",
+                        "priority": 10
+                    }
+                }
+            }
+        },
+        {
+            "role": "cordelia",
+            "translation": "Cordelia",
+            "side": "village",
+            "unique": ["cordelia", "eliwood"],
+            "startupmsg": "You are ~Role~!",
+            "help": "One of Ylisse's Pegasus Knights, it is your duty to protect your country! You can protect up to two allies per night, seven times per game! Flying around on your Pegasus, you can defeat one person during the day starting on day 4!",
+            "info": "Can protect up to 2 people per night, up to 7 times per game. Can kill once per game, starting day 4. Sided with The Heroes.",
+            "actions": {
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isAwakening",
+            	"hax": "variable:awakeningHax",
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "limit": 2,
+                        "hide": true,
+                        "charges": 7,
+                        "common": "Self",
+                        "priority": 10
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Is it day 4? Then, it's time to join the battle! You can use your /kill, but be careful, as it will reveal you, and you can only use it once! :",
+                        "revealmsg": "*** ~Self~ (Cordelia) dismounts her pegasus and disappears into the crowd...",
+                        "charges": 1,
+                        "initialrecharge": 4,
+                        "killmsg": "~Self~ (Cordelia) kicks off the ground on her pegasus Aurora! She flies into the sky and finds her target, ~Target~, and drives a lance through them!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "linde",
+            "translation": "Linde",
+            "side": "village",
+            "unique": ["linde"],
+            "startupmsg": "You are ~Role~!",
+            "help": "You are a powerful light tome user driven by the will to avenge your father. Use your Aura to /redirect [name]@[name] to change the target of another player's actions. You won't be able to affect killing actions, but you can change the target of magical actions like Poison, and Morph. Your light magic gives the ability to double the amount of votes on a person during the day, and prevents you from being morphed!",
+            "info": "Can redirect non-kill actions (works on Guard, Poison, Morph). Vote doubler. Detoxes all roles on death. Cannot be converted. Sided with The Heroes.",
+            "actions": {
+                "night": {
+                    "redirect": {
+                        "target": "AnyButSelf",
+                        "redirectTarget": "AnyButTarget",
+                        "common": "Self",
+                        "priority": 7,
+                        "hide": true,
+                        "redirectActions": ["poison", "protect", "guard", "morph"]
+                    }
+                },
+                "voteMultiplier": 2,
+                "convert": {
+                	"mode": "ignore"
+                },
+            	"dummy2": "variable:darkHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isMystery",
+                "onDeath": {
+                	"detoxRoles": "variable:allRoles",
+                	"singledetoxmsg": "With the power of their Aura, ~Self~ cleans this world of poison before dying!"
+                }
+            }
+        },
+        {
+            "role": "miclin",
+            "translation": "Micaiah/Linde",
+            "side": "village",
+            "hide": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "",
+            "actions": {
+                "night": {
+                    "redirect": {
+                        "target": "AnyButSelf",
+                        "redirectTarget": "AnyButTarget",
+                        "common": "Self",
+                        "priority": 7,
+                        "redirectActions": ["kill"]
+                    }
+                }
+            }
+        },
+        {
+            "role": "micaiah",
+            "translation": "Micaiah",
+            "side": "village",
+            "unique": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "You're the Silver-Haired Maiden, liberator of Daein. You wield very powerful holy magic that can only be used by those in the service of good. You can use your powers to /redirect [name]@[name] up to 3 times per game during the night! This works on kill actions only. ",
+            "info": "Can redirect one person's kill action during the night (3 times per game). Detoxes all players on death. Sided with The Heroes.",
+            "actions": {
+                "night": {
+                    "redirect": {
+                        "target": "AnyButSelf",
+                        "redirectTarget": "AnyButTarget",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 7,
+                        "charges": 3,
+                        "redirectActions": ["kill"]
+                    }
+                },
+                "avoidHax": ["redirect"],
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isRadiant",
+            	"hax": "variable:radiantHax",
+                "onDeath": {
+                	"detoxRoles": "variable:allRoles",
+                	"singledetoxmsg": "With the power of their Aura, ~Self~ cleans this world of poison before dying!"
+                }
+            }
+        },
+        {
+            "role": "corrin",
+            "translation": "Corrin",
+            "side": "village",
+            "unique": ["corrin"],
+            "winningSides": ["village", "nohr_enemy", "hoshido_enemy"],
+            "startupmsg": "You are ~Role~!",
+            "help": "You are the child of Hoshidan royalty who grew up a child of Nohr! As a result, you can win with not only the Heroes, but any enemy Nohr or Hoshido factions as well. Type /fates to rally your allies! You can also protect anyone, even yourself, up to 10 times per game, 3 times per night. If you are voted off during the day, you will kill all voters on you!",
+            "info": "Can protect 3 players per night, up to 10 times per game (can self-protect). Cannot be converted. Can rally Fates characters (both enemies and allies). Counters lynch on all voters. Sided with The Heroes. Can win with Enemy Hoshido/Nohr.",
+            "actions": {
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isUnknown",
+            	"dummy4": "variable:isFates",
+                "convert": {
+                	"mode": "ignore"
+                },
+                "night": {
+                    "protect": {
+                        "target": "Any",
+                        "command": ["protect"],
+                        "limit": 3,
+                        "charges": 10,
+                        "hide": true,
+                        "common": "Self",
+                        "priority": 10
+                    },
+                    "fates": {
+                        "target": "AnyButSelf",
+                        "restrict": ["fates"],
+                        "hide": true,
+                        "common": "Self",
+                        "priority": -1
+                    }
+                },
+				"lynch": {
+				  "killVoters": {
+					"first": 99,
+					"message": "~Self~ (Corrin) lets out a cry, transforms into a dragon, and drops an explosion of blue flames that envelops the battlefield and destroys everyone!"
+				  },
+				  "convertTo": "corrin",
+				  "convertmsg": "*** Corrin returns to their resting state."
+				}
+            }
+        },
+        {
+            "role": "azura",
+            "translation": "Azura",
+            "side": "village",
+            "winningSides": ["village", "nohr_enemy", "hoshido_enemy"],
+            "unique": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "You are a kidnapped princess of the Nohr, but after meeting Corrin you joined the Heroes! Your powerful song enables you to enthrall and protect those who hear it. Use /sing [name] to distract someone and protect them from any poison, convert, or kill. Your mixed loyalties cause you to have a vote of -2.",
+            "info": "Can sing one person during the night (broadcasted distract). Sided with The Heroes. Can win with Enemy Hoshido/Nohr.",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isFates",
+            	"hax": "variable:fatesHax",
+                "night": {
+                    "sing": {
+                        "command": ["dummy", "distract"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 2,
+                        "dummybroadcastmsg": "*** \"~Yurari Yurareri~\" ~Target~ was captivated by Azura's song during the night!",
+                        "distractmsg": "\"~Yurari Yurareri~\"... Azura's song captivated you for the entire night. You couldn't take any actions!",
+                        "teammsg": "Your partner was too enamored by Azura's song to take action tonight!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "sophia",
+            "translation": "Sophia",
+            "side": "village",
+            "unique": true,
+            "hide": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "You're a shaman from the mystical village of Arcadia, here to help Lord Roy defeat the villains. You wield powerful dark magic that allows you to /flux a unit once per night, making them unable to do anything during the night, and killing them in two nights. Being a shaman, you have a high resistance to other dark magics making you immune to morphing.",
+            "info": "Can flux (distract) one person during the night, while also poisoning them for 2 nights. Immune to converts. Sided with The Heroes.",
+            "actions": {
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isBlazing",
+            	"hax": "variable:blazingHax",
+                "night": {
+                    "flux": {
+                        "command": ["distract", "poison"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 6,
+                        "hide": true,
+                        "count": 3,
+                        "distractmsg": "An ominous feeling washed over you during the night. You were too afraid to act and ran from the battlefield!",
+                        "teammsg": "An ominous feeling washed over your team mate during the night. As they ran from the battlefield, you followed after them, preventing you from performing your actions!"
+                    }
+                },
+                "convert": {
+                    "mode": "ignore"
+                }
+            }
+        },
+        {
+            "role": "caeda",
+            "translation": "Caeda",
+            "side": "village",
+            "unique": ["caeda", "caeda2", "caeda3", "caeda4"],
+            "startupmsg": "You are ~Role~!",
+            "help": "You are the princess of Talys, cunning heroine from Mystery of the Emblem! Your tactical skills are sharp, and as such you can /Expose [name] someone during the day and make it out unrevealed. You can also manipulate people with your feminine charms to vote them off during the day with your vote of 4! However, every time you expose, your vote decreases, so be careful. You cannot be killed during the day.",
+            "info": "Can expose one person during the day (not revealed). Vote counts as 4 but is decreases by 1 every time she exposes (min 1). Evades daykills. Sided with The Heroes.",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isMystery",
+                "standby": {
+                    "expose": {
+                        "target": "AnyButSelf",
+                        "msg": "You can type /expose [name] to reveal someone's side! You won't be exposed!",
+                        "exposemsg": "Princess Caeda draws her sword and draws everyone's attention to ~Target~. ~Target~ is revealed to be one of the ~Side~! Caeda then makes her escape quickly on her pegasus.",
+                        "copyAs": "caeda2",
+                        "copymsg": "",
+                        "silent": true,
+                        "copyusermsg": ""
+                    }
+                },
+                "daykill": "evade",
+                "expend": true,
+                "vote": 4
+            }
+        },
+        {
+            "role": "caeda2",
+            "translation": "Caeda",
+            "side": "village",
+            "unique": ["caeda", "caeda2", "caeda3", "caeda4"],
+            "startupmsg": "You are ~Role~!",
+            "hide": true,
+            "help": "You are the princess of Talys, cunning heroine from Mystery of the Emblem! Your tactical skills are sharp, and as such you can /Expose [name] someone during the day and make it out unrevealed. You can also manipulate people with your feminine charms to vote them off during the day with your vote of 4! However, every time you expose, your vote decreases, so be careful. You cannot be killed during the day.",
+            "info": "Can expose one person during the day (not revealed). Vote counts as 4 but is halved every time she exposes. Evades daykills. Sided with The Heroes.",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isMystery",
+                "standby": {
+                    "expose": {
+                        "target": "AnyButSelf",
+                        "msg": "You can type /expose [name] to reveal someone's side! You won't be exposed!",
+                        "exposemsg": "Princess Caeda draws her sword and draws everyone's attention to ~Target~. ~Target~ is revealed to be one of the ~Side~! Caeda then makes her escape quickly on her pegasus.",
+                        "copyAs": "caeda3",
+                        "copymsg": "",
+                        "silent": true,
+                        "copyusermsg": ""
+                    }
+                },
+                "daykill": "evade",
+                "expend": true,
+                "vote": 3
+            }
+        },
+        {
+            "role": "caeda3",
+            "translation": "Caeda",
+            "side": "village",
+            "unique": ["caeda", "caeda2", "caeda3", "caeda4"],
+            "startupmsg": "You are ~Role~!",
+            "hide": true,
+            "help": "You are the princess of Talys, cunning heroine from Mystery of the Emblem! Your tactical skills are sharp, and as such you can /Expose [name] someone during the day and make it out unrevealed. You can also manipulate people with your feminine charms to vote them off during the day with your vote of 4! However, every time you expose, your vote decreases, so be careful. You cannot be killed during the day.",
+            "info": "Can expose one person during the day (not revealed). Vote counts as 4 but is halved every time she exposes. Evades daykills. Sided with The Heroes.",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isMystery",
+                "standby": {
+                    "expose": {
+                        "target": "AnyButSelf",
+                        "msg": "You can type /expose [name] to reveal someone's side! You won't be exposed!",
+                        "exposemsg": "Princess Caeda draws her sword and draws everyone's attention to ~Target~. ~Target~ is revealed to be one of the ~Side~! Caeda then makes her escape quickly on her pegasus.",
+                        "copyAs": "caeda4",
+                        "copymsg": "",
+                        "silent": true,
+                        "copyusermsg": ""
+                    }
+                },
+                "daykill": "evade",
+                "expend": true,
+                "vote": 2
+            }
+        },
+        {
+            "role": "caeda4",
+            "translation": "Caeda",
+            "side": "village",
+            "unique": ["caeda", "caeda2", "caeda3", "caeda4"],
+            "startupmsg": "You are ~Role~!",
+            "hide": true,
+            "help": "You are the princess of Talys, cunning heroine from Mystery of the Emblem! Your tactical skills are sharp, and as such you can /Expose [name] someone during the day and make it out unrevealed. You can also manipulate people with your feminine charms to vote them off during the day with your vote of 4! However, every time you expose, your vote decreases, so be careful. You cannot be killed during the day.",
+            "info": "Can expose one person during the day (not revealed). Vote counts as 4 but is halved every time she exposes. Evades daykills. Sided with The Heroes.",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isMystery",
+                "standby": {
+                    "expose": {
+                        "target": "AnyButSelf",
+                        "msg": "You can type /expose [name] to reveal someone's side! You won't be exposed!",
+                        "exposemsg": "Princess Caeda draws her sword and draws everyone's attention to ~Target~. ~Target~ is revealed to be ~Role~! Caeda then makes her escape quickly on her pegasus."
+                    }
+                },
+                "daykill": "evade",
+                "expend": true,
+                "vote": 1
+            }
+        },
+        {
+            "role": "roy",
+            "translation": "Roy",
+            "side": "village",
+            "unique": ["roy", "roy2"],
+            "startupmsg": "You are ~Role~!",
+            "help": "You're the son of Eliwood, Marquess of Pherae! You're here to put an end to this war and, to that end, you've brought along the mythical Sword of Seals. Each day, you can use the power of the Sword of Seals to /expose a player to reveal them, but the fire is so vibrant that you will be revealed as well. As Eliwood's son, you inherit his legacy. You have a 30% chance to have a vote of 3 during the day. You cannot be killed during the day.",
+            "info": "Can expose one person during the day (revealing). Has a 30% chance to have a vote of 5 during the day. Increases to 70% when Nergal dies. Evades daykills. Sided with The Heroes.",
+            "actions": {
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isBlazing",
+            	"hax": "variable:blazingHax",
+                "standby": {
+                    "expose": {
+                        "target": "AnyButSelf",
+                        "msg": "You can type /expose [name] to reveal someone's side!",
+                        "exposemsg": "~Self~, Lord Roy, points the Sword of Seals at ~Target~ and illuminates them, showing them to be one of the ~Side~! Roy then strikes a pose!"
+                    }
+                },
+                "daykill": "evade",
+                "expend": true,
+                "vote": [1, 1, 1, 1, 1, 1, 1, 5, 5, 5]
+            }
+        },
+        {
+            "role": "roy2",
+            "translation": "Roy",
+            "side": "village",
+            "unique": ["roy", "roy2"],
+            "startupmsg": "You are ~Role~!",
+            "hide": true,
+            "help": "You're the son of Eliwood, Marquess of Pherae! You're here to put an end to this war and, to that end, you've brought along the mythical Sword of Seals. Each day, you can use the power of the Sword of Seals to /expose a player to reveal them, but the fire is so vibrant that you will be revealed as well. As Eliwood's son, you inherit his legacy. You have a 70% chance to have a vote of 3 during the day. You cannot be killed during the day.",
+            "actions": {
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isBlazing",
+            	"hax": "variable:blazingHax",
+                "standby": {
+                    "expose": {
+                        "target": "AnyButSelf",
+                        "msg": "You can type /expose [name] to reveal someone's side!",
+                        "exposemsg": "~Self~, Lord Roy, points the Sword of Seals at ~Target~ and illuminates them, showing them to be one of the ~Side~! Roy then strikes a pose!"
+                    }
+                },
+                "daykill": "evade",
+                "expend": true,
+                "vote": [1, 1, 1, 5, 5, 5, 5, 5, 5, 5]
+            }
+        },
+        {
+            "role": "tiki",
+            "translation": "Tiki",
+            "side": "village",
+            "hide": true,
+            "unique": ["tiki", "nowi"],
+            "startupmsg": "You are ~Role~!",
+            "help": "You've just awoken from a sleep of 2,000 years. Now, it is time to bring calm to the storm that is the world at war. During the day, you can use the Gemstones to /voice [name] someone, suggesting they be voted. If you are voted off, you will show them what wrath you are capable of.",
+            "info": "Can /voice one person during the day (including self) to suggest a vote with the voice of Naga. Bombs lynch on all voters, without dying. Minor hax on kill. Sided with The Heroes.",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isMystery",
+                "standby": {
+                    "voice": {
+                    	"command": "expose",
+                        "target": "Any",
+                        "msg": "You can type /voice [name] to declare someone who might be the bad guy!",
+                        "exposemsg": "Naga's voice echoes from beyond the horizon. It illuminates ~Target~, foretelling of their evil!"
+                    }
+                },
+				"lynch": {
+				  "killVoters": {
+					"first": 99,
+					"message": "\"I didn't want to have to do this...\" ~Self~ (Tiki) lets out a cry, and an explosion of Rising Flame envelops the battlefield!"
+				  },
+				  "convertTo": "tiki",
+				  "convertmsg": "*** Tiki returns to her resting state."
+				},
+				"hax": {
+					"kill": {
+                        "revealTeam": 0.2,
+						"revealRole": 0.05
+					}
+				}
+            }
+        },
+        {
+            "role": "nowi",
+            "translation": "Nowi",
+            "side": "village",
+            "hide": true,
+            "unique": ["tiki", "nowi"],
+            "startupmsg": "You are ~Role~!",
+            "help": "It's your turn! You are a dragon, so you can protect yourself from kills, poisons, and converts during the night, and if you are voted off, you will kill everyone who votes for you!",
+            "info": "Can protect self from kills, poison, and converts. Bombs lynch on all voters, without dying. Hax on convert (and reroll), inspect, and stalk. Sided with The Heroes.",
+            "actions": {
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isAwakening",
+            	"hax": "variable:awakeningHax",
+                "night": {
+                    "protect": {
+                    	"command": ["protect", "safeguard"],
+                        "target": "OnlySelf",
+                        "priority": 10,
+                        "hide": true,
+                        "common": "Self"
+                    }
+                },
+				"lynch": {
+				  "killVoters": {
+					"first": 99,
+					"message": "\"I didn't want to have to do this...\" ~Self~ (Nowi) lets out a cry, and an explosion of Rising Thunder envelops the battlefield!"
+				  },
+				  "convertTo": "nowi",
+				  "convertmsg": "*** Nowi returns to her resting state."
+				},
+				"hax": {
+					"morph": {
+                        "revealTeam": 0.5,
+						"revealRole": 0.25
+					},
+					"reroll": {
+                        "revealTeam": 0.5,
+						"revealRole": 0.25
+					},
+					"inspect": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+					},
+					"stalk": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+					}
+				}
+            }
+        },
+        {
+            "role": "inspectordummy",
+            "translation": "Soren/Ashnard/Robin/Grima/Anna/Morgan",
+            "side": "village",
+            "unique": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "You're the expert tactician of the Greil Mercenaries. You're very loyal to Ike and serve him with your life but are a bit cold to other people. Regardless, its in your best interests to help the Heroes and end this war. You have the ability to /inspect one unit at night to discover what army they are sided with!",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "Any Inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 25
+                    }
+                }
+            }
+        },
+        {
+            "role": "protectordummy",
+            "translation": "All BGs",
+            "side": "village",
+            "unique": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "You're the expert tactician of the Greil Mercenaries. You're very loyal to Ike and serve him with your life but are a bit cold to other people. Regardless, its in your best interests to help the Heroes and end this war. You have the ability to /inspect one unit at night to discover what army they are sided with!",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "Any Protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 10
+                    }
+                }
+            }
+        },
+        {
+            "role": "anna",
+            "translation": "Anna",
+            "side": "village",
+            "unique": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "Your heart's in the right place, if the money's where it's at. You have been in every game, so you can find out information about the other Heroes with /game, /hair, or /gender. You are sided with Heroes, but you can't actually help them very much due to your vote counting as 0! Luckily, you can evade kills during the night. But beware - people will see you as Lyon if they inspect you!",
+            "info": "Can find out a player's role's game, hair color, or gender during the night. Avoids all nightkills. Vote counts as 0. ~Sided~",
+            "actions": {
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isFemale",
+            	"kill": {
+            		"mode": "ignore"
+            	},
+            	"vote": 0,
+                "night": {
+                    "game": {
+                    	"command": ["dummy4"],
+                        "target": "AnyButSelf",
+                        "hide": true,
+                        "common": "Self",
+                        "priority": 25
+                    },
+                    "hair": {
+                    	"command": ["dummy2"],
+                        "target": "AnyButSelf",
+                        "hide": true,
+                        "common": "Self",
+                        "priority": 25
+                    },
+                    "gender": {
+                    	"command": ["dummy3"],
+                        "target": "AnyButSelf",
+                        "hide": true,
+                        "common": "Self",
+                        "priority": 25
+                    }
+                }
+            }
+        },
+        {
+            "role": "soren",
+            "translation": "Soren",
+            "side": "village",
+            "unique": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "You're the expert tactician of the Greil Mercenaries. You're very loyal to Ike and serve him with your life but are a bit cold to other people. Regardless, its in your best interests to help the Heroes and end this war. You have the ability to /inspect one unit at night to discover what army they are sided with! If you inspect someone, no one else will be able to inspect them for the rest of the night. Once per game, you can /draw [name] to declare that someone is a dangerous threat!",
+            "info": "Can inspect one person during the night (sees side). If you he inspects someone, that player cannot be inspected by anyone else for the rest of the night. Can /draw once per game during the day to declare that the target is an enemy. Sided with The Heroes.",
+            "actions": {
+            	"dummy2": "variable:darkHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isRadiant",
+            	"hax": "variable:radiantHax",
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "command": ["inspect", "guard"],
+                        "guardActions": ["guard"],
+                        "guardmsg": "You couldn't inspect ~Target~! Soren had been evaluating them with his wind magic, obscuring your vision!",
+                        "common": "Self",
+                        "priority": 24,
+                        "hide": true,
+                        "Sight": "Team"
+                    }
+                },
+                "hax": "variable:radiantHax",
+                "standby": {
+                    "draw": {
+                        "target": "AnyButSelf",
+                        "command": "expose",
+                        "charges": 1,
+                        "msg": "Once per game, you may declare your target. Type /draw [name] to accuse someone of being a dangerous threat! (You will not be revealed):",
+                        "exposemsg": "Soren holds the Wind's Brand to the sky and summons a mystic aura to surround ~Target~, declaring that they are a dangerous enemy!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "robin",
+            "translation": "Robin",
+            "side": "village",
+            "unique": ["robin", "robin2"],
+            "startupmsg": "You are ~Role~!",
+            "help": "You are the mysterious tactician, the leader of the sheperds and Chrom's closest confidant! Lead the Heroes to victory with your tactics! Use /Read [name] to decipher someone's role! You can also counter daykills. If Grima is defeated, you gain the ability to kill during the day!",
+            "info": "Can read (inspect) one person during the night. Counters daykills. Gains the ability to daykill if Grima is killed. ~Sided~",
+            "actions": {
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isUnknown",
+            	"dummy4": "variable:isAwakening",
+            	"hax": "variable:awakeningHax",
+                "night": {
+                    "read": {
+                    	"command": ["inspect"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 25
+                    }
+                },
+                "daykill": "revenge",
+                "daykillrevengemsg": "\"Do you know what time it is...?\" ~Self~ (Robin) closes their book and turns to face their attacker, ~Target~. \"IT'S TIME TO TIP THE SCALES!!\" ~Self~ draws their Levin Sword and plunges it through ~Target~'s heart."
+            }
+        },
+        {
+            "role": "robin2",
+            "translation": "Robin",
+            "side": "village",
+            "hide": true,
+            "unique": ["robin", "robin2"],
+            "startupmsg": "You are ~Role~!",
+            "help": "You are the mysterious tactician, the leader of the sheperds and Chrom's closest confidant! Lead the Heroes to victory with your tactics! Use /Read [name] to decipher someone's role! You can also counter daykills. Now that Grima is defeated, you have gained the ability to kill during the day!",
+            "actions": {
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isUnknown",
+            	"dummy4": "variable:isAwakening",
+            	"hax": "variable:awakeningHax",
+                "night": {
+                    "read": {
+                    	"command": ["inspect"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 25
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Use your Nosferatu tome to /kill [name] :",
+                        "killmsg": "Robin, tactician and hero of sheperds, draws on the power of Nosferatu and drains the life force of ~Target~!"
+                    }
+                },
+                "daykill": "revenge",
+                "daykillrevengemsg": "\"Do you know what time it is...?\" ~Self~ (Robin) closes their book and turns to face their attacker, ~Target~. \"IT'S TIME TO TIP THE SCALES!!\" ~Self~ draws their Levin Sword and plunges it through ~Target~'s heart."
+            }
+        },
+        {
+            "role": "grima",
+            "translation": "Grima",
+            "side": "grima",
+            "unique": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "You are the Fell Dragon itself! You threaten everyone by looking just like Robin, the beloved tactician of the sheperds. You are the unstoppable dread, so you cannot be killed, poisoned, converted, or distracted during the night under normal circumstances, and you counter any daykills aimed at you. During the day, you can /kill freely. At night, you can /inspect.",
+            "info": "Can inspect. Vote counts as 1.1. Evades all nightkills, poison, and morph. Counters daykills. Reveals as Robin (sided with Heroes) if Inspected/Exposed. Can daykill (not revealed). ~Sided~",
+            "actions": {
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isUnknown",
+            	"dummy4": "variable:isAwakening",
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "broadcast": "team",
+                        "hide": true,
+                        "priority": 25
+                    },
+                    "PORTECC": {
+                        "target": "OnlySelf",
+                        "inputmsg": "",
+                        "compulsory": true,
+                        "command": ["guard"],
+                        "guardActions": ["anima", "kill", "morph", "poison"],
+                        "common": "Self",
+                        "hide": true,
+                        "noFollow": true,
+                        "macro": false,
+                        "priority": 0
+                    }
+                },
+                "vote": 1.1,
+                "inspect": {
+                    "revealAs": "robin",
+                    "seenSide": "village"
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "Use your Nosferatu tome to /kill [name] :",
+                        "killmsg": "The Fell Vessel Grima draws on the power of Nosferatu and drains the life force of ~Target~!"
+                    }
+                },
+                "onDeath": {
+                    "convertRoles": {
+                        "robin": "robin2"
+                    },
+                	"convertmsg": "The Fell Vessel Grima drops their tome, which falls to Robin's feet. Robin can now use Nosferatu during the day!"
+                },
+                "daykill": "revenge",
+                "daykillrevengemsg": "\"Do you know what time it is...?\" ~Self~ (Robin) closes their book and turns to face their attacker, ~Target~. \"IT'S TIME TO TIP THE SCALES!!\" ~Self~ draws their Levin Sword and plunges it through ~Target~'s heart."
+            }
+        },
+        {
+            "role": "morgan",
+            "translation": "Morgan",
+            "side": "grima",
+            "winningSides": [
+                "village",
+                "grima"
+            ],
+            "unique": ["morgan", "morgan2"],
+            "startupmsg": "You are ~Role~!",
+            "help": "You are Robin's child, and every bit as gifted as them! However, you are sided with the Fell Dragon Grima who used Robin as a vessel in an alternate timeline! Use your several actions once per game to help: /inspect, /distract, /kill, and /protect (protect only works on self). If going the path of evil isn't your fancy, you can team up with Robin to win alongside the village! However, if Robin dies, you will be forced to remain sided with the Fell Dragon.",
+            "info": "Can inspect, kill, distract, self-protect (+safeguard), once per game each (not same night). Can win with village as long as Robin is alive. Vote counts as 0.9. ~Sided~",
+            "actions": {
+            	"dummy2": "variable:darkHair",
+            	"dummy3": "variable:isUnknown",
+            	"dummy4": "variable:isAwakening",
+                "night": {
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "charges": 1,
+                        "hide": true,
+                        "cancel": ["distract", "protect", "kill"],
+                        "priority": 25
+                    },
+                    "protect": {
+                        "target": "OnlySelf",
+                        "command": ["protect", "safeguard"],
+                        "common": "Self",
+                        "hide": true,
+                        "charges": 1,
+                        "cancel": ["distract", "inspect", "kill"],
+                        "priority": 10
+                    },
+                    "distract": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "charges": 1,
+                        "cancel": ["inspect", "protect", "kill"],
+                        "priority": 4
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "charges": 1,
+                        "cancel": ["distract", "protect", "inspect"],
+                        "priority": 18
+                    }
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "morgan2": ["robin", "robin2"]
+                    },
+                    "convertmsg": "",
+                    "silentConvert": true
+                },
+                "vote": 0.9,
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "morgan2",
+            "translation": "Morgan",
+            "side": "grima",
+            "unique": ["morgan", "morgan2"],
+            "hide": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "You are Robin's child, and every bit as gifted as them! However, you are sided with the Fell Dragon Grima who used Robin as a vessel in an alternate timeline! Use your several actions once per game to help: /inspect, /distract, /kill, and /protect (protect only works on self). Now that Robin is gone forever, your only hope is going along with Grima!",
+            "info": "Can inspect, kill, distract, self-protect, once per game each (not same night). Can win with village as long as Robin is alive. Vote counts as 0.9. ~Sided~",
+            "actions": {
+            	"dummy2": "variable:darkHair",
+            	"dummy3": "variable:isUnknown",
+            	"dummy4": "variable:isAwakening",
+                "night": {
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "hide": true,
+                        "cancel": ["distract", "protect", "kill"],
+                        "priority": 25
+                    },
+                    "protect": {
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "command": ["protect", "safeguard"],
+                        "hide": true,
+                        "cancel": ["distract", "inspect", "kill"],
+                        "priority": 10
+                    },
+                    "distract": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "hide": true,
+                        "cancel": ["distract", "protect", "kill"],
+                        "priority": 3
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "hide": true,
+                        "cancel": ["distract", "protect", "inspect"],
+                        "priority": 18
+                    }
+                },
+                "vote": 0.9,
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "ike",
+            "translation": "Ike",
+            "side": "village",
+            "unique": ["ike", "ike2"],
+            "startupmsg": "You are ~Role~!",
+            "help": "As the incredibly powerful leader of the Greil Mercenaries, it's up to you to put an end to this war. You possess the holy sword, Ragnell, and are strong enough to wield it with only one hand. You're not only powerful but you're also swift, allowing you to /kill one person during the day and escape before your identity is known.",
+            "info": "Can /radiant to rally allies from his game. Can kill one person during the day (non-revealing). Evades nightkills. If Ashnard dies, gains a vote of 3, but loses his nightkill evade. ~Sided~",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isRadiant",
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "In every fight you've had that has ever mattered, you've been the one left standing. Pick a target and end them with /kill [name]",
+                        "killmsg": "'Prepare yourself.' A giant, golden sword is seen high in the sky. Ike lands on the ground in front of his opponent and swings the holy sword, Ragnell, at ~Target~ with great force. This match is over!"
+                    }
+                },
+                "night": {
+                    "radiant": {
+                        "target": "OnlySelf",
+                        "command": "dummy",
+                        "hide": true,
+                        "common": "Self",
+                        "priority": -1,
+                        "restrict": ["radiant"],
+                        "inputmsg": "You've rallied your allies! If any Heroes from your game recognize your call, they will send you a message!"
+                    },
+                    "PORTECC": {
+                        "target": "OnlySelf",
+                        "inputmsg": "",
+                        "compulsory": true,
+                        "command": ["guard"],
+                        "guardActions": ["anima", "kill"],
+                        "common": "Self",
+                        "hide": true,
+                        "noFollow": true,
+                        "macro": false,
+                        "priority": 0
+                    }
+                }
+            }
+        },
+        {
+            "role": "ike2",
+            "translation": "Ike",
+            "side": "village",
+            "unique": ["ike", "ike2"],
+            "startupmsg": "You are ~Role~!",
+            "help": "As the incredibly powerful leader of the Greil Mercenaries, it's up to you to put an end to this war. You possess the holy sword, Ragnell, and are strong enough to wield it with only one hand. You're not only powerful but you're also swift, allowing you to /kill one person during the day and escape before your identity is known.",
+            "info": "Can /radiant to rally allies from his game. Can kill one person during the day (non-revealing). Evades nightkills. If Ashnard dies, gains a vote of 3, but loses his nightkill evade. ~Sided~",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isRadiant",
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "In every fight you've had that has ever mattered, you've been the one left standing. Pick a target and end them with /kill [name]",
+                        "killmsg": "'Prepare yourself.' A giant, golden sword is seen high in the sky. Ike lands on the ground in front of his opponent and swings the holy sword, Ragnell, at ~Target~ with great force. This match is over!"
+                    }
+                },
+                "vote": 3,
+                "night": {
+                    "radiant": {
+                        "target": "OnlySelf",
+                        "command": "dummy",
+                        "hide": true,
+                        "common": "Self",
+                        "priority": -1,
+                        "restrict": ["radiant"],
+                        "inputmsg": "You've rallied your allies! If any Heroes from your game recognize your call, they will send you a message!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "marluc",
+            "translation": "Marth/Lucina",
+            "side": "village",
+            "startupmsg": "You are ~Role~!",
+            "help": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "stalk/watch": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 100
+                    }
+                }
+            }
+        },
+        {
+            "role": "marth",
+            "translation": "Marth",
+            "side": "village",
+            "unique": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "The Prince of Altea, Marth is here! You're an extremely capable tactician - in addition to your peerless swordsmanship. You have the ability to /kill during the day, but be warned as this MAY reveal your role! You can also use your sharp wits and vigilance to /stalk [name] someone to see who they visit. You have a chance to find Linde if she uses her Redirect!",
+            "info": "Can stalk one person during the night. Can kill one person during the day (75% reveal chance). Haxes Redirect. 20% chance to evade nightkills. Sided with The Heroes.",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isMystery",
+                "night": {
+                    "stalk": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 100
+                    }
+                },
+				"kill": {
+				  "mode": {
+					"evadeChance": 0.2
+				  },
+				  "msg": "Your target (~Self~) evaded your kill!"
+				},
+                "hax": {
+                	"redirect": {
+                        "~Player~ is one of the Heroes!": 1,
+                        "~Player~ is going to Redirect ~Target~!": 1
+                	}
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Be wary, Marth. If you are ready to kill a known enemy, type /kill [name] to do the deed.",
+                        "killmsg": "With the power of the Falchion, The Hero King Marth slices through ~Target~, leaving them in shreds!",
+                        "revealChance": 0.75,
+                        "revealmsg": "*** ~Self~ (Marth) is seen wiping his clothes after the battle."
+                    }
+                }
+            }
+        },
+        {
+            "role": "lucina",
+            "translation": "Lucina",
+            "side": "village",
+            "unique": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "Daughter of Chrom, and time-traveling hero, you are Lucina! As a time traveler, your vote counts as -1. Your swordsmanship is unparalleled, and thus you appear to others as Marth. You have the ability to /kill someone during the day, but this may reveal you. You can also use your stealth and agility to /watch [name] someone to see by whom they are visited. You can learn who Robin is when he inspects.",
+            "info": "Can watch one person during the night. Can kill one person during the day (75% reveal chance). Haxes Inspect. 40% chance to evade morph. Vote counts as -1. On list as Marth. Sided with The Heroes.",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isAwakening",
+            	"hax": "variable:awakeningHax",
+                "night": {
+                    "watch": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 100
+                    }
+                },
+                "vote": -1,
+                "hax": {
+                	"inspect": {
+                        "~Player~ is one of the Heroes!": 1,
+                        "~Player~ is going to Inspect ~Target~!": 1
+                	}
+                },
+				"convert": {
+				  "mode": {
+					"evadeChance": 0.4
+				  },
+				  "msg": "Your target (~Self~) evaded your convert!"
+				},
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Be wary, Lucina. If you are ready to kill a known enemy, type /kill [name] to do the deed.",
+                        "killmsg": "With the power of the Falchion, The Hero King Marth slices through ~Target~, leaving them in shreds!",
+                        "revealChance": 0.75,
+                        "revealmsg": "*** ~Self~ (Lucina) is seen wiping her clothes after the battle."
+                    }
+                }
+            }
+        },
+        {
+            "role": "eirika",
+            "translation": "Eirika",
+            "side": "village",
+            "unique": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "Your kind heart and gentle words are the only things that will stay the Demon King's hand. Anyone you vote for will be safe from his vote (-999).",
+            "info": "Vote of -999. Sided with The Heroes.",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isSacred",
+                "vote": -999
+            }
+        },
+        {
+            "role": "ephraim",
+            "translation": "Ephraim",
+            "side": "village",
+            "unique": true,
+            "unique": ["ephraim", "ephraim2"],
+            "startupmsg": "You are ~Role~!",
+            "help": "You are Ephraim, Eirika's sister from the Sacred Stones games. If you are voted off, you will be able to take one person down with you.",
+            "info": "Vengeful. Sided with The Heroes.",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isSacred",
+        		"lynch": {"convertTo": "ephraim2", "convertmsg": "~Self~: \"I'd like to see you try! I, Ephraim, get to take one of you wish me!\""}
+            }
+        },
+        {
+            "role": "ephraim2",
+            "translation": "Ephraim (Vengeful)",
+            "side": "village",
+            "unique": ["ephraim", "ephraim2"],
+            "startupmsg": "You are ~Role~!",
+            "hide": true,
+            "help": "You are Ephraim, Eirika's sister from the Sacred Stones games. Although you have been voted off, there is still time to take someone down with you. Type /kill [name] to bring vengeance upon your enemies! Nothing can survive your kill now!",
+            "actions": {
+      			"initialCondition": {
+      				"poison": {
+      					"count": -1, 
+      					"poisonDeadMessage": "*** This is the end for Ephraim..."
+      				}
+      			},
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isSacred",
+      			"detox": {
+      				"mode": "ignore",
+      				"silent": true
+      			},
+				"night": {
+				  "kill": {
+					"target": "AnyButSelf",
+					"common": "Self",
+					"bypass": ["ignore", "evadeChance"],
+					"priority": 1
+				  }
+				}
+            }
+        },
+        {
+            "role": "chrom",
+            "translation": "Chrom",
+            "side": "village",
+            "unique": ["chrom", "eliwood"],
+            "startupmsg": "You are ~Role~!",
+            "help": "You are Chrom, the Prince of Ylisse. You are a strong and veritable leader of your army. Raise your Falchion high and rally your allies with /awakening! Be sure to connect any allies who recognize you! Your vote counts as 4.",
+            "info": "Vote counts as 4. Cannot be converted. Can /awakening to rally characters from his game.",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isAwakening",
+                "convert": {
+                	"mode": "ignore"
+                },
+                "night": {
+                    "awakening": {
+                        "target": "OnlySelf",
+                        "command": "dummy",
+                        "hide": true,
+                        "common": "Self",
+                        "priority": -1,
+                        "restrict": ["awakening"],
+                        "inputmsg": "You've rallied your allies! If any Heroes from your game recognize your call, they will send you a message!"
+                    }
+                },
+            	"vote": 4
+            }
+        },
+        {
+            "role": "eliwood",
+            "translation": "Eliwood",
+            "side": "village",
+            "unique": ["chrom", "eliwood"],
+            "startupmsg": "You are ~Role~!",
+            "help": "You are Eliwood, Marquess of Pherae. Given your royal lineage, you have a considerable sway in matters of diplomacy granting you a vote of 4 during the day. You can also use /blazing during the night to rally Heroes from your game!",
+            "info": "Vote counts as 4. Cannot be converted. Can /blazing to rally characters from his game (Blazing or Binding Blade). ~Sided~",
+            "actions": {
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isBlazing",
+                "convert": {
+                	"mode": "ignore"
+                },
+                "night": {
+                    "blazing": {
+                        "target": "OnlySelf",
+                        "command": "dummy",
+                        "hide": true,
+                        "common": "Self",
+                        "priority": -1,
+                        "restrict": ["blazing"],
+                        "inputmsg": "You've rallied your allies! If any Heroes from your game recognize your call, they will send you a message!"
+                    }
+                },
+            	"vote": 4
+            }
+        },
+        {
+            "role": "hoshido_placeholder",
+            "translation": "Enemy Hoshido / Enemy Nohr",
+            "side": "hoshido_enemy",
+            "help": "",
+			"hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 14,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "bern_placeholder",
+            "translation": "Kingdom of Bern",
+            "side": "bern",
+            "help": "",
+			"hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 15,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "fang_placeholder",
+            "translation": "Dread Isle",
+            "side": "fang",
+            "help": "",
+			"hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 16,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "ryoma",
+            "translation": "Ryoma",
+            "side": "hoshido",
+            "winningSides": ["village", "hoshido"],
+            "unique": ["hinoka_enemy", "ryoma_enemy", "takumi_enemy", "sakura_enemy", "ryoma", "xander", "camilla", "leo", "elise"],
+            "startupmsg": "You are ~Role~!",
+            "help2": "You are allied with the Heroes!",
+            "help": "You are Ryoma, the crown prince of Kingdom of Hoshido! As a wise and charismatic leader you have a 25% chance to have a vote of 4! Your aim with a sword is deadly, so you can use your sword skills to /shield [name] an ally during the night to take kills for them, and once per game, you may kill during the day. You kill anyone to tries to distract or kill you during the night.",
+            "info": "Can shield one person during the night. Can kill during the day once per game (not revealed). Kills distractors and nightkillers. Vote has 25% chance to count as 4. As an Enemy Hoshido, can kill during the night. May be sided with the Heroes or the Enemy Hoshido.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isFates",
+            	"hax": "variable:fatesHax",
+                "night": {
+                    "shield": {
+                        "target": "AnyButSelf",
+                        "shieldActions": ["kill"],
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 10,
+                        "broadcast": "team"
+                    }
+                },
+                "inspect": {
+                    "seenSide": "village"
+                },
+                "distract": {
+                    "mode": "killattacker"
+                },
+                "kill": {
+                    "mode": "killattacker"
+                },
+                "vote": [1, 1, 1, 4],
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can kill using /kill [name] once per game! (You will not be revealed!) :",
+                        "charges": 1,
+                        "killmsg": "±Tactician: \"You die... now!\" Ryoma draws his Raijinto and darts towards ~Target~ with incredible speed. ~Target~ is nothing but shreds of cloth within seconds..."
+                    }
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "ryoma_enemy",
+            "translation": "Ryoma",
+            "side": "hoshido_enemy",
+            "unique": ["ryoma", "hinoka", "takumi", "sakura", "ryoma_enemy", "camilla_enemy", "xander_enemy", "elise_enemy", "leo_enemy"],
+            "startupmsg": "You are ~Role~!",
+            "help2": "You are sided with the Enemy Hoshido!",
+            "help": "You are Ryoma, the crown prince of Kingdom of Hoshido! As an enemy to the Heroes, you may /kill [name] during the night. As a wise and charismatic leader you have a 25% chance to have a vote of 4! Your aim with a sword is deadly, so you can use your sword skills to /shield [name] an ally during the night to take kills for them, and once per game, you may kill during the day. You kill anyone who tries to kill or distract you during the night.",
+			"hide": true,
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "updateTeam": true,
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isFates",
+            	"hax": "variable:fatesHax",
+                "night": {
+                    "shield": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 10,
+                        "hide": true,
+                        "broadcast": "team"
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 14,
+                        "broadcast": "team",
+                        "hide": true
+                    }
+                },
+                "inspect": {
+                    "seenSide": "village"
+                },
+                "distract": {
+                    "mode": "killattacker"
+                },
+                "kill": {
+                    "mode": "killattacker"
+                },
+                "vote": [1, 1, 1, 4],
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can kill using /kill [name] once per game! (You will not be revealed!) :",
+                        "charges": 1,
+                        "killmsg": "±Tactician: \"You die... now!\" Ryoma draws his Raijinto and darts towards ~Target~ with incredible speed. ~Target~ is nothing but shreds of cloth within seconds..."
+                    }
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "hinoka",
+            "translation": "Hinoka",
+            "side": "hoshido",
+            "winningSides": ["village", "hoshido"],
+            "unique": ["hinoka_enemy", "ryoma_enemy", "takumi_enemy", "sakura_enemy", "hinoka", "xander", "camilla", "leo", "elise"],
+            "startupmsg": "You are ~Role~!",
+            "help2": "You are allied with the Heroes!",
+            "help": "You are the older sister of Corrin and the first princess of Hoshido! Riding your pegasus, you can find out about many happenings during the night! Once per game, you may /kill [name] during the day, but be careful, as you may be revealed. Your skill on a pegasus allows you to evade daykills and escape one lynch per game as well. As a princess, your vote has a 10% chance to count as 5!",
+            "info": "May hax poison, kill, inspect, distract, protect, stalk, and watch. Evades daykills and 1 lynch. May daykill once per game. Vote has 10% chance to count as 5. As an Enemy Hoshido, can kill during the night. May be sided with the Heroes or the Enemy Hoshido.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isFates",
+            	"hax": "variable:fatesHax",
+                "inspect": {
+                    "seenSide": "village"
+                },
+                "hax": {
+                    "poison": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+                    },
+                    "protect": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+                    },
+                    "inspect": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+                    },
+                    "distract": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+                    },
+                    "stalk": {
+                        "revealTeam": 0.25,
+						"revealRole": 0.1
+                    },
+                    "watch": {
+                        "revealTeam": 0.25,
+						"revealRole": 0.1
+                    },
+                    "kill": {
+                        "revealTeam": 0.15,
+						"revealRole": 0.07
+                    }
+                },
+                "daykill": {
+                	"mode": {
+                		"evadeChance": 1
+                	}
+                },
+                "lynch": {
+                    "convertTo": "hinoka2",
+                    "convertmsg": "Just as everyone closed in on her, ~Self~ (Hinoka) escaped and flew away to victory!"
+                },
+                "vote": [1, 1, 1, 1, 1, 1, 1, 1, 1, 5],
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can kill using /kill [name] once per game! (You have a 45% chance to be revealed) :",
+                        "charges": 1,
+                        "revealChance": 0.45,
+                        "revealmsg": "~Self~ (Hinoka) flies away on their pegasus to safety.",
+                        "killmsg": "±Tactician: Hinoka soars across the sky and runs ~Target~ through with her lance!"
+                    }
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "hinoka2",
+            "translation": "Hinoka",
+            "side": "hoshido",
+            "winningSides": ["village", "hoshido"],
+            "startupmsg": "You are ~Role~!",
+            "help2": "You are allied with the Heroes!",
+            "hide": true,
+            "help": "You are the older sister of Corrin and the first princess of Hoshido! Riding your pegasus, you can find out about many happenings during the night! Once per game, you may /kill [name] during the day, but be careful, as you may be revealed. Your skill on a pegasus allows you to evade daykills and escape one lynch per game as well. As a princess, your vote has a 10% chance to count as 5!",
+            "info": "May hax poison, kill, inspect, distract, protect, stalk, and watch. Evades daykills and 1 lynch. May daykill once per game. Vote has 10% chance to count as 5. As an Enemy Hoshido, can kill during the night. May be sided with the Heroes or the Enemy Hoshido.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isFates",
+            	"hax": "variable:fatesHax",
+                "inspect": {
+                    "seenSide": "village"
+                },
+                "hax": {
+                    "poison": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+                    },
+                    "protect": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+                    },
+                    "inspect": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+                    },
+                    "distract": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+                    },
+                    "stalk": {
+                        "revealTeam": 0.25,
+						"revealRole": 0.1
+                    },
+                    "watch": {
+                        "revealTeam": 0.25,
+						"revealRole": 0.1
+                    },
+                    "kill": {
+                        "revealTeam": 0.15,
+						"revealRole": 0.07
+                    }
+                },
+                "daykill": {
+                	"mode": {
+                		"evadeChance": 1
+                	}
+                },
+                "vote": [1, 1, 1, 1, 1, 1, 1, 1, 1, 5],
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can kill using /kill [name] once per game! (You have a 45% chance to be revealed) :",
+                        "revealChance": 0.45,
+                        "revealmsg": "~Self~ (Hinoka) flies away on their pegasus to safety.",
+                        "killmsg": "±Tactician: Hinoka soars across the sky and runs ~Target~ through with her lance!"
+                    }
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "hinoka_enemy",
+            "translation": "Hinoka",
+            "side": "hoshido_enemy",
+            "hide": true,
+            "winningSides": ["village", "hoshido"],
+            "unique": ["ryoma", "hinoka", "takumi", "sakura", "hinoka_enemy", "camilla_enemy", "xander_enemy", "elise_enemy", "leo_enemy"],
+            "startupmsg": "You are ~Role~!",
+            "help2": "You are sided with the Enemy Hoshido!",
+            "help": "You are the older sister of Corrin and the first princess of Hoshido! As an enemy to the Heroes, you may /kill [name] during the night. Riding your pegasus, you can find out about many happenings during the night! Once per game, you may /kill [name] during the day, but be careful, as you may be revealed. Your skill on a pegasus allows you to evade daykills and escape one lynch per game as well. As a princess, your vote has a 10% chance to count as 5!",
+            "info": "May hax poison, kill, inspect, distract, protect, stalk, and watch. Evades daykills and 1 lynch. May daykill once per game. Vote has 10% chance to count as 5. As an Enemy Hoshido, can kill during the night. May be sided with the Heroes or the Enemy Hoshido.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isFates",
+            	"hax": "variable:fatesHax",
+                "inspect": {
+                    "seenSide": "village"
+                },
+                "hax": {
+                    "poison": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+                    },
+                    "protect": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+                    },
+                    "inspect": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+                    },
+                    "distract": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+                    },
+                    "stalk": {
+                        "revealTeam": 0.25,
+						"revealRole": 0.1
+                    },
+                    "watch": {
+                        "revealTeam": 0.25,
+						"revealRole": 0.1
+                    },
+                    "kill": {
+                        "revealTeam": 0.15,
+						"revealRole": 0.07
+                    }
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 14,
+                        "broadcast": "team",
+                        "hide": true
+                    }
+                },
+                "daykill": {
+                	"mode": {
+                		"evadeChance": 1
+                	}
+                },
+                "lynch": {
+                    "convertTo": "hinoka_enemy2",
+                    "convertmsg": "Just as everyone closed in on her, ~Self~ (Hinoka) escaped and flew away to victory!"
+                },
+                "vote": [1, 1, 1, 1, 1, 1, 1, 1, 1, 5],
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can kill using /kill [name] once per game! (You have a 45% chance to be revealed) :",
+                        "charges": 1,
+                        "revealChance": 0.45,
+                        "revealmsg": "~Self~ (Hinoka) flies away on their pegasus to safety.",
+                        "killmsg": "±Tactician: Hinoka soars across the sky and runs ~Target~ through with her lance!"
+                    }
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "hinoka_enemy2",
+            "translation": "Hinoka",
+            "side": "hoshido_enemy",
+            "hide": true,
+            "winningSides": ["village", "hoshido"],
+            "unique": ["hinoka", "hinoka_enemy", "ryoma", "camilla_enemy", "leo_enemy"],
+            "startupmsg": "You are ~Role~!",
+            "help2": "You are sided with the Enemy Hoshido!",
+            "help": "You are the older sister of Corrin and the first princess of Hoshido! As an enemy to the Heroes, you may /kill [name] during the night. Riding your pegasus, you can find out about many happenings during the night! Once per game, you may /kill [name] during the day, but be careful, as you may be revealed. Your skill on a pegasus allows you to evade daykills and escape one lynch per game as well. As a princess, your vote has a 10% chance to count as 5!",
+            "info": "May hax poison, kill, inspect, distract, protect, stalk, and watch. Evades daykills and 1 lynch. May daykill once per game. Vote has 10% chance to count as 5. As an Enemy Hoshido, can kill during the night. May be sided with the Heroes or the Enemy Hoshido.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isFates",
+            	"hax": "variable:fatesHax",
+                "inspect": {
+                    "seenSide": "village"
+                },
+                "hax": {
+                    "poison": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+                    },
+                    "protect": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+                    },
+                    "inspect": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+                    },
+                    "distract": {
+                        "revealTeam": 0.4,
+						"revealRole": 0.15
+                    },
+                    "stalk": {
+                        "revealTeam": 0.25,
+						"revealRole": 0.1
+                    },
+                    "watch": {
+                        "revealTeam": 0.25,
+						"revealRole": 0.1
+                    },
+                    "kill": {
+                        "revealTeam": 0.15,
+						"revealRole": 0.07
+                    }
+                },
+                "daykill": {
+                	"mode": {
+                		"evadeChance": 1
+                	}
+                },
+                "vote": [1, 1, 1, 1, 1, 1, 1, 1, 1, 5],
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can kill using /kill [name] once per game! (You have a 45% chance to be revealed) :",
+                        "revealChance": 0.45,
+                        "revealmsg": "~Self~ (Hinoka) flies away on their pegasus to safety.",
+                        "killmsg": "±Tactician: Hinoka soars across the sky and runs ~Target~ through with her lance!"
+                    }
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "takumi",
+            "translation": "Takumi",
+            "side": "hoshido",
+            "winningSides": ["village", "hoshido"],
+            "unique": ["hinoka_enemy", "ryoma_enemy", "takumi_enemy", "sakura_enemy", "takumi", "xander", "camilla", "leo", "elise"],
+            "startupmsg": "You are ~Role~!",
+            "help2": "You are allied with the Heroes!",
+            "help": "Corrin's little brother, younger prince of Hoshido, that's you! You may look like a pineapple, but you can /stalk name twice per night to find out who visited whom during the night! As a prince, your vote has a 16.6% chance to count for 2.",
+            "info": "Can stalk two people per night. Vote has 16.6% chance to count as 2. As an Enemy Hoshido, can kill during the night. May be sided with the Heroes or the Enemy Hoshido.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:darkHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isFates",
+            	"hax": "variable:fatesHax",
+                "night": {
+                    "stalk": {
+                        "target": "AnyButTeam",
+                        "limit": 2,
+                        "hide": true,
+                        "common": "Self",
+                        "priority": 98,
+                        "broadcast": "team"
+                    }
+                },
+                "inspect": {
+                    "seenSide": "village"
+                },
+                "vote": [1, 1, 1, 1, 1, 2],
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "takumi_enemy",
+            "translation": "Takumi",
+            "side": "hoshido_enemy",
+            "unique": ["ryoma", "hinoka", "takumi", "sakura", "takumi_enemy", "camilla_enemy", "xander_enemy", "elise_enemy", "leo_enemy"],
+            "startupmsg": "You are ~Role~!",
+            "help2": "You are sided with the Enemy Hoshido!",
+            "help": "Corrin's little brother, younger prince of Hoshido, that's you! As an enemy to the Heroes, you may /kill [name] during the night. You may look like a pineapple, but you can /stalk name twice per night to find out who visited whom during the night! As a prince, your vote has a 16.6% chance to count for 2.",
+            "info": "Can stalk two people per night. Vote has 16.6% chance to count as 2. As an Enemy Hoshido, can kill during the night. May be sided with the Heroes or the Enemy Hoshido.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+            	"dummy2": "variable:darkHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isFates",
+            	"hax": "variable:fatesHax",
+                "preventTeamvote": true,
+                "night": {
+                    "stalk": {
+                        "target": "AnyButTeam",
+                        "limit": 2,
+                        "hide": true,
+                        "common": "Self",
+                        "priority": 98,
+                        "broadcast": "team"
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 14,
+                        "broadcast": "team",
+                        "hide": true
+                    }
+                },
+                "vote": [1, 1, 1, 1, 1, 2],
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "sakura",
+            "translation": "Sakura",
+            "side": "hoshido",
+            "winningSides": ["village", "hoshido"],
+            "unique": ["hinoka_enemy", "ryoma_enemy", "takumi_enemy", "sakura_enemy", "sakura", "xander", "camilla", "leo", "elise"],
+            "startupmsg": "You are ~Role~!",
+            "help2": "You are allied with the Heroes!",
+            "help": "You are Corrin's little sister and youngest child of Hoshido! You may seem gentle, but you are able to put up a fight! Type /protect [name] to guard someone from kills and poisons during the night! As a princess, your vote has a 20% chance to count for 2.",
+            "info": "Can protect (protect+safeguard) one person during the night. Vote has 20% chance to count as 2. As an Enemy Hoshido, can kill during the night. May be sided with the Heroes or the Enemy Hoshido.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isFates",
+            	"hax": "variable:fatesHax",
+                "preventTeamvote": true,
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "command": ["protect", "safeguard"],
+                        "common": "Self",
+                        "priority": 10,
+                        "hide": true,
+                        "broadcast": "team"
+                    }
+                },
+                "inspect": {
+                    "seenSide": "village"
+                },
+                "vote": [1, 1, 1, 1, 2],
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "sakura_enemy",
+            "translation": "Sakura",
+            "side": "hoshido_enemy",
+            "hide": true,
+            "unique": ["ryoma", "hinoka", "takumi", "sakura", "sakura_enemy", "camilla_enemy", "xander_enemy", "elise_enemy", "leo_enemy"],
+            "startupmsg": "You are ~Role~!",
+            "help2": "You are sided with the Enemy Hoshido!",
+            "help": "You are Corrin's little sister and youngest child of Hoshido! As an enemy to the Heroes, you may /kill [name] during the night. You may seem gentle, but you are able to put up a fight! Type /protect [name] to guard someone from kills and poisons during the night! As a princess, your vote has a 20% chance to count for 2.",
+            "info": "Can protect (protect+safeguard) one person during the night. Vote has 20% chance to count as 2. As an Enemy Hoshido, can kill during the night. May be sided with the Heroes or the Enemy Hoshido.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isFates",
+            	"hax": "variable:fatesHax",
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "command": ["protect", "safeguard"],
+                        "common": "Self",
+                        "priority": 10,
+                        "hide": true,
+                        "broadcast": "team"
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 14,
+                        "broadcast": "team",
+                        "hide": true
+                    }
+                },
+                "vote": [1, 1, 1, 1, 2],
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "xander",
+            "translation": "Xander",
+            "side": "nohr",
+            "winningSides": ["village", "nohr"],
+            "unique": ["ryoma", "hinoka", "takumi", "sakura", "xander", "camilla_enemy", "xander_enemy", "elise_enemy", "leo_enemy"],
+            "startupmsg": "You are ~Role~!",
+            "help2": "You are allied with the Heroes!",
+            "help": "You are the crown prince of Nohr. Your presige grants you a 50% chance to have a vote of 5 during the day. You can also evade kill during the night thanks to your powerful defenses.",
+            "info": "Can distract one person during the night. Evades nightkills (appears as protected). Can kill during the day once per game (30% chance to be revealed). Vote has a 50% chance to count as 5. As an Enemy Nohr, can kill during the night. May be sided with the Heroes or the Enemy Nohr.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isFates",
+            	"hax": "variable:fatesHax",
+                "inspect": {
+                    "seenSide": "village"
+                },
+                "vote": [1, 5],
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can kill using /kill [name] once per game! (You have a 60% chance to be revealed!) :",
+                        "charges": 1,
+                        "revealChance": 0.3,
+                        "revealmsg": "~Self~ (Xander) rushes away on his horse.",
+                        "killmsg": "±Tactician: Xander charges at ~Target~ and wipes them away with a quick slash of the Siegfriend!"
+                    }
+                },
+				"kill": {
+				  "mode": {
+					"evadeChance": 1
+				  },
+				  "msg": "Your target (~Self~) was protected!"
+				},
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "xander_enemy",
+            "translation": "Xander",
+            "side": "nohr_enemy",
+            "unique": ["hinoka_enemy", "ryoma_enemy", "takumi_enemy", "sakura_enemy", "xander", "xander_enemy", "camilla", "leo", "elise"],
+            "startupmsg": "You are ~Role~!",
+            "hide": true,
+            "help2": "You are sided with the Enemy Nohr!",
+            "help": "You are the crown prince of Nohr. As an enemy to the Heroes, you may /kill [name] during the night. Your presige grants you a 50% chance to have a vote of 5 during the day. You can also evade kill during the night thanks to your powerful defenses.",
+            "info": "Can distract one person during the night. Evades nightkills (appears as protected). Can kill during the day once per game (30% chance to be revealed). Vote has a 50% chance to count as 5. As an Enemy Nohr, can kill during the night. May be sided with the Heroes or the Enemy Nohr.",
+            "actions": {
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isFates",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"hax": "variable:fatesHax",
+                "inspect": {
+                    "seenSide": "village"
+                },
+                "vote": [1, 5],
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can kill using /kill [name] once per game! (You have a 60% chance to be revealed!) :",
+                        "charges": 1,
+                        "revealChance": 0.3,
+                        "revealmsg": "~Self~ (Xander) rushes away on his horse.",
+                        "killmsg": "±Tactician: Xander charges at ~Target~ and wipes them away with a quick slash of the Siegfriend!"
+                    }
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 14,
+                        "broadcast": "team",
+                        "hide": true
+                    }
+                },
+				"kill": {
+				  "mode": {
+					"evadeChance": 1
+				  },
+				  "msg": "Your target (~Self~) was protected!"
+				},
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "camilla",
+            "translation": "Camilla",
+            "side": "nohr",
+            "winningSides": ["village", "nohr"],
+            "unique": ["ryoma", "hinoka", "takumi", "sakura", "camilla", "camilla_enemy", "xander_enemy", "elise_enemy", "leo_enemy"],
+            "startupmsg": "You are ~Role~!",
+            "help2": "You are allied with the Heroes!",
+            "help": "You are Camilla, the vicious invader and doting mother figure for Corrin! Ride your beloved Wyvern and /distract [name] someone during the night. Once per game, you may kill during the day. Your vote has a 12.5% chance to count as 10.",
+            "info": "Can distract one person during the night. Can kill during the day once per game (60% chance to be revealed). Vote has a 12.5% chance to count as 10. As an Enemy Nohr, can kill during the night. May be sided with the Heroes or the Enemy Nohr.",
+            "actions": {
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isFates",
+            	"hax": "variable:fatesHax",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "night": {
+                    "distract": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 5,
+                        "broadcast": "team"
+                    }
+                },
+                "inspect": {
+                    "seenSide": "village"
+                },
+                "vote": [1, 1, 1, 1, 1, 1, 1, 10],
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can kill using /kill [name] once per game! (You have a 60% chance to be revealed!) :",
+                        "charges": 1,
+                        "revealChance": 0.6,
+                        "revealmsg": "~Self~ can't help themselves but laugh in the pool of blood...",
+                        "killmsg": "±Tactician: Camilla flies up to ~Target~ on her Wyvern and smacks them dead with an ax. Then she smacks them a few more times just to be sure."
+                    }
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "camilla_enemy",
+            "translation": "Camilla",
+            "side": "nohr_enemy",
+            "unique": ["hinoka_enemy", "ryoma_enemy", "takumi_enemy", "sakura_enemy", "xander", "camilla_enemy", "camilla", "leo", "elise"],
+            "startupmsg": "You are ~Role~!",
+            "help2": "You are sided with the Enemy Nohr!",
+            "help": "You are Camilla, the vicious invader and doting mother figure for Corrin! As an enemy to the Heroes, you may /kill [name] during the night. Ride your beloved Wyvern and /distract [name] someone during the night. Once per game, you may kill during the day. Your vote has a 12.5% chance to count as 10.",
+			"hide": true,
+           	"actions": {
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isFates",
+            	"hax": "variable:fatesHax",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "night": {
+                    "distract": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 5,
+                        "hide": true,
+                        "broadcast": "team"
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 14,
+                        "broadcast": "team",
+                        "hide": true
+                    }
+                },
+                "vote": [1, 1, 1, 1, 1, 1, 1, 10],
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can kill using /kill [name] once per game! (You have a 60% chance to be revealed!) :",
+                        "charges": 1,
+                        "revealChance": 0.6,
+                        "revealmsg": "~Self~ can't help themselves but laugh in the pool of blood...",
+                        "killmsg": "±Tactician: \"Say night night!\" Camilla flies up to ~Target~ on her Wyvern and smacks them dead with an ax. Then she smacks them a few more times just to be sure."
+                    }
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "leo",
+            "translation": "Leo",
+            "side": "nohr",
+            "winningSides": ["village", "nohr"],
+            "unique": ["ryoma", "hinoka", "takumi", "sakura", "leo", "camilla_enemy", "xander_enemy", "elise_enemy", "leo_enemy"],
+            "startupmsg": "You are ~Role~!",
+            "help2": "You are allied with the Heroes!",
+            "help": "You are Leo, younger brother of Corrin and a magician with a reputation for genius! Because of your keen intellect, you can /Inspect [name] during the night to learn someone's role. Your vote has a 16.6% chance to count as 2.",
+            "info": "Can inspect one person during the night. As an Enemy Nohr, can kill during the night (can't be detected by stalk or watch). May be sided with the Heroes or the Enemy Nohr.",
+            "actions": {
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isFates",
+            	"hax": "variable:fatesHax",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "night": {
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 25,
+                        "hide": true,
+                        "broadcast": "team"
+                    }
+                },
+                "vote": [1, 1, 1, 1, 1, 2],
+                "inspect": {
+                    "seenSide": "village"
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "leo_enemy",
+            "translation": "Leo",
+            "side": "nohr_enemy",
+            "unique": ["hinoka_enemy", "ryoma_enemy", "takumi_enemy", "sakura_enemy", "xander", "leo_enemy", "camilla", "leo", "elise"],
+            "startupmsg": "You are ~Role~!",
+            "help2": "You are an enemy of the Heroes!",
+            "help": "You are Leo, younger brother of Corrin and a magician with a reputation for genius! As an enemy to the Heroes, you may /kill [name] during the night (you are smart, so you can't be discovered by Stalk or Watch while doing so). Because of your keen intellect, you can /Inspect [name] during the night to learn someone's role.",
+			"hide": true,
+            "actions": {
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isFates",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "vote": [1, 1, 1, 1, 1, 2],
+                "night": {
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 20,
+                        "hide": true,
+                        "broadcast": "team"
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "noFollow": true,
+                        "common": "Team",
+                        "priority": 14,
+                        "broadcast": "team",
+                        "hide": true
+                    }
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "elise",
+            "translation": "Elise",
+            "side": "nohr",
+            "winningSides": ["village", "nohr"],
+            "unique": ["ryoma", "hinoka", "takumi", "sakura", "elise", "camilla_enemy", "xander_enemy", "elise_enemy", "leo_enemy"],
+            "startupmsg": "You are ~Role~!",
+            "help2": "You are allied with the Heroes!",
+            "help": "You are Corrin's little sister and youngest child of Nohr! You're a sprity little princess with an affinity for magic! Type /protect [name] to guard someone from kills and poisons during the night! As a princess, your vote has a 20% chance to count for 2.",
+            "info": "Can protect (protect+safeguard) one person during the night. Vote has 20% chance to count as 2. As an Enemy Nohr, can kill during the night. May be sided with the Heroes or the Enemy Hoshido.",
+            "actions": {
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isFates",
+            	"hax": "variable:fatesHax",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "command": ["protect", "safeguard"],
+                        "common": "Self",
+                        "priority": 10,
+                        "hide": true,
+                        "broadcast": "team"
+                    }
+                },
+                "inspect": {
+                    "seenSide": "village"
+                },
+                "vote": [1, 1, 1, 1, 2],
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "elise_enemy",
+            "translation": "Elise",
+            "side": "nohr_enemy",
+            "hide": true,
+            "unique": ["hinoka_enemy", "ryoma_enemy", "takumi_enemy", "sakura_enemy", "xander", "elise_enemy", "camilla", "leo", "elise"],
+            "startupmsg": "You are ~Role~!",
+            "help2": "You are sided with the Enemy Nohr!",
+            "help": "You are Corrin's little sister and youngest child of Nohr! As an enemy to the Heroes, you may /kill [name] during the night. You're a sprity little princess with an affinity for magic! Type /protect [name] to guard someone from kills and poisons during the night! As a princess, your vote has a 20% chance to count for 2.",
+            "info": "Can protect (protect+safeguard) one person during the night. Vote has 20% chance to count as 2. As an Enemy Nohr, can kill during the night. May be sided with the Heroes or the Enemy Nohr.",
+            "actions": {
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isFates",
+            	"hax": "variable:fatesHax",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "command": ["protect", "safeguard"],
+                        "common": "Self",
+                        "priority": 10,
+                        "hide": true,
+                        "broadcast": "team"
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 14,
+                        "broadcast": "team",
+                        "hide": true
+                    }
+                },
+                "vote": [1, 1, 1, 1, 2],
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "veronica",
+            "translation": "Veronica",
+            "side": "emblian",
+            "startupmsg": "You are ~Role~!",
+            "winIfDeadRoles": [
+                "sonia",
+                "narshen",
+                "corrin",
+                "tiki",
+                "sophia",
+                "nowi",
+                "marth",
+                "lucina",
+                "robin",
+                "chrom", 
+        		"ephraim",
+        		"ephraim2",
+        		"eirika",
+                "ryoma",
+                "ryoma_enemy",
+                "camilla",
+                "camilla_enemy",
+                "eirika",
+                "ike",
+                "nergal",
+                "nergal2",
+                "nergal3",
+                "ephidel",
+                "limstella",
+                "idoun",
+                "zephiel",
+                "zephiel2",
+                "murdock",
+                "ashnard",
+                "zelgius",
+                "sephiran",
+                "aversa",
+                "validar",
+                "gangrel"
+            ],
+            "help": "Not much is known about you, but one thing is clear: you are intent on destroying the Heroes. Your expertise as a summoner allows you to change someone's role with /reroll during the night. You can also distract 1 person during the night. You have great power that allows you to avoid any nightkills, and a tremendous vote of 1000.",
+            "info": "Can convert someone during the night to change their role. Can distract one person during the night. Vote of 1000. Blocks nightkills aimed at her. ~Sided~",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "vote": 1000,
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isHeroes",
+                "night": {
+                    "PORTECC": {
+                        "target": "OnlySelf",
+                        "inputmsg": "",
+                        "compulsory": true,
+                        "command": ["protect"],
+                        "common": "Self",
+                        "hide": true,
+                        "noFollow": true,
+                        "macro": false,
+                        "priority": 0
+                    },
+                    "reroll": {
+                        "target": "AnyButSelf",
+                        "command": ["convert"],
+                        "common": "Self",
+                        "newRole": {
+                        	"tiki": "variable:anyVillage",
+                        	"nowi": "variable:anyVillage",
+                        	"corrin": "variable:anyVillage",
+                        	"lucina": "variable:anyVillage",
+                        	"marth": "variable:anyVillage",
+                        	"ike": "variable:anyVillage",
+                        	"soren": "variable:anyVillage",
+                        	"sophia": "variable:anyVillage",
+                        	"disgruntled": "variable:anyVillage",
+                        	"robin": "variable:anyVillage",
+                        	"roy": "variable:anyVillage",
+                        	"hector": "variable:anyVillage",
+                        	"lyndis": "variable:anyVillage",
+                        	"eliwood": "variable:anyVillage",
+                        	"chrom": "variable:anyVillage",
+                        	"ephraim": "variable:anyVillage",
+                        	"lyndis": "variable:anyVillage",
+                        	"linde": "variable:anyVillage",
+                        	"lyndis": "variable:anyVillage",
+                        	"celica": "variable:anyVillage",
+                        	"azura": "variable:anyVillage",
+                        	"eirika": "variable:anyVillage"
+                        },
+                        "convertmsg": "The ~Old~ has been re-summoned by Veronica and is now a ~New~!",
+                        "priority": 99
+                    },
+                    "distract": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "distractmsg": "Veronica stunned you with her light magic. You couldn't complete any actions!",
+                        "priority": 6
+                    }
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "gra",
+            "translation": "Grado",
+            "side": "grado",
+            "unique": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 12,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "poison",
+            "translation": "All Poisons",
+            "side": "grado",
+            "unique": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "poison": {
+                    	"command": ["poison"],
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 35,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "riev",
+            "translation": "Riev",
+            "side": "grado",
+            "unique": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "You are Riev, the notorious Blood Beryl and Grado General who helped Lyon control Morva when he was turned into a Draco Zombie. As a ruthless and bloodthirsty Bishop, you are able to /poison someone during the night. Having great power grants you a vote of 2.",
+            "info": "Can poison one person during the night. Vote of 2. Haxes kill. Sided with The Grado Empire.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isSacred",
+                "night": {
+                    "poison": {
+                    	"command": ["poison"],
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 35,
+                        "broadcast": "team"
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 12,
+                        "hide": true,
+                        "broadcast": "team"
+                    }
+                },
+                "hax": {
+                    "kill": {
+                        "revealTeam": 0.25,
+						"revealRole": 0.05
+                    }
+                },
+                "vote": 2,
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "selena",
+            "translation": "Selena",
+            "side": "grado",
+            "unique": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "You are Selena, the general of Grado! Defend Prince Lyon at all costs with your /protect! You can use /kill [name] to eliminate someone at night. You have a vote of 2 due to your prominence in the Empire.",
+            "info": "Can kill once per night. Can protect one player per night (also blocks poison, morph). Vote counts as 2. Evades 1 nightkill. ~Sided~.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isSacred",
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 12,
+                        "hide": true,
+                        "broadcast": "team"
+                    },
+                    "protect": {
+                    	"command": ["guard"],
+                        "target": "AnyButSelf",
+                        "guardActions": ["anima", "kill", "attack", "poison", "morph"],
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 10,
+                        "broadcast": "team"
+                    }
+                },
+                "kill": {
+                	"mode": {
+                		"evadeCharges": 1
+                	}
+                },
+                "vote": 2,
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "lyon",
+            "translation": "Lyon",
+            "side": "grado",
+            "unique": ["lyon", "lyon2"],
+            "startupmsg": "You are The ~Role~!",
+            "help": "You're the Prince of Grado, you have no desire for this war, but this is out of your hands! You can /poison up to 2 people per night. You can also kill during the day, but be wary - it will activate the Dark Stone, transforming you into the Demon King Fomortiis, giving you the a vote of 999, but reveal you as well! Once that happens, nearly anyone you vote for will immediately perish...",
+            "info": "Can poison two people during the night (takes 2 turns to kill). Can kill during the day (revealed). Gains a vote of 999 if he kills. ~Sided~",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isSacred",
+                "night": {
+                    "poison": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 35,
+                        "hide": true,
+                        "count": 3,
+                        "broadcast": "team",
+                        "limit": 2
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can kill now using /kill [name] which will turn you into the Demon King and reveal you! :",
+                        "killmsg": "The Demon King has no control - he kills without question. ~Target~ was his first victim.",
+                        "copyAs": "lyon2",
+                        "copymsg": "",
+                        "silent": true,
+                        "copyusermsg": "",
+                        "revealChance": 1,
+                        "revealmsg": "*** ~Self~ (Lyon) has been consumed by the Demon King and now has a vote of 999!"
+                    }
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "lyon2",
+            "translation": "Demon King",
+            "side": "grado",
+            "unique": ["lyon", "lyon2"],
+            "winIfDeadRoles": [
+                "lyndis",
+                "sonia",
+                "lekain",
+                "narshen",
+                "corrin",
+                "tiki",
+                "nowi",
+                "alm",
+                "marth",
+                "lucina",
+                "chrom", 
+                "ephraim", 
+                "ephraim2", 
+                "ryoma",
+                "ryoma_enemy",
+                "camilla",
+                "camilla_enemy",
+                "leo_enemy",
+                "eirika",
+                "ike",
+                "nergal",
+                "nergal2",
+                "nergal3",
+                "ephidel",
+                "limstella",
+                "idoun",
+                "zephiel",
+                "zephiel2",
+                "murdock",
+                "ashnard",
+                "zelgius",
+                "sephiran",
+                "aversa",
+                "validar",
+                "gangrel"
+            ],
+            "startupmsg": "You are The ~Role~!",
+            "help": "You're the Prince of Grado, you have no desire for this war, but this is out of your hands! The activation of the forbidden dark stone has caused you to become the Demon King, Fomortiis. You can /poison up to 2 people per night. Additionally, as a dark god, your voting powers are absolute - anyone you vote for will immediately perish! You can also kill during the day, but be wary - you will be revealed and quickly disposed of!",
+            "hide": true,
+            "actions": {
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isSacred",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "night": {
+                    "poison": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 35,
+                        "hide": true,
+                        "count": 3,
+                        "broadcast": "team",
+                        "limit": 2
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "The Demon King has no control - he kills without question. ~Target~ is his next victim.",
+                        "revealChance": 1,
+                        "revealmsg": "*** ~Self~ (Lyon) is completely consumed by the power of the Demon King!"
+                    }
+                },
+                "vote": 999,
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "zelgius",
+            "translation": "Black Knight",
+            "side": "begnion",
+            "unique": true,
+            "hide": true,
+            "startupmsg": "You are the ~Role~!",
+            "help": "You're the enigmatic Black Knight, one of the strongest warriors in the land. You wield the holy blade Alondite, the counterpart to Ike's Ragnell! You're patiently watching the outcome of this war.  You can /intimidate an enemy to prevent them from taking action during the night. On the 5th night, you are able to act and use the deadly skill Luna. Type /luna to kill up to 4 people on the 5th night and every night afterwards. Your armor is blessed by the goddess and normal weapons cannot hope to harm it, granting you immunity to death, poison, and converts at night. If anyone tries to expose you during the day, you will simply kill them. If you are voted off during the day, you will not die, but be able to use your /luna ability instantly!",
+            "info": "Can intimidate (distract) once person during the night. Can kill four people during the night, after the fourth night. If lynched, survives one lynch and becomes able to kill immediately. Immune to converts and poison. Evades night kills. Kills exposers. Sided with The Begnion Empire.",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isRadiant",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "night": {
+                    "luna": {
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 12,
+                        "hide": true,
+                        "broadcast": "team",
+                        "initialrecharge": 5,
+                        "limit": 4,
+                        "msg": "±Black Knight: 'Let's see how you handle this!'"
+                    },
+                    "intimidate": {
+                        "command": "distract",
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 2,
+                        "hide": true,
+                        "broadcast": "team",
+                        "distractmsg": "The Black Knight towers over you. You are too terrified to even take action...",
+                        "teammsg": "Your teammate was intimidated by the Black Knight! You had to spend the night comforting them."
+                    }
+                },
+                "expose": "revenge",
+				"exposerevengemsg": "Laughable. Did ~Target~ really think they could expose the Black Knight and live to tell the tale?",
+                "convert": {
+                    "mode": "ignore"
+                },
+				"kill": {
+				  "mode": {
+					"evadeChance": 1
+				  },
+				  "msg": "Your target (~Self~) was protected!"
+				},
+                "poison": {
+                    "mode": "ignore"
+                },
+				"lynch": {
+				  "convertTo": "zelgius2",
+				  "convertmsg": "The Black Knight has awoken... now, what can possibly stop him!"
+				},
+                "standby": {
+                    "intimidate": {
+                        "command": "reveal",
+                        "initialrecharge": 4,
+                        "charges": 1,
+                        "compulsory": [10, 12],
+                        "revealmsg": "In every pub and on every street, there is only one topic of conversation - the Black Knight is here."
+                    }
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "zelgius2",
+            "translation": "Black Knight",
+            "side": "begnion",
+            "startupmsg": "You are the ~Role~!",
+            "help": "You're the enigmatic Black Knight, one of the strongest warriors in the land. You wield the holy blade Alondite, the counterpart to Ike's Ragnell! You can /intimidate an enemy to prevent them from taking action during the night. Now that you have been voted off, you are able to act and use the deadly skill Luna. Type /luna to kill up to 4 people on the 5th night and every night afterwards. Your armor is blessed by the goddess and normal weapons cannot hope to harm it, granting you immunity to death, poison, and converts at night. If anyone tries to expose you during the day, you will simply kill them. If you are voted off during the day, you will not die, but be able to use your /luna ability instantly!",
+			"hide": true,
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isRadiant",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "night": {
+                    "luna": {
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 15,
+                        "hide": true,
+                        "broadcast": "team",
+                        "limit": 4,
+                        "hide": true,
+                        "msg": "±Black Knight: 'Let's see how you handle this!'"
+                    },
+                    "intimidate": {
+                        "command": "distract",
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 2,
+                        "hide": true,
+                        "broadcast": "team"
+                    }
+                },
+                "expose": "revenge",
+				"exposerevengemsg": "Laughable. Did ~Target~ really think they could expose the Black Knight and live to tell the tale?",
+                "convert": {
+                    "mode": "ignore"
+                },
+				"kill": {
+				  "mode": {
+					"evadeChance": 1
+				  },
+				  "msg": "Your target (~Self~) was protected!"
+				},
+                "poison": {
+                    "mode": "ignore"
+                },
+                "standby": {
+                    "intimidate": {
+                        "command": "reveal",
+                        "charges": 1,
+                        "compulsory": [10, 12],
+                        "revealmsg": "In every pub and on every street, there is only one topic of conversation - the Black Knight is here."
+                    }
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "sephiran",
+            "translation": "Sephiran",
+            "side": "begnion",
+            "hide": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "You are Sephiran, ancient heron and the Chancellor of Begnion. You believe the world should be cleansed of violence by the Goddess Ashera. Use your /kill and your vote of 1.5 to bring about your enemies' ends.",
+            "info": "Can kill one person during the night. Vote of 1.5. Sided with The Begnion Empire.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:darkHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isRadiant",
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 13,
+                        "hide": true,
+                        "broadcast": "team",
+                        "msg": "±Tactician: Sephiran's Creiddylad proved to be too much for you to handle. You've been killed!"
+                    }
+                },
+                "vote": 1.5,
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "lekain",
+            "translation": "Lekain",
+            "side": "begnion",
+            "hide": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "You're a Duke of the nation of Begnion, and a senior member of the Senate. You have a sick, twisted mind and you will stop at NOTHING to prevent the heroes from... well, stopping you! Even distracts can't stop you! You can /kill one person during the night and possess a vote of 1.1!",
+            "info": "Can kill one person during the night. Vote of 1.1. Immune to distract. Sided with The Begnion Empire.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isRadiant",
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 13,
+                        "hide": true,
+                        "broadcast": "team",
+                        "msg": "±Tactician: You crumble to your death as you are struck with a powerful Rexaura. Lekain has seen to the end of you!"
+                    }
+                },
+                "distract": {
+                    "mode": "ignore"
+                },
+                "vote": 1.1,
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "ashnard",
+            "translation": "Ashnard",
+            "side": "daein",
+            "unique": ["ashnard", "ashnard2"],
+            "startupmsg": "You are ~Role~!",
+            "help": "You're the very powerful King of Daein, Ashnard. Dubbed the 'Mad King' by all, your reign is one of terror, one in which only the strongest may survive. You can strike down one unworthy opponent at night and one during the day with /kill. Type /inspect [name] during the night to find your targets! If Ike falls, your commanding prowess grants you a vote of 3, but remove your immunity to nightkills. You possess an immunity to morphing!",
+            "info": "Can inspect one person during the night. Can kill one person during the day. Immune to nightkills. Immune to converts. Immune to poisons. If Ike dies, gains a vote of 3 but loses his nightkill evade. Sided with The Kingdom of Daein.",
+            "actions": {
+            	"dummy2": "variable:darkHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isRadiant",
+                "onDeath": {
+                	"convertRoles": {
+                		"ike": "ike2"
+                	},
+                	"convertmsg": "Ashnard has fallen!! In his triumph, Ike's vote now counts for 3!"
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "ashnard2": ["ike", "ike2"]
+                    },
+                	"convertmsg": "Ike's defeat is a tragedy for all who follow the light. Ashnard now has a vote of 3!"
+                },
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 25,
+                        "hide": true
+                    },
+                    "PORTECC": {
+                        "target": "OnlySelf",
+                        "inputmsg": "",
+                        "compulsory": true,
+                        "command": ["guard"],
+                        "guardActions": ["anima", "kill", "poison", "morph"],
+                        "common": "Self",
+                        "hide": true,
+                        "noFollow": true,
+                        "macro": false,
+                        "priority": 0
+                    }
+                },
+                "convert": {
+                    "mode": "ignore"
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "'If you will not bring the fight to me, then I shall bring the fight to YOU!' Ashnard lunges at his foe...~Target~ never stood a chance..."
+                    }
+                },
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "ashnard2",
+            "translation": "Ashnard",
+            "hide": true,
+            "side": "daein",
+            "unique": ["ashnard", "ashnard2"],
+            "startupmsg": "You are ~Role~!",
+            "help": "You're the very powerful King of Daein, Ashnard. Dubbed the 'Mad King' by all, your reign is one of terror, one in which only the strongest may survive. You can strike down one unworthy opponent at night and one during the day with /kill. Your commanding prowess grants you a vote of 3 and immunity to morphing!",
+            "info": "Can inspect one person during the night. Can kill one person during the day. Immune to nightkills. Immune to converts. If Ike dies, gains a vote of 3 but loses his nightkill evade. Sided with The Kingdom of Daein.",
+            "actions": {
+            	"dummy2": "variable:darkHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isRadiant",
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 25,
+                        "hide": true
+                    },
+                    "PORTECC": {
+                        "target": "OnlySelf",
+                        "inputmsg": "",
+                        "compulsory": true,
+                        "command": ["guard"],
+                        "guardActions": ["anima", "kill", "poison", "morph"],
+                        "common": "Self",
+                        "hide": true,
+                        "noFollow": true,
+                        "macro": false,
+                        "priority": 0
+                    }
+                },
+                "convert": {
+                    "mode": "ignore"
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "'If you will not bring the fight to me, then I shall bring the fight to YOU!' Ashnard lunges at his foe...~Target~ never stood a chance..."
+                    }
+                },
+                "vote": 3,
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "zephiel",
+            "translation": "Zephiel",
+            "side": "bern",
+            "startupmsg": "You are ~Role~!",
+            "help": "You are the powerful King Zephiel, ruler of Bern and commander of dragons. You have decided to purify this world by unleashing the dragons upon it, so that it could be reborn anew. You have the ability to /kill one person at night with your mighty blade. Your extensive spy network allows you to /inspect someone to learn which army they are sided with. Furthermore, your incredible political clout gives you a +5 vote and immunity to poison and morphing. However, if you are voted for, you receive to extra votes.",
+            "info": "Can kill one person during the night. Can inspect one person during the night. Vote of 5. Receives 2 extra votes if voted for. Immune to convert and poison. Can't be daykilled or nightkilled while Idoun is alive. Sided with The Kingdom of Bern.",
+            "actions": {
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isBlazing",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 15,
+                        "broadcast": "team",
+                        "hide": true,
+                        "msg": "±Tactician: King Zephiel swung the Eckesachs toward you, and you had no chance of escaping."
+                    },
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 25,
+                        "hide": true,
+                        "broadcast": "team",
+                        "Sight": "Team"
+                    }
+                },
+                "convert": {
+                    "mode": "ignore"
+                },
+                "poison": {
+                    "mode": "ignore"
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "daykill": "evade",
+                "vote": 5,
+                "voteshield": 2,
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "zephiel2",
+            "translation": "Zephiel",
+            "side": "bern",
+            "hide": "side",
+            "hide": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "You are the powerful King Zephiel, ruler of Bern and commander of dragons. You have decided to purify this world by unleashing the dragons upon it, so that it could be reborn anew. You have the ability to /kill one person at night with your mighty blade. The immense power behind your swing allows your team to kill a different target than you in the same night. Your extensive spy network allows you to /inspect someone to learn which army they are sided with. Furthermore, your incredible political clout gives you a +3 vote, immunity to poison and morphing, and the ability to /bribe a Soldier to strip them of their voting power!",
+            "info": "Can kill one person during the night, starting night 2. Can inspect one person during the night. Can convert one person to Bribed Soldier during the night, once per game. Immune to convert and poison. Sided with The Kingdom of Bern.",
+            "actions": {
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isBlazing",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 15,
+                        "broadcast": "team",
+                        "msg": "±Tactician: King Zephiel swung the Eckesachs toward you, and you had no chance of escaping.",
+                        "hide": true
+                    },
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 25,
+                        "broadcast": "team",
+                        "Sight": "Team",
+                        "hide": true
+                    }
+                },
+                "convert": {
+                    "mode": "ignore"
+                },
+                "poison": {
+                    "mode": "ignore"
+                },
+                "vote": 5,
+                "voteshield": 2,
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "idoun",
+            "translation": "Idoun",
+            "side": "bern",
+            "startupmsg": "You are ~Role~!",
+            "help": "You're the Dark Priestess, Idoun. While you seem to be a young girl, you're actually the Dark Dragon. You're assisting Zephiel in his schemes for the destruction of the world but you aren't doing it of your own volition. Every night, you can /kill one person a night and /poison another. ",
+            "info": "Can poison one person during the night. Can kill one person during the night, starting night 2. Sided with The Kingdom of Bern.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isBlazing",
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 15,
+                        "initialrecharge": 2,
+                        "hide": true,
+                        "broadcast": "team",
+                        "msg": "±Tactician: The breath of the Dark Dragon burned you to a crisp!"
+                    },
+                    "poison": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 35,
+                        "hide": true,
+                        "broadcast": "team"
+                    }
+                },
+                "onDeath": {
+                	"convertRoles": {
+                		"zephiel": "zephiel2"
+                	},
+                	"convertmsg": "Now that Idoun has fallen, Zephiel is vulnerable to kill!"
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "narshen",
+            "translation": "Narcian",
+            "side": "bern",
+            "startupmsg": "You are ~Role~!",
+            "help": "'I am strong. I am wise. I am lovely. And most importantly, I am right! ...Me! No one else!' You are one of Bern's three Dragon Generals and thus, have considerable influence on the battlefield. Command your troops to /distract one person during night and then go in yourself and handle things with a /kill! Zephiel's powerful swing allows your team to kill a different target than him in the same night.",
+            "info": "Can kill one person during the night. Can distract one person during the night. Sided with The Kingdom of Bern.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isBlazing",
+                "night": {
+                    "distract": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "broadcast": "team",
+                        "priority": 6,
+                        "distractmsg": "Narcian's wyvern is quite the magnificent beast, isn't it? You spent all night looking at it and forgot to perform your action.",
+                        "teammsg": "Narcian's wyvern is quite the magnificent beast, isn't it? Your teammate spent all night looking at it, causing you to miss the action during the night."
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 15,
+                        "broadcast": "team",
+                        "hide": true,
+                        "msg": "±Tactician: Unfortunately, you couldn't outrun Narcian's wyvern. You're dead now, I'm afraid."
+                    }
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "murdock",
+            "translation": "Murdock",
+            "side": "bern",
+            "hide": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "You're the personal guard of King Zephiel. You can /protect up to two allies per night to shield them from harm. Like the other members on your team, you are capable of armed combat, allowing you to /kill once per night.",
+            "info": "Can protect two people during the night. Can kill one person during the night. Sided with The Kingdom of Bern.",
+            "actions": {
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isBlazing",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 10,
+            			"hide": true,
+                        "broadcast": "team",
+                        "limit": 2
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 11,
+            			"hide": true,
+                        "broadcast": "team",
+                        "msg": "±Tactician: Murdock throws his big 'ole axe in your direction and you fail to dodge it. You're dead!"
+                    }
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "nergal_big",
+            "translation": "Nergal",
+            "side": "fang",
+            "hide": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "You're the dark druid, Nergal. You've sought to start this war to collect the powerful life energies of strong warriors! You've mastered the ability to steal life energy and every night you are able to /morph any unit into a Nameless Morph to join your army, but you only have the power to do this twice. You are also able to kill one person during the night using /anima or /attack. Plunge the world into darkness!",
+            "info": "Can morph one person every night, twice per game (doesn't count unless sucessfully morphed). Can kill one person during the night. Kills all Nameless Morphs on death or lynch. Can't be haxed. ~Sided~",
+            "actions": {
+                "teamUtilities": true,
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isBlazing",
+                "night": {
+                    "morph": {
+                        "command": ["convert", "copy"],
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 30,
+                        "broadcast": "team",
+                        "newRole": "morph",
+                        "convertmsg": "~Old~ has been drained of life energy and turned into a Nameless Morph!",
+                        "copyAs": "nergal",
+                        "canCopy": "morph",
+                        "copyfailmsg": "",
+                        "copymsg": "",
+                        "noRepeat": true,
+                        "copyusermsg": "",
+                        "silent": false
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "command": ["kill"],
+                        "common": "Team",
+                        "priority": 16,
+                        "broadcast": "team",
+                        "hide": true,
+                        "msg": "±Nergal: 'Tremble and despair!'"
+                    }
+                },
+                "avoidHax": [
+                	"morph", "kill"
+                ],
+                "onDeath": {
+                    "killRoles": [
+                        "morph"
+                    ],
+                    "killmsg": "As Nergal dies, so do all of his converted Morphs (~Target~)!",
+                    "convertRoles": {
+                        "roy": "roy2"
+                    },
+                    "convertmsg": "Roy has grown more powerful from the power of Nergal's defeat! He now has a 70% chance to vote for 5!"
+                }
+            }
+        },
+        {
+            "role": "nergal",
+            "translation": "Nergal",
+            "side": "fang",
+            "startupmsg": "You are ~Role~!",
+            "help": "You're the dark druid, Nergal. You've sought to start this war to collect the powerful life energies of strong warriors! You've mastered the ability to steal life energy and every night you are able to /morph any unit into a Nameless Morph to join your army, but you only have the power to do this twice. You are also able to kill one person during the night using /anima or /attack. Plunge the world into darkness!",
+            "info": "Can morph one person every night, twice per game (doesn't count unless sucessfully morphed) - three times in 17p+. Can kill one person during the night. Kills all Nameless Morphs on death or lynch. Can't be haxed. ~Sided~",
+            "actions": {
+                "teamUtilities": true,
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isBlazing",
+                "night": {
+                    "morph": {
+                        "command": ["convert", "copy"],
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 30,
+                        "broadcast": "team",
+                        "newRole": "morph",
+                        "convertmsg": "~Old~ has been drained of life energy and turned into a Nameless Morph!",
+                        "copyAs": "nergal2",
+                        "canCopy": "morph",
+                        "copyfailmsg": "",
+                        "copymsg": "",
+                        "noRepeat": true,
+                        "copyusermsg": "",
+                        "silent": false
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "command": ["kill"],
+                        "common": "Team",
+                        "priority": 16,
+                        "broadcast": "team",
+                        "hide": true,
+                        "msg": "±Nergal: 'Tremble and despair!'"
+                    }
+                },
+                "avoidHax": [
+                	"morph", "kill"
+                ],
+                "onDeath": {
+                    "killRoles": [
+                        "morph"
+                    ],
+                    "killmsg": "As Nergal dies, so do all of his converted Morphs (~Target~)!",
+                    "convertRoles": {
+                        "roy": "roy2"
+                    },
+                    "convertmsg": "Roy has grown more powerful from the power of Nergal's defeat! He now has a 70% chance to vote for 5!"
+                }
+            }
+        },
+        {
+            "role": "nergal2",
+            "translation": "Nergal",
+            "side": "fang",
+            "hide": "side",
+            "startupmsg": "You are ~Role~!",
+            "help": "You're the dark druid, Nergal. You've sought to start this war to collect the powerful life energies of strong warriors! You've mastered the ability to steal life energy and every night you are able to /morph any unit into a Nameless Morph to join your army, but you only have the power to do this twice. Plunge the world into darkness!",
+            "hide": true,
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isBlazing",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "night": {
+                    "morph": {
+                        "command": ["convert", "copy"],
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 30,
+                        "broadcast": "team",
+                        "newRole": "morph",
+                        "convertmsg": "~Old~ has been drained of life energy and turned into a Nameless Morph!",
+                        "copyAs": "nergal3",
+                        "canCopy": "morph",
+                        "noRepeat": true,
+                        "copymsg": "",
+                        "copyusermsg": "",
+                        "silent": false
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 16,
+                        "broadcast": "team",
+                        "hide": true,
+                        "msg": "±Nergal: 'Tremble and despair!'"
+                    }
+                },
+                "avoidHax": [
+                	"morph", "kill"
+                ],
+                "onDeath": {
+                    "killRoles": [
+                        "morph"
+                    ],
+                    "killmsg": "As Nergal dies, so do all of his converted Morphs (~Target~)!",
+                    "convertRoles": {
+                        "roy": "roy2"
+                    },
+                    "convertmsg": "Roy has grown more powerful from the power of Nergal's defeat! He now has a 70% chance to vote for 5!"
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "nergal3",
+            "translation": "Nergal",
+            "side": "fang",
+            "hide": "side",
+            "startupmsg": "You are ~Role~!",
+            "help": "You're the dark druid, Nergal. You've sought to start this war to collect the powerful life energies of strong warriors! You are able to kill one person during the night using basic dark magic as well with /attack or /anima. Plunge the world into darkness!",
+            "hide": true,
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isBlazing",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 16,
+                        "broadcast": "team",
+                        "hide": true,
+                        "msg": "±Nergal: 'Tremble and despair!'"
+                    }
+                },
+                "avoidHax": [
+                	"morph", "kill"
+                ],
+                "onDeath": {
+                    "killRoles": [
+                        "morph"
+                    ],
+                    "killmsg": "As Nergal dies, so do all of his converted Morphs (~Target~)!",
+                    "convertRoles": {
+                        "roy": "roy2"
+                    },
+                    "convertmsg": "Roy has grown more powerful from the power of Nergal's defeat! He now has a 70% chance to vote for 5!"
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "morph",
+            "translation": "Nameless Morph",
+            "side": "fang",
+            "help": "You've been slain and your life force has been stolen! The morph made from your corpse retains your memories and you are still 'alive,' if only in name. Your vote is worthless but you possess a voteshield of -3. You can /shield one person on your team to attempt to protect them from harm, but it won't always work.",
+            "info": "Can shield one person during the night (25% fail chance). Vote of 0. Voteshield of -3. Sided with The Dread Isle.",
+            "actions": {
+            	"dummy2": "variable:blueHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isBlazing",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "night": {
+                    "shield": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 3,
+                        "broadcast": "team",
+                        "failChance": 0.25,
+                        "shieldActions": [
+                            "distract",
+                            "kill",
+                            "anima",
+                            "attack",
+                            "poison",
+                            "stalk",
+                            "inspect",
+                            "bind",
+                            "luna",
+                            "flux"
+                        ]
+                    }
+                },
+                "vote": 0,
+                "voteshield": -3,
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "ephidel",
+            "translation": "Ephidel",
+            "side": "fang",
+            "startupmsg": "You are ~Role~!",
+            "help": "One of Nergal's morphs, you are among the strongest of the ones he possesses. In addition to being able to /kill one person during the night, you are able to /inspect one player at night. As you are not alive, you cannot be poisoned.",
+            "info": "Can kill one person during the night. Can inspect one person during the night. Immune to poison. Sided with The Dread Isle.",
+            "actions": {
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isBlazing",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 16,
+                        "hide": true,
+                        "broadcast": "team",
+                        "msg": "±Tactician: You didn't hear Ephidel as he approached. You only felt the blazing heat of his magic before you ceased living."
+                    },
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 25,
+                        "hide": true,
+                        "broadcast": "team",
+                        "Sight": "Team"
+                    }
+                },
+                "poison": {
+                    "mode": "ignore"
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "limstella",
+            "translation": "Limstella",
+            "side": "fang",
+            "startupmsg": "You are ~Role~!",
+            "help": "The strongest and most beautiful of morphs at Nergal's command, you are a master of magic. You can use this magic to /kill one person every night. Elemental magics grant you the ability to /bind an opponent in place, rendering them unable to take action for the night. As you are not alive, you cannot be poisoned.",
+            "info": "Can kill one person during the night. Can bind (distract) one person during the night. Immune to poison. Sided with The Dread Isle.",
+            "actions": {
+            	"dummy2": "variable:darkHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isBlazing",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "updateTeam": true,
+                "night": {
+                    "bind": {
+                        "command": "distract",
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 3,
+                        "broadcast": "team",
+                        "distractmsg": "Mystical anima magics have bound you in place. You were unable to move.",
+                        "teammsg": "Mystical anima magics have bound your teammate in place. You spent all night trying to free them."
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 16,
+                        "hide": true,
+                        "broadcast": "team",
+                        "msg": "±Tactician: A woman in a long dress shouts FIMBULVETR! You have no idea what's happening until you freeze to death."
+                    }
+                },
+                "poison": {
+                    "mode": "ignore"
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "sonia",
+            "translation": "Sonia",
+            "side": "fang",
+            "startupmsg": "You are ~Role~!",
+            "help": "You are Sonia, the imperfect morph. You don't believe you're a morph, and you are convinced you are human. Use your skills as a master sage to /kill one person during the night and /stalk another to learn who they visited.",
+            "info": "Can kill one person during the night. Can stalk one person during the night. Immune to poison. Sided with The Dread Isle.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "updateTeam": true,
+            	"dummy2": "variable:darkHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isBlazing",
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 16,
+                        "hide": true,
+                        "broadcast": "team",
+                        "msg": "±Tactician: From far away, a bolt of lightning is cast in your direction. Sonia did not miss."
+                    },
+                    "stalk": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 99,
+                        "broadcast": "team"
+                    }
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "gangrel",
+            "translation": "Gangrel",
+            "side": "grima",
+            "hide": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "'Men are beasts! Nothing more! We fight! We kill! We devour our prey!' As the Mad King Gangrel, you have one specific goal: destroy anyone opposing you! Work with your Grimleal 'peers' to take over the continent and reawaken the Fell Dragon! Help your team with a /kill during the day! You might reveal yourself though, being as glorious and flashy as you are. You already consider yourself a dead man, so you can't be morphed by Nergal.",
+            "info": "Can kill one person during the day. Immune to convert. Sided with The Grimleal Army.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:redHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isAwakening",
+                "convert": {
+                    "mode": "ignore"
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "revealChance": 0.1,
+                        "msg": "You can now /kill someone! You have a 10% chance of revealing yourself.",
+                        "killmsg": "'Clinging to each other won't save you maggots when the boot falls!' Gangrel raises his Levin Sword and a large thunderbolt strikes ~Target~, frying them instantly.",
+                        "revealmsg": "~Self~ laughs as he polishes his crown."
+                    }
+                },
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "validar",
+            "translation": "Validar",
+            "side": "grima",
+            "hide": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "Gya ha ha! As the Plegian King Validar and leader of the Grimleal, you only believe in destiny and what cannot be undone. The reawakening of the Fell Dragon Grima cannot be hindered! You can work your way to revealing Grima's Truth to everyone with the power to /kill one person during the night. Due to the fact that you're a king and have a large cult following you, you have a vote of 5 and ignore all distracters!",
+            "info": "Can kill one person during the night. Vote of 5. Immune to distract and convert. Sided with The Grimleal Army.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:darkHair",
+            	"dummy3": "variable:isMale",
+            	"dummy4": "variable:isAwakening",
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 15,
+                        "hide": true,
+                        "broadcast": "team",
+                        "msg": "±Tactician: Grima's Truth sucked the life out of you!"
+                    }
+                },
+                "convert": {
+                    "mode": "ignore"
+                },
+                "distract": {
+                    "mode": "ignore"
+                },
+                "vote": 5,
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "aversa",
+            "translation": "Aversa",
+            "side": "grima",
+            "hide": true,
+            "startupmsg": "You are ~Role~!",
+            "help": "Brought up by Validar, who acted as a father to you, you serve as his main helper in his fight against Chrom and the other heroes. You are able to /kill one person during the night and /inspect another to learn what army they represent, but you can only do this twice per game. Due to your extremely high skill in resisting Dark magic, you cannot be morphed and possess a voteshield of -3.",
+            "info": "Can kill one person during the night. Can inspect one person during the night, twice per game. Voteshield of -3. Immune to convert. Sided with The Grimleal Army.",
+            "actions": {
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+            	"dummy2": "variable:whiteHair",
+            	"dummy3": "variable:isFemale",
+            	"dummy4": "variable:isAwakening",
+                "night": {
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 25,
+                        "hide": true,
+                        "broadcast": "team",
+                        "charges": 2,
+                        "Sight": "Team"
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 15,
+                        "hide": true,
+                        "broadcast": "team",
+                        "msg": "±Tactician: Aversa's Night drained all of your HP!"
+                    }
+                },
+                "convert": {
+                    "mode": "ignore"
+                },
+                "voteshield": -3,
+                "teamTalk": true
+            }
+        }
+    ],
+    "roles1": [
+        "veronica",
+        "variable:strongHeroSpawn",
+        "variable:strongHeroSpawn",
+
+        "variable:supportHeroSpawn",
+        "variable:supportHeroSpawn",
+        "variable:supportHeroSpawn"
+    ],
+    "roles2": [
+        "pack:5p_spawn",
+        "pack:5p_spawn",
+        "pack:5p_spawn",
+        "riev",
+        "roy"
+    ],
+    "roles3": [
+        "pack:6p_spawn",
+        "pack:6p_spawn",
+        "variable:big_hoshido_spawn",
+        "variable:big_nohr_spawn",
+        "variable:small_hoshido_spawn",
+        "variable:small_nohr_spawn",
+
+        "grima",
+        "tiki"
+    ],
+    "roles4": [
+    	"robin",
+    	"variable:roy_caeda",
+    	"lyndis",
+    	"linde",
+    	"variable:alm_celica",
+    	"variable:marth_lucina",
+        "nergal",
+        "limstella",
+        "lyon",
+        "selena",
+
+        "anna",
+        "grima"
+    ],
+    "roles5": [
+    	"robin",
+    	"variable:roy_caeda",
+    	"lyndis",
+    	"variable:micaiah_linde",
+    	"variable:alm_celica",
+    	"ike",
+    	"soren",
+        "nergal",
+        "limstella",
+        "lyon",
+        "selena",
+        "grima",
+        "ashnard",
+
+        "anna"
+    ],
+    "roles6": [
+    	"robin",
+    	"variable:roy_caeda",
+    	"lyndis",
+    	"variable:micaiah_linde",
+    	"variable:alm_celica",
+    	"variable:marth_lucina",
+    	"ike",
+    	"soren",
+        "nergal",
+        "limstella",
+        "lyon",
+        "selena",
+        "grima",
+        "morgan",
+        "ashnard",
+
+        "anna"
+    ],
+    "roles7": [
+    	"robin",
+    	"variable:roy_caeda",
+    	"lyndis",
+    	"variable:micaiah_linde",
+    	"variable:alm_celica",
+    	"variable:marth_lucina",
+    	"ike",
+    	"soren",
+    	"variable:chrom_eliwood",
+        "nergal_big",
+        "limstella",
+        "lyon",
+        "selena",
+        "grima",
+        "ashnard",
+        "zephiel",
+        "idoun",
+
+        "anna",
+        "morgan"
+    ],
+    "roles8": [
+    	"robin",
+    	"variable:roy_caeda",
+    	"lyndis",
+    	"variable:micaiah_linde",
+    	"corrin",
+    	"azura",
+    	"ike",
+    	"soren",
+    	"variable:big_nohr_spawn",
+    	"variable:small_nohr_spawn",
+    	"variable:big_hoshido_spawn",
+    	"variable:small_hoshido_spawn",
+        "nergal_big",
+        "limstella",
+        "ephidel",
+        "lyon",
+        "selena",
+        "riev",
+        "grima",
+        "ashnard",
+
+        "morgan",
+        "anna"
+    ],
+    "roles9": [
+    	"robin",
+    	"variable:roy_caeda",
+    	"lyndis",
+    	"variable:micaiah_linde",
+    	"variable:marth_lucina",
+    	"variable:chrom_eliwood",
+    	"corrin",
+    	"azura",
+    	"ike",
+    	"soren",
+    	"variable:big_nohr_spawn",
+    	"variable:small_nohr_spawn",
+    	"variable:big_hoshido_spawn",
+    	"variable:small_hoshido_spawn",
+        "nergal_big",
+        "limstella",
+        "ephidel",
+        "lyon",
+        "selena",
+        "grima",
+        "ashnard",
+        "zephiel",
+        "idoun",
+
+        "riev",
+        "morgan"
+    ],
+    "roles10": [
+    	"robin",
+    	"variable:roy_caeda",
+    	"lyndis",
+    	"variable:micaiah_linde",
+    	"variable:marth_lucina",
+    	"corrin",
+    	"azura",
+    	"ike",
+    	"soren",
+    	"variable:chrom_eliwood",
+    	"variable:hector_cordelia",
+    	"variable:big_nohr_spawn",
+    	"variable:small_nohr_spawn",
+    	"variable:big_hoshido_spawn",
+    	"variable:small_hoshido_spawn",
+        "nergal_big",
+        "limstella",
+        "ephidel",
+        "lyon",
+        "selena",
+        "riev",
+        "grima",
+        "ashnard",
+        "zephiel",
+        "idoun",
+
+        "morgan",
+        "anna"
+    ],
+    "roles11": [
+    	"robin",
+    	"variable:roy_caeda",
+    	"lyndis",
+    	"variable:micaiah_linde",
+    	"variable:marth_lucina",
+    	"corrin",
+    	"azura",
+    	"ike",
+    	"soren",
+        "eirika",
+        "ephraim",
+    	"variable:chrom_eliwood",
+    	"variable:hector_cordelia",
+    	"variable:big_nohr_spawn",
+    	"variable:small_nohr_spawn",
+    	"variable:big_hoshido_spawn",
+    	"variable:small_hoshido_spawn",
+        "nergal",
+        "limstella",
+        "ephidel",
+        "lyon",
+        "selena",
+        "riev",
+        "grima",
+        "ashnard",
+        "zephiel",
+        "idoun",
+        "narshen",
+
+        "morgan"
+    ],
+    "roles12": [
+    	"robin",
+    	"variable:roy_caeda",
+    	"lyndis",
+    	"variable:micaiah_linde",
+    	"variable:marth_lucina",
+    	"corrin",
+    	"azura",
+    	"ike",
+    	"soren",
+        "eirika",
+        "ephraim",
+    	"variable:chrom_eliwood",
+    	"variable:hector_cordelia",
+    	"variable:big_nohr_spawn",
+    	"variable:small_nohr_spawn",
+    	"variable:small_nohr_spawn",
+    	"variable:big_hoshido_spawn",
+    	"variable:small_hoshido_spawn",
+    	"variable:small_hoshido_spawn",
+        "nergal",
+        "limstella",
+        "ephidel",
+        "lyon",
+        "selena",
+        "riev",
+        "grima",
+        "ashnard",
+        "zephiel",
+        "idoun",
+        "narshen",
+
+        "morgan",
+        "anna",
+        "variable:alm_celica",
+        "disgruntled",
+        "anna",
+        "anna"
+    ],
+    "villageCantLoseRoles": [
+        "ike",
+        "ike2",
+        "hector",
+        "cordelia",
+        "roy",
+        "roy2",
+        "caeda",
+        "caeda2",
+        "caeda3",
+        "eliwood",
+        "eirika",
+        "lyndis",
+        "marth",
+        "tiki",
+        "nowi",
+        "robin2",
+        "chrom",
+        "lucina"
+    ],
+    "spawnPacks": {
+        "5p_spawn": {
+            "roles": [
+                ["robin", "marth", "grima"],
+                ["robin", "lucina", "grima"]
+            ],
+            "chance": [0.5, 0.5]
+        },
+        "6p_spawn": {
+            "roles": [
+                ["robin", "marth"],
+                ["robin", "lucina"],
+                ["corrin", "azura"],
+                ["corrin", "azura"]
+            ],
+            "chance": [0.25, 0.25, 0.25, 0.25]
+        },
+        "9p_spawn": {
+            "roles": [
+                ["celica", "alm"],
+                ["soren", "ike"],
+                ["corrin", "azura"],
+                ["robin", "roy"]
+            ],
+            "chance": [0.25, 0.25, 0.25, 0.25]
+        },
+        "9p_extra": {
+            "roles": [
+                ["nowi"],
+                ["robin"],
+                ["sophia"],
+                ["lyndis"]
+            ],
+            "chance": [0.25, 0.25, 0.25, 0.25]
+        },
+        "strong_pr": {
+            "roles": [
+                ["tiki", "marth"],
+                ["tiki", "lucina"],
+                ["corrin", "azura"],
+                ["roy", "chrom"]
+            ],
+            "chance": [0.1, 0.25, 0.5, 0.25]
+        }
+    },
+    "killmsg": "±Tactician: ~Player~ (~Role~) has fallen in combat!",
+    "lynchmsg": "±Tactician: ~Player~ (~Role~) lost ~Count~ HP and died!",
+    "killusermsg": "You have fallen in combat!",
+    "changelog": {
+    	"3.4.2017": "New Heroes added. See below for changed/added Heroes. Check /spawn to see where they are added.",
+    	"5.30.2018": "Major balance updates."
+    }
+}
