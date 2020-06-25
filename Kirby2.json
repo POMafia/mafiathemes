@@ -1,0 +1,1853 @@
+{
+    "name": "Kirby2",
+    "altname": "Revenge of Meta Knight",
+    "author": [
+        "R​iceKirby"
+    ],
+    "quickOnDeadRoles": true,
+    "summary": "I'm Meta Knight, and I'm tired of this peaceful Dream Land, so I will lead my army to take over it! Kirby will try to stop me, so I need all my Knights hitting him during the same night to weaken him enough for me to deal the finishing blow! When someone is voted they will not die, but instead reveal the weapon they are holding!",
+    "threadlink": "http://pokemon-online.eu/threads/kirby.15912/",
+    "sides": [
+        {
+            "translation": "Kirby",
+            "side": "mafia",
+            "winmsg": "*** (>^.^)> ~Players~ <(^_^)> Doing the Kirby Dance! <(^.^<)"
+        },
+        {
+            "translation": "Meta Knight Army",
+            "side": "village",
+            "winmsg": "±Meta Knight: Halberd, time to take off! ~Players~ shall take over Dream Land and make it a Meta Knight Army's possession!"
+        }
+    ],
+    "variables": {
+        "prio_kirby_axe": 1,
+        "prio_kirby_mace": 2,
+        "prio_kirby_sword": 3,
+        "prio_kirby_spear": 4,
+        "prio_kirby_fork": 5,
+        
+        "prio_axe": 6,
+        "prio_mace": 7,
+        "prio_sword": 8,
+        "prio_spear": 9,
+        "prio_fork": 10,
+        
+        "KirbyHelp": "Hiii! I'm raiding the Halberd to stop Meta Knight and his evil plans! During the night, I can use /axe [name] to defeat a Mace Knight, /mace [name] to defeat a Sword Knight or /sword [name] to defeat an Ax Knight, but I can only use one of those per night. I can also attack myself to trick the Knights into thinking I was hit by Kirby.",
+        "KirbyHelp2": "I cannot be killed by Meta Knight unless I am hit by an Axe, a Mace and a Sword during a single night. Once I defeat enough of his minions, I can challenge Meta Knight directly!",
+        
+        "Kirby2Help": "Hiii! I'm raiding the Halberd to stop Meta Knight and his evil plans! During the night, I can use /spear [name] to defeat a Trident Knight or /fork [name] to defeat a Javelin Knight, but I can only use one of those per night. I can also attack myself to trick the Knights into thinking I was hit by Kirby.",
+        "Kirby2Help2": "I cannot be killed by Meta Knight unless I am hit by a Spear and a Fork during a single night. Once I defeat enough of his minions, I can challenge Meta Knight directly!",
+        "SwordKirbyHelp": "I defeated enough minions, so now I can fight Meta Knight! By typing /kill [name] during the day, I can defeat an enemy without being revealed, but I need to be careful because Meta Knight can kill me now!",
+        
+        "mk_win_msg": "Meta Knight (~Target~) has defeated Kirby! There's no one left to defend Dream Land now!",
+        
+        "kirby_axe": {
+            "command": ["dummy4", "copy", "dummy"],
+            "target": "Any",
+            "common": "Self",
+            "priority": "variable:prio_kirby_axe",
+            "cancel": ["mace", "sword"],
+            "dummy4broadcastmsg": "Kirby is attacking ~Target~ with an axe!",
+            "copyAs": "villager.A",
+            "silentCopy": true,
+            "silent": true,
+            "usermsg": "",
+            "noRepeat": true
+        },
+        "kirby_mace": {
+            "command": ["dummy4", "copy", "dummy2"],
+            "target": "Any",
+            "common": "Self",
+            "priority": "variable:prio_kirby_mace",
+            "cancel": ["axe", "sword"],
+            "dummy4broadcastmsg": "Kirby is attacking ~Target~ with a mace!",
+            "copyAs": "villager.M",
+            "silentCopy": true,
+            "silent": true,
+            "usermsg": "",
+            "noRepeat": true
+        },
+        "kirby_sword": {
+            "command": ["dummy4", "copy", "dummy3"],
+            "target": "Any",
+            "common": "Self",
+            "priority": "variable:prio_kirby_sword",
+            "cancel": ["axe", "mace"],
+            "dummy4broadcastmsg": "Kirby is attacking ~Target~ with a sword!",
+            "copyAs": "villager.S",
+            "silentCopy": true,
+            "silent": true,
+            "usermsg": "",
+            "noRepeat": true
+        },
+        "kirby_spear": {
+            "command": ["dummy4", "copy", "dummy5"],
+            "target": "Any",
+            "common": "Self",
+            "priority": "variable:prio_kirby_spear",
+            "cancel": ["fork"],
+            "dummy4broadcastmsg": "Kirby is attacking ~Target~ with a spear!",
+            "copyAs": "villager2.S",
+            "silentCopy": true,
+            "silent": true,
+            "usermsg": "",
+            "noRepeat": true
+        },
+        "kirby_fork": {
+            "command": ["dummy4", "copy", "dummy6"],
+            "target": "Any",
+            "common": "Self",
+            "priority": "variable:prio_kirby_fork",
+            "cancel": ["spear"],
+            "dummy4broadcastmsg": "Kirby is attacking ~Target~ with a fork!",
+            "copyAs": "villager2.F",
+            "silentCopy": true,
+            "silent": true,
+            "usermsg": "",
+            "noRepeat": true
+        },
+        
+        "kirby_axe_h": {
+            "command": ["dummy4", "copy", "dummy"],
+            "target": "Any",
+            "common": "Self",
+            "priority": "variable:prio_kirby_axe",
+            "cancel": ["mace", "sword"],
+            "hide": true,
+            "dummy4broadcastmsg": "Kirby is attacking ~Target~ with an axe!",
+            "copyAs": "villager.A",
+            "silentCopy": true,
+            "silent": true,
+            "usermsg": "",
+            "noRepeat": true
+        },
+        "kirby_mace_h": {
+            "command": ["dummy4", "copy", "dummy2"],
+            "target": "Any",
+            "common": "Self",
+            "priority": "variable:prio_kirby_mace",
+            "cancel": ["axe", "sword"],
+            "hide": true,
+            "dummy4broadcastmsg": "Kirby is attacking ~Target~ with a mace!",
+            "copyAs": "villager.M",
+            "silentCopy": true,
+            "silent": true,
+            "usermsg": "",
+            "noRepeat": true
+        },
+        "kirby_sword_h": {
+            "command": ["dummy4", "copy", "dummy3"],
+            "target": "Any",
+            "common": "Self",
+            "priority": "variable:prio_kirby_sword",
+            "cancel": ["axe", "mace"],
+            "hide": true,
+            "dummy4broadcastmsg": "Kirby is attacking ~Target~ with a sword!",
+            "copyAs": "villager.S",
+            "silentCopy": true,
+            "silent": true,
+            "usermsg": "",
+            "noRepeat": true
+        },
+        "kirby_spear_h": {
+            "command": ["dummy4", "copy", "dummy5"],
+            "target": "Any",
+            "common": "Self",
+            "priority": "variable:prio_kirby_spear",
+            "cancel": ["fork"],
+            "hide": true,
+            "dummy4broadcastmsg": "Kirby is attacking ~Target~ with a spear!",
+            "copyAs": "villager2.S",
+            "silentCopy": true,
+            "silent": true,
+            "usermsg": "",
+            "noRepeat": true
+        },
+        "kirby_fork_h": {
+            "command": ["dummy4", "copy", "dummy6"],
+            "target": "Any",
+            "common": "Self",
+            "priority": "variable:prio_kirby_fork",
+            "cancel": ["spear"],
+            "hide": true,
+            "dummy4broadcastmsg": "Kirby is attacking ~Target~ with a fork!",
+            "copyAs": "villager2.F",
+            "silentCopy": true,
+            "silent": true,
+            "usermsg": "",
+            "noRepeat": true
+        },
+        "ignoreDaykill": {
+            "mode": {
+                "evadeChance": 1
+            }
+        },
+        "revertKirby": {
+            "curse": {
+                "curseCount": -1,
+                "cursedRole": "villager",
+                "silentCurse": true
+            }
+        },
+        "revertKirby2": {
+            "curse": {
+                "curseCount": -1,
+                "cursedRole": "villager2",
+                "silentCurse": true
+            }
+        },
+        "kirby_daykill": {
+            "kill": {
+                "target": "AnyButSelf",
+                "msg": "You have reached Meta Knight, and he proposed a duel! Use the sword he offered you to defeat him with /kill and win!",
+                "killmsg": "Kirby picked a Sword and attacked ~Target~ mercilessly!"
+                
+            }
+        },
+        "challenge_meta": {
+            "convertTo": {
+                "villager-winner1": ["ax"],
+                "villager-winner2": ["mace"],
+                "villager-winner3": ["blade"]
+            },
+            "convertmsg": "With the Meta Knight Army partially defeated, Kirby was able to reach Meta Knight! "
+        },
+        "challenge_meta2": {
+            "convertTo": {
+                "villager-winner4": ["javelin"],
+                "villager-winner5": ["trident"]
+            },
+            "convertmsg": "With the Meta Knight Army partially defeated, Kirby was able to reach Meta Knight! "
+        },
+        "minions": ["ax", "mace", "blade"],
+        "meta_daykill": {
+            "kill": {
+                "target": "AnyButSelf",
+                "msg": "Draw your sword and type /kill [name] to kill your opponents! (You won't be revealed).",
+                "killmsg": "Meta Knight flips his Dimensional Cape, plunging the world into darkness, and then hits ~Target~ with a powerful sword strike!"
+            }
+        },
+        
+        "holdingAxe": {
+            "convertTo": "villager",
+            "lynchmsg": "~Self~ is holding an axe!"
+        },
+        "holdingMace": {
+            "convertTo": "villager",
+            "lynchmsg": "~Self~ is holding a mace!"
+        },
+        "holdingSword": {
+            "convertTo": "villager",
+            "lynchmsg": "~Self~ is holding a sword!"
+        },
+        "holdingSpear": {
+            "convertTo": "villager2",
+            "lynchmsg": "~Self~ is holding a spear!"
+        },
+        "holdingFork": {
+            "convertTo": "villager2",
+            "lynchmsg": "~Self~ is holding a fork!"
+        },
+        "silentIgnore": {
+            "mode": "ignore",
+            "silent": true,
+            "msg": ""
+        }
+    },
+    "roles": [
+        
+        {
+            "role": "villager.A",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe"
+            }
+        },
+        {
+            "role": "villager.A-a",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.A", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe"
+            }
+        },
+        {
+            "role": "villager.A-am",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.A", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe"
+            }
+        },
+        {
+            "role": "villager.A-ab",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.A", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe"
+            }
+        },
+        {
+            "role": "villager.A-m",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.A", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe"
+            }
+        },
+        {
+            "role": "villager.A-b",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.A", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe"
+            }
+        },
+        {
+            "role": "villager.A-mb",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.A", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe"
+            }
+        },
+        {
+            "role": "villager.A-amb",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": -1,
+                        "cursedRole": "villager.A-weak",
+                        "silentCurse": false,
+                        "curseConvertMessage": "Kirby has been weakened! He's vulnerable to Meta Knight's kill for this turn!"
+                    }
+                },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe"
+            }
+        },
+        
+        {
+            "role": "villager.A-weak",
+            "translation": "Weakened Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp",
+            "help2": "You have been hit by an Axe, a Mace and a Sword, so for this turn you are vulnerable to Meta Knight's attacks!",
+            "info": "Vulnerable to daykills. Converts back to Kirby after 1 turn. ~Sided~",
+            "players": "If hit by Spear+Fork (small games) or Axe+Mace+Sword (large games) in a single night.",
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe_h",
+                    "mace": "variable:kirby_mace_h",
+                    "sword": "variable:kirby_sword_h"
+                },
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": 1,
+                        "cursedRole": "villager.A",
+                        "silentCurse": true
+                    }
+                },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe",
+                "daykill": "revealkiller",
+                "daykillrevengemsg": "variable:mk_win_msg"
+            }
+        },
+        
+        {
+            "role": "villager.M",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingMace"
+            }
+        },
+        {
+            "role": "villager.M-a",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.M", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingMace"
+            }
+        },
+        {
+            "role": "villager.M-am",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.M", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingMace"
+            }
+        },
+        {
+            "role": "villager.M-ab",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.M", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingMace"
+            }
+        },
+        {
+            "role": "villager.M-m",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.M", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingMace"
+            }
+        },
+        {
+            "role": "villager.M-b",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.M", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingMace"
+            }
+        },
+        {
+            "role": "villager.M-mb",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.M", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingMace"
+            }
+        },
+        {
+            "role": "villager.M-amb",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": -1,
+                        "cursedRole": "villager.M-weak",
+                        "silentCurse": false,
+                        "curseConvertMessage": "Kirby has been weakened! He's vulnerable to Meta Knight's kill for this turn!"
+                    }
+                },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingMace"
+            }
+        },
+        
+        {
+            "role": "villager.M-weak",
+            "translation": "Weakened Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", 
+            "help2": "You have been hit by an Axe, a Mace and a Sword, so for this turn you are vulnerable to Meta Knight's attacks!",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe_h",
+                    "mace": "variable:kirby_mace_h",
+                    "sword": "variable:kirby_sword_h"
+                },
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": 1,
+                        "cursedRole": "villager.M",
+                        "silentCurse": true
+                    }
+                },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingMace",
+                "daykill": "revealkiller",
+                "daykillrevengemsg": "variable:mk_win_msg"
+            }
+        },
+        
+        {
+            "role": "villager.S",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingSword"
+            }
+        },
+        {
+            "role": "villager.S-a",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.S", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingSword"
+            }
+        },
+        {
+            "role": "villager.S-am",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.S", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingSword"
+            }
+        },
+        {
+            "role": "villager.S-ab",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.S", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingSword"
+            }
+        },
+        {
+            "role": "villager.S-m",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.S", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingSword"
+            }
+        },
+        {
+            "role": "villager.S-b",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.S", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingSword"
+            }
+        },
+        {
+            "role": "villager.S-mb",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager.S", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingSword"
+            }
+        },
+        {
+            "role": "villager.S-amb",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": -1,
+                        "cursedRole": "villager.S-weak",
+                        "silentCurse": false,
+                        "curseConvertMessage": "Kirby has been weakened! He's vulnerable to Meta Knight's kill for this turn!"
+                    }
+                },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingSword"
+            }
+        },
+        
+        {
+            "role": "villager.S-weak",
+            "translation": "Weakened Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", 
+            "help2": "You have been hit by an Axe, a Mace and a Sword, so for this turn you are vulnerable to Meta Knight's attacks!",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe_h",
+                    "mace": "variable:kirby_mace_h",
+                    "sword": "variable:kirby_sword_h"
+                },
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": 1,
+                        "cursedRole": "villager.S",
+                        "silentCurse": true
+                    }
+                },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingSword",
+                "daykill": "revealkiller",
+                "daykillrevengemsg": "variable:mk_win_msg"
+            }
+        },
+        
+        {
+            "role": "villager",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", 
+            "help2": "variable:KirbyHelp2", 
+            "info": "Can only be defeated by Meta Knight if hit by Ax, Mace and Blade in the same night. Can axe, mace or sword a person during the night (axe kills Mace Knight, mace kills Blade Knight, sword kills Ax Knight). If voted off, appears holding the weapon it used last night. ~Sided~.",
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe"
+            }
+        },
+        {
+            "role": "villager-a",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": "variable:revertKirby",
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe"
+            }
+        },
+        {
+            "role": "villager-am",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": "variable:revertKirby",
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe"
+            }
+        },
+        {
+            "role": "villager-ab",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": "variable:revertKirby",
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe"
+            }
+        },
+        {
+            "role": "villager-m",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": "variable:revertKirby",
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe"
+            }
+        },
+        {
+            "role": "villager-b",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": "variable:revertKirby",
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe"
+            }
+        },
+        {
+            "role": "villager-mb",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": "variable:revertKirby",
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe"
+            }
+        },
+        {
+            "role": "villager-amb",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe",
+                    "mace": "variable:kirby_mace",
+                    "sword": "variable:kirby_sword"
+                },
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": -1,
+                        "cursedRole": "villager-weak",
+                        "silentCurse": false,
+                        "curseConvertMessage": "Kirby has been weakened! He's vulnerable to Meta Knight's kill for this turn!"
+                    }
+                },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe"
+            }
+        },
+        
+        {
+            "role": "villager-weak",
+            "translation": "Weakened Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", 
+            "help2": "You have been hit by an Axe, a Mace and a Sword, so for this turn you are vulnerable to Meta Knight's attacks!",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "axe": "variable:kirby_axe_h",
+                    "mace": "variable:kirby_mace_h",
+                    "sword": "variable:kirby_sword_h"
+                },
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": 1,
+                        "cursedRole": "villager",
+                        "silentCurse": true
+                    }
+                },
+                "onDeadRoles": "variable:challenge_meta",
+                "lynch": "variable:holdingAxe",
+                "daykill": "revealkiller",
+                "daykillrevengemsg": "variable:mk_win_msg"
+            }
+        },
+        
+        
+        {
+            "role": "villager2.S",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:Kirby2Help", "help2": "variable:Kirby2Help2",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "spear": "variable:kirby_spear",
+                    "fork": "variable:kirby_fork"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "onDeadRoles": "variable:challenge_meta2",
+                "lynch": "variable:holdingSpear"
+            }
+        },
+        
+        {
+            "role": "villager2.S-j",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "spear": "variable:kirby_spear",
+                    "fork": "variable:kirby_fork"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager2.S", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta2",
+                "lynch": "variable:holdingSpear"
+            }
+        },
+        {
+            "role": "villager2.S-t",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "spear": "variable:kirby_spear",
+                    "fork": "variable:kirby_fork"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager2.S", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta2",
+                "lynch": "variable:holdingSpear"
+            }
+        },
+        {
+            "role": "villager2.S-jt",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "spear": "variable:kirby_spear",
+                    "fork": "variable:kirby_fork"
+                },
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": -1,
+                        "cursedRole": "villager2.S-weak",
+                        "silentCurse": false,
+                        "curseConvertMessage": "Kirby has been weakened! He's vulnerable to Meta Knight's kill for this turn!"
+                    }
+                },
+                "onDeadRoles": "variable:challenge_meta2",
+                "lynch": "variable:holdingSpear"
+            }
+        },
+        {
+            "role": "villager2.S-weak",
+            "translation": "Weakened Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", 
+            "help2": "You have been hit by a Spear and a Fork, so for this turn you are vulnerable to Meta Knight's attacks!",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "spear": "variable:kirby_spear_h",
+                    "fork": "variable:kirby_fork_h"
+                },
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": 1,
+                        "cursedRole": "villager2",
+                        "silentCurse": true
+                    }
+                },
+                "onDeadRoles": "variable:challenge_meta2",
+                "lynch": "variable:holdingSpear",
+                "daykill": "revealkiller",
+                "daykillrevengemsg": "variable:mk_win_msg"
+            }
+        },
+        
+        {
+            "role": "villager2.F",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:Kirby2Help", "help2": "variable:Kirby2Help2",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "spear": "variable:kirby_spear",
+                    "fork": "variable:kirby_fork"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "onDeadRoles": "variable:challenge_meta2",
+                "lynch": "variable:holdingFork"
+            }
+        },
+        
+        {
+            "role": "villager2.F-j",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "spear": "variable:kirby_spear",
+                    "fork": "variable:kirby_fork"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager2.F", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta2",
+                "lynch": "variable:holdingFork"
+            }
+        },
+        {
+            "role": "villager2.F-t",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "spear": "variable:kirby_spear",
+                    "fork": "variable:kirby_fork"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager2.F", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta2",
+                "lynch": "variable:holdingFork"
+            }
+        },
+        {
+            "role": "villager2.F-jt",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "spear": "variable:kirby_spear",
+                    "fork": "variable:kirby_fork"
+                },
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": -1,
+                        "cursedRole": "villager2.F-weak",
+                        "silentCurse": false,
+                        "curseConvertMessage": "Kirby has been weakened! He's vulnerable to Meta Knight's kill for this turn!"
+                    }
+                },
+                "onDeadRoles": "variable:challenge_meta2",
+                "lynch": "variable:holdingFork"
+            }
+        },
+        {
+            "role": "villager2.F-weak",
+            "translation": "Weakened Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", 
+            "help2": "You have been hit by a Spear and a Fork, so for this turn you are vulnerable to Meta Knight's attacks!",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "spear": "variable:kirby_spear_h",
+                    "fork": "variable:kirby_fork_h"
+                },
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": 1,
+                        "cursedRole": "villager2",
+                        "silentCurse": true
+                    }
+                },
+                "onDeadRoles": "variable:challenge_meta2",
+                "lynch": "variable:holdingFork",
+                "daykill": "revealkiller",
+                "daykillrevengemsg": "variable:mk_win_msg"
+            }
+        },
+        
+        
+        
+        
+        {
+            "role": "villager2",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:Kirby2Help", "help2": "variable:Kirby2Help2",
+            "info": "Can only be defeated by Meta Knight if hit by Javelin and Trident in the same night. Can spear or fork a person during the night (spear kills Trident Knight, fork kills Javelin Knight). If voted off, appears holding the weapon it used last night. ~Sided~.",
+            "actions": {
+                "night": {
+                    "spear": "variable:kirby_spear",
+                    "fork": "variable:kirby_fork"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "onDeadRoles": "variable:challenge_meta2",
+                "lynch": "variable:holdingSpear"
+            }
+        },
+        
+        {
+            "role": "villager2-j",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "spear": "variable:kirby_spear",
+                    "fork": "variable:kirby_fork"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager2", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta2",
+                "lynch": "variable:holdingSpear"
+            }
+        },
+        {
+            "role": "villager2-t",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "spear": "variable:kirby_spear",
+                    "fork": "variable:kirby_fork"
+                },
+                "daykill": "variable:ignoreDaykill",
+                "initialCondition": { "curse": { "curseCount": -1, "cursedRole": "villager2", "silentCurse": true } },
+                "onDeadRoles": "variable:challenge_meta2",
+                "lynch": "variable:holdingSpear"
+            }
+        },
+        {
+            "role": "villager2-jt",
+            "translation": "Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", "help2": "variable:KirbyHelp2",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "spear": "variable:kirby_spear",
+                    "fork": "variable:kirby_fork"
+                },
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": -1,
+                        "cursedRole": "villager2-weak",
+                        "silentCurse": false,
+                        "curseConvertMessage": "Kirby has been weakened! He's vulnerable to Meta Knight's kill for this turn!"
+                    }
+                },
+                "onDeadRoles": "variable:challenge_meta2",
+                "lynch": "variable:holdingSpear"
+            }
+        },
+        {
+            "role": "villager2-weak",
+            "translation": "Weakened Kirby",
+            "side": "mafia",
+            "help": "variable:KirbyHelp", 
+            "help2": "You have been hit by a Spear and a Fork, so for this turn you are vulnerable to Meta Knight's attacks!",
+            "hide": true,
+            
+            "actions": {
+                "night": {
+                    "spear": "variable:kirby_spear_h",
+                    "fork": "variable:kirby_fork_h"
+                },
+                "initialCondition": {
+                    "curse": {
+                        "curseCount": 1,
+                        "cursedRole": "villager2",
+                        "silentCurse": true
+                    }
+                },
+                "onDeadRoles": "variable:challenge_meta2",
+                "lynch": "variable:holdingSpear",
+                "daykill": "revealkiller",
+                "daykillrevengemsg": "variable:mk_win_msg"
+            }
+        },
+        
+        {
+            "role": "villager-winner1",
+            "translation": "Sword Kirby",
+            "side": "mafia",
+            "help": "variable:SwordKirbyHelp",
+            "info": "Can kill during the standby without revealing itself, but it's no longer immune to daykills. Wins if Meta Knight is defeated. ~Sided~",
+            "players": "Appears if all Knights of a same type are defeated.",
+            "winIfDeadRoles": ["meta1", "meta2", "meta3", "meta4", "meta5"],
+            "actions": {
+                "standby": "variable:kirby_daykill",
+                "initialCondition": {
+                    "clearCurse": true
+                },
+                "lynch": {
+                    "convertTo": "villager-winner1",
+                    "lynchmsg": "~Self~ is holding a sword!"
+                },
+                "daykill": "revealkiller",
+                "daykillrevengemsg": "variable:mk_win_msg"
+            }
+        },
+        {
+            "role": "villager-winner2",
+            "translation": "Sword Kirby",
+            "side": "mafia",
+            "help": "variable:SwordKirbyHelp",
+            "hide": true,
+            "winIfDeadRoles": ["meta1", "meta2", "meta3", "meta4", "meta5"],
+            "actions": {
+                "standby": "variable:kirby_daykill",
+                "initialCondition": {
+                    "clearCurse": true
+                },
+                "lynch": {
+                    "convertTo": "villager-winner2",
+                    "lynchmsg": "~Self~ is holding an axe!"
+                },
+                "daykill": "revealkiller",
+                "daykillrevengemsg": "variable:mk_win_msg"
+            }
+        },
+        {
+            "role": "villager-winner3",
+            "translation": "Sword Kirby",
+            "side": "mafia",
+            "help": "variable:SwordKirbyHelp",
+            "hide": true,
+            "winIfDeadRoles": ["meta1", "meta2", "meta3", "meta4", "meta5"],
+            "actions": {
+                "standby": "variable:kirby_daykill",
+                "initialCondition": {
+                    "clearCurse": true
+                },
+                "lynch": {
+                    "convertTo": "villager-winner3",
+                    "lynchmsg": "~Self~ is holding a mace!"
+                },
+                "daykill": "revealkiller",
+                "daykillrevengemsg": "variable:mk_win_msg"
+            }
+        },
+        {
+            "role": "villager-winner4",
+            "translation": "Sword Kirby",
+            "side": "mafia",
+            "help": "variable:SwordKirbyHelp",
+            "hide": true,
+            "winIfDeadRoles": ["meta1", "meta2", "meta3", "meta4", "meta5"],
+            "actions": {
+                "standby": "variable:kirby_daykill",
+                "initialCondition": {
+                    "clearCurse": true
+                },
+                "lynch": {
+                    "convertTo": "villager-winner4",
+                    "lynchmsg": "~Self~ is holding a fork!"
+                },
+                "daykill": "revealkiller",
+                "daykillrevengemsg": "variable:mk_win_msg"
+            }
+        },
+        {
+            "role": "villager-winner5",
+            "translation": "Sword Kirby",
+            "side": "mafia",
+            "help": "variable:SwordKirbyHelp",
+            "hide": true,
+            "winIfDeadRoles": ["meta1", "meta2", "meta3", "meta4", "meta5"],
+            "actions": {
+                "standby": "variable:kirby_daykill",
+                "initialCondition": {
+                    "clearCurse": true
+                },
+                "lynch": {
+                    "convertTo": "villager-winner1",
+                    "lynchmsg": "~Self~ is holding a spear!"
+                },
+                "daykill": "revealkiller",
+                "daykillrevengemsg": "variable:mk_win_msg"
+            }
+        },
+        
+        {
+            "role": "meta1",
+            "translation": "Meta Knight",
+            "side": "village",
+            "help": "I shall lead my army to victory by defeating my opponents with /kill [name] during the day, but I cannot do it recklessly: Kirby can only be defeated my minions weaken him during the night, or if he picks a sword come to fight me directly!",
+            "info": "Can kill during the standby without revealing itself. If voted, appears holding a random weapon (unchanged throughout the game). ~Sided~",
+            "actions": {
+                "standby": "variable:meta_daykill",
+                "daykill": "revealkiller",
+                "daykillrevengemsg": "Meta Knight's mask is destroyed by ~Target~'s sword! Defeated, Meta Knight quickly flees the location!",
+                "convert": {
+                    "mode": "ignore",
+                    "silent": true
+                },
+                "lynch": {
+                    "convertTo": "meta1",
+                    "lynchmsg": "~Self~ is holding an axe!"
+                }
+            }
+        },
+        {
+            "role": "meta2",
+            "translation": "Meta Knight",
+            "side": "village",
+            "help": "I shall lead my army to victory by defeating my opponents with /kill [name] during the day, but I cannot do it recklessly: Kirby can only be defeated my minions weaken him during the night, or if he picks a sword come to fight me directly!",
+            "hide": true,
+            "actions": {
+                "standby": "variable:meta_daykill",
+                "daykill": "revealkiller",
+                "daykillrevengemsg": "Meta Knight's mask is destroyed by ~Target~'s sword! Defeated, Meta Knight quickly flees the location!",
+                "convert": {
+                    "mode": "ignore",
+                    "silent": true
+                },
+                "lynch": {
+                    "convertTo": "meta2",
+                    "lynchmsg": "~Self~ is holding a mace!"
+                }
+            }
+        },
+        {
+            "role": "meta3",
+            "translation": "Meta Knight",
+            "side": "village",
+            "help": "I shall lead my army to victory by defeating my opponents with /kill [name] during the day, but I cannot do it recklessly: Kirby can only be defeated my minions weaken him during the night, or if he picks a sword come to fight me directly!",
+            "hide": true,
+            "actions": {
+                "standby": "variable:meta_daykill",
+                "daykill": "revealkiller",
+                "daykillrevengemsg": "Meta Knight's mask is destroyed by ~Target~'s sword! Defeated, Meta Knight quickly flees the location!",
+                "convert": {
+                    "mode": "ignore",
+                    "silent": true
+                },
+                "lynch": {
+                    "convertTo": "meta3",
+                    "lynchmsg": "~Self~ is holding a sword!"
+                }
+            }
+        },
+        {
+            "role": "meta4",
+            "translation": "Meta Knight",
+            "side": "village",
+            "help": "I shall lead my army to victory by defeating my opponents with /kill [name] during the day, but I cannot do it recklessly: Kirby can only be defeated my minions weaken him during the night, or if he picks a sword come to fight me directly!",
+            "hide": true,
+            "actions": {
+                "standby": "variable:meta_daykill",
+                "daykill": "revealkiller",
+                "daykillrevengemsg": "Meta Knight's mask is destroyed by ~Target~'s sword! Defeated, Meta Knight quickly flees the location!",
+                "convert": {
+                    "mode": "ignore",
+                    "silent": true
+                },
+                "lynch": {
+                    "convertTo": "meta4",
+                    "lynchmsg": "~Self~ is holding a spear!"
+                }
+            }
+        },
+        {
+            "role": "meta5",
+            "translation": "Meta Knight",
+            "side": "village",
+            "help": "I shall lead my army to victory by defeating my opponents with /kill [name] during the day, but I cannot do it recklessly: Kirby can only be defeated my minions weaken him during the night, or if he picks a sword come to fight me directly!",
+            "hide": true,
+            "actions": {
+                "standby": "variable:meta_daykill",
+                "daykill": "revealkiller",
+                "daykillrevengemsg": "Meta Knight's mask is destroyed by ~Target~'s sword! Defeated, Meta Knight quickly flees the location!",
+                "convert": {
+                    "mode": "ignore",
+                    "silent": true
+                },
+                "lynch": {
+                    "convertTo": "meta5",
+                    "lynchmsg": "~Self~ is holding a fork!"
+                }
+            }
+        },
+        
+        {
+            "role": "ax",
+            "translation": "Ax Knight",
+            "side": "village",
+            "help": "As one of the Meta-Knights, I can type /axe [name] during the night to attack my opponents. This axe can temporarily weaken Kirby, but I should be careful because it can also defeat a fellow Mace Knight!",
+            "info": "Can axe one person during the night. Dies if hit by a sword. ~Sided~",
+            "actions": {
+                "night": {
+                    "axe": {
+                        "command": ["dummy", "convert", "dummy4"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:prio_axe",
+                        "newRole": {
+                            "villager.A-a": ["villager.A", "villager.A-weak"],
+                            "villager.A-ab": ["villager.A-b"],
+                            "villager.A-am": ["villager.A-m"],
+                            "villager.A-amb": ["villager.A-mb"],
+                            
+                            "villager.M-a": ["villager.M", "villager.M-weak"],
+                            "villager.M-ab": ["villager.M-b"],
+                            "villager.M-am": ["villager.M-m"],
+                            "villager.M-amb": ["villager.M-mb"],
+                            
+                            "villager.S-a": ["villager.S", "villager.S-weak"],
+                            "villager.S-ab": ["villager.S-b"],
+                            "villager.S-am": ["villager.S-m"],
+                            "villager.S-amb": ["villager.S-mb"],
+                            
+                            "villager-a": ["villager", "villager-weak"],
+                            "villager-ab": ["villager-b"],
+                            "villager-am": ["villager-m"],
+                            "villager-amb": ["villager-mb"]
+                        },
+                        "silent": true,
+                        "silentConvert": true,
+                        "convertfailmsg": "",
+                        "usermsg": "",
+                        "dummyusermsg": "You attacked ~Target~!",
+                        "dummy4targetmsg": "You have been hit by an axe!"
+                    }
+                },
+                "dummy3": {
+                    "mode": "die",
+                    "msg": "You got hit by a Sword attack and died!",
+                    "targetmsg": "You hit ~Self~ with a Sword and defeated them!"
+                },
+                "convert": {
+                    "mode": "ignore",
+                    "silent": true
+                },
+                "lynch": {
+                    "convertTo": "ax",
+                    "lynchmsg": "~Self~ is holding an axe!"
+                }
+            }
+        },
+        {
+            "role": "mace",
+            "translation": "Mace Knight",
+            "side": "village",
+            "help": "As one of the Meta-Knights, I can type /mace [name] during the night to attack my opponents. This mace can temporarily weaken Kirby, but I should be careful because it can also defeat a fellow Blade Knight!",
+            "info": "Can mace one person during the night. Dies if hit by an axe. ~Sided~",
+            "actions": {
+                "night": {
+                    "mace": {
+                        "command": ["dummy2", "convert", "dummy4"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:prio_mace",
+                        "newRole": {
+                            "villager.A-m": ["villager.A", "villager.A-weak"],
+                            "villager.A-am": ["villager.A-a"],
+                            "villager.A-mb": ["villager.A-b"],
+                            "villager.A-amb": ["villager.A-ab"],
+                            
+                            "villager.M-m": ["villager.M", "villager.M-weak"],
+                            "villager.M-am": ["villager.M-a"],
+                            "villager.M-mb": ["villager.M-b"],
+                            "villager.M-amb": ["villager.M-ab"],
+                            
+                            "villager.S-m": ["villager.S", "villager.S-weak"],
+                            "villager.S-am": ["villager.S-a"],
+                            "villager.S-mb": ["villager.S-b"],
+                            "villager.S-amb": ["villager.S-ab"],
+                            
+                            "villager-m": ["villager", "villager-weak"],
+                            "villager-am": ["villager-a"],
+                            "villager-mb": ["villager-b"],
+                            "villager-amb": ["villager-ab"]
+                        },
+                        "silent": true,
+                        "silentConvert": true,
+                        "convertfailmsg": "",
+                        "usermsg": "",
+                        "dummy2usermsg": "You attacked ~Target~!",
+                        "dummy4targetmsg": "You have been hit by a mace!"
+                    }
+                },
+                "dummy": {
+                    "mode": "die",
+                    "msg": "You got hit by an Axe attack and died!",
+                    "targetmsg": "You hit ~Self~ with an Axe and defeated them!"
+                },
+                "convert": {
+                    "mode": "ignore",
+                    "silent": true
+                },
+                "lynch": {
+                    "convertTo": "mace",
+                    "lynchmsg": "~Self~ is holding a mace!"
+                }
+            }
+        },
+        {
+            "role": "blade",
+            "translation": "Blade Knight",
+            "side": "village",
+            "help": "As one of the Meta-Knights, I can type /sword [name] during the night to attack my opponents. This sword can temporarily weaken Kirby, but I should be careful because it can also defeat a fellow Ax Knight!",
+            "info": "Can sword one person during the night. Dies if hit by a mace. ~Sided~",
+            "actions": {
+                "night": {
+                    "sword": {
+                        "command": ["dummy3", "convert", "dummy4"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:prio_sword",
+                        "newRole": {
+                            "villager.A-b": ["villager.A", "villager.A-weak"],
+                            "villager.A-ab": ["villager.A-a"],
+                            "villager.A-mb": ["villager.A-m"],
+                            "villager.A-amb": ["villager.A-am"],
+                            
+                            "villager.M-b": ["villager.M", "villager.M-weak"],
+                            "villager.M-ab": ["villager.M-a"],
+                            "villager.M-mb": ["villager.M-m"],
+                            "villager.M-amb": ["villager.M-am"],
+                            
+                            "villager.S-b": ["villager.S", "villager.S-weak"],
+                            "villager.S-ab": ["villager.S-a"],
+                            "villager.S-mb": ["villager.S-m"],
+                            "villager.S-amb": ["villager.S-am"],
+                            
+                            "villager-b": ["villager", "villager-weak"],
+                            "villager-ab": ["villager-a"],
+                            "villager-mb": ["villager-m"],
+                            "villager-amb": ["villager-am"]
+                        },
+                        "silent": true,
+                        "silentConvert": true,
+                        "convertfailmsg": "",
+                        "usermsg": "",
+                        "dummy3usermsg": "You attacked ~Target~!",
+                        "dummy4targetmsg": "You have been hit by a sword!"
+                    }
+                },
+                "dummy2": {
+                    "mode": "die",
+                    "msg": "You got hit by a Mace attack and died!",
+                    "targetmsg": "You hit ~Self~ with a Mace and defeated them!"
+                },
+                "convert": {
+                    "mode": "ignore",
+                    "silent": true
+                },
+                "lynch": {
+                    "convertTo": "blade",
+                    "lynchmsg": "~Self~ is holding a sword!"
+                }
+            }
+        },
+        {
+            "role": "javelin",
+            "translation": "Javelin Knight",
+            "side": "village",
+            "help": "As one of the Meta-Knights, I can type /spear [name] during the night to attack my opponents. This spear can temporarily weaken Kirby, but I should be careful because it can also defeat a fellow Trident Knight!",
+            "info": "Can spear one person during the night. Dies if hit by a fork. ~Sided~",
+            "actions": {
+                "night": {
+                    "spear": {
+                        "command": ["dummy5", "convert", "dummy4"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:prio_spear",
+                        "newRole": {
+                            "villager2.S-j": ["villager2.S", "villager2.S-weak"],
+                            "villager2.S-jt": ["villager2.S-t"],
+                            
+                            "villager2.F-j": ["villager2.F", "villager2.F-weak"],
+                            "villager2.F-jt": ["villager2.F-t"],
+                            
+                            "villager2-j": ["villager2", "villager2-weak"],
+                            "villager2-jt": ["villager2-t"]
+                        },
+                        "silent": true,
+                        "silentConvert": true,
+                        "convertfailmsg": "",
+                        "usermsg": "",
+                        "dummy5usermsg": "You attacked ~Target~!",
+                        "dummy4targetmsg": "You have been hit by a spear!"
+                    }
+                },
+                "dummy6": {
+                    "mode": "die",
+                    "msg": "You got hit by a Fork attack and died!",
+                    "targetmsg": "You hit ~Self~ with a Fork and defeated them!"
+                },
+                "convert": {
+                    "mode": "ignore",
+                    "silent": true
+                },
+                "lynch": {
+                    "convertTo": "javelin",
+                    "lynchmsg": "~Self~ is holding a spear!"
+                }
+            }
+        },
+        {
+            "role": "trident",
+            "translation": "Trident Knight",
+            "side": "village",
+            "help": "As one of the Meta-Knights, I can type /fork [name] during the night to attack my opponents. This fork can temporarily weaken Kirby, but I should be careful because it can also defeat a fellow Javelin Knight!",
+            "info": "Can fork one person during the night. Dies if hit by a spear. ~Sided~",
+            "actions": {
+                "night": {
+                    "fork": {
+                        "command": ["dummy6", "convert", "dummy4"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:prio_fork",
+                        "newRole": {
+                            "villager2.S-t": ["villager2.S", "villager2.S-weak"],
+                            "villager2.S-jt": ["villager2.S-j"],
+                            
+                            "villager2.F-t": ["villager2.F", "villager2.F-weak"],
+                            "villager2.F-jt": ["villager2.F-j"],
+                            
+                            "villager2-t": ["villager2", "villager2-weak"],
+                            "villager2-jt": ["villager2-j"]
+                        },
+                        "silent": true,
+                        "silentConvert": true,
+                        "convertfailmsg": "",
+                        "usermsg": "",
+                        "dummy6usermsg": "You attacked ~Target~!",
+                        "dummy4targetmsg": "You have been hit by a fork!"
+                    }
+                },
+                "dummy5": {
+                    "mode": "die",
+                    "msg": "You got hit by a Spear attack and died!",
+                    "targetmsg": "You hit ~Self~ with a Spear and defeated them!"
+                },
+                "convert": {
+                    "mode": "ignore",
+                    "silent": true
+                },
+                "lynch": {
+                    "convertTo": "trident",
+                    "lynchmsg": "~Self~ is holding a fork!"
+                }
+            }
+        }
+    ],
+    "minplayers": 4,
+    "roles1": [
+        "villager2",
+        { "meta4": 1, "meta5": 1 },
+        "javelin",
+        "trident",
+        "javelin",
+        "trident",
+        "javelin",
+        "trident",
+        "javelin",
+        "trident"
+    ],
+    "roles2": [
+        "villager",
+        { "meta1": 1, "meta2": 1, "meta3": 1 },
+        "ax",
+        "mace",
+        "blade",
+        "ax",
+        "mace",
+        "blade",
+        "ax",
+        "mace",
+        "blade",
+        "ax",
+        "mace",
+        "blade",
+        "ax",
+        "mace",
+        "blade",
+        "ax",
+        "mace",
+        "blade",
+        "ax",
+        "mace",
+        "blade",
+        "ax",
+        "mace",
+        "blade",
+        "ax",
+        "mace",
+        "blade",
+        "ax",
+        "mace",
+        "blade"
+    ],
+    "villageCantLoseRoles": ["meta1", "meta2", "meta3", "meta4", "meta5"],
+    
+    "killmsg": "±Kirby: ~Player~ (~Role~) will not be seen in Dream Land anymore!",
+    "killusermsg": "*** Game Over. Continue? No / Cancel",
+    "lynchmsg": "±Game: ~Player~ (~Role~) was lynched and had to leave Dream Land!",
+    "border": "***(>^.^)>  === === === === === === === === === === === === === === === ===  <(^.^<)",
+    "tips": {
+        "Minions": "Kirby becomes weakened for 1 turn if Javelin+Trident (small games) or Ax+Mace+Blade (large games) hit him during the same night.",
+        "Meta Knight": "You can only kill Kirby in 2 situations: If he's Weakened or once he becomes Sword Kirby. DO NOT randkill unless he's in one of those forms, and don't claim either so he cannot kill you if he become Sword Kirby.",
+        "Kirby": "Use your night attacks to slowly defeat Meta Knight's minions or to hit yourself to trick the Knights. Once you defeat all of the same type, you will become Sword Kirby and be able to kill Meta Knight.",
+        "Voting": "The voting phase in this theme is used to obtain information. Whoever is voted off is not killed, but instead reveals their weapon. Meta Knight reveals a random weapon (never changes during a game), while Kirby reveals the last weapon it used.",
+        "Weapons": "Each minion is weak to a specific weapon, no matter if it was used by Kirby or by another Knight. If hit by that weapon, the Knight dies, otherwise nothing happens.",
+        "Confirming Kirby": "If someone is voted off twice and show a different weapon each time, they are confirmed Kirby. This only works on turns that Kirby attacks with different weapons at night."
+        
+    },
+    "changelog": {
+        "06.06.2015": "Meta Knight is now revealed when successfully killing Kirby.",
+        "25.05.2015": "Voting phase enabled: whoever is \"lynched\" will not die, but instead reveal their weapon (Meta Knight reveals a random weapon, while Kirby reveals last used Weapon). Kirby's attacks are now public, and he can itself to trick others into think he's a Knight.",
+        "24.05.2015": "Theme created. Added Javelin and Trident Knight for small setup."
+        
+    },
+    "votemsg": "~Player~ is preparing their weapon!"
+}
