@@ -1,0 +1,2526 @@
+{
+   "author":[
+      "Pamitha",
+      "Pangaea",
+      "Sky Sentinel"
+   ],
+   "name":"Disney",
+   "summary":"±Hades: How ya doin, ladies and demigods?! Welcome to the magical world of Disney! \"Live\" from the Underworld, it's the ghost with the most, Hades! The villains of the Disney universe are trying to stop those pesky heroes from saving the day once again. How boring would that be? Bring me their souls! And please... somebody, bring me an Ambrosia Cola and a large popcorn. Note: Lots of help messages are placeholders because we... forgot. Will be fixed soon.",
+   "minplayers":6,
+   "ticks":{
+      "night1":60,
+      "standby":30,
+      "night":45
+   },
+   "sides":[
+      {
+         "side":"village",
+         "translation":"Good Guys",
+         "winmsg":"The good guys (~Players~) have stopped the villains!",
+         "color":"#a143db"
+      },
+      {
+         "side":"mafia1",
+         "translation":"Magic Mafia",
+         "winmsg":"The magic mafia (~Players~) have taken over the world by force, recreating it in their own image!",
+         "color":"#8c1d1d"
+      },
+      {
+         "side":"mafia2",
+         "translation":"Greedy Mafia",
+         "winmsg":"The guys who are really just jerks (~Players~) won this round!",
+         "color":"#0e7f2a"
+      },
+      {
+         "side":"mafia3",
+         "translation":"Ocean Mafia",
+         "winmsg":"~Players~ have taken everybody else unda the sea and won!",
+         "color":"#4ea8e5"
+      },
+      {
+         "side":"mickey",
+         "translation":"House of Mouse",
+         "winmsg":"±~Players~: 'Oho! See ya reeeeeeal soon!' The House of Mouse has won, and Disney has taken over the world.",
+         "color":"#000000"
+      },
+      {
+         "side":"screen",
+         "translation":"Screenslaver",
+         "winmsg":"~Players~ has taught the world that their reliance on heroes is foolish. The Screenslaver has won handily.",
+         "color":"#6e7c68"
+      }
+   ],
+   "spawnPacks":{
+      "masons":{
+         "roles":[
+            [
+               "kristoff",
+               "sven"
+            ],
+            [
+               "pooh",
+               "piglet"
+            ],
+            [
+               "lilo",
+               "stitch"
+            ],
+            [
+               "timon",
+               "pumbaa"
+            ],
+            [
+               "donald",
+               "goofy"
+            ],
+            [
+               "lumiere",
+               "cogsworth"
+            ],
+            [
+               "pocahontas",
+               "smith"
+            ],
+            [
+               "flounder",
+               "sebastian"
+            ]
+         ]
+      }
+   },
+   "variables":{
+      "auroradeath":{
+         "convertRoles":{
+            "maleficent":"maleficent2"
+         },
+         "convertmsg":"Maleficent revels in the death of Princess Aurora, lowering the reveal chance on her daykill."
+      },
+      "scardeath":{
+         "convertRoles":{
+            "simba":"simba2"
+         },
+         "convertmsg":"Simba has returned to Pride Rock, gaining a stalk with his boast."
+      },
+      "snowdeath":{
+         "convertRoles":{
+            "evilqueen":"evilqueen2"
+         },
+         "convertmsg":"The Evil Queen revels in the death of Snow White, becoming the fairest in the land."
+      },
+      "not":{
+         "mode":"ignore",
+         "msg":"±Info: ~Self~ isn't that hot...or, isn't a guy."
+      },
+      "hot":{
+         "mode":"ignore",
+         "msg":"±Info: ~Self~ is SUPER hot!"
+      },
+      "elsa":{
+         "mode":"ignore",
+         "msg":"±Info: ~Self~ is my sister, silly!"
+      },
+      "kisscurse":{
+         "mode":"identify",
+         "msg":"You cast a curse upon the foolish Prince that tried to kiss you! A bit much, isn't it?"
+      },
+      "1vote":{
+         "mode":"ignore",
+         "msg":"±Info: ~Self~ only has one vote!"
+      },
+      "novote":{
+         "mode":"ignore",
+         "msg":"±Info: ~Self~ has no vote!"
+      },
+      "cruella":{
+         "mode":{
+            "ignore":[
+               "cruella"
+            ]
+         },
+         "msg":"Oops, now you just look silly. That's not Pongo.",
+         "targetmsg":"Cruella tried to have you impounded, but you were... not a stray dog. So that didn't work."
+      },
+      "startup":"±Hades: You are ~Role~!",
+      "wish":{
+         "command":"kill",
+         "target":"AnyButSelf",
+         "msg":"",
+         "macro":false,
+         "killmsg":"You can't wish for the Genie to kill anybody, but ~Self~ CAN wish for a giant laser minigun and use it to shoot ~Target~!"
+      },
+      "dontGetWish":{
+         "command":"daydistract",
+         "target":"OnlySelf",
+         "compulsory":true,
+         "inputmsg":"",
+         "priority":0.1,
+         "macro":false,
+         "hide":true,
+         "common":"Self",
+         "dayDistractMsg":"You don't have any wishes!"
+      }
+   },
+   "roles":[
+      {
+         "role":"dalmatians",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "translation":"Pongo",
+         "info":"Vote counts as 6. Bombs night kills (excluding Cruella de Vil). ~Sided~",
+         "help":"Along with your mate Perdida, you are the caretaker of ninety-nine dalmatians, and the father of fifteen of them, though people only remember the names of six of your puppies. You have 6 votes, one for each of them. If you're killed at night, the puppies will kill the attacker as well.",
+         "actions":{
+            "dummy4":"variable:not",
+            "vote":6,
+            "dummy7":{
+               "mode":"ignore",
+               "msg":"±Info: ~Self~ has 6 votes! It must be those mangy mutts!"
+            },
+            "kill":{
+               "mode":"killattacker",
+               "msg":"You killed Pongo, but one of the other dalmatians got you before you could get away!"
+            }
+         }
+      },
+      {
+         "role":"simba",
+         "translation":"Simba",
+         "startupmsg":"variable:startup",
+         "side":"village",
+         "info":"Can boast (greet) one person during the night. The boast gains a stalk when Scar dies. ~Sided~",
+         "help":"You're gonna be a mighty king, so enemies beware! You can /boast to someone at night to let them know you're gonna be the king of Pride Rock (reveals your identity).",
+         "actions":{
+            "onDeath":{
+               "convertRoles":{
+                  "scar2":"scar"
+               },
+               "convertmsg":"Scar has returned to Pride Rock, gaining an extra vote."
+            },
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "night":{
+               "boast":{
+                  "command":"dummy",
+                  "dummytargetmsg":"~Self~ has told you that they are Simba, and they just can't wait to be King!",
+                  "dummyusermsg":"You told ~Target~ that you just can't WAIT... to be King!",
+                  "priority":50,
+                  "common":"Self",
+                  "target":"AnyButSelf"
+               }
+            }
+         }
+      },
+      {
+         "role":"simba2",
+         "translation":"Simba",
+         "startupmsg":"variable:startup",
+         "side":"village",
+         "hide":true,
+         "help":"You're gonna be a mighty king, so enemies beware! You can /boast to someone at night to let them know you're gonna be the king of Pride Rock (reveals your identity). Your /boast now also stalks.",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "night":{
+               "boast":{
+                  "command":[
+                     "dummy",
+                     "stalk"
+                  ],
+                  "dummytargetmsg":"~Self~ has told you that they are Simba, and they just can't wait to be King!",
+                  "dummyusermsg":"You told ~Target~ that you just can't WAIT... to be King!",
+                  "priority":50,
+                  "common":"Self",
+                  "target":"AnyButSelf"
+               }
+            }
+         }
+      },
+      {
+         "role":"shleep",
+         "translation":"Sleeping Beauty",
+         "side":"village",
+         "info":"Has no actions. Gain 3 votes when Maleficent dies or when kissed by Prince Charming. ~Sided~",
+         "startupmsg":"variable:startup",
+         "help":"You have been pricked by a magical spinning wheel and are have fallen into the Sleeping Death! You have no actions, but someday your prince will come. You can't vote for now. The death of Maleficent will also allow your fairy godmothers to release you from your curse.",
+         "actions":{
+            "onDeath":"variable:auroradeath",
+            "kill":"variable:cruella",
+            "dummy7":"variable:novote",
+            "noVote":true,
+            "dummy4":"variable:not"
+         }
+      },
+      {
+         "role":"aurora",
+         "translation":"Aurora",
+         "side":"village",
+         "info":"Has no actions. Gain 3 votes when Maleficent dies or when kissed by Prince Charming. ~Sided~",
+         "startupmsg":"variable:startup",
+         "help":"Your curse has been lifted! You are a very traditional princess and don't like to do the dirty work, so you just use your influence to give you a vote of 3 and help you vote off the bad guys during the day.",
+         "actions":{
+            "onDeath":"variable:auroradeath",
+            "kill":"variable:cruella",
+            "dummy7":{
+               "mode":"ignore",
+               "msg":"±Info: ~Self~ has 3 votes!"
+            },
+            "vote":3,
+            "dummy4":"variable:not"
+         }
+      },
+      {
+         "role":"snow1",
+         "translation":"Snow White",
+         "side":"village",
+         "info":"Has no actions. Gains an inspect when the Evil Queen dies or when kissed by Prince Charming. ~Sided~",
+         "startupmsg":"variable:startup",
+         "help":"You ate a poisoned apple and have fallen into the Sleeping Death! You have no actions, but someday your prince will come. You can't vote for now. The Evil Queen's death will allow you to awaken.",
+         "actions":{
+            "onDeath":"variable:snowdeath",
+            "kill":"variable:cruella",
+            "dummy7":"variable:novote",
+            "noVote":true,
+            "dummy4":"variable:not"
+         }
+      },
+      {
+         "role":"snow2",
+         "translation":"Detective White",
+         "side":"village",
+         "info":"Starts as Snow White. Has no actions. Gains an inspect when the Evil Queen dies or when kissed by Prince Charming. ~Sided~",
+         "startupmsg":"variable:startup",
+         "help":"You've been awoken from your curse and resumed your life as the great detective, Snow White! You can inspect one person during the night.",
+         "actions":{
+            "onDeath":"variable:snowdeath",
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "night":{
+               "inspect":{
+                  "priority":30,
+                  "common":"Self",
+                  "target":"AnyButSelf"
+               }
+            },
+            "dummy4":"variable:not"
+         }
+      },
+      {
+         "role":"frog",
+         "translation":"Frog",
+         "side":"village",
+         "help":"Someday your prince will come! Turned into a frog by Dr. Facilier, you will remain one until he dies. You can't do anything, but since you're a simple frog you won't die because nobody thinks much of you. For the same reason, your vote counts as half a normal vote.",
+         "info":"Vote counts as 0.5. Can't be nightkilled. Her vote becomes 1, she gains an expose, and loses her nightkill evasion when Facilier dies or when kissed by Prince Charming. ~Sided~",
+         "actions":{
+            "dummy7":{
+               "mode":"ignore",
+               "msg":"±Info: ~Self~ has half a vote!"
+            },
+            "vote":0.5,
+            "dummy4":"variable:not",
+            "kill":{
+               "mode":"ignore",
+               "msg":"±Hades: What could you possibly gain by killing a helpless frog like ~Self~? Even I'M not that mean."
+            },
+            "daykill":"evade",
+            "daykillevademsg":"±Hades: What could you possibly gain by killing a helpless frog like ~Self~? Even I'M not that mean."
+         }
+      },
+      {
+         "role":"tiana",
+         "translation":"Tiana",
+         "side":"village",
+         "info":"Starts as Frog. Vote counts as 0.5. Can't be nightkilled. Her vote becomes 1, she gains an expose, and loses her nightkill evasion when Facilier dies or when kissed by Prince Charming. ~Sided~",
+         "startupmsg":"variable:startup",
+         "help":"Finally, your curse has been lifted. Since you now run a successful restaurant, Tiana's Palace, you can /orderup someone during the day, which will reveal you and expose who they are. You can be killed now, so watch out.",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "standby":{
+               "orderup":{
+                  "command":"expose",
+                  "target":"AnyButSelf",
+                  "exposemsg":"Tiana shouts from the kitchen that she has an order ready for ~Role~! The waitress brings ~Target~ their food.",
+                  "revealChance":1,
+                  "revealmsg":"~Self~ (Tiana) rings a bell and shouts 'ORDER UP!'"
+               }
+            }
+         }
+      },
+      {
+         "role":"merida",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "translation":"Merida",
+         "help":"You are the princess of DunBroch. You are a master archer, so you can /kill every other day, starting on the second. This will reveal you.",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "standby":{
+               "kill":{
+                  "killmsg":"With one swift, graceful motion, Merida unleashes an arrow that pierces the heart of ~Target~!",
+                  "target":"AnyButSelf",
+                  "revealChance":1,
+                  "revealmsg":"~Self~ nocks another arrow.",
+                  "recharge":2,
+                  "initialrecharge":3
+               }
+            }
+         }
+      },
+      {
+         "role":"sparrow",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "translation":"Jack Sparrow",
+         "info":"Can kill (once per game) one person during the night, piercing protection and ignoring distractors. ~Sided~",
+         "help":"You are the (in)famous, Jack Sparrow! Some people get you confused with that rascal, Blackbeard, but when it comes to moral integrity you're... as good as it gets. You can /kill at night, but only once since you forgot to bring more than one bullet! Nobody is expecting this, so you'll ignore all distracts and protects. You are pretty boisterous though, so this will reveal you.",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "inspect":{
+               "revealAs":"blackbeard"
+            },
+            "dummy4":"variable:hot",
+            "night":{
+               "kill":{
+                  "common":"Self",
+                  "target":"AnyButSelf",
+                  "priority":12,
+                  "charges":1,
+                  "killmsg":"~Self~ (~Role~) was waiting for the opportune moment, and ~Target~ (~TargetRole~) was it. BANG!",
+                  "ignoreDistract":true,
+                  "pierce":true
+               }
+            }
+         }
+      },
+      {
+         "role":"minnie",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "translation":"Minnie Mouse",
+         "help":"Oh, dear. Your boyfriend, Mickey, has gotten in some deep shit this time. Worst of all, they'll see your ears and think you're him! Convince them you're a part of the village and help get rid of Mickey before he shuts everything down... for good.",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "inspect":{
+               "revealAs":"mickey1"
+            },
+            "dummy4":"variable:not"
+         }
+      },
+      {
+         "role":"prince",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "translation":"Prince Charming",
+         "info":"Can kiss one person during the night, which powers up Sleeping Beauty Snow White, and restores Tiana.  Can't kiss anymore if he kisses Ursula, Facilier, Maleficient, Evil Queen. ~Sided~",
+         "help":"Cinderella, Snow White, Briar Rose, Tiana, Fiona... It doesn't matter who they are, all that matters is you get your lips on some sweet princesses. You can /kiss any one person during the night. And I mean literally anybody. You're so unbelievably dashing that this will surely break any curses that only the kiss of a true lover could break! Be careful not to kiss those that place curses on others (Maleficent, Facilier, Ursula, Evil Queen)... or you might be in for a rough night.",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:hot",
+            "night":{
+               "kiss":{
+                  "command":[
+                     "dummy6",
+                     "convert",
+                     "copy"
+                  ],
+                  "priority":25,
+                  "common":"Self",
+                  "target":"Any",
+                  "canCopy":[
+                     "maleficent",
+                     "facilier",
+                     "ursula",
+                     "ursula2"
+                  ],
+                  "copyAs":{
+                     "princesleep":[
+                        "maleficent",
+                        "evilqueen"
+                     ],
+                     "princefrog":[
+                        "facilier"
+                     ],
+                     "princesilent":[
+                        "ursula",
+                        "ursula2"
+                     ]
+                  },
+                  "newRole":{
+                     "aurora":[
+                        "shleep"
+                     ],
+                     "snow2":[
+                        "snow1"
+                     ],
+                     "tiana":[
+                        "frog"
+                     ]
+                  },
+                  "convertmsg":"Only true love's kiss shall lift the curse? Eh, it'll do.",
+                  "copyusermsg":"A curse was cast upon you as you kissed an evil-doer.",
+                  "convertfailmsg":"",
+                  "copyfailmsg":"",
+                  "dummy6usermsg":"You planted a biiig kiss on the lips of ~Target~.",
+                  "dummy6targetmsg":"Prince Charming gave you a big ol' kiss last night."
+               }
+            }
+         }
+      },
+      {
+         "role":"princesleep",
+         "translation":"Prince Sleeping",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You were put under a spell and have fallen asleep! You can't do anything anymore, but you will wake up sooner or later.",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:novote",
+            "noVote":true,
+            "dummy4":"variable:hot",
+            "initialCondition":{
+               "curse":{
+                  "cursedRole":"prince",
+                  "curseCount":3,
+                  "silentCurse":true
+               }
+            }
+         }
+      },
+      {
+         "role":"princefrog",
+         "translation":"Frog Prince",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You were turned into a frog by Dr. Facilier! You can't do anything anymore, but your vote still counts as .5.",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":{
+               "mode":"ignore",
+               "msg":"±Info: ~Self~ has half a vote!"
+            },
+            "vote":0.5,
+            "noVote":true,
+            "dummy4":"variable:not"
+         }
+      },
+      {
+         "role":"princesilent",
+         "translation":"Mute Charming",
+         "side":"village",
+         "hide":true,
+         "startupmsg":"variable:startup",
+         "help":"Your voice has been stolen by the evil sea witch, Ursula! You can't vote anymore.",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:novote",
+            "noVote":true,
+            "dummy4":"variable:hot"
+         }
+      },
+      {
+         "role":"elsa",
+         "translation":"Elsa",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "help":"As the newly coronated Queen of Arendelle, Elsa, you can use your magical ice powers to /freeze someone into an ice block at night. This will both stop them from performing any actions and protect them from being killed. It may get a little chilly at night, but the cold never bothered you anyway.",
+         "actions":{
+            "dummy7":"variable:1vote",
+            "kill":"variable:cruella",
+            "dummy4":"variable:elsa",
+            "night":{
+               "freeze":{
+                  "command":[
+                     "distract",
+                     "protect",
+                     "dummy2"
+                  ],
+                  "priority":1.5,
+                  "target":"AnyButSelf",
+                  "protectmsg":"You couldn't kill ~Target~! Someone defended them!",
+                  "common":"Self",
+                  "dummy2targetmsg":"Elsa froze you in your sleep! You were encased in an ice block and couldn't act, but were protected!"
+               }
+            }
+         }
+      },
+      {
+         "role":"mulanvig2",
+         "translation":"Ping",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"HUH! You are Ping, Mulan's male alter ego, known for being an expert fighter. You can now use /kill during the night, or /disguise to change back to Mulan and be able to distract again. You will be protected from most kills when you use /disguise.",
+         "actions":{
+            "standby":{
+               "wish":"variable:wish"
+            },
+            "dummy4":"variable:hot",
+            "night":{
+               "kill":{
+                  "common":"Self",
+                  "target":"AnyButSelf",
+                  "priority":8,
+                  "cancel":[
+                     "disguise"
+                  ]
+               },
+               "disguise":{
+                  "convertmsg":"Ping exits the battlefield. Mulan exits her tent.",
+                  "noRepeat":true,
+                  "command":[
+                     "convert",
+                     "protect"
+                  ],
+                  "newRole":"mulanpl2",
+                  "common":"Self",
+                  "target":"OnlySelf",
+                  "priority":4,
+                  "cancel":[
+                     "kill"
+                  ]
+               },
+               "WS":"variable:dontGetWish"
+            }
+         }
+      },
+      {
+         "role":"mulanpl2",
+         "translation":"Mulan",
+         "side":"village",
+         "hide":true,
+         "startupmsg":"variable:startup",
+         "help":"You're the beautiful Mulan, and you can use your good looks to /distract someone during the night. However, you can /disguise yourself as Ping to be able to kill at night and let your reflection show who you are inside. You will be protected from most kills when you use /disguise.",
+         "actions":{
+            "standby":{
+               "wish":"variable:wish"
+            },
+            "dummy4":"variable:not",
+            "night":{
+               "distract":{
+                  "common":"Self",
+                  "target":"AnyButSelf",
+                  "priority":3,
+                  "cancel":[
+                     "disguise"
+                  ]
+               },
+               "disguise":{
+                  "convertmsg":"Mulan enters her tent. Ping returns to the battlefield.",
+                  "noRepeat":true,
+                  "command":[
+                     "convert",
+                     "protect"
+                  ],
+                  "newRole":"mulanvig2",
+                  "common":"Self",
+                  "target":"OnlySelf",
+                  "priority":4,
+                  "cancel":[
+                     "distract"
+                  ]
+               },
+               "WS":"variable:dontGetWish"
+            }
+         }
+      },
+      {
+         "role":"mulanvig",
+         "translation":"Ping",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "help":"HUH! You are Ping, Mulan's male alter ego known for being an expert fighter. You can now use /kill during the night, or /disguise to change back to Mulan and be able to distract again. You will be protected from most kills when you use /disguise.",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:hot",
+            "night":{
+               "kill":{
+                  "common":"Self",
+                  "target":"AnyButSelf",
+                  "priority":8,
+                  "cancel":[
+                     "disguise"
+                  ]
+               },
+               "disguise":{
+                  "convertmsg":"Ping exits the battlefield. Mulan exits her tent.",
+                  "noRepeat":true,
+                  "command":[
+                     "convert",
+                     "protect"
+                  ],
+                  "newRole":"mulanpl",
+                  "common":"Self",
+                  "target":"OnlySelf",
+                  "priority":4,
+                  "cancel":[
+                     "kill"
+                  ]
+               }
+            }
+         }
+      },
+      {
+         "role":"mulanpl",
+         "translation":"Mulan",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "help":"You're the beautiful Mulan, and you can use your good looks to /distract someone during the night. However, you can /disguise yourself as Ping to be able to kill at night and let your reflection show who you are inside. You will be protected from most kills when you use /disguise.",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "night":{
+               "distract":{
+                  "common":"Self",
+                  "target":"AnyButSelf",
+                  "priority":3,
+                  "cancel":[
+                     "disguise"
+                  ]
+               },
+               "disguise":{
+                  "convertmsg":"Mulan enters her tent. Ping returns to the battlefield.",
+                  "noRepeat":true,
+                  "command":[
+                     "convert",
+                     "protect"
+                  ],
+                  "newRole":"mulanvig",
+                  "common":"Self",
+                  "target":"OnlySelf",
+                  "priority":4,
+                  "cancel":[
+                     "distract"
+                  ]
+               }
+            }
+         }
+      },
+      {
+         "role":"genie",
+         "translation":"Genie",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "help":"They've never had a friend like you! Use /wish to give someone a one time daykill! You can use this on Aladdin, because you know who he is, but beware: if you give it to an enemy, they can use it too!",
+         "actions":{
+            "startup":{
+               "revealRole":[
+                  "aladdinsmall"
+               ]
+            },
+            "standby":{
+               "wish":"variable:wish"
+            },
+            "dummy4":"variable:not",
+            "night":{
+               "wish":{
+                  "command":[
+                     "guard",
+                     "dummy3"
+                  ],
+                  "dummy3usermsg":"You gave ~Target~ one wish!",
+                  "dummy3targetmsg":"You can now use /wish to kill someone during the day!",
+                  "priority":0,
+                  "guardActions":[
+                     "WS"
+                  ],
+                  "guardmsg":"",
+                  "common":"Self",
+                  "target":"AnyButSelf"
+               },
+               "WS":"variable:dontGetWish"
+            }
+         }
+      },
+      {
+         "role":"aladdinsmall",
+         "translation":"Aladdin",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"Use /watch to see who visited a specific person! You know the Genie, so ask him to grant you a wish.",
+         "actions":{
+            "kill":"variable:cruella",
+            "startup":{
+               "revealRole":[
+                  "genie"
+               ]
+            },
+            "standby":{
+               "wish":"variable:wish"
+            },
+            "dummy4":"variable:hot",
+            "night":{
+               "watch":{
+                  "priority":10000,
+                  "target":"AnyButSelf",
+                  "common":"Self"
+               },
+               "WS":"variable:dontGetWish"
+            }
+         }
+      },
+      {
+         "role":"aladdin",
+         "translation":"Aladdin",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "help":"Use /watch to see who visited a specific person!",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:hot",
+            "night":{
+               "watch":{
+                  "priority":10000,
+                  "target":"AnyButSelf",
+                  "common":"Self"
+               }
+            }
+         }
+      },
+      {
+         "role":"anna2",
+         "translation":"Anna",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"Use /hotornot to see if someone is a hot guy! Use /tips to see who is and who isn't hot. This will help you narrow down people's role.",
+         "actions":{
+            "kill":"variable:cruella",
+            "standby":{
+               "wish":"variable:wish"
+            },
+            "night":{
+               "hotornot":{
+                  "command":"dummy4",
+                  "priority":100,
+                  "target":"AnyButSelf",
+                  "common":"Self"
+               },
+               "WS":"variable:dontGetWish"
+            }
+         }
+      },
+      {
+         "role":"anna",
+         "translation":"Anna",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "help":"Use /hotornot to see if someone is a hot guy! Use /tips to see who is and who isn't hot. This will help you narrow down people's role.",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "night":{
+               "hotornot":{
+                  "command":"dummy4",
+                  "priority":100,
+                  "target":"AnyButSelf",
+                  "common":"Self"
+               }
+            }
+         }
+      },
+      {
+         "role":"eeyore",
+         "translation":"Eeyore",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "help":"You're just a dopey donkey and you reveal people who kill you during the day. Vote with the good guys to remove the bad guys during the day.",
+         "actions":{
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "daykill":"revealkiller",
+            "daykillrevengemsg":"±Eeyore: You all thought I was just a happy little donkey, but depression is a serious issue... Thank you ~Target~ (~Role~) for putting me out of my misery."
+         }
+      },
+      {
+         "role":"pan",
+         "translation":"Peter Pan",
+         "side":"village",
+         "info":"Can /fairydust (safeguard from poison and distract) once during the night. Has a vote of 2. Can't be killed by Captain Hook and loses his vote and action when targeted with /hook. ~Sided~",
+         "startupmsg":"variable:startup",
+         "help":"You can fly, you can fly, you can fly! And, you can make someone else fly with /fairydust, which prevents them from being poisoned or distracted during the night! Tinkerbell makes your vote count as 2!",
+         "actions":{
+            "vote":2,
+            "dummy7":{
+               "mode":"ignore",
+               "msg":"±Info: ~Self~ has 2 votes!"
+            },
+            "dummy4":"variable:not",
+            "kill":{
+               "mode":{
+                  "ignore":[
+                     "hook",
+                     "cruella"
+                  ]
+               }
+            },
+            "night":{
+               "fairydust":{
+                  "command":"guard",
+                  "guardActions":[
+                     "poison",
+                     "distract"
+                  ],
+                  "priority":1,
+                  "common":"Self",
+                  "target":"AnyButSelf"
+               }
+            }
+         }
+      },
+      {
+         "role":"pan2",
+         "translation":"Peter Pan",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You can't fly :( Captain Hook has killed Tinkerbell. You managed to get away, but now you can't use her fairy dust anymore. All you can do is vote during the day, and you only have one vote.",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not"
+         }
+      },
+      {
+         "role":"townplaceholder",
+         "translation":"placeholder1",
+         "side":"village",
+         "hide":true,
+         "help":"Separates teams.",
+         "actions":{
+
+         }
+      },
+      {
+         "role":"jafar",
+         "translation":"Jafar",
+         "side":"mafia1",
+         "info":"Can kill (shared) one person during the night and ignores nightkills and daykills. Survives a lynch, gaining a kill (unshared) that pierces protect and ignores distract, but losing his daykill and nightkill immunities. ~Sided~",
+         "startupmsg":"variable:startup",
+         "help":"You can /kill during the night, you survive a lynch and ignore kills until you're lynched.",
+         "actions":{
+            "teamUtilities":true,
+            "daykill":"evade",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "lynch":{
+               "convertTo":"jafargenie",
+               "convertmsg":"±~Self~: The universe is MINE to command! To CONTROL!"
+            },
+            "kill":{
+               "mode":"ignore"
+            },
+            "poison":{
+               "mode":"ignore"
+            },
+            "night":{
+               "kill":{
+                  "hide":true,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":10,
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"jafargenie",
+         "translation":"Genie Jafar",
+         "side":"mafia1",
+         "startupmsg":"variable:startup",
+         "info":"Can kill (shared) one person during the night and ignores nightkills and daykills. Survives a lynch, gaining a kill (unshared) that pierces protect and ignores distract, but losing his daykill and nightkill immunities. ~Sided~",
+         "help":"You can /kill during the night, this outspeeds distracts and protects.",
+         "actions":{
+            "teamUtilities":true,
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "night":{
+               "kill":{
+                  "common":"Self",
+                  "target":"AnyButTeam",
+                  "priority":-1,
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"facilier",
+         "translation":"Dr. Facilier",
+         "side":"mafia1",
+         "info":"Can kill one person during the night (shared). Can expose or fake expose (/role) one person during the day. ~Sided~",
+         "startupmsg":"variable:startup",
+         "help":"Shared /kill during the night. Use /expose during the day, or fake an expose with the commands listed at the beginning of the day.",
+         "actions":{
+            "dummy4":"variable:hot",
+            "teamUtilities":true,
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy6":"variable:kisscurse",
+            "night":{
+               "kill":{
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":10,
+                  "hide":true,
+                  "broadcast":"team"
+               }
+            },
+            "standby":{
+               "expose":{
+                  "target":"AnyButTeam",
+                  "limit":1,
+                  "exposemsg":"Dr. Facilier pokes a voodoo doll shaped like ~Role~, and ~Target~ is seemingly experiencing slight discomfort."
+               },
+               "scar":{
+                  "command":"expose",
+                  "limit":1,
+                  "target":"AnyButTeam",
+                  "exposemsg":"Dr. Facilier pokes a voodoo doll shaped like Scar, and ~Target~ is seemingly experiencing slight discomfort."
+               },
+               "facilier":{
+                  "command":"expose",
+                  "limit":1,
+                  "target":"AnyButTeam",
+                  "exposemsg":"Dr. Facilier pokes a voodoo doll shaped like... Dr. Facilier, and ~Target~ is seemingly experiencing slight discomfort."
+               },
+               "hans":{
+                  "command":"expose",
+                  "limit":1,
+                  "target":"AnyButTeam",
+                  "exposemsg":"Dr. Facilier pokes a voodoo doll shaped like Hans, and ~Target~ is seemingly experiencing slight discomfort."
+               },
+               "pongo":{
+                  "command":"expose",
+                  "limit":1,
+                  "target":"AnyButTeam",
+                  "exposemsg":"Dr. Facilier pokes a voodoo doll shaped like Pongo, and ~Target~ is seemingly experiencing slight discomfort."
+               },
+               "cruella":{
+                  "command":"expose",
+                  "limit":1,
+                  "target":"AnyButTeam",
+                  "exposemsg":"Dr. Facilier pokes a voodoo doll shaped like Cruella de Vil, and ~Target~ is seemingly experiencing slight discomfort."
+               },
+               "mickey":{
+                  "command":"expose",
+                  "limit":1,
+                  "target":"AnyButTeam",
+                  "exposemsg":"Dr. Facilier pokes a voodoo doll shaped like Mickey Mouse, and ~Target~ is seemingly experiencing slight discomfort."
+               },
+               "hook":{
+                  "command":"expose",
+                  "limit":1,
+                  "target":"AnyButTeam",
+                  "exposemsg":"Dr. Facilier pokes a voodoo doll shaped like Captain Hook, and ~Target~ is seemingly experiencing slight discomfort."
+               },
+               "ursula":{
+                  "command":"expose",
+                  "limit":1,
+                  "target":"AnyButTeam",
+                  "exposemsg":"Dr. Facilier pokes a voodoo doll shaped like Ursula, and ~Target~ is seemingly experiencing slight discomfort."
+               },
+               "blackbeard":{
+                  "command":"expose",
+                  "limit":1,
+                  "target":"AnyButTeam",
+                  "exposemsg":"Dr. Facilier pokes a voodoo doll shaped like Blackbeard, and ~Target~ is seemingly experiencing slight discomfort."
+               }
+            },
+            "onDeath":{
+               "convertRoles":{
+                  "frog":"tiana"
+               }
+            }
+         }
+      },
+      {
+         "role":"evilqueen",
+         "translation":"Evil Queen",
+         "side":"mafia1",
+         "help":"You share a /kill and have a /poison once every other night that kills in 2 days. Your vote is 2.",
+         "actions":{
+            "dummy4":"variable:not",
+            "teamUtilities":true,
+            "kill":"variable:cruella",
+            "dummy7":{
+               "mode":"ignore",
+               "msg":"±Info: ~Self~ has 2 votes!"
+            },
+            "dummy6":"variable:kisscurse",
+            "night":{
+               "poison":{
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":6,
+                  "recharge":2,
+                  "count":2,
+                  "broadcast":"team"
+               },
+               "kill":{
+                  "common":"Self",
+                  "target":"AnyButTeam",
+                  "priority":10,
+                  "hide":true,
+                  "broadcast":"team"
+               }
+            },
+            "onDeath":{
+               "convertRoles":{
+                  "snow2":"snow1"
+               }
+            }
+         }
+      },
+      {
+         "role":"evilqueen2",
+         "translation":"Evil Queen",
+         "side":"mafia1",
+         "hide":true,
+         "help":"You have been empowered by the death of Snow White. You share a /kill and have a /poison once every other night that kills in 2 days. Your vote is 2. Anna will now see you as hot.",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":{
+               "mode":"ignore",
+               "msg":"±Info: ~Self~ has 2 votes!"
+            },
+            "dummy6":"variable:kisscurse",
+            "dummy4":"variable:hot",
+            "teamUtilities":true,
+            "night":{
+               "kill":{
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":10,
+                  "hide":true,
+                  "broadcast":"team"
+               },
+               "poison":{
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":6,
+                  "recharge":2,
+                  "count":2,
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"maleficent",
+         "translation":"Maleficent",
+         "side":"mafia1",
+         "startupmsg":"variable:startup",
+         "help":"You have a shared kill, and you can kill during the day (40% reveal chance).",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy6":"variable:kisscurse",
+            "dummy4":"variable:not",
+            "teamUtilities":true,
+            "night":{
+               "kill":{
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":10,
+                  "hide":true,
+                  "broadcast":"team"
+               }
+            },
+            "standby":{
+               "kill":{
+                  "target":"AnyButTeam",
+                  "killmsg":"±Maleficent: 'Now, shall you deal with ME, O ~TargetRole~ - and all the powers of HELL!' Maleficent turns into a fearsome dragon and blasts ~Target~ with a deadly inferno!",
+                  "revealChance":0.4,
+                  "revealmsg":"~Self~ cackles, reveling in the destruction they have caused."
+               }
+            },
+            "onDeath":{
+               "convertRoles":{
+                  "aurora":"shleep"
+               }
+            }
+         }
+      },
+      {
+         "role":"maleficent2",
+         "translation":"Maleficent",
+         "side":"mafia1",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You have been empowered by the death of Aurora. You still have a shared kill and you can kill during the day (now with a 10% reveal chance).",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy6":"variable:kisscurse",
+            "dummy4":"variable:not",
+            "teamUtilities":true,
+            "night":{
+               "kill":{
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":10,
+                  "broadcast":"team"
+               }
+            },
+            "standby":{
+               "kill":{
+                  "target":"AnyButTeam",
+                  "killmsg":"±Maleficent: 'Now, shall you deal with ME, O ~TargetRole~ - and all the powers of HELL!' Maleficent turns into a fearsome dragon and blasts ~Target~ with a deadly inferno!",
+                  "revealChance":0.1,
+                  "revealmsg":"~Self~ cackles, reveling in the destruction they have caused."
+               }
+            }
+         }
+      },
+      {
+         "role":"mafia1placeholder",
+         "translation":"Magic Mafia",
+         "side":"mafia1",
+         "hide":true,
+         "help":"Separates teams and simplifies /priority.",
+         "actions":{
+            "night":{
+               "kill":{
+                  "common":"Self",
+                  "target":"AnyButSelf",
+                  "priority":10,
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"hanssmall",
+         "translation":"Hans",
+         "side":"mafia2",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"Use /poison during the night. Use /distract during the night.",
+         "actions":{
+            "teamUtilities":true,
+            "standby":{
+               "wish":"variable:wish"
+            },
+            "dummy4":"variable:hot",
+            "night":{
+               "poison":{
+                  "hide":true,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":5,
+                  "broadcast":"team"
+               },
+               "distract":{
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":2,
+                  "broadcast":"team"
+               },
+               "WS":"variable:dontGetWish"
+            }
+         }
+      },
+      {
+         "role":"hans",
+         "translation":"Hans",
+         "side":"mafia2",
+         "startupmsg":"variable:startup",
+         "help":"Use /poison during the night, and you even get a second poison with /inject once per game, but this will take 3 days to kill someone. Use /distract during the night.",
+         "actions":{
+            "onDeadRoles":{
+               "convertTo":{
+                  "hans2":[
+                     "scar2",
+                     "cruella",
+                     "cruella2",
+                     "scar"
+                  ]
+               },
+               "convertmsg":"Elsa has died, and Hans is now King of Arendelle... He now has a vote of 2!"
+            },
+            "dummy4":"variable:hot",
+            "teamUtilities":true,
+            "night":{
+               "poison":{
+                  "hide":true,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":5,
+                  "broadcast":"team"
+               },
+               "inject":{
+                  "command":"poison",
+                  "count":3,
+                  "charges":1,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":5.1,
+                  "broadcast":"team"
+               },
+               "distract":{
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":2,
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"hans2",
+         "translation":"Hans",
+         "side":"mafia2",
+         "hide":true,
+         "startupmsg":"variable:startup",
+         "help":"Use /poison during the night, and you even get a second poison with /inject once per game, but this will take 3 days to kill someone. Use /distract during the night. Your vote is 2, and if you /injected already your inject charge is now refreshed.",
+         "actions":{
+            "vote":2,
+            "dummy4":"variable:hot",
+            "teamUtilities":true,
+            "night":{
+               "poison":{
+                  "hide":true,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":5,
+                  "broadcast":"team"
+               },
+               "inject":{
+                  "command":"poison",
+                  "count":3,
+                  "charges":1,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":5.1,
+                  "broadcast":"team"
+               },
+               "distract":{
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":2,
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"scarsmall",
+         "translation":"Scar",
+         "hide":true,
+         "startupmsg":"variable:startup",
+         "side":"mafia2",
+         "help":"You can use /protect and /poison during the night. You can protect yourself.",
+         "actions":{
+            "teamUtilities":true,
+            "standby":{
+               "wish":"variable:wish"
+            },
+            "dummy4":"variable:not",
+            "night":{
+               "poison":{
+                  "hide":true,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":5,
+                  "broadcast":"team"
+               },
+               "protect":{
+                  "common":"Self",
+                  "target":"Any",
+                  "priority":4,
+                  "broadcast":"team"
+               },
+               "WS":"variable:dontGetWish"
+            }
+         }
+      },
+      {
+         "role":"scar",
+         "translation":"Scar",
+         "side":"mafia2",
+         "startupmsg":"variable:startup",
+         "help":"You can use /protect and /poison during the night. You will eat all distractors. You can protect yourself.",
+         "actions":{
+            "onDeath":"variable:scardeath",
+            "onDeadRoles":{
+               "convertTo":{
+                  "scar2":[
+                     "hans",
+                     "cruella",
+                     "cruella2",
+                     "hans2"
+                  ]
+               },
+               "convertmsg":"Scar has returned to Pride Rock. He now has a vote of 2!"
+            },
+            "dummy4":"variable:not",
+            "teamUtilities":true,
+            "distract":{
+               "mode":"killattacker"
+            },
+            "night":{
+               "poison":{
+                  "hide":true,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":5,
+                  "broadcast":"team"
+               },
+               "protect":{
+                  "common":"Self",
+                  "target":"Any",
+                  "priority":4,
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"scar2",
+         "translation":"King Scar",
+         "side":"mafia2",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You can use /protect and /poison during the night. You will eat all distractors. You can protect yourself. Vote counts as 2.",
+         "actions":{
+            "onDeath":"variable:scardeath",
+            "teamUtilities":true,
+            "dummy4":"variable:not",
+            "distract":{
+               "mode":"killattacker"
+            },
+            "vote":2,
+            "night":{
+               "poison":{
+                  "hide":true,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":5,
+                  "broadcast":"team"
+               },
+               "protect":{
+                  "hide":true,
+                  "common":"Self",
+                  "target":"Any",
+                  "priority":4,
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"cruella",
+         "translation":"Cruella de Vil",
+         "side":"mafia2",
+         "info":"Can poison during the night, and inspect (vote) during the night. Can /impound Pongo only when she finds him, gaining six votes on his death. ~Sided~",
+         "startupmsg":"Cruella de Vil... Cruella de Vil...",
+         "help":"If you don't scare them, no evil thing will. You can /poison someone during the night (shared with your team). You can also pay a private investigator to /inspect someone during the night, but they'll only be able to tell you how many votes the person has. If you find someone with 6 votes, they must be Pongo! You can /impound, once per game, and if you kill Pongo you will gain votes for yourself. If you don't hit Pongo, your charge will be used up, so use it WISELY.",
+         "actions":{
+            "dummy4":"variable:not",
+            "teamUtilities":true,
+            "night":{
+               "poison":{
+                  "hide":true,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":5,
+                  "broadcast":"team"
+               },
+               "inspect":{
+                  "command":[
+                     "dummy7"
+                  ],
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":35,
+                  "broadcast":"team"
+               },
+               "impound":{
+                  "command":[
+                     "kill",
+                     "copy"
+                  ],
+                  "canCopy":[
+                     "dalmatians"
+                  ],
+                  "copyAs":"cruella2",
+                  "bypass":[
+                     "killattacker"
+                  ],
+                  "killmsg":"±Cruella: Oh, what a dreadful day. I just saw the papers and couldn't believe Pongo (~Target~) was impounded.",
+                  "msg":"You have been sent to the pound by Cruella de Vil!",
+                  "target":"AnyButTeam",
+                  "charges":1,
+                  "priority":2,
+                  "copyfailmsg":"",
+                  "common":"Self",
+                  "silentCopy":true,
+                  "silent":true
+               }
+            }
+         }
+      },
+      {
+         "role":"cruella2",
+         "translation":"Cruella de Vil",
+         "side":"mafia2",
+         "hide":true,
+         "startupmsg":"Cruella de Vil... Cruella de Vil...",
+         "help":"If you don't scare them, no evil thing will. You can /poison someone during the night (shared with your team). You can also pay a private investigator to /inspect someone during the night, but they'll only be able to tell you how many votes the person has. You now have 6 votes after sending those pups to the pound.",
+         "actions":{
+            "dummy4":"variable:not",
+            "teamUtilities":true,
+            "vote":6,
+            "night":{
+               "poison":{
+                  "hide":true,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":5,
+                  "broadcast":"team"
+               },
+               "inspect":{
+                  "command":[
+                     "dummy7"
+                  ],
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":35,
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"mafia2placeholder",
+         "translation":"Greedy Mafia",
+         "side":"mafia2",
+         "hide":true,
+         "help":"Separates teams and simplifies /priority.",
+         "actions":{
+            "night":{
+               "poison":{
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":5,
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"hook",
+         "translation":"Captain Hook",
+         "side":"mafia3",
+         "startupmsg":"variable:startup",
+         "help":"Use /hook and /kill (shared) during the night. /hook has 2 night recharge and will ignore distracts. Both /killing and /hooking Peter Pan will not kill him, but will stop him from using his fairy dust (safeguard) ever again. After Peter loses Tinkerbell, you can /hook or /kill him properly.",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "teamUtilities":true,
+            "night":{
+               "hook":{
+                  "command":[
+                     "kill",
+                     "convert"
+                  ],
+                  "canConvert":[
+                     "pan"
+                  ],
+                  "recharge":3,
+                  "convertfailmsg":"",
+                  "convertmsg":"Captain Hook swatted Tink out of the air, killing her and preventing you from using her fairy dust!",
+                  "newRole":"pan2",
+                  "priority":11,
+                  "target":"AnyButTeam",
+                  "common":"Self",
+                  "ignoreDistract":true,
+                  "broadcast":"team"
+               },
+               "kill":{
+                  "command":[
+                     "kill",
+                     "convert"
+                  ],
+                  "canConvert":[
+                     "pan"
+                  ],
+                  "convertfailmsg":"",
+                  "convertmsg":"Captain Hook swatted Tink out of the air, killing her and preventing you from using her fairy dust!",
+                  "newRole":"pan2",
+                  "hide":true,
+                  "priority":9,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"ursula",
+         "translation":"Ursula",
+         "side":"mafia3",
+         "startupmsg":"variable:startup",
+         "help":"You can use /kill (shared) and stop some poor unfortunate soul from voting with /steal.",
+         "actions":{
+            "teamUtilities":true,
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "dummy6":"variable:kisscurse",
+            "night":{
+               "kill":{
+                  "hide":true,
+                  "priority":9,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               },
+               "steal":{
+                  "command":[
+                     "copy",
+                     "dummy5"
+                  ],
+                  "dummy5usermsg":"You stole the vote of ~Target~ and your vote is now 2.",
+                  "silentCopy":true,
+                  "silent":true,
+                  "addVote":0,
+                  "addVoteDuration":1,
+                  "copyAs":"ursula2",
+                  "hide":true,
+                  "priority":40,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"ursula2",
+         "translation":"Ursula",
+         "side":"mafia3",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You have a /kill (shared) and can stop someone from voting with /steal. Your vote is now two, but if you don't keep /stealing then your vote will drop back to one.",
+         "actions":{
+            "teamUtilities":true,
+            "kill":"variable:cruella",
+            "dummy7":{
+               "mode":"ignore",
+               "msg":"±Info: ~Self~ has 2 votes!"
+            },
+            "dummy6":"variable:kisscurse",
+            "dummy4":"variable:not",
+            "vote":2,
+            "initialCondition":{
+               "curse":{
+                  "cursedRole":"ursula",
+                  "curseCount":2,
+                  "curseConvertMessage":"You didn't steal anyone's voice last night, so your vote is back to one.",
+                  "silentCurse":true
+               }
+            },
+            "night":{
+               "kill":{
+                  "hide":true,
+                  "priority":9,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               },
+               "steal":{
+                  "command":[
+                     "copy",
+                     "dummy5"
+                  ],
+                  "dummy5usermsg":"You stole the vote of ~Target~ and your vote is now 2.",
+                  "silentCopy":true,
+                  "silent":true,
+                  "addVote":0,
+                  "addVoteDuration":1,
+                  "copyAs":"ursula2",
+                  "hide":true,
+                  "priority":9,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               }
+            }
+         }
+      },
+      {
+         "role":"blackbeard",
+         "translation":"Blackbeard",
+         "side":"mafia3",
+         "startupmsg":"variable:startup",
+         "help":"You have a shared /kill and one-time revealing /kill during standby. You can also /defend someone to stop them from being distracted, frozen, poisoned, or killed.",
+         "actions":{
+            "teamUtilities":true,
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:hot",
+            "night":{
+               "kill":{
+                  "hide":true,
+                  "priority":9,
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "broadcast":"team"
+               },
+               "defend":{
+                  "command":[
+                     "guard"
+                  ],
+                  "guardActions":[
+                     "freeze",
+                     "distract",
+                     "poison",
+                     "kill"
+                  ],
+                  "common":"Self",
+                  "target":"Any",
+                  "priority":1.1,
+                  "broadcast":"team"
+               }
+            },
+            "standby":{
+               "kill":{
+                  "charges":1,
+                  "killmsg":"~Self~ fires his pistol directly at ~Target~. Everyone shall remember the face of Blackbeard!",
+                  "revealChance":1,
+                  "revealmsg":"±~Self~: 'If I don't daykill a man every now and then, they forget who I am!'",
+                  "target":"AnyButTeam"
+               }
+            }
+         }
+      },
+      {
+         "role":"mafia3placeholder",
+         "translation":"Ocean Mafia",
+         "side":"mafia3",
+         "hide":true,
+         "help":"Separates teams and simplifies /priority.",
+         "actions":{
+            "night":{
+               "kill":{
+                  "priority":9,
+                  "common":"Team",
+                  "target":"AnyButTeam"
+               }
+            }
+         }
+      },
+      {
+         "role":"mickey1",
+         "translation":"Mickey Mouse",
+         "side":"mickey",
+         "startupmsg":"variable:startup",
+         "help":"The Mouse is dead. 'Mickey Mouse' is nothing more than a brand, a label slapped onto new ideas for Disney to churn out revenue year after year. The conglomerate machine cannot be stopped.",
+         "help2":"You start off small. You can /inspect one person during the night. But you will grow ever stronger...",
+         "info":"Has an inspect on night one. Gains a kill on night two. Gains a stalk+watch on night three. Gains a poison on night four. Gains a daykill and a vote of 5 on night five. Cannot be nightkilled after night 3. ~Sided~",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "initialCondition":{
+               "curse":{
+                  "cursedRole":"mickey2",
+                  "curseCount":2,
+                  "curseConvertMessage":"Disney has acquired HBO!"
+               }
+            },
+            "night":{
+               "inspect":{
+                  "priority":25,
+                  "common":"Self",
+                  "target":"AnyButSelf",
+                  "pierce":true
+               }
+            }
+         }
+      },
+      {
+         "role":"mickey2",
+         "translation":"Mickey Mouse",
+         "side":"mickey",
+         "hide":true,
+         "startupmsg":"You purchased HBO.",
+         "help":"Now you can /sell during the night to kill. You can still /inspect one person during the night. But you will grow ever stronger...",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "initialCondition":{
+               "curse":{
+                  "cursedRole":"mickey3",
+                  "curseCount":1,
+                  "curseConvertMessage":"Disney has acquired Facebook!"
+               }
+            },
+            "night":{
+               "sell":{
+                  "command":[
+                     "kill"
+                  ],
+                  "priority":7,
+                  "common":"Self",
+                  "target":"AnyButSelf",
+                  "killmsg":"~Target~ (~TargetRole~) has been sold and no longer is a part of Disney."
+               },
+               "inspect":{
+                  "priority":25,
+                  "common":"Self",
+                  "target":"AnyButSelf",
+                  "pierce":true
+               }
+            }
+         }
+      },
+      {
+         "role":"mickey3",
+         "translation":"Mickey Mouse",
+         "side":"mickey",
+         "hide":true,
+         "startupmsg":"You purchased Facebook.",
+         "help":"Now you can /track someone during the night, which shows who visited them and who they visited. You can still /sell and /inspect one person during the night. You now can't be nightkilled. But you will grow ever stronger...",
+         "actions":{
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "kill":{
+               "mode":"ignore"
+            },
+            "initialCondition":{
+               "curse":{
+                  "cursedRole":"mickey4",
+                  "curseCount":1,
+                  "curseConvertMessage":"Disney has acquired Apple!"
+               }
+            },
+            "night":{
+               "sell":{
+                  "command":[
+                     "kill"
+                  ],
+                  "priority":7,
+                  "common":"Self",
+                  "target":"AnyButSelf",
+                  "killmsg":"~Target~ (~TargetRole~) has been sold and no longer is a part of Disney."
+               },
+               "inspect":{
+                  "priority":25,
+                  "common":"Self",
+                  "target":"AnyButSelf",
+                  "pierce":true
+               },
+               "track":{
+                  "command":[
+                     "stalk",
+                     "watch"
+                  ],
+                  "priority":5000,
+                  "common":"Self",
+                  "target":"AnyButSelf"
+               }
+            }
+         }
+      },
+      {
+         "role":"mickey4",
+         "translation":"Mickey Mouse",
+         "side":"mickey",
+         "hide":true,
+         "startupmsg":"You purchased Apple.",
+         "help":"Now you can /poison someone with a poison apple during the night. You can still /sell, /track, and /inspect one person during the night. You still can't be nightkilled. But you will grow ever stronger...",
+         "actions":{
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "kill":{
+               "mode":"ignore"
+            },
+            "initialCondition":{
+               "curse":{
+                  "cursedRole":"mickey5",
+                  "curseCount":1,
+                  "curseConvertMessage":"Disney has acquired Walmart!"
+               }
+            },
+            "night":{
+               "poison":{
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":6,
+                  "broadcast":"team"
+               },
+               "sell":{
+                  "command":[
+                     "kill"
+                  ],
+                  "priority":7,
+                  "common":"Self",
+                  "target":"AnyButSelf",
+                  "killmsg":"~Target~ (~TargetRole~) has been sold and no longer is a part of Disney."
+               },
+               "inspect":{
+                  "priority":25,
+                  "common":"Self",
+                  "target":"AnyButSelf",
+                  "pierce":true
+               },
+               "track":{
+                  "command":[
+                     "stalk",
+                     "watch"
+                  ],
+                  "priority":5000,
+                  "common":"Self",
+                  "target":"AnyButSelf"
+               }
+            }
+         }
+      },
+      {
+         "role":"mickey5",
+         "translation":"Mickey Mouse",
+         "side":"mickey",
+         "hide":true,
+         "startupmsg":"You purchased Walmart.",
+         "help":"Now, you've reached your final form. You can /liquidate someone during the day to kill them without revealing yourself, and your vote is worth 5. You can still /poison, and /track someone during the night, which shows who visited them and who they visited. You can still /sell and /inspect one person during the night. You still can't be nightkilled.",
+         "actions":{
+            "dummy7":{
+               "mode":"ignore",
+               "msg":"±Info: ~Self~ has 5 votes!"
+            },
+            "dummy4":"variable:not",
+            "kill":{
+               "mode":"ignore"
+            },
+            "vote":5,
+            "standby":{
+               "liquidate":{
+                  "command":"kill",
+                  "target":"AnyButSelf",
+                  "killmsg":"The Mouse has liquidated all assets related to ~Target~ and they will never be seen here again."
+               }
+            },
+            "night":{
+               "poison":{
+                  "common":"Team",
+                  "target":"AnyButTeam",
+                  "priority":6,
+                  "broadcast":"team"
+               },
+               "sell":{
+                  "command":[
+                     "kill"
+                  ],
+                  "priority":7,
+                  "common":"Self",
+                  "target":"AnyButSelf",
+                  "killmsg":"~Target~ (~TargetRole~) has been sold and no longer is a part of Disney."
+               },
+               "inspect":{
+                  "priority":25,
+                  "common":"Self",
+                  "target":"AnyButSelf",
+                  "pierce":true
+               },
+               "track":{
+                  "command":[
+                     "stalk",
+                     "watch"
+                  ],
+                  "priority":5000,
+                  "common":"Self",
+                  "target":"AnyButSelf"
+               }
+            }
+         }
+      },
+      {
+         "role":"screenslaver",
+         "translation":"Screenslaver",
+         "side":"screen",
+         "help":"All are pawns to the Screenslaver! As your awfully punny name suggests, you control people through the use of screens and hypnosis. As such, you can redirect any action onto anybody else by typing /redirect Name@Name. All actions of the first name will be used on the second name. You don't need to go anywhere to do this, so you will not be seen visiting anybody if you are stalked. This also means you won't be killed during the night. Since you have cameras everywhere, you have a very good chance of finding out who is visiting who. You'll identify inspectors and reveal as a random role. Lastly, you have a vote of 3 because you can hypnotize other people into voting with you.",
+         "actions":{
+            "dummy7":{
+               "mode":"ignore",
+               "msg":"±Info: ~Self~ has 3 votes!"
+            },
+            "dummy4":"variable:hot",
+            "vote":3,
+            "stalk":{
+               "mode":"noVisit"
+            },
+            "inspect":{
+               "mode":"identify",
+               "revealAs":"*"
+            },
+            "kill":{
+               "mode":"ignore"
+            },
+            "night":{
+               "redirect":{
+                  "target":"AnyButSelf",
+                  "common":"Self",
+                  "redirectTarget":"Any",
+                  "priority":0.2
+               }
+            },
+            "hax":{
+               "kill":{
+                  "revealTeam":0.7,
+                  "revealPlayer":0.1
+               },
+               "kiss":{
+                  "revealTeam":0.7
+               },
+               "inspect":{
+                  "revealTeam":0.7,
+                  "revealPlayer":0.1
+               },
+               "fairydust":{
+                  "revealTeam":0.7,
+                  "revealPlayer":0.1
+               },
+               "poison":{
+                  "revealTeam":0.7,
+                  "revealPlayer":0.1
+               },
+               "protect":{
+                  "revealTeam":0.8,
+                  "revealPlayer":0.1
+               },
+               "distract":{
+                  "revealTeam":0.6,
+                  "revealPlayer":0.1
+               }
+            }
+         }
+      },
+      {
+         "role":"masonplaceholder",
+         "translation":"Masons",
+         "side":"village",
+         "info":"Masons are: Kristoff and Sven, Lilo and Stitch, Pooh and Piglet, Timon and Pumbaa, Donald and Goofy, Lumiere and Cogsworth, Pocahontas and John Smith, and Flounder and Sebastian. ~Sided~",
+         "help":"Everything under this is Masons lol. Also this is for /roles.",
+         "actions":{
+
+         }
+      },
+      {
+         "role":"kristoff",
+         "translation":"Kristoff",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You are a simple ice-maker and have no real special abilities, but you know Sven. Vote with the village to defeat the villains!",
+         "info":"Has no special abilities. ~Sided~",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:hot",
+            "startup":{
+               "revealRole":[
+                  "sven"
+               ]
+            }
+         }
+      },
+      {
+         "role":"sven",
+         "translation":"Sven",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You are a reindeer and have no real special abilities, but you know Kristoff. Vote with the village to defeat the villains!",
+         "info":"Has no special abilities. ~Sided~",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "startup":{
+               "revealRole":[
+                  "kristoff"
+               ]
+            }
+         }
+      },
+      {
+         "role":"lilo",
+         "translation":"Lilo",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You are a little girl and have no real special abilities, but you know Stitch. Vote with the village to defeat the villains!",
+         "info":"Has no special abilities. ~Sided~",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "startup":{
+               "revealRole":[
+                  "stitch"
+               ]
+            }
+         }
+      },
+      {
+         "role":"stitch",
+         "translation":"Stitch",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You are a weird alien, and have no real special abilities, but you know Lilo. Vote with the village to defeat the villains!",
+         "info":"Has no special abilities. ~Sided~",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "startup":{
+               "revealRole":[
+                  "lilo"
+               ]
+            }
+         }
+      },
+      {
+         "role":"pooh",
+         "translation":"Pooh",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You are a teddy bear and have no real special abilities, but you know Piglet. Vote with the village to defeat the villains!",
+         "info":"Has no special abilities. ~Sided~",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "startup":{
+               "revealRole":[
+                  "piglet"
+               ]
+            }
+         }
+      },
+      {
+         "role":"piglet",
+         "translation":"Piglet",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You are a toy piglet and have no real special abilities, but you know Pooh. Vote with the village to defeat the villains!",
+         "info":"Has no special abilities. ~Sided~",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "startup":{
+               "revealRole":[
+                  "pooh"
+               ]
+            }
+         }
+      },
+      {
+         "role":"timon",
+         "translation":"Timon",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You are a meerkat and have no real special abilities, but you know Pumbaa. Vote with the village to defeat the villains!",
+         "info":"Has no special abilities. ~Sided~",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "startup":{
+               "revealRole":[
+                  "pumbaa"
+               ]
+            }
+         }
+      },
+      {
+         "role":"pumbaa",
+         "translation":"Pumbaa",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You are a warthog and have no real special abilities, but you know Timon. Vote with the village to defeat the villains!",
+         "info":"Has no special abilities. ~Sided~",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "startup":{
+               "revealRole":[
+                  "timon"
+               ]
+            }
+         }
+      },
+      {
+         "role":"donald",
+         "translation":"Donald Duck",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You are a duck and have no real special abilities, but you know Goofy. Vote with the village to defeat the villains!",
+         "info":"Has no special abilities. ~Sided~",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "startup":{
+               "revealRole":[
+                  "goofy"
+               ]
+            }
+         }
+      },
+      {
+         "role":"goofy",
+         "translation":"Goofy",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You are a six foot tall dog but you have no real special abilities, but you know Donald Duck. Vote with the village to defeat the villains!",
+         "info":"Has no special abilities. ~Sided~",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "startup":{
+               "revealRole":[
+                  "donald"
+               ]
+            }
+         }
+      },
+      {
+         "role":"lumiere",
+         "translation":"Lumiere",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You are a talking candle and have no real special abilities, but you know Cogsworth. Vote with the village to defeat the villains!",
+         "info":"Has no special abilities. ~Sided~",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:hot",
+            "startup":{
+               "revealRole":[
+                  "cogsworth"
+               ]
+            }
+         }
+      },
+      {
+         "role":"cogsworth",
+         "translation":"Cogsworth",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You are a talking clock and have no real special abilities, but you know Lumiere. Vote with the village to defeat the villains!",
+         "info":"Has no special abilities. ~Sided~",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "startup":{
+               "revealRole":[
+                  "lumiere"
+               ]
+            }
+         }
+      },
+      {
+         "role":"pocahontas",
+         "translation":"Pocahontas",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You are an ambassador to the New World and have no real special abilities, but you know John Smith. Vote with the village to defeat the villains!",
+         "info":"Has no special abilities. ~Sided~",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "startup":{
+               "revealRole":[
+                  "smith"
+               ]
+            }
+         }
+      },
+      {
+         "role":"smith",
+         "translation":"John Smith",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You are an English settler of the New World, and have no real special abilities, but you know Pocahontas. Vote with the village to defeat the villains!",
+         "info":"Has no special abilities. ~Sided~",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:hot",
+            "startup":{
+               "revealRole":[
+                  "pocahontas"
+               ]
+            }
+         }
+      },
+      {
+         "role":"flounder",
+         "translation":"Flounder",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You are a little fish and have no real special abilities, but you know Sebastian. Vote with the village to defeat the villains!",
+         "info":"Has no special abilities. ~Sided~",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "startup":{
+               "revealRole":[
+                  "sebastian"
+               ]
+            }
+         }
+      },
+      {
+         "role":"sebastian",
+         "translation":"Sebastian",
+         "side":"village",
+         "startupmsg":"variable:startup",
+         "hide":true,
+         "help":"You are a lobster, and have no real special abilities, but you know Flounder. Vote with the village to defeat the villains!",
+         "info":"Has no special abilities. ~Sided~",
+         "actions":{
+            "kill":"variable:cruella",
+            "dummy7":"variable:1vote",
+            "dummy4":"variable:not",
+            "startup":{
+               "revealRole":[
+                  "flounder"
+               ]
+            }
+         }
+      }
+   ],
+   "tips":{
+      "Non-Peak (6P) Village":"Aladdin watcher, Genie gives one-shot revealing (not role) daykill, Mulan can Distract or Selfprotect+Convert to Ping, Ping can kill or Selfprotect+Convert to Mulan, Anna inspects people as hot or not. Aladdin and Genie know each other.",
+      "Non-Peak Mafia":"Hans and Scar are on a team. Hans can poison and distract. Scar can poison and protect, even himself. Scar gains an extra vote on the death of Hans.",
+      "Masons":"This theme features randomly spawning masons, which are roles that know each other. None of these have special actions other than being connected on start-up, and you can find out more about these roles with /roles disney:masons. We didn't want to clog up the /roles list with a million roles that were just renamed versions of the same role.",
+      "Claiming":"You can probably claim as Merida. Most daykills are either oneshot (Blackbeard) or revealing (Maleficent). Tiana really isn't a bad claim either, because she can't die as a Frog and the Prince can just convert her to an exposer if she claims. However, then she's available to be killed, but Elsa can protect her. Also, the Prince should be careful of people like Facilier fake claiming as Tiana, because he will lose his ability to kiss if he kisses Facilier, Evil Queen, Ursula, or Maleficent.",
+      "Hot":"Aladdin, Hans, Ping, Blackbeard (I guess), Facilier, Jack Sparrow, Screenslaver (hypnosis, I swear), Kristoff, John Smith, Lumiere (GET IT?), the Evil Queen after Snow White dies (she is the fairest in the land), and Prince Charming.",
+      "Not":"Everyone else. Except Elsa, Anna will find Elsa to be Elsa."
+   },
+   "killmsg":"±Hades: Boom! Score one for the Underworld! ~Player~ (~Role~) is MINE!",
+   "killusermsg":"±Hades: Oooh, that sucks. I'll be waiting for you... in Hell!",
+   "lynchmsg":"±Hades: ~Player~ (~Role~) was taken to the Underworld!",
+   "drawmsg":"±Hades: Honestly, how did this even happen? Everybody's dead! That's fantastic!",
+   "votemsg":"~Player~ voted for ~Target~!",
+   "roles1":[
+      "mulanpl2",
+      "anna2",
+      "aladdinsmall",
+      "scarsmall",
+      "hanssmall",
+      "genie"
+   ],
+   "roles2":[
+      "mulanpl",
+      "jafar",
+      "facilier",
+      "eeyore",
+      "frog",
+      "anna",
+      "aladdin"
+   ],
+   "roles3":[
+      "mulanpl",
+      "jafar",
+      "facilier",
+      "eeyore",
+      "frog",
+      "anna",
+      "aladdin",
+      "blackbeard"
+   ],
+   "roles4":[
+      "mulanpl",
+      "jafar",
+      "facilier",
+      "eeyore",
+      "frog",
+      "anna",
+      "aladdin",
+      "blackbeard",
+      "ursula"
+   ],
+   "roles5":[
+      "mulanpl",
+      "maleficent",
+      "facilier",
+      "eeyore",
+      "frog",
+      "anna",
+      "aladdin",
+      "blackbeard",
+      "ursula",
+      "shleep",
+      "prince",
+      "elsa"
+   ],
+   "roles6":[
+      "mulanpl",
+      "maleficent",
+      "facilier",
+      "frog",
+      "anna",
+      "aladdin",
+      "blackbeard",
+      "ursula",
+      "shleep",
+      "prince",
+      "elsa",
+      "pack:masons",
+      "pack:masons",
+      "screenslaver",
+      "eeyore"
+   ],
+   "roles7":[
+      "mulanpl",
+      "maleficent",
+      "facilier",
+      "frog",
+      "anna",
+      "aladdin",
+      "blackbeard",
+      "ursula",
+      "shleep",
+      "prince",
+      "elsa",
+      "pack:masons",
+      "pack:masons",
+      "screenslaver",
+      "eeyore",
+      "evilqueen",
+      "snow1",
+      "minnie",
+      "hook"
+   ],
+   "roles8":[
+      "mulanpl",
+      "maleficent",
+      "facilier",
+      "frog",
+      "anna",
+      "aladdin",
+      "blackbeard",
+      "ursula",
+      "shleep",
+      "prince",
+      "elsa",
+      "pack:masons",
+      "pack:masons",
+      "mickey1",
+      "eeyore",
+      "evilqueen",
+      "snow1",
+      "minnie",
+      "hook",
+      "merida",
+      "pan",
+      "simba"
+   ],
+   "roles9":[
+      "mulanpl",
+      "maleficent",
+      "facilier",
+      "frog",
+      "anna",
+      "aladdin",
+      "blackbeard",
+      "ursula",
+      "shleep",
+      "prince",
+      "elsa",
+      "hans",
+      "scar",
+      "cruella",
+      "eeyore",
+      "evilqueen",
+      "snow1",
+      "dalmatians",
+      "hook",
+      "merida",
+      "pan",
+      "simba",
+      "sparrow",
+      "minnie"
+   ],
+   "roles10":[
+      "mulanpl",
+      "maleficent",
+      "facilier",
+      "frog",
+      "anna",
+      "aladdin",
+      "blackbeard",
+      "ursula",
+      "shleep",
+      "prince",
+      "elsa",
+      "hans",
+      "scar",
+      "cruella",
+      "eeyore",
+      "evilqueen",
+      "snow1",
+      "dalmatians",
+      "hook",
+      "merida",
+      "pan",
+      "simba",
+      "sparrow",
+      "pack:masons",
+      "pack:masons",
+      "jafar",
+      "mickey1",
+      "screenslaver",
+      "pack:masons",
+      "pack:masons"
+   ],
+   "villageCantLoseRoles":[
+      "mulanpl",
+      "mulanvig",
+      "dalmatians",
+      "merida",
+      "aurora",
+      "sparrow"
+   ]
+}
