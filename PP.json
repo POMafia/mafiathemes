@@ -1,0 +1,2505 @@
+{
+    "name": "PP",
+    "altname": "Power Plant",
+    "author": [
+        "Miki Sayaka"
+    ],
+	"summary": "The Power Plant has been peaceful since the Plusles and Minuns moved in, but that peace is now at stake! The Electrike Brigade has invaded, and the evil corporation Objects Incorporated have set their eyes on the Plant's production! Not to mention, Lt. Surge has sent his Pikachu to disrupt everything, and the mythical Pokémon Zapdos and Raikou even might appear!",
+    "threadlink": "Coming soon",
+    "bot": {
+    	"name": "Bzzt",
+    	"color": "#cc9900"
+    },
+    "borderColor": "#336699",
+    "sides": [
+        {
+            "translation": "Good Pokémon",
+            "side": "village",
+            "winmsg": "~Players~ have defended the Power Plant from all the evil threats!"
+        },
+        {
+            "translation": "Objects Inc.",
+            "side": "mafia1",
+            "winmsg": "±Magnezone: The Power Plant is now an asset of Objects Inc. All competition has been deactivated. Bzzt."
+        },
+        {
+            "translation": "Electrike Brigade",
+            "side": "mafia2",
+            "winmsg": "±Electivire: ~Players~ have claimed the Power Plant in the name of their King!"
+        },
+        {
+            "translation": "Lt. Surge's Recruits",
+            "side": "werewolf",
+            "winmsg": "±Lt. Surge: At last, my Pokémon ~Players~ has taken control of the Power Plant! And all the power is mine!!"
+        },
+        {
+            "translation": "Mythics",
+            "side": "godfather",
+            "winmsg": "The Mythical Pokémon (~Players~) reign supreme over the Power Plant!"
+        }
+    ],
+    "variables": {
+        "mareepHelp": "Baa! You have escaped Safari and are now sheeping all the votes! Your vote counts as 1 + however many times you are hit with a plus during the night! However, your vote goes down by 1 if you are hit by a Minus!",
+        "emolgaHelp": "You are soooo cuuuuute! You can use your cuteness to /Inspect one person during the night. However, this only works if you are charged with a mild positive charge (+1 or +2)! If you have a mild negative charge (-1 or -2) you will accidentally kill your target instead!",
+        "poisonLimit": {
+        	"mode": {
+        		"evadeCharges": 3
+        	},
+        	"evadechargemsg": "",
+        	"msg": ""
+        },
+        "distractLimit": {
+        	"mode": {
+        		"evadeCharges": 2
+        	},
+        	"evadechargemsg": "",
+        	"msg": ""
+        },
+        "guardLimit": {
+        	"mode": {
+        		"evadeCharges": 1
+        	},
+        	"evadechargemsg": "",
+        	"msg": ""
+        },
+        "sameLimit": {
+        	"mode": {
+        		"evadeCharges": "*"
+        	},
+        	"evadechargemsg": "",
+        	"msg": ""
+        },
+        "powerup+": {
+			"mareep2": ["mareep"],
+			"mareep3": ["mareep2"],
+			"mareep4": ["mareep2"],
+			"emolga2": ["emolga"],
+			"emolga3": ["emolga2"],
+			"emolga4": ["emolga3"],
+			"blitzle2": ["blitzle"],
+			"blitzle3": ["blitzle2"],
+			"blitzle4": ["blitzle3", "blitzle4"]
+        },
+        "powerup-": {
+			"mareep-2": ["mareep-1"],
+			"mareep-1": ["mareep0"],
+			"mareep0": ["mareep"],
+			"mareep": ["mareep2", "mareep2X"],
+			"mareep2": ["mareep3", "mareep3X"],
+			"mareep3": ["mareep4", "mareep4X"],
+			"emolga-3": ["emolga-2", "emolga-3"],
+			"emolga-2": ["emolga-1"],
+			"emolga-1": ["emolga"],
+			"emolga": ["emolga2", "emolga2X"],
+			"emolga2": ["emolga3", "emolga3X"],
+			"emolga3": ["emolga4", "emolga4X"],
+			"blitzle3": ["blitzle4", "blitzle4X"],
+			"blitzle2": ["blitzle3", "blitzle4X"],
+			"blitzle1X": ["blitzle2", "blitzle4X"],
+			"blitzle-1": ["blitzle1X", "blitzle"],
+			"blitzle-2": ["blitzle-1"],
+			"blitzle-3": ["blitzle-2"],
+			"tynamo2": ["tynamo", "tynamo2"]
+        },
+        "mareepRevert": {
+			"command": ["convert"],
+			"target": "OnlySelf",
+			"compulsory": true,
+			"common": "Self",
+			"convertmsg": "",
+			"silent": true,
+			"silentConvert": true,
+			"usermsg": "",
+			"ignoreDistract": true,
+			"hide": true,
+			"macro": false,
+			"inputmsg": "",
+			"priority": 0.5,
+			"newRole": "mareep",
+			"noRepeat": true
+        },
+        "blitzleRevert": {
+			"command": ["convert"],
+			"target": "OnlySelf",
+			"compulsory": true,
+			"common": "Self",
+			"convertmsg": "",
+			"silent": true,
+			"silentConvert": true,
+			"usermsg": "",
+			"ignoreDistract": true,
+			"hide": true,
+			"macro": false,
+			"inputmsg": "",
+			"priority": 0.5,
+			"newRole": "emolga",
+			"noRepeat": true
+        },
+        "emolgaRevert": {
+			"command": ["convert"],
+			"target": "OnlySelf",
+			"compulsory": true,
+			"common": "Self",
+			"convertmsg": "",
+			"silent": true,
+			"silentConvert": true,
+			"usermsg": "",
+			"ignoreDistract": true,
+			"hide": true,
+			"macro": false,
+			"inputmsg": "",
+			"priority": 99,
+			"newRole": "emolga",
+			"noRepeat": true
+        },
+        "tynamoRevert": {
+			"command": ["convert"],
+			"target": "OnlySelf",
+			"compulsory": true,
+			"common": "Self",
+			"convertmsg": "",
+			"silent": true,
+			"silentConvert": true,
+			"ignoreDistract": true,
+			"usermsg": "",
+			"hide": true,
+			"macro": false,
+			"inputmsg": "",
+			"priority": 99,
+			"newRole": "tynamo",
+			"noRepeat": true
+        },
+        "pachirisuRevert": {
+			"command": ["convert"],
+			"target": "OnlySelf",
+			"compulsory": true,
+			"common": "Self",
+			"convertmsg": "",
+			"silent": true,
+			"silentConvert": true,
+			"ignoreDistract": true,
+			"usermsg": "",
+			"hide": true,
+			"macro": false,
+			"inputmsg": "",
+			"priority": 99,
+			"newRole": "pachirisu",
+			"noRepeat": true
+        },
+        "resetEvades": {
+			"command": ["convert"],
+			"target": "OnlySelf",
+			"compulsory": true,
+			"common": "Self",
+			"convertmsg": "",
+			"silent": true,
+			"silentConvert": true,
+			"ignoreDistract": true,
+			"usermsg": "",
+			"hide": true,
+			"macro": false,
+			"convertfailmsg": "",
+			"inputmsg": "",
+			"priority": 4.1,
+			"newRole": {
+				"plusle": ["plusle"],
+				"minun": ["minun"],
+				"shinx": ["shinx"],
+				"magnemite": ["magnemite"],
+				"voltorb": ["voltorb"],
+				"elekid": ["elekid"],
+				"electabuzz": ["electabuzz"],
+				"electivire": ["electivire"],
+				"mareep": ["mareep"],
+				"mareep2X": ["mareep2"],
+				"mareep3X": ["mareep3"],
+				"mareep4X": ["mareep4"],
+				"emolga": ["emolga"],
+				"emolga2X": ["emolga2"],
+				"emolga3X": ["emolga3"],
+				"emolga4X": ["emolga4"],
+				"pikachu": ["pikachu"],
+				"raichu": ["raichu"],
+				"raichu2": ["raichu2"],
+				"pachirisu": ["pachirisu"],
+				"pachirisu2X": ["pachirisu2"],
+				"raikou": ["raikou"],
+				"zapdos": ["zapdos"],
+				"tynamo": ["tynamo"],
+				"dedenne_plus": ["dedenne_plus"],
+				"dedenne_minus": ["dedenne_minus"]
+			}
+        },
+        "resetEvades2": {
+			"command": ["convert"],
+			"target": "OnlySelf",
+			"compulsory": true,
+			"common": "Self",
+			"convertmsg": "",
+			"silent": true,
+			"silentConvert": true,
+			"ignoreDistract": true,
+			"usermsg": "",
+			"hide": true,
+			"macro": false,
+			"convertfailmsg": "",
+			"inputmsg": "",
+			"priority": 100,
+			"newRole": {
+				"plusle": ["plusle"],
+				"minun": ["minun"],
+				"shinx": ["shinx"],
+				"magnemite": ["magnemite"],
+				"voltorb": ["voltorb"],
+				"elekid": ["elekid"],
+				"electabuzz": ["electabuzz"],
+				"electivire": ["electivire"],
+				"mareep": ["mareep"],
+				"mareep2X": ["mareep2"],
+				"mareep3X": ["mareep3"],
+				"mareep4X": ["mareep4"],
+				"emolga": ["emolga"],
+				"emolga2X": ["emolga2"],
+				"emolga3X": ["emolga3"],
+				"emolga4X": ["emolga4"],
+				"blitzle": ["blitzle"],
+				"blitzle2X": ["blitzle2"],
+				"blitzle3X": ["blitzle3"],
+				"blitzle4X": ["blitzle4"],
+				"pikachu": ["pikachu"],
+				"raichu": ["raichu"],
+				"raichu2": ["raichu2"],
+				"pachirisu": ["pachirisu"],
+				"pachirisu2X": ["pachirisu2"],
+				"raikou": ["raikou"],
+				"zapdos": ["zapdos"],
+				"tynamo": ["tynamo"],
+				"dedenne_plus": ["dedenne_plus"],
+				"dedenne_minus": ["dedenne_minus"]
+			}
+        },
+        "plus": {
+			"command": ["guard", "distract", "poison", "convert"],
+			"target": "Any",
+			"common": "Self",
+			"count": -1,
+			"guardmsg": "",
+			"convertfailmsg": "",
+			"hide": true,
+			"poisonmsg": "",
+			"maxHax": 1,
+			"poisonDeadMessage": "You were electrocuted with too much Plus!",
+			"guardActions": ["Block", "Zap1"],
+			"distractActions": ["Block2", "Zap3"],
+			"convertmsg": "",
+			"usermsg": "",
+			"distractmsg": "",
+			"silentConvert": true,
+			"convertfailmsg": "",
+			"newRole": "variable:powerup+",
+			"cancel": ["minus"],
+			"priority": 4
+        },
+        "minus": {
+			"command": ["guard", "distract", "poison", "convert"],
+			"target": "Any",
+			"common": "Self",
+			"count": -1,
+			"guardmsg": "",
+			"poisonmsg": "",
+			"convertfailmsg": "",
+			"hide": true,
+			"maxHax": 1,
+			"poisonDeadMessage": "You were electrocuted with too much Minus!",
+			"guardActions": ["Block", "Zap2"],
+			"distractActions": ["Block2", "Zap4"],
+			"convertmsg": "",
+			"usermsg": "",
+			"distractmsg": "",
+			"silentConvert": true,
+			"convertfailmsg": "",
+			"cancel": ["plus"],
+			"newRole": "variable:powerup-",
+			"priority": 5
+        },
+        "plus2": {
+			"command": ["guard", "distract", "poison", "convert", "copy"],
+			"target": "Any",
+			"common": "Self",
+			"count": -1,
+			"hide": true,
+			"copyAs": "pachirisu2",
+			"poisonmsg": "",
+			"convertfailmsg": "",
+			"maxHax": 1,
+			"hide": true,
+			"poisonDeadMessage": "You were electrocuted with too much Plus!",
+			"guardActions": ["Block", "Zap1"],
+			"distractActions": ["Block2", "Zap3"],
+			"newRole": "variable:powerup+",
+			"convertmsg": "",
+			"copymsg": "",
+			"copyusermsg": "",
+			"guardmsg": "",
+			"distractmsg": "",
+			"usermsg": "",
+			"silentConvert": true,
+			"silentCopy": true,
+			"convertfailmsg": "",
+			"cancel": ["minus"],
+			"priority": 3.5
+        },
+        "minus2": {
+			"command": ["guard", "distract", "poison", "convert", "copy"],
+			"target": "Any",
+			"common": "Self",
+			"count": -1,
+			"hide": true,
+			"copyAs": "pachirisu2",
+			"poisonmsg": "",
+			"convertfailmsg": "",
+			"maxHax": 1,
+			"hide": true,
+			"poisonDeadMessage": "You were electrocuted with too much Minus!",
+			"guardActions": ["Block", "Zap2"],
+			"distractActions": ["Block2", "Zap4"],
+			"newRole": "variable:powerup-",
+			"convertmsg": "",
+			"copymsg": "",
+			"copyusermsg": "",
+			"guardmsg": "",
+			"distractmsg": "",
+			"usermsg": "",
+			"silentConvert": true,
+			"silentCopy": true,
+			"convertfailmsg": "",
+			"cancel": ["plus"],
+			"priority": 4.5
+        },
+        "pluselectrike": {
+			"command": ["guard", "distract", "poison", "convert"],
+			"target": "Any",
+			"common": "Team",
+			"count": -1,
+			"guardmsg": "",
+			"convertfailmsg": "",
+			"hide": true,
+			"poisonmsg": "",
+			"maxHax": 1,
+			"poisonDeadMessage": "You were electrocuted with too much Plus!",
+			"guardActions": ["Block", "Zap1"],
+			"distractActions": ["Block2", "Zap3"],
+			"convertmsg": "",
+			"usermsg": "",
+			"distractmsg": "",
+			"silentConvert": true,
+			"convertfailmsg": "",
+			"newRole": "variable:powerup+",
+			"cancel": ["minus"],
+			"priority": 4
+        },
+        "minuselectrike": {
+			"command": ["guard", "distract", "poison", "convert"],
+			"target": "Any",
+			"common": "Team",
+			"count": -1,
+			"guardmsg": "",
+			"poisonmsg": "",
+			"convertfailmsg": "",
+			"hide": true,
+			"maxHax": 1,
+			"poisonDeadMessage": "You were electrocuted with too much Minus!",
+			"guardActions": ["Block", "Zap2"],
+			"distractActions": ["Block2", "Zap4"],
+			"convertmsg": "",
+			"usermsg": "",
+			"distractmsg": "",
+			"silentConvert": true,
+			"convertfailmsg": "",
+			"cancel": ["plus"],
+			"newRole": "variable:powerup-",
+			"priority": 5
+        },
+        "minusobj": {
+			"command": ["guard", "distract", "poison", "convert"],
+			"target": "Any",
+			"common": "Role",
+			"count": -1,
+			"guardmsg": "",
+			"poisonmsg": "",
+			"convertfailmsg": "",
+			"hide": true,
+			"maxHax": 1,
+			"poisonDeadMessage": "You were electrocuted with too much Minus!",
+			"guardActions": ["Block", "Zap2"],
+			"distractActions": ["Block2", "Zap4"],
+			"convertmsg": "",
+			"usermsg": "",
+			"distractmsg": "",
+			"silentConvert": true,
+			"convertfailmsg": "",
+			"cancel": ["plus"],
+			"newRole": "variable:powerup-",
+			"priority": 5
+        },
+        "auto-bg": {
+			"command": ["protect"],
+			"target": "OnlySelf",
+			"compulsory": true,
+			"inputmsg": "",
+			"ignoreDistract": true,
+			"macro": false,
+			"common": "Self",
+			"hide": true,
+			"priority": 6
+        },
+        "block-bg": {
+			"command": ["guard"],
+			"guardActions": ["Zap1", "Zap2"],
+			"target": "OnlySelf",
+			"inputmsg": "",
+			"ignoreDistract": true,
+			"macro": false,
+			"bypass": ["evadeCharges"],
+			"guardmsg": "",
+			"compulsory": true,
+			"hide": true,
+			"common": "Self",
+			"priority": 5.9
+        },
+        "block-bg-pl": {
+			"command": ["guard"],
+			"guardActions": ["Zap3", "Zap4"],
+			"target": "OnlySelf",
+			"inputmsg": "",
+			"ignoreDistract": true,
+			"bypass": ["evadeCharges"],
+			"guardmsg": "",
+			"macro": false,
+			"compulsory": true,
+			"hide": true,
+			"common": "Self",
+			"priority": 5.9
+        },
+        "emolgaInspectFail": {
+			"command": ["inspect", "dummy"],
+			"target": "AnyButSelf",
+			"common": "Self",
+			"maxHax": 1,
+			"failChance": 1,
+			"dummyusermsg": "You tried to Inspect ~Target~, but you didn't have enough positive energy!",
+			"priority": 10
+        },
+        "emolgaInspectFail+": {
+			"command": ["inspect", "dummy"],
+			"target": "AnyButSelf",
+			"common": "Self",
+			"failChance": 1,
+			"dummyusermsg": "You tried to Inspect ~Target~, but you were overloaded with positive energy!",
+			"priority": 10
+        },
+        "emolgaInspectFail-": {
+			"command": ["inspect", "dummy"],
+			"target": "AnyButSelf",
+			"common": "Self",
+			"failChance": 1,
+			"dummyusermsg": "You tried to Inspect ~Target~, but you were overloaded with negative energy!",
+			"priority": 10
+        },
+        "emolgaInspect+": {
+			"command": ["inspect"],
+			"target": "AnyButSelf",
+			"common": "Self",
+			"priority": 10
+        },
+        "emolgaInspectKill": {
+			"command": ["dummy", "kill"],
+			"target": "AnyButSelf",
+			"common": "Self",
+			"dummyusermsg": "You tried to Inspect ~Target~, but your negative energy made you kill them instead!",
+			"priority": 10
+        },
+        "tynamoKill": {
+			"command": ["kill"],
+			"target": "AnyButSelf",
+			"common": "Self",
+			"priority": 9
+        },
+        "tynamoKillFail": {
+			"command": ["dummy", "kill"],
+			"target": "AnyButSelf",
+			"maxHax": 1,
+			"common": "Self",
+			"failChance": 1,
+			"dummyusermsg": "You tried to Kill ~Target~, but you didn't have enough Negative energy!",
+			"priority": 9
+        },
+        "plushax": {
+        	"kill": {
+            	"revealTeam": 0.25,
+            	"revealPlayer": 0.012
+            },
+        	"minus": {
+            	"revealTeam": 0.03,
+            	"revealPlayer": 0.003
+            }
+        },
+        "minushax": {
+        	"kill": {
+            	"revealTeam": 0.25,
+            	"revealPlayer": 0.012
+            },
+        	"plus": {
+            	"revealTeam": 0.03,
+            	"revealPlayer": 0.003
+            }
+        },
+        "minorhax": {
+        	"kill": {
+            	"revealTeam": 0.12,
+            	"revealPlayer": 0.008
+            },
+        	"plus": {
+            	"revealTeam": 0.03,
+            	"revealPlayer": 0.003
+            },
+        	"minus": {
+            	"revealTeam": 0.03,
+            	"revealPlayer": 0.003
+            }
+        },
+        "sleepDistractHax": {
+            "revealTeam": 0.02,
+            "revealPlayer": 0.02
+        }
+    },
+    "roles": [
+        {
+            "role": "any",
+            "translation": "Any",
+            "side": "village",
+            "help": "",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "plus": {
+                    	"common": "Self",
+                    	"priority": 4,
+                    	"command": "dummy",
+                    	"target": "Any"
+                    },
+                    "minus": {
+                    	"common": "Self",
+                    	"priority": 5,
+                    	"command": "dummy",
+                    	"target": "Any"
+                    }
+                }
+            }
+        },
+        {
+            "role": "plusle",
+            "translation": "Plusle",
+            "side": "village",
+            "help": "You are positively adorable, so you can /Plus [name] to give someone a +1 charge! You might also find out some happenings during the night...",
+            "info": "Can Plus someone during the night. Minor hax on kill, minus, inspect ~Sided~",
+            "actions": {
+                "hax": "variable:plushax",
+                "night": {
+                    "plus": "variable:plus",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "minun",
+            "translation": "Minun",
+            "side": "village",
+            "help": "You are undeniably adorable, so you can /Minus [name] to give someone a -1 charge! You might also find out some happenings during the night...",
+            "info": "Can Minus someone during the night. Minor hax on kill, plus, inspect. ~Sided~",
+            "actions": {
+                "hax": "variable:minushax",
+                "night": {
+                    "minus": "variable:minus",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "dedenne_minus",
+            "translation": "Dedenne",
+            "side": "village",
+			"help": "...",
+            "info": "Startup as Plusle or Minun. Can Plus or Minus according to the role they startup as. Revealed as Electrike Brigade (Electrike) if Exposed (Inspected). Minor hax on kill, plus/minus, inspect. ~Sided~",
+            "actions": {
+                "hax": "variable:minushax",
+                "night": {
+                    "minus": "variable:minus",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "startup": {
+                    "revealAs": "minun"
+                },
+                "inspect": {
+                    "revealAs": "electrike",
+                    "seenSide": "mafia1"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "dedenne_plus",
+            "translation": "Dedenne",
+            "side": "village",
+			"help": "...",
+			"hide": true,
+            "actions": {
+                "hax": "variable:plushax",
+                "night": {
+                    "plus": "variable:plus",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "startup": {
+                    "revealAs": "plusle"
+                },
+                "inspect": {
+                    "revealAs": "electrike",
+                    "seenSide": "mafia1"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "pachirisu",
+            "translation": "Pachirisu",
+            "side": "village",
+            "help": "Use your hyper-energetic electricity to Plus or Minus someone with a magnitude of +2 or -2 respectively!",
+            "info": "Can plus or minus one person during the night, having an effect of +2 or -2 respectively. Can hax kill, plus and minus. ~Sided~",
+            "actions": {
+                "night": {
+                    "imPachirisu": "variable:pachirisuRevert",
+                    "plus": "variable:plus2",
+                    "minus": "variable:minus2",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "pachirisu2",
+            "translation": "Pachirisu",
+            "side": "village",
+            "hide": true,
+            "help": "Use your hyper-energetic electricity to Plus or Minus someone with a magnitude of +2 or -2 respectively!",
+            "info": "Can plus or minus one person during the night, having an effect of +2 or -2 respectively. ~Sided~",
+            "actions": {
+                "hax": "variable:minorhax",
+                "night": {
+                    "imPachirisu": "variable:pachirisuRevert",
+                    "plus": "variable:plus",
+                    "minus": "variable:minus",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "pachirisu2X",
+            "translation": "Pachirisu",
+            "side": "village",
+            "hide": true,
+            "help": "Use your hyper-energetic electricity to Plus or Minus someone with a magnitude of +2 or -2 respectively!",
+            "info": "Can plus or minus one person during the night, having an effect of +2 or -2 respectively. ~Sided~",
+            "actions": {
+                "hax": "variable:minorhax",
+                "night": {
+                    "imPachirisu": "variable:pachirisuRevert",
+                    "plus": "variable:plus",
+                    "minus": "variable:minus",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "mareep",
+            "translation": "Mareep",
+            "side": "village",
+			"help": "variable:mareepHelp",
+            "info": "Vote counts as 1 + number of Pluses it is targeted with - number of Minuses it is targeted with the night before. ~Sided~",
+            "actions": {
+                "vote": 1,
+                "night": {
+                    "imMareep": "variable:mareepRevert",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "mareep-2",
+            "translation": "Mareep",
+            "side": "village",
+            "hide": true,
+			"help": "variable:mareepHelp",
+            "actions": {
+                "vote": -2,
+                "night": {
+                    "imMareep": "variable:mareepRevert",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "mareep-1",
+            "translation": "Mareep",
+            "side": "village",
+            "hide": true,
+			"help": "variable:mareepHelp",
+            "actions": {
+                "vote": -1,
+                "night": {
+                    "imMareep": "variable:mareepRevert",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "mareep0",
+            "translation": "Mareep",
+            "side": "village",
+            "hide": true,
+			"help": "variable:mareepHelp",
+            "actions": {
+                "vote": 0,
+                "night": {
+                    "imMareep": "variable:mareepRevert",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "mareep2",
+            "translation": "Mareep",
+            "side": "village",
+            "hide": true,
+			"help": "variable:mareepHelp",
+            "actions": {
+                "vote": 2,
+                "night": {
+                    "imMareep": "variable:mareepRevert",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "mareep3",
+            "translation": "Mareep",
+            "side": "village",
+            "hide": true,
+			"help": "variable:mareepHelp",
+            "actions": {
+                "vote": 3,
+                "night": {
+                    "imMareep": "variable:mareepRevert",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "mareep4",
+            "translation": "Mareep",
+            "side": "village",
+            "hide": true,
+			"help": "variable:mareepHelp",
+            "actions": {
+                "vote": 4,
+                "night": {
+                    "imMareep": "variable:mareepRevert",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "mareep2X",
+            "translation": "Mareep",
+            "side": "village",
+            "hide": true,
+			"help": "variable:mareepHelp",
+            "actions": {
+                "vote": 2,
+                "night": {
+                    "imMareep": "variable:mareepRevert",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "mareep3X",
+            "translation": "Mareep",
+            "side": "village",
+            "hide": true,
+			"help": "variable:mareepHelp",
+            "actions": {
+                "vote": 3,
+                "night": {
+                    "imMareep": "variable:mareepRevert",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "mareep4X",
+            "translation": "Mareep",
+            "side": "village",
+            "hide": true,
+			"help": "variable:mareepHelp",
+            "actions": {
+                "vote": 4,
+                "night": {
+                    "imMareep": "variable:mareepRevert",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "blitzle",
+            "translation": "Blitzle",
+            "side": "village",
+            "help": "You are a hyper-active Zebra! The rest of the Good Pokémon are tired of your antics, but if you get a negative charge of -2 or more, you can use your /kill during the day to obliterate someone! Don't kill anyone sided with the Good Pokémon!",
+            "info": "Can kill one person during the standby if it receives a net charge of -2 or -3. (revealed). Can plus or minus. ~Sided~",
+            "actions": {
+                "night": {
+                    "imJoltik": "variable:blitzleRevert",
+                    "plus": "variable:plus",
+                    "minus": "variable:minus",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "blitzle1X",
+            "translation": "Blitzle",
+            "side": "village",
+            "help": "You are a hyper-active Zebra! The rest of the Good Pokémon are tired of your antics, but if you get a negative charge of -2 or more, you can use your /kill during the day to obliterate someone! Don't kill anyone sided with the Good Pokémon!",
+            "info": "Can kill one person during the standby if it receives a net charge of -2 or -3. (revealed). Can plus or minus. ~Sided~",
+            "actions": {
+                "night": {
+                    "imJoltik": "variable:blitzleRevert",
+                    "plus": "variable:plus",
+                    "minus": "variable:minus",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "blitzle2",
+            "translation": "Blitzle",
+            "side": "village",
+            "hide": true,
+            "help": "You are a hyper-active Zebra! The rest of the Good Pokémon are tired of your antics, but if you get a negative charge of -2 or more, you can use your /kill during the day to obliterate someone! Don't kill anyone sided with the Good Pokémon!",
+            "info": "Can kill one person during the standby if it receives a net charge of -2 or -3. (revealed). Can plus or minus. ~Sided~",
+            "actions": {
+                "night": {
+                    "imJoltik": "variable:blitzleRevert",
+                    "plus": "variable:plus",
+                    "minus": "variable:minus",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "blitzle3",
+            "translation": "Blitzle",
+            "side": "village",
+            "hide": true,
+            "help": "You are a hyper-active Zebra! The rest of the Good Pokémon are tired of your antics, but if you get a negative charge of -2 or more, you can use your /kill during the day to obliterate someone! Don't kill anyone sided with the Good Pokémon!",
+            "info": "Can kill one person during the standby if it receives a net charge of -2 or -3. (revealed). Can plus or minus. ~Sided~",
+            "actions": {
+                "night": {
+                    "imJoltik": "variable:blitzleRevert",
+                    "plus": "variable:plus",
+                    "minus": "variable:minus",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "blitzle4",
+            "translation": "Blitzle",
+            "side": "village",
+            "hide": true,
+            "help": "You are a hyper-active Zebra! The rest of the Good Pokémon are tired of your antics, but if you get a negative charge of -2 or more, you can use your /kill during the day to obliterate someone! Don't kill anyone sided with the Good Pokémon!",
+            "info": "Can kill one person during the standby if it receives a net charge of -2 or -3. (revealed). Can plus or minus. ~Sided~",
+            "actions": {
+                "night": {
+                    "imJoltik": "variable:blitzleRevert",
+                    "plus": "variable:plus",
+                    "minus": "variable:minus",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "blitzle2X",
+            "translation": "Blitzle",
+            "side": "village",
+            "hide": true,
+            "help": "You are a hyper-active Zebra! The rest of the Good Pokémon are tired of your antics, but if you get a negative charge of -2 or more, you can use your /kill during the day to obliterate someone! Don't kill anyone sided with the Good Pokémon!",
+            "info": "Can kill one person during the standby if it receives a net charge of -2 or -3. (revealed). Can plus or minus. ~Sided~",
+            "actions": {
+                "night": {
+                    "imJoltik": "variable:blitzleRevert",
+                    "plus": "variable:plus",
+                    "minus": "variable:minus",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "blitzle3X",
+            "translation": "Blitzle",
+            "side": "village",
+            "hide": true,
+            "help": "You are a hyper-active Zebra! The rest of the Good Pokémon are tired of your antics, but if you get a negative charge of -2 or more, you can use your /kill during the day to obliterate someone! Don't kill anyone sided with the Good Pokémon!",
+            "info": "Can kill one person during the standby if it receives a net charge of -2 or -3. (revealed). Can plus or minus. ~Sided~",
+            "actions": {
+                "night": {
+                    "imJoltik": "variable:blitzleRevert",
+                    "plus": "variable:plus",
+                    "minus": "variable:minus",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "blitzle4X",
+            "translation": "Blitzle",
+            "side": "village",
+            "hide": true,
+            "help": "You are a hyper-active Zebra! The rest of the Good Pokémon are tired of your antics, but if you get a negative charge of -2 or more, you can use your /kill during the day to obliterate someone! Don't kill anyone sided with the Good Pokémon!",
+            "info": "Can kill one person during the standby if it receives a net charge of -2 or -3. (revealed). Can plus or minus. ~Sided~",
+            "actions": {
+                "night": {
+                    "imJoltik": "variable:blitzleRevert",
+                    "plus": "variable:plus",
+                    "minus": "variable:minus",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "blitzle-1",
+            "translation": "Blitzle",
+            "side": "village",
+            "hide": true,
+            "help": "You are a hyper-active Zebra! The rest of the Good Pokémon are tired of your antics, but if you get a negative charge of -2 or more, you can use your /kill during the day to obliterate someone! Don't kill anyone sided with the Good Pokémon!",
+            "info": "Can kill one person during the standby if it receives a net charge of -2 or -3. (revealed). Can plus or minus. ~Sided~",
+            "actions": {
+                "night": {
+                    "imJoltik": "variable:blitzleRevert",
+                    "plus": "variable:plus",
+                    "minus": "variable:minus",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "blitzle-2",
+            "translation": "Blitzle",
+            "side": "village",
+            "hide": true,
+            "help": "You are a hyper-active Zebra! The rest of the Good Pokémon are tired of your antics, but if you get a negative charge of -2 or more, you can use your /kill during the day to obliterate someone! Don't kill anyone sided with the Good Pokémon!",
+            "info": "Can kill one person during the standby if it receives a net charge of -2 or -3. (revealed). Can plus or minus. ~Sided~",
+            "actions": {
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You can /kill, but you will be revealed!",
+                        "killmsg": "~Self~ (Blitzle) charges at ~Target~ at full speed! BZZZZAAAP!"
+                    }
+                },
+                "night": {
+                    "imJoltik": "variable:blitzleRevert",
+                    "plus": "variable:plus",
+                    "minus": "variable:minus",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "blitzle-3",
+            "translation": "Blitzle",
+            "side": "village",
+            "hide": true,
+            "help": "You are a hyper-active Zebra! The rest of the Good Pokémon are tired of your antics, but if you get a negative charge of -2 or more, you can use your /kill during the day to obliterate someone! Don't kill anyone sided with the Good Pokémon!",
+            "info": "Can kill one person during the standby if it receives a net charge of -2 or -3. (revealed). Can plus or minus. ~Sided~",
+            "actions": {
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You can /kill, but you will be revealed!",
+                        "killmsg": "~Self~ (Blitzle) charges at ~Target~ at full speed! BZZZZAAAP!"
+                    }
+                },
+                "night": {
+                    "imJoltik": "variable:blitzleRevert",
+                    "plus": "variable:plus",
+                    "minus": "variable:minus",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "tynamo",
+            "translation": "Tynamo",
+            "side": "village",
+			"help": "You are a little electric eel, so you can /Kill [name] during the night to help the Good Pokémon. However, this will only work if someone targets you with a Minus!",
+            "info": "Can kill, but this requires being targetted with a Minus. ~Sided~",
+            "actions": {
+                "night": {
+                    "imTynamo": "variable:tynamoRevert",
+                    "kill": "variable:tynamoKillFail",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "tynamo2",
+            "translation": "Tynamo",
+            "side": "village",
+			"help": "You are a little electric eel, so you can /Kill [name] during the night to help the Good Pokémon. However, this will only work if someone targets you with a Minus!",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "imTynamo": "variable:tynamoRevert",
+                    "kill": "variable:tynamoKill",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "emolgaX",
+            "translation": "Emolga",
+            "side": "village",
+			"help": "variable:emolgaHelp",
+            "info": "Can Inspect (net charge must be +1 or +2). If Emolga's net charge is -1 or -2, this becomes a kill instead. ~Sided~",
+            "actions": {
+                "night": {
+                    "imEmolga": "variable:emolgaRevert",
+                    "inspect": "variable:emolgaInspectFail",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "emolga",
+            "translation": "Emolga",
+            "side": "village",
+			"help": "variable:emolgaHelp",
+			"hide": true,
+			"actions": {
+                "night": {
+                    "imEmolga": "variable:emolgaRevert",
+                    "inspect": "variable:emolgaInspectFail",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "emolga2X",
+            "translation": "Emolga",
+            "side": "village",
+			"help": "variable:emolgaHelp",
+			"hide": true,
+            "actions": {
+                "night": {
+                    "imEmolga": "variable:emolgaRevert",
+                    "inspect": "variable:emolgaInspect+",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "emolga3X",
+            "translation": "Emolga",
+            "side": "village",
+			"help": "variable:emolgaHelp",
+			"hide": true,
+            "actions": {
+                "night": {
+                    "imEmolga": "variable:emolgaRevert",
+                    "inspect": "variable:emolgaInspect+",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "emolga4X",
+            "translation": "Emolga",
+            "side": "village",
+			"help": "variable:emolgaHelp",
+			"hide": true,
+            "actions": {
+                "night": {
+                    "imEmolga": "variable:emolgaRevert",
+                    "inspect": "variable:emolgaInspectFail+",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "emolga2",
+            "translation": "Emolga",
+            "side": "village",
+			"help": "variable:emolgaHelp",
+			"hide": true,
+            "actions": {
+                "night": {
+                    "imEmolga": "variable:emolgaRevert",
+                    "inspect": "variable:emolgaInspect+",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "emolga3",
+            "translation": "Emolga",
+            "side": "village",
+			"help": "variable:emolgaHelp",
+			"hide": true,
+            "actions": {
+                "night": {
+                    "imEmolga": "variable:emolgaRevert",
+                    "inspect": "variable:emolgaInspect+",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "emolga4",
+            "translation": "Emolga",
+            "side": "village",
+			"help": "variable:emolgaHelp",
+			"hide": true,
+            "actions": {
+                "night": {
+                    "imEmolga": "variable:emolgaRevert",
+                    "inspect": "variable:emolgaInspectFail+",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "emolga-1",
+            "translation": "Emolga",
+            "side": "village",
+			"help": "variable:emolgaHelp",
+			"hide": true,
+            "actions": {
+                "night": {
+                    "imEmolga": "variable:emolgaRevert",
+                    "inspect": "variable:emolgaInspectKill",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "emolga-2",
+            "translation": "Emolga",
+            "side": "village",
+			"help": "variable:emolgaHelp",
+			"hide": true,
+            "actions": {
+                "night": {
+                    "imEmolga": "variable:emolgaRevert",
+                    "inspect": "variable:emolgaInspectKill",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "emolga-3",
+            "translation": "Emolga",
+            "side": "village",
+			"help": "variable:emolgaHelp",
+			"hide": true,
+            "actions": {
+                "night": {
+                    "imEmolga": "variable:emolgaRevert",
+                    "inspect": "variable:emolgaInspectFail-",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:sameLimit",
+                "distract": "variable:sameLimit",
+                "guard": "variable:sameLimit"
+            }
+        },
+        {
+            "role": "shinx",
+            "translation": "Shinx",
+            "side": "village",
+            "help": "D'aww! You can use your adorable Roar to /expose someone during the day. You evade daykills, and if you are voted off you will have a chance to kill someone during the night.",
+            "info": "Can expose one person during the standby (reveals). Can't be daykilled. Vengeful. ~Sided~",
+            "actions": {
+                "standby": {
+                    "expose": {
+                        "target": "AnyButSelf",
+                        "newRole": {
+                        	"magneton": ["magnemite"]
+                        },
+                        "msg": "You can type /expose [name] to reveal someone's role!",
+                        "exposemsg": "~Self~ (Shinx) musters up a roar and yells \"~Target~ IS ONE OF THE ~Side~!!!\""
+                    }
+                },
+                "night": {
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "lynch": {
+                    "convertTo": "shinx2",
+                    "convertmsg": "~Self~ (Shinx) was voted off with ~Count~ votes! Shinx may now kill once before dying!"
+                },
+                "daykill": "evade",
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "shinx2",
+            "translation": "Shinx",
+            "side": "village",
+            "help": "Wow, they actually voted you off! Take your revenge by using your Wild Charge to /kill one person before dying!",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "priority": 1,
+                        "common": "Self"
+                    }
+                },
+                "initialCondition": {
+                    "poison": {
+                        "count": -1
+                    }
+                }
+            }
+        },
+        {
+            "role": "klink",
+            "translation": "Klink",
+            "side": "mafia1",
+            "help": "Ka-link! You can /kill [name] to eliminate someone, and you can also /minus name to give someone a negative charge (this is not shared with your team).",
+            "info": "Can kill (shared). Can minus (not shared). ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 11,
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (Magnemite) has decided to kill ~Target~!",
+                        "hide": true
+                    },
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2",
+                    "minus": "variable:minusobj"
+                },
+                "teamUtilities": true,
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "magnemite",
+            "translation": "Magnemite",
+            "side": "mafia1",
+            "help": "You are a magnet Pokémon, so you can /minus [name] someone to give them a negative charge (this is not shared with your team). You also share a /kill with your team.",
+            "info": "Can kill (shared). Can minus (shared with Magnemite/Magneton). Evolves into Magneton if exposed. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 11,
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (Magnemite) has decided to kill ~Target~!",
+                        "hide": true
+                    },
+                    "minus": "variable:minusobj",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "teamUtilities": true,
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "magneton",
+            "translation": "Magneton",
+            "side": "mafia1",
+            "help": "After being exposed, 2 more Magnemites came to your aid, causing you to evolve into Magneton! Your vote now counts as 3! You can still use /kill and /minus.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 11,
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (Magneton) has decided to kill ~Target~!",
+                        "hide": true
+                    },
+                    "minus": "variable:minusobj",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "vote": 3,
+                "teamUtilities": true,
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "voltorb",
+            "translation": "Voltorb",
+            "side": "mafia1",
+            "help": "As a loyal employee at Objects Inc, you can defend your boss with /protect [name]. You can also use /Kill [name], and this is shared with your team.",
+            "info": "Can kill one person during the night. Can protect one person during the night. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 11,
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (Voltorb) has decided to kill ~Target~!",
+                        "hide": true
+                    },
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 6,
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (Voltorb) has decided to protect ~Target~!"
+                    },
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "teamUtilities": true,
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "elekid",
+            "translation": "Elekid",
+            "side": "mafia2",
+            "help": "Use your Thunderpunches to kill people during the night with /kill! You can also /plus or /minus someone to give them a positive or negative charge, and these are all shared with your teammates!",
+            "info": "Can kill (shared). Can Minus or Plus (shared). Evades 1 nightkill. Evolves into Electabuzz once all Magnemite, Magneton, Klink, and Voltorb are defeated. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (Elekid) has decided to kill ~Target~!",
+                        "hide": true
+                    },
+                    "minus": "variable:minuselectrike",
+                    "plus": "variable:pluselectrike",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+				"onDeadRoles": {
+				  "convertTo": {
+					"electabuzz": [
+					  "voltorb",
+					  "magnemite",
+					  "magneton",
+					  "klink"
+					]
+				  },
+				  "convertmsg": "*** Elekid has powered up from the defeat of the Objects and evolved into Electabuzz!"
+				},
+                "kill": {
+                	"mode": {
+                		"evadeCharges": 1
+                	}
+                },
+                "teamUtilities": true,
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "electabuzz",
+            "translation": "Electabuzz",
+            "side": "mafia2",
+            "help": "Blargh! You've evolved now, so you can kill not only once, but twice! /kill is shared with your team, while /kill2 is not. Continue to use /minus and /plus as well!",
+            "info": "Can kill (shared) and can Minus or Plus (shared), and can additionally kill2. Keeps nightkill evade. Evolves into Electivire when Shinx, Emolga, Mareep, Blitzle, and Tynamo are defeated. ~Sided~",
+            "players": "Evolves from Elekid when Voltorb, Klink, Magnemite, and Magneton are defeated.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (Electabuzz) has decided to kill ~Target~!",
+                        "hide": true
+                    },
+                    "kill2": {
+                        "target": "AnyButTeam",
+                        "command": ["kill"],
+                        "common": "Team",
+                        "priority": 13,
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (Electabuzz) has decided to use their second kill on ~Target~!"
+                    },
+                    "minus": "variable:minuselectrike",
+                    "plus": "variable:pluselectrike",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "kill": {
+                	"mode": {
+                		"evadeCharges": "*"
+                	}
+                },
+				"onDeadRoles": {
+				  "convertTo": {
+					"electabuzz": [
+					  "shinx",
+					  "blitzle",
+					  "mareep-2",
+					  "mareep-1",
+					  "mareep0",
+					  "mareep",
+					  "mareep2",
+					  "mareep3",
+					  "mareep4",
+					  "tynamo",
+					  "emolga-2",
+					  "emolga-1",
+					  "emolga",
+					  "emolga2",
+					  "emolga3",
+					  "emolga4",
+					  "pachirisu"
+					]
+				  },
+				  "convertmsg": "*** Electabuzz has powered up from the defeat of the Good Pokémon and evolved into Electivire!"
+				},
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "electivire",
+            "translation": "Electivire",
+            "side": "mafia2",
+            "help": "Bazzzzip! You're fully evolved now, so you can kill not only twice during the night, but also during the day! Your /kill is shared with your team, while /kill2 is not. You can kill during the day with /kill [name]. Continue to use /minus as well!",
+            "info": "Can kill (shared) and kill2 (not shared) and can Minus or Plus (shared). Keeps kill evade. Can kill during the day. ~Sided~",
+            "players": "Evolves from Electabuzz when Shinx, Blitzle, Tynamo, Emolga, Pachirisu, and Mareep are defeated.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (Electabuzz) has decided to kill ~Target~!",
+                        "hide": true
+                    },
+                    "kill2": {
+                        "target": "AnyButTeam",
+                        "command": ["kill"],
+                        "common": "Team",
+                        "priority": 13,
+                        "hide": true,
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (Electabuzz) has decided to use their second kill on ~Target~!"
+                    },
+                    "minus": "variable:minuselectrike",
+                    "plus": "variable:pluselectrike",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "kill": {
+                	"mode": {
+                		"evadeCharges": "*"
+                	}
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "killmsg": "Electivire charges at ~Target~ and smashes into them with a Thunder Punch!"
+                    }
+                },
+                "teamUtilities": true
+            }
+        },
+        {
+            "role": "electrike",
+            "translation": "Electrike",
+            "side": "mafia2",
+            "help": "You can /Inspect [name] to find someone's role. You also share /kill [name] with your team. You also share /Minus and /Plus [name] with your team.",
+            "info": "Can kill (shared). Can Minus or Plus (shared). Can Inspect. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (Electrike) has decided to kill ~Target~!",
+                        "hide": true
+                    },
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Role",
+                        "priority": 20,
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (Electrike) has decided to Inspect ~Target~!"
+                    },
+                    "minus": "variable:minuselectrike",
+                    "plus": "variable:pluselectrike",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "teamUtilities": true,
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "helioptile",
+            "translation": "Helioptile",
+            "side": "mafia2",
+            "help": "You are a little propeller Pokémon, so you can /Distract [name] to block someone's actions. You can also /Kill [name], and you also share a /minus and /plus with your team.",
+            "info": "Can kill (shared). Can minus (shared). Can Distract. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (Helioptile) has decided to kill ~Target~!",
+                        "hide": true
+                    },
+                    "distract": {
+                        "target": "AnyButTeam",
+                        "common": "Role",
+                        "priority": 3,
+                        "bypass": ["evadeCharges"],
+                        "distractActions": ["kill", "bolt", "inspect", "plus", "minus"],
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (Helioptile) has decided to Distract ~Target~!"
+                    },
+                    "plus": "variable:pluselectrike",
+                    "minus": "variable:minuselectrike",
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "teamUtilities": true,
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit"
+            }
+        },
+        {
+            "role": "mafia1_prio",
+            "translation": "Objects Inc",
+            "side": "mafia1",
+            "help": "Placeholder role for /priority formatting",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 11,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "mafia2_prio",
+            "translation": "Electrike Brigade",
+            "side": "mafia2",
+            "help": "Placeholder role for /priority formatting.",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "zapdos",
+            "translation": "Zapdos",
+            "side": "godfather",
+            "help": "You are the legendary bird, Zapdos! Your prestige gives you a vote equivalent to 99 others. You can also /Distract [name] one person during the night.",
+            "info": "Can distract one person during the night (blocks inspect or kill). Vote counts as 99. Not connected to Raikou on startup but evades its kills. ~Sided~",
+            "winIfDeadRoles": [
+                "magnemite",
+                "magneton",
+                "voltorb",
+                "klink",
+                "emolga",
+                "tynamo",
+                "elekid",
+                "electabuzz",
+                "electivire",
+                "shinx",
+                "electrike",
+                "helioptile",
+                "blitzle",
+                "blitzle2",
+                "blitzle3",
+                "blitzle4",
+                "blitzle1X",
+                "blitzle-1",
+                "blitzle-2",
+                "blitzle-3",
+                "pikachu",
+                "raichu",
+                "raichu2"
+            ],
+            "actions": {
+                "night": {
+                    "distract": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 2,
+                        "distractActions": ["kill", "inspect"],
+                        "distractmsg": "Zapdos discharged you! You couldn't move tonight!",
+                        "teammsg": "My partner got discharged by Zapdos! We couldn't move tonight because I had to help recharge them!"
+                    },
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "vote": 99,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "raikou",
+            "translation": "Raikou",
+            "side": "godfather",
+            "help": "You are the legendary beast Raikou! You can kill during the day with /kill (you won't be revealed), and you also evade all nightkills. You don't know your partner (Zapdos), but you can't kill them.",
+            "info": "Can daykill (not revealed). Evades all nightkills. Not connected to Zapdos on startup. ~Sided~",
+            "actions": {
+                "night": {
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit",
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "killmsg": "An ominous cloud looms over ~Target~ before they are struck with a bolt of Raikou's lightning!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "pikachu",
+            "translation": "Pikachu",
+            "side": "werewolf",
+            "help": "You are Lt. Surge's Pikachu, sent to help take over the Power Plant from all of the uncivilized Wild Pokémon! You can kill during the night, and you cannot be haxed. Because of your speed, you cannot be exposed during the day. You also evade any nightkills.",
+            "info": "Can kill. Can't be haxed. Evades all nightkills (appears as protected). Evades expose. Evolves in Raichu if all Plusle or Minun are defeated. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 15
+                    },
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+                "expose": {
+                	"mode": {
+                		"ignore": ["shinx"]
+                	},
+                	"expend": true
+                },
+				"kill": {
+				  "mode": {
+					"evadeChance": 1
+				  },
+				  "msg": "Your target (~Self~) was protected!"
+				},
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit",
+                "avoidHax": ["kill"],
+				"onDeadRoles": {
+					"convertTo": {
+						"raichu": ["plusle"],
+						"raichu2": ["minun"]
+					},
+					"convertmsg": "Now that all of the Plusles or Minuns have been defeated, Pikachu was able to get its hands on a Thunderstone and evolve into Raichu!"
+				}
+            }
+        },
+        {
+            "role": "raichu",
+            "translation": "Raichu",
+            "side": "werewolf",
+            "help": "Now that you've evolved, you have powered up and ignore Distract and have a vote multiplier of two! You can still kill, evade expose, and avoid hax.",
+            "info": "Can kill. Can't be haxed. Ignores Distract. Evades all nightkills. Evades expose. Vote multiplier of 2. ~Sided~",
+            "players": "Evolves from Pikachu when all of the Minun or all of the Plusle are defeated.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 15
+                    },
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+				"distract": {
+				  "mode": "ignore",
+				  "msg": "Someone tried to Distract you, but your determination let your continue your mission!"
+				},
+				"kill": {
+				  "mode": {
+					"evadeChance": 1
+				  },
+				  "msg": "Your target (~Self~) was protected!"
+				},
+                "expose": {
+                	"mode": {
+                		"ignore": ["shinx"]
+                	},
+                	"expend": true
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit",
+                "avoidHax": ["kill"],
+                "voteMultiplier": 2
+            }
+        },
+        {
+            "role": "raichu2",
+            "translation": "Raichu",
+            "side": "werewolf",
+            "help": "Now that you've evolved, you have powered up and ignore Distract and have a vote multiplier of two! You can still kill, evade expose, and avoid hax.",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 15
+                    },
+                    "Block": "variable:block-bg",
+                    "Block2": "variable:block-bg-pl",
+                    "Zap1": "variable:auto-bg",
+                    "Zap2": "variable:auto-bg",
+                    "Zap3": "variable:auto-bg",
+                    "Zap4": "variable:auto-bg",
+                    "Zing": "variable:resetEvades",
+                    "Zing2": "variable:resetEvades2"
+                },
+				"distract": {
+				  "mode": "ignore",
+				  "msg": "Someone tried to Distract you, but your determination let your continue your mission!"
+				},
+				"kill": {
+				  "mode": "ignore",
+				  "msg": "You escaped a kill!"
+				},
+                "expose": {
+                	"mode": {
+                		"ignore": ["shinx"]
+                	},
+                	"expend": true
+                },
+                "poison": "variable:poisonLimit",
+                "distract": "variable:distractLimit",
+                "guard": "variable:guardLimit",
+                "avoidHax": ["kill"],
+                "voteMultiplier": 2
+            }
+        },
+        {
+            "role": "placeholder_ww",
+            "translation": "Pikachu/Raichu",
+            "side": "werewolf",
+            "hide": true,
+            "help": "",
+            "info": "Can kill. Evades all nightkills. Evades expose. Vote multiplier of 2. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 15
+                    }
+                }
+            }
+        }
+    ],
+    "spawnPacks": {
+        "dedenne": {
+            "roles": [
+                ["dedenne_plus", "dedenne_minus"],
+                ["dedenne_minus", "dedenne_plus"]
+            ],
+            "chance": [0.5, 0.5]
+        },
+        "villager": {
+            "roles": [
+                ["plusle", "minun"],
+                ["minun", "plusle"]
+            ],
+            "chance": [0.5, 0.5]
+        }
+    },
+    "minplayers": 3,
+    "roles1": [
+        "pachirisu",
+        "pachirisu",
+        "elekid",
+        "pachirisu",
+        "raichu"
+    ],
+    "roles2": [
+        "pachirisu",
+        "pachirisu",
+        "emolga",
+        "mareep",
+        "magneton",
+        "helioptile",
+        "pack:villager"
+    ],
+    "roles3": [
+        "plusle",
+        "plusle",
+        "pachirisu",
+        "emolga",
+        "mareep",
+        "elekid",
+        "klink",
+        "voltorb",
+        "pack:villager",
+        "pack:villager"
+    ],
+    "roles4": [
+        "plusle",
+        "plusle",
+        "pachirisu",
+        "pachirisu",
+        "emolga",
+        "mareep",
+        "klink",
+        "voltorb",
+        "elekid",
+        "helioptile",
+        "plusle",
+        "minun"
+    ],
+    "roles5": [
+        "plusle",
+        "plusle",
+        "minun",
+        "minun",
+        "shinx",
+        "pachirisu",
+        "emolga",
+        "mareep",
+        "magnemite",
+        "voltorb",
+        "elekid",
+        "electrike",
+        "pikachu",
+        "pack:villager",
+        "pack:dedenne",
+        "pack:dedenne"
+    ],
+    "roles6": [
+        "plusle",
+        "plusle",
+        "minun",
+        "minun",
+        "pack:villager",
+        "shinx",
+        "pachirisu",
+        "emolga",
+        "mareep",
+        "blitzle",
+        "magnemite",
+        "voltorb",
+        "elekid",
+        "electrike",
+        "pikachu",
+        "zapdos",
+        "raikou",
+        "pack:dedenne",
+        "pack:dedenne",
+        "klink",
+        "helioptile",
+        "tynamo",
+        "plusle",
+        "minun",
+        "magnemite",
+        "plusle",
+        "minun",
+        "electrike",
+        "mareep",
+        "minun",
+        "plusle",
+        "pack:dedenne",
+        "pack:dedenne"
+    ],
+    "villageCantLoseRoles": [
+        "blitzle",
+        "blitzle1X",
+        "blitzle2",
+        "blitzle3",
+        "blitzle4",
+        "blitzle2X",
+        "blitzle3X",
+        "blitzle4X",
+        "blitzle-1",
+        "blitzle-2",
+        "blitzle-3",
+        "tynamo",
+        "tynamo2",
+        "emolga",
+        "mareep",
+        "mareep2",
+        "mareep3",
+        "mareep4",
+        "mareep-1",
+        "mareep-2",
+        "mareep0"
+    ],
+    "killmsg": "±Kill: ~Player~ (~Role~) was deactivated!",
+    "lynchmsg": "±Game: ~Player~ (~Role~) was deactivated with ~Count~ votes!",
+    "border": "*** (ϞϞ(๑9 ̫ 9๑)∩  ~~~~~ ~~ ~~~~~ ~~ ~~~~~ ~~ ~~~~~ ~~ ~~~~~ ~~ ~~~~~ (ϞϞ(๑9 ̫ 9๑)∩",
+    "tips": {
+    	"Plus/Minus": "If someone is targeted with at least 2 of Plus or Minus, they will be protected, unless they are hit with an equal amount of the opposite charge.",
+    	"Plus/Minus 2": "If you are hit with 4 or more of Plus or Minus, you will die regardless of what other charges you are hit with.",
+    	"Bonuses": "Mareep's vote is increased by 1 for each positive charge and decreased by 1 for each negative charge it is hit with. This resets every night.",
+    	"Bonuses 2": "Emolga can Inspect or Kill depending on what charges it's hit with.",
+        "Who claims": "Shinx can claim, since it evades daykills and is vengeful if voted off. Other roles may claim, however, All claims are risky in this theme because there are no true bodyguards.",
+        "Threats": "Pikachu (evades nightkills and expose, evolves into Raichu when all Plusles or Minus die), Magnemite (evolves into Magneton if exposed), Raikou (unrevealed daykill, immune to nightkills), Zapdos (99 votes + distract)."
+    },
+    "changelog": {
+    	"15.10.16": "Theme created.",
+    	"15.11.06": "Elekid team can plus or minus. Elekid evades one nightkill. Blitzle needs minus -2 to kill. Emolga needs -1 or -2 to kill (used to be -2 or -3). Spawn changed."
+    }
+}
