@@ -1,0 +1,513 @@
+{
+  "name": "Oracle",
+	"author": [
+		"22 (Original Author)",
+		"Miki Sayaka"
+	],
+	"summary": "In the misty mountains of a distant land, a lonely village lies on a ridge overlooking the rest of the world. All is peaceful, but when the Emperor's Army threatens to conquer the town, it's up to the Oracles and Genies to fight back! Use the Oracles' deaths and Genies' wishes to find and kill enemies. Some changes have been made, meaning old mechanics are no longer present (see: you do not need to use /see every night, genie wishes cannot be stored). And the Army still has teamtalk! Only to be played during FUN TIMES.",
+	"threadlink": "http://goo.gl/EkxS8k",
+	"minplayers": 3,
+	"ticks": {
+		"night": 30,
+		"standby": 35
+	},
+	"villageCantLoseRoles": [
+		"oracle",
+		"yokai"
+	],
+	"killmsg": "±Prophet: And ~Role~ ~Player~ was no more!",
+	"lynchmsg": "±Prophet: ~Role~ ~Player~ was banished from the village!",
+	"roles1": [
+		"yokai",
+		"yokai",
+		"soldier",
+
+		"genie"
+	],
+	"roles2": [
+		"oracle",
+		"oracle",
+		"geeny",
+		"genie",
+		"soldier"
+	],
+	"roles3": [
+		"oracle",
+		"oracle",
+		"yokai",
+		"genie",
+		"soldier",
+		"soldier"
+	],
+	"roles4": [
+		"oracle",
+		"oracle",
+		"oracle",
+		"yokai",
+		"genie",
+		"soldier",
+		"soldier"
+	],
+	"roles5": [
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"yokai",
+		"genie",
+		"serpent",
+		"general",
+
+		"yokai"
+	],
+	"roles6": [
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"yokai",
+		"genie",
+		"genie",
+		"serpent",
+		"soldier",
+		"general",
+
+		"yokai"
+	],
+	"roles7": [
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"yokai",
+		"genie",
+		"genie",
+		"serpent",
+		"soldier",
+		"soldier",
+		"general",
+
+		"oracle",
+		"yokai"
+	],
+	"roles8": [
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"yokai",
+		"yokai",
+		"genie",
+		"genie",
+		"genie",
+		"serpent",
+		"soldier",
+		"soldier",
+		"soldier",
+		"general",
+
+		"oracle",
+		"fairy",
+		"yokai"
+	],
+	"roles9": [
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"yokai",
+		"yokai",
+		"genie",
+		"genie",
+		"genie",
+		"serpent",
+		"soldier",
+		"soldier",
+		"general",
+		"fairy",
+
+		"oracle",
+		"soldier",
+		"yokai"
+	],
+	"roles10": [
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"yokai",
+		"yokai",
+		"genie",
+		"genie",
+		"genie",
+		"genie",
+		"serpent",
+		"serpent",
+		"soldier",
+		"soldier",
+		"general",
+		"fairy",
+
+		"yokai",
+		"oracle"
+	],
+	"roles11": [
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"yokai",
+		"yokai",
+		"genie",
+		"genie",
+		"genie",
+		"genie",
+		"serpent",
+		"serpent",
+		"soldier",
+		"soldier",
+		"soldier",
+		"general",
+		"fairy",
+
+		"yokai",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle",
+		"oracle"
+	],
+	"sides": [
+		{
+			"side": "village",
+			"translation": "Village"
+		},
+		{
+			"side": "army",
+			"translation": "Army"
+		},
+		{
+			"side": "fairy",
+			"translation": "Fairies"
+		}
+	],
+	"memory": {
+		"seen": "player"
+	},
+	"variables": {
+		"wishKill": {
+			"wish": {
+				"command": "kill", 
+				"target": "AnyButSelf",
+				"msg": "", 
+				"killmsg": "Someone whispers: 'I wish ~Target~ would die...' Dreams do come true~", 
+				"revealChance": 0.15, 
+				"revealmsg": "'Wow, thanks for the wish, Genie!' What good manners ~Self~ has!" 
+			} 
+		},
+		"noWish": {
+			"command": ["daydistract"],
+			"target": "OnlySelf",
+			"common": "Self",
+			"priority": 10,
+			"hide": true,
+			"macro": false,
+			"inputmsg": "",
+			"compulsory": true,
+			"dayDistractMsg": "You don't have any wishes to use!"
+		}
+	},
+	"roles": [
+		{
+			"role": "oracle",
+			"translation": "Oracle",
+			"side": "village",
+			"info": "Can see one person during the night. Reveals role of last target on death. ~Sided~",
+			"help": "With your array of crystal balls and enchanted scrolls, you can easily see someone's aura at night (just type: /see [player]). If you die, their true identity will be revealed to everyone. Use /see every night to potentially get Genies' wishes every day. Use your mystical powers to lead the village to victory!",
+			"actions": { 
+				"night": {
+					"see": {
+						"command": ["dummy", "memory"],
+						"target": "AnyButSelf",
+						"common": "Self",
+						"memoryFor": "self",
+						"priority": 3,
+						"setMemory": {
+							"seen": "~Target~"
+						}
+					},
+					"WS": "variable:noWish"
+				},
+				"standby": "variable:wishKill",
+				"onDeath": {
+					"exposeMemory": ["seen"],
+					"exposemsg": "Before dying, ~Self~ revealed that ~Target~ was the ~Role~!"
+				}
+			}
+		},
+		{
+			"role": "yokai",
+			"translation": "Soldier",
+			"side": "village",
+			"hide": true,
+			"help": "With your array of crystal balls and enchanted scrolls, you can easily see someone's aura at night (just type: /see [player]). If you die, their true identity will be revealed to everyone. Use /see every night to potentially get Genies' wishes every day. Use your mystical powers to lead the village to victory!",
+			"actions": { 
+				"startup": {
+					"revealAs": "oracle"
+				},
+				"onlist": "yokaidummy",
+				"onteam": "yokaidummy",
+				"night": {
+					"see": {
+						"command": ["dummy", "memory"],
+						"target": "AnyButSelf",
+						"common": "Self",
+						"memoryFor": "self",
+						"priority": 3,
+						"hide": true,
+						"setMemory": {
+							"seen": "~Target~"
+						}
+					},
+					"WS": "variable:noWish"
+				},
+				"standby": "variable:wishKill",
+				"onDeath": {
+					"killMemory": ["seen"],
+					"killmsg": "Before dying, ~Self~ (the Yokai) grabs ~Target~ (~Role~) and drags them into the spirit realm with them!"
+				}
+			}
+		},
+		{
+			"role": "genie",
+			"translation": "Genie",
+			"side": "village",
+			"info": "Can grant one person a wish during the night (shared by role). Target may kill once during the day (can NOT be saved for a later day). Knows other Genies on startup but can't grant each other. Sided with Village.",
+			"help": "Under the cover of darkness, you may /grant someone a wish! This will allow them to make one wish, killing any one person they choose during the day. You may grant one wish per night. Try to only grant wishes to your fellow villagers, not the army!",
+			"actions": { 
+				"night": {
+					"grant": {
+						"command": ["guard", "dummy3"],
+						"target": "AnyButRole",
+						"common": "Role",
+						"priority": 1,
+						"guardActions": ["WS"],
+						"dummy3targetmsg": "The Genie granted you a wish! Use /wish [name] to kill someone during the day now!",
+						"guardmsg": "You granted ~Target~ a wish! Now let's just hope they use it wisely..."
+					}
+				},
+				"startup": "role-reveal",
+				"teamTalk": ["genie"]
+			}
+		},
+		{
+			"role": "geeny",
+			"translation": "Soldier",
+			"side": "village",
+			"hide": true,
+			"help": "Under the cover of darkness, you may /grant someone a wish! This will allow them to make one wish, killing any one person they choose during the day. You may grant one wish per night. Try to only grant wishes to your fellow villagers, not the army!",
+			"actions": { 
+				"night": {
+					"grant": {
+						"command": ["dummy3"],
+						"target": "AnyButRole",
+						"common": "Role",
+						"priority": 1,
+						"dummy3usermsg": "You granted ~Target~ a wish! Now let's just hope they use it wisely..."
+					}
+				},
+				"startup": {
+					"revealAs": "genie"
+				},
+				"vote": -1,
+				"onlist": "geenydummy",
+				"onteam": "geenydummy",
+				"startup": "role-reveal",
+				"teamTalk": ["geeny"]
+			}
+		},
+		{
+			"role": "soldier",
+			"translation": "Soldier",
+			"side": "army",
+			"info": "Can kill one person during the night. ~Sided~",
+			"help": "Part of the General's forces, you were born to serve the Emperor, and you'll start by eliminating these Oracles and Genies! You may suggest to the General who to /kill at night. You can also talk to your team with /tt. Serve your country well.",
+			"actions": { 
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"broadcast": "team",
+						"priority": 4
+					},
+					"WS": "variable:noWish"
+				},
+				"standby": "variable:wishKill"
+			}
+		},
+		{
+			"role": "serpent",
+			"translation": "Soldier",
+			"side": "army",
+			"startupmsg": "You are the Serpent!",
+			"hide": true,
+			"help": "Part of the General'ssss forcesssss, you were born to serve the Emperor, and you'll start by eliminating these Oraclesssss and Geniesssss! Use your powers of deception to /shield your General from any magical spellssss used by the natives of the village, and don't worry about any of their wishessss either. You can /poison [name] to eliminate someone after 1 day. Hssssssss.",
+			"actions": { 
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"onlist": "serpentdummy",
+				"onteam": "serpentdummy",
+                "daykill": "revenge",
+                "daykillrevengemsg": "~Target~ wished for ~Self~ to die, but the Serpent (~Self~) curses their wish! ~Target~ dies of dysentery!",
+				"night": {
+					"poison": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"hide": true,
+						"broadcast": "team",
+						"priority": 5
+					},
+					"shield": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"shieldmsg": "",
+						"hide": true,
+						"shieldActions": ["see"],
+						"broadcast": "team",
+						"priority": 2
+					},
+					"WS": "variable:noWish"
+				},
+				"standby": "variable:wishKill"
+			}
+		},
+		{
+			"role": "general",
+			"translation": "General",
+			"side": "army",
+			"info": "Can kill one person during the night. Vote counts as 3. ~Sided~",
+			"help": "You're the leader of the Emperor's forces, and as such, you may /kill an enemy of the throne once each night with the rest of your army. Because you are the leader of this group, you command a powerful vote of 3. You can also talk to your team with /tt. Watch out and don't get revealed!",
+			"actions": { 
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"broadcast": "team",
+						"priority": 4
+					},
+					"WS": "variable:noWish"
+				},
+				"vote": 3,
+				"standby": "variable:wishKill"
+			}
+		},
+		{
+			"role": "fairy",
+			"translation": "Snow Fairy",
+			"side": "fairy",
+			"startupmsg": "You are the Snow Fairy!",
+			"hide": true,
+			"help": "A mysterious being that only legends tell of, anyone who sees you will quickly disappear! This means that no one can actually expose you, since you will make them go away first. Type /vanish [name] to take away up to 2 people's votes per night, returning them after 2 days of frozn solitude. As an immortal being, you cannot be killed by the mortals in the Army!",
+			"actions": { 
+				"onlist": "fairydummy",
+				"onteam": "fairydummy",
+				"night": {
+					"vanish": {
+						"command": ["voteBlock", "dummy2"],
+						"target": "AnyButSelf",
+						"common": "Self",
+						"hide": true,
+						"priority": 5,
+						"limit": 2,
+						"dummy2targetmsg": "The Snow Fairy took away your vote! You won't be able to vote for anyone for two whole vote phases now!",
+						"voteBlockMsg": "You have been frozen by the Snow Fairy! You cannot vote!",
+						"voteBlockDuration": 2
+					},
+					"WS": "variable:noWish"
+				},
+                "kill": {"mode": "ignore"},
+                "poison": {"mode": "ignore"},
+                "dummy": {"mode": "killattacker", "msg": "You saw the Snow Fairy, but not before it saw you!"},
+				"standby": "variable:wishKill"
+			}
+		},
+		{
+			"role": "fairydummy",
+			"translation": "Snow Fairy",
+			"side": "fairy",
+			"info": "Can /vanish someone to take away their vote for 2 days. Cannot be nightkilled or poisoned. Kills anyone who tries to see it (before they can do so). Sided with Fairies.",
+			"help": "",
+			"actions": { 
+			}
+		},
+		{
+			"role": "serpentdummy",
+			"translation": "Serpent",
+			"side": "army",
+			"info": "Can shield one person during the night (guards them from /see). Can poison one person during the night. Counters daykills. Reveals as Soldier if exposed. ~Sided~",
+			"help": "",
+			"actions": { 
+				"night": {
+					"poison": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 4
+					},
+					"shield": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"shieldmsg": "",
+						"shieldActions": ["see"],
+						"priority": 2
+					}
+				}
+			}
+		},
+		{
+			"role": "yokaidummy",
+			"translation": "Yokai",
+			"side": "village",
+			"info": "Can see one person during the night. Kill its last target on death. Sees self as Oracle. Reveals as Soldier if exposed. ~Sided~",
+			"help": "",
+			"actions": { 
+			}
+		},
+		{
+			"role": "geenydummy",
+			"translation": "Geeny",
+			"side": "village",
+			"info": "Can grant one person (does nothing). Sees self as Genie. Reveals as Soldier if exposed. Vote counts as -1. Knows other Geeny if they spawn. ~Sided~",
+			"help": "",
+			"actions": { 
+			}
+		}
+	]
+}
