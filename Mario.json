@@ -1,0 +1,805 @@
+{
+	"name": "Mario",
+	"author": "Pangaea",
+	"altname": "WAHOO!",
+	"threadlink": "http://pokemon-online.eu/threads/mario.30712/",
+	"summary": "Hello there! I'm a Toad! Here in the Mushroom Kingdom, we are being threatened by some old enemies! Bowser wants to take control of our kingdom, and King Boo and his minions want to transform the kingdom into their own underworld! Wario and Waluigi try to drive everyone out of the kingdom, and Fawful is being...well, awful! But all hope isn't lost, as Mario and the gang are here to save the day! As long as Yoshi keeps protecting him and Rosalina keeps blocking spells with Luma, then Mario can keep blasting our enemies out of the Mushroom Kingdom!",
+	"sides": [{
+		"translation": "Mushroom Kingdom",
+		"side": "village",
+		"color": "red",
+		"winmsg": "*** Wahoo! Okay ~Players~, to celebrate our victory, let's all grab a big slice of cake!"
+	}, {
+		"translation": "Bowser's Kingdom",
+		"side": "maf1",
+		"color": "#00cc00",
+		"winmsg": "±Bowser: ROAAAARR! Finally, the Mushroom Kingdom belongs to ~Players~! Hey, Princess, didn't you mention something about cake? Bring it to my minions and me, this instant!"
+	}, {
+		"translation": "King Boo's Army",
+		"side": "maf2",
+		"color": "#9933ff",
+		"winmsg": "±King Boo: Kekeke! The ghosts have infiltrated the Mushroom Kingdom, which has been turned into an underworld ruled by ~Players~!"
+	}, {
+		"translation": "Deadly Duo",
+		"side": "maf3",
+		"color": "#ff9933",
+		"winmsg": "Hey, what's that smell? It's the sweet scent of victory, achieved by ~Players~! Oh, and they probably farted, too."
+	}, {
+		"translation": "Fawful",
+		"side": "maf4",
+		"color": "#cc00cc",
+		"winmsg": "±Fawful: Why, isn't that just awful? It appears I was too powerful, and now the Mushroom Kingdom belongs to me, ~Players~!"
+	}, {
+		"translation": "Shy Guy",
+		"side": "maf5",
+		"color": "#3366ff",
+		"winmsg": "Shy Guy successfully took out Rosalina, and in the end, that's all that really mattered for ~Players~!"
+	}, {
+		"translation": "Dry Bones",
+		"side": "drybones",
+		"color": "#3366ff",
+		"winmsg": "Ashes to ashes, dust to dust, Dry Bones to Dry Bones. ~Players~ is all that remains!"
+	}],
+	"variables": {
+		"toadHax": {
+			"revealTeam": 0.1,
+			"revealPlayer": 0.03
+		},
+		"toadDistractHax": {
+			"revealTeam": 0.03,
+			"revealPlayer": 0.03
+		},
+		"marioHax": {
+			"revealRole": 0.65
+		}
+	},
+	"roles": [{
+			"role": "villager",
+			"translation": "Toad",
+			"side": "village",
+			"help": "I'm just one out of the many Toads living in the Mushroom Kingdom. I don't have any special powers, but sometimes I'll experience a fight going on from my house at night.",
+			"actions": {
+				"hax": {
+					"kill": "variable:toadHax",
+					"distract": "variable:toadDistractHax"
+				}
+			}
+		}, {
+			"role": "peach",
+			"translation": "Princess Peach",
+			"side": "village",
+			"help": "I'm the princess of the Mushroom Kingdom: Princess Peach! Because I'm a princess, my vote is equivalent to that of 20 Toads, meaning my vote counts as 20. However, I should be wary of King Boo, whose vote counts as 20, meaning he can match my power! I can also /distract [name] one person during the night.",
+			"info": "Vote counts as 20. Can Distract one person during the night. Sided with the Mushroom Kingdom.",
+			"actions": {
+				"vote": 20,
+				"night": {
+					"distract": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 3,
+						"distractmsg": "Ugh...I don't feel so well...Peach must've given me some kind of poisonous mushroom, and I couldn't do anything last night...",
+						"teammsg": "Uh oh...Peach must've given my partner a poisonous mushroom, so I couldn't ~Action~ last night since I had to take care of them!"
+					}
+				}
+			}
+		}, {
+			"role": "yoshi",
+			"translation": "Yoshi",
+			"side": "village",
+			"help": "I am the friendliest dinosaur of the Mushroom Kingdom; Yoshi! I have been protecting Mario for ages, so I can /protect [name] him during the night! Just hope he doesn't betray you...",
+			"info": "Can protect one person during the night. Can't be protected. Sided with the Mushroom Kingdom.",
+			"actions": {
+				"protect": {
+					"mode": "ignore"
+				},
+				"night": {
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Role",
+						"priority": 10
+					}
+				}
+			}
+		}, {
+			"role": "daisy",
+			"translation": "Daisy",
+			"side": "village",
+			"help": "I'm Daisy, princess of Salsalan -- I mean Sarasaland, and I have an entire garden dedicated to me! I can /expose [name] someone during the day to reveal their identity before everyone, and I won't be exposed!",
+			"info": "Can expose one person during the day. Reveals daykillers. Sided with the Mushroom Kingdom.",
+			"actions": {
+				"standby": {
+					"expose": {
+						"target": "AnyButSelf",
+						"msg": "You can type /expose [name] to reveal someone's role!",
+						"exposemsg": "Daisy appears and starts singing that ~Target~ is the ~Role~!"
+					}
+				},
+				"daykill": "revealkiller",
+				"daykillrevengemsg": "Before her death, Daisy frantically writes a letter informing everyone that ~Target~ is ~Role~!"
+			}
+		}, {
+			"role": "birdo",
+			"translation": "Birdo",
+			"side": "village",
+			"help": "I'm Birdo, a heart-pink-love-elephant-dinosaur-female(?)-thing. I can /poison [name] someone during the night with my...um...'unique' complexion, and they'll die in the next two days. I should try not to hit my friends, though, because that could be bad.",
+			"info": "Can poison two people at night, killing them in 2 nights, every other day. Sided with the Mushroom Kingdom.",
+			"actions": {
+				"night": {
+					"poison": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 40,
+						"limit": 2,
+						"count": 2,
+						"recharge": 1,
+						"poisonDeadMessage": "My eyes couldn't take anymore of Birdo's ugliness!"
+					}
+				}
+			}
+		}, {
+			"role": "luigi",
+			"side": "village",
+			"translation": "Luigi",
+			"help": "People always say I'm Mario's sidekick, understudy, shadow, blah blah blah. I got an entire game dedicated to me for crying out loud! I can /stalk [name] someone during the night to see if they visit anyone. I've been hunting for ghosts for years, so if I happen to stalk a Boo, I will react immediately and kill them instead! However, I am a bit of a scaredy cat, so if a Boo tries to distract me by scaring me during the night, I'll die of fear! Because I'm so quirky, MY VOTE COUNTS AS -20.",
+			"info": "Can stalk someone during the night. Dies if distracted by Boo. Vote is -20. Sided with the Mushroom Kingdom.",
+			"actions": {
+				"night": {
+					"stalk": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 60,
+						"stalkmsg": "Hmm...it appears that ~Target~ visited ~Visit~ last night.",
+						"novisitmsg": "Well, aren't I paranoid! It appears that ~Target~ didn't visit anyone last night.",
+						"command": ["stalk", "dummy3"]
+					}
+				},
+				"vote": -20,
+				"dummy2": {
+					"mode": "die",
+					"msg": "Waaaah! A Boo tried to scare me last night, and I died of fear!",
+					"targetmsg": "I tried to scare Luigi, but I accidentally scared him to death!"
+				}
+			}
+		}, {
+			"role": "toadsworth",
+			"side": "village",
+			"translation": "Toadsworth",
+			"help": "I'm just one out of the many Toads living in the Mushroom Kingdom. I don't have any special powers, but sometimes I'll experience a fight going on from my house at night.",
+			"info": "Inspects as a Goomba. If voted off, can kill someone before dying. Sided with the Mushroom Kingdom.",
+			"actions": {
+				"inspect": {
+					"revealAs": "goomba"
+				},
+				"startup": {
+					"revealAs": "villager"
+				},
+				"lynch": {
+					"convertTo": "dtoads",
+					"convertmsg": "~Self~, revealed to be ~Old~, can kill someone before dying!"
+				}
+			}
+		}, {
+			"role": "dtoads",
+			"side": "village",
+			"translation": "Toadsworth",
+			"hide": true,
+			"help": "They voted me off, and that makes me mad! Before dying, I can /kill [name] someone during the night, and I will ignore all distractions and bypass all protections! However, I am still sided with the Mushroom Kingdom, so I should try to hit a bad guy!",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"pierce": true,
+						"priority": 0
+					}
+				},
+				"initialCondition": {
+					"poison": {
+						"count": 1
+					}
+				}
+			}
+		},
+		{
+			"role": "rosalina",
+			"side": "village",
+			"translation": "Rosalina",
+			"help": "Adoptive mother of the Lumas and watcher of the cosmos, I am Rosalina. I can see everything in the universe, and thus, I have the ability to /inspect [name] someone at night and discover who they truly are. I am also magical, and thus whoever I cast Luma with my /Safeguard [name] will be protected from any spells.",
+			"info": "Can inspect one person during the night. Can safeguard one person during the night. Sided with the Mushroom Kingdom.",
+			"actions": {
+				"night": {
+					"inspect": {
+						"target": "AnyButSelf",
+						"pierce": true,
+						"common": "Self",
+						"priority": 25
+					},
+					"safeguard": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 1
+					}
+				}
+			}
+		},
+		{
+			"role": "mario",
+			"side": "village",
+			"translation": "Mario",
+			"help": "Wahoo! It's a-me, Mario! Around the Mushroom Kingdom, I am known as a hero, a plumber, a doctor, a golfer, an active olympic competitor, a basketball player, and, according to The Game Theorists, a communist! I am here to save the day, and so I can kill someone during the day! With Rosalina protecting me from Kamek's spells, Yoshi guarding me with his life, and Peach and Luigi supporting me during the voting phase, all it will take is a little bit of teamwork (and some lucky crossfire) to get us through this battle!",
+			"info": "Can kill one person during the day (is revealed). Evades daykills. Sided with the Mushroom Kingdom.",
+			"actions": {
+				"daykill": "evade",
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"msg": "Woah, I found a Fire Flower! I can now /kill [name] someone without being revealed!",
+						"killmsg": "Wahoo! ~Self~ (Mario) grabs a Fire Flower and shoots a powerful fire ball at ~Target~, incinerating them!"
+					}
+				}
+			}
+		},
+		{
+			"role": "baby_mario",
+			"side": "village",
+			"translation": "Baby Mario",
+			"help": "Waaaaah! Waaaaaaah! Kamek turned me into a baby! My vote counts as 0, and to make matters worse, I'll only change back after Kamek dies! This stinks!",
+			"info": "Vote counts as 0. Sided with the Mushroom Kingdom.",
+			"actions": {
+				"vote": 0
+			}
+		},
+		{
+			"role": "baby_luigi",
+			"side": "village",
+			"translation": "Baby Luigi",
+			"help": "Waaaaah! Waaaaaaah! Kamek turned me into a baby! My vote counts as 0, and to make matters worse, I'll only change back after Kamek dies! This stinks!",
+			"info": "Vote counts as 0. Sided with the Mushroom Kingdom.",
+			"actions": {
+				"vote": 0
+			}
+		},
+		{
+			"role": "baby_peach",
+			"side": "village",
+			"translation": "Baby Peach",
+			"help": "Waaaaah! Waaaaaaah! Kamek turned me into a baby! My vote counts as 0, and to make matters worse, I'll only change back after Kamek dies! This stinks!",
+			"info": "Vote counts as 0. Sided with the Mushroom Kingdom.",
+			"actions": {
+				"vote": 0
+			}
+		},
+		{
+			"role": "baby_rosalina",
+			"side": "village",
+			"translation": "Baby Rosalina",
+			"help": "Waaaaah! Waaaaaaah! Kamek turned me into a baby! My vote counts as 0, and to make matters worse, I'll only change back after Kamek dies! This stinks!",
+			"info": "Vote counts as 0. Sided with the Mushroom Kingdom.",
+			"actions": {
+				"vote": 0
+			}
+		},
+		{
+			"role": "baby_daisy",
+			"side": "village",
+			"translation": "Baby Rosalina",
+			"help": "Waaaaah! Waaaaaaah! Kamek turned me into a baby! My vote counts as 0, and to make matters worse, I'll only change back after Kamek dies! This stinks!",
+			"info": "Vote counts as 0. Sided with the Mushroom Kingdom.",
+			"actions": {
+				"vote": 0
+			}
+		}, {
+			"role": "goomba",
+			"side": "maf1",
+			"translation": "Goomba",
+			"help": "Bowser has called me in to help him in his conquest to take over Mushroom Kingdom and promises a big reward if I help him succeed! I can /kill [name] someone during the night (shared with my team), but I should be careful because Toad might catch me doing so. If Bowser is alive, I should probably let him do all the killing since he can't be haxed by the Toads. [Use /tt [message] to talk to your teammates.]",
+			"info": "Can kill one person during the night (shared with team). Sided with Bowser's Kingdom.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 20,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "~Player~, the Goomba, thinks we should kill ~Target~!"
+					}
+				},
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true
+			}
+		}, {
+			"role": "bowserjr",
+			"side": "maf1",
+			"translation": "Bowser Jr.",
+			"help": "My dad wants me to grow up just like him, and so he has asked me to fight in this giant war! I can /kill [name] someone during the night (shared with my team), but those darn Toads might catch me doing so, meaning I should probably like Dad kill (he can't be haxed). In addition to that, I can /protect [name] someone during the night to keep them safe from enemy fire. Kamek has also put a spell on me which makes me inspect as a Toad, allowing me to blend in a little better. [Use /tt [message] to talk to your teammates.]",
+			"info": "Can kill one person during the night (shared with team). Can protect one person during the night. Inspects as Toad. Sided with Bowser's Kingdom.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 20,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "~Player~ (Bowser Jr.) thinks we should kill ~Target~!"
+					},
+					"protect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 10,
+						"broadcast": "team",
+						"broadcastmsg": "~Player~ (Bowser Jr.) is going to protect ~Target~!"
+					}
+				},
+				"inspect": {
+					"revealAs": "villager"
+				},
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true
+			}
+		}, {
+			"role": "bowser",
+			"side": "maf1",
+			"translation": "Bowser",
+			"help": "ROAAAARR! I am Bowser, ruler of my kingdom, ought to take over the Mushroom Kingdom and defeat Mario once and for all! I can /kill [name] someone during the night and during the day (I won't be revealed). I myself can't be killed except by Mario. And since I can't be haxed, I should probably decide who my team is going to kill during the night! [Use /tt [message] to talk to your teammates.]",
+			"info": "Can kill one person during the night (shared with team, can't be haxed). Can kill one person during the day (won't be revealed). Ignores nightkills. Sided with the Mushroom Kingdom.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 20,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "~Player~ (Bowser) thinks we should kill ~Target~! (Bowser can't be haxed)"
+					}
+				},
+				"kill": {
+					"mode": "ignore"
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButTeam",
+						"msg": "I can now /kill [name] someone, and I won't be revealed! ROAR!",
+						"killmsg": "Bowser ravages through the Mushroom Kingdom, looking for a victim to burn up! It was ~Target~'s unlucky day, because Bowser spotted them first and immediately burned them to a crisp! ROOOOOOOOOAAAAAAAR!"
+					}
+				},
+				"avoidHax": [
+					"kill"
+				],
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true
+			}
+		}, {
+			"role": "kamek",
+			"side": "maf1",
+			"translation": "Kamek",
+			"help": "I've been chasing Mario since he was a baby, and now, I've joined forces with Bowser in order to beat him! In order to achieve my goal, I can /kill [name] someone during the night (shared with my team). I can cast a /spell [name] on any of Mario, Luigi, Peach, Daisy, or Rosalina to turn them into a Baby form of themselves! I'm also immune to any distractions. [Use /tt [messge] to talk to your teammates.]",
+			"info": "Can kill one person during the night (shared with team). Can convert Mario, Luigi, Peach, Daisy, and Rosalina into their baby form. Ignores Distract. Sided with Bowser's Kingdom.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 20,
+						"broadcast": "team",
+						"hide": true,
+						"broadcastmsg": "~Player~ (Kamek) thinks we should kill ~Target~!"
+					},
+					"spell": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 50,
+						"command": "convert",
+						"newRole": {
+							"baby_mario": ["mario"],
+							"baby_luigi": ["luigi"],
+							"baby_peach": ["peach"],
+							"baby_daisy": ["daisy"],
+							"baby_rosalina": ["rosalina"]
+						},
+						"broadcast": "team",
+						"broadcastmsg": "~Player~ (Kamek) is casting a spell on ~Target~!",
+						"convertmsg": "Oh no! Kamek put a spell on ~Old~ and turned them into ~New~!"
+					}
+				},
+				"distract": {
+					"silent": true,
+					"mode": "ignore",
+					"msg": "Someone tried to distract me, but they were no match for my magic spells!"
+				},
+				"onDeath": {
+					"convertRoles": {
+						"baby_mario": "mario",
+						"baby_peach": "peach",
+						"baby_luigi": "luigi",
+						"baby_daisy": "daisy",
+						"baby_rosalina": "rosalina"
+					},
+					"convertmsg": "With Kamek's death, all of his spells are undone. Everyone has returned to their normal selves!"
+				},
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true
+			}
+		},
+		{
+			"role": "bowser_placeholder",
+			"side": "maf1",
+			"translation": "Bowser Team",
+			"help": "",
+			"hide": true,
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 20,
+						"broadcast": "team"
+					}
+				},
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true
+			}
+		},
+		{
+			"role": "boo",
+			"side": "maf2",
+			"translation": "Boo",
+			"help": "Kekeke! I'm Boo, a minion of King Boo! I can /kill [name] someone during the night (shared with team), and in addition to that, I can /scare [name] someone during the night and prevent them from acting! Luigi is a scaredy cat, so if I scare him, he'll die instantly. However, he has been hunting down Boo for years, so if he happens to stalk me, he'll kill me instead!",
+			"info": "Can kill one person during the night (shared with team). Can distract one person during the night. Dies if stalked by Luigi. Sided with King Boo's Army.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 21,
+						"broadcast": "team",
+						"broadcastmsg": "~Player~ (Boo) wants to kill ~Target~!",
+						"hide": true
+					},
+					"scare": {
+						"command": ["distract", "dummy2"],
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 2,
+						"broadcast": "team",
+						"broadcastmsg": "~Player~ (Boo) is going to scare ~Target~!",
+						"distractmsg": "Ahhhh! Boo scared me last night, and I couldn't do anything!",
+						"teammsg": "My teammate got so spooked up by Boo last night that we weren't able to ~Action~."
+					}
+				},
+				"dummy3": {
+					"mode": "die",
+					"msg": "Oh no! Luigi sucked me up with his Poltergust after trying to stalk me last night!",
+					"targetmsg": "Ohmigosh, a Boo! Out of instinct, I sucked it up with my Poltergust!"
+				},
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true
+			}
+		}, {
+			"role": "kingboo",
+			"side": "maf2",
+			"translation": "King Boo",
+			"help": "Kekeke! I am King Boo, leader of the dead army! With my team, I can /kill [name] someone during the night (this is shared with my team)! I'm the King, so my vote counts as 20! I can use this to save my teammates during the voting phase! During the day, I can /scare [name] someone to learn their role! [Use /tt [message] to talk to your teammates.]",
+			"info": "Can kill one person during the night (shared with team). Vote counts as 20. Ignores Distract. Can scare (inspect) one person during the day. Sided with King Boo's Army.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 21,
+						"broadcast": "team",
+						"broadcastmsg": "~Player~ (King Boo) wants to kill ~Target~!",
+						"hide": true
+					}
+				},
+				"standby": {
+					"scare": {
+						"command": "expose",
+						"target": "AnyButTeam",
+						"msg": "I can now /scare [name] someone and discover their role!",
+						"exposemsg": "King Boo pops up behind ~Role~, frightening them nearly to death! \"Ahhhh!\" screams ~Role~. \"I just wanted to ask them how their day was going...\" remarks King Boo quite sadly.",
+						"exposedtargetmsg": "By scaring ~Target~, you were able to identify them as ~Role~!"
+					}
+				},
+				"distract": {
+					"silent": true,
+					"mode": "ignore",
+					"msg": "Peach tried to distract me last night, but nothing gets in the way of the Great Boo King!"
+				},
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"vote": 20
+			}
+		}, {
+			"role": "drybones",
+			"side": "drybones",
+			"translation": "Dry Bones",
+			"help": "Made of dust, dirt, sand, and bones, I am Dry Bones. In order to exist in a world of the non-living, I must go alone. I have the ability to /kill [name] someone during the night. I can't be daykilled, and since my bones re-assemble when I am defeated, I have the ability to survive one lynch, and if I am voted off, my kill will become much faster. My vote of 3 gives me a slight edge during the voting phase.",
+			"info": "Can kill one person during the night. Evades daykills. If lynched, survives and kill becomes faster than protect (but not distract) and gains a voteshield of -1. Vote counts as 3. Sided with Dry Bones.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 24,
+						"broadcast": "team",
+						"broadcastmsg": "~Player~ (Dry Bones) wants to kill ~Target~!"
+					}
+				},
+				"vote": 3,
+				"daykill": "evade",
+				"lynch": {
+					"convertTo": "dryb",
+					"convertmsg": "Dry Bone's body re-assembled after being voted off! ~Self~ lives on (well, not technically living...)!"
+				}
+			}
+		}, {
+			"role": "dryb",
+			"side": "drybones",
+			"translation": "Dry Bones",
+			"hide": true,
+			"help": "It seems that I was almost voted off, but I was able to re-assemble my body and survive the lynch! However, I won't survive the next one, so I should wreck havoc while I still can. I still have the ability to /kill [name] someone during the night, and now I strike even faster than Yoshi can protect! My vote of 3 is gone, but I now ignore the first vote towards me.",
+			"actions": {
+				"voteshield": -1,
+				"daykill": "evade",
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 5
+					}
+				}
+			}
+		}, {
+			"role": "boo_placeholder",
+			"side": "maf2",
+			"translation": "Boo Team",
+			"hide": true,
+			"help": "",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 21,
+						"broadcast": "team"
+					}
+				}
+			}
+		},
+		{
+			"role": "wario",
+			"side": "maf3",
+			"translation": "Wario",
+			"help": "Wah hah! I am Wario, the evil cousin of Mario! I'm here to drive everyone out of the Mushroom Kingdom with my brother, Waluigi, in order to turn it into Waft City! I can /fart [name] on someone during the night (shared with my brother) and they'll die from the smell. Since nobody ever wants to get near me, I avoid all night kills, and inspectors will just assume that I'm a Toad. [Use /tt [message] to talk to your teammates.]",
+			"info": "Can kill one person during the night (shared with team). Avoids all night kills. Inspects as a Toad. Sided with the Deadly Duo.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"command": "kill",
+						"common": "Team",
+						"priority": 22,
+						"broadcast": "team",
+						"broadcastmsg": "~Player~ (Wario) wants to fart on ~Target~!"
+					}
+				},
+				"kill": {
+					"silent": true,
+					"mode": "ignore"
+				},
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true
+			}
+		}, {
+			"role": "waluigi",
+			"side": "maf3",
+			"translation": "Waluigi",
+			"help": "Ahaha! I am Waluigi, Wario's evil brother and arch-enemy of Luigi! Just like my brother, I am here to drive everyone out of the Mushroom Kingdom! I can /kill [name] someone during the night (shared with my brother), and every other night, I can kill an additional person with /kill2 [name] (not shared with my brother)! If anyone happens to distract me, I will be able to identify who they are, and hopefully be able to take them down!",
+			"info": "Can can one person during the night (shared with team). Can kill an additional person every other night with /kill2. Identifies distractors. Sided with the Deadly Duo.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 22,
+						"broadcast": "team",
+						"broadcastmsg": "~Player~ (Waluigi) wants to kill ~Target~!"
+					},
+					"kill2": {
+						"command": "kill",
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 17,
+						"broadcastmsg": "~Player~ (Waluigi) wants to use his extra kill on ~Target~!",
+						"recharge": 2
+					}
+				},
+				"distract": {
+					"mode": "identify",
+					"msg": "Well, would you look at this? It seems as if ~Target~ distracted me last night."
+				},
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true
+			}
+		}, {
+			"role": "shy",
+			"side": "maf5",
+			"winIfDeadRoles": ["rosalina"],
+			"translation": "Shy Guy",
+			"hide": "true",
+			"help": "Why so shy, little guy? There's no need for you to fear, because you have the ability to /poison [name] two people at night This poison will kill your targets in the next two days, but you can only use your poison every other day! If you can manage to kill Rosalina, you will automatically win! Remember that those Baby Marios WILL turn back into Mario after 3 days, so make sure you get rid of Rosalina as soon as possible! You could try impersonating her if you wanted in order to trick those babies, but be careful because this is quite risky!",
+			"info": "Can poison two people at night, killing them in 2 nights, every other day. Wins automatically if Rosalina is killed. ~Sided~",
+			"actions": {
+				"night": {
+					"poison": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 30,
+						"count": 3,
+						"limit": 2,
+						"recharge": 2
+					}
+				}
+			}
+		}, {
+			"role": "fawful",
+			"side": "maf4",
+			"translation": "Fawful",
+			"help": "I HAVE FURY!! I am here to defeat Mario and Luigi for what they did to me long ago! I am by myself, but who cares? I can /kill [name] someone during the night, and to keep myself alive, I can /protect [name] myself during the night! I ignore all distractions, and I have a voteshield of -5, meaning I ignore five votes counted towards me! Also, I HAVE FURY!!",
+			"info": "Can kill one person during the night. Can protect himself during the night. Ignores distraction. Voteshield of -5. I HAVE FURY!! Sided with himself.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 15
+					},
+					"protect": {
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 10
+					}
+				},
+				"distract": {
+					"mode": "ignore",
+					"msg": "Someone tried to distract me last, but I simply ignored them because I'm awesome."
+				},
+				"voteshield": -5
+			}
+		}
+	],
+	"roles1": [
+		"mario",
+		"peach",
+		"yoshi",
+		"kingboo",
+		"bowser",
+		"villager"
+	],
+	"roles2": [
+		"mario",
+		"peach",
+		"yoshi",
+		"rosalina",
+		"kamek",
+		"bowserjr",
+		"kingboo",
+		"villager"
+	],
+	"roles3": [
+		"mario",
+		"peach",
+		"yoshi",
+		"rosalina",
+		"luigi",
+		"kamek",
+		"bowserjr",
+		"kingboo",
+		"boo",
+		"villager",
+		"villager"
+	],
+	"roles4": [
+		"mario",
+		"peach",
+		"yoshi",
+		"yoshi",
+		"rosalina",
+		"luigi",
+		"villager",
+		"boo",
+		"kingboo",
+		"bowserjr",
+		"kamek",
+		"drybones",
+		"villager"
+	],
+	"roles5": [
+		"mario",
+		"peach",
+		"yoshi",
+		"yoshi",
+		"rosalina",
+		"luigi",
+		"daisy",
+		"villager",
+		"boo",
+		"kingboo",
+		"bowser",
+		"kamek",
+		"drybones",
+		"boo",
+		"villager",
+		"villager",
+		"bowserjr",
+		"villager",
+		"villager",
+		"villager"
+	],
+	"roles6": [
+		"mario",
+		"peach",
+		"yoshi",
+		"yoshi",
+		"rosalina",
+		"luigi",
+		"daisy",
+		"villager",
+		"villager",
+		"boo",
+		"kingboo",
+		"bowser",
+		"kamek",
+		"drybones",
+		"boo",
+		"villager",
+		"bowserjr",
+		"wario",
+		"waluigi",
+		"villager",
+		"villager",
+		"villager",
+		"villager",
+		"fawful",
+		"villager",
+		"villager",
+		"villager",
+		"villager",
+		"villager"
+	],
+	"killmsg": "~Player~ (~Role~) ran out of lives!",
+	"killusermsg": "*** Game Over! Restart / Quit",
+	"lynchmsg": "~Player~ (~Role~) was kicked out of the Mushroom Kingdom!",
+	"votemsg": "~Player~ wants ~Target~ to leave the Mushroom Kingdom!",
+	"villageCantLoseRoles": [
+		"mario",
+		"peach"
+	],
+	"tips": {
+		"Mario": "It is safe to claim! Yoshi protects you from kills, Rosalina safeguards you from spells, and Peach and Luigi have your back during the vote phase!",
+		"Main Threats": "Bowser (shared nightkill + daykill, avoids hax), Kamek (Ignores PL, can demote PRs into useless roles), King Boo (20 votes, day inspect, and ignores PL), Dry Bones (evades daykill and survives one lynch), Fawful (fastest kill, self-bg, ignores PL).",
+		"Bowser Team": "Kamek's curse can revert PRs into useless forms temporarily. Use this on Mario if Rosalina dies! Bowser Jr. should protect Kamek since Bowser evades nightkills.",
+		"King Boo's Army": "Remember that Boo will die if he is stalked by Luigi! King Boo has a vote of 20, so if you get rid of Peach (20 votes) and Luigi (-20 votes) you will control the vote phase!",
+		"Dry Bones": "You're alone, but it's safe to claim because the town can't hurt you except by lynching you two days in a row. If you are lynched, you will be able to outspeed all other kills in the game and also distract.",
+		"Fawful": "You're alone, but you have a fast kill, you have a self-protect, and you ignore any distractions."
+	},
+	"changelog": {
+		"6/15/16": "Season 2 confirmed for Summer 2016",
+		"6/9/15": "Pangaea is no longer dead. Also, Toadsworth sees himself as Toad now, spawn has been modified to prevent teammates from appearing alone, and other errors in the script have been fixed.",
+		"4/6/15": "Dry Bones now appears earlier. Fixed a few mistakes in the script.",
+		"4/3/15": "Theme completed. (Special thanks to RiceKirby, Miki Sayaka, and obey to kyubey for helping me out with lots of the coding)"
+	},
+	"minplayers": 5
+}
