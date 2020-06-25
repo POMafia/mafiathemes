@@ -1,0 +1,375 @@
+{
+	"name": "Movies2",
+	"altname": "Movies (Redux)",
+	"minplayers": 4,
+	"author": [
+		"Oceanborn",
+		"Sky Sentinel"
+	],
+	"nonPeak": true,
+	"summary": "A non-peak version of the Movies theme, with silent film star Charlie Chaplin trying to prevent Nosferatu from removing everybody's ability to vote! /Tips for some basic info.",
+	"sides": [{
+			"side": "village",
+			"translation": "Silent Film Heroes",
+			"winmsg": "Happily ever after! The heroes, ~Players~, have successfully saved the movie industry from returning to silence!"
+		},
+		{
+			"side": "monsters",
+			"translation": "Nosferatu",
+			"winmsg": "~Players~ has sent the movie industry back to strictly silent films! No talkies!"
+		}
+	],
+	"roles": [{
+			"role": "villager",
+			"translation": "Viewer",
+			"side": "village",
+			"help": "You're just an average moviegoer, here to watch some classic films. Vote to remove people during the day!"
+		},
+		{
+			"role": "villagermute",
+			"translation": "Viewer",
+			"side": "village",
+			"help": "You're just an average moviegoer, here to watch some classic films. Vote to remove people during the day!",
+			"hide": true,
+			"actions": {
+				"noVote": true,
+				"noVoteMsg": "You tried to vote for ~Target~, but you couldn't speak up!"
+			}
+		},
+		{
+			"role": "chaplin",
+			"side": "village",
+			"translation": "Charlie Chaplin",
+			"help": "You are the world famous silent film comedian, Charlie Chaplin! Nosferatu is trying to mute everyone, but you've learned that sound films are sometimes better. This means that you can /unquiet two people per game, including yourself! Don't accidentally unquiet Nosferatu, because he'll get an extra vote!",
+			"actions": {
+				"night": {
+					"unquiet": {
+						"command": "convert",
+						"newRole": {
+							"villager": [
+								"villagermute"
+							],
+							"chaplinunmute": [
+								"chaplinmute"
+							],
+							"nosfera2": [
+								"nosferatu"
+							],
+							"keaton": [
+								"keatonmute"
+							],
+							"cesare": [
+								"cesaremute"
+							]
+						},
+						"target": "Any",
+						"common": "Self",
+						"charges": 2,
+						"convertmsg": "Charlie pressed unmute, and someone could speak again!",
+						"convertfailmsg": "Your target was not muted.",
+						"tarmsg": "You've been unmuted.",
+						"usermsg": "~Target~ was unmuted.",
+						"priority": 9
+					}
+				}
+			}
+		},
+		{
+			"role": "chaplinunmute",
+			"side": "village",
+			"hide": true,
+			"translation": "Charlie Chaplin",
+			"help": "You are the world famous silent film comedian, Charlie Chaplin! Nosferatu is trying to mute everyone, but you've learned that sound films are sometimes better. This means that you can /unquiet two people per game, including yourself! Don't accidentally unquiet Nosferatu, because he'll get an extra vote!",
+			"actions": {
+				"night": {
+					"unquiet": {
+						"hide": true,
+						"command": "convert",
+						"newRole": {
+							"villager": [
+								"villagermute"
+							],
+							"chaplinunmute": [
+								"chaplinmute"
+							],
+							"nosfera2": [
+								"nosferatu"
+							],
+							"keaton": [
+								"keatonmute"
+							],
+							"cesare": [
+								"cesaremute"
+							]
+						},
+						"target": "Any",
+						"common": "Self",
+						"convertmsg": "Charlie pressed unmute, and someone could speak again!",
+						"convertfailmsg": "Your target was not muted.",
+						"tarmsg": "You've been unmuted.",
+						"usermsg": "~Target~ was unmuted.",
+						"priority": 9
+					}
+				}
+			}
+		},
+		{
+			"role": "chaplinmute",
+			"side": "village",
+			"hide": true,
+			"translation": "Charlie Chaplin",
+			"help": "You are the world famous silent film comedian, Charlie Chaplin! Nosferatu is trying to mute everyone, but you've learned that sound films are sometimes better. This means that you can /unquiet two people per game, including yourself! Don't accidentally unquiet Nosferatu, because he'll get an extra vote!",
+			"actions": {
+				"noVote": true,
+				"noVoteMsg": "You tried to vote for ~Target~, but you couldn't speak up!",
+				"night": {
+					"unquiet": {
+						"hide": true,
+						"command": "convert",
+						"newRole": {
+							"villager": [
+								"villagermute"
+							],
+							"chaplinunmute": [
+								"chaplinmute"
+							],
+							"nosfera2": [
+								"nosferatu"
+							],
+							"keaton": [
+								"keatonmute"
+							],
+							"cesare": [
+								"cesaremute"
+							]
+						},
+						"target": "Any",
+						"common": "Self",
+						"convertmsg": "Charlie pressed unmute, and someone could speak again!",
+						"convertfailmsg": "Your target was not muted.",
+						"tarmsg": "You've been unmuted.",
+						"usermsg": "~Target~ was unmuted.",
+						"priority": 9
+					}
+				}
+			}
+		},
+		{
+			"role": "nosferatu",
+			"side": "monsters",
+			"translation": "Nosferatu",
+			"help": "Originally looked down upon as a clone of Dracula, you're now considered a silent film classic. However, you cannot STAND modern films, and you think they are too showy and loud. You can /quiet someone during the night to take away their vote! You win when everyone not sided with you is muted or dead.",
+			"winIfDeadRoles": [
+				"chaplin",
+				"chaplinunmute",
+				"villager",
+				"cesare"
+			],
+			"actions": {
+				"teamTalk": true,
+				"startup": "team-reveal-with-roles",
+				"preventTeamvote": true,
+				"updateTeam": true,
+				"night": {
+					"quiet": {
+						"command": "convert",
+						"newRole": {
+							"villagermute": [
+								"villager"
+							],
+							"chaplinmute": [
+								"chaplinunmute",
+								"chaplin"
+							],
+							"keatonmute": [
+								"keaton"
+							],
+							"cesaremute": [
+								"cesare"
+							]
+						},
+						"target": "AnyButTeam",
+						"common": "Self",
+						"convertmsg": "Someone was muted :x",
+						"usermsg": "~Target~ was muted. They can now not vote!",
+						"silentConvert": true,
+						"broadcast": "team",
+						"broadcastmsg": "Nosferatu (~Player~) points the remote at ~Target~, ready to press the mute button!",
+						"priority": 8
+					}
+				}
+			}
+		},
+		{
+			"role": "nosfera2",
+			"hide": true,
+			"side": "monsters",
+			"translation": "Nosferatu",
+			"help": "Originally looked down upon as a clone of Dracula, you're now considered a silent film classic. However, you cannot STAND modern films, and you think they are too showy and loud. You can /quiet someone during the night to take away their vote! You win when everyone not sided with you is muted or dead.  You have been unmuted and are more powerful than ever, now with 2 votes!",
+			"winIfDeadRoles": [
+				"chaplin",
+				"chaplinunmute",
+				"villager",
+				"cesare"
+			],
+			"actions": {
+				"teamTalk": true,
+				"startup": "team-reveal-with-roles",
+				"preventTeamvote": true,
+				"updateTeam": true,
+				"vote": 2,
+				"night": {
+					"quiet": {
+						"command": "convert",
+						"newRole": {
+							"villagermute": [
+								"villager"
+							],
+							"chaplinmute": [
+								"chaplinunmute",
+								"chaplin"
+							],
+							"keatonmute": [
+								"keaton"
+							],
+							"cesaremute": [
+								"cesare"
+							]
+						},
+						"target": "AnyButTeam",
+						"common": "Self",
+						"convertmsg": "Someone was muted :x",
+						"usermsg": "~Target~ was muted. They can now not vote!",
+						"silentConvert": true,
+						"broadcast": "team",
+						"broadcastmsg": "Nosferatu (~Player~) points the remote at ~Target~, ready to press the mute button!",
+						"priority": 8
+					}
+				}
+			}
+		},
+		{
+			"role": "keaton",
+			"translation": "Buster Keaton",
+			"side": "village",
+			"help": "You're Buster Keaton, star of movies like The General and one of the greatest comedic silent actors, rivalling even Charlie Chaplin. Nosferatu is trying to mute everyone, but you've learned that sound films are sometimes better. You can show someone a movie with /distract to prevent them from acting during the night.",
+			"actions": {
+				"night": {
+					"distract": {
+						"target": "AnyButSelf",
+						"priority": 2,
+						"common": "Self",
+						"distractmsg": "You spent the whole night laughing at a Buster Keaton film!"
+					}
+				}
+			}
+		},
+		{
+			"role": "keatonmute",
+			"translation": "Buster Keaton",
+			"side": "village",
+			"help": "You're Buster Keaton, star of movies like The General and one of the greatest comedic silent actors, rivalling even Charlie Chaplin. Nosferatu is trying to mute everyone, but you've learned that sound films are sometimes better. You can show someone a movie with /distract to prevent them from acting during the night.",
+			"hide": true,
+			"actions": {
+				"noVote": true,
+				"noVoteMsg": "You tried to vote for ~Target~, but you couldn't speak up!",
+				"night": {
+					"distract": {
+						"target": "AnyButSelf",
+						"priority": 2,
+						"common": "Self",
+						"hide": true,
+						"distractmsg": "You spent the whole night laughing at a Buster Keaton film!"
+					}
+				}
+			}
+		},
+		{
+			"role": "cesaremute",
+			"translation": "Cesare",
+			"side": "village",
+			"help": "You are Cesare, a sleep-walking, future-telling spectacle of a man from the film 'The Cabinet of Dr. Caligari'! Or are you the perpetrator? Either way, you know who people are going to visit during the night, so you can /stalk them to find out.",
+			"hide": true,
+			"actions": {
+				"noVote": true,
+				"noVoteMsg": "You tried to vote for ~Target~, but you couldn't speak up!",
+				"night": {
+					"stalk": {
+						"target": "AnyButSelf",
+						"priority": 45,
+						"common": "Self"
+					}
+				}
+			}
+		},
+		{
+			"role": "cesare",
+			"translation": "Cesare",
+			"side": "village",
+			"help": "You are Cesare, a sleep-walking, future-telling spectacle of a man from the film 'The Cabinet of Dr. Caligari'! Or are you the perpetrator? Either way, you know who people are going to visit during the night, so you can /stalk them to find out.",
+			"actions": {
+				"night": {
+					"stalk": {
+						"target": "AnyButSelf",
+						"priority": 45,
+						"common": "Self"
+					}
+				}
+			}
+		},
+		{
+			"role": "vamp",
+			"translation": "Vampire",
+			"side": "monsters",
+			"help": "You've been bitten. Now all you can do is /bite others. This will either poison them (90%) or convert them to a vampire (10%). Your thirst for blood is insatiable. This bite is shared with the other vampires.",
+			"info": "A role that has been bitten by Vampire. Can bite to convert others into a vampire or poison them. Sided with Nosferatu.",
+			"actions": {
+				"startup": "team-reveal-with-roles",
+				"teamTalk": true,
+				"preventTeamvote": true,
+				"updateTeam": true,
+				"night": {
+					"bite": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"command": {
+							"poison": 0.9,
+							"convert": 0.1
+						},
+						"newRole": "vamp",
+						"priority": 23,
+						"broadcast": "team",
+						"convertmsg": "~Old~ was bitten and became a Vampire.",
+						"broadcastmsg": "~Player~ (Vampire) has decided to bite ~Target~!",
+						"poisonDeadMessage": "You bled to death from the bite of a vampire!"
+					}
+				}
+			}
+		}
+	],
+	"roles1": [
+		"villager",
+		"villager",
+		"keaton",
+		"nosferatu",
+		"villager",
+		"villager"
+	],
+	"roles2": [
+		"villager",
+		"villager",
+		"keaton",
+		"nosferatu",
+		"chaplin",
+		"vamp",
+		"cesare",
+		"villager",
+		"villager",
+		"vamp",
+		"villager"
+	],
+	"tips": {
+		"Basics": "Nosferatu 'mutes' people, taking away their vote. Charlie Chaplin can 'unmute' people, giving their vote back, but this will also raise Nosferatu's vote to 2 if he's targetted with Charlie's action. Vampires can poison or convert other players to Vampires. Keaton and Cesare are basic distract and stalk.",
+		"5 Player Game": "The goal is to find out who is Nosferatu by having Buster Keaton distract people and if someone is not muted, the distracted person is most likely Nosferatu."
+	}
+}
