@@ -1,0 +1,992 @@
+{
+    "name": "Kanto",
+    "author": ["Miki Sayaka"],
+    "summary": "Welcome to Kanto, where all journeys begin! In this great theme for beginners, Detective Pikachu takes the lead and claims during the first night! The other Good Pokémon must follow their leader and vote out the dangerous Pokémon! But Pikachu should be wary, as Abra is able to disguise itself as a Psyduck until it evolves!",
+    "sides": [
+        {
+            "side": "village",
+            "color": "#62d5b4",
+            "translation": "Good Pokémon"
+        },
+        {
+            "side": "mafia",
+            "color": "#a44a8b",
+            "translation": "Poison Posse"
+        },
+        {
+            "side": "fossil",
+            "color": "#399ccd",
+            "translation": "Fossil Faction"
+        },
+        {
+            "side": "human",
+            "color": "#cd1041",
+            "translation": "Humanoid Herd"
+        },
+        {
+            "side": "birb",
+            "color": "#005273",
+            "translation": "Birb"
+        },
+        {
+            "side": "werewolf",
+            "color": "#cdb410",
+            "translation": "Psychic Squad"
+        },
+        {
+            "side": "godfather",
+            "color": "#6a319c",
+            "translation": "Clone Army"
+        }
+    ],
+    "tips": {
+    },
+    "variables": {
+        "help_villager": "Quack! You don't have any special commands during the night! Use /vote [name] to remove people during the day!",
+        "help_mafia": "Type /kill [name] to faint someone during the night! This action is shared with your teammates, so be sure to communicate with them using teamtalk! (/tt!)",
+        "help_mafia_inspector": "Type /kill [name] to faint someone during the night! This action is shared with your teammates, so be sure to communicate with them using teamtalk! (/tt!) You can also /inspect [name] to find out an enemy's role (this is not shared with your team!)",
+        "help_mafia_bodyguard": "Type /kill [name] to faint someone during the night! This action is shared with your teammates, so be sure to communicate with them using teamtalk! (/tt!) You can also /protect [name] to defend one of your teammates (this is not shared with your team!)",
+        "help_mafia_boss": "Type /kill [name] to faint someone during the night! This action is shared with your teammates, so be sure to communicate with them using teamtalk! (/tt!) You can also /kill2 [name] every other night for an extra kill (this is not shared with your team!)",
+        
+        "prio_werewolf_max": 1,
+        "prio_hooker": 2,
+        "prio_protect": 3,
+        "prio_godfather": 4,
+        "prio_mafia41": 5,
+        "prio_mafia31": 6,
+        "prio_mafia21": 7,
+        "prio_vigilante": 8,
+        "prio_werewolf": 9,
+        "prio_mafia": 10,
+        "prio_mafia2": 11,
+        "prio_mafia3": 12,
+        "prio_mafia4": 13,
+        "prio_inspect": 14,
+        "prio_poison": 15,
+        "prio_watch": 16,
+        "prio_stalk": 17,
+
+
+
+        "tutorial_psyduck": "Your job is to trust whoever Detective Pikachu is and vote off the bad guys! If you try to vote someone and it says you are their teammate, you should PM them!",
+        "tutorial_pikachu": "Your job is to say 'I'm Pikachu!' and 'PRs PM' in the chat to connect with your teammates! Then, use /inspect to find out peoples' roles, and vote off the bad guys!",
+        "tutorial_lapras": "You can use /see to find out whether someone used actions! If they used actions, they may be a bad guy! But they may also be a power role, so it is wise to claim your role early on to gain Dragonite's trust and protection!",
+        "tutorial_dragonite": "Your job is to protect the Power Roles like Pikachu or Mew! If Pikachu finds a bad guy, follow their vote and vote off the bad guy during the day! Send a whisper to Pikachu if it claims using /w [name]:[message]!",
+        "tutorial_growlithe": "Your job is to use /watch [name] during the night to see if anyone visits them! If someone visited them and they were killed, perhaps the person who voted them is a bad guy who killed them! Send a whisper to Pikachu if it claims using /w [name]:[message]!",
+        "tutorial_mew": "Your job is to use /kill [name[ whoever the bad guys are! Wait for Pikachu or Growlithe to give you information first, don't just randkill! Send a whisper to Pikachu if it claims using /w [name]:[message]!",
+        "tutorial_jigglypuff": "Your job is to /sing [name] whoever you think is the bad guy to prevent them from taking actions! If you sing to a poison type, however, you will become poisoned instead. Use this information to find out who are the bad guys!",
+        "tutorial_tangela": "Your job is to say lay low and tell any information you find out during the night to Pikachu or Mew! Send a whisper to Pikachu if it claims using /w [name]:[message]!",
+        "tutorial_snorlax": "Your to follow the village leaders to vote out the bad guys! Send a whisper to Pikachu if it claims using /w [name]:[message]!",
+
+        "tutorial_ekans": "Use your unique ability to poison to make it so a player dies in two nights! Try to confuse the Good Pokémon during the day so you don't get voted off!",
+        "tutorial_zubat": "Use your ability to kill a player to eliminate Good Pokémon! Try to confuse the Good Pokémon during the day so you don't get voted off!",
+
+        "tutorial_abra": "Do your best to act like a Psyduck so that Detective Pikachu doesn't suspect you! If all the bad Pokémon are elminated, you gain the ability to kill, and if all the Psyducks are eliminated, you gain another kill, and become much faster!",
+        "tutorial_kadabra": "You are the last bad guy, so it's up to you to evade the Good Pokémon's suspicion! Use /kill to eliminate them!",
+        "tutorial_alakazam": "You are the last bad guy, so it's up to you to evade the Good Pokémon's suspicion! Use /kill to eliminate them! Your kill now outspeeds protect and distract, so almost nothing can stop you!",
+
+        "tutorial_kabuto": "Use /Kill to eliminate your enemies (only one person on your team can use it per night), and /Protect your allies! If Aerodactyl is in, protect that one, otherwise, protect Omastar! Use /tt to talk to them, and try to help them not get voted off during the day!",
+        "tutorial_omastar": "Use /Kill to eliminate your enemies (only one person on your team can use it per night), and /Inspect to find out who the other roles in the game are! Tell your teammates (Kabuto and Aerodactyl) your information using /tt!",
+        "tutorial_aerodactyl": "Use /Kill to eliminate your enemies (only one person on your team can use it per night), and /Kill2 every other night to get an extra kill! Talk to your teammates (Kabuto and Omastar) using /tt!",
+
+        "tutorial_electabuzz": "Use /Kill to eliminate your enemies (only one person on your team can use it per night), and /Protect your allies! If Jynx is in, protect that one, otherwise, protect Magmar! Use /tt to talk to them, and try to help them not get voted off during the day!",
+        "tutorial_magmar": "Use /Kill to eliminate your enemies (only one person on your team can use it per night), and /Inspect to find out who the other roles in the game are! Tell your teammates (Electabuzz and Jynx) your information using /tt!",
+        "tutorial_jynx": "Use /Kill to eliminate your enemies (only one person on your team can use it per night), and /Kill2 every other night to get an extra kill! Talk to your teammates (Electabuzz and Magmar) using /tt!",
+
+        "tutorial_articuno": "Use /Kill to eliminate your enemies (only one person on your team can use it per night), and /Protect your allies! Use /tt to talk to them, and try to help them not get voted off during the day!",
+        "tutorial_zapdos": "Use /Kill to eliminate your enemies (only one person on your team can use it per night), and /Inspect to find out who the other roles in the game are! Tell your teammates (Articuno and Moltres) your information using /tt!",
+        "tutorial_moltres": "Use /Kill to eliminate your enemies (only one person on your team can use it per night), and /Kill2 every other night to get an extra kill! Talk to your teammates (Articuno and Zapdos) using /tt!",
+
+        "tutorial_mewtwo": "You are alone, but you are powerful! Use /inspect [name] to find out other people's roles, and /kill [name] + /kill [name2] to eliminate up to two of them per day! Your top threats are Mew, Pikachu, and Dragonite. If someone evades your kill, try inspecting them! They may be Snorlax!",
+
+
+        "winIfDeadPoison": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "human", "human2", "human3", "godfather", "godfather_plus", "birb", "birb2", "birb3"],
+        "winIfDeadFossil": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "human", "human2", "human3", "godfather", "godfather_plus", "birb", "birb2", "birb3"],
+        "winIfDeadHuman": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "fossil", "fossil2", "fossil3", "godfather", "godfather_plus", "birb", "birb2", "birb3"],
+        "winIfDeadBirb": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "fossil", "fossil2", "fossil3", "godfather", "godfather_plus", "human", "human2", "human3"],
+        "winIfDeadGF": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "fossil", "fossil2", "fossil3", "human", "human2", "human3", "birb", "birb2", "birb3"]
+    },
+    "roles": [
+        {
+            "role": "villager",
+            "translation": "Psyduck",
+            "side": "village",
+            "help": "variable:help_villager",
+            "tutorialmsg": "variable:tutorial_psyduck",
+            "info": "Has no special abilities. Is unable to vote Detective Pikachu. ~Sided~",
+            "actions": {
+                "preventTeamvote": ["inspector"]
+            }
+        },
+        {
+            "role": "stalker",
+            "translation": "Lapras",
+            "side": "village",
+            "tutorialmsg": "variable:tutorial_psyduck",
+            "help": "variable:help_villager",
+            "info": "Sees itself as Psyduck. If all Pikachu faint, realizes itself to be Lapras and gains the following abulity: can see to find out if someone visited another player during the night. ~Sided~",
+            "actions": {
+                "startup": {
+                    "revealAs": "villager"
+                },
+                "preventTeamvote": ["inspector"],
+                "onDeadRoles": {
+                    "convertTo": {
+                        "stalker2": [
+                            "inspector"
+                        ]
+                    },
+                    "convertmsg": "Lapras has resurfaced and realized its true ability!"
+                }
+            }
+        },
+        {
+            "role": "stalker2",
+            "translation": "Lapras",
+            "side": "village",
+            "tutorialmsg": "variable:tutorial_lapras",
+            "hide": true,
+            "help": "Turns out you were actually Lapras! You're a smart Pokémon, so you can use /see to find out if another player used any actions during the night! Contact Dragonite for information!",
+            "info": "Can see to find out if someone visited another player during the night. ~Sided~",
+            "actions": {
+                "night": {
+                    "see": {
+                        "command": ["stalk"],
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_stalk",
+                        "stalkmsg": "Your target (~Target~) used an action this night!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "inspector",
+            "translation": "Detective Pikachu",
+            "side": "village",
+            "tutorialmsg": "variable:tutorial_pikachu",
+            "help": "Type /inspect [name] during the night to find out someone's role!",
+            "info": "Can inspect one person during the night. Shared with other Pikachus. ~Sided~",
+            "actions": {
+                "startup": "role-reveal",
+                "teamTalk": ["inspector"],
+                "preventTeamvote": ["inspector"],
+                "avoidHax": ["inspect"],
+                "night": {
+                    "inspect": {
+                        "common": "Role",
+                        "target": "AnyButRole",
+                        "broadcast": "role",
+                        "broadcastmsg": "Your partner (~Self~) has decided to Inspect ~Target~! (BTW, only one of you can use this at a time.)",
+                        "priority": "variable:prio_inspect"
+                    }
+                }
+            }
+        },
+        {
+            "role": "bodyguard",
+            "translation": "Dragonite",
+            "side": "village",
+            "tutorialmsg": "variable:tutorial_dragonite",
+            "info": "Can protect another player. It protects them from kills and poison. Does not share with other Dragonites. ~Sided~",
+            "help": "Type /protect [name] to protect someone else from kills for that night!",
+            "actions": {
+                "startup": "role-reveal",
+                "teamTalk": ["bodyguard"],
+                "preventTeamvote": ["bodyguard"],
+                "night": {
+                    "protect": {
+                        "common": "Self",
+                        "command": ["protect", "safeguard"],
+                        "target": "AnyButSelf",
+                        "broadcast": "role",
+                        "broadcastmsg": "Your partner (~Self~) has decided to Protect ~Target~! (BTW, you can still protect someone else.)",
+                        "priority": "variable:prio_protect"
+                    }
+                }
+            }
+        },
+        {
+            "role": "hooker",
+            "translation": "Jigglypuff",
+            "side": "village",
+            "tutorialmsg": "variable:tutorial_jigglypuff",
+            "help": "Type /sing [name] to prevent another player from using their actions for the night!",
+            "info": "Can sing to distract one person during the night. Becomes poisoned if it sings to a poison type. Doesn't distract target's teammates from taking an action. ~Sided~",
+            "actions": {
+                "night": {
+                    "sing": {
+                        "command": ["distract"],
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "onlyUser": true,
+                        "priority": "variable:prio_hooker"
+                    }
+                }
+            }
+        },
+        {
+            "role": "vigilante",
+            "translation": "Mew",
+            "side": "village",
+            "tutorialmsg": "variable:tutorial_mew",
+            "help": "Type /kill [name] to make another player faint! You can only do this starting night 2. Ask Detective Pikachu who you should kill to make sure you don't kill any Good Pokémon!",
+            "info": "Can kill one player during the night. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Self",
+                        "initialrecharge": 2,
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_vigilante"
+                    }
+                }
+            }
+        },
+        {
+            "role": "watcher",
+            "translation": "Growlithe",
+            "side": "village",
+            "help": "Type /Watch [name] to look over a player and see if someone visited them during the night! Tell Detective Pikachu and the other Good Pokémon your information!",
+            "tutorialmsg": "variable:tutorial_growlithe",
+            "info": "Can watch one player during the night. ~Sided~",
+            "actions": {
+                "night": {
+                    "watch": {
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_watch",
+                        "watchFirst": 1
+                    }
+                }
+            }
+        },
+        {
+            "role": "mayor",
+            "translation": "Snorlax",
+            "side": "village",
+            "tutorialmsg": "variable:tutorial_snorlax",
+            "help": "Zzz... oh, you're asleep already. You sleep through the night, so you can't use any actions, but your position as the Mayor of Kanto allows you to have a powerful vote of 3!",
+            "info": "Vote counts as 3. ~Sided~",
+            "actions": {
+                "vote": 3
+            }
+        },
+        {
+            "role": "commuter",
+            "translation": "Tangela",
+            "side": "village",
+            "tutorialmsg": "variable:tutorial_tangela",
+            "help": "You can hide in the bushes to find out things that happen during the night! Since you are hiding, no one can kill you, but you will instantly die if someone inspects you! Tell Detective Pikachu and the other Good Pokémon your information!",
+            "info": "Cannot be killed. Dies if inspected. Can hax kill and inspect. ~Sided~",
+            "actions": {
+                "inspect": {
+                    "mode": "die"
+                },
+                "hax": {
+                    "kill": {
+                        "revealTeam": 0.35,
+                        "revealPlayer": 0.06
+                    },
+                    "inspect": {
+                        "revealTeam": 0.25,
+                        "revealPlayer": 0.04
+                    }
+                },
+                "kill": {
+                    "mode": "ignore",
+                    "msg": "Your target (~Self~) couldn't be killed!"
+                }
+            }
+        },
+        {
+            "role": "werewolf",
+            "translation": "Abra",
+            "side": "werewolf",
+            "tutorialmsg": "variable:tutorial_abra",
+            "help": "You're a clever Pokémon, so you can disguise yourself as a Psyduck if Pikachu tries to inspect you! If anyone tries to kill or poison you during the night, you will simply Teleport to safety! Vote off the bad guys and Psyducks to evolve and gain new powers!",
+            "info": "Appears as Psyduck if Inspected. Cannot be killed or poisoned. Evolves into Kadabra if it is the last bad role. ~Sided~",
+            "actions": {
+                "onDeadRoles": {
+                    "convertTo": {
+                        "werewolf3": [
+                            "mafia",
+                            "mafia2",
+                            "fossil",
+                            "fossil2",
+                            "fossil3",
+                            "human",
+                            "human2",
+                            "human3",
+                            "birb",
+                            "birb2",
+                            "birb3",
+                            "godfather",
+                            "godfather_plus",
+                            "villager"
+                        ],
+                        "werewolf2": [
+                            "mafia",
+                            "mafia2",
+                            "fossil",
+                            "fossil2",
+                            "fossil3",
+                            "human",
+                            "human2",
+                            "human3",
+                            "birb",
+                            "birb2",
+                            "birb3",
+                            "godfather",
+                            "godfather_plus"
+                        ]
+                    },
+                    "convertmsg": "Oh no! Abra has evolved and can now kill during the night! At least now Detective Pikachu can find it..."
+                },
+                "inspect": {"revealAs": "villager"},
+                "kill": {
+                    "mode": "ignore",
+                    "msg": "Your target (~Self~) couldn't be killed!"
+                },
+                "poison": {
+                    "mode": "ignore",
+                    "msg": "Your target (~Self~) couldn't be poisoned!"
+                }
+            }
+        },
+        {
+            "role": "werewolf2",
+            "translation": "Kadabra",
+            "side": "werewolf",
+            "tutorialmsg": "variable:tutorial_kadabra",
+            "help": "Type /kill [name] during the night to faint another player! If all of the Psyducks are defeated, you can evolve into Alakazam, who can kill twice as many!",
+            "info": "Can kill. Evolves into Alakazam if there are no Psyducks. ~Sided~",
+            "actions": {
+                "onDeadRoles": {
+                    "convertTo": {
+                        "werewolf3": [
+                            "villager"
+                        ]
+                    },
+                    "convertmsg": "Oh no! Kadabra has evolved again! Alakazam can kill twice..."
+                },
+                "night": {
+                    "kill": {
+                        "common": "Self",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "werewolf3",
+            "translation": "Alakazam",
+            "side": "werewolf",
+            "tutorialmsg": "variable:tutorial_alakazam",
+            "help": "Type /kill [name] TWICE during the night to kill another player! You can't be stopped by anyone now!",
+            "info": "Can kill twice faster than protection or distraction.. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Self",
+                        "target": "AnyButTeam",
+                        "limit": 2,
+                        "priority": "variable:prio_werewolf_max",
+                        "pierce": true,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "mafia",
+            "translation": "Zubat",
+            "side": "mafia",
+            "winIfDeadRoles": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "human", "human2", "human3", "godfather", "godfather_plus", "birb", "birb2", "birb3"],
+            "tutorialmsg": "variable:tutorial_zubat",
+            "help": "Type /kill [name] to eliminate someone! If Jigglypuff tries to sing to you at night, you will poison her instead!",
+            "info": "Can kill one person during the night. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_mafia",
+                        "broadcast": "team"
+                    }
+                },
+                "distract": {
+                    "mode": "poisonattacker",
+                    "msg": ""
+                },
+                "startup": "team-reveal",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "mafia2",
+            "translation": "Ekans",
+            "side": "mafia",
+            "winIfDeadRoles": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "human", "human2", "human3", "godfather", "godfather_plus", "birb", "birb2", "birb3"],
+            "tutorialmsg": "variable:tutorial_ekans",
+            "help": "Type /poison [name] to eliminate someone after 2 turns! If Jigglypuff tries to sing to you at night, you will poison her instead!",
+            "info": "Can poison one person during the night. ~Sided~",
+            "actions": {
+                "night": {
+                    "poison": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_poison",
+                        "broadcast": "team"
+                    }
+                },
+                "distract": {
+                    "mode": "poisonattacker",
+                    "msg": ""
+                },
+                "startup": "team-reveal",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "fossildummy",
+            "translation": "Fossil Pokémon",
+            "side": "fossil",
+            "hide": true,
+            "help": "",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_mafia2",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "humandummy",
+            "translation": "Humanoid Pokémon",
+            "side": "human",
+            "hide": true,
+            "help": "",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_mafia3",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "fossil",
+            "translation": "Kabuto",
+            "side": "fossil",
+            "winIfDeadRoles": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "human", "human2", "human3", "godfather", "godfather_plus", "birb", "birb2", "birb3"],
+            "help": "variable:help_mafia_bodyguard",
+            "tutorialmsg": "variable:tutorial_kabuto",
+            "info": "Can kill one person during the night. Can protect one person during the night. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "hide": true,
+                        "priority": "variable:prio_mafia2",
+                        "broadcast": "team"
+                    },
+                    "protect": {
+                        "common": "Role",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_protect",
+                        "broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "fossil2",
+            "translation": "Omastar",
+            "side": "fossil",
+            "winIfDeadRoles": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "human", "human2", "human3", "godfather", "godfather_plus", "birb", "birb2", "birb3"],
+            "help": "variable:help_mafia_inspector",
+            "tutorialmsg": "variable:tutorial_omastar",
+            "info": "Can kill one person during the night. Can inspect one person during the night. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "hide": true,
+                        "priority": "variable:prio_mafia2",
+                        "broadcast": "team"
+                    },
+                    "inspect": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_inspect",
+                        "broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "fossil3",
+            "translation": "Aerodactyl",
+            "side": "fossil",
+            "winIfDeadRoles": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "human", "human2", "human3", "godfather", "godfather_plus", "birb", "birb2", "birb3"],
+            "help": "variable:help_mafia_boss",
+            "tutorialmsg": "variable:tutorial_aerodactyl",
+            "info": "Can kill one person during the night. Can kill2 one person during the night every other night, starting night 2. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "hide": true,
+                        "priority": "variable:prio_mafia2",
+                        "broadcast": "team"
+                    },
+                    "kill2": {
+                        "common": "Team",
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "initialrecharge": 2,
+                        "priority": "variable:prio_mafia21",
+                        "broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "human",
+            "translation": "Electabuzz",
+            "side": "human",
+            "winIfDeadRoles": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "fossil", "fossil2", "fossil3", "godfather", "godfather_plus", "birb", "birb2", "birb3"],
+            "help": "variable:help_mafia_bodyguard",
+            "tutorialmsg": "variable:tutorial_electabuzz",
+            "info": "Can kill one person during the night. Can protect one person during the night. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "hide": true,
+                        "priority": "variable:prio_mafia3",
+                        "broadcast": "team"
+                    },
+                    "protect": {
+                        "common": "Role",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_protect",
+                        "broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "human2",
+            "translation": "Magmar",
+            "side": "human",
+            "winIfDeadRoles": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "fossil", "fossil2", "fossil3", "godfather", "godfather_plus", "birb", "birb2", "birb3"],
+            "help": "variable:help_mafia_inspector",
+            "tutorialmsg": "variable:tutorial_magmar",
+            "info": "Can kill one person during the night. Can inspect one person during the night. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "hide": true,
+                        "priority": "variable:prio_mafia3",
+                        "broadcast": "team"
+                    },
+                    "inspect": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_inspect",
+                        "broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "human3",
+            "translation": "Jynx",
+            "side": "human",
+            "winIfDeadRoles": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "fossil", "fossil2", "fossil3", "godfather", "godfather_plus", "birb", "birb2", "birb3"],
+            "help": "variable:help_mafia_boss",
+            "tutorialmsg": "variable:tutorial_jynx",
+            "info": "Can kill one person during the night. Can kill2 one person during the night every other night, starting night 2. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "hide": true,
+                        "priority": "variable:prio_mafia3",
+                        "broadcast": "team"
+                    },
+                    "kill2": {
+                        "common": "Team",
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "initialrecharge": 2,
+                        "priority": "variable:prio_mafia31",
+                        "broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "birb",
+            "translation": "Articuno",
+            "side": "birb",
+            "winIfDeadRoles": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "fossil", "fossil2", "fossil3", "godfather", "godfather_plus", "human", "human2", "human3"],
+            "tutorialmsg": "variable:tutorial_articuno",
+            "help": "You are one of the Legendary Birds! As powerful defenders of the sky, you cannot be killed, and die only when Inspected! Type /Kill [name] to kill your enemies, and talk to your teammates with /tt! Use /Protect [name] to defend your teammates!",
+            "info": "Can kill one person during the night. Can protect one person during the night. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "hide": true,
+                        "priority": "variable:prio_mafia4",
+                        "broadcast": "team"
+                    },
+                    "protect": {
+                        "common": "Role",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_protect",
+                        "broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "birb2",
+            "translation": "Zapdos",
+            "side": "birb",
+            "winIfDeadRoles": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "fossil", "fossil2", "fossil3", "godfather", "godfather_plus", "human", "human2", "human3"],
+            "tutorialmsg": "variable:tutorial_zapdos",
+            "help": "You are one of the Legendary Birds! As powerful defenders of the sky, you cannot be killed, and die only when Inspected! Type /Kill [name] to kill your enemies, and talk to your teammates with /tt! /Inspect [name] someone to find out their role!",
+            "info": "Can kill one person during the night. Can inspect one person during the night. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "hide": true,
+                        "priority": "variable:prio_mafia4",
+                        "broadcast": "team"
+                    },
+                    "inspect": {
+                        "common": "Role",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_inspect",
+                        "broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "birb3",
+            "translation": "Moltres",
+            "side": "birb",
+            "winIfDeadRoles": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "fossil", "fossil2", "fossil3", "godfather", "godfather_plus", "human", "human2", "human3"],
+            "tutorialmsg": "variable:tutorial_moltres",
+            "help": "You are one of the Legendary Birds! As powerful defenders of the sky, you cannot be killed, and die only when Inspected! Type /Kill [name] to kill your enemies, and talk to your teammates with /tt! Use /kill2 [name] every other night for an extra kill!",
+            "info": "Can kill one person during the night. Can kill2 one person during the night every other night, starting night 2. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "hide": true,
+                        "priority": "variable:prio_mafia4",
+                        "broadcast": "team"
+                    },
+                    "kill2": {
+                        "common": "Role",
+                        "target": "AnyButTeam",
+                        "recharge": 2,
+                        "initialrecharge": 2,
+                        "command": "kill",
+                        "priority": "variable:prio_mafia41",
+                        "broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "birbdummy",
+            "translation": "Legendary Birds",
+            "side": "birb",
+            "hide": true,
+            "help": "",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_mafia4",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "godfather",
+            "translation": "Mewtwo",
+            "side": "godfather",
+            "tutorialmsg": "variable:tutorial_mewtwo",
+            "winIfDeadRoles": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "fossil", "fossil2", "fossil3", "human", "human2", "human3", "birb", "birb2", "birb3"],
+            "help": "The result of a mysterious experiment, you are the most powerful Pokémon in Kanto! Type /kill [name] and /kill [name2] to make two players faint every night! You can also use /inspect [name] to find someone else's role. You cannot be distracted, and you survive 1 attack made against you during the night.",
+            "players": [17, 40],
+            "info": "Can kill two persons during the night. Can inspect one person during the night. Evades 1 night kill (2 if 26 or more players). Ignore distractors. ~Sided~",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Self",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_godfather",
+                        "broadcast": "team",
+                        "limit": 2
+                    },
+                    "inspect": {
+                        "common": "Self",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_inspect",
+                        "broadcast": "team"
+                    }
+                },
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "The ~Distracter~ came to you during the night, but you ignored them!"
+                },
+                "kill": {
+                    "mode": {
+                        "evadeCharges": 1
+                    },
+                    "msg": "Your target (~Self~) couldn't be killed!"
+                }
+            }
+        },
+        {
+            "role": "godfather_plus",
+            "translation": "Mewtwo",
+            "side": "godfather",
+            "tutorialmsg": "variable:tutorial_mewtwo",
+            "winIfDeadRoles": ["villager", "stalker", "stalker2", "inspector", "bodyguard", "hooker", "mayor", "vigilante", "watcher", "commuter", "fossil", "fossil2", "fossil3", "human", "human2", "human3", "birb", "birb2", "birb3"],
+            "help": "The result of a mysterious experiment, you are the most powerful Pokémon in Kanto! Type /kill [name] and /kill [name2] to make two players faint every night! You can also use /inspect [name] to find someone else's role. You cannot be distracted, and you survive 2 attacks made against you during the night.",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Self",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_godfather",
+                        "broadcast": "team",
+                        "limit": 2
+                    },
+                    "inspect": {
+                        "common": "Self",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_inspect",
+                        "broadcast": "team"
+                    }
+                },
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "The ~Distracter~ came to you during the night, but you ignored them!"
+                },
+                "kill": {
+                    "mode": {
+                        "evadeCharges": 2
+                    },
+                    "msg": "Your target (~Self~) couldn't be killed!"
+                }
+            }
+        }
+    ],
+    "minplayers": 4,
+    "roles1": [
+        "mafia2",
+        "hooker",
+        "villager",
+        "villager",
+        
+        "villager"
+    ],
+    "roles2": [
+        "inspector",
+        "bodyguard",
+        "mafia",
+        "mafia",
+        "villager",
+        "villager"
+    ],
+    "roles3": [
+        "inspector",
+        "bodyguard",
+        "mafia",
+        "mafia2",
+        "villager",
+        "villager",
+        "villager",
+
+        "villager",
+        "werewolf",
+        "villager"
+    ],
+    "roles4": [
+        "inspector",
+        "bodyguard",
+        "hooker",
+        "watcher",
+        "villager",
+        "villager",
+        "villager",
+        "fossil",
+        "fossil2",
+        "human",
+        "human2",
+
+        "villager",
+        "werewolf",
+        "villager"
+    ],
+    "roles5": [
+        "inspector",
+        "bodyguard",
+        "bodyguard",
+        "hooker",
+        "mayor",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "fossil",
+        "fossil2",
+        "fossil3",
+        "human",
+        "human2",
+        "human3",
+
+        "villager"
+    ],
+    "roles6": [
+        "inspector",
+        "bodyguard",
+        "bodyguard",
+        "hooker",
+        "watcher",
+        "vigilante",
+        "mayor",
+        "stalker",
+        "villager",
+        "villager",
+        "fossil",
+        "fossil2",
+        "fossil3",
+        "human",
+        "human2",
+        "human3",
+        "godfather",
+
+        "villager",
+        "villager",
+        "werewolf",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager"
+    ],
+    "roles7": [
+        "inspector",
+        "inspector",
+        "bodyguard",
+        "bodyguard",
+        "hooker",
+        "watcher",
+        "vigilante",
+        "commuter",
+        "mayor",
+        "stalker",
+        "stalker",
+        "villager",
+        "villager",
+        "villager",
+        "fossil",
+        "fossil2",
+        "fossil3",
+        "human",
+        "human2",
+        "human3",
+        "godfather_plus",
+        "birb",
+        "birb2",
+        "birb3",
+
+        "villager",
+        "werewolf",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager",
+        "villager"
+    ],
+    "villageCantLoseRoles": [
+        "vigilante",
+        "mayor"
+    ],
+    "changelog": {
+        "06.11.2018": "Theme coded."
+    }
+}
