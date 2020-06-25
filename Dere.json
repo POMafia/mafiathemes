@@ -1,0 +1,881 @@
+{
+    "name": "Dere",
+    "author": "",
+    "nonPeak": true,
+    "summary": "The Harem is taking over the world! It's up to the Dere types to defeat the Harem Leader before they are all collected into the Harem. However, everyone's abilities are yet unknown, as until they are collected into the harem, their true feelings will not be revealed!",
+    "sides": [
+        {
+            "side": "mafia",
+            "translation": "Harem"
+        },
+        {
+            "side": "mafia1",
+            "translation": "Second Harem"
+        },
+        {
+            "side": "village",
+            "translation": "Dere"
+        }
+    ],
+    "tips": {
+    	"Yandere": "If you are the Yandere, remember that everyone evades 1 nightkill, so they have to be hit twice before being murdered.",
+    	"Inspect": "If you get an Inspect result, you are either the Dandere or the Undere! The Undere's Inspects are 90% false.",
+    	"Action Block": "If you get a message that your action was blocked, that means either the Kuudere distracted you, or the Tsundere protected your target!"
+    },
+    "variables": {
+    	"tsundereblockmsg": "Your action was blocked by the Tsundere or the Kuudere!",
+    	"kuudereblockmsg": "Your action was blocked by the Tsundere or the Kuudere!",
+    	"derehelp": "You are one of the Dere types! You can type /Dere [name] to use your action on someone during the night. However, you haven't discovered your true feelings, so you don't know what your abilities are! Work together with the other Deres to win!",
+  		"haremhelp": "You have joined the Harem! You can still use /Dere [name] to use your action on someone during the night. Your true feelings have now been revealed, so you can use them to defeat everyone who tries to threaten your senpai!"
+    },
+    "roles": [
+        {
+            "role": "mafia",
+            "startupmsg": "You are a Harem Leader!",
+            "translation": "Harem Leader",
+            "side": "mafia",
+            "info": "Can harem (convert) one person during the night, every two nights. ~Sided~",
+            "help": "You are just the average upperclassman, but for whatever reason, you have the ability to /harem [name] during the night to increase your harem once every two nights!",
+            "actions": {
+            	"teamUtilities": true,
+            	"updateTeam": true,
+            	"onDeath": {
+            		"killRoles": ["dandere-a", "undere-a", "tsundere-a", "yandere-a", "himedere-a", "kamidere-a"],
+            		"killmsg": "And with that, the Harem Leader was kicked out of the school forever!"
+            	},
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": 1
+            			},
+            			"msg": ""
+            		},
+                "night": {
+                    "harem": {
+                    	"command": ["convert"],
+                    	"newRole": {
+                    		"dandere-a": ["dandere", "dandere-b"],
+                    		"undere-a": ["undere", "undere-b"],
+                    		"tsundere-a": ["tsundere", "tsundere-b"],
+                    		"yandere-a": ["yandere", "yandere-b"],
+                    		"kuudere-a": ["kuudere", "kuudere-b"],
+                    		"himedere-a": ["himedere", "himedere-b"],
+                    		"kamidere-a": ["kamidere", "kamidere-b"]
+                    	},
+                    	"recharge": 2,
+                    	"convertmsg": "The ~Old~ has been converted into a Harem Member!",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "broadcast": "team",
+                        "priority": 6
+                    }
+                }
+            }
+        },
+        {
+            "role": "dandere-a",
+            "translation": "Harem Member",
+            "side": "mafia",
+            "startupmsg": "You are a Dandere!",
+            "hide": true,
+            "help": "variable:haremhelp",
+            "actions": {
+            	"teamUtilities": true,
+            	"updateTeam": true,
+            	"initialCondition": {"clearCurse": true},
+            	"inspect": {
+            		"revealAs": "dandere"
+            		},
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": "*"
+            			},
+            			"msg": ""
+            		},
+                "night": {
+                    "dere": {
+                    	"command": ["inspect"],
+                        "target": "AnyButSelf",
+                        "hide": true,
+                        "common": "Self",
+                        "broadcast": "team",
+                        "priority": 5
+                    }
+                }
+            }
+        },
+        {
+            "role": "tsundere-a",
+            "startupmsg": "You are a Tsundere!",
+            "translation": "Harem Member",
+            "side": "mafia",
+            "hide": true,
+            "help": "variable:haremhelp",
+            "actions": {
+            	"inspect": {
+            		"revealAs": "tsundere"
+            		},
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": "*"
+            			},
+            			"msg": ""
+            		},
+            	"teamUtilities": true,
+            	"updateTeam": true,
+            	"initialCondition": {"clearCurse": true},
+                "night": {
+                    "dere": {
+                    	"command": ["guard"],
+                    	"guardActions": ["dere", "harem"],
+                    	"guardmsg": "variable:tsundereblockmsg",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "broadcast": "team",
+                        "priority": 3
+                    }
+                }
+            }
+        },
+        {
+            "role": "undere-a",
+            "startupmsg": "You are an Undere!",
+            "translation": "Harem Member",
+            "hide": true,
+            "side": "mafia",
+            "help": "variable:haremhelp",
+            "actions": {
+            	"inspect": {
+            		"revealAs": "mafia"
+            		},
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": "*"
+            			},
+            			"msg": ""
+            		},
+            	"teamUtilities": true,
+            	"updateTeam": true,
+            	"initialCondition": {"clearCurse": true},
+                "night": {
+                    "dere": {
+                    	"command": ["inspect"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "Sight": {
+                        	"yandere": 0.15,
+                        	"kuudere": 0.15,
+                        	"tsundere": 0.1,
+                        	"mafia": 0.5,
+                        	"true": 0.1
+                        },
+                        "broadcast": "team",
+                        "priority": 5
+                    }
+                }
+            }
+        },
+        {
+            "role": "yandere-a",
+            "startupmsg": "You are a Yandere!",
+            "translation": "Harem Member",
+            "side": "mafia",
+            "hide": true,
+            "help": "variable:haremhelp",
+            "actions": {
+            	"inspect": {
+            		"revealAs": "yandere"
+            		},
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": "*"
+            			},
+            			"msg": ""
+            		},
+            	"teamUtilities": true,
+            	"updateTeam": true,
+            	"initialCondition": {"clearCurse": true},
+                "night": {
+                    "dere": {
+                    	"command": ["kill"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                "broadcast": "team",
+                        "priority": 4
+                    }
+                }
+            }
+        },
+        {
+            "role": "kuudere-a",
+            "startupmsg": "You are a Kuudere!",
+            "translation": "Harem Member",
+            "side": "mafia",
+            "hide": true,
+            "help": "variable:derehelp",
+            "actions": {
+            	"inspect": {
+            		"revealAs": "kuudere"
+            		},
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": "*"
+            			},
+            			"msg": ""
+            		},
+            	"teamUtilities": true,
+            	"updateTeam": true,
+            	"initialCondition": {"clearCurse": true},
+                "night": {
+                    "dere": {
+                    	"command": ["distract"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "distractmsg": "variable:kuudereblockmsg",
+                        "hide": true,
+                "broadcast": "team",
+                        "priority": 1
+                    }
+                }
+            }
+        },
+        {
+            "role": "himedere-a",
+            "startupmsg": "You are a Himedere!",
+            "translation": "Harem Member",
+            "side": "mafia",
+            "hide": true,
+            "help": "variable:haremhelp",
+            "actions": {
+            	"vote": 3,
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": "*"
+            			},
+            			"msg": ""
+            		},
+            	"inspect": {
+            		"revealAs": "himedere"
+            		},
+            	"teamUtilities": true,
+            	"updateTeam": true,
+            	"initialCondition": {"clearCurse": true},
+                "night": {
+                    "dere": {
+                    	"command": ["dummy"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                "broadcast": "team",
+                        "priority": 1
+                    }
+                }
+            }
+        },
+        {
+            "role": "kamidere-a",
+            "startupmsg": "You are a Kamidere!",
+            "translation": "Harem Member",
+            "side": "mafia",
+            "hide": true,
+            "help": "variable:haremhelp",
+            "actions": {
+            	"inspect": {
+            		"revealAs": "kamidere"
+            		},
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": "*"
+            			},
+            			"msg": ""
+            		},
+            	"teamUtilities": true,
+            	"updateTeam": true,
+            	"initialCondition": {"clearCurse": true},
+            	"vote": -3,
+                "night": {
+                    "dere": {
+                    	"command": ["dummy"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 1
+                    }
+                }
+            }
+        },        
+        {
+            "role": "mafia1",
+            "startupmsg": "You are a Harem Leader!",
+            "translation": "Harem Leader",
+            "side": "mafia1",
+            "info": "Can harem (convert) one person during the night, every two nights. ~Sided~",
+            "help": "You are just the average upperclassman, but for whatever reason, you have the ability to /harem [name] during the night to increase your harem once every two nights!",
+            "actions": {
+            	"teamUtilities": true,
+            	"updateTeam": true,
+            	"onDeath": {
+            		"killRoles": ["dandere-b", "undere-b", "tsundere-b", "yandere-b", "himedere-b", "kamidere-b"],
+            		"killmsg": "The Harem Leader was defeated!"
+            	},
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": 1
+            			},
+            			"msg": ""
+            		},
+                "night": {
+                    "harem": {
+                    	"command": ["convert"],
+                    	"newRole": {
+                    		"dandere-b": ["dandere", "dandere-a"],
+                    		"undere-b": ["undere", "undere-a"],
+                    		"tsundere-b": ["tsundere", "tsundere-a"],
+                    		"yandere-b": ["yandere", "yandere-a"],
+                    		"kuudere-b": ["kuudere", "kuudere-a"],
+                    		"himedere-b": ["himedere", "himedere-a"],
+                    		"kamidere-b": ["kamidere", "kamidere-a"]
+                    	},
+                    	"recharge": 2,
+                    	"convertmsg": "The ~Old~ has been converted into a Harem Member!",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                "broadcast": "team",
+                        "priority": 7
+                    }
+                }
+            }
+        },
+        {
+            "role": "dandere-b",
+            "translation": "Harem Member",
+            "side": "mafia1",
+            "startupmsg": "You are a Dandere!",
+            "hide": true,
+            "help": "variable:haremhelp",
+            "actions": {
+            	"teamUtilities": true,
+            	"updateTeam": true,
+            	"initialCondition": {"clearCurse": true},
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": "*"
+            			},
+            			"msg": ""
+            		},
+            	"inspect": {
+            		"revealAs": "dandere"
+            		},
+                "night": {
+                    "dere": {
+                    	"command": ["inspect"],
+                        "target": "AnyButSelf",
+                        "hide": true,
+                "broadcast": "team",
+                        "common": "Self",
+                        "priority": 5
+                    }
+                }
+            }
+        },
+        {
+            "role": "tsundere-b",
+            "startupmsg": "You are a Tsundere!",
+            "translation": "Harem Member",
+            "side": "mafia1",
+            "hide": true,
+            "help": "variable:haremhelp",
+            "actions": {
+            	"inspect": {
+            		"revealAs": "tsundere"
+            		},
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": "*"
+            			},
+            			"msg": ""
+            		},
+            	"teamUtilities": true,
+            	"updateTeam": true,
+            	"initialCondition": {"clearCurse": true},
+                "night": {
+                    "dere": {
+                    	"command": ["guard"],
+                    	"guardActions": ["dere", "harem"],
+                    	"guardmsg": "variable:tsundereblockmsg",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 3
+                    }
+                }
+            }
+        },
+        {
+            "role": "undere-b",
+            "startupmsg": "You are an Undere!",
+            "translation": "Harem Member",
+            "hide": true,
+            "side": "mafia1",
+            "help": "variable:haremhelp",
+            "actions": {
+            	"inspect": {
+            		"revealAs": "mafia"
+            		},
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": "*"
+            			},
+            			"msg": ""
+            		},
+            	"teamUtilities": true,
+            	"updateTeam": true,
+            	"initialCondition": {"clearCurse": true},
+            	"teamUtilities": true,
+            	"updateTeam": true,
+            	"initialCondition": {"clearCurse": true},
+                "night": {
+                    "dere": {
+                    	"command": ["inspect"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "Sight": {
+                        	"yandere": 0.15,
+                        	"kuudere": 0.15,
+                        	"tsundere": 0.1,
+                        	"mafia": 0.5,
+                        	"true": 0.1
+                        },
+                "broadcast": "team",
+                        "priority": 5
+                    }
+                }
+            }
+        },
+        {
+            "role": "yandere-b",
+            "startupmsg": "You are a Yandere!",
+            "translation": "Harem Member",
+            "side": "mafia1",
+            "hide": true,
+            "help": "variable:haremhelp",
+            "actions": {
+            	"inspect": {
+            		"revealAs": "yandere"
+            		},
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": "*"
+            			},
+            			"msg": ""
+            		},
+            	"teamUtilities": true,
+            	"updateTeam": true,
+            	"initialCondition": {"clearCurse": true},
+                "night": {
+                    "dere": {
+                    	"command": ["kill"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                "broadcast": "team",
+                        "priority": 4
+                    }
+                }
+            }
+        },
+        {
+            "role": "kuudere-b",
+            "startupmsg": "You are a Kuudere!",
+            "translation": "Harem Member",
+            "side": "mafia1",
+            "hide": true,
+            "help": "variable:derehelp",
+            "actions": {
+            	"inspect": {
+            		"revealAs": "kuudere"
+            		},
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": "*"
+            			},
+            			"msg": ""
+            		},
+            	"teamUtilities": true,
+            	"updateTeam": true,
+            	"initialCondition": {"clearCurse": true},
+                "night": {
+                    "dere": {
+                    	"command": ["distract"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "distractmsg": "variable:kuudereblockmsg",
+                        "hide": true,
+                		"broadcast": "team",
+                        "priority": 1
+                    }
+                }
+            }
+        },
+        {
+            "role": "himedere-b",
+            "startupmsg": "You are a Himedere!",
+            "translation": "Harem Member",
+            "side": "mafia1",
+            "hide": true,
+            "help": "variable:haremhelp",
+            "actions": {
+            	"vote": 3,
+            	"teamUtilities": true,
+            	"updateTeam": true,
+            	"inspect": {
+            		"revealAs": "himedere"
+            		},
+            	"initialCondition": {"clearCurse": true},
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": "*"
+            			},
+            			"msg": ""
+            		},
+                "night": {
+                    "dere": {
+                    	"command": ["dummy"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                "broadcast": "team",
+                        "hide": true,
+                        "priority": 1
+                    }
+                }
+            }
+        },
+        {
+            "role": "kamidere-b",
+            "startupmsg": "You are a Kamidere!",
+            "translation": "Harem Member",
+            "side": "mafia1",
+            "hide": true,
+            "help": "variable:haremhelp",
+            "actions": {
+            	"inspect": {
+            		"revealAs": "kamidere"
+            		},
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": "*"
+            			},
+            			"msg": ""
+            		},
+            	"teamUtilities": true,
+            	"updateTeam": true,
+            	"initialCondition": {"clearCurse": true},
+            	"vote": -3,
+                "night": {
+                    "dere": {
+                    	"command": ["dummy"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                "broadcast": "team",
+                        "hide": true,
+                        "priority": 1
+                    }
+                }
+            }
+        },
+        {
+            "role": "nandere",
+            "startupmsg": "You are a Nandere!",
+            "translation": "Nandere",
+            "side": "village",
+            "hide": true,
+            "info": "",
+            "help": "Placeholder",
+            "actions": {
+            	"onlist": "nandere",
+            	"onteam": "nandere"
+            }
+        },
+        {
+            "role": "dandere",
+            "startupmsg": "You are a Nandere!",
+            "translation": "Dandere",
+            "side": "village",
+            "info": "Can dere (inspect) one person during the night. ~Sided~",
+            "help": "variable:derehelp",
+            "actions": {
+            	"onlist": "nandere",
+            	"onteam": "nandere",
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": 1
+            			},
+            			"msg": ""
+            		},
+                "night": {
+                    "dere": {
+                    	"command": ["inspect"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 5
+                    }
+                }
+            }
+        },
+        {
+            "role": "undere",
+            "startupmsg": "You are a Nandere!",
+            "translation": "Undere",
+            "side": "village",
+            "info": "Can dere (inspect) one person during the night. Inspect result is random. Inspects as Harem Leader. ~Sided~",
+            "help": "variable:derehelp",
+            "actions": {
+            	"inspect": {
+            		"revealAs": "mafia"
+            		},
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": 1
+            			},
+            			"msg": ""
+            		},
+            	"onlist": "nandere",
+            	"onteam": "nandere",
+                "night": {
+                    "dere": {
+                    	"command": ["inspect"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "Sight": {
+                        	"yandere": 0.1,
+                        	"kuudere": 0.1,
+                        	"tsundere": 0.1,
+                        	"himedere": 0.1,
+                        	"kamidere": 0.1,
+                        	"mafia": 0.4,
+                        	"true": 0.1
+                        },
+                        "priority": 5
+                    }
+                }
+            }
+        },
+        {
+            "role": "yandere",
+            "startupmsg": "You are a Nandere!",
+            "translation": "Yandere",
+            "side": "village",
+            "info": "Can dere (kill) one person during the night. Each role evades one nightkill per game. ~Sided~",
+            "help": "variable:derehelp",
+            "actions": {
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": 1
+            			},
+            			"msg": ""
+            		},
+            	"onlist": "nandere",
+            	"onteam": "nandere",
+                "night": {
+                    "dere": {
+                    	"command": ["kill"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 4
+                    }
+                }
+            }
+        },
+        {
+            "role": "tsundere",
+            "startupmsg": "You are a Nandere!",
+            "translation": "Tsundere",
+            "side": "village",
+            "info": "Can dere (guard) one person during the night. Blocks all actions. ~Sided~",
+            "help": "variable:derehelp",
+            "actions": {
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": 1
+            			},
+            			"msg": ""
+            		},
+            	"onlist": "nandere",
+            	"onteam": "nandere",
+                "night": {
+                    "dere": {
+                    	"command": ["guard"],
+                    	"guardActions": ["dere", "harem"],
+                    	"guardmsg": "variable:tsundereblockmsg",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 3
+                    }
+                }
+            }
+        },
+        {
+            "role": "kuudere",
+            "startupmsg": "You are a Nandere!",
+            "translation": "Kuudere",
+            "side": "village",
+            "info": "Can dere (distract) one person during the night. Distract is silent. ~Sided~",
+            "help": "variable:derehelp",
+            "actions": {
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": 1
+            			},
+            			"msg": ""
+            		},
+            	"onlist": "nandere",
+            	"onteam": "nandere",
+                "night": {
+                    "dere": {
+                    	"command": ["distract"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "distractmsg": "variable:kuudereblockmsg",
+                        "priority": 1
+                    }
+                }
+            }
+        },
+        {
+            "role": "himedere",
+            "startupmsg": "You are a Nandere!",
+            "translation": "Himedere",
+            "side": "village",
+            "info": "Can dere (dummy) one person during the night. Vote counts as 3. ~Sided~",
+            "help": "variable:derehelp",
+            "actions": {
+            	"vote": 3,
+            	"onlist": "nandere",
+            	"onteam": "nandere",
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": 1
+            			},
+            			"msg": ""
+            		},
+                "night": {
+                    "dere": {
+                    	"command": ["dummy"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 1
+                    }
+                }
+            }
+        },
+        {
+            "role": "kamidere",
+            "startupmsg": "You are a Nandere!",
+            "translation": "Kamidere",
+            "side": "village",
+            "info": "Can dere (dummy) one person during the night. Vote counts as -3. ~Sided~",
+            "help": "variable:derehelp",
+            "actions": {
+            	"vote": -3,
+            	"onlist": "nandere",
+            	"onteam": "nandere",
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": 1
+            			},
+            			"msg": ""
+            		},
+                "night": {
+                    "dere": {
+                    	"command": ["dummy"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 1
+                    }
+                }
+            }
+        }
+    ],
+	"roles1": [
+		"yandere",
+		{
+			"himedere": 0.5,
+			"kamidere": 0.5
+		},
+		{
+			"tsundere": 0.5,
+			"kuudere": 0.5
+		},
+		"mafia"
+	],
+	"roles2": [
+		"mafia",
+		"tsundere",
+		"yandere",
+		{
+			"himedere": 0.5,
+			"kamidere": 0.5
+		},
+		"dandere",
+		"undere"
+	],
+	"roles3": [
+		"mafia",
+		"mafia1",
+		"tsundere",
+		"kuudere",
+		"dandere",
+		"undere",
+		"yandere",
+		{
+			"himedere": 0.5,
+			"kamidere": 0.5
+		}
+	],
+	"roles4": [
+		"mafia",
+		"mafia1",
+		"tsundere",
+		"kuudere",
+		"dandere",
+		"undere",
+		{
+			"dandere": 0.5,
+			"undere": 0.5
+		},
+		{
+			"dandere": 0.5,
+			"undere": 0.5
+		},
+		"yandere",
+		{
+			"yandere": 0.33,
+			"himedere": 0.33,
+			"kamidere": 0.33
+		},
+		{
+			"kuudere": 0.5,
+			"tsundere": 0.5
+		},
+		{
+			"yandere": 0.33,
+			"kuudere": 0.33,
+			"tsundere": 0.33
+		},
+		"tsundere"
+	],
+    "villageCantLoseRoles": [
+        "himedere",
+        "kamidere",
+        "yandere"
+    ],
+	"minplayers": 4,
+	"changelog": [
+		"6/24/2015: Theme created."
+	],
+    "killmsg": "±Game: ~Player~ has been murdered!",
+    "lynchmsg": "±Game: ~Player~ (one of the ~Side~) has been removed from the game!"
+}
