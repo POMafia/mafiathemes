@@ -1,0 +1,1146 @@
+{
+    "name": "SBS",
+    "altname": "Second Best Sheep",
+    "author": ["Veteran Padgett"],
+    "summary": "The person who receives the second most votes will be lynched. Have fun!",
+    "sides": [
+        {
+            "side": "village",
+"color": "#00cc00",
+            "translation": "Village"
+        },
+        {
+            "side": "wolf",
+"color": "red",
+            "translation": "Wolf"
+        },
+        {
+            "side": "werewolf",
+"color": "#cc00cc",
+            "translation": "Werewolf"
+        },
+        {
+            "side": "direwolf",
+"color": "#cccc00",
+            "translation": "Dire Wolf"
+        }
+    ],
+    "tips": {
+        "Vote Phase": "The person with the second most votes will be lynched.",
+        "Follow the Leader": "It is safe for the Sheep Dog to claim. Connect with them so that they can lead the votes.",
+        "Tied Votes": "In the event of a tie for second most votes, all of those votees will be lynched.",
+        "Stallbreaking": "If there is no second most vote, everyone voted for will be lynched. No johns allowed!",
+        "Teamwork": "If you want to vote someone off, your team should coordinate another person to receive the most votes."
+    },
+    "variables": {
+        "help_sheep": "Baaa! You are a regular Sheep. Use /vote [name] to remove people during the day!",
+        "help_goat": "You are the Goat. You may /ram or /protect during the night. You only get one shot so make it count.",
+        "help_goat2": "You are the Goat. Use /vote [name] to remove people during the day!",
+        "help_inspector": "You are the Sheep Dog. Use /inspect at night to look for any threats to your flock. You should also let the sheep know that you are in charge!",
+        "help_bodyguard": "You are the Shepherd. You can /protect someone at night with your cane.",
+        "help_hooker": "You are the Electric Sheep. You can /stun someone during the night.",
+        "help_boy": "You are the Boy Who Cried Wolf. If you get bored, use /cry [name] during the day to tell everyone who the wolf is.",
+        "help_wolf": "You are the Wolf. You can eat fruits and berries, but your favorite meal is sheep! You share a /kill with your teammates.",
+        "help_rabidwolf": "You are the Rabid Wolf. Use /infect [target]@[redirect] at night to turn someone against their friends! If they don't vote for the person you chose, the rabies will kill them at the end of the day! You also share a /kill with your teammates.",
+        "help_mafia_miller": "You are the Wolf in Sheep's Clothing. No one can see past your clever disguise. You share a /kill with your teammates.",
+        "help_priestess": "You are the Wolf Priestess. Rescued by wolves as a child, you now worship them and bring them food to eat. You can perform the ritual /silence once per game to empower the wolves. All votes cast will be silent! You also share a /kill with your teammates.",
+        "help_bigbadwolf": "You are the Big Bad Wolf. You have a vote of 2 because of your reputation. At night you can /blow down someone's house to distract them and reveal them in the process! You share a /kill with your teammates.",
+        "help_werewolf": "You are the Werewolf! Twice per game you can /bite someone to spread lycanthropy, but this DOES NOT work on the Sheep Dog. Your howls strike fear into whoever hears them. At night you share a /frenzy [name]@[redirect] with your team. If the frenzied victim doesn't attack the person you chose, they will become utterly mad. You also share a /kill with your teammates.",
+        "help_direwolf": "You are the Dire Wolf. Thought to be extinct, your monstrous size is enough to terrify even other wolves. You can /kill someone at night to sate your appetite. You can also /slaughter someone during the day, if you are willing to risk exposing yourself. Once per game you can /maul someone to death whether they are protected or not!",
+        "help_weresheep": "Aaawoooh! You are a WereSheep. Use /vote [name] to remove people during the day! You share /kill [name] and /frenzy [name]@[redirect] with your teammates.",
+        "help_weregoat": "You are the WereGoat. You may /ram or /protect during the night. You only get one shot so make it count. You share /kill [name] and /frenzy [name]@[redirect] with your teammates.",
+        "help_weregoat2": "You are the WereGoat. Use /vote [name] to remove people during the day! You share /kill [name] and /frenzy [name]@[redirect] with your teammates.",
+        "help_wwbodyguard": "You are the Werewolf Shepherd. You can /protect someone at night with your cane. You share /kill [name] and /frenzy [name]@[redirect] with your teammates.",
+        "help_wwhooker": "You are the Electric WereSheep. You can /stun someone during the night. You share /kill [name] and /frenzy [name]@[redirect] with your teammates.",
+        "help_wwboy": "You are the Werewolf Who Cried Wolf. If you get bored, use /cry [name] during the day to tell everyone who the wolf is. You share /kill [name] and /frenzy [name]@[redirect] with your teammates.",
+        "help_werewolf2": "You are the Werewolf. You share /kill [name] and /frenzy [name]@[redirect] with your teammates.",
+        "help_rabidwerewolf": "You are the Rabid Werewolf. Use /infect [target]@[redirect] at night to turn someone against their friends! If they don't vote for the person you chose, the rabies will kill them at the end of the day! You also share /kill [name] and /frenzy [name]@[redirect] with your teammates.",
+        "help_ww_miller": "You are the Werewolf in Wolf's Clothing. You share /kill [name] and /frenzy [name]@[redirect] with your teammates.",
+        "help_ww_miller2": "You are the Werewolf in Sheep's Clothing. No one can see past your clever disguise. You share /kill [name] and /frenzy [name]@[redirect] with your teammates.",
+        "help_wwpriestess": "You are the Wolf Priestess. Rescued by wolves as a child, you now worship them and bring them food to eat. You can perform the ritual /silence once per game to empower the wolves. All votes cast will be silent! You also share /kill [name] and /frenzy [name]@[redirect] with your teammates.",
+        "help_bigbadwerewolf": "You are the Big Bad Wolf. You have a vote of 2 because of your reputation. At night you can /blow down someone's house to distract them and reveal them in the process! You share /kill [name] and /frenzy [name]@[redirect] with your teammates.",
+        "help_direwerewolf": "You are the Dire Wolf. Thought to be extinct, your monstrous size is enough to terrify even other wolves. You share /kill [name] and /frenzy [name]@[redirect] with your teammates. You can also /slaughter someone during the day, if you are willing to risk exposing yourself. Once per game you can /maul someone to death whether they are protected or not!",
+        "prio_maul": 1,
+        "prio_blow": 2,
+        "prio_distract": 3,
+        "prio_protect": 4,
+        "prio_inspect": 4,
+        "prio_bite": 5,
+        "prio_direwolf": 6,
+        "prio_werewolf": 7,
+        "prio_wolf": 8,
+        "prio_goat": 9,
+        "prio_infect": 10,
+        "prio_frenzy": 11,
+        "prio_silence": 12
+    },
+    "lynchties": true,
+    "silentvotemsg": "~Player~ voted!",
+    "votemods": [
+        {
+            "modtype": "votecountordinal",
+            "ordinal": 2,
+            "target": "votee",
+            "effect": "add",
+            "amount": 9999
+        }
+    ],
+    "roles": [
+        {
+            "role": "sheep",
+            "translation": "Sheep",
+            "side": "village",
+            "help": "variable:help_sheep",
+            "info": "Has no special abilities. ~Sided~",
+            "actions": {}
+        },
+        {
+            "role": "goat",
+            "translation": "Goat",
+            "side": "village",
+            "help": "variable:help_goat",
+            "info": "Can kill or protect once per game. ~Sided~",
+            "actions": {
+                "night": {
+                    "ram": {
+                        "command": ["copy", "kill"],
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_goat",
+                        "cancel": ["protect"],
+                        "copyAs": "goat2",
+                        "silent": true,
+                        "silentCopy": true
+                    },
+                    "protect": {
+                        "command": ["copy", "protect"],
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_protect",
+                        "cancel": ["ram"],
+                        "copyAs": "goat2",
+                        "silent": true,
+                        "silentCopy": true
+                    }
+                }
+            }
+        },
+        {
+            "role": "scapegoat",
+            "translation": "Scapegoat",
+            "side": "village",
+            "help": "variable:help_goat",
+            "info": "Can kill or protect once per game. Dies if voted for. ~Sided~",
+            "actions": {
+                "voteshield": 99999,
+                "onDeadRoles": {
+                    "convertTo": {
+                        "scapegoat": ["goat"]
+                    },
+                    "convertmsg": ""
+                },
+                "startup": {
+                    "revealAs": "goat"
+                },
+                "night": {
+                    "ram": {
+                        "command": ["copy", "kill"],
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_goat",
+                        "cancel": ["protect"],
+                        "copyAs": "scapegoat2",
+                        "silent": true,
+                        "silentCopy": true
+                    },
+                    "protect": {
+                        "command": ["copy", "protect"],
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_protect",
+                        "cancel": ["ram"],
+                        "copyAs": "scapegoat2",
+                        "silent": true,
+                        "silentCopy": true
+                    }
+                }
+            }
+        },
+        {
+            "role": "goat2",
+            "translation": "Goat",
+            "side": "village",
+            "help": "variable:help_goat2",
+            "hide": true,
+            "actions": {}
+        },
+        {
+            "role": "scapegoat2",
+            "translation": "Scapegoat",
+            "side": "village",
+            "help": "variable:help_goat2",
+            "hide": true,
+            "actions": {
+                "voteshield": 99999,
+                "onDeadRoles": {
+                    "convertTo": {
+                        "scapegoat2": ["goat2"]
+                    },
+                    "convertmsg": ""
+                },
+                "startup": {
+                    "revealAs": "goat2"
+                }
+            }
+        },
+        {
+            "role": "inspector",
+            "translation": "Sheep Dog",
+            "side": "village",
+            "help": "variable:help_inspector",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "broadcast": "role",
+                        "priority": "variable:prio_inspect"
+                    }
+                },
+                "convert": {
+                    "mode": "ignore"
+                }
+            }
+        },
+        {
+            "role": "bodyguard",
+            "translation": "Shepherd",
+            "side": "village",
+            "help": "variable:help_bodyguard",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_protect"
+                    }
+                }
+            }
+        },
+        {
+            "role": "hooker",
+            "translation": "Electric Sheep",
+            "side": "village",
+            "help": "variable:help_hooker",
+            "info": "Can distract one person during the night. Only takes effect if the distracted target submitted the action. ~Sided~",
+            "actions": {
+                "night": {
+                    "stun": {
+                        "command": "distract",
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_distract",
+                        "onlyUser": true
+                    }
+                }
+            }
+        },
+        {
+            "role": "blacksheep",
+            "translation": "Black Sheep",
+            "side": "village",
+            "help": "variable:help_sheep",
+            "actions": {
+                "vote": -1
+            }
+        },
+        {
+            "role": "boy",
+            "translation": "Boy Who Cried Wolf",
+            "side": "village",
+            "help": "variable:help_boy",
+            "info": "Can cry that someone is a wolf during the day. ~Sided~",
+            "actions": {
+                "standby": {
+                    "cry": {
+                        "command": "expose",
+                        "target": "Any",
+                        "msg": "You can type /cry [name] during the day to let everyone know who the wolf is!",
+                        "exposemsg": "Wolf! Wolf! ~Target~ is the Wolf!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "miller",
+            "translation": "Sheep in Wolf's Clothing",
+            "side": "village",
+            "help": "variable:help_sheep",
+            "info": "Inspected as Wolf. Sees itself as a Sheep. ~Sided~",
+            "actions": {
+                "inspect": {
+                    "revealAs": "wolf"
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "sheep": ["wolf"]
+                    },
+                    "convertmsg": ""
+                },
+                "startup": {
+                    "revealAs": "sheep"
+                }
+            }
+        },
+        {
+            "role": "wolf",
+            "translation": "Wolf",
+            "side": "wolf",
+            "help": "variable:help_wolf",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_wolf",
+                        "broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "rabidwolf",
+            "translation": "Rabid Wolf",
+            "side": "wolf",
+            "help": "variable:help_rabidwolf",
+            "actions": {
+                "night": {
+                    "infect": {
+                        "command": "frenzy",
+                        "common": "Self",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_infect"
+                    },
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_wolf",
+                        "broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "mafia_miller",
+            "translation": "Wolf in Sheep's Clothing",
+            "side": "wolf",
+            "help": "variable:help_mafia_miller",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_wolf",
+                        "broadcast": "team"
+                    }
+                },
+                "inspect": {
+                    "revealAs": "sheep"
+                },
+                "startup": "team-reveal",
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "priestess",
+            "translation": "Wolf Priestess",
+            "side": "wolf",
+            "help": "variable:help_priestess",
+            "actions": {
+                "night": {
+                    "silence": {
+                        "silenceCount": 1,
+                        "common": "Self",
+                        "target": "OnlySelf",
+                        "priority": "variable:prio_silence",
+                        "charges": 1
+                    },
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_wolf",
+                        "broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "bigbadwolf",
+            "translation": "Big Bad Wolf",
+            "side": "wolf",
+            "help": "variable:help_bigbadwolf",
+            "actions": {
+                "night": {
+                    "blow": {
+                        "command": ["inspect", "distract"],
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "broadcast": "team",
+                        "priority": "variable:prio_blow",
+                        "onlyUser": true
+                    },
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_wolf",
+                        "broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "werewolf",
+            "translation": "Werewolf",
+            "side": "werewolf",
+            "help": "variable:help_werewolf",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    },
+                    "frenzy": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_frenzy",
+                        "broadcast": "team"
+                    },
+                    "bite": {
+                        "command": "convert",
+                        "charges": 2,
+                        "common": "Self",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_bite",
+                        "broadcast": "team",
+                        "newRole": {
+                            "weresheep": ["sheep"],
+                            "weregoat": ["goat"],
+                            "scapeweregoat": ["scapegoat"],
+                            "weregoat2": ["goat2"],
+                            "scapeweregoat2": ["scapegoat2"],
+                            "werewolfbodyguard": ["bodyguard"],
+                            "werewolfhooker": ["hooker"],
+                            "blackweresheep": ["blacksheep"],
+                            "werewolfboy": ["boy"],
+                            "werewolf_miller": ["miller"],
+                            "werewolf2": ["wolf"],
+                            "rabidwerewolf": ["rabidwolf"],
+                            "werewolf_miller2": ["mafia_miller"],
+                            "werewolfpriestess": ["priestess"],
+                            "bigbadwerewolf": ["bigbadwolf"],
+                            "direwerewolf": ["direwolf"]
+                        }
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "direwolf",
+            "translation": "Dire Wolf",
+            "side": "direwolf",
+            "help": "variable:help_direwolf",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_direwolf",
+                        "broadcast": "team"
+                    },
+                    "maul": {
+                        "command": "kill",
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "pierce": true,
+                        "priority": "variable:prio_maul",
+                        "broadcast": "team",
+                        "charges": 2
+                    }
+                },
+                "standby": {
+                    "slaughter": {
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "The Dire Wolf has killed ~Target~ in broad daylight! ~Self~ is seen standing over the corpse."
+                    }
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "distract": {
+                    "mode": "ignore"
+                },
+                "startup": "team-reveal",
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "weresheep",
+            "translation": "WereSheep",
+            "side": "werewolf",
+            "help": "variable:help_weresheep",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    },
+                    "frenzy": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_frenzy",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "weregoat",
+            "translation": "WereGoat",
+            "side": "werewolf",
+            "help": "variable:help_weregoat",
+            "actions": {
+                "night": {
+                    "ram": {
+                        "command": ["copy", "kill"],
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_goat",
+                        "cancel": ["protect"],
+                        "copyAs": "weregoat2",
+                        "silent": true,
+                        "silentCopy": true
+                    },
+                    "protect": {
+                        "command": ["copy", "protect"],
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_protect",
+                        "cancel": ["ram"],
+                        "copyAs": "weregoat2",
+                        "silent": true,
+                        "silentCopy": true
+                    },
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    },
+                    "frenzy": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_frenzy",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "scapeweregoat",
+            "translation": "WereScapegoat",
+            "side": "werewolf",
+            "help": "variable:help_weregoat",
+            "actions": {
+                "voteshield": 99999,
+                "onDeadRoles": {
+                    "convertTo": {
+                        "scapegoat": ["goat"]
+                    },
+                    "convertmsg": ""
+                },
+                "startup": {
+                    "revealAs": "goat"
+                },
+                "night": {
+                    "ram": {
+                        "command": ["copy", "kill"],
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_goat",
+                        "cancel": ["protect"],
+                        "copyAs": "scapeweregoat2",
+                        "silent": true,
+                        "silentCopy": true
+                    },
+                    "protect": {
+                        "command": ["copy", "protect"],
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_protect",
+                        "cancel": ["ram"],
+                        "copyAs": "scapeweregoat2",
+                        "silent": true,
+                        "silentCopy": true
+                    },
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    },
+                    "frenzy": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_frenzy",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "weregoat2",
+            "translation": "WereGoat",
+            "side": "werewolf",
+            "help": "variable:help_weregoat2",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    },
+                    "frenzy": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_frenzy",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "scapeweregoat2",
+            "translation": "WereScapegoat",
+            "side": "werewolf",
+            "help": "variable:help_weregoat2",
+            "hide": true,
+            "actions": {
+                "voteshield": 99999,
+                "onDeadRoles": {
+                    "convertTo": {
+                        "scapegoat2": ["goat2"]
+                    },
+                    "convertmsg": ""
+                },
+                "startup": {
+                    "revealAs": "goat2"
+                },
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    },
+                    "frenzy": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_frenzy",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "werewolfbodyguard",
+            "translation": "Werewolf Shepherd",
+            "side": "werewolf",
+            "help": "variable:help_wwbodyguard",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "protect": {
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_protect"
+                    },
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    },
+                    "frenzy": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_frenzy",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "werewolfhooker",
+            "translation": "Electric WereSheep",
+            "side": "werewolf",
+            "help": "variable:help_wwhooker",
+            "actions": {
+                "night": {
+                    "stun": {
+                        "command": "distract",
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "priority": "variable:prio_distract",
+                        "onlyUser": true
+                    },
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    },
+                    "frenzy": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_frenzy",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "blackweresheep",
+            "translation": "Black WereSheep",
+            "side": "werewolf",
+            "help": "variable:help_weresheep",
+            "actions": {
+                "vote": -1,
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    },
+                    "frenzy": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_frenzy",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "werewolfboy",
+            "translation": "Werewolf Who Cried Wolf",
+            "side": "werewolf",
+            "help": "variable:help_wwboy",
+            "actions": {
+                "standby": {
+                    "cry": {
+                        "command": "expose",
+                        "target": "Any",
+                        "msg": "You can type /cry [name] during the day to let everyone know who the wolf is!",
+                        "exposemsg": "Wolf! Wolf! ~Target~ is the Wolf!"
+                    }
+                },
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    },
+                    "frenzy": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_frenzy",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "werewolf_miller",
+            "translation": "WereSheep in Wolf's Clothing",
+            "side": "werewolf",
+            "help": "variable:help_ww_miller",
+            "actions": {
+                "inspect": {
+                    "revealAs": "wolf"
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "sheep": ["wolf"]
+                    },
+                    "convertmsg": ""
+                },
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    },
+                    "frenzy": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_frenzy",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "werewolf2",
+            "translation": "Werewolf",
+            "side": "werewolf",
+            "help": "variable:help_werewolf2",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    },
+                    "frenzy": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_frenzy",
+                        "broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "rabidwerewolf",
+            "translation": "Rabid Werewolf",
+            "side": "werewolf",
+            "help": "variable:help_rabidwerewolf",
+            "actions": {
+                "night": {
+                    "infect": {
+                        "command": "frenzy",
+                        "common": "Self",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_infect"
+                    },
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    },
+                    "frenzy": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_frenzy",
+                        "broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "werewolf_miller2",
+            "translation": "Werewolf in Sheep's Clothing",
+            "side": "werewolf",
+            "help": "variable:help_ww_miller2",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    },
+                    "frenzy": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_frenzy",
+                        "broadcast": "team"
+                    }
+                },
+                "inspect": {
+                    "revealAs": "sheep"
+                },
+                "startup": "team-reveal",
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "werewolfpriestess",
+            "translation": "Werewolf Wolf Priestess",
+            "side": "werewolf",
+            "help": "variable:help_wwpriestess",
+            "actions": {
+                "night": {
+                    "silence": {
+                        "silenceCount": 1,
+                        "common": "Self",
+                        "target": "OnlySelf",
+                        "priority": "variable:prio_silence",
+                        "charges": 1
+                    },
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    },
+                    "frenzy": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_frenzy",
+                        "broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "bigbadwerewolf",
+            "translation": "Big Bad Werewolf",
+            "side": "werewolf",
+            "help": "variable:help_bigbadwerewolf",
+            "actions": {
+                "night": {
+                    "blow": {
+                        "command": ["inspect", "distract"],
+                        "common": "Self",
+                        "target": "AnyButSelf",
+                        "broadcast": "team",
+                        "priority": "variable:prio_blow",
+                        "onlyUser": true
+                    },
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    },
+                    "frenzy": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_frenzy",
+                        "broadcast": "team"
+                    }
+                },
+                "startup": "team-reveal",
+                "teamTalk": true
+            }
+        },
+        {
+            "role": "direwerewolf",
+            "translation": "Dire Werewolf",
+            "side": "werewolf",
+            "help": "variable:help_direwerewolf",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_werewolf",
+                        "broadcast": "team"
+                    },
+                    "maul": {
+                        "command": "kill",
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "pierce": true,
+                        "priority": 6,
+                        "broadcast": "team",
+                        "charges": 2
+                    },
+                    "frenzy": {
+                        "common": "Team",
+                        "target": "AnyButTeam",
+                        "priority": "variable:prio_frenzy",
+                        "broadcast": "team"
+                    }
+                },
+                "standby": {
+                    "slaughter": {
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "The Dire Wolf has killed ~Target~ in broad daylight! ~Self~ is seen standing over the corpse."
+                    }
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "distract": {
+                    "mode": "ignore"
+                },
+                "startup": "team-reveal",
+                "teamTalk": true
+            }
+        }
+    ],
+    "minplayers": 4,
+    "roles1": [
+        "sheep",
+        "sheep",
+        "sheep",
+        "wolf",
+        "sheep"
+    ],
+    "roles2": [
+        "hooker",
+        "sheep",
+        "sheep",
+        "inspector",
+        "wolf",
+        "mafia_miller",
+        "miller"
+    ],
+    "roles3": [
+        "bodyguard",
+        "inspector",
+        "hooker",
+        "sheep",
+        "sheep",
+        "miller",
+        "wolf",
+        "rabidwolf",
+        "blacksheep"
+    ],
+    "roles4": [
+        "bodyguard",
+        "inspector",
+        "hooker",
+        "boy",
+        "sheep",
+        "sheep",
+        "miller",
+        "wolf",
+        "rabidwolf",
+        "priestess",
+        "blacksheep",
+        "sheep",
+        "werewolf",
+        "blacksheep",
+        "sheep",
+        "wolf",
+        "sheep",
+        "miller",
+        "mafia_miller",
+        "sheep"
+    ],
+    "roles5": [
+        "bodyguard",
+        "inspector",
+        "hooker",
+        "goat",
+        "scapegoat",
+        "scapegoat",
+        "boy",
+        "sheep",
+        "sheep",
+        "sheep",
+        "sheep",
+        "blacksheep",
+        "blacksheep",
+        "miller",
+        "wolf",
+        "wolf",
+        "mafia_miller",
+        "rabidwolf",
+        "priestess",
+        "bigbadwolf",
+        "werewolf",
+        "sheep",
+        "miller",
+        "rabidwolf",
+        "sheep"
+    ],
+    "roles6": [
+        "bodyguard",
+        "inspector",
+        "hooker",
+        "hooker",
+        "goat",
+        "scapegoat",
+        "scapegoat",
+        "boy",
+        "sheep",
+        "sheep",
+        "sheep",
+        "sheep",
+        "sheep",
+        "blacksheep",
+        "blacksheep",
+        "miller",
+        "miller",
+        "wolf",
+        "wolf",
+        "mafia_miller",
+        "rabidwolf",
+        "rabidwolf",
+        "priestess",
+        "bigbadwolf",
+        "werewolf",
+        "werewolf",
+        "bodyguard"
+    ],
+    "roles7": [
+        "bodyguard",
+        "bodyguard",
+        "inspector",
+        "inspector",
+        "hooker",
+        "hooker",
+        "goat",
+        "scapegoat",
+        "scapegoat",
+        "boy",
+        "sheep",
+        "sheep",
+        "sheep",
+        "sheep",
+        "blacksheep",
+        "blacksheep",
+        "miller",
+        "miller",
+        "wolf",
+        "wolf",
+        "mafia_miller",
+        "rabidwolf",
+        "rabidwolf",
+        "priestess",
+        "bigbadwolf",
+        "werewolf",
+        "werewolf",
+        "direwolf",
+        "priestess",
+        "sheep"
+    ],
+    "changelog": {
+        "09.22.2018": "Theme coded."
+    }
+}
