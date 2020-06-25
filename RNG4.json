@@ -1,0 +1,445 @@
+{
+"name": "RNG4",
+"author": "<b><i><span style='color:#005CE6'>Miki Sayaka</span></i></b>",
+"minplayers": 3,
+"summary": "The RNG has gone completely mad (as if it weren't broken already)! Only one shall survive its murderous rampage; unworthy shall be decimated in a vicious cycle of unrepentence! Will you bow under random luck, or will you make it your bit- slave?",
+"ticks": {
+"standby": 2,
+"night1": 2,
+"night": 2
+},
+"nolynch": true,
+"sides": [
+{
+"side": "winrar",
+"translation": "GOD TIER SWAG",
+"winmsg": "±~Players~: HAHAHAHAHAHAH. I AM THE WINRAR!!!!!!1!!11!112"
+},
+{
+"side": "nub",
+"translation": "Losers",
+"winmsg": "±RNG: 01000101010100100101001001001111010100100010000001 00010101010010010100100100111101010010001000000101 01000100010101010010010011010100100101001110010000 01010101000100010100100000010101000100010101010010 010011010100100101001110010000010101010001000101"
+}
+],
+"roles": [
+{
+"role": "winrar",
+"translation": "WINRAR",
+"side": "winrar",
+"help": "OMG CONGRATS U BEAT DA SYSTEM NOICEEEEEEEEEEEEEEEEEE",
+"winIfDeadRoles": [],
+"actions": {	
+	"initialCondition": {
+		"clearPoison": true
+		}
+	}
+},
+{
+"role": "nub",
+"translation": "FAIL",
+"side": "nub",
+"help": "LOL RNG > YOU TEAM ROCKET'S BLASTING OFF AGAINNNNNNNN GGGGGGGGGGGG",
+"actions": {
+	"onDeadRoles": { "convertTo": { "winrar": ["nub2", "nub1"] }, "convertmsg": "YUUUUUUUUUSSSSSSSS" },
+	"initialCondition": {
+		"poison": {
+			"count": 2,
+			"poisonDeadMessage": "U GOT REKT M8 BETTER HAX BETTER NEXT TIME"
+			}
+		}
+	}
+},
+{
+"role": "nub1",
+"translation": "PROCESS",
+"side": "nub",
+"help": "NOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"silentCurse": true,
+			"cursedRole": "nub"
+			}
+		}
+	}
+},
+{
+"role": "nub2",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub1",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub3",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub2",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub4",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub3",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub5",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub4",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub6",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub5",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub7",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub6",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub8",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub7",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub9",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub8",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub10",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub9",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub11",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub10",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub12",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub11",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub13",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub12",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub14",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub13",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub15",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub14",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub16",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub15",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub17",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub16",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub18",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub17",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub19",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub18",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "nub20",
+"translation": "PROCESS",
+"side": "nub",
+"help": "THIS ISN'T RNG oh wait yes it is OMG WHO GONNA DIE?????",
+"actions": {
+	"initialCondition": {
+		"curse": {
+			"curseCount": -1,
+			"cursedRole": "nub19",
+			"silentCurse": true
+			}
+		}
+	}
+},
+{
+"role": "BEAST",
+"translation": "BEAST",
+"side": "winrar",
+"help": "THIS PLACE ABOUT TO BLOWOWOWOWOWOWOWOW",
+"winIfDeadRoles": [],
+"actions": {}
+}
+],
+"roles1": [
+"nub1",
+"nub2",
+"nub3",
+"nub4",
+"nub5",
+"nub6",
+"nub7",
+"nub8",
+"nub9",
+"nub10",
+"nub11",
+"nub12",
+"nub13",
+"nub14",
+"nub15",
+"nub16",
+"nub17",
+"nub18",
+"nub19",
+"nub20",
+"nub1",
+"nub2",
+"nub3",
+"nub4",
+"nub5",
+"nub6",
+"nub7",
+"nub8",
+"nub9",
+"nub10",
+"nub11",
+"nub12",
+"nub13",
+"nub14",
+"nub15",
+"nub16",
+"nub17",
+"nub18",
+"nub19",
+"nub20",
+"nub1",
+"nub2",
+"nub3",
+"nub4",
+"nub5",
+"nub6",
+"nub7",
+"nub8",
+"nub9",
+"nub10",
+"nub11",
+"nub12",
+"nub13",
+"nub14",
+"nub15",
+"nub16",
+"nub17",
+"nub18",
+"nub19",
+"nub20",
+"nub1",
+"nub2",
+"nub3",
+"nub4",
+"nub5",
+"nub6",
+"nub7",
+"nub8",
+"nub9",
+"nub10",
+"nub11",
+"nub12",
+"nub13",
+"nub14",
+"nub15",
+"nub16",
+"nub17",
+"nub18",
+"nub19",
+"nub20"
+],
+"villageCantLoseRoles": 
+["nub1", "nub2"]
+}
