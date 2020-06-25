@@ -1,0 +1,2120 @@
+{
+    "name": "FF",
+    "author": "Narshen",
+    "threadlink": "http://pokemon-online.eu/forums/showthread.php?15900",
+    "altname": "Final Fantasy",
+    "bot": {
+    	"name": "Game",
+    	"color": "#990099"
+    },
+    "borderColor": "#cc6600",
+    "minplayers": 4,
+    "summary": "All your favorite Final Fantasy heroes and villains have gathered for a gigantic battle royale! The villains bring threatening new abilities to the arena, each one able to cripple the heroes severely. Only one thing is certain, though  - last party standing wins. (New updates! Check /changelog for details)",
+    "sides": [
+        {
+            "side": "garland",
+            "translation": "Garland",
+            "winmsg": "'Hahahaha! Know your place!' The power of good was no match for Garland (~Players~)!"
+        },
+        {
+            "side": "sin",
+            "translation": "Sin",
+            "winmsg": "' Pitiful mortals... Your hope ends here...and your meaningless existence with it!' Sin has been reawakened and the world is destroyed, a victory for ~Players~!"
+        },
+        {
+            "side": "house",
+            "translation": "House Solidor",
+            "winmsg": "'Your lives are forfeit, and your insurgence with them!' House Solidor triumphs over the heroes and seizes control of the land thanks to ~Players~!"
+        },
+        {
+            "side": "village",
+            "translation": "Heroes",
+            "winmsg": "Having vanquished all the evil from the world, the Heroes (~Players~) have won!"
+        },
+        {
+            "side": "posse",
+            "translation": "Kefka's Posse",
+            "winmsg": "Read my lips - mercy is for wimps! There's a reason 'oppose' rhymes with 'dispose'...If they get in your way, kill them! (Kefka's Posse [~Players~] has won!)"
+        },
+        {
+            "side": "ultimecia",
+            "translation": "Ultimecia",
+            "winmsg": "'Time shall compress... All existence denied.'  A stunning victory for ~Players~!"
+        },
+        {
+            "side": "sephiroth",
+            "translation": "Sephiroth",
+            "winmsg": "'What I have shown you is reality. What you remember, that is the illusion.'  A magnificent victory for ~Players~!"
+        },
+        {
+            "side": "gilgamesh",
+            "translation": "Gilgamesh",
+            "winmsg": "Ha ha! You weren't ready to face Gilgamesh. I.E., your weapons are as good as ~Players~'s!!"
+        },
+        {
+            "side": "lunarian",
+            "translation": "Lunarians",
+            "winmsg": "You were all manipulated like mere pawns. Zemus has achieved World Domination!"
+        }
+    ],
+    "variables": {
+    	"killer": { "mode": "ignore", "targetmsg": "", "msg": "~Self~ is capable of killing!"},
+    	"notkiller": { "mode": "ignore", "targetmsg": "", "msg": "~Self~ is not capable of killing!"}
+    },
+    "roles": [
+        {
+            "role": "moogle",
+            "translation": "Moogle",
+            "side": "village",
+            "info": "Kupo! Sided with Heroes.",
+            "help": "As a moogle, it is your job to get the village to win by voting during the day!",
+            "actions": {"dummy2": "variable:notkiller", "preventTeamvote": ["cara"]            
+            }
+        },
+        {
+            "role": "cara",
+            "translation": "Krile",
+            "side": "village",
+            "info": "Startup as Moogle. Cannot be voted by Moogle. Cannot be nightkilled while Moogles are alive. Sided with Heroes.",
+            "help": "As a moogle, it is your job to get the village to win by voting during the day!",
+            "actions": {
+            "dummy2": "variable:notkiller",
+            "kill": {"mode": "ignore"},
+            "onDeadRoles": { "convertTo": { "cara2": ["moogle"]}, "convertmsg": "There are no Moogles to protect Krile anymore!"},
+            	"startup": {"revealAs": "moogle"}
+            }
+        },
+        {
+            "role": "cara2",
+            "translation": "Krile",
+            "side": "village",
+            "hide": true,
+            "info": "Startup as Moogle. Cannot be voted by Moogle. Cannot be poisoned/killed while Moogles are alive. Sided with Heroes.",
+            "help": "You were actually Krile! You don't have any special abilities, but you may now be killed during the night.",
+            "actions": {
+            "dummy2": "variable:notkiller"
+            }
+        },
+        {
+            "role": "sorbet",
+            "translation": "Sorbet",
+            "side": "village",
+            "info": "Kupo! Startup as Moogle. Appears as Garland if Inspected. Sided with Heroes.",
+            "help": "As a moogle, it is your job to get the village to win by voting during the day!",
+            "actions": {
+            	"startup": {"revealAs": "moogle"},
+            	"inspect": {"revealAs": "garland"},
+            	"dummy2": "variable:notkiller"
+            }
+        },
+        {
+            "role": "locke",
+            "translation": "Locke",
+            "side": "village",
+            "info": "Can inspect one person during the night. Sided with Heroes. ",
+            "help": "A master thief - er, treasure hunter, and one of the protagonists of Final Fantasy VI. Type /Inspect [name] during the night to find his/her identity! You may actually be another thief, Zidane, as he thinks he is Locke, but sees 90% of his inspects as Kefka!",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 30
+                    }
+                },
+                "dummy2": "variable:notkiller"
+            }
+        },
+        {
+            "role": "zidane",
+            "translation": "Zidane",
+            "side": "village",
+            "info": "Can inspect one person during the night (90% chance to erroneously see Kefka). Sees itself as Locke. Reveals as Kefka when inspected. Sided with Heroes.",
+            "help": "A master thief - er, treasure hunter, and one of the protagonists of Final Fantasy VI. Type /Inspect [name] during the night to find his/her identity! You may actually be another thief, Zidane, as he thinks he is Locke, but sees 90% of his inspects as Kefka!",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 30,
+                        "hide": true,
+                        "Sight": {
+                            "true": 0.1,
+                            "kefka": 0.9
+                        }
+                    }
+                },
+                "inspect": {
+                    "revealAs": "kefka"
+                },
+                "startup": {
+                    "revealAs": "locke"
+                },
+                "dummy2": "variable:notkiller"
+            }
+        },
+        {
+            "role": "placeholder2",
+            "translation": "Locke / Zidane",
+            "side": "village",
+            "hide": true,
+            "info": "Can inspect one person during the night (90% chance to erroneously see Kefka). Sees itself as Locke. Reveals as Kefka when inspected. Sided with Heroes.",
+            "help": "A master thief - er, treasure hunter, and one of the protagonists of Final Fantasy VI. Type /Inspect [name] during the night to find his/her identity! You may actually be another thief, Zidane, as he thinks he is Locke, but sees 90% of his inspects as Kefka!",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 30
+                    }
+                }
+            }
+        },
+        {
+            "role": "celes",
+            "translation": "Celes",
+            "side": "village",
+            "info": "Gets hax on kill and inspect. Sided with Heroes.",
+            "help": "As a genetically enhanced knight gone renegade from her empire, you can use your stealth to learn about villains who are killing during the night! Due to your intimate relationship, you may also identify Locke when he Inspects!",
+            "actions": {
+                "hax": {
+                    "kill": {
+                        "revealTeam": 0.5,
+                        "revealPlayer": 0.2
+                    },
+                    "inspect": {
+                        "revealTeam": 0.65,
+                        "revealPlayer": 0.2
+                    }
+                },
+                "dummy2": "variable:notkiller"
+            }
+        },
+        {
+            "role": "tifa",
+            "translation": "Tifa",
+            "side": "village",
+            "info": "Can distract one person during the night. Gets hax on protect. Sided with Heroes.",
+            "help": "One of Cloud's childhood friends, you are one of the protagonists of Final Fantasy VII! Deceptively strong, you are capable of stopping killers at night with /Distract [name]! In addition, you have a chance of finding Auron when he Protects during the Night.",
+            "actions": {
+                "night": {
+                    "distract": {
+                    	"command": ["distract", "dummy", "convert"],
+                        "target": "AnyButSelf",
+                        "canConvert": ["garland"],
+                        "newRole": "garland_immune",
+                        "convertmsg": "",
+                        "silentConvert": true,
+                        "usermsg": "",
+                        "distractmsg": "Tifa knocked you out with a flurry of martial arts! You were unable to use any actions!",
+                        "convertfailmsg": "",
+                        "common": "Self",
+                        "priority": 3
+                    }
+                },
+                "hax": {
+                    "protect": {
+                        "revealTeam": 0.25,
+                        "revealPlayer": 0.25
+                    }
+                },
+                "dummy2": "variable:notkiller"
+            }
+        },
+        {
+            "role": "auron",
+            "translation": "Auron",
+            "side": "village",
+            "info": "Can protect one person during the night. Gets hax on distract. Cannot be protected. Sided with Heroes.",
+            "help": "A former warrior monk of Yevon and a character in Final Fantasy X, you act as a mentor to the Heroes as they look to you for guidance. Type /Protect [name] during the night to support them. In addition, you have a chance of finding Tifa when she Distracts during the Night. You put others before yourself and will ignore all protection directed at you.",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 7,
+                        "broadcast": "role"
+                    }
+                },
+                "hax": {
+                    "distract": {
+                        "revealTeam": 0.25,
+                        "revealPlayer": 0.25
+                    }
+                },
+                "startup": "role-reveal",
+    			"protect": {
+					"mode": "ignore"
+				},
+				"dummy2": "variable:notkiller"
+            }
+        },
+        {
+            "role": "dkc",
+            "translation": "Dark Knight Cecil",
+            "side": "village",
+            "info": "Can protect self during the night. Can purify self during the night. Vote counts as -2. Sided with Heroes.",
+            "help": "You're the Dark Knight, Cecil Harvey. Your internal conflict with yourself grants you abilities unlike any other! Your vote is worth -2. allowing you to negate up to two neutral votes! Additionally, you can protect yourself every night with /protect. If you wish to cleanse yourself of the dark armor and gain new abilities, type /purify [your name] at night, but this prevents you from protecting yourself.",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 7,
+                        "cancel": [
+                            "purify"
+                        ]
+                    },
+                    "purify": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "hide": true,
+                        "newRole": "paladin",
+                        "canConvert": [
+                            "dkc"
+                        ],
+                        "convertmsg": "'My blade will lead me to the light!' Dark Knight Cecil has transformed into Paladin Cecil, altering his abilities!",
+                        "silent": false,
+                        "cancel": [
+                            "protect"
+                        ]
+                    }
+                },
+                "avoidHax": [
+                    "protect"
+                ],
+                "dummy2": "variable:notkiller",
+                "vote": -2
+            }
+        },
+        {
+            "role": "paladin",
+            "translation": "Paladin Cecil",
+            "side": "village",
+            "info": "Can protect one person during the night. Can shadow self during the night. Vote counts as 2. Cannot be protected Sided with Heroes.",
+            "help": "Illumination! You've shed your armor of darkness and are now Paladin Cecil! You can no longer protect yourself, nor can anyone protect you, but you are able to /protect any other role of your choice. Additionally, your vote is worth 2. If you wish to return to Dark Knight form, type /shadow [your name] at night.",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 7,
+                        "cancel": [
+                            "shadow"
+                        ]
+                    },
+                    "shadow": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "newRole": "dkc",
+                        "hide": true,
+                        "canConvert": [
+                            "paladin"
+                        ],
+                        "convertmsg": "'Darkness be with me !' Paladin Cecil has reverted to Dark Knight Cecil, gaining new abilities!",
+                        "silent": false,
+                        "cancel": [
+                            "protect"
+                        ]
+                    }
+                },
+                "avoidHax": [
+                    "protect"
+                ],
+				"protect": {
+					"mode": "ignore"
+				},
+				"dummy2": "variable:notkiller",
+                "vote": 2
+            }
+        },
+        {
+            "role": "placeholder",
+            "translation": "Dark Knight / Paladin Cecil",
+            "side": "village",
+            "hide": true,
+            "info": "Can protect one person during the night. Can shadow self during the night. Vote counts as 2. Cannot be protected Sided with Heroes.",
+            "help": "",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 7
+                    },
+                    "convert": {
+                        "command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 1,
+                        "newRole": "dkc"
+                    }
+                }
+            }
+        },
+        {
+            "role": "garland",
+            "translation": "Garland",
+            "side": "garland",
+            "info": "Can kill one person during the night (shared with team). Can only be Distracted once per game. Sided with Garland.",
+            "help": "Type /Kill [name] to kill someone! You, Garland, will knock them all down! You can adapt to any challenge, so if you are Distracted once, it will never happen again!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 9,
+                        "broadcast": "team"
+                    }
+                },
+                "dummy": {
+                	"mode": "identify",
+                	"msg": "You have been distracted by Tifa! Bwah! This will not happen again!",
+                	"targetmsg": ""
+                },
+                "dummy2": "variable:killer",
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "garland_immune",
+            "translation": "Garland",
+            "side": "garland",
+            "hide": true,
+            "info": "Can kill one person during the night (shared with team). Can only be Distracted once per game. Sided with Garland.",
+            "help": "Type /Kill [name] to kill someone! You, Garland, will knock them all down! You cannot be Distracted anymore!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 9,
+                        "hide": true,
+                        "broadcast": "team"
+                    }
+                },
+                "distract": {
+                	"mode": "ignore",
+                	"msg": "Hah! Tifa tried to distract you. The same trick won't work twice on Garland!"
+                },
+                "dummy2": "variable:killer",
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "kefka",
+            "translation": "Kefka",
+            "side": "posse",
+            "info": "Can kill one person during the night. Cannot be detected by spies. Kills any distractors. Evades a nightkill once. Sided with Kefka's Posse.",
+            "help": "A short-tempered, maniacal, and highly destructive being with sociopathic tendencies. You love to go out and kill, outspeeding all bodyguards and evading the watchful eyes of spies. If anyone dare get in the way of your /kill, they will meet their demise instead. You have made an alliance with Kuja, so you can not kill him if you try to target him. Dance mad and kill everyone in your path! You will even evade the first person to kill you!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "pierce": true,
+                        "priority": 6
+                    }
+                },
+                "distract": {
+                    "mode": "ChangeTarget",
+                    "hookermsg": "You tried to distract Kefka (how foolish...), you were killed instead !",
+                    "msg": "The ~Distracter~ came to you last night! You destroyed her instead !"
+                },
+                "kill": {
+                	"mode": {
+                		"evadeCharges": 1
+                	}
+                },
+                "avoidHax": [
+                    "kill"
+                ],
+                "dummy2": "variable:killer",
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "aerith",
+            "translation": "Aerith",
+            "side": "village",
+            "info": "Vote counts as 0. Can Distract, Protect, Stalk, Watch, Kill, once per game each (can't be haxed). Knowns Cloud on startup. Appears as Kuja if Inspected. Sided with Heroes.",
+            "help": "Your sheer willpower allows your spirit to live on within the Lifestream and communicate with the Heroes. Your vote may count for nothing, but you have many clever abilities at your disposal. You can /Watch, /Stalk, /Protect, /Distract, and /Kill [name] each once per game (Hint: use /Cancel if you change your mind!). Work together with Cloud and the rest of AVALANCHE to defeat the Villains!",
+            "actions": {
+                "vote": 0,
+                "startup": {"revealRole": "cloud"},
+                "inspect": {"revealAs": "kuja"},
+                "night": {
+                    "distract": {
+                        "target": "AnyButSelf",
+                       	"distractmsg": "You couldn't do any of your actions because Aerith kept trying to sell you flowers!",
+                        "common": "Self",
+                        "charges": 1,
+                        "priority": 4
+                    },
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "charges": 1,
+                        "priority": 7
+                    },
+                    "kill": {
+                        "target": "AnyButSelf",
+                       	"msg": "!",
+                        "common": "Self",
+                        "charges": 1,
+                        "priority": 14
+                    },
+                    "stalk": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "charges": 1,
+                        "priority": 50
+                    },
+                    "watch": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "charges": 1,
+                        "priority": 50
+                    },
+                    "cancel": {
+                    	"command": ["dummy5"],
+                        "target": "OnlySelf",
+                        "cancel": ["watch", "stalk", "kill", "distract", "protect"],
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 50
+                    }
+                },
+                "avoidHax": [
+                    "protect", "distract", "kill"
+                ],
+                "dummy2": "variable:killer",
+                "daykill": {
+                    "mode": {
+                        "ignore": [
+                            "cloud"
+                        ]
+                    },
+                    "targetmsg": "±Game: Cloud swung his Buster Sword at you, but missed by a fraction of an inch. 'Cloud, you're not the one who kills me, silly!'",
+                    "msg": "±Game: Aerith dodged the swing of your Buster Sword, but just barely. 'Cloud, you're not the one who kills me, silly!'"
+                }
+            }
+        },
+        {
+            "role": "cloud",
+            "translation": "Cloud",
+            "side": "village",
+            "info": "Can kill one person during the standby. Can't be daykilled. Knows Aerith on startup. Sided with Heroes.",
+            "help": "As a former member of SOLDIER, your battle skills are top notch. Type /Kill [name] during the day to eliminate possible villains. You're fairly flashy so your kills will be done in plain sight: you will be revealed. You can't kill Aerith!",
+            "actions": {
+                "startup": {"revealRole": "aerith"},
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Draw your Buster Sword and pick a target using /kill [name] :",
+                        "killmsg": "~Self~ (~Role~) lunges and pulls out a Buster Sword, striking down ~Target~!"
+                    }
+                },
+                "dummy2": "variable:killer",
+                "preventTeamvote": ["aerith"],
+                "daykill": "evade"
+            }
+        },
+        {
+            "role": "zack",
+            "translation": "Zack",
+            "side": "village",
+            "info": "Can kill one person during the standby (concealed). Sided with Heroes.",
+            "help": "SOLDIER, second class! You are a deft warrior without equal on the battlefield. Type /Kill [name] during the day to kill your enemy; your stealthiness will keep you concealed! Work with the other Heroes to overpower the Villains.",
+            "actions": {
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "Draw your Buster Sword and pick a target using /kill [name] :",
+                        "killmsg": "Zack Fair charges at ~Target~ at full energy. With expert precision, he slices them in half!"
+                    }
+                },
+                "dummy2": "variable:killer"
+            }
+        },
+        {
+            "role": "lightning",
+            "translation": "Lightning",
+            "side": "village",
+            "info": "Can Saber (kill) one person during the night. Gets hax on Esuna. Sided with Heroes.",
+            "help": "Lightning. It flashes bright, then fades away. You have forsaken your given name to become Lightning, that which cannot protect, but only destroy. Use your training as a member of the Guardian Corps to type /Saber [name] during the night to kill someone.",
+            "actions": {
+                "night": {
+                    "saber": {
+                    	"command": "kill",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 13
+                    }
+                },
+                "dummy2": "variable:killer",
+                "hax": {
+                	"esuna": {
+                		"revealTeam": 0.25,
+                		"revealPlayer": 0.25
+                	}
+                }
+            }
+        },
+        {
+            "role": "hope",
+            "translation": "Hope",
+            "side": "village",
+            "info": "Can Esuna (protect+safeguard+distract) one person during the night. Gets hax on Saber. Sided with Heroes.",
+            "help": "You are Hope Estheim, a close friend of Lightning! Even in the darkest of times, you are true to your name. Use your skills as a Medic to /Esuna [name], which will simultaneously Distract and Protect them! Look out for Lightning, but don't block her from killing when she needs to!",
+            "actions": {
+                "night": {
+                    "esuna": {
+                    	"command": ["distract", "protect", "safeguard"],
+                        "target": "AnyButSelf",
+                        "distractmsg": "Hope used his healing magic to protect you, but it also kept you from taking action during the night!",
+                        "common": "Self",
+                        "priority": 5
+                    }
+                },
+                "dummy2": "variable:notkiller",
+                "hax": {
+                	"saber": {
+                		"revealTeam": 0.25,
+                		"revealPlayer": 0.25
+                	}
+                }
+            }
+        },
+        {
+            "role": "maria",
+            "translation": "Maria",
+            "side": "village",
+            "info": "Vote counts as 3. Knows Firion on startup. Sided with Heroes.",
+            "help": "You are a rebel with a cause, and your dedication is unparalleled. Use your vote of 3 to vote off the bad guys during the day!",
+            "actions": {
+            	"vote": 3,
+            	"startup": {"revealRole": ["firion"] },
+            	"preventTeamvote": ["firion"],
+                "dummy2": "variable:notkiller"
+            }
+        },
+        {
+            "role": "firion",
+            "translation": "Firion",
+            "side": "village",
+            "info": "Vote counts as -3. Knows Maria on startup. Sided with Heroes.",
+            "help": "The protagonist of FFII, you are in this fight to achieve your vengeance against the Empire! Use your vote of -3 to defend your allies during the day!",
+            "actions": {
+            	"vote": -3,
+            	"startup": {"revealRole": ["maria"] },
+                "dummy2": "variable:notkiller"
+            }
+        },
+        {
+            "role": "rydia",
+            "translation": "Rydia",
+            "side": "village",
+            "info": "Can summon /titan, /chocobo, /asura, /mist. Starts with Mist. Sided with Heroes.",
+            "help": "You are a protagonist from FFIV: a powerful Summoner! You are able to call many Summons to assist you. Type /Mist to get Mist Dragon, which makes you immune to nightkill, gaining an Inspect at the cost of a vote of 0, /Asura to get Asura, which can Protect twice and counters daykills, Chocobo to get Chocobo which can Distract and has a vote of 2, and Titan which can daykill without being revealed! You currently have the Mist Dragon Summon.",
+            "actions": {
+                "night": {
+                    "titan": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "newRole": "rydia_titan",
+                        "cancel": ["mist", "asura", "chocobo"],
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "common": "Self",
+                        "noRepeat": true,
+                        "hide": true,
+                        "priority": 99
+                    },
+                    "mist": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "newRole": "rydia_mist",
+                        "cancel": ["titan", "asura", "chocobo"],
+                        "noRepeat": true,
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "hide": true,
+                        "priority": 99
+                    },
+                    "asura": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "newRole": "rydia_asura",
+                        "cancel": ["mist", "titan", "chocobo"],
+                        "noRepeat": true,
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "hide": true,
+                        "priority": 99
+                    },
+                    "chocobo": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "newRole": "rydia_chocobo",
+                        "cancel": ["mist", "asura", "titan"],
+                        "noRepeat": true,
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "hide": true,
+                        "priority": 99
+                    }
+                },
+                "standby": {
+                    "inspect": {
+                    	"command": "expose",
+                        "target": "AnyButSelf",
+                        "msg": "You can /Inspect [name] to learn a person's role!",
+                        "exposemsg": "The Mist Dragon, summoned by Rydia, identifies the ~Role~!",
+                        "exposedtargetmsg": "~Target~ is the ~Role~"
+                    }
+                },
+                "vote": 0,
+                "kill": {"mode": "ignore"},
+                "dummy2": "variable:notkiller"
+            }
+        },
+        {
+            "role": "rydia_mist",
+            "translation": "Rydia",
+            "side": "village",
+            "infoName": "Rydia (Mist Dragon)",
+            "info": "Can Inspect during standby. Evades nightkill. Vote counts as 0. Sided with Heroes.",
+            "help": "You have summoned the Mist Dragon! You can now /Inspect during the day, and you are immune to nightkills. However, your vote counts as 0. Type /Mist to get Mist Dragon, which makes you immune to nightkill, gaining an Inspect at the cost of a vote of 0, /Asura to get Asura, which can Protect twice and counters daykills, Chocobo to get Chocobo which can Distract and has a vote of 2, and Titan which can daykill without being revealed!",
+            "actions": {
+                "night": {
+                    "titan": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "newRole": "rydia_titan",
+                        "cancel": ["mist", "asura", "chocobo"],
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "common": "Self",
+                        "noRepeat": true,
+                        "hide": true,
+                        "priority": 99
+                    },
+                    "mist": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "newRole": "rydia_mist",
+                        "cancel": ["titan", "asura", "chocobo"],
+                        "noRepeat": true,
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "hide": true,
+                        "priority": 99
+                    },
+                    "asura": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "newRole": "rydia_asura",
+                        "cancel": ["mist", "titan", "chocobo"],
+                        "noRepeat": true,
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "hide": true,
+                        "priority": 99
+                    },
+                    "chocobo": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "newRole": "rydia_chocobo",
+                        "cancel": ["mist", "asura", "titan"],
+                        "noRepeat": true,
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "hide": true,
+                        "priority": 99
+                    }
+                },
+                "standby": {
+                    "inspect": {
+                    	"command": "expose",
+                        "target": "AnyButSelf",
+                        "msg": "You can /Inspect [name] to learn a person's role!",
+                        "exposemsg": "The Mist Dragon, summoned by Rydia, identifies the ~Role~!",
+                        "exposedtargetmsg": "~Target~ is the ~Role~"
+                    }
+                },
+                "vote": 0,
+                "kill": {"mode": "ignore"},
+                "dummy2": "variable:notkiller"
+            }
+        },
+        {
+            "role": "rydia_chocobo",
+            "translation": "Rydia",
+            "side": "village",
+            "infoName": "Rydia (Chocobo)",
+            "info": "Can distract. Vote counts as 2. Sided with Heroes.",
+            "help": "You have summoned the Chocobo! You can now /Distract during the night, and you have a vote of 2. Type /Mist to get Mist Dragon, which makes you immune to nightkill, gaining an Inspect at the cost of a vote of 0, /Asura to get Asura, which can Protect twice and counters daykills, Chocobo to get Chocobo which can Distract and has a vote of 2, and Titan which can daykill without being revealed!",
+            "actions": {
+                "night": {
+                    "titan": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "newRole": "rydia_titan",
+                        "cancel": ["mist", "asura", "chocobo"],
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "common": "Self",
+                        "noRepeat": true,
+                        "hide": true,
+                        "priority": 99
+                    },
+                    "mist": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "newRole": "rydia_mist",
+                        "cancel": ["titan", "asura", "chocobo"],
+                        "noRepeat": true,
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "hide": true,
+                        "priority": 99
+                    },
+                    "asura": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "newRole": "rydia_asura",
+                        "cancel": ["mist", "titan", "chocobo"],
+                        "noRepeat": true,
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "hide": true,
+                        "priority": 99
+                    },
+                    "chocobo": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "newRole": "rydia_chocobo",
+                        "cancel": ["mist", "asura", "titan"],
+                        "noRepeat": true,
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "hide": true,
+                        "priority": 99
+                    },
+                    "distract": {
+                    	"target": "AnyButSelf",
+                    	"priority": 2.5,
+                    	"common": "Self",
+                    	"distractmsg": "You were run over by a Chocobo! You couldn't do anything during the night!"
+                    	}
+                },
+                "vote": 2,
+                "dummy2": "variable:notkiller"
+            }
+        },
+        {
+            "role": "rydia_asura",
+            "translation": "Rydia",
+            "side": "village",
+            "infoName": "Rydia (Asura)",
+            "info": "Can protect twice per night. Counters daykills. Sided with Heroes.",
+            "help": "You have summoned the Asura! You can now /Protect twice during the night, and you counter anyone's daykills. Type /Mist to get Mist Dragon, which makes you immune to nightkill, gaining an Inspect at the cost of a vote of 0, /Asura to get Asura, which can Protect twice and counters daykills, Chocobo to get Chocobo which can Distract and has a vote of 2, and Titan which can daykill without being revealed!",
+            "actions": {
+                "night": {
+                    "titan": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "newRole": "rydia_titan",
+                        "cancel": ["mist", "asura", "chocobo"],
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "common": "Self",
+                        "noRepeat": true,
+                        "hide": true,
+                        "priority": 99
+                    },
+                    "mist": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "newRole": "rydia_mist",
+                        "cancel": ["titan", "asura", "chocobo"],
+                        "noRepeat": true,
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "hide": true,
+                        "priority": 99
+                    },
+                    "asura": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "newRole": "rydia_asura",
+                        "cancel": ["mist", "titan", "chocobo"],
+                        "noRepeat": true,
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "hide": true,
+                        "priority": 99
+                    },
+                    "chocobo": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "newRole": "rydia_chocobo",
+                        "cancel": ["mist", "asura", "titan"],
+                        "noRepeat": true,
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "hide": true,
+                        "priority": 99
+                    },
+                    "protect": {
+                    	"target": "AnyButSelf",
+                    	"priority": 7,
+                    	"common": "Self",
+                    	"limit": 2
+                    	}
+                },
+                "daykill": "revenge",
+                "daykillrevengemsg": "~Target~ tried to attack Rydia! She quickly calls Asura to defend her from the attack, destroying the assailant!",
+                "dummy2": "variable:notkiller"
+            }
+        },
+        {
+            "role": "rydia_titan",
+            "translation": "Rydia",
+            "side": "village",
+            "infoName": "Rydia (Titan)",
+            "info": "Can daykill (not revealed). Sided with Heroes.",
+            "help": "You have summoned the Titan! You can now /Quake during the day to kill someone. Type /Mist to get Mist Dragon, which makes you immune to nightkill, gaining an Inspect at the cost of a vote of 0, /Asura to get Asura, which can Protect twice and counters daykills, Chocobo to get Chocobo which can Distract and has a vote of 2, and Titan which can daykill without being revealed!",
+            "actions": {
+                "night": {
+                    "titan": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "newRole": "rydia_titan",
+                        "cancel": ["mist", "asura", "chocobo"],
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "common": "Self",
+                        "noRepeat": true,
+                        "hide": true,
+                        "priority": 99
+                    },
+                    "mist": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "newRole": "rydia_mist",
+                        "cancel": ["titan", "asura", "chocobo"],
+                        "noRepeat": true,
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "hide": true,
+                        "priority": 99
+                    },
+                    "asura": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "newRole": "rydia_asura",
+                        "cancel": ["mist", "titan", "chocobo"],
+                        "noRepeat": true,
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "hide": true,
+                        "priority": 99
+                    },
+                    "chocobo": {
+                    	"command": "convert",
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "newRole": "rydia_chocobo",
+                        "cancel": ["mist", "asura", "titan"],
+                        "noRepeat": true,
+                        "convertmsg": "",
+                        "usermsg": "",
+                        "hide": true,
+                        "priority": 99
+                    }
+                },
+                "standby": {
+                    "quake": {
+                    	"command": "kill",
+                        "target": "AnyButSelf",
+                        "msg": "You can /Quake [name] to kill someone!",
+                        "killmsg": "The Titan, summoned by Rydia, destroys the earth beneath ~Target~!"
+                    }
+                },
+                "dummy2": "variable:killer"
+            }
+        },
+        {
+            "role": "kuja",
+            "translation": "Kuja",
+            "side": "posse",
+            "info": "Vote counts as 9999. Voteshield of -9999. Can Trance one person during the night to learn if they can kill. Ignores Kefka's kill. Sided with Kefka's Posse.",
+            "help": "Mwahaha! So the curtain rises! You're the brightest star in the voting arena, and voting for anyone results in their immediate death. Team up with Kefka to overthrow your creators and subjugate the weak! You can use your powers to /Trance [name], which will inform you whether your target is capable of killing... or just another weakling.",
+            "actions": {
+                "vote": 9999,
+                "voteshield": -9999,
+                "night": {
+                    "trance": {
+                    	"command": "dummy2",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 30
+                    }
+                },
+                "kill": {
+                	"mode": {
+                		"ignore": ["kefka"]
+                		},
+                		"msg": "Stop attacking me, Kefka, for I am your teammate! Now, if you would please contact me that would be great!"
+                	},
+                "preventTeamvote": true
+            },
+            "winIfDeadRoles": [
+                "jecht",
+                "lightning",
+                "ghis",
+                "vayne",
+                "seymour",
+                "cloud",
+                "zack",
+                "aerith",
+                "sephiroth",
+                "ultimecia",
+                "zemus",
+                "golbez",
+                "xande",
+                "yunalesca",
+                "judge",
+                "gilgamesh", 
+                "gilgamesh2",
+                "rydia_mist",
+                "rydia_titan",
+                "rydia_chocobo",
+                "rydia_asura",
+                "yunalesca2",
+                "judge2",
+                "zargabaath",
+                "anima"
+            ]
+        },
+        {
+            "role": "orphan",
+            "translation": "Orphan",
+            "side": "posse",
+            "info": "Can poison indefinite number of people during the night (count: 7). Immune to kills until Kefka and Kuja die. ~Sided~",
+            "help": "Our name is Orphan. By our hand, the world shall know redemption. You are a cocoon, immune to all kills until Kefka and Kuja fall. Use your Doom attack to /Poison [name] indefinitely on everyone alive, and they will die in 7 days!",
+            "actions": {
+                "night": {
+                    "poison": {
+                    	"limit": 9999,
+                    	"count": 8,
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 50
+                    }
+                },
+                "daykill": "evade",
+                "kill": {"mode": "ignore"},
+                "daykill": "evade",
+                "onDeadRoles": {"convertTo": { "orphan2": ["kuja", "kefka"] }, "convertmsg": "Orphan has lost his teammates! He may now be killed!"},
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "orphan2",
+            "translation": "Orphan",
+            "side": "posse",
+            "info": "Can poison indefinite number of people during the night (count: 7). Immune to nightkill until Kefka and Kuja die. ~Sided~",
+            "help": "Our name is Orphan. Now that Kefka and Kuja have fallen, you have been staggered, and you may now be killed! Continue to /Poison [name] indefinitely during the night.",
+            "actions": {
+                "night": {
+                    "poison": {
+                    	"limit": 9999,
+                    	"count": 7,
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 50
+                    }
+                }
+            }
+        },
+        {
+            "role": "sephiroth",
+            "translation": "Sephiroth",
+            "side": "sephiroth",
+            "info": "Can kill one person during the night and during the day. Cannot be detected by spies. Cannot be distracted. Ignores stalk/watch. Immune to poison. Immune to kill. Sided with Sephiroth.",
+            "help": "You... will never be a memory. Before your fall from grace, you were revered as a legendary warrior. But now, you have come to rebel against humankind itself! Type /kill [name] once per night AND during a standby phase to eliminate those who oppose you - your swiftness will keep you from being revealed during the day, as well as by stalk and watch during the night. Your impeccable discipline in combat has granted you an immunity to poison and kills.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 15,
+                        "msg": "±Sephiroth: Tell me what it is you cherish most. Give me the pleasure of taking it away.",
+                        "noFollow": true,
+                        "limit": 1
+                    }
+                },
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "You had a visitor last night. The fool couldn't do anything to distract you from your mission."
+                },
+                "avoidHax": [
+                    "kill"
+                ],
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "Sephiroth darts through the crowd and swiftly slices through ~Target~. He then vanishes without a trace."
+                    }
+                },
+                "dummy2": "variable:killer",
+                "poison": {
+                    "mode": "ignore"
+                },
+                "kill": {
+                    "mode": "ignore"
+                }
+            }
+        },
+        {
+            "role": "jecht",
+            "translation": "Jecht",
+            "side": "sin",
+            "info": "Can kill one person during the night. Lower chance to be haxed. Sided with Sin.",
+            "help": "The father of Tidus, you were eventually possessed by Sin. Team up with Seymour, Anima, and Yunalesca to bring Sin to victory! Type /Kill [name] during the night!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "haxMultiplier": 0.67,
+                        "hide": true,
+                        "msg": "±Jecht: You were no match for Sin!",
+                        "broadcast": "team"
+                    }
+                },
+                "dummy2": "variable:killer",
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "anima",
+            "translation": "Anima",
+            "side": "sin",
+            "info": "Can poison one person during the night. Can kill one person during the night. Sided with Sin.",
+            "help": "A physical manifestation of fayth from Seymour's mother. You are able to cause others immense amounts of pain with /poison and /kill, but the latter is shared with your team.",
+            "actions": {
+                "night": {
+                    "poison": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 16,
+                        "broadcast": "team"
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "hide": true,
+                        "broadcast": "team"
+                    }
+                },
+                "dummy2": "variable:killer",
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "yunalesca",
+            "translation": "Yunalesca",
+            "side": "sin",
+            "info": "Can distract one person during the night. If she becomes the last member of her team, can kill during the night and has vote increased to 2. Sided with Sin.",
+            "help": "Stop those who threaten to ruin Sin's plans. Type /Distract [name] to block someone's actions during the night! Although you cannot kill, if you should become the last member of your team alive, you will gain a vote of 2 and the team's kill!",
+            "actions": {
+                "night": {
+                    "distract": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 2,
+                        "distractmsg": "You were unable to escape the ancient magics of Sin! Yunalesca kept you from taking action during the Night!",
+                        "broadcast": "team"
+                    }
+                },
+                "onDeadRoles": {
+                	"convertTo": { "yunalesca2": ["jecht", "seymour", "anima"] },
+                	"convertmsg": "*** Lady Yunalesca has awoken the ancient magic! She now kills and has a vote of 2!"
+                	},
+                "dummy2": "variable:notkiller",
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "avoidHax": [
+                    "distract"
+                ],
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "yunalesca2",
+            "translation": "Yunalesca",
+            "side": "sin",
+            "hide": true,
+            "info": "Can distract one person during the night. Can kill during the night (shared with team). Cannot be detected by spies. Vote counts as 2. Sided with Sin.",
+            "help": "Stop those who threaten to ruin Sin's plans. Type /Distract [name] to block someone's actions during the night! Ancient magics allow you to /Kill [name] one player during the night and grant you a vote of 2.",
+            "actions": {
+                "night": {
+                    "distract": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 2,
+                        "distractmsg": "You were unable to escape the ancient magics of Sin! Yunalesca kept you from taking action during the Night!",
+                        "broadcast": "team"
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "hide": true,
+                        "msg": "±Yunalesca: It is better for you to die in hope than to live in despair. Let me be your liberator.",
+                        "broadcast": "team"
+                    }
+                },
+                "vote": 2,
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "avoidHax": [
+                    "distract"
+                ],
+                "dummy2": "variable:killer",
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "seymour",
+            "translation": "Seymour",
+            "side": "sin",
+            "info": "Can kill one person during the night. Ignores and identifies any distractors. Sided with Sin.",
+            "help": "You're Maester Seymour, allied with Sin. You invoke magic powers and can kill using /Kill! You can't be distracted by foolish mortals.",
+            "actions": {
+                "distract": {
+                    "mode": "ignore",
+                    "msg": "~Target~, the ~Role~, tried to distract you during the night! How foolish of them!"
+                },
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "hide": true,
+                        "broadcast": "team"
+                    }
+                },
+                "dummy2": "variable:killer",
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "house_placeholder",
+            "translation": "House Solidor",
+            "side": "house",
+            "hide": true,
+            "help": "Placeholder",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 11,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "sin_placeholder",
+            "translation": "Sin",
+            "side": "house",
+            "hide": true,
+            "help": "Placeholder",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "judge",
+            "translation": "Judge Gabranth",
+            "side": "house",
+            "info": "Can protect one person during the night. If he becomes the last member of his team, can kill one person each night, and his vote is increased to 2. Sided with House Solidor.",
+            "help": "You're House Solidor's personal bodyguard. Type /protect [name] to defend Ghis or Vayne! If your allies fall, you have the ability to boost your vote count by calling on fellow judges go have a +2 vote. You will also inherit the ability to /Kill [name] someone in the name of House Solidor.",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 7,
+                        "broadcast": "team"
+                    }
+                },
+                "avoidHax": [
+                    "protect"
+                ],
+                "onDeadRoles": {
+                	"convertTo": { "judge2": ["vayne", "ghis", "zargabaath"] },
+                	"convertmsg": "*** Judge Gabranth has claimed vengeance for the fallen House Solidor! He now kills during the Night, and has a vote of 2!"
+                	},
+                "dummy2": "variable:notkiller",
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "judge2",
+            "translation": "Judge Gabranth",
+            "side": "house",
+            "hide": true,
+            "info": "Can protect one person during the night. Can kill one person each night. Vote counts as 2. Sided with House Solidor.",
+            "help": "You're House Solidor's personal bodyguard. Type /protect [name] to defend Ghis or Vayne! You have the ability to boost your vote count by calling on fellow judges, giving you a +2 vote. You can also /kill someone in the name of House Solidor.",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Role",
+                        "priority": 7,
+                        "broadcast": "team"
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 11,
+                        "hide": true,
+                        "msg": "±Gabranth: Silence! There will be order in our homeland!",
+                        "broadcast": "team"
+                    }
+                },
+                "avoidHax": [
+                    "protect"
+                ],
+                "dummy2": "variable:killer",
+                "vote": 2,
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "vayne",
+            "translation": "Vayne Solidor",
+            "side": "house",
+            "info": "Can kill one person during the night. Can inspect one person during the night. Strongly resists hax. Sided with House Solidor.",
+            "help": "As head of House Solidor, it is your duty to crush the foolish heroes. Type /kill [name]. Your extensive spy network also allows you to /inspect one player per night. You also have a significantly lower chance of being found by enemy spies yourself.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 11,
+                        "haxMultiplier": 0.25,
+                        "hide": true,
+                        "broadcast": "team"
+                    },
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "haxMultiplier": 0.25,
+                        "priority": 30
+                    }
+                },
+                "dummy2": "variable:killer",
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "ghis",
+            "translation": "Judge Ghis",
+            "side": "house",
+            "info": "Can kill one person during the night. Lower chance to be haxed. Sided with House Solidor.",
+            "help": "One of the highest ranking magisters of the Archadian Empire, you focus on the results rather than the means. As such, you're not afraid to get your hands dirty and can /kill during the night. Work with your fellow Judges and Vayne to succeed!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 11,
+                        "msg": "Methods do not interest me. Only results.",
+                        "haxMultiplier": 0.67,
+                        "hide": true,
+                        "broadcast": "team"
+                    }
+                },
+                "dummy2": "variable:killer",
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "zargabaath",
+            "translation": "Judge Zargabaath",
+            "side": "house",
+            "info": "Can kill one person during the night. Ignores protect, stalk, and watch. Cannot be detected by spies. Sided with House Solidor.",
+            "help": "You're one of the elite Judge Magisters with the duty to protect the Solidor! While you might be quiet, your voice is that of reason and moderation, allowing you to have the final say in each night's /kill, without being discovered by spies, stalkers, or watchers. You ignore all protection as it is the Judges' duty to protect Solidor, not each other.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 11,
+                        "hide": true,
+                        "noFollow": true,
+                        "broadcast": "team"
+                    }
+                },
+                "dummy2": "variable:killer",
+                "protect": {
+                    "mode": "ignore"
+                },
+                "stalk": {
+                    "mode": "noVisit"
+                },
+                "avoidHax": [
+                    "kill"
+                ],
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "gigantuar",
+            "translation": "Gigantuar",
+            "side": "village",
+            "info": "Revenges nightkills. Sided with Heroes.",
+            "help": "You're a special, chosen Cactuar. While you don't have the ability to directly kill any target, you have a secret ability: any fatal attack on you during the night results in the attacker dying as well. You never go down without a fight! ",
+            "actions": {
+                "kill": {
+                    "mode": "killattacker"
+                },
+                "dummy2": "variable:notkiller"
+            }
+        },
+        {
+            "role": "gilgamesh",
+            "translation": "Gilgamesh",
+            "side": "gilgamesh",
+            "info": "Can Protect self during the night. Can expose (inspect) one target during standby. Can kill one person during standby. Survives one lynch, losing protect, but gaining a nightkill. Evades daykill. Vote counts as 0.5. Sided with Gilgamesh.",
+            "help": "Ahahaha! How long I've waited! You have come to search for Excalibur, for it is the item of your absolute desire! Use your many arms to /Protect yourself during the night, /Expose [name] to inspect someone during the day, and /Kill [name] during the day. You will never be revealed! You additionally evade all daykills, but have a mere 0.5 vote. Now, enough expository banter! Now, we fight like men! And ladies! And ladies who dress like men! For Gilgamesh...IT'S MORPHING TIME!",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": 7,
+                        "broadcast": "team"
+                    }
+                },
+                "daykill": "evade",
+                "standby": {
+                    "expose": {
+                        "target": "Any",
+                        "msg": "You can learn someone's role by using /expose [name] :",
+                        "exposemsg": "~Target~ falls over, exposed by Gilgamesh's attack. \"Quake, ~Target~! You face the blade of legend!!\"",
+                        "exposedtargetmsg": "~Target~ is the ~Role~!"
+                    },
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You can also kill with /kill [name] :",
+                        "killmsg": "Gilgamesh strikes again! He draws his sword and drives it straight through ~Target~!"
+                    }
+                },
+                "lynch": {
+                	"convertTo": "gilgamesh2",
+                	"convertmsg": "I must say, I commend your ability to vote me off. Hmph, I've faced worse! Let's see how you handle the mighty me! And by me, I mean Gilgamesh!! And by handle, I mean DIE!!!"
+                	},
+                "vote": 0.5,
+                "avoidHax": ["protect"],
+                "dummy2": "variable:killer",
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "gilgamesh2",
+            "translation": "Gilgamesh",
+            "side": "gilgamesh",
+            "hide": true,
+            "info": "Can Protect self during the night. Can expose (inspect) one target during standby. Can kill one person during standby. Survives lynch, losing Protect, but gaining a nightkill.",
+            "help": "You've dropped your shield, but you've gained another weapon! Use your many arms to /Kill someone during the night AND day, and to /Expose [name] to Inspect someone during the day.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 0,
+                        "broadcast": "team"
+                    }
+                },
+                "standby": {
+                    "expose": {
+                        "target": "Any",
+                        "msg": "You can learn someone's role by using /expose [name] :",
+                        "exposemsg": "~Target~ falls over, exposed by Gilgamesh's attack. \"Quake, ~Target~! You face the blade of legend!!\"",
+                        "exposedtargetmsg": "~Target~ is the ~Role~!"
+                    },
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You can also kill with /kill [name] :",
+                        "killmsg": "Gilgamesh strikes again! He draws his sword and drives it straight through ~Target~!"
+                    }
+                },
+                "daykill": "evade",
+                "vote": 0.5,
+                "avoidHax": ["kill"],
+                "dummy2": "variable:killer",
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "zemus",
+            "translation": "Zemus",
+            "side": "lunarian",
+            "info": "Can Control to convert one person into a Lunarian during the standby. Kills all Lunarians on death. Voteshield of -2. Cannot control Ultimecia, Sephiroth, Rydia, or Gilgamesh. ~Sided~",
+            "help": "The body dies... but the spirit lives on. Type /Control [name] to take over their mind during the day and bring them to your side!",
+            "actions": {
+                "standby": {
+                    "control": {
+                    	"command": "expose",
+                        "target": "AnyButTeam",
+                        "msg": "You can now take /Control of someone!",
+                        "exposemsg": "Zemus tried to take control of ~Role~!",
+                        "canConvert": ["tifa", "yunalesca", "yunalesca2", "auron", "judge", "judge2", "locke", "zidane", "vayne", "jecht", "ghis", "seymour", "zargabaath", "cloud", "anima", "moogle", "cara", "cara2", "gigantuar", "kuja", "zack", "xande", "aerith"],
+                        "newRole": {
+                        	"lunar_pl": ["tifa", "yunalesca", "yunalesca2", "hope"],
+                        	"lunar_bg": ["auron", "judge", "judge2", "dkc", "paladin"],
+                        	"lunar_insp": ["locke", "zidane", "vayne", "celes"],
+                        	"lunar_samurai": ["cloud", "zack"],
+                        	"lunar_kill": ["ghis", "jecht", "zargabaath", "seymour", "anima", "lightning", "kefka", "xande"],
+                        	"lunar": ["moogle", "kuja", "cara", "cara2", "gigantuar", "aerith", "maria", "firion"]
+                        }
+                    }
+                },
+                "onDeath": {
+                	"killRoles": ["lunar_pl", "lunar_bg", "lunar_insp", "lunar_samurai", "lunar_kill", "lunar"],
+                	"killmsg": "With Zemus defeated, the Lunarians have been dispersed!"
+                	},
+                "voteshield": -2,
+                "dummy2": "variable:killer",
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true
+            }
+        },
+        {
+            "role": "golbez",
+            "translation": "Golbez",
+            "side": "lunarian",
+            "info": "Can protect one person during the night. Can distract one person during the night. Can't be haxed. Can kill one person during standby (revealed). ~Sided~",
+            "help": "You are Golbez, the Man in Black! Defend Zemus with your /Protect [name] during the night, and distract someone using your Binging Cold during! During the day, you can use your strength as a Mage to /kill [name] during standby!",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "broadcast": "team",
+                        "priority": 7
+                    },
+                    "distract": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "distractmsg": "Binding Cold! Golbez paralyzed you, preventing you from using your action!",
+                        "broadcast": "team",
+                        "priority": 0.5
+                    }
+                },
+                "avoidHax": [
+                    "protect", "distract"
+                ],
+                "standby": {
+                	"kill": {
+                		"msg": "You may /Kill [name] during the day, but be warned as it WILL reveal you.",
+                		"killmsg": "~Self~ (Golbez) summons elemental magic to disintegrate ~Target~!",
+                		"target": "AnyButTeam"
+                		}
+                },	
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy2": "variable:killer"
+            }
+        },
+        {
+            "role": "lunar_pl",
+            "translation": "Lunarian Distracter",
+            "side": "lunarian",
+            "players": "Converted Tifa, Yunalesca, Hope.",
+            "info": "Can distract one person during the night. Vote counts as 0.5. Can't be haxed. ~Sided~",
+            "help": "You have been taken by Zemus! You can still use /Distract [name] during the night, but your vote now counts as 0.5!",
+            "actions": {
+                "night": {
+                    "distract": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "broadcast": "team",
+                        "priority": 0.5
+                    }
+                },
+                "avoidHax": [
+                    "distract"
+                ],
+                "vote": 0.5,
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy2": "variable:notkiller"
+            }
+        },
+        {
+            "role": "lunar_bg",
+            "translation": "Lunarian Bodyguard",
+            "side": "lunarian",
+            "players": "Converted Auron, Judge Gabranth, Cecil.",
+            "info": "Can protect (also safeguards) one person during the night. Vote counts as 0.5. Can't be haxed. ~Sided~",
+            "help": "You have been taken by Zemus! You can still use /Protect [name] during the night, but your vote now counts as 0.5!",
+            "actions": {
+                "night": {
+                    "protect": {
+                    	"command": ["protect", "safeguard"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "broadcast": "team",
+                        "priority": 7
+                    }
+                },
+                "avoidHax": [
+                    "protect"
+                ],
+                "vote": 0.5,
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy2": "variable:notkiller"
+            }
+        },
+        {
+            "role": "lunar_samurai",
+            "translation": "Lunarian Samurai",
+            "side": "lunarian",
+            "players": "Converted Cloud, Zack.",
+            "info": "Can kill one person during the standby (revealed). Cannot be daykilled. Vote counts as 0.5. ~Sided~",
+            "help": "You have been taken by Zemus! You can still use /Kill [name] during the standby (you will still be revealed), but your vote now counts as 0.5!",
+            "actions": {
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "Draw your Buster Sword and pick a target using /kill [name] :",
+                        "killmsg": "~Self~ (the ~Role~) lunges and pulls out a Buster Sword, striking down ~Target~!"
+                    }
+                },
+                "vote": 0.5,
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy2": "variable:killer",
+                "daykill": "evade"
+            }
+        },        
+        {
+            "role": "lunar_insp",
+            "translation": "Lunarian Inspector",
+            "side": "lunarian",
+            "players": "Converted Locke, Zidane, Celes, Vayne.",
+            "info": "Vote counts as 0.5. Can inspect one person during the night. Can't be haxed. ~Sided~",
+            "help": "You have been taken by Zemus! You can use /Inspect [name] during the night, but your vote now counts as 0.5!",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "broadcast": "team",
+                        "priority": 30
+                    }
+                },
+                "avoidHax": [
+                    "inspect"
+                ],
+                "vote": 0.5,
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy2": "variable:notkiller"
+            }
+        },
+        {
+            "role": "lunar_kill",
+            "translation": "Lunarian Killer",
+            "side": "lunarian",
+            "players": "Converted Lightning, Seymour, Judge Zargabaath, Anima, Jecht, Ghis, Kefka, Xande.",
+            "info": "Vote counts as 0.5. Can inspect one person during the night. ~Sided~",
+            "help": "You have been taken by Zemus! You can still use /Kill [name] during the night, but your vote now counts as 0.5!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "broadcast": "team",
+                        "priority": 16
+                    }
+                },
+                "vote": 0.5,
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy2": "variable:killer"
+            }
+        },       
+        {
+            "role": "lunar",
+            "translation": "Lunarian",
+            "side": "lunarian",
+            "players": "Anything else converted by Zemus.",
+            "info": "Vote counts as 0.5. Can Distract, Protect, Inspect, and Kill, once per game each. Can't be haxed. ~Sided~",
+            "help": "You have been taken by Zemus! You can now use distract, protect, kill, and inspect once per game, but your vote now counts as 0.5!",
+            "actions": {
+                "vote": 0.5,
+                "night": {
+                    "distract": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "hide": true,
+                        "charges": 1,
+                        "priority": 0.5
+                    },
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "hide": true,
+                        "charges": 1,
+                        "priority": 7
+                    },
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "hide": true,
+                        "charges": 1,
+                        "priority": 16
+                    },
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "hide": true,
+                        "common": "Self",
+                        "charges": 1,
+                        "priority": 30
+                    },
+                    "cancel": {
+                    	"command": ["dummy2"],
+                        "target": "OnlySelf",
+                        "cancel": ["inspect", "kill", "distract", "protect"],
+                        "common": "Self",
+                        "hide": true,
+                        "priority": 50
+                    }
+                },
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "avoidHax": [
+                    "protect", "distract", "kill", "inspect"
+                ],
+                "preventTeamvote": true,
+                "dummy2": "variable:killer"
+            }
+        },
+        {
+            "role": "ultimecia",
+            "translation": "Ultimecia",
+            "side": "ultimecia",
+            "info": "Can poison 2 persons during the night. Vote counts as 4. High hax on kill. Low hax on Esuna. Sided with Ultimecia.",
+            "help": "Time shall compress... All existence will be denied... forever. You, Ultimecia, will become a living god. Use your dark magics to seal up to 2 players every night with /poison: they will perish at the end of the following night. Your ability to distort space-time allows you to identify killers and healers during the night. It also greatly increases your vote power to 4.",
+            "actions": {
+                "night": {
+                    "poison": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 10,
+                        "broadcast": "team",
+                        "limit": 2
+                    }
+                },
+                "hax": {
+                	"kill": {
+                		"revealPlayer": 0.25,
+                		"revealTeam": 0.45
+                		},
+                	"esuna": {
+                		"revealPlayer": 0.1,
+                		"revealTeam": 0.2
+                		}
+                },
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "dummy2": "variable:notkiller",
+                "preventTeamvote": true,
+                "vote": 4
+            }
+        },
+        {
+            "role": "xande",
+            "translation": "Xande",
+            "side": "ultimecia",
+            "info": "Can protect one person during the night. Can inspect one person during the night. Can't be haxed. Can kill one person during standby (revealed). ~Sided~",
+            "help": "What worth is wealth and power when all must inevitably be consigned to nothingness? You have aligned yourself with Ultimecia, so defend her with your /Protect [name] during the night. Use /Inspect [name] to learn someone's role! During the day, you can use your strength as a Wizard to /Kill [name] during standby!",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "broadcast": "team",
+                        "priority": 7
+                    },
+                    "inspect": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "broadcast": "team",
+                        "priority": 30
+                    }
+                },
+                "avoidHax": [
+                    "protect", "inspect"
+                ],
+                "standby": {
+                	"kill": {
+                		"msg": "You may /Kill [name] during the day, but be warned as it WILL reveal you.",
+                		"killmsg": "Let there be NOTHING!! ~Self~ (Xande) fires Meteor at ~Target~, who is completely obliterated!",
+                		"target": "AnyButTeam"
+                		}
+                },	
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy2": "variable:killer"
+            }
+        }
+    ],
+    "roles1": [
+    	"kefka",
+    	"locke",
+    	"zidane",
+		"tifa",
+		"moogle"
+    ],
+	"roles2": [
+		"kefka",
+		"locke",
+		"zidane",
+		"tifa",
+		"yunalesca2",
+		"dkc"
+	],
+    "roles3": [
+        "auron",
+        "locke",
+        "tifa",
+        "kefka",
+        "dkc",
+        "garland",
+        "garland",
+        "zidane",
+        "sorbet",
+        "moogle",
+        "moogle"
+    ],
+    "roles4": [
+        "locke",
+        "tifa",
+        "auron",
+        "zidane",
+        "moogle",
+        "moogle",
+        "dkc",
+        "jecht",
+        "yunalesca",
+        "ghis",
+        "judge",
+        "kefka",
+        "moogle"
+    ],
+    "roles5": [
+        "locke",
+        "celes",
+        "zidane",
+        "tifa",
+        "auron",
+        "moogle",
+        "cara",
+        "dkc",
+        "seymour",
+        "yunalesca",
+        "vayne",
+        "judge",
+        "kefka",
+        "moogle",
+        "moogle"
+    ],
+    "roles6": [
+        "locke",
+        "celes",
+        "zidane",
+        "tifa",
+        "auron",
+        "aerith",
+        "cloud",
+        "dkc",
+        "cara",
+        "seymour",
+        "yunalesca",
+        "vayne",
+        "judge",
+        "kefka",
+        "kuja",
+        "moogle",
+        "moogle",
+        "moogle"
+    ],
+    "roles7": [
+        "locke",
+        "celes",
+        "zidane",
+        "auron",
+        "tifa",
+        "cloud",
+        "aerith",
+        "lightning",
+        "dkc",
+        "cara",
+        "moogle",
+        "seymour",
+        "yunalesca",
+        "vayne",
+        "judge",
+        "kefka",
+        "kuja",
+        "anima",
+        "zargabaath",
+        "sephiroth",
+        "moogle"
+    ],
+    "roles8": [
+        "locke",
+        "celes",
+        "zidane",
+        "auron",
+        "tifa",
+        "cloud",
+        "aerith",
+        "lightning",
+        "hope",
+        "dkc",
+        "cara",
+        "moogle",
+        "seymour",
+        "yunalesca",
+        "vayne",
+        "judge",
+        "kefka",
+        "kuja",
+        "anima",
+        "zargabaath",
+        "sephiroth",
+        "ultimecia",
+        "moogle",
+        "moogle",
+        "moogle"
+    ],
+    "roles9": [
+        "locke",
+        "celes",
+        "zidane",
+        "auron",
+        "tifa",
+        "cloud",
+        "aerith",
+        "lightning",
+        "hope",
+        "dkc",
+        "moogle",
+        "moogle",
+        "seymour",
+        "yunalesca",
+        "vayne",
+        "judge",
+        "kefka",
+        "kuja",
+        "anima",
+        "zargabaath",
+        "sephiroth",
+        "ultimecia",
+        "cara",
+        "moogle",
+        "rydia_mist",
+        "gilgamesh",
+        "moogle",
+        "moogle"
+    ],
+    "roles10": [
+        "locke",
+        "celes",
+        "zidane",
+        "auron",
+        "tifa",
+        "cloud",
+        "aerith",
+        "lightning",
+        "hope",
+        "dkc",
+        "moogle",
+        "moogle",
+        "seymour",
+        "yunalesca",
+        "vayne",
+        "judge",
+        "kefka",
+        "kuja",
+        "anima",
+        "zargabaath",
+        "sephiroth",
+        "ultimecia",
+        "cara",
+        "xande",
+        "rydia_mist",
+        "gilgamesh",
+        "zemus",
+        "golbez",
+        "zack",
+        "orphan",
+        "moogle",
+        "moogle",
+        "moogle"
+    ],
+    "roles11": [
+        "locke",
+        "celes",
+        "zidane",
+        "auron",
+        "tifa",
+        "cloud",
+        "aerith",
+        "lightning",
+        "hope",
+        "dkc",
+        "moogle",
+        "moogle",
+        "seymour",
+        "yunalesca",
+        "vayne",
+        "judge",
+        "kefka",
+        "kuja",
+        "anima",
+        "zargabaath",
+        "sephiroth",
+        "ultimecia",
+        "cara",
+        "xande",
+        "rydia_mist",
+        "gilgamesh",
+        "zemus",
+        "golbez",
+        "zack",
+        "moogle",
+        "jecht",
+        "ghis",
+        "firion",
+        "orphan",
+        "gigantuar",
+        "moogle",
+        "moogle",
+        "moogle",
+        "moogle",
+        "moogle"
+    ],
+    "villageCantLoseRoles": [
+        "lightning",
+        "cloud",
+        "paladin",
+        "zack",
+        "maria",
+        "rydia_chocobo",
+        "rydia_asura",
+        "rydia_titan"
+    ],
+	"tips": {
+"First Time Playing?": "Go here for an extended guide: http://pokemon-online.eu/threads/theme-guides.30711/#post-432333",
+        "Cloud": "FOR THE LOVE OF GOD CLOUD, DON'T KILL D1.",
+        "Zidane": "If you inspect Kefka, YOU'RE PROBABLY ZIDANE. Pay attention to other people inspecting to see if you're Locke or Zidane, or at least wait till n2 to confirm your inspect results. READ YOUR HELP TEXT.",
+        "Zidane Part 2": "If you and Locke spam like you're supposed to, you should already be connected to each other and Celes. Figure out which one of you is Zidane, meatshield as Celes and ask for PRs. If you die, no real loss there, as Locke can now confirm himself.",
+        "Zidane PART 3": "ZIDANE INSPECTS AS KEFKA. ZIDANE INSPECTS AS KEFKA. DO NOT PANIC."
+	},
+    "killmsg": "±Game: ~Player~ (~Role~) has fallen!",
+    "killusermsg": "You have been killed!",
+    "lynchmsg": "±Game: ~Player~ (~Role~) has been removed from the game!",
+    "drawmsg": "The battle is over...but there is no victory today. Everyone has died!",
+    "changelog": {
+        "6.16.2013": "Various nerfs related to hax for the Village. Judge and Yuna can no longer be haxed.",
+        "6.18.2013": "Kuja can no longer selfvote and get lynched.",
+        "6.20.2013": "DKC now gets -3 votes to help balance. Cecil and Auron ignore each other's protects.",
+        "6.24.2013": "Expanded players supported to 40. Added new roles and buffed some existing.  Chocobo Rider (2 vote stalker sided with village), Anima (Poisoner sided with Sin), Judge Zargabaath (upgraded killer sided with House). Buffed Sephiroth to ignore poison, stalk, and have a small voteshield in large games. ",
+        "6.29.2014": "preventTeamvote",
+        "5.26.2015": "QA revisions: The same Garland cannot be Distracted twice in a single game. New 5p setup. New role: Sorbet, a Moogle who Inspects as Garland.",
+        "5.27.2015": "Yunalesca and Judge Gabranth cannot kill until they are alone. They also gain their vote of 2 once alone. Aerith is now a JOAT connected with Cloud on startup. The spawn is cleaned up.",
+        "5.27.2015.2": "Kefka evades one nightkill. Kefka cannot find Kuja with /kill, but Kuja evades. Nonpeak expanded to 6p. Hope is a jailkeeper that haxes Lightning. Lots of flavor updates. Zidane is now the insane inspector that sees Kefka (rip Cactuar) and Celes is the Spy. Celes' hax on Kill is slightly higher, but Larsa and Jecht resist hax.",
+        "5.28.2015": "Various buffs to mafia. Sephiroth no longer has a voteshield, but is immune to all nightkills. Ultimecia can hax kill and Esuna. Kuja has a command /trance which tells him whether or not the target can kill (either day or night). Vayne strongly resists hax on inspect/kill. Seymour ignores and now identifies distracters. Flavor and priority updates.",
+        "5.30.2015": "Gilgamesh. Also Krile.",
+        "6.2.2015": "Added new roles Rydia, Zack, Firion, Maria, Xande, Golbez, and Zemus.",
+        "6.21.2015": "3-4p setup added. Larsa replaced with Ghis.",
+		"11.12.2016": "Changed 4-6p setup."
+    }
+}
