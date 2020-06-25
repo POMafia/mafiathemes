@@ -1,0 +1,871 @@
+{
+	"name": "Default",
+	"author": ["RiceKirby", "Mafia QC"],
+	"summary": "Our poor little town is in distress. Not one, but two mafia troupes have moved in, and there’s even a werewolf lurking around town trying to eat people! Find the scum, connect with your teammates, voice the power roles, and lynch the baddies to restore peace to the town! Guide here: http://bit.ly/2deei0z",
+	"sides": [{
+		"side": "village",
+		"color": "#00cc00",
+		"translation": "Village"
+	}, {
+		"side": "mafia",
+		"color": "red",
+		"translation": "Mafia"
+	}, {
+		"side": "italian",
+		"color": "#0066ff",
+		"translation": "Italian Mafia"
+	}, {
+		"side": "french",
+		"color": "orange",
+		"translation": "French Canadian Mafia"
+	}, {
+		"side": "werewolf",
+		"color": "#cc00cc",
+		"translation": "Werewolf"
+	}, {
+		"side": "godfather",
+		"color": "red",
+		"translation": "Godfather"
+	}],
+	"tips": {
+		"Scumtell": "Look for suspicious behaviours to find the mafia. Example: How players vote or who they defend/accuse. Someone who defended or didn't vote (without a reason) for some Mafia could be their teammate.",
+		"Connecting": "If you are an important village role, try to connect with your teammates by Whispering to a player that's likely to be clean.",
+		"Voice": "If there's no bodyguard, find a villager to relay any important information you may have without getting yourself exposed.",
+		"Meatshielding": "When there's no bodyguard, pretending to be an important role when you are villager is a way to protect them by baiting mafia into wasting a kill on you.",
+		"Fake Claiming": "As Mafia, claiming an important role (publicly or to someone connecting them) to throw off village may be particularly effective when there are still a good number of players alive on your team."
+	},
+	"variables": {
+		"help_villager": "You don't have any special commands during the night! Use /vote [name] to remove people during the day!",
+		"help_deputy": "Type /search [name] to find out if your target used any action during that night!",
+		"help_mafia": "Type /kill [name] to kill someone during the night! The mafia strikes as a team, so this action is shared with your teammates!",
+		"help_mafia_tracker": "Type /kill [name] to kill someone during the night! You can type /stalk [name] to find out if your target used an action during that night (you have limited uses for this action).",
+		"prio_italian_distract": 1,
+		"prio_french_distract": 2,
+		"prio_hooker": 3,
+		"prio_bodyguard": 4,
+		"prio_werewolf": 5,
+		"prio_mafia": 6,
+		"prio_italian_kill": 7,
+		"prio_french_kill": 8,
+		"prio_godfather_kill": 9,
+		"prio_vigilante": 10,
+		"prio_inspector": 11,
+		"prio_godfather_inspect": 12,
+		"prio_neighbour": 13,
+		"prio_pre_stalk": 13.5,
+		"prio_deputy": 14,
+		"prio_italian_stalk": 14,
+		"prio_french_stalk": 14
+	},
+	"roles": [{
+		"role": "villager",
+		"translation": "Villager",
+		"side": "village",
+		"help": "variable:help_villager",
+		"info": "Has no special abilities. ~Sided~",
+		"actions": {}
+	}, {
+		"role": "mayor",
+		"translation": "Mayor",
+		"side": "village",
+		"help": "You don't have any special commands during the night, but your vote counts as 2! Use /vote [name] to remove people during the day!",
+		"actions": {
+			"vote": 2
+		}
+	}, {
+		"role": "inspector",
+		"translation": "Inspector",
+		"side": "village",
+		"help": "Type /inspect [name] during the night to find out someone's role!",
+		"info": "Can inspect one person during the night. Sees Mafia roles as their faction, not their role. ~Sided~",
+		"actions": {
+			"startup": "role-reveal",
+			"teamTalk": ["inspector"],
+			"preventTeamvote": ["inspector"],
+			"night": {
+				"inspect": {
+					"common": "Role",
+					"target": "AnyButRole",
+					"broadcast": "role",
+					"priority": "variable:prio_inspector"
+				}
+			}
+		}
+	}, {
+		"role": "bodyguard",
+		"translation": "Bodyguard",
+		"side": "village",
+		"help": "Type /protect [name] to protect someone else from kills for that night!",
+		"actions": {
+			"night": {
+				"protect": {
+					"common": "Self",
+					"target": "AnyButSelf",
+					"priority": "variable:prio_bodyguard"
+				}
+			}
+		}
+	}, {
+		"role": "hooker",
+		"translation": "Pretty Lady",
+		"side": "village",
+		"help": "Type /distract [name] to prevent another player from using their actions for the night! But even if you distract someone, their teammates may still move around during the night!",
+		"info": "Can distract one person during the night. Only takes effect if the distracted target submitted the action.",
+		"actions": {
+			"night": {
+				"distract": {
+					"command": ["distract"],
+					"common": "Self",
+					"target": "AnyButSelf",
+					"priority": "variable:prio_hooker",
+					"onlyUser": true
+				}
+			}
+		}
+	}, {
+		"role": "vigilante",
+		"translation": "Vigilante",
+		"side": "village",
+		"help": "Type /kill [name] during the night to remove another player from the game! Be careful to not hit people sided with the Village!",
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Self",
+					"target": "AnyButSelf",
+					"priority": "variable:prio_vigilante"
+				}
+			}
+		}
+	}, {
+		"role": "neighbour",
+		"translation": "Neighbour",
+		"side": "village",
+		"help": "Type /greet [name] during the night to reveal your identity to another player!",
+		"info": "Can reveal its identity to one person during the night. ~Sided~",
+		"actions": {
+			"night": {
+				"greet": {
+					"command": "dummy",
+					"common": "Self",
+					"target": "AnyButSelf",
+					"priority": "variable:prio_neighbour",
+					"dummytargetmsg": "~Self~, the Neighbour, has revealed their identity to you!",
+					"dummyusermsg": "You revealed your identity to ~Target~!"
+				}
+			}
+		}
+	}, {
+		"role": "deputy",
+		"translation": "Deputy",
+		"side": "village",
+		"help": "variable:help_deputy",
+		"info": "Can find if another player used any action during the night. ~Sided~",
+		"actions": {
+			"night": {
+				"search": {
+					"command": "copy",
+					"common": "Self",
+					"target": "AnyButSelf",
+					"priority": "variable:prio_pre_stalk",
+					"copyAs": "deputy_stalking",
+					"hide": true,
+					"silent": true,
+					"silentCopy": true,
+					"copyfailmsg": ""
+				}
+			}
+		}
+	}, {
+		"role": "deputy_stalking",
+		"translation": "Deputy",
+		"side": "village",
+		"help": "variable:help_deputy",
+		"hide": true,
+		"actions": {
+			"night": {
+				"search": {
+					"command": ["stalk", "copy"],
+					"common": "Self",
+					"target": "AnyButSelf",
+					"priority": "variable:prio_deputy",
+					"stalkmsg": "Your target (~Target~) used an action this night!",
+					"copyAs": "deputy",
+					"silent": true,
+					"silentCopy": true,
+					"copyfailmsg": ""
+				}
+			}
+		}
+	}, {
+		"role": "miller_mafia",
+		"translation": "Miller",
+		"side": "village",
+		"help": "variable:help_villager",
+		"info": "Inspected as Mafia, Italian Mafia or French Canadian Mafia. Sees itself as a Villager. ~Sided~",
+		"players": [8, 40],
+		"actions": {
+			"inspect": {
+				"revealAs": "mafia"
+			},
+			"onDeadRoles": {
+				"convertTo": {
+					"villager": ["mafia", "mafia_boss"]
+				},
+				"convertmsg": ""
+			},
+			"startup": {
+				"revealAs": "villager"
+			}
+		}
+	}, {
+		"role": "miller_italian",
+		"translation": "Miller",
+		"side": "village",
+		"help": "variable:help_villager",
+		"hide": true,
+		"actions": {
+			"inspect": {
+				"revealAs": "italian_mafia"
+			},
+			"onDeadRoles": {
+				"convertTo": {
+					"miller_french": ["italian_mafia", "italian_boss", "italian_boss_plus", "italian_tracker", "italian_tracker_plus", "italian_tracker_base"],
+					"villager": ["italian_mafia", "italian_boss", "italian_boss_plus", "italian_tracker", "italian_tracker_plus", "italian_tracker_base", "french_mafia", "french_boss", "french_boss_plus", "french_tracker", "french_tracker_plus", "french_tracker_base"]
+				},
+				"convertmsg": ""
+			},
+			"startup": {
+				"revealAs": "villager"
+			}
+		}
+	}, {
+		"role": "miller_french",
+		"translation": "Miller",
+		"side": "village",
+		"help": "variable:help_villager",
+		"hide": true,
+		"actions": {
+			"inspect": {
+				"revealAs": "french_mafia"
+			},
+			"onDeadRoles": {
+				"convertTo": {
+					"miller_italian": ["french_mafia", "french_boss", "french_boss_plus", "french_tracker", "french_tracker_plus", "french_tracker_base"],
+					"villager": ["italian_mafia", "italian_boss", "italian_boss_plus", "italian_tracker", "italian_tracker_plus", "italian_tracker_base", "french_mafia", "french_boss", "french_boss_plus", "french_tracker", "french_tracker_plus", "french_tracker_base"]
+				},
+				"convertmsg": ""
+			},
+			"startup": {
+				"revealAs": "villager"
+			}
+		}
+	}, {
+		"role": "mafia",
+		"translation": "Mafia",
+		"side": "mafia",
+		"help": "variable:help_mafia",
+		"info": "Can kill one person during the night. ~Sided~",
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Team",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_mafia",
+					"broadcast": "team"
+				}
+			},
+			"startup": "team-reveal",
+			"teamTalk": true,
+			"preventTeamvote": true
+		}
+	}, {
+		"role": "mafia_boss",
+		"translation": "Mafia Boss",
+		"side": "mafia",
+		"help": "Type /kill [name] to kill someone during the night! In addition, you can use /distract [name] once per game to stop someone's actions for the night.",
+		"info": "Can kill one person during the night. Can distract another player once every two nights. ~Sided~",
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Team",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_mafia",
+					"broadcast": "team",
+					"hide": true
+				},
+				"distract": {
+					"command": "distract",
+					"common": "Role",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_french_distract",
+					"broadcast": "team",
+					"recharge": 2
+				}
+			},
+			"inspect": {
+				"revealAs": "mafia"
+			},
+			"teamUtilities": true,
+			"updateCharges": true
+		}
+	}, {
+		"role": "italian_mafia",
+		"translation": "Italian Mafia",
+		"side": "italian",
+		"help": "variable:help_mafia",
+		"info": "Can kill one person during the night. ~Sided~",
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Team",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_italian_kill",
+					"broadcast": "team"
+				}
+			},
+			"teamUtilities": true
+		}
+	}, {
+		"role": "italian_boss",
+		"translation": "Italian Boss",
+		"side": "italian",
+		"help": "Type /kill [name] to kill someone during the night! In addition, you can use /distract [name] every 2 nights to stop someone's actions for the night.",
+		"info": "Can kill one person during the night. Can distract another player every other night (every night if more than 24 players). ~Sided~",
+		"players": [12, 40],
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Team",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_italian_kill",
+					"broadcast": "team",
+					"hide": true
+				},
+				"distract": {
+					"common": "Role",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_italian_distract",
+					"broadcast": "team",
+					"onlyUser": true,
+					"recharge": 2
+				}
+			},
+			"inspect": {
+				"revealAs": "italian_mafia"
+			},
+			"teamUtilities": true,
+			"updateCharges": true
+		}
+	}, {
+		"role": "italian_boss_plus",
+		"translation": "Italian Boss",
+		"side": "italian",
+		"help": "Type /kill [name] to kill someone during the night! In addition, you can use /distract [name] to stop someone's actions for the night.",
+		"hide": true,
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Team",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_italian_kill",
+					"broadcast": "team",
+					"hide": true
+				},
+				"distract": {
+					"common": "Role",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_italian_distract",
+					"onlyUser": true
+				}
+			},
+			"inspect": {
+				"revealAs": "italian_mafia"
+			},
+			"teamUtilities": true,
+			"updateCharges": true
+		}
+	}, {
+		"role": "italian_tracker",
+		"translation": "Italian Tracker",
+		"side": "italian",
+		"help": "variable:help_mafia_tracker",
+		"info": "Can kill one person during the night. Can stalk a player 2 times per game (3 if more than 27 players). ~Sided~",
+		"players": [21, 40],
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Team",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_italian_kill",
+					"broadcast": "team",
+					"hide": true
+				},
+				"stalk": {
+					"command": "copy",
+					"common": "Self",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_pre_stalk",
+					"copyAs": "italian_tracker_stalking",
+					"hide": true,
+					"silent": true,
+					"silentCopy": true,
+					"copyfailmsg": "",
+					"chargesmsg": "You used a stalk charge!",
+					"charges": 2
+				}
+			},
+			"inspect": {
+				"revealAs": "italian_mafia"
+			},
+			"teamUtilities": true,
+			"updateCharges": true
+		}
+	}, {
+		"role": "italian_tracker_plus",
+		"translation": "Italian Tracker",
+		"side": "italian",
+		"help": "variable:help_mafia_tracker",
+		"hide": true,
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Team",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_italian_kill",
+					"broadcast": "team",
+					"hide": true
+				},
+				"stalk": {
+					"command": "copy",
+					"common": "Self",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_pre_stalk",
+					"copyAs": "italian_tracker_stalking",
+					"hide": true,
+					"silent": true,
+					"silentCopy": true,
+					"copyfailmsg": "",
+					"chargesmsg": "You used a stalk charge!",
+					"charges": 3
+				}
+			},
+			"inspect": {
+				"revealAs": "italian_mafia"
+			},
+			"teamUtilities": true,
+			"updateCharges": true
+		}
+	}, {
+		"role": "italian_tracker_base",
+		"translation": "Italian Tracker",
+		"side": "italian",
+		"help": "variable:help_mafia_tracker",
+		"hide": true,
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Team",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_italian_kill",
+					"broadcast": "team",
+					"hide": true
+				},
+				"stalk": {
+					"command": "copy",
+					"common": "Self",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_pre_stalk",
+					"copyAs": "italian_tracker_stalking",
+					"hide": true,
+					"silent": true,
+					"silentCopy": true,
+					"chargesmsg": "You used a stalk charge!",
+					"copyfailmsg": ""
+				}
+			},
+			"inspect": {
+				"revealAs": "italian_mafia"
+			},
+			"teamUtilities": true,
+			"updateCharges": true
+		}
+	}, {
+		"role": "italian_tracker_stalking",
+		"translation": "Italian Tracker",
+		"side": "italian",
+		"help": "variable:help_mafia_tracker",
+		"hide": true,
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Team",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_italian_kill",
+					"broadcast": "team",
+					"hide": true
+				},
+				"stalk": {
+					"command": ["stalk", "copy"],
+					"common": "Self",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_italian_stalk",
+					"copyAs": "italian_tracker_base",
+					"silent": true,
+					"silentCopy": true,
+					"copyfailmsg": "",
+					"addCharges": 1
+				}
+			},
+			"inspect": {
+				"revealAs": "italian_mafia"
+			},
+			"teamUtilities": true,
+			"updateCharges": true
+		}
+	}, {
+		"role": "french_mafia",
+		"translation": "French Canadian Mafia",
+		"side": "french",
+		"help": "variable:help_mafia",
+		"info": "Can kill one person during the night. ~Sided~",
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Team",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_french_kill",
+					"broadcast": "team"
+				}
+			},
+			"teamUtilities": true
+		}
+	}, {
+		"role": "french_boss",
+		"translation": "French Canadian Boss",
+		"side": "french",
+		"help": "Type /kill [name] to kill someone during the night! In addition, you can use /distract [name] every 2 nights to stop someone's actions for the night.",
+		"info": "Can kill one person during the night. Can distract another player every other night (every night if more than 24 players).  ~Sided~",
+		"players": [12, 40],
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Team",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_french_kill",
+					"broadcast": "team",
+					"hide": true
+				},
+				"distract": {
+					"common": "Role",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_french_distract",
+					"recharge": 2,
+					"onlyUser": true
+				}
+			},
+			"inspect": {
+				"revealAs": "french_mafia"
+			},
+			"teamUtilities": true,
+			"updateCharges": true
+		}
+	}, {
+		"role": "french_boss_plus",
+		"translation": "French Canadian Boss",
+		"side": "french",
+		"help": "Type /kill [name] to kill someone during the night! In addition, you can use /distract [name] to stop someone's actions for the night.",
+		"hide": true,
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Team",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_french_kill",
+					"broadcast": "team",
+					"hide": true
+				},
+				"distract": {
+					"common": "Role",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_french_distract",
+					"onlyUser": true
+				}
+			},
+			"inspect": {
+				"revealAs": "french_mafia"
+			},
+			"teamUtilities": true,
+			"updateCharges": true
+		}
+	}, {
+		"role": "french_tracker",
+		"translation": "French Canadian Tracker",
+		"side": "french",
+		"help": "variable:help_mafia_tracker",
+		"info": "Can kill one person during the night. Can stalk a player 2 times per game (3 if more than 27 players). ~Sided~",
+		"players": [21, 40],
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Team",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_french_kill",
+					"broadcast": "team",
+					"hide": true
+				},
+				"stalk": {
+					"command": "copy",
+					"common": "Self",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_pre_stalk",
+					"copyAs": "french_tracker_stalking",
+					"hide": true,
+					"silent": true,
+					"silentCopy": true,
+					"copyfailmsg": "",
+					"chargesmsg": "You used a stalk charge!",
+					"charges": 2
+				}
+			},
+			"inspect": {
+				"revealAs": "french_mafia"
+			},
+			"teamUtilities": true,
+			"updateCharges": true
+		}
+	}, {
+		"role": "french_tracker_plus",
+		"translation": "French Canadian Tracker",
+		"side": "french",
+		"help": "variable:help_mafia_tracker",
+		"hide": true,
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Team",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_french_kill",
+					"broadcast": "team",
+					"hide": true
+				},
+				"stalk": {
+					"command": "copy",
+					"common": "Self",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_pre_stalk",
+					"copyAs": "french_tracker_stalking",
+					"hide": true,
+					"silent": true,
+					"silentCopy": true,
+					"copyfailmsg": "",
+					"chargesmsg": "You used a stalk charge!",
+					"charges": 3
+				}
+			},
+			"inspect": {
+				"revealAs": "french_mafia"
+			},
+			"teamUtilities": true,
+			"updateCharges": true
+		}
+	}, {
+		"role": "french_tracker_base",
+		"translation": "French Canadian Tracker",
+		"side": "french",
+		"help": "variable:help_mafia_tracker",
+		"hide": true,
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Team",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_french_kill",
+					"broadcast": "team",
+					"hide": true
+				},
+				"stalk": {
+					"command": "copy",
+					"common": "Self",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_pre_stalk",
+					"copyAs": "french_tracker_stalking",
+					"hide": true,
+					"silent": true,
+					"silentCopy": true,
+					"chargesmsg": "You used a stalk charge!",
+					"copyfailmsg": ""
+				}
+			},
+			"inspect": {
+				"revealAs": "french_mafia"
+			},
+			"teamUtilities": true,
+			"updateCharges": true
+		}
+	}, {
+		"role": "french_tracker_stalking",
+		"translation": "French Canadian Tracker",
+		"side": "french",
+		"help": "variable:help_mafia_tracker",
+		"hide": true,
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Team",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_french_kill",
+					"broadcast": "team",
+					"hide": true
+				},
+				"stalk": {
+					"command": ["stalk", "copy"],
+					"common": "Self",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_french_stalk",
+					"copyAs": "french_tracker_base",
+					"silent": true,
+					"silentCopy": true,
+					"copyfailmsg": "",
+					"addCharges": 1
+				}
+			},
+			"inspect": {
+				"revealAs": "french_mafia"
+			},
+			"teamUtilities": true,
+			"updateCharges": true
+		}
+	}, {
+		"role": "werewolf",
+		"translation": "Werewolf",
+		"side": "werewolf",
+		"help": "Type /kill [name] during the night to kill another player! If distracted, you will kill the Pretty Lady instead. You are by yourself, but you survive 1 attack made against you during the night.",
+		"info": "Can kill one person during the night, ignoring protect. Evades 1 night kill. Kills distractors (ignores Mafia Boss). ~Sided~",
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Self",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_werewolf",
+					"pierce": true,
+					"broadcast": "team"
+				}
+			},
+			"distract": {
+				"mode": {
+					"killif": ["hooker"],
+					"ignore": ["mafia_boss"]
+				},
+				"hookermsg": "You tried to distract the Werewolf (what an idea, srsly), you were ravishly devoured, yum!",
+				"msg": "The ~Distracter~ came to you during the night, but couldn't stop you from your duties!"
+			},
+			"kill": {
+				"mode": {
+					"evadeCharges": 1
+				},
+				"msg": "Your target (~Self~) was protected!"
+			}
+		}
+	}, {
+		"role": "godfather",
+		"translation": "Godfather",
+		"side": "godfather",
+		"help": "Type /kill [name] and /kill [name2] to kill 2 players every night! You can also use /inspect [name] to find someone else's role. You cannot be distracted, and you survive 1 attack made against you during the night.",
+		"players": [21, 40],
+		"info": "Can kill two persons during the night. Can inspect one person during the night. Evades 1 night kill (2 if more than 30 players). Ignore distractors. ~Sided~",
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Self",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_godfather_kill",
+					"broadcast": "team",
+					"limit": 2
+				},
+				"inspect": {
+					"common": "Self",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_godfather_inspect",
+					"broadcast": "team"
+				}
+			},
+			"distract": {
+				"mode": "ignore",
+				"msg": "The ~Distracter~ came to you during the night, but you ignored them!"
+			},
+			"kill": {
+				"mode": {
+					"evadeCharges": 1
+				},
+				"msg": "Your target (~Self~) was protected!"
+			}
+		}
+	}, {
+		"role": "godfather_plus",
+		"translation": "Godfather",
+		"side": "godfather",
+		"help": "Type /kill [name] and /kill [name2] to kill 2 players every night! You can also use /inspect [name] to find someone else's role. You cannot be distracted, and you survive 2 attacks made against you during the night.",
+		"hide": true,
+		"actions": {
+			"night": {
+				"kill": {
+					"common": "Self",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_godfather_kill",
+					"broadcast": "team",
+					"limit": 2
+				},
+				"inspect": {
+					"common": "Self",
+					"target": "AnyButTeam",
+					"priority": "variable:prio_godfather_inspect",
+					"broadcast": "team"
+				}
+			},
+			"distract": {
+				"mode": "ignore",
+				"msg": "The ~Distracter~ came to you during the night, but you ignored them!"
+			},
+			"kill": {
+				"mode": {
+					"evadeCharges": 2
+				},
+				"msg": "Your target (~Self~) was protected!"
+			}
+		}
+	}],
+	"minplayers": 4,
+	"roles1": ["werewolf", "villager", "hooker", "neighbour",
+		"villager", "villager"
+	],
+	"roles2": ["villager", "miller_mafia", "inspector", "neighbour", "bodyguard", "mafia_boss", "mafia",
+		"villager"
+	],
+	"roles3": ["villager", "miller_mafia", "inspector", "neighbour", "bodyguard", "hooker", "mafia_boss", "mafia", "werewolf",
+		"villager"
+	],
+	"roles4": ["villager", "miller_mafia", "inspector", "inspector", "neighbour", "bodyguard", "hooker", "mafia_boss", "mafia", "mafia", "werewolf"],
+	"roles5": ["italian_mafia", "italian_boss", "french_mafia", "french_boss", "villager", "villager", "miller_italian", "miller_french", "neighbour", "inspector", "bodyguard", "inspector",
+		"villager", "villager"
+	],
+	"roles6": ["italian_mafia", "italian_boss", "french_mafia", "french_boss", "villager", "villager", "villager", "miller_italian", "miller_french", "neighbour", "inspector", "bodyguard", "inspector", "hooker", "french_mafia",
+		"villager", "mayor", "italian_mafia"
+	],
+	"roles7": ["italian_boss", "italian_tracker", "italian_mafia", "french_boss", "french_tracker", "french_mafia", "villager", "villager", "villager", "villager", "miller_italian", "miller_french", "inspector", "inspector", "bodyguard", "hooker", "mayor", "neighbour", "godfather",
+		"villager", "villager"
+	],
+	"roles8": ["italian_tracker", "italian_mafia", "italian_boss_plus", "french_boss_plus", "french_tracker", "french_mafia", "villager", "villager", "villager", "villager", "villager", "villager", "miller_italian", "miller_french", "inspector", "inspector", "bodyguard", "hooker", "mayor", "neighbour", "godfather", "deputy",
+		"villager", "french_mafia"
+	],
+	"roles9": ["italian_tracker_plus", "italian_mafia", "italian_boss_plus", "french_boss_plus", "french_tracker_plus", "french_mafia", "villager", "villager", "villager", "villager", "villager", "villager", "miller_italian", "miller_french", "inspector", "inspector", "bodyguard", "hooker", "mayor", "neighbour", "godfather", "deputy",
+		"villager", "french_mafia", "vigilante", "italian_mafia", "neighbour"
+	],
+	"roles10": ["italian_mafia", "italian_tracker_plus", "french_mafia", "french_tracker_plus", "villager", "villager", "villager", "miller_italian", "miller_french", "mayor", "inspector", "bodyguard", "hooker", "inspector", "french_boss_plus", "villager", "neighbour", "italian_boss_plus", "villager", "villager",
+		"godfather_plus", "vigilante", "villager", "french_mafia", "deputy", "italian_mafia", "neighbour", "french_mafia", "bodyguard", "villager",
+		"miller_french", "italian_mafia", "miller_italian", "french_mafia", "hooker", "villager", "french_mafia", "vigilante", "italian_mafia", "deputy"
+	],
+	"villageCantLoseRoles": ["mayor", "vigilante"],
+	"changelog": {
+		"05.11.2014": "Theme coded."
+	}
+}
