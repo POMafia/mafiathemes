@@ -1,0 +1,200 @@
+{
+    "name": "Conversion3",
+    "author":"Definitely Pamitha",
+    "summary":"The Frost Rotoms are attacking! The Porygon-Z must quickly shoot down all converters before the Porygon are destroyed otherwise it loses.",
+    "sides":[{
+            "side":"aliens",
+            "translation":"Frost Rotoms",
+            "winmsg":"The Frost Rotoms (~Players~) converted all the Porygon's forces and now they control the Earth!"
+        },
+        {
+            "side":"village",
+            "translation":"Defenders",
+            "winmsg":"The Porygon (~Players~) won and now the Earth is a safe place!"
+        }
+    ],
+    "roles":[{
+            "role":"laser",
+            "translation":"Porygon-Z",
+            "side":"village",
+            "help":"You're the Porygon-Z! Destroy your enemies with your laser typing /kill during the standby! However, you should be safeguarded by a Porygon, because if you are converted you die and the Frost Rotom win!",
+			"info":"Can kill one player during the standby. Sided with the Porygon.",
+            "actions":{
+			"startup": {
+                    "revealPlayers": "laser",
+					"revealPlayersMsg": "The Porygon-Z is ~Players~."
+                },
+                "standby":{
+                    "kill":{
+                        "target":"AnyButSelf",
+                        "msg":"Now, destroy your enemies with /kill [name]!",
+                        "killmsg":"~Self~ aimed at ~Target~ and destroyed him with a Hyper Beam!! IMMA FIRIN MAH LAZER!!!"
+                    }
+                },
+                "convert": {
+                	"mode": "die",
+                	"msg": "You frozed the Porygon-Z! :)",
+                	"targetmsg": "PORYGONS YOU SUCK HOW HARD WAS IT TO PROTECT THE LASER CANNON HOLY F"
+                },
+				"daykill": "evade",
+				"onDeath": {
+					"killRoles": ["bunker", "bunker2"],
+					"killmsg": "±Space Invaders:  When ~Self~ died, all the Porygons were defenseless and they surrendered!"
+				}
+            }
+        },
+        {
+            "role":"bunker",
+            "translation":"Porygon",
+            "side":"village",
+            "help":"You're Bunker! Sturdy and resistant, you can block the Frost Rotom's convert! But you'll have to choose, because you can safeguard the Porygon-Z or yourself up to 3 times in the game! Make wise decisions, because if all the Porygons or the Porygon-Z die, the Frost Rotoms win!",
+            "info":"Can safeguard one player (including self) during the night up to 3 times. Sided with the Porygon",
+            "actions":{
+                "night":{
+                    "safeguard":{
+                        "target":"Any",
+                        "common":"Self",
+                        "priority":1,
+						"charges":3,
+						"chargesmsg": "You can only protect ~Charges~ more times!"
+                    }
+                },
+                "startup": {
+                    "revealPlayers": "laser",
+					"revealPlayersMsg": "The Porygon-Z is ~Players~."
+                }
+            }
+        },
+        {
+            "role":"porygon2dummy",
+            "translation":"Porygon2",
+            "side":"village",
+            "info": "Porygon, but it's immune to convert (appears as guarded). Sided with the Porygon",
+            "help":"",
+            "actions":{
+            }
+        },
+        {
+            "role":"bunker2",
+            "translation":"Porygon",
+            "side":"village",
+            "hide": true,
+            "help":"You're Bunker! Sturdy and resistant, you can block the Frost Rotom's convert! But you'll have to choose, because you can safeguard the Porygon-Z or yourself up to 3 times in the game! Make wise decisions, because if all the Porygons or the Porygon-Z die, the Frost Rotoms win!",
+            "info":"Can safeguard one player (including self) during the night up to 3 times. Sided with the Porygon",
+            "actions":{
+                "night":{
+                    "safeguard":{
+                        "target":"Any",
+                        "common":"Self",
+                        "priority":1,
+						"charges":3,
+						"chargesmsg": "You can only protect ~Charges~ more times!"
+                    }
+                },
+                "startup": {
+                    "revealPlayers": "laser",
+					"revealPlayersMsg": "The Porygon-Z is ~Players~."
+                },
+                "convert": {
+                	"mode": "ignore",
+                	"msg": "Your target (~Self~) was guarded!"
+                },
+                "onlist": "porygon2dummy",
+                "onteam": "porygon2dummy"
+            }
+        },
+        {
+            "role":"alien",
+            "translation":"Frost Rotom",
+            "side":"aliens",
+		"winIfDeadRoles": ["bunker", "bunker2"],
+            "help":"You're a Frost Rotom! Time to convert all that stupid Porygons and control the Earth! Type /convert during the night! Also, once per game you get a /convert2 that's not shared with your team!! You can use /tt [message] to talk to your teammates.",
+            "info":"Can convert one player during the night (Shared). Can convert2 one player once per game (Not-Shared). Sided with the Frost Rotom.",
+            "actions":{
+                "night":{
+                    "convert":{
+                        "target":"AnyButTeam",
+                        "common":"Team",
+                        "newRole": "alien",
+                        "convertmsg": "A ~Old~ was cooled until it became a ~New~!",
+                        "priority":2,
+                        "broadcast":"team"
+                    },
+                    "convert2": {
+                        "charges": 1,
+                        "command": "convert",
+                        "convertmsg": "A ~Old~ was cooled until it became a ~New~!",
+                        "newRole": "alien",
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 3,
+                        "broadcast": "team"
+                    }
+                },
+				"startup": {
+                    "revealPlayers": "laser",
+					"team-revealif": ["aliens"],
+					"revealPlayersMsg": "The Porygon-Z is ~Players~."
+                },
+                "teamTalk": true
+            }
+        }
+    ],
+    "roles1":[
+		"laser",
+        "bunker2",
+        "bunker",
+        "bunker",
+        "alien",
+        "bunker",
+        "bunker",
+        "alien",
+        "bunker",
+        "bunker",
+        "bunker",
+		"alien",
+        "bunker",
+        "bunker",
+        "bunker",
+        "alien",
+        "bunker",
+        "bunker",
+        "bunker",
+		"alien",
+        "bunker",
+        "bunker",
+        "bunker",
+        "bunker",
+		"alien",
+        "bunker",
+        "bunker",
+        "bunker",
+		"alien",
+        "bunker",
+        "bunker",
+		"alien",
+        "bunker",
+        "bunker",
+        "alien",
+        "bunker",
+        "bunker",
+        "bunker",
+		"alien",
+        "bunker",
+        "bunker",
+        "alien",
+        "bunker",
+        "bunker",
+		"alien",
+        "bunker",
+        "bunker",
+        "bunker",
+        "alien"
+    ],
+    "killmsg":"±Rotom: ~Player~ (~Role~) was destroyed!",
+    "killusermsg":" You were destroyed!",
+    "border":"***¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦  ¦¯-¯¦",
+	"villageCantLoseRoles": [
+		"laser"
+	]
+}
