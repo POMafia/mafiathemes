@@ -1,0 +1,718 @@
+{
+    "name": "RNG12",
+    "ticks": {
+    	"night1": 1,
+    	"night": 1
+    },
+    "minplayers": 3,
+    "summary": "ASDFGHJKL",
+"nolynch": true,
+    "sides": [
+        {
+            "translation": "Daypix",
+            "side": "daypix1"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix2"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix3"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix4"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix5"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix6"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix7"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix8"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix9"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix10"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix11"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix12"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix13"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix14"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix15"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix16"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix17"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix18"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix19"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix20"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix21"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix22"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix23"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix24"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix25"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix26"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix27"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix28"
+        },
+        {
+            "translation": "Daypix",
+            "side": "daypix29"
+        },
+        {
+            "translation": "UberDaypix",
+            "side": "daypix30"
+        }
+    ],
+    "roles": [
+        {
+            "translation": "Daypix",
+            "role": "daypix1",
+            "side": "daypix1",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix2",
+            "side": "daypix2",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix3",
+            "side": "daypix3",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix4",
+            "side": "daypix4",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix5",
+            "side": "daypix5",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix6",
+            "side": "daypix6",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix7",
+            "side": "daypix7",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix8",
+            "side": "daypix8",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix9",
+            "side": "daypix9",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix10",
+            "side": "daypix10",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix11",
+            "side": "daypix11",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix12",
+            "side": "daypix12",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix13",
+            "side": "daypix13",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix14",
+            "side": "daypix14",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix15",
+            "side": "daypix15",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix16",
+            "side": "daypix16",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix17",
+            "side": "daypix17",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix18",
+            "side": "daypix18",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix19",
+            "side": "daypix19",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix20",
+            "side": "daypix20",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix21",
+            "side": "daypix21",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix22",
+            "side": "daypix22",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix23",
+            "side": "daypix23",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix24",
+            "side": "daypix24",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix25",
+            "side": "daypix25",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix26",
+            "side": "daypix26",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix27",
+            "side": "daypix27",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix28",
+            "side": "daypix28",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        },
+        {
+            "translation": "Daypix",
+            "role": "daypix29",
+            "side": "daypix29",
+            "actions": {
+                "standby": {
+                    "Kill": {
+                        "target": "AnyButSelf",
+                        "command": "kill",
+                        "msg": "You can kill now using /kill [name] :",
+                        "killmsg": "~Self~ killed ~Target~!",
+                        "compulsory": [0, 29],
+                        "limit": 2
+                    }
+                },
+                "noVote": true
+            },
+            "help": "You are one of the Daypix. Type /Kill [name] during the day to kill up to two times! Your name and target are revealed when you kill!"
+        }
+    ],
+    "roles1": [],
+    "roles2": [
+        "daypix1",
+        "daypix2",
+        "daypix3",
+        "daypix4",
+        "daypix5",
+        "daypix6",
+        "daypix7",
+        "daypix8",
+        "daypix9",
+        "daypix10",
+        "daypix11",
+        "daypix12",
+        "daypix13",
+        "daypix14",
+        "daypix15",
+        "daypix16",
+        "daypix17",
+        "daypix18",
+        "daypix19",
+        "daypix20",
+        "daypix21",
+        "daypix22",
+        "daypix23",
+        "daypix24",
+        "daypix25",
+        "daypix26",
+        "daypix27",
+        "daypix28",
+        "daypix29"
+    ],
+    "villageCantLoseRoles": []
+}
