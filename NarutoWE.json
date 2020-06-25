@@ -1,0 +1,4219 @@
+{
+	"name": "NarutoWE",
+	"altname": "Naruto: World's End",
+	"author": [
+        "<b><i><span style='color:#380B61'>Crobat</span></i></b>",
+        "<b><i><span style='color:#FF00FF'>Espeon</span></i></b>",
+        "<b><i><span style='color:#FF0000'>Arcanine</span></i></b>",
+		"<b><i><span style='color:#000000'>Fate Testarossa</span></i></b>",
+		"<b><i><span style='color:#5882FA'>Amane Ohtori</span></i></b>"
+    ],
+	"summary": "The members of the original Team 7 have their backs against the wall as they take on some of the most powerful villains from both the original and Shippuden series! Can they defend their beloved Leaf Village (and the world) from impending utter destruction? See the following link for a description of each role as well as its alternate and weakened forms. http://pastebin.com/raw.php?i=QqS7Mjfa",
+	"sides": [
+		{
+			"side": "village",
+			"translation": "Team 7",
+			"winmsg": "Thanks to the amazing efforts of ~Players~ against all odds, the Hidden Leaf Village and the shinobi world have been saved!"
+		},
+		{
+			"side": "mist",
+			"translation": "Mist Shinobi",
+			"winmsg": "Weaklings. What you see is the spilled blood of pathetic weaklings. ~Players~ have brutally cut down their opposition."
+		},
+		{
+			"side": "akatsuki",
+			"translation": "Akatsuki",
+			"winmsg": "The nine-tailed fox has been extracted. The original Team 7 has been eliminated. There is nothing that can stop ~Players~ now. Mission complete."
+		},
+		{
+			"side": "project",
+			"translation": "Project Tsuki No Me",
+			"winmsg": "Project Tsuki No Me has been completed. An infinite tsukuyomi is reflected on the moon as the entire world and its inhabitants are robbed of all free will. This world belongs to ~Players~ now."
+		},
+		{
+			"side": "pain",
+			"translation": "Pain",
+			"winmsg": "So much pain and suffering...but it is all over now. ~Players~ has finally established a world of eternal peace ruled by fear and the cycle of hatred."
+		},
+		{
+			"side": "snake",
+			"translation": "Orochimaru's Forces",
+			"winmsg": "~Players~ have taken over the shinobi world with their plethora of forbidden jutsu!"
+		}
+	],
+	"roles": [
+		{
+			"role": "naruto",
+			"translation": "Naruto",
+			"side": "village",
+			"startupmsg": "You are ~Role~!",
+			"help": "Training under many great shinobi have allowed you to learn many different jutsu! Right now, you can /kill during the night using your rasengan, and your sharp awareness gives you a 50% chance to evade nightkills. You can /sage yourself to enter sage mode (nonrevealing daykill every 2 days, can hax Kakashi, can't be killed by Kakashi). Regardless of whether or not you're in sage mode, you will gain an additional vote and a -1 voteshield each time you lose a teammate.",
+			"info": "Can kill one person during the night. Has a 50% chance to evade nightkills. Can sage (convert, can't be distracted) self to enter Sage Mode. Gains an additional vote and -1 voteshield every time a teammate dies. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 11,
+						"msg": "±Naruto: RASENGAN!"
+					},
+					"sage": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "narutos",
+						"ignoreDistract": true,
+						"silent": true,
+						"pierce": true
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.5
+					}
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				}
+			}
+		},
+		{
+			"role": "narutos",
+			"translation": "Naruto (Sage Mode)",
+			"side": "village",
+			"startupmsg": "You are ~Role~!",
+			"help": "You have entered Sage Mode and now have different abilities. You can /kill during the day without being revealed using your rasenshuriken. However, since this jutsu uses such an immense amount of chakra, you can only use it every other day. You also evade Kakashi's kills and can hax his kills as well! If you want, you can /leave sage mode to revert back to your old abilities (nightkill, 50% chance to evade nightkills and daykills). Regardless of whether or not you're in sage mode, you will gain an additional vote and a -1 voteshield each time you lose a teammate.",
+			"info": "Can kill one person during the standby every other day. Evades Kakashi's daykills. Moderate hax on Kakashi's daykill. Can leave (convert, can't be distracted) self to leave Sage Mode. ~Sided~",
+			"actions": {
+				"night": {
+					"leave": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "naruto",
+						"ignoreDistract": true,
+						"silent": true,
+						"pierce": true
+					}
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"msg": "Your rasenshuriken is ready! Use /kill to kill someone now without being revealed! Remember that you can only do this every other day.",
+						"killmsg": "A large shuriken with a giant rasengan in the middle of it is seen flying at high speeds directly into ~Target~. Countless microscopic wind-blades completely sever ~Target~'s nerve channels and chakra system, instantly killing them.",
+						"recharge": 2
+					}
+				},
+				"daykill": {
+					"mode": {
+						"ignore": [
+							"kakashis",
+							"kakashisd"
+						]
+					}
+				},
+				"standbyHax": {
+					"kamui": {
+						"revealRole": 0.35
+					}
+				},
+				"onlist": "naruto",
+				"onteam": "naruto"
+			}
+		},
+		{
+			"role": "narutod",
+			"translation": "Naruto",
+			"side": "village",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "Training under many great shinobi have allowed you to learn many different jutsu! Right now, you can /kill during the night using your rasengan! However, since you have been weakened, you no longer have any chance of evading nightkills. You can /sage yourself to enter sage mode (nonrevealing daykill every 2 days). Regardless of whether or not you're in sage mode, you will gain an additional vote and a -1 voteshield each time you lose a teammate.",
+			"info": "Can kill one person during the night. Can sage (convert, can't be distracted) self to enter Sage Mode. Gains an additional vote and -1 voteshield every time a teammate dies. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 11,
+						"hide": true,
+						"msg": "±Naruto: RASENGAN!"
+					},
+					"sage": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "narutosd",
+						"ignoreDistract": true,
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				}				
+			}
+		},
+		{
+			"role": "narutosd",
+			"translation": "Naruto (Sage Mode)",
+			"side": "village",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "You have entered Sage Mode and now have different abilities. You can /kill during the day without being revealed using your rasenshuriken. However, since this jutsu uses such an immense amount of chakra, you can only use it every other day. Since you've been weakened, you can no longer hax Kakashi's kills or evade them. If you want, you can /leave sage mode to revert back to your old abilities (nightkill). Regardless of whether or not you're in sage mode, you will gain an additional vote and a -1 voteshield each time you lose a teammate.",
+			"info": "Can kill one person during the standby every other day. Can leave (convert, can't be distracted) self to leave Sage Mode. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"leave": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "narutod",
+						"ignoreDistract": true,
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"msg": "Your rasenshuriken is ready! Use /kill to kill someone now without being revealed! Remember that you can only do this every other day.",
+						"killmsg": "A large shuriken with a giant rasengan in the middle of it is seen flying at high speeds directly into ~Target~. Countless microscopic wind-blades completely sever ~Target~'s nerve channels and chakra system, instantly killing them.",
+						"recharge": 2
+					}
+				},
+				"onlist": "naruto",
+				"onteam": "naruto"
+			}
+		},
+		{
+			"role": "naruto1",
+			"translation": "Naruto",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are ~Role~!",
+			"help": "Training under many great shinobi have allowed you to learn many different jutsu! Right now, you can /kill during the night using your rasengan, and your sharp awareness gives you a 50% chance to evade nightkills. You can /sage yourself to enter sage mode (nonrevealing daykill every 2 days, can hax Kakashi, can't be killed by Kakashi). Regardless of whether or not you're in sage mode, you will gain an additional vote and a -1 voteshield each time you lose a teammate. You have a vote of 2 and a voteshield of -1.",
+			"info": "Can kill one person during the night. Has a 50% chance to evade nightkills. Can sage (convert, can't be distracted) self to enter Sage Mode. Gains an additional vote and -1 voteshield every time a teammate dies. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 11,
+						"hide": true,
+						"msg": "±Naruto: RASENGAN!"
+					},
+					"sage": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "narutos1",
+						"ignoreDistract": true,
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.5
+					}
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				},
+				"vote": 2,
+				"voteshield": -1
+			}
+		},
+		{
+			"role": "narutos1",
+			"translation": "Naruto (Sage Mode)",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are ~Role~!",
+			"help": "You have entered Sage Mode and now have different abilities. You can /kill during the day without being revealed using your rasenshuriken. However, since this jutsu uses such an immense amount of chakra, you can only use it every other day. You also evade Kakashi's kills and can hax his kills as well! If you want, you can /leave sage mode to revert back to your old abilities (nightkill, 50% chance to evade nightkills and daykills). Regardless of whether or not you're in sage mode, you will gain an additional vote and a -1 voteshield each time you lose a teammate. You have a vote of 2 and a voteshield of -1.",
+			"info": "Can kill one person during the standby every other day. Evades Kakashi's daykills. Moderate hax on Kakashi's daykill. Can leave (convert, can't be distracted) self to leave Sage Mode. ~Sided~",
+			"actions": {
+				"night": {
+					"leave": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "naruto1",
+						"ignoreDistract": true,
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"msg": "Your rasenshuriken is ready! Use /kill to kill someone now without being revealed! Remember that you can only do this every other day.",
+						"killmsg": "A large shuriken with a giant rasengan in the middle of it is seen flying at high speeds directly into ~Target~. Countless microscopic wind-blades completely sever ~Target~'s nerve channels and chakra system, instantly killing them.",
+						"recharge": 2
+					}
+				},
+				"daykill": {
+					"mode": {
+						"ignore": [
+							"kakashis",
+							"kakashisd"
+						]
+					}
+				},
+				"standbyHax": {
+					"kamui": {
+						"revealRole": 0.35
+					}
+				},
+				"onlist": "naruto",
+				"onteam": "naruto",
+				"vote": 2,
+				"voteshield": -1
+			}
+		},
+		{
+			"role": "narutod1",
+			"translation": "Naruto",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are ~Role~!",
+			"help": "Training under many great shinobi have allowed you to learn many different jutsu! Right now, you can /kill during the night using your rasengan! However, since you have been weakened, you no longer have any chance of evading nightkills. You can /sage yourself to enter sage mode (nonrevealing daykill every 2 days). Regardless of whether or not you're in sage mode, you will gain an additional vote and a -1 voteshield each time you lose a teammate. You have a vote of 2 and a voteshield of -1.",
+			"info": "Can kill one person during the night. Can sage (convert, can't be distracted) self to enter Sage Mode. Gains an additional vote and -1 voteshield every time a teammate dies. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 11,
+						"hide": true,
+						"msg": "±Naruto: RASENGAN!"
+					},
+					"sage": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "narutosd1",
+						"ignoreDistract": true,
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"vote": 2,
+				"voteshield": -1				
+			}
+		},
+		{
+			"role": "narutosd1",
+			"translation": "Naruto (Sage Mode)",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are ~Role~!",
+			"help": "You have entered Sage Mode and now have different abilities. You can /kill during the day without being revealed using your rasenshuriken. However, since this jutsu uses such an immense amount of chakra, you can only use it every other day. Since you've been weakened, you can no longer hax Kakashi's kills or evade them. If you want, you can /leave sage mode to revert back to your old abilities (nightkill). Regardless of whether or not you're in sage mode, you will gain an additional vote and a -1 voteshield each time you lose a teammate. You have a vote of 2 and a voteshield of -1.",
+			"info": "Can kill one person during the standby every other day. Can leave (convert, can't be distracted) self to leave Sage Mode. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"leave": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "narutod1",
+						"ignoreDistract": true,
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"msg": "Your rasenshuriken is ready! Use /kill to kill someone now without being revealed! Remember that you can only do this every other day.",
+						"killmsg": "A large shuriken with a giant rasengan in the middle of it is seen flying at high speeds directly into ~Target~. Countless microscopic wind-blades completely sever ~Target~'s nerve channels and chakra system, instantly killing them.",
+						"recharge": 2
+					}
+				},
+				"onlist": "naruto",
+				"onteam": "naruto",
+				"vote": 2,
+				"voteshield": -1
+			}
+		},
+		{
+			"role": "naruto2",
+			"translation": "Naruto",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are ~Role~!",
+			"help": "Training under many great shinobi have allowed you to learn many different jutsu! Right now, you can /kill during the night using your rasengan, and your sharp awareness gives you a 50% chance to evade nightkills. You can /sage yourself to enter sage mode (nonrevealing daykill every 2 days, can hax Kakashi, can't be killed by Kakashi). Regardless of whether or not you're in sage mode, you will gain an additional vote and a -1 voteshield each time you lose a teammate. You have a vote of 3 and a voteshield of -2.",
+			"info": "Can kill one person during the night. Has a 50% chance to evade nightkills. Can sage (convert, can't be distracted) self to enter Sage Mode. Gains an additional vote and -1 voteshield every time a teammate dies. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 11,
+						"hide": true,
+						"msg": "±Naruto: RASENGAN!"
+					},
+					"sage": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "narutos2",
+						"ignoreDistract": true,
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.5
+					}
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				},
+				"vote": 3,
+				"voteshield": -2
+			}
+		},
+		{
+			"role": "narutos2",
+			"translation": "Naruto (Sage Mode)",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are ~Role~!",
+			"help": "You have entered Sage Mode and now have different abilities. You can /kill during the day without being revealed using your rasenshuriken. However, since this jutsu uses such an immense amount of chakra, you can only use it every other day. You also evade Kakashi's kills and can hax his kills as well! If you want, you can /leave sage mode to revert back to your old abilities (nightkill, 50% chance to evade nightkills and daykills). Regardless of whether or not you're in sage mode, you will gain an additional vote and a -1 voteshield each time you lose a teammate. You have a vote of 3 and a voteshield of -2.",
+			"info": "Can kill one person during the standby every other day. Evades Kakashi's daykills. Moderate hax on Kakashi's daykill. Can leave (convert, can't be distracted) self to leave Sage Mode. ~Sided~",
+			"actions": {
+				"night": {
+					"leave": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "naruto2",
+						"ignoreDistract": true,
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"msg": "Your rasenshuriken is ready! Use /kill to kill someone now without being revealed! Remember that you can only do this every other day.",
+						"killmsg": "A large shuriken with a giant rasengan in the middle of it is seen flying at high speeds directly into ~Target~. Countless microscopic wind-blades completely sever ~Target~'s nerve channels and chakra system, instantly killing them.",
+						"recharge": 2
+					}
+				},
+				"daykill": {
+					"mode": {
+						"ignore": [
+							"kakashis",
+							"kakashisd"
+						]
+					}
+				},
+				"standbyHax": {
+					"kamui": {
+						"revealRole": 0.35
+					}
+				},
+				"onlist": "naruto",
+				"onteam": "naruto",
+				"vote": 3,
+				"voteshield": -2
+			}
+		},
+		{
+			"role": "narutod2",
+			"translation": "Naruto",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are ~Role~!",
+			"help": "Training under many great shinobi have allowed you to learn many different jutsu! Right now, you can /kill during the night using your rasengan! However, since you have been weakened, you no longer have any chance of evading nightkills. You can /sage yourself to enter sage mode (nonrevealing daykill every 2 days). Regardless of whether or not you're in sage mode, you will gain an additional vote and a -1 voteshield each time you lose a teammate. You have a vote of 3 and a voteshield of -2.",
+			"info": "Can kill one person during the night. Can sage (convert, can't be distracted) self to enter Sage Mode. Gains an additional vote and -1 voteshield every time a teammate dies. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 11,
+						"hide": true,
+						"msg": "±Naruto: RASENGAN!"
+					},
+					"sage": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "narutosd2",
+						"ignoreDistract": true,
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"vote": 3,
+				"voteshield": -2				
+			}
+		},
+		{
+			"role": "narutosd2",
+			"translation": "Naruto (Sage Mode)",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are ~Role~!",
+			"help": "You have entered Sage Mode and now have different abilities. You can /kill during the day without being revealed using your rasenshuriken. However, since this jutsu uses such an immense amount of chakra, you can only use it every other day. Since you've been weakened, you can no longer hax Kakashi's kills or evade them. If you want, you can /leave sage mode to revert back to your old abilities (nightkill). Regardless of whether or not you're in sage mode, you will gain an additional vote and a -1 voteshield each time you lose a teammate. You have a vote of 3 and a voteshield of -2.",
+			"info": "Can kill one person during the standby every other day. Can leave (convert, can't be distracted) self to leave Sage Mode. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"leave": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "narutod2",
+						"ignoreDistract": true,
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"msg": "Your rasenshuriken is ready! Use /kill to kill someone now without being revealed! Remember that you can only do this every other day.",
+						"killmsg": "A large shuriken with a giant rasengan in the middle of it is seen flying at high speeds directly into ~Target~. Countless microscopic wind-blades completely sever ~Target~'s nerve channels and chakra system, instantly killing them.",
+						"recharge": 2
+					}
+				},
+				"onlist": "naruto",
+				"onteam": "naruto",
+				"vote": 3,
+				"voteshield": -2
+			}
+		},
+		{
+			"role": "naruto3",
+			"translation": "Naruto",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are ~Role~!",
+			"help": "Training under many great shinobi have allowed you to learn many different jutsu! Right now, you can /kill during the night using your rasengan, and your sharp awareness gives you a 50% chance to evade nightkills. You can /sage yourself to enter sage mode (nonrevealing daykill every 2 days, can hax Kakashi, can't be killed by Kakashi). You have a vote of 4 and a voteshield of -3.",
+			"info": "Can kill one person during the night. Has a 50% chance to evade nightkills. Can sage (convert, can't be distracted) self to enter Sage Mode. Gains an additional vote and -1 voteshield every time a teammate dies. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 11,
+						"hide": true,
+						"msg": "±Naruto: RASENGAN!"
+					},
+					"sage": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "narutos3",
+						"ignoreDistract": true,
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.5
+					}
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				},
+				"vote": 4,
+				"voteshield": -3
+			}
+		},
+		{
+			"role": "narutos3",
+			"translation": "Naruto (Sage Mode)",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are ~Role~!",
+			"help": "You have entered Sage Mode and now have different abilities. You can /kill during the day without being revealed using your rasenshuriken. However, since this jutsu uses such an immense amount of chakra, you can only use it every other day. You also evade Kakashi's kills and can hax his kills as well! If you want, you can /leave sage mode to revert back to your old abilities (nightkill, 50% chance to evade nightkills and daykills). You have a vote of 4 and a voteshield of -3.",
+			"info": "Can kill one person during the standby every other day. Evades Kakashi's daykills. Moderate hax on Kakashi's daykill. Can leave (convert, can't be distracted) self to leave Sage Mode. ~Sided~",
+			"actions": {
+				"night": {
+					"leave": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "naruto3",
+						"ignoreDistract": true,
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"msg": "Your rasenshuriken is ready! Use /kill to kill someone now without being revealed! Remember that you can only do this every other day.",
+						"killmsg": "A large shuriken with a giant rasengan in the middle of it is seen flying at high speeds directly into ~Target~. Countless microscopic wind-blades completely sever ~Target~'s nerve channels and chakra system, instantly killing them.",
+						"recharge": 2
+					}
+				},
+				"daykill": {
+					"mode": {
+						"ignore": [
+							"kakashis",
+							"kakashisd"
+						]
+					}
+				},
+				"standbyHax": {
+					"kamui": {
+						"revealRole": 0.35
+					}
+				},
+				"onlist": "naruto",
+				"onteam": "naruto",
+				"vote": 4,
+				"voteshield": -3
+			}
+		},
+		{
+			"role": "narutod3",
+			"translation": "Naruto",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are ~Role~!",
+			"help": "Training under many great shinobi have allowed you to learn many different jutsu! Right now, you can /kill during the night using your rasengan! However, since you have been weakened, you no longer have any chance of evading nightkills. You can /sage yourself to enter sage mode (nonrevealing daykill every 2 days). You have a vote of 4 and a voteshield of -3.",
+			"info": "Can kill one person during the night. Can sage (convert, can't be distracted) self to enter Sage Mode. Gains an additional vote and -1 voteshield every time a teammate dies. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 11,
+						"hide": true,
+						"msg": "±Naruto: RASENGAN!"
+					},
+					"sage": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "narutosd3",
+						"ignoreDistract": true,
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"vote": 4,
+				"voteshield": -3				
+			}
+		},
+		{
+			"role": "narutosd3",
+			"translation": "Naruto (Sage Mode)",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are ~Role~!",
+			"help": "You have entered Sage Mode and now have different abilities. You can /kill during the day without being revealed using your rasenshuriken. However, since this jutsu uses such an immense amount of chakra, you can only use it every other day. Since you've been weakened, you can no longer hax Kakashi's kills or evade them. If you want, you can /leave sage mode to revert back to your old abilities (nightkill). You have a vote of 4 and a voteshield of -3.",
+			"info": "Can kill one person during the standby every other day. Can leave (convert, can't be distracted) self to leave Sage Mode. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"leave": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "narutod3",
+						"ignoreDistract": true,
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"msg": "Your rasenshuriken is ready! Use /kill to kill someone now without being revealed! Remember that you can only do this every other day.",
+						"killmsg": "A large shuriken with a giant rasengan in the middle of it is seen flying at high speeds directly into ~Target~. Countless microscopic wind-blades completely sever ~Target~'s nerve channels and chakra system, instantly killing them.",
+						"recharge": 2
+					}
+				},
+				"onlist": "naruto",
+				"onteam": "naruto",
+				"vote": 4,
+				"voteshield": -3
+			}
+		},
+		{
+			"role": "kakashi",
+			"translation": "Kakashi",
+			"side": "village",
+			"startupmsg": "You are ~Role~!",
+			"help": "You are the leader of Team 7 and a powerful shinobi recognized by many. Your combat skills and awareness grant you the ability to sense what is going on during the night (kill and inspect) as well as counter nightkills! If you want, you can /eye yourself to activate your sharingan (inspect twice a night with a 25% suicide chance, daykill every day with a 35% reveal chance).",
+			"info": "Counters nightkills. Small hax on kill and inspect. Can eye (convert) self during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"eye": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 6,
+						"newRole": "kakashiz",
+						"silent": true,
+						"silentConvert": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"hax": {
+					"kill": {
+						"revealTeam": 0.3,
+						"revealRole": 0.1
+					},
+					"inspect": {
+						"revealTeam": 0.3,
+						"revealRole": 0.1
+					}
+				},
+				"kill": {
+					"mode": "ChangeTarget",
+					"targetmsg": "You tried to kill the powerful Kakashi, but you were no match for him. He ends up killing you instead.",
+					"msg": "~Role~ made the mistake of trying to defeat you in close combat. You outdueled him and killed him with ease."
+				},
+				"dummy": {
+                    "mode": "killattackerevenifprotected",
+					"msg": "You tried to kill the powerful Kakashi, but you were no match for him. He ends up killing you instead."
+                },
+				"onDeath": {
+					"convertRoles": {				
+						"narutosd2": ["narutosd3"],
+						"narutod2": ["narutod3"],
+						"narutos2": ["narutos3"],
+						"naruto2": ["naruto3"],
+						"narutosd1": ["narutosd2"],
+						"narutod1": ["narutod2"],
+						"narutos1": ["narutos2"],
+						"naruto1": ["naruto2"],
+						"narutosd": ["narutosd1"],
+						"narutod": ["narutod1"],
+						"narutos": ["narutos1"],
+						"naruto": ["naruto1"]
+					},
+					"convertmsg": "With the loss of a teammate, Naruto has gained an additional vote and a -1 voteshield."
+				}
+			}
+		},
+		{
+			"role": "kakashiz",
+			"translation": "Kakashi",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are ~Role~!",
+			"help": "You are the leader of Team 7 and a powerful shinobi recognized by many. Your combat skills and awareness grant you the ability to sense what is going on during the night (kill and inspect) as well as counter nightkills! If you want, you can /eye yourself to activate your sharingan (inspect twice a night with a 25% suicide chance, daykill every day with a 35% reveal chance).",
+			"info": "Counters nightkills. Small hax on kill and inspect. Can eye (convert) self during the night. ~Sided~",
+			"actions": {
+				"initialCondition": {
+					"curse": {
+						"curseCount": 1,
+						"cursedRole": "kakashis"
+					}
+				},
+				"hax": {
+					"kill": {
+						"revealTeam": 0.3,
+						"revealRole": 0.1
+					},
+					"inspect": {
+						"revealTeam": 0.3,
+						"revealRole": 0.1
+					}
+				},
+				"kill": {
+					"mode": "ChangeTarget",
+					"targetmsg": "You tried to kill the powerful Kakashi, but you were no match for him. He ends up killing you instead.",
+					"msg": "~Role~ made the mistake of trying to defeat you in close combat. You outdueled him and killed him with ease."
+				},
+				"dummy": {
+                    "mode": "killattackerevenifprotected",
+					"msg": "You tried to kill the powerful Kakashi, but you were no match for him. He ends up killing you instead."
+                },
+				"onDeath": {
+					"convertRoles": {				
+						"narutosd2": ["narutosd3"],
+						"narutod2": ["narutod3"],
+						"narutos2": ["narutos3"],
+						"naruto2": ["naruto3"],
+						"narutosd1": ["narutosd2"],
+						"narutod1": ["narutod2"],
+						"narutos1": ["narutos2"],
+						"naruto1": ["naruto2"],
+						"narutosd": ["narutosd1"],
+						"narutod": ["narutod1"],
+						"narutos": ["narutos1"],
+						"naruto": ["naruto1"]
+					},
+					"convertmsg": "With the loss of a teammate, Naruto has gained an additional vote and a -1 voteshield."
+				}
+			}
+		},
+		{
+			"role": "kakashizd",
+			"translation": "Kakashi",
+			"side": "village",
+			"hide": true,
+			"startupmsg": "You are ~Role~!",
+			"help": "You are the leader of Team 7 and a powerful shinobi recognized by many. Your combat skills and awareness grant you the ability to sense what is going on during the night (kill and inspect) as well as counter nightkills! If you want, you can /eye yourself to activate your sharingan (inspect twice a night with a 25% suicide chance, daykill every day with a 35% reveal chance).",
+			"info": "Counters nightkills. Small hax on kill and inspect. Can eye (convert) self during the night. ~Sided~",
+			"actions": {
+				"initialCondition": {
+					"curse": {
+						"curseCount": 1,
+						"cursedRole": "kakashisd"
+					}
+				},
+				"hax": {
+					"kill": {
+						"revealTeam": 0.3,
+						"revealRole": 0.1
+					},
+					"inspect": {
+						"revealTeam": 0.3,
+						"revealRole": 0.1
+					}
+				},
+				"kill": {
+					"mode": "ChangeTarget",
+					"targetmsg": "You tried to kill the powerful Kakashi, but you were no match for him. He ends up killing you instead.",
+					"msg": "~Role~ made the mistake of trying to defeat you in close combat. You outdueled him and killed him with ease."
+				},
+				"dummy": {
+                    "mode": "killattackerevenifprotected",
+					"msg": "You tried to kill the powerful Kakashi, but you were no match for him. He ends up killing you instead."
+                },
+				"onDeath": {
+					"convertRoles": {				
+						"narutosd2": ["narutosd3"],
+						"narutod2": ["narutod3"],
+						"narutos2": ["narutos3"],
+						"naruto2": ["naruto3"],
+						"narutosd1": ["narutosd2"],
+						"narutod1": ["narutod2"],
+						"narutos1": ["narutos2"],
+						"naruto1": ["naruto2"],
+						"narutosd": ["narutosd1"],
+						"narutod": ["narutod1"],
+						"narutos": ["narutos1"],
+						"naruto": ["naruto1"]
+					},
+					"convertmsg": "With the loss of a teammate, Naruto has gained an additional vote and a -1 voteshield."
+				}
+			}
+		},
+		{
+			"role": "kakashis",
+			"translation": "Kakashi (Mangekyo)",
+			"side": "village",
+			"startupmsg": "You are ~Role~!",
+			"help": "You have activated your mangekyo sharingan and have different abilities. You can /inspect two people every night and can kill during the day using /kamui. However, since these jutsu can be dangerous and put a strain on your eye, each inspect has a 25% chance to kill you, while each daykill has a 35% chance to reveal you! If you want to revert back to your old abilities (hax on kill and inspect, counter nightkills), you can /cover yourself.",
+			"info": "Can inspect (25% suicide chance) two people during the night. Can kamui (kill) one person during the standby (35% chance to reveal user). Can cover (convert) self during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"inspect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 14,
+						"limit": 2,
+						"suicideChance": 0.25,
+						"suicidemsg": "You put too much strain on your left eye and died."
+					},
+					"cover": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 15,
+						"newRole": "kakashi",
+						"silent": true,
+						"pierce": true
+					}
+				},
+				"standby": {
+					"kamui": {
+						"command": "kill",
+						"target": "AnyButSelf",
+						"msg": "You can now kill someone using /kamui! Be warned that this has a 35% chance to reveal you.",
+						"killmsg": "The area around ~Target~ suddenly begins to warp in shape. ~Target~ is sucked away and teleported to another dimension, never to be seen again.",
+						"revealChance": 0.35,
+						"revealmsg": "~Self~ (Kakashi) temporarily covers his left eye, as he is exhausted from using so much chakra."
+					}
+				},
+				"onlist": "kakashi",
+				"onteam": "kakashi",
+				"onDeath": {
+					"convertRoles": {				
+						"narutosd2": ["narutosd3"],
+						"narutod2": ["narutod3"],
+						"narutos2": ["narutos3"],
+						"naruto2": ["naruto3"],
+						"narutosd1": ["narutosd2"],
+						"narutod1": ["narutod2"],
+						"narutos1": ["narutos2"],
+						"naruto1": ["naruto2"],
+						"narutosd": ["narutosd1"],
+						"narutod": ["narutod1"],
+						"narutos": ["narutos1"],
+						"naruto": ["naruto1"]
+					},
+					"convertmsg": "With the loss of a teammate, Naruto has gained an additional vote and a -1 voteshield."
+				}
+			}
+		},
+		{
+			"role": "kakashid",
+			"translation": "Kakashi",
+			"side": "village",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "You are the leader of Team 7 and a powerful shinobi recognized by many. Your combat skills and awareness grant you the ability to sense what is going on during the night (kill and inspect)! Since you have been weakened, you can only evade nightkills rather than counter them. If you want, you can /eye yourself to activate your sharingan (inspect once a night with a 25% suicide chance, daykill every other day with a 35% reveal chance).",
+			"info": "Evades nightkills. Small hax on kill and inspect. Can eye (convert) self during the night. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"eye": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 15,
+						"newRole": "kakashisd",
+						"silent": true,
+						"pierce": true
+					}
+				},
+				"hax": {
+					"kill": {
+						"revealTeam": 0.3,
+						"revealRole": 0.1
+					},
+					"inspect": {
+						"revealTeam": 0.3,
+						"revealRole": 0.1
+					}
+				},
+				"kill": {
+					"mode": "ignore"
+				},
+				"onDeath": {
+					"convertRoles": {				
+						"narutosd2": ["narutosd3"],
+						"narutod2": ["narutod3"],
+						"narutos2": ["narutos3"],
+						"naruto2": ["naruto3"],
+						"narutosd1": ["narutosd2"],
+						"narutod1": ["narutod2"],
+						"narutos1": ["narutos2"],
+						"naruto1": ["naruto2"],
+						"narutosd": ["narutosd1"],
+						"narutod": ["narutod1"],
+						"narutos": ["narutos1"],
+						"naruto": ["naruto1"]
+					},
+					"convertmsg": "With the loss of a teammate, Naruto has gained an additional vote and a -1 voteshield."
+				}
+			}
+		},
+		{
+			"role": "kakashisd",
+			"translation": "Kakashi (Mangekyo)",
+			"side": "village",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "You have activated your mangekyo sharingan and have different abilities. Since you have been weakened, you can /inspect only one person every night and can kill during the day using /kamui only every other day. However, since these jutsu can be dangerous and put a strain on your eye, each inspect has a 25% chance to kill you, while each daykill has a 35% chance to reveal you! If you want to revert back to your old abilities (hax on kill and inspect, evade nightkills), you can /cover yourself.",
+			"info": "Can inspect (25% suicide chance) one person during the night. Can kamui (kill) one person during the standby (35% chance to reveal user) every other day. Can cover (convert) self during the night. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"inspect": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 14,
+						"limit": 1,
+						"hide": true,
+						"suicideChance": 0.25,
+						"suicidemsg": "You put too much strain on your left eye and died."
+					},
+					"cover": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 15,
+						"newRole": "kakashid",
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"standby": {
+					"kamui": {
+						"command": "kill",
+						"target": "AnyButSelf",
+						"msg": "You can now kill someone using /kamui! Be warned that this has a 35% chance to reveal you and you can only do this every other day.",
+						"killmsg": "The area around ~Target~ suddenly begins to warp in shape. ~Target~ is sucked away and teleported to another dimension, never to be seen again.",
+						"revealChance": 0.35,
+						"revealmsg": "~Self~ (Kakashi) temporarily covers his left eye, as he is exhausted from using so much chakra.",
+						"recharge": 2
+					}
+				},
+				"onlist": "kakashi",
+				"onteam": "kakashi",
+				"onDeath": {
+					"convertRoles": {				
+						"narutosd2": ["narutosd3"],
+						"narutod2": ["narutod3"],
+						"narutos2": ["narutos3"],
+						"naruto2": ["naruto3"],
+						"narutosd1": ["narutosd2"],
+						"narutod1": ["narutod2"],
+						"narutos1": ["narutos2"],
+						"naruto1": ["naruto2"],
+						"narutosd": ["narutosd1"],
+						"narutod": ["narutod1"],
+						"narutos": ["narutos1"],
+						"naruto": ["naruto1"]
+					},
+					"convertmsg": "With the loss of a teammate, Naruto has gained an additional vote and a -1 voteshield."
+				}
+			}
+		},
+		{
+			"role": "sasuke",
+			"translation": "Sasuke",
+			"side": "village",
+			"startupmsg": "You are ~Role~!",
+			"help": "Ever since the massacre of your clan, you have devoted your life to finding and killing your older brother Itachi, the one behind it. Your fierce determination allows you to evade all nightkills and daykills and gives you a decent chance to hax Itachi. You can /eye yourself to activate your sharingan (less hax on Itachi, counter lynches, can't be poisoned). If Itachi is killed or lynched, you will power up and gain his abilities.",
+			"info": "Evades all nightkills and daykills. Small hax on Itachi's commands. Can eye (convert) self during the night. Powers up if Itachi dies. ~Sided~",
+			"actions": {
+				"night": {
+					"eye": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "sasukes",
+						"silent": true,
+						"pierce": true
+					}
+				},
+				"onDeadRoles": {
+					"convertTo": {
+						"sasuke2": [
+							"itachi1",
+							"itachi2"
+						]
+					},
+					"convertmsg": "With the death of Itachi, Sasuke has finally achieved his vengeance, and gains new abilities."
+				},
+				"hax": {
+					"burn": {
+						"revealTeam": 0.7,
+						"revealRole": 0.2
+					},
+					"guard": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"close": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"open": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					}
+				},
+				"standbyHax": {
+					"blade": {
+						"revealRole": 0.5
+					}
+				},
+				"kill": {
+					"mode": "ignore"
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				},
+				"daykill": {
+					"mode": {
+						"ignore": [
+							"narutos",
+							"narutos1",
+							"narutos2",
+							"narutos3",
+							"narutosd",
+							"narutosd1",
+							"narutosd2",
+							"narutosd3",
+							"kakashis",
+							"kakashisd",
+							"haku",
+							"hakud",
+							"itachi2"
+						]
+					}
+				},
+				"onDeath": {
+					"convertRoles": {				
+						"narutosd2": ["narutosd3"],
+						"narutod2": ["narutod3"],
+						"narutos2": ["narutos3"],
+						"naruto2": ["naruto3"],
+						"narutosd1": ["narutosd2"],
+						"narutod1": ["narutod2"],
+						"narutos1": ["narutos2"],
+						"naruto1": ["naruto2"],
+						"narutosd": ["narutosd1"],
+						"narutod": ["narutod1"],
+						"narutos": ["narutos1"],
+						"naruto": ["naruto1"]
+					},
+					"convertmsg": "With the loss of a teammate, Naruto has gained an additional vote and a -1 voteshield."
+				}
+			}
+		},
+		{
+			"role": "sasukes",
+			"translation": "Sasuke (Sharingan)",
+			"side": "village",
+			"startupmsg": "You are ~Role~!",
+			"help": "You have activated your sharingan and now have different abilities. Your chance to hax Itachi has been reduced, but you can't be poisoned and if you are lynched, you will survive the lynch and kill everyone that voted for you! Remember that if Itachi is killed or lynched, you will gain his abilities. You can revert back to your old abilities (more hax on Itachi, can't be nightkilled or daykilled) by using /close.",
+			"info": "Very small hax on Itachi's commands. Can't be poisoned. Counters lynch (kills all players that voted for this role). Can close (convert) self during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"close": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "sasuke",
+						"silent": true,
+						"pierce": true
+					}
+				},
+				"onDeadRoles": {
+					"convertTo": {
+						"sasuke2": [
+							"itachi1",
+							"itachi2"
+						]
+					},
+					"convertmsg": "With the death of Itachi, Sasuke has finally achieved his vengeance, and gains new abilities."
+				},
+				"hax": {
+					"burn": {
+						"revealTeam": 0.4,
+						"revealRole": 0.1
+					},
+					"guard": {
+						"revealTeam": 0.1,
+						"revealRole": 0.1
+					},
+					"close": {
+						"revealTeam": 0.1,
+						"revealRole": 0.1
+					},
+					"open": {
+						"revealTeam": 0.1,
+						"revealRole": 0.1
+					}
+				},
+				"standbyHax": {
+					"blade": {
+						"revealRole": 0.2
+					}
+				},
+				"poison": {
+					"mode": "ignore",
+					"msg": "±Game: Your target (~Self~) was poisoned!"
+				},
+				"lynch": {
+					"killVoters": {
+						"first": 99,
+						"last": 99,
+						"message": "One does not simply lynch an avenger. Everyone that tried to lynch Sasuke was killed."
+					},
+					"convertTo": "sasukes",
+					"convertmsg": "±Sasuke: You think I'll be stopped here? Think again! I will not rest until I have exacted my revenge against Itachi Uchiha!"
+				},
+				"onlist": "sasuke",
+				"onteam": "sasuke",
+				"onDeath": {
+					"convertRoles": {				
+						"narutosd2": ["narutosd3"],
+						"narutod2": ["narutod3"],
+						"narutos2": ["narutos3"],
+						"naruto2": ["naruto3"],
+						"narutosd1": ["narutosd2"],
+						"narutod1": ["narutod2"],
+						"narutos1": ["narutos2"],
+						"naruto1": ["naruto2"],
+						"narutosd": ["narutosd1"],
+						"narutod": ["narutod1"],
+						"narutos": ["narutos1"],
+						"naruto": ["naruto1"]
+					},
+					"convertmsg": "With the loss of a teammate, Naruto has gained an additional vote and a -1 voteshield."
+				}
+			}
+		},
+		{
+			"role": "sasuke2",
+			"translation": "Sasuke",
+			"side": "village",
+			"startupmsg": "You are ~Role~!",
+			"help": "With the death of Itachi, you have awakened and gained completely new and different abilities. You can /burn someone every night with your amaterasu; this will distract them and poison them, killing them the next night. However, this has a 30% chance to kill you as well. You can also /protect yourself to block kills and poison! Lastly, you can /kill during the day using your kirin without being revealed and you will counter daykills! Since your jutsu is so costly, you have a +2 voteshield.",
+			"info": "Can burn (distract + poison, 30% suicide chance) one person during the night. Can protect (protect + safeguard) self during the night. Can kill one person during the standby (user is not revealed). Counters daykills. Voteshield of +2. ~Sided~",
+			"players": "When Itachi dies.",
+			"actions": {
+				"night": {
+					"burn": {
+						"command": ["distract", "poison"],
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 4,
+						"suicideChance": 0.3,
+						"suicidemsg": "You overdid your jutsu and bled to death from your eyes.",
+						"distractmsg": "You were hit by the amaterasu and couldn't do anything due to the intense burn!",
+						"teammsg": "You couldn't do anything as you had to spend the night tending to your teammate's everlasting burn.",
+						"poisonmsg": "Your target (~Target~) was set aflame by your amaterasu!",
+						"poisontarmsg": "You have 1 day to live before the eternal fire completely consumes you.",
+						"poisonDeadMessage": "You have been completely consumed by the intense flames of the amaterasu."
+					},
+					"protect": {
+						"command": ["protect", "safeguard"],
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 6,
+						"protectmsg": "Your target (~Target~) evaded your kill!"
+					}
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"msg": "The skies are littered with dark and ominous black thunder clouds. Now is the time to strike! Eliminate someone using /kill! You won't be revealed!",
+						"killmsg": "Numerous large sparks of lightning manifest high in the clouds before suddenly striking down ~Target~ and instantly obliterating them."
+					}
+				},
+				"daykill": {
+					"mode": {
+						"revenge": [
+							"narutos",
+							"narutos1",
+							"narutos2",
+							"narutos3",
+							"narutosd",
+							"narutosd1",
+							"narutosd2",
+							"narutosd3",
+							"kakashis",
+							"kakashisd",
+							"haku",
+							"hakud",
+							"itachi2"
+						]
+					}
+				},
+				"daykillrevengemsg": "~Target~ attempted to attack Sasuke, but got way too close to him and was completely destroyed by the fierce lightning of the kirin.",
+				"voteshield": 2,
+				"onDeath": {
+					"convertRoles": {				
+						"narutosd2": ["narutosd3"],
+						"narutod2": ["narutod3"],
+						"narutos2": ["narutos3"],
+						"naruto2": ["naruto3"],
+						"narutosd1": ["narutosd2"],
+						"narutod1": ["narutod2"],
+						"narutos1": ["narutos2"],
+						"naruto1": ["naruto2"],
+						"narutosd": ["narutosd1"],
+						"narutod": ["narutod1"],
+						"narutos": ["narutos1"],
+						"naruto": ["naruto1"]
+					},
+					"convertmsg": "With the loss of a teammate, Naruto has gained an additional vote and a -1 voteshield."
+				}
+			}
+		},
+		{
+			"role": "sasuked",
+			"translation": "Sasuke",
+			"side": "village",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "Ever since the massacre of your clan, you have devoted your life to finding and killing your older brother Itachi, the one behind it. Your fierce determination allows you to evade all nightkills. However, since you have been weakened, you no longer evade daykills and you can no longer hax Itachi. You can /eye yourself to activate your sharingan (counter lynches). If Itachi is killed or lynched, you will power up and gain his abilities.",
+			"info": "Evades all nightkills. Can eye (convert) self during the night. Powers up if Itachi dies. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"eye": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "sasukesd",
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"onDeadRoles": {
+					"convertTo": {
+						"sasuked2": [
+							"itachi1",
+							"itachi2"
+						]
+					},
+					"convertmsg": "With the death of Itachi, Sasuke has finally achieved his vengeance, and gains new abilities."
+				},
+				"kill": {
+					"mode": "ignore"
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				},
+				"onDeath": {
+					"convertRoles": {				
+						"narutosd2": ["narutosd3"],
+						"narutod2": ["narutod3"],
+						"narutos2": ["narutos3"],
+						"naruto2": ["naruto3"],
+						"narutosd1": ["narutosd2"],
+						"narutod1": ["narutod2"],
+						"narutos1": ["narutos2"],
+						"naruto1": ["naruto2"],
+						"narutosd": ["narutosd1"],
+						"narutod": ["narutod1"],
+						"narutos": ["narutos1"],
+						"naruto": ["naruto1"]
+					},
+					"convertmsg": "With the loss of a teammate, Naruto has gained an additional vote and a -1 voteshield."
+				}
+			}
+		},
+		{
+			"role": "sasukesd",
+			"translation": "Sasuke (Sharingan)",
+			"side": "village",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "You have activated your sharingan and now have different abilities. If you are lynched, you will survive the lynch and kill everyone that voted for you! However, since you have been weakened, you can no longer hax Itachi and you have lost your immunity to poison. Remember that if Itachi is killed or lynched, you will gain his abilities. You can revert back to your old abilities (can't be nightkilled) by using /close.",
+			"info": "Counters lynch (kills all players that voted for this role). Can close (convert) self during the night. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"close": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "sasuked",
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"onDeadRoles": {
+					"convertTo": {
+						"sasuked2": [
+							"itachi1",
+							"itachi2"
+						]
+					},
+					"convertmsg": "With the death of Itachi, Sasuke has finally achieved his vengeance, and gains new abilities."
+				},
+				"lynch": {
+					"killVoters": {
+						"first": 99,
+						"last": 99,
+						"message": "One does not simply lynch an avenger. Everyone that tried to lynch Sasuke was killed."
+					},
+					"convertTo": "sasukesd",
+					"convertmsg": "±Sasuke: You think I'll be stopped here? Think again! I will not rest until I have exacted my revenge against Itachi Uchiha!"
+				},
+				"onlist": "sasuke",
+				"onteam": "sasuke",
+				"onDeath": {
+					"convertRoles": {				
+						"narutosd2": ["narutosd3"],
+						"narutod2": ["narutod3"],
+						"narutos2": ["narutos3"],
+						"naruto2": ["naruto3"],
+						"narutosd1": ["narutosd2"],
+						"narutod1": ["narutod2"],
+						"narutos1": ["narutos2"],
+						"naruto1": ["naruto2"],
+						"narutosd": ["narutosd1"],
+						"narutod": ["narutod1"],
+						"narutos": ["narutos1"],
+						"naruto": ["naruto1"]
+					},
+					"convertmsg": "With the loss of a teammate, Naruto has gained an additional vote and a -1 voteshield."
+				}
+			}
+		},
+		{
+			"role": "sasuked2",
+			"translation": "Sasuke",
+			"side": "village",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "With the death of Itachi, you have awakened and gained completely new and different abilities. You can /burn someone every night with your amaterasu; this will distract them and poison them, killing them the next night. However, this has a 30% chance to kill you as well. Since you have been weakened, you can no longer protect yourself. Lastly, you can /kill during the day using your kirin without being revealed and you will counter daykills! However, since you've been weakened, you can only do this every other day. Since your jutsu is so costly, you have a +2 voteshield.",
+			"info": "Can burn (distract + poison, 30% suicide chance) one person during the night. Can kill one person during the standby (user is not revealed) every other day. Counters daykills. Voteshield of +2. ~Sided~",
+			"players": "Weakened. When Itachi dies.",
+			"actions": {
+				"night": {
+					"burn": {
+						"command": ["distract", "poison"],
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 4,
+						"hide": true,
+						"suicideChance": 0.3,
+						"suicidemsg": "You overdid your jutsu and bled to death from your eyes.",
+						"distractmsg": "You were hit by the amaterasu and couldn't do anything due to the intense burn!",
+						"teammsg": "You couldn't do anything as you had to spend the night tending to your teammate's everlasting burn.",
+						"poisonmsg": "Your target (~Target~) was set aflame by your amaterasu!",
+						"poisontarmsg": "You have 1 day to live before the eternal fire completely consumes you.",
+						"poisonDeadMessage": "You have been completely consumed by the intense flames of the amaterasu."
+					}
+				},
+				"standby": {
+					"kill": {
+						"target": "AnyButSelf",
+						"msg": "The skies are littered with dark and ominous black thunder clouds. Now is the time to strike! Eliminate someone using /kill! You won't be revealed, but you can only do this every other day!",
+						"killmsg": "Numerous large sparks of lightning manifest high in the clouds before suddenly striking down ~Target~ and instantly obliterating them.",
+						"recharge": 2
+					}
+				},
+				"daykill": {
+					"mode": {
+						"revenge": [
+							"narutos",
+							"narutos1",
+							"narutos2",
+							"narutos3",
+							"narutosd",
+							"narutosd1",
+							"narutosd2",
+							"narutosd3",
+							"kakashis",
+							"kakashisd",
+							"haku",
+							"hakud",
+							"itachi2"
+						]
+					}
+				},
+				"daykillrevengemsg": "~Target~ attempted to attack Sasuke, but got way too close to him and was completely destroyed by the fierce lightning of the kirin.",
+				"voteshield": 2,
+				"onDeath": {
+					"convertRoles": {				
+						"narutosd2": ["narutosd3"],
+						"narutod2": ["narutod3"],
+						"narutos2": ["narutos3"],
+						"naruto2": ["naruto3"],
+						"narutosd1": ["narutosd2"],
+						"narutod1": ["narutod2"],
+						"narutos1": ["narutos2"],
+						"naruto1": ["naruto2"],
+						"narutosd": ["narutosd1"],
+						"narutod": ["narutod1"],
+						"narutos": ["narutos1"],
+						"naruto": ["naruto1"]
+					},
+					"convertmsg": "With the loss of a teammate, Naruto has gained an additional vote and a -1 voteshield."
+				}
+			}
+		},
+		{
+			"role": "sakura",
+			"translation": "Sakura",
+			"side": "village",
+			"startupmsg": "You are ~Role~!",
+			"help": "Once timid and always hiding behind the protection of Naruto and Sasuke, you have finally spent time training under Tsunade to become a strong medical ninja. Your brute strength allows you to /punch one person every night using your chakra-enhanced fists; this will stun your target and prevent it from using any actions that night. As a medical ninja, you are able to /cure one person every night; this will heal them of poison as well as protect them from poison! Alert as you are, you can /watch one person each night to see who visited them (and if they need medical attention). Lastly, since evasion is a crucial ability for any medical ninja, you will evade all daykills.",
+			"info": "Can punch (distract) one person during the night. Can cure (detox + safeguard) one person during the night. Can watch one person during the night. Evades daykills. ~Sided~",
+			"actions": {
+				"night": {
+					"punch": {
+						"command": "distract",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 5,
+						"distractmsg": "You were hit by a chakra-enhanced punch and stunned the entire night, rendering you unable to do anything.",
+						"teammsg": "You couldn't carry out your nightly activities because your teammate had been knocked out. You spent the entire night tending to their injury."
+					},
+					"cure": {
+						"command": ["detox", "safeguard"],
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 6,
+						"pierce": true
+					},
+					"watch": {
+						"target": "AnyButSelf",
+						"common": "Self",
+						"watchFirst": 99,
+						"watchLast": 99,
+						"priority": 19
+					}
+				},
+				"daykill": {
+					"mode": {
+						"ignore": [
+							"narutos",
+							"narutos1",
+							"narutos2",
+							"narutos3",
+							"narutosd",
+							"narutosd1",
+							"narutosd2",
+							"narutosd3",
+							"kakashis",
+							"kakashisd",
+							"sasuke2",
+							"sasuked2",
+							"haku",
+							"hakud",
+							"itachi2"
+						]
+					}
+				},
+				"onDeath": {
+					"convertRoles": {				
+						"narutosd2": ["narutosd3"],
+						"narutod2": ["narutod3"],
+						"narutos2": ["narutos3"],
+						"naruto2": ["naruto3"],
+						"narutosd1": ["narutosd2"],
+						"narutod1": ["narutod2"],
+						"narutos1": ["narutos2"],
+						"naruto1": ["naruto2"],
+						"narutosd": ["narutosd1"],
+						"narutod": ["narutod1"],
+						"narutos": ["narutos1"],
+						"naruto": ["naruto1"]
+					},
+					"convertmsg": "With the loss of a teammate, Naruto has gained an additional vote and a -1 voteshield."
+				}
+			}
+		},
+		{
+			"role": "sakurad",
+			"translation": "Sakura",
+			"side": "village",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "Once timid and always hiding behind the protection of Naruto and Sasuke, you have finally spent time training under Tsunade to become a strong medical ninja. Your brute strength allows you to /punch one person every night using your chakra-enhanced fists; this will stun your target and prevent it from using any actions that night. As a medical ninja, you are able to /cure one person every night; this will heal them of poison, but since you are weakened, it will no longer protect them from poison! Since you're weakened, you are also now unable to watch during the night. Lastly, since evasion is a crucial ability for any medical ninja, you will evade all daykills.",
+			"info": "Can punch (distract) one person during the night. Can cure (detox + safeguard) one person during the night. Evades daykills. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"punch": {
+						"command": "distract",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"hide": true,
+						"priority": 5,
+						"distractmsg": "You were hit by a chakra-enhanced punch and stunned the entire night, rendering you unable to do anything.",
+						"teammsg": "You couldn't carry out your nightly activities because your teammate had been knocked out. You spent the entire night tending to their injury."
+					},
+					"cure": {
+						"command": "detox",
+						"target": "AnyButSelf",
+						"common": "Self",
+						"priority": 6,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"daykill": {
+					"mode": {
+						"ignore": [
+							"narutos",
+							"narutos1",
+							"narutos2",
+							"narutos3",
+							"narutosd",
+							"narutosd1",
+							"narutosd2",
+							"narutosd3",
+							"kakashis",
+							"kakashisd",
+							"sasuke2",
+							"sasuked2",
+							"haku",
+							"hakud",
+							"itachi2"
+						]
+					}
+				},
+				"onDeath": {
+					"convertRoles": {				
+						"narutosd2": ["narutosd3"],
+						"narutod2": ["narutod3"],
+						"narutos2": ["narutos3"],
+						"naruto2": ["naruto3"],
+						"narutosd1": ["narutosd2"],
+						"narutod1": ["narutod2"],
+						"narutos1": ["narutos2"],
+						"naruto1": ["naruto2"],
+						"narutosd": ["narutosd1"],
+						"narutod": ["narutod1"],
+						"narutos": ["narutos1"],
+						"naruto": ["naruto1"]
+					},
+					"convertmsg": "With the loss of a teammate, Naruto has gained an additional vote and a -1 voteshield."
+				}
+			}
+		},
+		{
+			"role": "haku",
+			"translation": "Haku",
+			"side": "mist",
+			"startupmsg": "You are ~Role~!",
+			"help": "A good-hearted person with a dark past of being orphaned, you often faced hatred and rejection. Once you met Zabuza, you became his ally, and have assisted him ever since. You aren't fond of killing, so you can't kill during the night, but you can't be killed during the night either. However, you can /ice one person to kill them during the day without being revealed using your secret jutsu, Crystal Ice Mirrors! Due to your devotion to Zabuza, he can't be killed as long as you are still alive.",
+			"info": "Evades nightkills. Can ice (kill) one person during the standby (user is not revealed). ~Sided~",
+			"actions": {
+				"standby": {
+					"ice": {
+						"command": "kill",
+						"target": "AnyButTeam",
+						"msg": "Bring swift death to your enemies using /ice! Since you're hidden behind your mirrors, you won't be revealed!",
+						"killmsg": "Large crystal ice mirrors rise from the ground surrounding ~Target~. One thousand needles suddenly strike ~Target~ at blinding speeds, cutting through numerous organs and piercing multiple vital spots. Once the assault ends, ~Target~ is left lying motionless, and bleeds out to death."
+					}
+				},
+				"kill": {
+					"mode": "ignore"
+				},
+				"onDeath": {
+					"convertRoles": {
+						"zabuza": ["zabuza2"],
+						"zabuzad": ["zabuza2d"]
+					},
+					"convertmsg": "Without Haku to protect him, Zabuza is now vulnerable to kills and poison!"
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "hakud",
+			"translation": "Haku",
+			"side": "mist",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "A good-hearted person with a dark past of being orphaned, you often faced hatred and rejection. Once you met Zabuza, you became his ally, and have assisted him ever since. You aren't fond of killing, so you can't kill during the night. Since you have been weakened, you can no longer evade nightkills. However, you can /ice one person to kill them during the day without being revealed using your secret jutsu, Crystal Ice Mirrors! Due to your devotion to Zabuza, he can't be killed as long as you are still alive.",
+			"info": "Can ice (kill) one person during the standby (user is not revealed). ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"standby": {
+					"ice": {
+						"command": "kill",
+						"target": "AnyButTeam",
+						"msg": "Bring swift death to your enemies using /ice! Since you're hidden behind your mirrors, you won't be revealed!",
+						"killmsg": "Large crystal ice mirrors rise from the ground surrounding ~Target~. One thousand needles suddenly strike ~Target~ at blinding speeds, cutting through numerous organs and piercing multiple vital spots. Once the assault ends, ~Target~ is left lying motionless, and bleeds out to death."
+					}
+				},
+				"onDeath": {
+					"convertRoles": {
+						"zabuza": ["zabuza2"],
+						"zabuzad": ["zabuza2d"]
+					},
+					"convertmsg": "Without Haku to protect him, Zabuza is now vulnerable to kills and poison!"
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "zabuza",
+			"translation": "Zabuza",
+			"side": "mist",
+			"startupmsg": "You are ~Role~!",
+			"help": "A ruthless killer and rogue ninja from the mist village, you mercilessly cut down others for money. Eliminate the weak by using /kill during the night! Since you're swift with your blade and able to use the silent killing technique, your kill not only outspeeds bodyguards and distractors, but it also can't be evaded or haxed! Additionally, you will kill anyone that tries to distract you or inspect you. As long as Haku is alive, you can't be killed or poisoned.",
+			"info": "Can kill one person during the night, outspeeding bodyguards and distractors (kills evaders, can't be detected by spies). Kills distractors and inspectors. Can't be killed or poisoned as long as Haku is alive. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"command": ["dummy", "kill"],
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 1,
+						"bypass": ["ignore"],
+						"broadcast": "team",
+						"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened."
+					}
+				},
+				"avoidHax": ["kill"],
+				"distract": {
+					"mode": "ChangeTarget",
+					"hookermsg": "You tried to stop Zabuza, but he had already carried out his task. The mist around you thickened, and reduced your vision to near zero. Suddenly, a blade severs you in two, instantly killing you.",
+					"msg": "~Distracter~ thought they could stop you. Not only were they too slow, but they also became another one of your pathetic victims."
+				},
+				"inspect": {
+					"mode": "ChangeTarget",
+					"targetmsg": "Someone tried sneaking up on you, the infamous silent killer. What a fool. One quick slash of your blade, and they were no more.",
+					"msg": "Sneaking up on Zabuza? Big mistake. He vanished, and seconds later, you feel your body divide in two. You have become just another victim."
+				},
+				"kill": {
+					"mode": "ignore"
+				},
+				"poison": {
+					"mode": "ignore",
+					"msg": "±Game: Your target (~Self~) was poisoned!"
+				},
+				"daykill": {
+					"mode": {
+						"ignore": [
+							"narutos",
+							"narutos1",
+							"narutos2",
+							"narutos3",
+							"narutosd",
+							"narutosd1",
+							"narutosd2",
+							"narutosd3",
+							"kakashis",
+							"kakashisd",
+							"sasuke2",
+							"sasuked2",
+							"itachi2"
+						]
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "zabuza2",
+			"translation": "Zabuza",
+			"side": "mist",
+			"hide": true,
+			"startupmsg": "You are ~Role~!",
+			"help": "A ruthless killer and rogue ninja from the mist village, you mercilessly cut down others for money. Eliminate the weak by using /kill during the night! Since you're swift with your blade and able to use the silent killing technique, your kill not only outspeeds bodyguards and distractors, but it also can't be evaded or haxed! Additionally, you will kill anyone that tries to distract you or inspect you. Without Haku to protect you, you are vulnerable to being killed or poisoned.",
+			"info": "Can kill one person during the night, outspeeding bodyguards and distractors (kills evaders, can't be detected by spies). Kills distractors and inspectors. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"command": ["dummy", "kill"],
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 1,
+						"hide": true,
+						"bypass": ["ignore"],
+						"broadcast": "team",
+						"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened."
+					}
+				},
+				"avoidHax": ["kill"],
+				"distract": {
+					"mode": "ChangeTarget",
+					"hookermsg": "You tried to stop Zabuza, but he had already carried out his task. The mist around you thickened, and reduced your vision to near zero. Suddenly, a blade severs you in two, instantly killing you.",
+					"msg": "~Distracter~ thought they could stop you. Not only were they too slow, but they also became another one of your pathetic victims."
+				},
+				"inspect": {
+					"mode": "ChangeTarget",
+					"targetmsg": "Someone tried sneaking up on you, the infamous silent killer. What a fool. One quick slash of your blade, and they were no more.",
+					"msg": "Sneaking up on Zabuza? Big mistake. He vanished, and seconds later, you feel your body divide in two. You have become just another victim."
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "zabuzad",
+			"translation": "Zabuza",
+			"side": "mist",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "A ruthless killer and rogue ninja from the mist village, you mercilessly cut down others for money. Eliminate the weak by using /kill during the night! Since you're swift with your blade and able to use the silent killing technique, your kill not only outspeeds bodyguards and distractors, but it also can't be evaded or haxed! However, since you have been weakened, you no longer kill anyone that tries to distract you or inspect you, and you can only kill every other night. As long as Haku is alive, you can't be killed or poisoned.",
+			"info": "Can kill one person during the night every other night, outspeeding bodyguards and distractors (kills evaders, can't be detected by spies). Can't be killed or poisoned as long as Haku is alive. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"kill": {
+						"command": ["dummy", "kill"],
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 1,
+						"recharge": 2,
+						"hide": true,
+						"bypass": ["ignore"],
+						"broadcast": "team",
+						"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened."
+					}
+				},
+				"avoidHax": ["kill"],
+				"kill": {
+					"mode": "ignore"
+				},
+				"poison": {
+					"mode": "ignore",
+					"msg": "±Game: Your target (~Self~) was poisoned!"
+				},
+				"daykill": {
+					"mode": {
+						"ignore": [
+							"narutos",
+							"narutos1",
+							"narutos2",
+							"narutos3",
+							"narutosd",
+							"narutosd1",
+							"narutosd2",
+							"narutosd3",
+							"kakashis",
+							"kakashisd",
+							"sasuke2",
+							"sasuked2",
+							"itachi2"
+						]
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "zabuza2d",
+			"translation": "Zabuza",
+			"side": "mist",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "A ruthless killer and rogue ninja from the mist village, you mercilessly cut down others for money. Eliminate the weak by using /kill during the night! Since you're swift with your blade and able to use the silent killing technique, your kill not only outspeeds bodyguards and distractors, but it also can't be evaded or haxed! However, since you have been weakened, you no longer kill anyone that tries to distract you or inspect you, and you can only kill every other night. Without Haku to protect you, you are vulnerable to being killed or poisoned.",
+			"info": "Can kill one person during the night every other night, outspeeding bodyguards and distractors (kills evaders, can't be detected by spies). ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"kill": {
+						"command": ["dummy", "kill"],
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 1,
+						"recharge": 2,
+						"hide": true,
+						"bypass": ["ignore"],
+						"broadcast": "team",
+						"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened."
+					}
+				},
+				"avoidHax": ["kill"],
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "kisame",
+			"translation": "Kisame",
+			"side": "akatsuki",
+			"startupmsg": "You are ~Role~!",
+			"help": "You are a powerful missing-nin who joined the Akatsuki and has been paired with Itachi. You share a /kill with him during the night. Additionally, you can /drain one person during the night (using your Samehada) to weaken their abilities. Since your blade is always thirsting for and sensing chakra, you have a very small chance to hax any night command.",
+			"info": "Can kill one person during the night. Can drain one person during the night to weaken their abilities. Very small hax on every night command. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 10,
+						"broadcast": "team",
+						"msg": "Your chakra was drained by the shark skin of Samehada. It was then effortless for Kisame to kill you."
+					},
+					"drain": {
+						"command": "convert",
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 18,
+						"broadcast": "team",
+						"newRole": {
+							"narutod": ["naruto"],
+							"narutosd": ["narutos"],
+							"narutod1": ["naruto1"],
+							"narutosd1": ["narutos1"],
+							"narutod2": ["naruto2"],
+							"narutosd2": ["narutos2"],
+							"narutod3": ["naruto3"],
+							"narutosd3": ["narutos3"],
+							"kakashid": ["kakashi"],
+							"kakashisd": ["kakashis"],
+							"kakashizd": ["kakashiz"],
+							"sasuked": ["sasuke"],
+							"sasukesd": ["sasukes"],
+							"sasuked2": ["sasuke2"],
+							"sakurad": ["sakura"],
+							"hakud": ["haku"],
+							"zabuzad": ["zabuza"],
+							"zabuza2d": ["zabuza2"],
+							"orochimarud": ["orochimaru"],
+							"orochimaru2d": ["orochimaru2"],
+							"kabutod": ["kabuto"],
+							"obitod": ["obito"],
+							"obito2d": ["obito2"],
+							"madarad": ["madara"],
+							"devad": ["deva"],
+							"asurad": ["asura"],
+							"humand": ["human"],
+							"animald": ["animal"],
+							"pretad": ["preta"],
+							"narakad": ["naraka"]
+						},
+						"silent": true,
+						"convertmsg": "",
+						"usermsg": "You have drained ~Target~ of some of their power!",
+						"tarmsg": "You have been drained of some of your chakra, weakening your abilities!"
+					}
+				},
+				"hax": {
+					"kill": {
+						"revealTeam": 0.1,
+						"revealRole": 0.1
+					},
+					"sage": {
+						"revealTeam": 0.05,
+						"revealRole": 0.05
+					},
+					"leave": {
+						"revealTeam": 0.05,
+						"revealRole": 0.05
+					},
+					"eye": {
+						"revealTeam": 0.05,
+						"revealRole": 0.05
+					},
+					"inspect": {
+						"revealTeam": 0.1,
+						"revealRole": 0.1
+					},
+					"cover": {
+						"revealTeam": 0.05,
+						"revealRole": 0.05
+					},
+					"close": {
+						"revealTeam": 0.05,
+						"revealRole": 0.05
+					},
+					"burn": {
+						"revealTeam": 0.05,
+						"revealRole": 0.05
+					},
+					"protect": {
+						"revealTeam": 0.1,
+						"revealRole": 0.1
+					},
+					"punch": {
+						"revealTeam": 0.1,
+						"revealRole": 0.1
+					},
+					"cure": {
+						"revealTeam": 0.1,
+						"revealRole": 0.1
+					},
+					"watch": {
+						"revealTeam": 0.1,
+						"revealRole": 0.1
+					},
+					"sever": {
+						"revealTeam": 0.1,
+						"revealRole": 0.1
+					},
+					"absorb": {
+						"revealTeam": 0.05,
+						"revealRole": 0.05
+					},
+					"poison": {
+						"revealTeam": 0.1,
+						"revealRole": 0.1
+					},
+					"read": {
+						"revealTeam": 0.1,
+						"revealRole": 0.1
+					},
+					"deva": {
+						"revealTeam": 0.05,
+						"revealRole": 0.05
+					},
+					"asura": {
+						"revealTeam": 0.05,
+						"revealRole": 0.05
+					},
+					"human": {
+						"revealTeam": 0.05,
+						"revealRole": 0.05
+					},
+					"animal": {
+						"revealTeam": 0.05,
+						"revealRole": 0.05
+					},
+					"preta": {
+						"revealTeam": 0.05,
+						"revealRole": 0.05
+					},
+					"naraka": {
+						"revealTeam": 0.05,
+						"revealRole": 0.05
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "itachi",
+			"translation": "Itachi",
+			"side": "akatsuki",
+			"startupmsg": "You are NOT SUPPOSED TO BE READING THIS!",
+			"hide": true,
+			"help": "FOOLISH THEME AUTHOR. If you are reading this, the theme author has messed up the code.",
+			"info": "Can show self during the night that the theme author messed up the code. ~Sided~",
+			"actions": {
+			}
+		},
+		{
+			"role": "itachi1",
+			"translation": "Itachi (Amaterasu)",
+			"side": "akatsuki",
+			"startupmsg": "You are ~Role~!",
+			"help": "You assassinated everyone in your clan except for your younger brother, Sasuke. You then joined the Akatsuki to seek out the power of the nine-tailed fox that lies within Naruto. Partnered with Kisame, you both share a /kill during the night. With your sharingan activated, you can also /burn someone every night with your amaterasu; this will distract them and poison them, killing them the next night, but you have a 20% chance to die due to overexertion. You will also counter daykills. You can /close yourself to activate your susanoo (self-protect + self-safeguard, nonrevealing daykill, +1 voteshield).",
+			"info": "Can kill one person during the night. Can burn (distract + poison, 20% suicide chance) one person during the night. Counters daykills. Can close (convert) self during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 10,
+						"broadcast": "team",
+						"msg": "±Itachi: Tsukuyomi!"
+					},
+					"burn": {
+						"command": ["distract", "poison"],
+						"target": "AnyButTeam",
+						"common": "Self",
+						"broadcast": "team",
+						"priority": 4,
+						"suicideChance": 0.2,
+						"suicidemsg": "You overdid your jutsu and bled to death from your eyes.",
+						"distractmsg": "You were hit by the amaterasu and couldn't do anything due to the intense burn!",
+						"teammsg": "You couldn't do anything as you had to spend the night tending to your teammate's everlasting burn.",
+						"poisonmsg": "Your target (~Target~) was set aflame by your amaterasu!",
+						"poisontarmsg": "You have 1 day to live before the eternal fire completely consumes you.",
+						"poisonDeadMessage": "You have been completely consumed by the intense flames of the amaterasu."
+					},
+					"close": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "itachi2",
+						"broadcast": "team",
+						"silent": true,
+						"pierce": true
+					}
+				},
+				"daykill": {
+					"mode": {
+						"revenge": [
+							"narutos",
+							"narutos1",
+							"narutos2",
+							"narutos3",
+							"narutosd",
+							"narutosd1",
+							"narutosd2",
+							"narutosd3",
+							"kakashis",
+							"kakashisd",
+							"haku",
+							"hakud"
+						]
+					}
+				},
+				"daykillrevengemsg": "~Target~ tried to attack Itachi, but was countered by his sharingan and subsequently killed with ease.",
+				"onlist": "itachi",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "itachi2",
+			"translation": "Itachi (Susanoo)",
+			"side": "akatsuki",
+			"startupmsg": "You are ~Role~!",
+			"help": "You have activated your susanoo and now have different abilities. You still share a /kill at night with Kisame. You can /guard yourself every night to protect yourself from kills and poison, and this command can't be distracted! With the susanoo, you can kill someone during the day with your Totsuka Blade using /blade without being revealed! However, you have a +1 voteshield due to the exhaustion these jutsu cause. You can revert to your old abilities (distract + poison, 20% suicide chance, counter daykills) by typing /open to activate your sharingan.",
+			"info": "Can kill one person during the night. Can guard (protect + safeguard, can't be distracted) self during the night. Can blade (kill) one person during the standby (user is not revealed). Has a +1 voteshield. Can open (convert) self during the night. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 10,
+						"broadcast": "team",
+						"hide": true,
+						"msg": "±Itachi: Tsukuyomi!"
+					},
+					"guard": {
+						"command": ["protect", "safeguard"],
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 6,
+						"broadcast": "team",
+						"ignoreDistract": true,
+						"protectmsg": "Your target (~Target~) evaded your kill!"
+					},
+					"open": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "itachi1",
+						"broadcast": "team",
+						"silent": true,
+						"pierce": true
+					}
+				},
+				"standby": {
+					"blade": {
+						"command": "kill",
+						"target": "AnyButTeam",
+						"msg": "You can now kill someone using /blade! Since you are safely behind your susanoo, you won't be revealed!",
+						"killmsg": "Behind the protection of his susanoo, Itachi summons the Totsuka Blade and cleanly slices ~Target~ in half with one strike."
+					}
+				},
+				"voteshield": 1,
+				"onlist": "itachi",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "orochimaru",
+			"translation": "Orochimaru",
+			"side": "snake",
+			"startupmsg": "You are ~Role~!",
+			"help": "A former student of the Third Hokage, your lust for knowledge and power has led you to become a rogue ninja, and a very dangerous one at that. Show the world your power using /kill every night to eliminate your enemies! Since you were a leaf shinobi, you have a decent chance to hax both kills and any member of Team 7! Your knowledge of ocular jutsu also allows you to hax inspectors and users of the amaterasu (Sasuke and Itachi). You also can't be distracted, will identify distractors, and can't be haxed. Your vast power gives you a vote of 5, and as long as Kabuto is alive, you will evade 2 nightkills!",
+			"info": "Can kill one person during the night (can't be detected by spies). Moderate hax on kill, inspect, burn, and Team 7 commands. Evades 2 nightkills as long as Kabuto is alive. Ignores and identifies distractors. Vote of 5. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 12,
+						"broadcast": "team",
+						"msg": "±Orochimaru: Looks like I found an intruder. IT'S OVER!"
+					}
+				},
+				"avoidHax": ["kill"],
+				"hax": {
+					"kill": {
+						"revealTeam": 0.3,
+						"revealRole": 0.3
+					},
+					"sage": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"leave": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"inspect": {
+						"revealTeam": 0.3,
+						"revealRole": 0.3
+					},
+					"burn": {
+						"revealTeam": 0.3,
+						"revealRole": 0.3
+					},
+					"protect": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"punch": {
+						"revealTeam": 0.3,
+						"revealRole": 0.2
+					},
+					"cure": {
+						"revealTeam": 0.3,
+						"revealRole": 0.2
+					},
+					"eye": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"cover": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					}
+				},
+				"distract": {
+					"mode": {
+						"ignore": [
+							"sakura",
+							"sakurad",
+							"sasuke2",
+							"sasuked2",
+							"itachi1",
+							"animal",
+							"animald"
+						],
+						"identify": [
+							"sakura",
+							"sakurad",
+							"sasuke2",
+							"sasuked2",
+							"itachi1",
+							"animal",
+							"animald"
+						]
+					},
+					"identify": "You identified ~Target~ as the ~Role~ that tried to ~Action~ you!"
+				},
+				"kill": {
+					"mode": {
+						"evadeCharges": 2
+					}
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				},
+				"standbyHax": {
+					"kill": {
+						"revealRole": 0.4
+					},
+					"kamui": {
+						"revealRole": 0.4
+					}
+				},
+				"vote": 5,
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "orochimaru2",
+			"translation": "Orochimaru",
+			"side": "snake",
+			"hide": true,
+			"startupmsg": "You are ~Role~!",
+			"help": "A former student of the Third Hokage, your lust for knowledge and power has led you to become a rogue ninja, and a very dangerous one at that. Show the world your power using /kill every night to eliminate your enemies! Since you were a leaf shinobi, you have a decent chance to hax both kills and any member of Team 7! Your knowledge of ocular jutsu also allows you to hax inspectors and users of the amaterasu (Sasuke and Itachi). You also can't be distracted, will identify distractors, and can't be haxed. Your vast power gives you a vote of 5, and with the death of Kabuto, you no longer evade any nightkills!",
+			"info": "Can kill one person during the night (can't be detected by spies). Moderate hax on kill, inspect, burn, and Team 7 commands. Ignores and identifies distractors. Vote of 5. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 12,
+						"hide": true,
+						"broadcast": "team",
+						"msg": "±Orochimaru: Looks like I found an intruder. IT'S OVER!"
+					}
+				},
+				"avoidHax": ["kill"],
+				"hax": {
+					"kill": {
+						"revealTeam": 0.3,
+						"revealRole": 0.3
+					},
+					"sage": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"leave": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"inspect": {
+						"revealTeam": 0.3,
+						"revealRole": 0.3
+					},
+					"burn": {
+						"revealTeam": 0.3,
+						"revealRole": 0.3
+					},
+					"protect": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"punch": {
+						"revealTeam": 0.3,
+						"revealRole": 0.2
+					},
+					"cure": {
+						"revealTeam": 0.3,
+						"revealRole": 0.2
+					},
+					"eye": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"cover": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					}
+				},
+				"distract": {
+					"mode": {
+						"ignore": [
+							"sakura",
+							"sakurad",
+							"sasuke2",
+							"sasuked2",
+							"itachi1",
+							"animal",
+							"animald"
+						],
+						"identify": [
+							"sakura",
+							"sakurad",
+							"sasuke2",
+							"sasuked2",
+							"itachi1",
+							"animal",
+							"animald"
+						]
+					},
+					"identify": "You identified ~Target~ as the ~Role~ that tried to ~Action~ you!"
+				},
+				"standbyHax": {
+					"kill": {
+						"revealRole": 0.4
+					},
+					"kamui": {
+						"revealRole": 0.4
+					}
+				},
+				"vote": 5,
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "orochimarud",
+			"translation": "Orochimaru",
+			"side": "snake",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "A former student of the Third Hokage, your lust for knowledge and power has led you to become a rogue ninja, and a very dangerous one at that. Show the world your power using /kill every night to eliminate your enemies! Since you were a leaf shinobi, you have a decent chance to hax both kills and any member of Team 7! Your knowledge of ocular jutsu also allows you to hax inspectors and users of the amaterasu (Sasuke and Itachi). However, since you have been weakened, you no longer identify or ignore distractors, and your vote has been reduced to 2. As long as Kabuto is alive, you will evade 2 nightkills!",
+			"info": "Can kill one person during the night (can't be detected by spies). Moderate hax on kill, inspect, burn, and Team 7 commands. Evades 2 nightkills as long as Kabuto is alive. Vote of 2. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 12,
+						"hide": true,
+						"broadcast": "team",
+						"msg": "±Orochimaru: Looks like I found an intruder. IT'S OVER!"
+					}
+				},
+				"avoidHax": ["kill"],
+				"hax": {
+					"kill": {
+						"revealTeam": 0.3,
+						"revealRole": 0.3
+					},
+					"sage": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"leave": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"inspect": {
+						"revealTeam": 0.3,
+						"revealRole": 0.3
+					},
+					"burn": {
+						"revealTeam": 0.3,
+						"revealRole": 0.3
+					},
+					"protect": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"punch": {
+						"revealTeam": 0.3,
+						"revealRole": 0.2
+					},
+					"cure": {
+						"revealTeam": 0.3,
+						"revealRole": 0.2
+					},
+					"eye": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"cover": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeCharges": "*"
+					}
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				},
+				"standbyHax": {
+					"kill": {
+						"revealRole": 0.4
+					},
+					"kamui": {
+						"revealRole": 0.4
+					}
+				},
+				"vote": 2,
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "orochimaru2d",
+			"translation": "Orochimaru",
+			"side": "snake",
+			"hide": true,
+			"startupmsg": "You are ~Role~!",
+			"help": "A former student of the Third Hokage, your lust for knowledge and power has led you to become a rogue ninja, and a very dangerous one at that. Show the world your power using /kill every night to eliminate your enemies! Since you were a leaf shinobi, you have a decent chance to hax both kills and any member of Team 7! Your knowledge of ocular jutsu also allows you to hax inspectors and users of the amaterasu (Sasuke and Itachi). However, since you have been weakened, you no longer identify or ignore distractors, and your vote has been reduced to 2. With the death of Kabuto, you no longer evade any nightkills!",
+			"info": "Can kill one person during the night (can't be detected by spies). Moderate hax on kill, inspect, burn, and Team 7 commands. Vote of 2. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 12,
+						"hide": true,
+						"broadcast": "team",
+						"msg": "±Orochimaru: Looks like I found an intruder. IT'S OVER!"
+					}
+				},
+				"avoidHax": ["kill"],
+				"hax": {
+					"kill": {
+						"revealTeam": 0.3,
+						"revealRole": 0.3
+					},
+					"sage": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"leave": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"inspect": {
+						"revealTeam": 0.3,
+						"revealRole": 0.3
+					},
+					"burn": {
+						"revealTeam": 0.3,
+						"revealRole": 0.3
+					},
+					"protect": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"punch": {
+						"revealTeam": 0.3,
+						"revealRole": 0.2
+					},
+					"cure": {
+						"revealTeam": 0.3,
+						"revealRole": 0.2
+					},
+					"eye": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					},
+					"cover": {
+						"revealTeam": 0.2,
+						"revealRole": 0.2
+					}
+				},
+				"standbyHax": {
+					"kill": {
+						"revealRole": 0.4
+					},
+					"kamui": {
+						"revealRole": 0.4
+					}
+				},
+				"vote": 2,
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "kabuto",
+			"translation": "Kabuto",
+			"side": "snake",
+			"startupmsg": "You are ~Role~!",
+			"help": "You are the loyal servant of Lord Orochimaru, and thus you share a /kill at night with him. Every other night, you can paralyze someone with your chakra scalpel technique using /sever; this will immobilize them, making them unable to use any of their actions for the night, and you can read their chakra flow to determine their role as well! Thanks to your Dead Soul technique, you are able to evade 1 nightkill. As long as you're alive, Orochimaru will evade 2 nightkills!",
+			"info": "Can kill one person during the night. Can sever (distract + inspect) one person during the night every other night. Evades 1 nightkill. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 12,
+						"broadcast": "team",
+						"msg": "±Kabuto: Looks like you've wandered someplace you have no business being. Ah well, you'll make a fine addition to Lord Orochimaru's collection of test subjects."
+					},
+					"sever": {
+						"command": ["distract", "inspect"],
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 3,
+						"recharge": 2,
+						"broadcast": "team",
+						"distractmsg": "You were nailed in the stomach by Kabuto's chakra scalpel, paralyzing you and preventing you from carrying out any of your night actions.",
+						"teammsg": "You were unable to carry out your nightly duties because you had to tend to your ally, who had been paralyzed by a sharp blow to their chakra network."
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeCharges": 1
+					}
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				},
+				"onDeath": {
+					"convertRoles": {
+						"orochimaru": ["orochimaru2"],
+						"orochimarud": ["orochimaru2d"]
+					},
+					"convertmsg": "With the death of Kabuto, Orochimaru no longer evades any nightkills!"
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "kabutod",
+			"translation": "Kabuto",
+			"side": "snake",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "You are the loyal servant of Lord Orochimaru, and thus you share a /kill at night with him. Since you have been weakened, you can no longer /sever someone to distract and inspect them. Thanks to your Dead Soul technique, you are able to evade 1 nightkill. As long as you're alive, Orochimaru will evade 2 nightkills!",
+			"info": "Can kill one person during the night. Evades 1 nightkill. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 12,
+						"hide": true,
+						"broadcast": "team",
+						"msg": "±Kabuto: Looks like you've wandered someplace you have no business being. Ah well, you'll make a fine addition to Lord Orochimaru's collection of test subjects."
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeCharges": "*"
+					}
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				},
+				"onDeath": {
+					"convertRoles": {
+						"orochimaru": ["orochimaru2"],
+						"orochimarud": ["orochimaru2d"]
+					},
+					"convertmsg": "With the death of Kabuto, Orochimaru no longer evades any nightkills!"
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "obito",
+			"translation": "Obito",
+			"side": "project",
+			"startupmsg": "You are ~Role~!",
+			"help": "Once a young individual with a dream to become Hokage, the subsequent events that followed changed your life and beliefs. You now desire to replace this world with a new one and will not stop until your desire has been achieved. You share a /kill at night with Madara and you can /inspect one person every night to find out their role, but this only has a 50% chance of working. You are saving up most of your chakra for when you become the ten-tails' jinchuuriki. On the third night, you can /absorb yourself to make this transformation occur, greatly strengthening your power.",
+			"info": "Can kill one person during the night. Can inspect (50% fail chance) one person during the night. Can absorb (convert) self on the third night. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 8,
+						"broadcast": "team",
+						"msg": "±Obito: I will create a new world, and since you dare oppose me, you won't be a part of it!"
+					},
+					"inspect": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 16,
+						"failChance": 0.5,
+						"broadcast": "team"
+					},
+					"absorb": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 17,
+						"newRole": "obito2",
+						"broadcast": "team",
+						"initialrecharge": 3,
+						"silent": false,
+						"pierce": true,
+						"convertmsg": "Obito has become the ten-tails' jinchuuriki."
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "obito2",
+			"translation": "Obito (Ten-Tails)",
+			"side": "project",
+			"startupmsg": "You are ~Role~!",
+			"help": "Now that you're the ten-tails' jinchuuriki, you can demonstrate your power! Your /kill at night now pierces protection. Additionally, you revenge all nightkills, will reveal your attacker if you are daykilled, and will kill everyone that votes for you if you are lynched!",
+			"info": "Can kill one person during the night (pierces protection). Revenges nightkills. Reveals attacker when daykilled. If lynched, kills everyone that voted for them. ~Sided~",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 8,
+						"hide": true,
+						"pierce": true,
+						"broadcast": "team",
+						"msg": "You were no match for the power that is the ten-tails."
+					}
+				},
+				"kill": {
+					"mode": "killattackerevenifprotected",
+					"msg": "You were able to defeat the ten-tails' jinchuuriki, but it cost you your life."
+				},
+				"daykill": "revealkiller",
+				"daykillrevengemsg": "~Target~ attacked ~Self~ with all of their power. Surprisingly, it was enough to bring the ten-tails' jinchuuriki down, but ~Target~ (~Role~) barely survived.",
+				"lynch": {
+					"killVoters": {
+						"first": 99,
+						"last": 99,
+						"message": "The valiant effort of ~Count~ powerful shinobi was enough to bring down the ten-tails' jinchuuriki. However, ~Self~ is able to create a massive ball of chakra that explodes, taking his assailants down with him."
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "obitod",
+			"translation": "Obito",
+			"side": "project",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "Once a young individual with a dream to become Hokage, the subsequent events that followed changed your life and beliefs. You now desire to replace this world with a new one and will not stop until your desire has been achieved. You share a /kill at night with Madara, but since you've been weakened, you can no longer inspect one person every night. You are saving up most of your chakra for when you become the ten-tails' jinchuuriki. However, since you have been weakened, you will have to wait for another two nights before you can /absorb yourself to make this transformation occur and greatly strengthen your power.",
+			"info": "Can kill one person during the night. Can absorb (convert) self two nights after being converted to this weakened role. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 8,
+						"hide": true,
+						"broadcast": "team",
+						"msg": "±Obito: I will create a new world, and since you dare oppose me, you won't be a part of it!"
+					},
+					"absorb": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 17,
+						"newRole": "obito2d",
+						"broadcast": "team",
+						"initialrecharge": 3,
+						"silent": false,
+						"pierce": true,
+						"hide": true,
+						"convertmsg": "Obito has become the ten-tails' jinchuuriki."
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "obito2d",
+			"translation": "Obito (Ten-Tails)",
+			"side": "project",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "Now that you're the ten-tails' jinchuuriki, you can demonstrate your power! Your /kill at night no longer pierces protection since you've been weakened. Since you've been weakened, you also no longer revenge nightkills, but if you are daykilled, you will still reveal the role of your attacker and will kill everyone that votes for you if you are lynched!",
+			"info": "Can kill one person during the night. Reveals attacker when daykilled. If lynched, kills everyone that voted for them. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 8,
+						"hide": true,
+						"broadcast": "team",
+						"msg": "You were no match for the power that is the ten-tails."
+					}
+				},
+				"daykill": "revealkiller",
+				"daykillrevengemsg": "~Target~ attacked ~Self~ with all of their power. Surprisingly, it was enough to bring the ten-tails' jinchuuriki down, but ~Target~ (~Role~) barely survived.",
+				"lynch": {
+					"killVoters": {
+						"first": 99,
+						"last": 99,
+						"message": "The valiant effort of ~Count~ powerful shinobi was enough to bring down the ten-tails' jinchuuriki. However, ~Self~ is able to create a massive ball of chakra that explodes, taking his assailants down with him."
+					}
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "madara",
+			"translation": "Madara",
+			"side": "project",
+			"startupmsg": "You are ~Role~!",
+			"help": "You've developed a plan to end world conflict by creating an eternal mangekyo sharingan in the moon, but you must eliminate all who oppose it before carrying it out! You can /poison two people every night, killing them the following night. Your mastery of ocular jutsu allows you to counter both nightkills and daykills! However, since you are only a reanimation, you will die instantly if you are poisoned or distracted!",
+			"info": "Can poison two people during the night. Counters nightkills and daykills. Dies if distracted or poisoned. ~Sided~",
+			"actions": {
+				"night": {
+					"poison": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 7,
+						"limit": 2,
+						"broadcast": "team"
+					}
+				},
+				"kill": {
+					"mode": "ChangeTarget",
+					"targetmsg": "You attacked Madara, but he read your every move like a book, and easily took you down.",
+					"msg": "~Role~ attacked you, but you countered each of his moves with ease, and effortlessly took him down."
+				},
+				"daykill": {
+					"mode": {
+						"revenge": [
+							"narutos",
+							"narutos1",
+							"narutos2",
+							"narutos3",
+							"narutosd",
+							"narutosd1",
+							"narutosd2",
+							"narutosd3",
+							"kakashis",
+							"kakashisd",
+							"sasuke2",
+							"sasuked2",
+							"haku",
+							"hakud",
+							"itachi2"
+						]
+					}
+				},
+				"daykillrevengemsg": "~Target~ made the foolish decision of attacking Madara, whose ocular abilities made it simple to counter ~Target~'s attacks, and quickly kill them.",
+				"distract": {
+					"mode": "die",
+					"msg": "When ~Role~ ~Action~ed you, your reanimation jutsu suddenly became undone, and you returned to the grave.",
+					"targetmsg": "Your ~Action~ undid ~Self~'s reanimation jutsu, causing him to die."
+				},
+				"poison": {
+					"mode": "die",
+					"msg": "When ~Role~ ~Action~ed you, your reanimation jutsu suddenly became undone, and you returned to the grave.",
+					"targetmsg": "Your ~Action~ undid ~Self~'s reanimation jutsu, causing him to die."
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "madarad",
+			"translation": "Madara",
+			"side": "project",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "You've developed a plan to end world conflict by creating an eternal mangekyo sharingan in the moon, but you must eliminate all who oppose it before carrying it out! However, since you've been weakened, you can only /poison one person every night. Your mastery of ocular jutsu allows you to counter both nightkills and daykills! However, since you are only a reanimation, you will die instantly if you are poisoned or distracted!",
+			"info": "Can poison one person during the night. Counters nightkills and daykills. Dies if distracted or poisoned. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"poison": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 7,
+						"hide": true,
+						"limit": 1,
+						"broadcast": "team"
+					}
+				},
+				"kill": {
+					"mode": "ChangeTarget",
+					"targetmsg": "You attacked Madara, but he read your every move like a book, and easily took you down.",
+					"msg": "~Role~ attacked you, but you countered each of his moves with ease, and effortlessly took him down."
+				},
+				"daykill": {
+					"mode": {
+						"revenge": [
+							"narutos",
+							"narutos1",
+							"narutos2",
+							"narutos3",
+							"narutosd",
+							"narutosd1",
+							"narutosd2",
+							"narutosd3",
+							"kakashis",
+							"kakashisd",
+							"sasuke2",
+							"sasuked2",
+							"haku",
+							"hakud",
+							"itachi2"
+						]
+					}
+				},
+				"daykillrevengemsg": "~Target~ made the foolish decision of attacking Madara, whose ocular abilities made it simple to counter ~Target~'s attacks, and quickly kill them.",
+				"distract": {
+					"mode": "die",
+					"msg": "When ~Role~ ~Action~ed you, your reanimation jutsu suddenly became undone, and you returned to the grave.",
+					"targetmsg": "Your ~Action~ undid ~Self~'s reanimation jutsu, causing him to die."
+				},
+				"poison": {
+					"mode": "die",
+					"msg": "When ~Role~ ~Action~ed you, your reanimation jutsu suddenly became undone, and you returned to the grave.",
+					"targetmsg": "Your ~Action~ undid ~Self~'s reanimation jutsu, causing him to die."
+				},
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "pain",
+			"translation": "Pain",
+			"side": "pain",
+			"startupmsg": "You are NOT SUPPOSED TO BE READING THIS!",
+			"hide": true,
+			"help": "FOOLISH THEME AUTHOR. If you are reading this, the theme author has messed up the code.",
+			"info": "Can show self during the night that the theme author messed up the code. ~Sided~",
+			"actions": {
+			}
+		},
+		{
+			"role": "deva",
+			"translation": "Pain (Deva Path)",
+			"side": "pain",
+			"startupmsg": "You are ~Role~!",
+			"help": "Once a kind person who sought peace, your view changed ever since the death of your friend Yahiko. Now you wish to bring despair and pain upon others to change the world's violent ways. Right now, you can /inspect one person during the day to find out their role. You can also /push someone during the day to kill them using your shinra tensei jutsu; these daykills can't be evaded or countered! You have a 65% chance to evade nightkills. You can change to the other paths by using /asura (nightkill, 2nd nightkill every other night), /human (distract + inspect + poison that kills on the same night), /animal (nightkill, self protect, kills distractors, can't be poisoned), /preta (counter nightkills, identifies distractors and inspectors, evades daykills), or /naraka (kills anyone that uses a non-killing command on you, moderate hax on every night command). Every one of the six paths has a vote of 3 and a voteshield of -3, and four of the six paths (deva, asura, human, naraka) have a 65% chance to evade nightkills.",
+			"info": "Can inspect one person during the standby. Can push (kill) one person during the standby (can't be evaded or countered). Has a 65% chance to evade nightkills. Vote of 3. Voteshield of -3. Can change to Asura Path, Human Path, Animal Path, Preta Path, or Naraka Path. ~Sided~",
+			"actions": {
+				"night": {
+					"asura": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "asura",
+						"cancel": ["human", "animal", "preta", "naraka"],
+						"silent": true,
+						"pierce": true
+					},
+					"human": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "human",
+						"cancel": ["asura", "animal", "preta", "naraka"],
+						"silent": true,
+						"pierce": true
+					},
+					"animal": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "animal",
+						"cancel": ["asura", "human", "preta", "naraka"],
+						"silent": true,
+						"pierce": true
+					},
+					"preta": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "preta",
+						"cancel": ["asura", "human", "animal", "naraka"],
+						"silent": true,
+						"pierce": true
+					},
+					"naraka": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "naraka",
+						"cancel": ["asura", "human", "animal", "preta"],
+						"silent": true,
+						"pierce": true
+					}
+				},
+				"standby": {
+					"inspect": {
+						"command": "expose",
+						"target": "AnyButTeam",
+						"msg": "Use /inspect to find out someone's role! This will be revealed only to you.",
+						"exposemsg": "Pain uses Bansho Ten'in to pull ~Role~ towards them.",
+						"exposedtargetmsg": "~Target~ is ~Role~!"
+					},
+					"push": {
+						"command": "kill",
+						"target": "AnyButTeam",
+						"msg": "You can also kill someone using /push, and this won't reveal you!",
+						"killmsg": "±Pain: ~Target~, I want you to feel pain, think about pain, accept pain, know pain... Shinra Tensei (Almighty Push)!"
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.65
+					}
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				},
+				"vote": 3,
+				"voteshield": -3,
+				"onlist": "pain",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "asura",
+			"translation": "Pain (Asura Path)",
+			"side": "pain",
+			"startupmsg": "You are ~Role~!",
+			"help": "As the asura path, you can /kill one person during the night and use your artillery to /shoot to kill a second person every other night. You have a 65% chance to evade nightkills. You can change to the other paths by using /deva (day inspect, daykill that can't be evaded or countered), /human (distract + inspect + poison that kills on the same night), /animal (nightkill, self protect, kills distractors, can't be poisoned), /preta (counter nightkills, identifies distractors and inspectors, evades daykills), or /naraka (kills anyone that uses a non-killing command on you, moderate hax on every night command). Every one of the six paths has a vote of 3 and a voteshield of -3, and four of the six paths (deva, asura, human, naraka) have a 65% chance to evade nightkills.",
+			"info": "Can kill one person during the night. Can shoot (kill) a second person every other night. Has a 65% chance to evade nightkills. Vote of 3. Voteshield of -3. Can change to Deva Path, Human Path, Animal Path, Preta Path, or Naraka Path. ~Sided~",
+			"actions": {
+				"night": {
+					"deva": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "deva",
+						"cancel": ["human", "animal", "preta", "naraka"],
+						"silent": true,
+						"pierce": true
+					},
+					"human": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "human",
+						"cancel": ["deva", "animal", "preta", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"animal": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "animal",
+						"cancel": ["deva", "human", "preta", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"preta": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "preta",
+						"cancel": ["deva", "human", "animal", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"naraka": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "naraka",
+						"cancel": ["deva", "human", "animal", "preta"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 9,
+						"broadcast": "team",
+						"msg": "The Asura Path has shown you the true meaning of pain."
+					},
+					"shoot": {
+						"command": "kill",
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 9,
+						"recharge": 2,
+						"broadcast": "team",
+						"msg": "The Asura Path has shown you the true meaning of pain."
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.65
+					}
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				},
+				"vote": 3,
+				"voteshield": -3,
+				"onlist": "pain",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "human",
+			"translation": "Pain (Human Path)",
+			"side": "pain",
+			"startupmsg": "You are ~Role~!",
+			"help": "As the human path, you are able to read the mind of anyone by removing their soul from their body, which eventually kills them. You can do this by using /read on one person every night; this will distract, inspect, and poison the target, with the poison killing on the same night. You have a 65% chance to evade nightkills. You can change to the other paths by using /deva (day inspect, daykill that can't be evaded or countered), /asura (nightkill, 2nd nightkill every other night), /animal (nightkill, self protect, kills distractors, can't be poisoned), /preta (counter nightkills, identifies distractors and inspectors, evades daykills), or /naraka (kills anyone that uses a non-killing command on you, moderate hax on every night command). Every one of the six paths has a vote of 3 and a voteshield of -3, and four of the six paths (deva, asura, human, naraka) have a 65% chance to evade nightkills.",
+			"info": "Can read (distract + inspect + poison that kills on the same night) one person during the night. Has a 65% chance to evade nightkills. Vote of 3. Voteshield of -3. Can change to Deva Path, Asura Path, Animal Path, Preta Path, or Naraka Path. ~Sided~",
+			"actions": {
+				"night": {
+					"deva": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "deva",
+						"cancel": ["asura", "animal", "preta", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"asura": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "asura",
+						"cancel": ["deva", "animal", "preta", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"animal": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "animal",
+						"cancel": ["deva", "asura", "preta", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"preta": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "preta",
+						"cancel": ["deva", "asura", "animal", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"naraka": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "naraka",
+						"cancel": ["deva", "asura", "animal", "preta"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"read": {
+						"command": ["distract", "inspect", "poison"],
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 2,
+						"broadcast": "team",
+						"distractmsg": "You were unable to do anything as your soul was being removed from your body by the Human Path!",
+						"teammsg": "You couldn't do anything as you had to spend the night tending to your teammate, who appears to have had their soul removed from their body.",
+						"count": 1,
+						"poisonDeadMessage": "Your soul has been completely removed from your body. No one survives this technique. You are no exception."
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.65
+					}
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				},
+				"vote": 3,
+				"voteshield": -3,
+				"onlist": "pain",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "animal",
+			"translation": "Pain (Animal Path)",
+			"side": "pain",
+			"startupmsg": "You are ~Role~!",
+			"help": "As the animal path, you have summoned multiple creatures to aid you in battle. With the assistance of these powerful creatures, you can /kill one person during the night, /protect yourself from kills, will kill anyone that distracts you, and can't be poisoned! You can change to the other paths by using /deva (day inspect, daykill that can't be evaded or countered), /asura (nightkill, 2nd nightkill every other night), /human (distract + inspect + poison that kills on the same night), /preta (counter nightkills, identifies distractors and inspectors, evades daykills), or /naraka (kills anyone that uses a non-killing command on you, moderate hax on every night command). Every one of the six paths has a vote of 3 and a voteshield of -3, and four of the six paths (deva, asura, human, naraka) have a 65% chance to evade nightkills.",
+			"info": "Can kill one person during the night. Can protect self during the night. Kills distractors. Can't be poisoned. Vote of 3. Voteshield of -3. Can change to Deva Path, Asura Path, Human Path, Preta Path, or Naraka Path. ~Sided~",
+			"actions": {
+				"night": {
+					"deva": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "deva",
+						"cancel": ["asura", "human", "preta", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"asura": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "asura",
+						"cancel": ["deva", "human", "preta", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"human": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "human",
+						"cancel": ["deva", "asura", "preta", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"preta": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "preta",
+						"cancel": ["deva", "asura", "human", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"naraka": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "naraka",
+						"cancel": ["deva", "asura", "human", "preta"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 9,
+						"broadcast": "team",
+						"msg": "The Animal Path has shown you the true meaning of pain."
+					},
+					"protect": {						
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 6,
+						"protectmsg": "Your target (~Target~) evaded your kill!"
+					}
+				},
+				"distract": {
+					"mode": "ChangeTarget",
+					"hookermsg": "You really thought you could stop a bunch of powerful summoned creatures? They tore you to shreds.",
+					"msg": "Someone was foolish enough to try to stop your creatures. That person was torn to shreds."
+				},
+				"poison": {
+					"mode": "ignore",
+					"msg": "±Game: Your target (~Self~) was poisoned!"
+				},
+				"vote": 3,
+				"voteshield": -3,
+				"onlist": "pain",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "preta",
+			"translation": "Pain (Preta Path)",
+			"side": "pain",
+			"startupmsg": "You are ~Role~!",
+			"help": "As the preta path, you are a defensive behemoth. While you have no night commands, you identify distractors and inspectors, counter nightkills, and evade daykills! You can change to the other paths by using /deva (day inspect, daykill that can't be evaded or countered), /asura (nightkill, 2nd nightkill every other night), /human (distract + inspect + poison that kills on the same night), /animal (nightkill, self protect, kills distractors, can't be poisoned), or /naraka (kills anyone that uses a non-killing command on you, moderate hax on every night command). Every one of the six paths has a vote of 3 and a voteshield of -3, and four of the six paths (deva, asura, human, naraka) have a 65% chance to evade nightkills.",
+			"info": "Identifies distractors and inspectors. Counters nightkills. Evades daykills. Vote of 3. Voteshield of -3. Can change to Deva Path, Asura Path, Human Path, Animal Path, or Naraka Path. ~Sided~",
+			"actions": {
+				"night": {
+					"deva": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "deva",
+						"cancel": ["asura", "human", "animal", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"asura": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "asura",
+						"cancel": ["deva", "human", "animal", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"human": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "human",
+						"cancel": ["deva", "asura", "animal", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"animal": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "animal",
+						"cancel": ["deva", "asura", "human", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"naraka": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "naraka",
+						"cancel": ["deva", "asura", "human", "animal"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"kill": {
+					"mode": "killattackerevenifprotected",
+					"targetmsg": "You tried to defeat one of the paths of Pain. Unfortunately, it was the Preta Path, which absorbed all of your attacks and threw them right back at you.",
+					"msg": "You were attacked, but there is no one that can stand up to the defensive power of the Preta Path. You absorbed all of their attacks and threw them right back at your attacker."
+				},
+				"distract": {
+					"mode": "identify",
+					"msg": "~Target~ (~Role~) tried to ~Action~ you to stop your night actions, but you had none. What a waste of their time. You know who they are now, but they don't know who you are."
+				},
+				"inspect": {
+					"mode": "identify",
+					"msg": "It looks like ~Target~ (~Role~) was able to discover your role. Little do they know that you also know their role now."
+				},
+				"daykill": {
+					"mode": {
+						"ignore": [
+							"narutos",
+							"narutos1",
+							"narutos2",
+							"narutos3",
+							"narutosd",
+							"narutosd1",
+							"narutosd2",
+							"narutosd3",
+							"kakashis",
+							"kakashisd",
+							"sasuke2",
+							"sasuked2",
+							"haku",
+							"hakud",
+							"itachi2"
+						]
+					}
+				},
+				"vote": 3,
+				"voteshield": -3,
+				"onlist": "pain",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "naraka",
+			"translation": "Pain (Naraka Path)",
+			"side": "pain",
+			"startupmsg": "You are ~Role~!",
+			"help": "As the naraka path, you are able to pass judgement onto others. This works by drawing out the person's life force energy, which will eventually kill them. If anyone uses a non-killing command on you during the night, you will kill that person. Since you are able to sense intelligence and seek the truth, you also get moderate hax on every night command. You have a 65% chance to evade nightkills. You can change to the other paths by using /deva (day inspect, daykill that can't be evaded or countered), /asura (nightkill, 2nd nightkill every other night), /human (distract + inspect + poison that kills on the same night), /animal (nightkill, self protect, kills distractors, can't be poisoned), or /preta (counter nightkills, identifies distractors and inspectors, evades daykills). Every one of the six paths has a vote of 3 and a voteshield of -3, and four of the six paths (deva, asura, human, naraka) have a 65% chance to evade nightkills.",
+			"info": "Kills anyone that uses a non-killing night action on him. Moderate hax on every night command. Has a 65% chance of evading nightkills. Vote of 3. Voteshield of -3. Can change to Deva Path, Asura Path, Human Path, Animal Path, or Preta Path. ~Sided~",
+			"actions": {
+				"night": {
+					"deva": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "deva",
+						"cancel": ["asura", "human", "animal", "preta"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"asura": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "asura",
+						"cancel": ["deva", "human", "animal", "preta"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"human": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "human",
+						"cancel": ["deva", "asura", "animal", "preta"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"animal": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "animal",
+						"cancel": ["deva", "asura", "human", "preta"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"preta": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "preta",
+						"cancel": ["deva", "asura", "human", "animal"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"distract": {
+                    "mode": "killattackerevenifprotected",
+                    "msg": "You came too close to the Naraka Path. It passed judgement on you, killing you shortly afterwards."
+                },
+                "protect": {
+                    "mode": "killattackerevenifprotected",
+                    "msg": "You came too close to the Naraka Path. It passed judgement on you, killing you shortly afterwards."
+                },
+                "inspect": {
+                    "mode": "killattackerevenifprotected",
+                    "msg": "You came too close to the Naraka Path. It passed judgement on you, killing you shortly afterwards."
+                },
+                "safeguard": {
+                    "mode": "killattackerevenifprotected",
+                    "msg": "You came too close to the Naraka Path. It passed judgement on you, killing you shortly afterwards."
+                },
+                "poison": {
+                    "mode": "killattackerevenifprotected",
+                    "msg": "You came too close to the Naraka Path. It passed judgement on you, killing you shortly afterwards."
+                },
+                "convert": {
+                    "mode": "killattackerevenifprotected",
+                    "msg": "You came too close to the Naraka Path. It passed judgement on you, killing you shortly afterwards."
+                },
+				"watch": {
+                    "mode": "killattackerevenifprotected",
+                    "msg": "You came too close to the Naraka Path. It passed judgement on you, killing you shortly afterwards."
+                },
+				"hax": {
+					"kill": {
+						"revealTeam": 0.6,
+						"revealRole": 0.3
+					},
+					"sage": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"leave": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"eye": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"inspect": {
+						"revealTeam": 0.6,
+						"revealRole": 0.3
+					},
+					"cover": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"close": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"burn": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"protect": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"punch": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"cure": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"watch": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"sever": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"absorb": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"poison": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.65
+					}
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				},
+				"vote": 3,
+				"voteshield": -3,
+				"onlist": "pain",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "devad",
+			"translation": "Pain (Deva Path)",
+			"side": "pain",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "Once a kind person who sought peace, your view changed ever since the death of your friend Yahiko. Now you wish to bring despair and pain upon others to change the world's violent ways. Right now, you can /inspect one person during the day to find out their role. You can also /push someone during the day to kill them using your shinra tensei jutsu; these daykills can't be evaded or countered! You have a 65% chance to evade nightkills. You can change to the other paths by using /asura (nightkill, 2nd nightkill every other night), /human (distract + inspect + poison that kills on the same night), /animal (nightkill, self protect, kills distractors, can't be poisoned), /preta (counter nightkills, identifies distractors and inspectors, evades daykills), or /naraka (kills anyone that uses a non-killing command on you, moderate hax on every night command). Since you've been weakened, every one of the six paths only has a vote of 1 and no longer has a voteshield. Four of the six paths (deva, asura, human, naraka) have a 65% chance to evade nightkills.",
+			"info": "Can inspect one person during the standby. Can push (kill) one person during the standby (can't be evaded or countered). Has a 65% chance to evade nightkills. Can change to Asura Path, Human Path, Animal Path, Preta Path, or Naraka Path. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"asura": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "asurad",
+						"cancel": ["human", "animal", "preta", "naraka"],
+						"silent": true,
+						"pierce": true
+					},
+					"human": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "humand",
+						"cancel": ["asura", "animal", "preta", "naraka"],
+						"silent": true,
+						"pierce": true
+					},
+					"animal": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "animald",
+						"cancel": ["asura", "human", "preta", "naraka"],
+						"silent": true,
+						"pierce": true
+					},
+					"preta": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "pretad",
+						"cancel": ["asura", "human", "animal", "naraka"],
+						"silent": true,
+						"pierce": true
+					},
+					"naraka": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "narakad",
+						"cancel": ["asura", "human", "animal", "preta"],
+						"silent": true,
+						"pierce": true
+					}
+				},
+				"standby": {
+					"inspect": {
+						"command": "expose",
+						"target": "AnyButTeam",
+						"msg": "Use /inspect to find out someone's role! This will be revealed only to you.",
+						"exposemsg": "Pain uses Bansho Ten'in to pull ~Role~ towards them.",
+						"exposedtargetmsg": "~Target~ is ~Role~!"
+					},
+					"push": {
+						"command": "kill",
+						"target": "AnyButTeam",
+						"msg": "You can also kill someone using /push, and this won't reveal you!",
+						"killmsg": "±Pain: ~Target~, I want you to feel pain, think about pain, accept pain, know pain... Shinra Tensei (Almighty Push)!"
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.65
+					}
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				},
+				"onlist": "pain",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "asurad",
+			"translation": "Pain (Asura Path)",
+			"side": "pain",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "As the asura path, you can /kill one person during the night and use your artillery to /shoot to kill a second person every other night. You have a 65% chance to evade nightkills. You can change to the other paths by using /deva (day inspect, daykill that can't be evaded or countered), /human (distract + inspect + poison that kills on the same night), /animal (nightkill, self protect, kills distractors, can't be poisoned), /preta (counter nightkills, identifies distractors and inspectors, evades daykills), or /naraka (kills anyone that uses a non-killing command on you, moderate hax on every night command). Since you've been weakened, every one of the six paths only has a vote of 1 and no longer has a voteshield. Four of the six paths (deva, asura, human, naraka) have a 65% chance to evade nightkills.",
+			"info": "Can kill one person during the night. Can shoot (kill) a second person every other night. Has a 65% chance to evade nightkills. Can change to Deva Path, Human Path, Animal Path, Preta Path, or Naraka Path. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"deva": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "devad",
+						"cancel": ["human", "animal", "preta", "naraka"],
+						"silent": true,
+						"pierce": true
+					},
+					"human": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "humand",
+						"cancel": ["deva", "animal", "preta", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"animal": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "animald",
+						"cancel": ["deva", "human", "preta", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"preta": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "pretad",
+						"cancel": ["deva", "human", "animal", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"naraka": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "narakad",
+						"cancel": ["deva", "human", "animal", "preta"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 9,
+						"broadcast": "team",
+						"msg": "The Asura Path has shown you the true meaning of pain."
+					},
+					"shoot": {
+						"command": "kill",
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 9,
+						"recharge": 2,
+						"broadcast": "team",
+						"msg": "The Asura Path has shown you the true meaning of pain."
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.65
+					}
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				},
+				"onlist": "pain",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "humand",
+			"translation": "Pain (Human Path)",
+			"side": "pain",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "As the human path, you are able to read the mind of anyone by removing their soul from their body, which eventually kills them. You can do this by using /read on one person every night; this will distract, inspect, and poison the target, with the poison killing on the same night. You have a 65% chance to evade nightkills. You can change to the other paths by using /deva (day inspect, daykill that can't be evaded or countered), /asura (nightkill, 2nd nightkill every other night), /animal (nightkill, self protect, kills distractors, can't be poisoned), /preta (counter nightkills, identifies distractors and inspectors, evades daykills), or /naraka (kills anyone that uses a non-killing command on you, moderate hax on every night command). Since you've been weakened, every one of the six paths only has a vote of 1 and no longer has a voteshield. Four of the six paths (deva, asura, human, naraka) have a 65% chance to evade nightkills.",
+			"info": "Can read (distract + inspect + poison that kills on the same night) one person during the night. Has a 65% chance to evade nightkills. Can change to Deva Path, Asura Path, Animal Path, Preta Path, or Naraka Path. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"deva": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "devad",
+						"cancel": ["asura", "animal", "preta", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"asura": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "asurad",
+						"cancel": ["deva", "animal", "preta", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"animal": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "animald",
+						"cancel": ["deva", "asura", "preta", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"preta": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "pretad",
+						"cancel": ["deva", "asura", "animal", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"naraka": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "narakad",
+						"cancel": ["deva", "asura", "animal", "preta"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"read": {
+						"command": ["distract", "inspect", "poison"],
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 2,
+						"broadcast": "team",
+						"distractmsg": "You were unable to do anything as your soul was being removed from your body by the Human Path!",
+						"teammsg": "You couldn't do anything as you had to spend the night tending to your teammate, who appears to have had their soul removed from their body.",
+						"count": 1,
+						"poisonDeadMessage": "Your soul has been completely removed from your body. No one survives this technique. You are no exception."
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.65
+					}
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				},
+				"onlist": "pain",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "animald",
+			"translation": "Pain (Animal Path)",
+			"side": "pain",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "As the animal path, you have summoned multiple creatures to aid you in battle. With the assistance of these powerful creatures, you can /kill one person during the night, /protect yourself from kills, will kill anyone that distracts you, and can't be poisoned! You can change to the other paths by using /deva (day inspect, daykill that can't be evaded or countered), /asura (nightkill, 2nd nightkill every other night), /human (distract + inspect + poison that kills on the same night), /preta (counter nightkills, identifies distractors and inspectors, evades daykills), or /naraka (kills anyone that uses a non-killing command on you, moderate hax on every night command). Since you've been weakened, every one of the six paths only has a vote of 1 and no longer has a voteshield. Four of the six paths (deva, asura, human, naraka) have a 65% chance to evade nightkills.",
+			"info": "Can kill one person during the night. Can protect self during the night. Kills distractors. Can't be poisoned. Can change to Deva Path, Asura Path, Human Path, Preta Path, or Naraka Path. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"deva": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "devad",
+						"cancel": ["asura", "human", "preta", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"asura": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "asurad",
+						"cancel": ["deva", "human", "preta", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"human": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "humand",
+						"cancel": ["deva", "asura", "preta", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"preta": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "pretad",
+						"cancel": ["deva", "asura", "human", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"naraka": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "narakad",
+						"cancel": ["deva", "asura", "human", "preta"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"kill": {
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 9,
+						"broadcast": "team",
+						"msg": "The Animal Path has shown you the true meaning of pain."
+					},
+					"protect": {						
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 6,
+						"protectmsg": "Your target (~Target~) evaded your kill!"
+					}
+				},
+				"distract": {
+					"mode": "ChangeTarget",
+					"hookermsg": "You really thought you could stop a bunch of powerful summoned creatures? They tore you to shreds.",
+					"msg": "Someone was foolish enough to try to stop your creatures. That person was torn to shreds."
+				},
+				"poison": {
+					"mode": "ignore",
+					"msg": "±Game: Your target (~Self~) was poisoned!"
+				},
+				"onlist": "pain",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "pretad",
+			"translation": "Pain (Preta Path)",
+			"side": "pain",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "As the preta path, you are a defensive behemoth. While you have no night commands, you identify distractors and inspectors, counter nightkills, and evade daykills! You can change to the other paths by using /deva (day inspect, daykill that can't be evaded or countered), /asura (nightkill, 2nd nightkill every other night), /human (distract + inspect + poison that kills on the same night), /animal (nightkill, self protect, kills distractors, can't be poisoned), or /naraka (kills anyone that uses a non-killing command on you, moderate hax on every night command). Since you've been weakened, every one of the six paths only has a vote of 1 and no longer has a voteshield. Four of the six paths (deva, asura, human, naraka) have a 65% chance to evade nightkills.",
+			"info": "Identifies distractors and inspectors. Counters nightkills. Evades daykills. Can change to Deva Path, Asura Path, Human Path, Animal Path, or Naraka Path. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"deva": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "devad",
+						"cancel": ["asura", "human", "animal", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"asura": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "asurad",
+						"cancel": ["deva", "human", "animal", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"human": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "humand",
+						"cancel": ["deva", "asura", "animal", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"animal": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "animald",
+						"cancel": ["deva", "asura", "human", "naraka"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"naraka": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "narakad",
+						"cancel": ["deva", "asura", "human", "animal"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"kill": {
+					"mode": "killattackerevenifprotected",
+					"targetmsg": "You tried to defeat one of the paths of Pain. Unfortunately, it was the Preta Path, which absorbed all of your attacks and threw them right back at you.",
+					"msg": "You were attacked, but there is no one that can stand up to the defensive power of the Preta Path. You absorbed all of their attacks and threw them right back at your attacker."
+				},
+				"distract": {
+					"mode": "identify",
+					"msg": "~Target~ (~Role~) tried to ~Action~ you to stop your night actions, but you had none. What a waste of their time. You know who they are now, but they don't know who you are."
+				},
+				"inspect": {
+					"mode": "identify",
+					"msg": "It looks like ~Target~ (~Role~) was able to discover your role. Little do they know that you also know their role now."
+				},
+				"daykill": {
+					"mode": {
+						"ignore": [
+							"narutos",
+							"narutos1",
+							"narutos2",
+							"narutos3",
+							"narutosd",
+							"narutosd1",
+							"narutosd2",
+							"narutosd3",
+							"kakashis",
+							"kakashisd",
+							"sasuke2",
+							"sasuked2",
+							"haku",
+							"hakud",
+							"itachi2"
+						]
+					}
+				},
+				"onlist": "pain",
+				"teamUtilities": true
+			}
+		},
+		{
+			"role": "narakad",
+			"translation": "Pain (Naraka Path)",
+			"side": "pain",
+			"hide": "side",
+			"startupmsg": "You are ~Role~!",
+			"help": "As the naraka path, you are able to pass judgement onto others. This works by drawing out the person's life force energy, which will eventually kill them. If anyone uses a non-killing command on you during the night, you will kill that person. Since you are able to sense intelligence and seek the truth, you also get moderate hax on every night command. You have a 65% chance to evade nightkills. You can change to the other paths by using /deva (day inspect, daykill that can't be evaded or countered), /asura (nightkill, 2nd nightkill every other night), /human (distract + inspect + poison that kills on the same night), /animal (nightkill, self protect, kills distractors, can't be poisoned), or /preta (counter nightkills, identifies distractors and inspectors, evades daykills). Since you've been weakened, every one of the six paths only has a vote of 1 and no longer has a voteshield. Four of the six paths (deva, asura, human, naraka) have a 65% chance to evade nightkills.",
+			"info": "Kills anyone that uses a non-killing night action on him. Moderate hax on every night command. Has a 65% chance of evading nightkills. Can change to Deva Path, Asura Path, Human Path, Animal Path, or Preta Path. ~Sided~",
+			"players": "Weakened.",
+			"actions": {
+				"night": {
+					"deva": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "devad",
+						"cancel": ["asura", "human", "animal", "preta"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"asura": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "asurad",
+						"cancel": ["deva", "human", "animal", "preta"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"human": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "humand",
+						"cancel": ["deva", "asura", "animal", "preta"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"animal": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "animald",
+						"cancel": ["deva", "asura", "human", "preta"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					},
+					"preta": {
+						"command": "convert",
+						"target": "OnlySelf",
+						"common": "Self",
+						"priority": 13,
+						"newRole": "pretad",
+						"cancel": ["deva", "asura", "human", "animal"],
+						"silent": true,
+						"pierce": true,
+						"hide": true
+					}
+				},
+				"distract": {
+                    "mode": "killattackerevenifprotected",
+                    "msg": "You came too close to the Naraka Path. It passed judgement on you, killing you shortly afterwards."
+                },
+                "protect": {
+                    "mode": "killattackerevenifprotected",
+                    "msg": "You came too close to the Naraka Path. It passed judgement on you, killing you shortly afterwards."
+                },
+                "inspect": {
+                    "mode": "killattackerevenifprotected",
+                    "msg": "You came too close to the Naraka Path. It passed judgement on you, killing you shortly afterwards."
+                },
+                "safeguard": {
+                    "mode": "killattackerevenifprotected",
+                    "msg": "You came too close to the Naraka Path. It passed judgement on you, killing you shortly afterwards."
+                },
+                "poison": {
+                    "mode": "killattackerevenifprotected",
+                    "msg": "You came too close to the Naraka Path. It passed judgement on you, killing you shortly afterwards."
+                },
+                "convert": {
+                    "mode": "killattackerevenifprotected",
+                    "msg": "You came too close to the Naraka Path. It passed judgement on you, killing you shortly afterwards."
+                },
+				"watch": {
+                    "mode": "killattackerevenifprotected",
+                    "msg": "You came too close to the Naraka Path. It passed judgement on you, killing you shortly afterwards."
+                },
+				"hax": {
+					"kill": {
+						"revealTeam": 0.6,
+						"revealRole": 0.3
+					},
+					"sage": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"leave": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"eye": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"inspect": {
+						"revealTeam": 0.6,
+						"revealRole": 0.3
+					},
+					"cover": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"close": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"burn": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"protect": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"punch": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"cure": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"watch": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"sever": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"absorb": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					},
+					"poison": {
+						"revealTeam": 0.3,
+						"revealRole": 0.15
+					}
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.65
+					}
+				},
+				"dummy": {
+					"mode": "die",
+					"msg": "You were instantly split in two and killed by a blade of gargantuan size before even realizing what happened.",
+					"targetmsg": ""
+				},
+				"onlist": "pain",
+				"teamUtilities": true
+			}
+		}
+	],
+	"roles1": [
+		"naruto",
+		"kabuto",
+		"itachi1",
+		"sasuke",
+		"zabuza2",
+		"madara",
+		"sakura",
+		"orochimaru"
+	],
+	"roles2": [
+		"naruto",
+		"kabuto",
+		"itachi1",
+		"sasuke",
+		"zabuza",
+		"madara",
+		"sakura",
+		"orochimaru",
+		"haku",
+		"kakashi",
+		"kisame",
+		"obito",
+		"deva"
+	],
+	"villageCantLoseRoles": [
+		"naruto",
+		"narutod",
+		"narutos",
+		"narutosd",
+		"naruto1",
+		"narutod1",
+		"narutos1",
+		"narutosd1",
+		"naruto2",
+		"narutod2",
+		"narutos2",
+		"narutosd2",
+		"naruto3",
+		"narutod3",
+		"narutos3",
+		"narutosd3",
+		"kakashi",
+		"kakashid",
+		"kakashis",
+		"kakashisd",
+		"sasuke",
+		"sasuked",
+		"sasukes",
+		"sasukesd",
+		"sasuke2",
+		"sasuked2"
+	],
+	"killmsg": "±Minato: ~Player~ (~Role~) was killed in battle!",
+	"killusermsg": "*** You were killed in battle! ***",
+	"votemsg": "~Player~ attacks ~Target~!",
+	"lynchmsg": "±Minato: ~Player~ (~Role~) was killed in a fight against ~Count~ other shinobi!",
+    "drawmsg": "The wages of war were simply too much. Everyone has paid for this with their lives.",
+    "minplayers": 3,
+	"nonPeak": true,
+	"ticks": {
+		"night1": 45,
+		"night": 35,
+		"standby": 35
+	},
+	"tips": [
+		"Village: You are not the majority in this theme, but you are more than powerful enough to defeat your adversaries. Plan and execute your moves wisely. Mistakes will not be forgiven.",
+		"Roles: See the following link for a description of each role as well as its alternate and weakened forms. http://pastebin.com/raw.php?i=QqS7Mjfa",
+		"Naruto: If Kisame, Orochimaru, and Pain are not in the game, spam your kill at night so Kakashi can hax it.",
+		"Bodyguards and Evaders: A lot of roles evade or have a chance to evade nightkills, daykills, or poison, while a few will actually revenge or counter them. If you try to kill someone that is being protected, you will receive the message that they evaded your kill instead. If you attempt to poison a role that can't be poisoned, you will receive the message that you poisoned your target.",
+		"Information: Since it is difficult to confirm roles through attempted daykills or nightkills, inspectors become that much more valuable. As a result, there are only 3 of them, and they all have a suicide chance, fail chance, a decent chance to be haxed, or any combination of the three.",
+		"Information Part 2: A few roles can change to different forms, altering their abilities and commands. Only inspectors are able to see what form a certain role is in.",
+		"Naruto, Sasuke, Kakashi: Did anyone evade your daykill? As long as Zabuza (when Haku is in the game as well) or Pain aren't in the game, this person is a teammate! Connect with them as soon as you can!",
+		"Voting: Naruto starts out with a vote of 1, but gains an additional vote and -1 voteshield each time he loses one of his teammates. Orochimaru has a vote of 5 (vote of only 2 if weakened). Pain has a vote of 3 and a voteshield of -3 (vote of only 1 and no voteshield if weakened).",
+		"Priorities: You will need to prioritize threats based on both your abilities and your opponents' abilities. You will have an edge over some roles, while other roles will have an edge over you.",
+		"Weakened Roles: Kisame has the ability to weaken one person every night. This removes an ability or command from them. Check /roles to see the abilities of weakened roles."
+	]
+}
