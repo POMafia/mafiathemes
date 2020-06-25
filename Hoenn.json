@@ -1,0 +1,1840 @@
+{
+    "name": "Hoenn",
+    "author": [
+        "PokeWorldBW",
+        "Yttrium"
+    ],
+    "bot": {
+        "name": "Jɪʀᴀᴄʜɪ",
+        "color": "#EE9A00"
+    },
+    "borderColor": "#6890f0",
+    "minplayers": 4,
+    "changelog": {
+        "Future": "Ghost Pokemon -> convert, Gardevoir to replace Chimecho",
+        "21.10.16": "4 player spawn and side colors added.",
+        "07.07.15": "Mega Banette and Mega Sharpedo's priority increase removed, corrected Mega Sceptile's help",
+        "01.07.15": "Crawdaunt -> Sharpedo, Swablu -> Altaria. Mega Evolutions added. Mega Evolutions occur when a role is the last remaining member of its side.",
+        "28.06.15": "Spawn tweaked to include Sceptile and Ninjask in small games. Removed Ninjask surviving lynch in small games. Other roles appear earlier.",
+        "25.06.15": "Balance fix: Made Shuppet spawn instead of Dusclops in small games without Chimecho.",
+        "23.06.15": "Tips added. Changed spawn so some roles appear earlier. Swablu now has two inspects. Cleaned up stuff."
+    },
+    "tips": {
+        "Mega Evolution": "A role will Mega Evolve when it is the last role on its side. Mega Evolutions will gain various powers.",
+        "Claiming": "Power roles should be aware of Ninjask (kills through protection), Dusclops (mafia distracter), Banette (mafia poisoner), Sharpedo (mafia daykiller), Salamence (mafia votekiller), and Altaria (mafia daykiller) before claiming.",
+        "Ninjask": "You evade Sceptile's daykill, but you don't evade it after Sceptile Mega Evolves so don't leave Sceptile as the last village role to kill.",
+        "Shedinja": "The watch action is compulsory so you don't need to type it out yourself.",
+        "Plusle": "Remember Minun has a -1 vote, so watch strange votes to see if you can figure out Minun! Beware that Banette also has a -1 vote!",
+        "Minun": "You can try use your -1 vote to mess up votes and soft-reveal to Plusle.",
+        "Plusle and Minun": "Use your commands to try to find each other. PM and communicate with the other person if you find them!",
+        "Swellow": "Try to use your knowledge of Blaziken's kills along with your stalk to find him.",
+        "Sableye": "Try to use your knowledge of the Ghost and Dark Pokemon's kills along with your watch to find them.",
+        "Dragons": "Don't be afraid to eliminate Sceptile; he only joins your side when ALL village roles are dead."
+    },
+    "threadlink": "http://pokemon-online.eu/threads/hoenn.31496/",
+    "summary": "The Good Pokemon of Hoenn must protect their homes! Can they defend against the begrudging ghosts, Shuppet, Dusclops, and Banette? Or will Mightyena, Cacturne, and Sharpedo spread eternal darkness over the land? Maybe Ninjask and Shedinja will infest Hoenn with Bugs or Salamence and Altaria will overrun the good guys with their draconion powers. With the odds against them, certain Pokemon can Mega Evolve when they are the last remaining member of their team! Who will come out on top? Find out in this game of Hoenn! [Latest Change: Mega Banette and Mega Sharpedo's priority increase removed, corrected Mega Sceptile's help] Make suggestions for the theme at http://pokemon-online.eu/threads/hoenn.31496/",
+    "killmsg": "±Jɪʀᴀᴄʜɪ: ~Player~ (~Role~) died!",
+    "killusermsg": "*** You were defeated by another Pokemon!",
+    "drawmsg": "±Dᴇᴏxʏs: Hoenn became a deserted island!!",
+    "villageCantLoseRoles": [
+        "swa",
+        "bla",
+        "sce",
+        "swa-mega",
+        "bla-mega",
+        "sce-mega"
+    ],
+    "variables": {
+        "priority-kidnap-sableye": 1,
+        "priority-distract-dusclops": 2,
+        "priority-distract-altaria": 3,
+        "priority-distract-chimecho": 4,
+        "priority-kill-ninjask": 5,
+        "priority-protect-solrock": 10,
+        "priority-protect-cacturne": 11,
+        "priority-protect-altaria": 12,
+        "priority-curse-banette": 17,
+        "priority-kill-mega-blaziken": 19,
+        "priority-kill-dark": 20,
+        "priority-kill-ghost": 21,
+        "priority-kill-blaziken": 22,
+        "priority-convert-seviper": 28,
+        "priority-convert-zangoose": 29,
+        "priority-inspect-shedinja": 30,
+        "priority-inspect-lunatone": 31,
+        "priority-inspect-minun": 32,
+        "priority-inspect-plusle": 33,
+        "priority-stalk-swellow": 40,
+        "priority-watch-sableye": 41,
+        "priority-watch-shedinja": 42,
+        "dummy-action": {
+            "mode": "ignore",
+            "msg": "~Self~ is not Minun!"
+        },
+        "dummy2-action": {
+            "mode": "ignore",
+            "msg": "~Self~ is not Plusle!"
+        },
+        "dummy3-action": {
+            "mode": "ignore",
+            "msg": "~Self~ is not Salamence!"
+        },
+        "villageMegaEvo": {
+            "onDeadRoles": {
+                "convertTo": {
+                    "village-mega": ["abs", "bla", "chi", "cla", "lun", "min", "plu", "sce", "sol", "swa", "swe", "wyn", "zig"]
+                },
+                "convertmsg": "~Old~ has Mega Evolved into ~New~! text"
+            }
+        }
+    },
+    "sides": [
+        {
+            "side": "village",
+            "translation": "Good Pokemon",
+            "winmsg": "±Jɪʀᴀᴄʜɪ: The Good Pokemon (~Players~) have successfully defended Hoenn!",
+            "color": "#F85888"
+        },
+        {
+            "side": "mafia1",
+            "translation": "Ghost Pokemon",
+            "winmsg": "±Jɪʀᴀᴄʜɪ: The Ghost Pokemon (~Players~) have eliminated the living!",
+            "color": "#705898"
+        },
+        {
+            "side": "mafia2",
+            "translation": "Dark Pokemon",
+            "winmsg": "±Jɪʀᴀᴄʜɪ: The Dark Pokemon (~Players~) have spread eternal darkness!",
+            "color": "#705848"
+        },
+        {
+            "side": "sableye",
+            "translation": "Sableye",
+            "winmsg": "±Jɪʀᴀᴄʜɪ: Sableye (~Players~) won by itself! Who needs teams?",
+            "color": "#776FAE"
+        },
+        {
+            "side": "werewolf",
+            "translation": "Bug Pokemon",
+            "winmsg": "±Jɪʀᴀᴄʜɪ: The Bug Pokemon (~Players~) have take over!",
+            "color": "#a8b820"
+        },
+        {
+            "side": "godfather",
+            "translation": "Dragon Pokemon",
+            "winmsg": "±Jɪʀᴀᴄʜɪ: The Dragon Pokemon (~Players~) reign supreme over the land!",
+            "color": "#7038f8"
+        },
+        {
+            "side": "seviper",
+            "translation": "Seviper",
+            "winmsg": "±Jɪʀᴀᴄʜɪ: Seviper (~Players~) is the last one alive! ~Players~ won!"
+        },
+        {
+            "side": "zangoose",
+            "translation": "Zangoose",
+            "winmsg": "±Jɪʀᴀᴄʜɪ: Zangoose (~Players~) is the last one alive! ~Players~ won!"
+        },
+        {
+            "side": "conspirator",
+            "translation": "Kecleon",
+            "winmsg": "±Jɪʀᴀᴄʜɪ: Kecleon (~Players~) is the last one alive! ~Players~ won!"
+        }
+    ],
+    "roles": [
+        {
+            "role": "zig",
+            "translation": "Zigzagoon",
+            "side": "village",
+            "help": "You restlessly wander everywhere in a zig-zag fashion! However, you go to sleep at night and don't perform any actions then. Vote to remove people during the day! You are sided with the Good Pokémon.",
+            "actions": {
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "lun",
+            "translation": "Lunatone",
+            "side": "village",
+            "info": "Can inspect one person during the night. Can shine one person during the standby to suggest them for voting starting Day 3. Sided with Good Pokemon.",
+            "help": "Use your psychic powers to discover someone's identity by typing /Inspect [name] at night when lunar power is strongest! After Day 3, you can also type /Shine [name] during the standby to suggest someone to be voted. You are sided with the Good Pokémon.",
+            "actions": {
+                "night": {
+                    "inspect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:priority-inspect-lunatone"
+                    }
+                },
+                "standby": {
+                    "shine": {
+                        "command": "expose",
+                        "target": "AnyButSelf",
+                        "msg": "You can type /shine [name] to reveal someone you want to be voted!",
+                        "exposemsg": "The moon eclipses the sun, casting an ominous shadow on ~Target~! Maybe you should vote ~Target~.",
+                        "initialrecharge": 4
+                    }
+                },
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "sol",
+            "translation": "Solrock",
+            "side": "village",
+            "info": "Can protect one person during the night. Knows Minun on startup. Sided with Good Pokemon.",
+            "help": "You are rumored to have come from the sun! Type /Protect [name] to protect someone at night! You are not fast enough to protect against Ninjask, though. You are sided with the Good Pokemon.",
+            "actions": {
+                "night": {
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:priority-protect-solrock"
+                    }
+                },
+                "startup": {
+                    "revealRole": [
+                        "min"
+                    ]
+                },
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "plu",
+            "translation": "Plusle",
+            "side": "village",
+            "info": "Can plus one person during the night to check if they're Minun. Knows Chimecho on startup. Sided with Good Pokemon. ",
+            "help": "Best friends with your buddy Chimecho, you know her from the start! Type /Plus [name] during the night to check whether your target is Minun. Connect with Minun if you find him! You are sided with the Good Pokémon.",
+            "actions": {
+                "night": {
+                    "plus": {
+                        "command": [
+                            "dummy"
+                        ],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:priority-inspect-plusle"
+                    }
+                },
+                "startup": {
+                    "revealRole": [
+                        "chi"
+                    ]
+                },
+                "dummy2": {
+                    "mode": {
+                        "identify": [
+                            "min"
+                        ],
+                        "ignore": [
+                            "min"
+                        ]
+                    },
+                    "identifymsg": "~Target~ (~Role~) has found you!",
+                    "msg": "You found Plusle (~Self~)!"
+                },
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "min",
+            "translation": "Minun",
+            "side": "village",
+            "info": "Can minus one person during the night to check if they're Plusle. Vote counts as -1. Knows Solrock on startup. Sided with Good Pokemon.",
+            "help": "Best friends with your buddy Solrock, you know him from the start! Type /Minus [name] during the night to check whether your target is Plusle. Connect with Plusle if you find her! In addition, your vote counts as -1. This can help reveal you to Plusle (and everyone). You are sided with the Good Pokémon.",
+            "actions": {
+                "night": {
+                    "minus": {
+                        "command": [
+                            "dummy2"
+                        ],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:priority-inspect-minun"
+                    }
+                },
+                "startup": {
+                    "revealRole": [
+                        "sol"
+                    ]
+                },
+                "vote": -1,
+                "dummy": {
+                    "mode": {
+                        "identify": [
+                            "plu"
+                        ],
+                        "ignore": [
+                            "plu"
+                        ]
+                    },
+                    "identifymsg": "~Target~ (~Role~) has found you!",
+                    "msg": "You found Minun {~Self~}!"
+                },
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "chi",
+            "translation": "Chimecho",
+            "side": "village",
+            "info": "Can distract one person during the night. Knows Plusle on startup. Sided with Good Pokemon.",
+            "help": "With your psychic power and lovely chimes/earsplitting screeches, you are able to prevent someone from doing anything at night by typing /Distract [name]! You are sided with the Good Pokémon.",
+            "actions": {
+                "night": {
+                    "distract": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:priority-distract-chimecho",
+                        "broadcast": "role",
+                        "distractmsg": "Chimecho came to you last night!  You were too distracted by its chiming sound to do anything!",
+                        "teammsg": "Chimecho came to your partner last night!  You were unable to ~Action~ anyone!"
+                    }
+                },
+                "startup": {
+                    "revealRole": [
+                        "plu"
+                    ]
+                },
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "sab",
+            "translation": "Sableye",
+            "side": "sableye",
+            "info": "Can search (inspect team+watch) one person during the night. Can kidnap (distract+protect+safeguard) one person during the night 3 times per game. Gets hax on Ghost Pokemon and Dark Pokemon's kills. Wins the game with Ghost Pokemon or Dark Pokemon.",
+            "winningSides": [
+                "mafia1",
+                "mafia2"
+            ],
+            "help": "Hiding among shadows, you can type /Search [name] to learn someone's team during the night and view who visited them! In addition, up to 3 times per game, you can type /Kidnap [name] during the night to prevent someone from performing actions and being targeted. Being both a Ghost and Dark-type, you can win with both sides! You can also track their kills during the night.",
+            "actions": {
+                "night": {
+                    "search": {
+                        "command": ["inspect", "watch"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:priority-watch-sableye",
+                        "Sight": "Team"
+                    },
+                    "kidnap": {
+                        "command": [
+                            "distract",
+                            "protect",
+                            "safeguard"
+                        ],
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": "variable:priority-kidnap-sableye",
+                        "distractmsg": "You were kidnapped and couldn't perform your action!",
+                        "teammsg": "Your partner was kidnapped so you couldn't perform your ~Action~!",
+                        "charges": 3,
+                        "chargesmsg": "You can kidnap ~Charges~ more times!",
+                        "limit": 3
+                    }
+                },
+                "hax": {
+                    "kill": {
+                        "revealTeam": 1
+                    }
+                },
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "shu",
+            "translation": "Shuppet",
+            "side": "mafia1",
+            "help": "Feeding on vengeful emotions, you can type /Kill [name] to kill someone with your team at night! You are sided with the Ghost Pokémon.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": "variable:priority-kill-ghost",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (~Role~) has decided to ~Action~ ~Target~!",
+                        "hide": true
+                    }
+                },
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "dus",
+            "translation": "Dusclops",
+            "side": "mafia1",
+            "info": "Can kill one person during the night. Can distract one person during the night. Sided with Ghost Pokemon.",
+            "help": "Type /Kill [name] to kill someone at night with your team. You can also type /Distract [name] to prevent someone from performing their actions. You are sided with the Ghost Pokémon.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": "variable:priority-kill-ghost",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (~Role~) has decided to ~Action~ ~Target~!",
+                        "hide": true
+                    },
+                    "distract": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": "variable:priority-distract-dusclops",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (~Role~) has decided to ~Action~ ~Target~!",
+                        "distractmsg": "Dusclops hypnotized you last night.  You fell asleep and were unable to do anything!",
+                        "teammsg": "Dusclops hypnotized your partner last night.  You couldn't execute your ~Action~!"
+                    }
+                },
+                "avoidHax": [
+                    "distract"
+                ],
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "ban",
+            "translation": "Banette",
+            "side": "mafia1",
+            "info": "Can kill one person during the night. Can curse (poison) one person during the night. Vote counts as -1. After Mega Evolving, evades nightkills and distract. Sided with Ghost Pokemon.",
+            "help": "Type /Kill [name] to kill someone at night with your team. You can also type /Curse [name] to poison them! Consumed with hatred, your vote counts as -1 during the day. You are sided with the Ghost Pokémon.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": "variable:priority-kill-ghost",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (~Role~) has decided to ~Action~ ~Target~!",
+                        "hide": true
+                    },
+                    "curse": {
+                        "command": "poison",
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": "variable:priority-curse-banette",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (~Role~) has decided to ~Action~ ~Target~!",
+                        "poisonDeadMessage": "Oh no, you couldn't escape the Curse!"
+                    }
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "ban-mega": [
+                            "shu",
+                            "dus"
+                        ]
+                    },
+                    "convertmsg": "~Old~ has Mega Evolved into ~New~! ~New~ cannot be distracted or killed at night!"
+                },
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "vote": -1,
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "ban-mega",
+            "translation": "Mega Banette",
+            "side": "mafia1",
+            "hide": true,
+            "help": "You have Mega Evolved! You now evade nightkills and distracters!",
+            "help2": "You can still curse someone every night and your vote still counts as -1. You are the last remaining member of the Ghost Pokemon. Good luck!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": "variable:priority-kill-ghost",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (~Role~) has decided to ~Action~ ~Target~!",
+                        "hide": true
+                    },
+                    "curse": {
+                        "command": "poison",
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": "variable:priority-curse-banette",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (~Role~) has decided to ~Action~ ~Target~!",
+                        "poisonDeadMessage": "Oh no, you couldn't escape the Curse!",
+                        "hide": true
+                    }
+                },
+                "distract": {
+                    "mode": "ignore"
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "vote": -1,
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "mig",
+            "translation": "Mightyena",
+            "side": "mafia2",
+            "help": "Hunting in a pack, you can type /Kill [name] to kill someone with your team at night! You are sided with the Dark Pokémon.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": "variable:priority-kill-dark",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (~Role~) has decided to ~Action~ ~Target~!",
+                        "hide": true
+                    }
+                },
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "cac",
+            "translation": "Cacturne",
+            "side": "mafia2",
+            "help": "Active at night, you can type /Kill [name] to kill someone with your team! Your prickly thorns scare away attackers so you can /Protect [name] to protect one of your teammates! However, you won't be able to protect against Ninjask. You are sided with the Dark Pokemon.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": "variable:priority-kill-dark",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (~Role~) has decided to ~Action~ ~Target~!",
+                        "hide": true
+                    },
+                    "protect": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:priority-protect-cacturne",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (~Role~) has decided to ~Action~ ~Target~!"
+                    }
+                },
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "sha",
+            "translation": "Sharpedo",
+            "side": "mafia2",
+            "help": "Nicknamed \"the bully of the sea\", you can type /Kill [name] during the night to kill someone with your team! In addition, you can type /Kill [name] to kill one person during the day. You will not be revealed the first time you daykill, but you have a 60% chance to be revealed after that! You are sided with the Dark Pokemon.",
+            "info": "Can kill one person during the night. Can kill one person (60% reveal chance) during the standby. After Mega Evolving, avoids distract, gains a -1 voteshield, and does not reveal when daykilling. Sided with Dark Pokemon.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": "variable:priority-kill-dark",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (~Role~) has decided to ~Action~ ~Target~!",
+                        "hide": true
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can kill now using /Kill [name]. You will not be revealed the first time you kill, but after your first kill you will have a 60% chance to be revealed! :",
+                        "killmsg": "Sharpedo fires a huge column of pressured water at ~Target~! ~Target~ was swamped by Hydro Pump!",
+                        "copyAs": "sha2",
+                        "copyusermsg": "±Jɪʀᴀᴄʜɪ: You now have a 60% chance to be revealed the next time you daykill!",
+                        "silent": true
+                    }
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "sha-mega": [
+                            "mig",
+                            "cac"
+                        ]
+                    },
+                    "convertmsg": "~Old~ has Mega Evolved into ~New~! ~New~ no longer reveals when daykilling and cannot be distracted!"
+                },
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "sha2",
+            "translation": "Sharpedo",
+            "side": "mafia2",
+            "help": "You used your non-revealing daykill so now you have a 60% chance to be revealed when you killed during the day! You can still type /Kill [name] to kill someone at night with your team. You are sided with the Dark Pokemon.",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": "variable:priority-kill-dark",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (~Role~) has decided to ~Action~ ~Target~!",
+                        "hide": true
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can kill now using /Kill [name]. However you now have a 60% chance to be revealed when you kill so choose wisely! :",
+                        "killmsg": "Sharpedo summons a massive wave that crashes down on ~Target~! ~Target~ was soaked by Surf!",
+                        "revealChance": 0.6,
+                        "revealmsg": "~Self~ dives back underwater."
+                    }
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "sha-mega": [
+                            "mig",
+                            "cac"
+                        ]
+                    },
+                    "convertmsg": "~Old~ has Mega Evolved into ~New~! ~New~ no longer reveals when daykilling and cannot be distracted !"
+                },
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "sha-mega",
+            "translation": "Mega Sharpedo",
+            "side": "mafia2",
+            "help": "You have Mega Evolved! You now ignore distracters and you will not reveal when you daykill! In addition, you now have a -1 voteshield.",
+            "help2": "You are the last remaining member of the Dark Pokemon. Good luck!",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": "variable:priority-kill-dark",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (~Role~) has decided to ~Action~ ~Target~!",
+                        "hide": true
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can kill now using /Kill [name]. You will not be revealed when you kill! :",
+                        "killmsg": "Sharpedo fires a huge column of pressured water at ~Target~! ~Target~ was swamped by Hydro Pump!"
+                    }
+                },
+                "distract": {
+                    "mode": "ignore"
+                },
+                "voteshield": -1,
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "nin",
+            "translation": "Ninjask",
+            "side": "werewolf",
+            "help": "The fastest non-legendary Pokemon, you can type /Kill [name] to kill someone during the night! In addition, you evade Sceptile's daykills and you ignore or kill distracters. However, Mega Sceptile can daykill you, so don't leave Sceptile as the last village role to kill! You are sided with the Bug Pokemon.",
+            "info": "Can kill one person during the night (outspeeds protection). Can't be daykilled by normal Sceptile. Kills Chimecho and ignores Dusclops and Sableye when distracted. Kills Shedinja on death. Survives one lynch if Shedinja is alive. Sided with Bug Pokemon.",
+            "players": [4, 50],
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": "variable:priority-kill-ninjask",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (~Role~) has decided to ~Action~ ~Target~!"
+                    }
+                },
+                "distract": {
+                    "mode": {
+                        "killif": [
+                            "chi"
+                        ],
+                        "ignore": [
+                            "dus",
+                            "sab"
+                        ]
+                    },
+                    "hookermsg": "You tried to distract Ninjask! It sliced you with X-Scissor!",
+                    "msg": "~Distracter~ tried to stop you but couldn't keep up!"
+                },
+                "avoidHax": [
+                    "kill"
+                ],
+                "daykill": {
+                    "mode": {
+                        "ignore": [
+                            "sce"
+                        ]
+                    },
+                    "expend": true,
+                    "msg": "~Target~ dodged your kill!",
+                    "targetmsg": "You dodged a ~Action~!"
+                },
+                "onDeath": {
+                    "killRoles": [
+                        "she"
+                    ],
+                    "killmsg": "±Jɪʀᴀᴄʜɪ: ~Target~ (~Role~) faded when ~Self~ died!"
+                },
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "nin2",
+            "translation": "Ninjask",
+            "side": "werewolf",
+            "help": "The fastest non-legendary Pokemon, you can type /Kill [name] to kill someone during the night! In addition, you evade Sceptile's daykills and you ignore or kill distracters. However, Mega Sceptile can daykill you, so don't leave Sceptile as the last village role to kill! You will also survive one lynch if Shedinja is alive! Shedinja will die if you die. You are sided with the Bug Pokemon.",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": "variable:priority-kill-ninjask",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (~Role~) has decided to ~Action~ ~Target~!"
+                    }
+                },
+                "distract": {
+                    "mode": {
+                        "killif": [
+                            "chi"
+                        ],
+                        "ignore": [
+                            "dus",
+                            "sab"
+                        ]
+                    },
+                    "hookermsg": "You tried to distract Ninjask! It sliced you with X-Scissor!",
+                    "msg": "~Distracter~ tried to stop you but couldn't keep up!"
+                },
+                "avoidHax": [
+                    "kill"
+                ],
+                "daykill": {
+                    "mode": {
+                        "ignore": [
+                            "sce"
+                        ]
+                    },
+                    "expend": true,
+                    "msg": "~Target~ dodged your kill!",
+                    "targetmsg": "You dodged a ~Action~!"
+                },
+                "onDeath": {
+                    "killRoles": [
+                        "she"
+                    ],
+                    "killmsg": "±Jɪʀᴀᴄʜɪ: ~Target~ (~Role~) faded when ~Self~ died!",
+                    "convertRoles": {
+                        "nin2": "nin"
+                    },
+                    "convertmsg": ""
+                },
+                "lynch": {
+                    "convertTo": "nin2-lynch",
+                    "convertmsg": "~Self~, the ~Old~, avoided the lynch!"
+                },
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "nin2-lynch",
+            "translation": "Ninjask",
+            "side": "werewolf",
+            "help": "The fastest non-legendary Pokemon, you can type /Kill [name] to kill someone during the night! In addition, you evade Sceptile's daykills and you ignore or kill distracters. However, Mega Sceptile can daykill you, so don't leave Sceptile as the last village role to kill! You have already survived one lynch and will die the next time you are lynched! Shedinja will die if you die. You are sided with the Bug Pokemon.",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": "variable:priority-kill-ninjask",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (~Role~) has decided to ~Action~ ~Target~!"
+                    }
+                },
+                "distract": {
+                    "mode": {
+                        "killif": [
+                            "chi"
+                        ],
+                        "ignore": [
+                            "dus",
+                            "sab"
+                        ]
+                    },
+                    "hookermsg": "You tried to distract Ninjask! It sliced you with X-Scissor!",
+                    "msg": "~Distracter~ tried to stop you but couldn't keep up!"
+                },
+                "avoidHax": [
+                    "kill"
+                ],
+                "daykill": {
+                    "mode": {
+                        "ignore": [
+                            "sce"
+                        ]
+                    },
+                    "expend": true,
+                    "msg": "~Target~ dodged your kill!",
+                    "targetmsg": "You dodged a ~Action~!"
+                },
+                "onDeath": {
+                    "killRoles": [
+                        "she"
+                    ],
+                    "killmsg": "±Jɪʀᴀᴄʜɪ: ~Target~ (~Role~) faded when ~Self~ died!",
+                    "convertRoles": {
+                        "nin2": "nin"
+                    },
+                    "convertmsg": ""
+                },
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "she",
+            "translation": "Shedinja",
+            "side": "werewolf",
+            "help": "Your Wonder Guard ability prevents you being killed! However, it will not protect you from curses or the lynch. You can type /Stalk [name] during the night to find out your target's team and who they visited during the night. You can also watch your entire team to see who visited them. This action must be used and cannot be stopped by distract. You will die if Ninjask dies. You are sided with the Bug Pokemon.",
+            "info": "Can stalk one person and check their team during the night. Can watch all Bug Pokemon during the night (compulsory). Distracts will not stop watch, but can block stalk. Can't be nightkilled. Can't be daykilled. Dies if Ninjask dies. Sided with Bug Pokemon.",
+            "actions": {
+                "night": {
+                    "stalk": {
+                        "command": [
+                            "inspect",
+                            "stalk"
+                        ],
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": "variable:priority-inspect-shedinja",
+                        "broadcast": "team",
+                        "broadcastmsg": "Your teammate ~Player~ (~Role~) has decided to ~Action~ ~Target~!",
+                        "Sight": "Team"
+                    },
+                    "watch": {
+                        "target": "OnlyTeam",
+                        "common": "Self",
+                        "limit": 10,
+                        "priority": "variable:priority-watch-shedinja",
+                        "compulsory": true,
+                        "ignoreDistract": true
+                    }
+                },
+                "kill": {
+                    "mode": "ignore"
+                },
+                "distract": {
+                    "mode": "ignore"
+                },
+                "daykill": "evade",
+                "startup": "team-reveal-with-roles",
+                "teamTalk": true,
+                "preventTeamvote": true,
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "sal",
+            "translation": "Salamence",
+            "side": "godfather",
+            "info": "Vote counts as 100. Cannot be lynched. After Mega Evolution, can outrage (kill) one person during the standby. Sided with Dragon Pokemon.",
+            "winIfDeadRoles": [
+                "sha",
+                "sha2",
+                "ban",
+                "cac",
+                "dus",
+                "mig",
+                "shu",
+                "nin",
+                "nin2",
+                "nin2-lynch",
+                "sce",
+                "bla",
+                "sha-mega",
+                "ban-mega",
+                "bla-mega"
+            ],
+            "help": "After dreaming about flying since you were a Bagon, your dream finally came true when you evolved and grew wings! Since you are a magnificent dragon and everyone wishes they were you, your vote counts as 100! You cannot be lynched either! If you have no teammates left, you will Mega Evolve! You are sided with the Dragon Pokemon.",
+            "actions": {
+                "vote": 100,
+                "onDeadRoles": {
+                    "convertTo": {
+                        "sal-mega": [
+                            "alt"
+                        ]
+                    },
+                    "convertmsg": "~Old~ has Mega Evolved into ~New~! ~New~ can now kill during the day!"
+                },
+                "lynch": {
+                    "convertTo": "sal",
+                    "convertmsg": "No one was voted off!:"
+                },
+                "daykill": {
+                    "mode": {
+                        "ignore": [
+                            "sce-mega"
+                        ]
+                    },
+                    "msg": "±Hint: Nope, this wont work... You can't target your partners!",
+                    "targetmsg": ""
+                },
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": {
+                    "mode": {
+                        "identify": [
+                            "alt"
+                        ],
+                        "ignore": [
+                            "alt"
+                        ]
+                    },
+                    "identifymsg": "~Target~ (~Role~) has found you!",
+                    "msg": "You found Salamence (~Self~)!"
+                }
+            }
+        },
+        {
+            "role": "sal-mega",
+            "translation": "Mega Salamence",
+            "side": "godfather",
+            "hide": true,
+            "winIfDeadRoles": [
+                "sha",
+                "sha2",
+                "ban",
+                "cac",
+                "dus",
+                "mig",
+                "shu",
+                "nin",
+                "nin2",
+                "nin2-lynch",
+                "sce",
+                "bla",
+                "sha-mega",
+                "ban-mega",
+                "bla-mega"
+            ],
+            "help": "You have Mega Evolved! You can type /Outrage [name] during the day to smack someone with an Outrage! However, you will reveal yourself.",
+            "help2": "Since you are a magnificent dragon and everyone wishes they were you, your vote counts as 100! You cannot be lynched either! You are sided with the Dragon Pokemon.",
+            "actions": {
+                "standby": {
+                    "outrage": {
+                        "command": "kill",
+                        "target": "AnyButSelf",
+                        "msg": "You can now kill by typing /Outrage [name]  Keep in mind you will be revealed! :",
+                        "killmsg": "Mega Salamence dives down from the sky to attack ~Target~! Smacked down by Outrage!",
+                        "revealChance": 1,
+                        "revealmsg": "~Self~ became confused!"
+                    }
+                },
+                "vote": 100,
+                "lynch": {
+                    "convertTo": "sal-mega",
+                    "convertmsg": "No one was voted off!:"
+                },
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action"
+            }
+        },
+        {
+            "role": "alt",
+            "translation": "Altaria",
+            "side": "godfather",
+            "info": "Can distract or protect one person during the night (cannot use both the same night) with a one turn cooldown. After Mega Evolving, gains two daykills (one concealed, one revealing), and no longer has a cooldown on protect/distract. Sided with Dragon Pokemon.",
+            "help": "Flying around on your fluffy wings, you can type /Distract [name] to distract someone during the night. Alternatively, you can type /Protect [name] to protect someone during the night. You cannot use both the same night and you cannot use an action two nights in a row. Salamence will be revealed to you if you target him. If you have no teammates left, you will Mega Evolve! You are sided with the Dragon Pokemon.",
+            "actions": {
+                "night": {
+                    "distract": {
+                        "command": [
+                            "distract",
+                            "dummy3"
+                        ],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:priority-distract-altaria",
+                        "recharge": 2,
+                        "restrict": [
+                            "protect"
+                        ]
+                    },
+                    "protect": {
+                        "command": [
+                            "protect",
+                            "dummy3"
+                        ],
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": "variable:priority-protect-altaria",
+                        "recharge": 2,
+                        "restrict": [
+                            "distract"
+                        ]
+                    }
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "alt-mega": [
+                            "sal"
+                        ]
+                    },
+                    "convertmsg": "~Old~ has Mega Evolved into ~New~! ~New~ can now kill twice during the day (one revealing, one concealed)!"
+                },
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action"
+            }
+        },
+        {
+            "role": "alt-mega",
+            "translation": "Mega Altaria",
+            "side": "godfather",
+            "hide": true,
+            "help": "You have Mega Evolved! Type /Kill [name] during the day to kill someone with a Sky Attack! You will not be revealed. You can also kill a second person during the day with /Outrage [name] but this WILL reveal you!",
+            "help2": "Flying around on your fluffy wings, you can type /Distract [name] to distract someone during the night. Alternatively, you can type /Protect [name] to protect someone during the night. You cannot use both the same night, but you no longer have a cooldown on either! You are sided with the Dragon Pokemon.",
+            "actions": {
+                "night": {
+                    "distract": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:priority-distract-altaria",
+                        "restrict": [
+                            "protect"
+                        ],
+                        "hide": true
+                    },
+                    "protect": {
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": "variable:priority-protect-altaria",
+                        "restrict": [
+                            "distract"
+                        ],
+                        "hide": true
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "You can now kill by typing /Kill [name]!  You will not be revealed.",
+                        "killmsg": "Mega Altaria become cloaked in blinding light! Sky Attack brings down havoc on ~Target~!"
+                    },
+                    "outrage": {
+                        "command": "kill",
+                        "target": "AnyButTeam",
+                        "msg": "You can also kill a second person with /Outrage, but this WILL reveal you.",
+                        "killmsg": "Mega Altaria dives down from the sky to attack ~Target~! Smacked down by Outrage!",
+                        "revealChance": 1,
+                        "revealmsg": "~Self~ became confused!",
+                        "limit": 2
+                    }
+                },
+                "startup": "team-reveal-with-roles",
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "sce",
+            "translation": "Sceptile",
+            "side": "village",
+            "info": "Can kill one person during the standby. Sided with Good Pokemon. After Mega Evolving, sides with Dragon Pokemon.",
+            "help": "Known as the King of the Forest, you are able to kill someone during the day with Solarbeam by typing /Kill [name]!  Don't kill the Good Pokemon!  You will be revealed when you kill, so make wise choices!  You are allied with the Good Pokemon.",
+            "actions": {
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You can now kill by typing /Kill [name]  Keep in mind you will be revealed and don't kill the Good Pokemon! :",
+                        "killmsg": "~Self~ absorbs sunlight and fires a powerful Solar Beam at ~Target~! ~Target~ was seared by Solar Beam!"
+                    }
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "sce-mega": [
+                            "abs",
+                            "bla",
+                            "chi",
+                            "cla",
+                            "lun",
+                            "min",
+                            "plu",
+                            "sol",
+                            "swa",
+                            "swe",
+                            "wyn",
+                            "zig"
+                        ]
+                    },
+                    "convertmsg": "~Old~ has Mega Evolved into ~New~! ~New~ now wins with the Dragon Pokemon!"
+                },
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "sce-mega",
+            "translation": "Mega Sceptile",
+            "side": "village",
+            "winningSides": [
+                "godfather"
+            ],
+            "hide": true,
+            "help": "You have Mega Evolved! You are now sided with the Dragons.",
+            "help2": "Known as the King of the Forest, you are able to kill someone during the day with Solarbeam by typing /Kill [name]! Don't kill the Dragon Pokemon!  You will be revealed when you kill, so make wise choices!",
+            "actions": {
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You can now kill by typing /Kill [name]  Keep in mind you will be revealed and don't kill the Dragon Pokemon! :",
+                        "killmsg": "~Self~ absorbs sunlight and fires a powerful Solar Beam at ~Target~! ~Target~ was seared by Solar Beam!"
+                    }
+                },
+                "daykill": {
+                    "mode": {
+                        "ignore": [
+                            "alt-mega",
+                            "sal-mega"
+                        ]
+                    },
+                    "msg": "±Hint: Nope, this wont work... You can't target your partners!",
+                    "targetmsg": ""
+                },
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "swa",
+            "translation": "Swampert",
+            "side": "village",
+            "info": "Vote counts as 2. After Mega Evolving, vote increases to 5. Sided with Good Pokemon.",
+            "help": "You are strong enough to move boulders weighing more than a ton and are able to sense storms with your radar-like fins! Because of this you are well respected and your vote counts as 3. You are sided with the Good Pokemon.",
+            "actions": {
+                "vote": 2,
+                "onDeadRoles": {
+                    "convertTo": {
+                        "swa-mega": [
+                            "abs",
+                            "bla",
+                            "chi",
+                            "cla",
+                            "lun",
+                            "min",
+                            "plu",
+                            "sce",
+                            "sol",
+                            "swe",
+                            "wyn",
+                            "zig"
+                        ]
+                    },
+                    "convertmsg": "~Old~ has Mega Evolved into ~New~! ~New~ now has 5 votes!"
+                },
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "swa-mega",
+            "translation": "Mega Swampert",
+            "side": "village",
+            "hide": true,
+            "help": "You have Mega Evolved! Your vote now counts as 5.",
+            "help2": "You are the only Good Pokemon left. Good luck!!",
+            "actions": {
+                "vote": 5,
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "bla",
+            "translation": "Blaziken",
+            "side": "village",
+            "info": "Can kill one person during the night. Targets can be tracked by Swellow. After Mega Evolving, kills faster and avoids distract. Sided with Good Pokemon.",
+            "help": "Blazing flames spout from your wrists, making your punches even more powerful! Type /Kill [name] to kill someone at night, but don't kill the Good Pokemon! Swellow (Good Pokemon) knows who you kill so watch for him! You are sided with the Good Pokemon.",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:priority-kill-blaziken",
+                        "broadcast": [
+                            "swe"
+                        ],
+                        "broadcastmsg": "±Jɪʀᴀᴄʜɪ: ~Role~ (Good Pokemon) is going to ~Action~ ~Target~!"
+                    }
+                },
+                "avoidHax": [
+                    "kill"
+                ],
+                "onDeadRoles": {
+                    "convertTo": {
+                        "bla-mega": [
+                            "abs",
+                            "chi",
+                            "cla",
+                            "lun",
+                            "min",
+                            "plu",
+                            "sce",
+                            "sol",
+                            "swa",
+                            "swe",
+                            "wyn",
+                            "zig"
+                        ]
+                    },
+                    "convertmsg": "~Old~ has Mega Evolved into ~New~! ~New~ now kills faster and cannot be distracted!"
+                },
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "bla-mega",
+            "translation": "Mega Blaziken",
+            "side": "village",
+            "hide": true,
+            "help": "You have Mega Evolved! Type /Kill [name] to kill someone at night! You now kill faster and you ignore distracters.",
+            "help2": "You are the only Good Pokemon left. Good luck!!",
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:priority-kill-mega-blaziken",
+                        "broadcast": [
+                            "swe"
+                        ],
+                        "broadcastmsg": "±Jɪʀᴀᴄʜɪ: ~Role~ (Good Pokemon) is going to ~Action~ ~Target~!"
+                    }
+                },
+                "avoidHax": [
+                    "kill"
+                ],
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "swe",
+            "translation": "Swellow",
+            "side": "village",
+            "info": "Can stalk one person during the night. Sees Blaziken's kills. Sided with Good Pokemon.",
+            "help": "Constantly flying around the forest, you can type /Stalk [name] during the night to view who your targeted visited. You will also know who Blaziken is killing during the night. You are sided with the Good Pokemon.",
+            "actions": {
+                "night": {
+                    "stalk": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": "variable:priority-stalk-swellow"
+                    }
+                },
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "wyn",
+            "translation": "Wynaut",
+            "side": "village",
+            "help": "You are the preevolution of Wobbuffet, who strangely is not native to Hoenn, although you are. You are incapable of directly doing damage to anyone and thus have no night command. On the other hand, you are able to are able to counter attacks well and you will kill anyone that tries to kill you. You are sided with the Good Pokemon.",
+            "actions": {
+                "kill": {
+                    "mode": "killattacker",
+                    "msg": "*** Wynaut took you down with Destiny Bond!"
+                },
+                "daykill": "bomb",
+                "daykillrevengemsg": "~Target~ attacks ~Self~, ~Target~ was taken down by Destiny Bond!",
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "cla",
+            "translation": "Claydol",
+            "side": "village",
+            "help": "You restlessly wander everywhere in a zig-zag fashion! However, you go to sleep at night and don't perform any actions then. Vote to remove people during the day! You are sided with the Good Pokémon.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "shu"
+                },
+                "startup": {
+                    "revealAs": "zig"
+                },
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "abs",
+            "translation": "Absol",
+            "side": "village",
+            "info": "Reveals as Mightyena when inspected. Sided with Good Pokemon. After Mega Evolving, wins with any side.",
+            "help": "You restlessly wander everywhere in a zig-zag fashion! However, you go to sleep at night and don't perform any actions then. Vote to remove people during the day! You are sided with the Good Pokémon.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "mig"
+                },
+                "startup": {
+                    "revealAs": "zig"
+                },
+                "onDeadRoles": {
+                    "convertTo": {
+                        "abs-mega": [
+                            "bla",
+                            "chi",
+                            "cla",
+                            "lun",
+                            "min",
+                            "plu",
+                            "sce",
+                            "sol",
+                            "swa",
+                            "swe",
+                            "wyn",
+                            "zig"
+                        ]
+                    },
+                    "convertmsg": "~Old~ has Mega Evolved into ~New~! ~New~ will now win with anyone!"
+                },
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "abs-mega",
+            "translation": "Mega Absol",
+            "side": "village",
+            "winningSides": "*",
+            "hide": true,
+            "help": "Huh, you were an Absol and not a Zigzagoon?! You have Mega Evolved and now you win with any side!",
+            "actions": {
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "sev",
+            "translation": "Zigzagoon",
+            "side": "village",
+            "help": "You restlessly wander everywhere in a zig-zag fashion! However, you go to sleep at night and don't perform any actions then. Vote to remove people during the day! You are sided with the Good Pokémon.",
+            "hide": true,
+            "actions": {
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "sev-win",
+            "translation": "Seviper",
+            "side": "seviper",
+            "hide": true,
+            "winningSides": "*",
+            "help": "",
+            "actions": {
+                "initialCondition": {
+                    "poison": {
+                        "count": -1
+                    }
+                },
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "zan",
+            "translation": "Zigzagoon",
+            "side": "village",
+            "help": "You restlessly wander everywhere in a zig-zag fashion! However, you go to sleep at night and don't perform any actions then. Vote to remove people during the day! You are sided with the Good Pokémon.",
+            "hide": true,
+            "actions": {
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "zan-win",
+            "translation": "Zangoose",
+            "side": "zangoose",
+            "hide": true,
+            "winningSides": "*",
+            "help": "",
+            "actions": {
+                "initialCondition": {
+                    "poison": {
+                        "count": -1
+                    }
+                },
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "kec",
+            "translation": "Kecleon",
+            "side": "conspirator",
+            "hide": true,
+            "winningSides": "*",
+            "help": "You are able to alter your body coloration to match your surroundings! Right now you are Normal-type and you evade all actions. However, if you are targeted by a night action, you will gain the ability to use that action! You win with any side.",
+            "info": "Evades all actions at start. Gains the ability to use whatever the last action used on it was. Wins the game with any side.",
+            "actions": {
+                "initialCondition": {
+                    "poison": {
+                        "count": -1
+                    }
+                },
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "test",
+            "translation": "Glalie",
+            "side": "conspirator",
+            "help": "You are only supposed to be a test role for the Mafia Theme Simulator! You should not be playing as this!",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": 0,
+                        "limit": 1000,
+                        "hide": true
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "Any",
+                        "msg": "KILL! :",
+                        "killmsg": "Sheer Cold delivers chilling misery!",
+                        "limit": 1000
+                    }
+                },
+                "vote": 1000,
+                "dummy": "variable:dummy-action",
+                "dummy2": "variable:dummy2-action",
+                "dummy3": "variable:dummy3-action"
+            }
+        },
+        {
+            "role": "ghost",
+            "translation": "Ghost Pokemon",
+            "side": "mafia1",
+            "help": "Ghost Pokemon Kill Priority",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": "variable:priority-kill-ghost",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "dark",
+            "translation": "Dark Pokemon",
+            "side": "mafia2",
+            "help": "Dark Pokemon Kill Priority",
+            "hide": true,
+            "actions": {
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": "variable:priority-kill-dark",
+                        "broadcast": "team"
+                    }
+                }
+            }
+        }
+    ],
+    "roles1": [
+        "sce",
+        "nin",
+        "mig",
+        "wyn"
+    ],
+    "roles2": [
+        "sce",
+        "chi",
+        "zig",
+        "nin",
+        "dus",
+        "sol",
+        "zig",
+        "ban",
+        "zig"
+    ],
+    "roles3": [
+        "sce",
+        "chi",
+        "zig",
+        "nin",
+        "dus",
+        "sol",
+        "zig",
+        "ban",
+        "cla",
+        "lun",
+        "sha",
+        "swa"
+    ],
+    "roles4": [
+        "sce",
+        "chi",
+        "sol",
+        "nin",
+        "shu",
+        "zig",
+        "zig",
+        "shu",
+        "lun",
+        "swa",
+        "mig",
+        "cac",
+        "swe"
+    ],
+    "roles5": [
+        "sce",
+        "chi",
+        "sol",
+        "nin",
+        "shu",
+        "zig",
+        "abs",
+        "lun",
+        "swa",
+        "mig",
+        "cac",
+        "swe",
+        "dus",
+        "cla",
+        "sal",
+        "bla"
+    ],
+    "roles6": [
+        "sce",
+        "chi",
+        "sol",
+        "nin",
+        "shu",
+        "abs",
+        "lun",
+        "swa",
+        "mig",
+        "cac",
+        "swe",
+        "dus",
+        "zig",
+        "zig",
+        "cla",
+        "sal",
+        "bla",
+        "sab",
+        "zig"
+    ],
+    "roles7": [
+        "sce",
+        "chi",
+        "sol",
+        "nin",
+        "shu",
+        "abs",
+        "lun",
+        "swa",
+        "mig",
+        "cac",
+        "swe",
+        "dus",
+        "zig",
+        "zig",
+        "cla",
+        "sal",
+        "bla",
+        "sab",
+        "plu",
+        "min"
+    ],
+    "roles8": [
+        "sce",
+        "chi",
+        "sol",
+        "nin2",
+        "shu",
+        "abs",
+        "lun",
+        "swa",
+        "mig",
+        "cac",
+        "swe",
+        "dus",
+        "zig",
+        "zig",
+        "cla",
+        "sal",
+        "bla",
+        "she",
+        "plu",
+        "min",
+        "ban",
+        "wyn",
+        "sha",
+        "zig",
+        "alt",
+        "zig"
+    ],
+    "roles9": [
+        "sce",
+        "chi",
+        "sol",
+        "nin2",
+        "shu",
+        "abs",
+        "lun",
+        "swa",
+        "mig",
+        "cac",
+        "swe",
+        "dus",
+        "zig",
+        "zig",
+        "cla",
+        "sal",
+        "bla",
+        "she",
+        "plu",
+        "min",
+        "ban",
+        "wyn",
+        "sha",
+        "zig",
+        "alt",
+        "sev",
+        "zan"
+    ],
+    "roles10": [
+        "sce",
+        "chi",
+        "sol",
+        "nin2",
+        "shu",
+        "abs",
+        "lun",
+        "swa",
+        "mig",
+        "cac",
+        "swe",
+        "dus",
+        "zig",
+        "zig",
+        "cla",
+        "sal",
+        "bla",
+        "she",
+        "plu",
+        "min",
+        "ban",
+        "wyn",
+        "sha",
+        "zig",
+        "alt",
+        "sev",
+        "zan",
+        "sab",
+        "sol",
+        "zig",
+        "she"
+    ],
+    "roles11": [
+        "sce",
+        "chi",
+        "sol",
+        "nin2",
+        "shu",
+        "abs",
+        "lun",
+        "swa",
+        "mig",
+        "cac",
+        "swe",
+        "dus",
+        "zig",
+        "zig",
+        "cla",
+        "sal",
+        "bla",
+        "she",
+        "plu",
+        "min",
+        "ban",
+        "wyn",
+        "sha",
+        "plu",
+        "min",
+        "alt",
+        "zig",
+        "sol",
+        "sev",
+        "zan",
+        "zig",
+        "she",
+        "zig",
+        "sab",
+        "bla",
+        "zig",
+        "shu",
+        "mig",
+        "zig",
+        "shu",
+        "swa",
+        "sab",
+        "zig",
+        "sce",
+        "sab"
+    ],
+    "roles12": [
+        "sce",
+        "chi",
+        "sol",
+        "nin2",
+        "shu",
+        "abs",
+        "lun",
+        "swa",
+        "mig",
+        "cac",
+        "swe",
+        "dus",
+        "zig",
+        "zig",
+        "cla",
+        "sal",
+        "bla",
+        "she",
+        "plu",
+        "min",
+        "ban",
+        "wyn",
+        "sha",
+        "plu",
+        "min",
+        "alt",
+        "zig",
+        "sol",
+        "sev",
+        "zan",
+        "zig",
+        "she",
+        "zig",
+        "sab",
+        "bla",
+        "zig",
+        "shu",
+        "mig",
+        "zig",
+        "shu",
+        "swa",
+        "sab",
+        "zig",
+        "sce",
+        "cac",
+        "dus",
+        "zig",
+        "nin2",
+        "lun",
+        "zig"
+    ]
+}
