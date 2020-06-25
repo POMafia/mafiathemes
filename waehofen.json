@@ -1,0 +1,46 @@
+{
+	"name": "waehofen",
+	"author": "Mavs>Heat",
+	"summary": "waehofen",
+	"border": "***waehofenwaehofenwaehofenwaehofenwaehofenwaehofenwaehofenwaehofenwaehofenwaehofenwaehofen***",
+	"sides": [
+		{
+			"side": "village",
+			"translation": "good waehofens"
+		},
+		{
+			"side": "mafia",
+			"translation": "bad waehofens"
+		}
+	],
+	"roles": [
+		{
+			"role": "v",
+			"translation": "good waehofen",
+			"side": "village",
+			"help": "waehofen",
+			"actions": {}
+		},
+		{
+			"role": "m",
+			"translation": "bad waehofen",
+			"side": "mafia",
+			"help": "use /waehofen to kill during the night!",
+			"actions": {
+				"night": {
+					"waehofen": {
+						"command": "kill",
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 1,
+						"broadcast": "team"
+					}
+				},
+				"startup": "team-reveal"
+			}
+		}
+	],
+	"roles1": ["m", "m", "m", "m"],
+	"roles2": ["v", "v", "v", "v", "m", "v", "v", "v", "v", "m", "v", "v", "v", "v", "m", "v", "v", "v", "v", "m", "v", "v", "v", "v", "m", "v", "v", "v", "v", "m"],
+	"villageCantLoseRoles": []
+}
