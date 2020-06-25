@@ -1,0 +1,2619 @@
+{
+	"name" : "KI",
+	"altname" : "Kid Icarus",
+	"threadlink" : "http://pokemon-online.eu/forums/showthread.php?22570-Kid-Icarus",
+	"author" : ["Silone", "Joeypals", "Xtina", "Baby Jane"],
+	"summary" : "Skyworld is at war! Palutena's Army is at war with the Underworld Army. The Forces of Nature joined the war trying to get rid of the ungrateful humans. There is also another creature that devours all: The Phoenix! Don't forget about Medusa either, she's out for revenge. Please PM either Joeypals or Silone if you have any questions, comments, concerns, or bug reports! Thanks and good luck trying survive this godly war! Now has a full /tips section! For those who don't play Kid Icarus or just don't like the series, or are possibly confused by the roles, /tips and /roles :rolename are your friends! Check out this theme's counterpart, KI2! http://pokemon-online.eu/threads/kid-icarus-2-ki2.30861/",
+	"tips" : {
+		"Pit" : "Don't claim when there's a role around that can ignore Magnus, such as the Phoenix, Phosphora, and the Chaos Kin. You also don't avoid Amazon Pandora, so careful of that.",
+                "Pit Part 2": "Don't randkill.",
+                "Pit Part 3": "Be careful of 'Hades', don't wanna shoot Pittoo and activate Pandora!",
+                "Small game Palutena": "Don't claim until you know Amazon Pandora.",
+                "Small game Amazon Pandora": "Careful when you kill, the Centurion Strongarm will blow you up if you hit him.",
+                "Dyntos": "Change in accordance to how the game is going.",
+		"People new to the theme/not a fan of the games": "I purposely packed the theme with loads of flavor, so if you don't get who's who at first, I understand. Here's a quick PR list: Pit (Samurai), Palutena (Inspector), Magnus (BG), Souflee (PL), Pittoo (Stalker+Miller), Pyrrhon (Safeguarder). Hopefully that should help! Also, /roles :rolename is your friend."
+	},
+	"sides" : [{
+			"side" : "underworld",
+			"translation" : "Underworld Army",
+			"winmsg" : "±Palutena: The portal to the Underworld was opened! ~Players~ were let loose on the human race, killing all those in their path to be ruled mercilessly in the darkest depths of the Underworld."
+		}, {
+			"side" : "fon",
+			"translation" : "Forces of Nature",
+			"winmsg" : "±Palutena: The human race was in a state of panic as Reset Bombs rained upon Planet Earth. ~Players~ laughed triumphantly, removing the greedy humans from Earth and restoring the natural balance of life."
+		}, {
+			"side" : "village",
+			"translation" : "Palutena's Army",
+			"winmsg" : "±Palutena: The Army of Light fought a worthy battle, and sent all those looking to harm Earth away. ~Players~ will be sung about both in Skyworld and Earth for ages to come!"
+		}, {
+			"side" : "chaoskin",
+			"translation" : "Chaos Kin",
+			"winmsg" : "±Palutena: Amongst all the fighting a shadow lurks. With a flash he possesses those worthy, and kills all else. ~Players~ will now devour the souls of all the living or use them as its own puppet. Beware the Chaos Kin."
+		}, {
+			"side" : "medusa",
+			"translation" : "Medusa",
+			"winmsg" : "±Palutena: Somehow against all odds, Medusa (~Players~) was the only living thing remaining."
+		}, {
+			"side" : "phoenix",
+			"translation" : "Immortal Phoenix",
+			"winmsg" : "±Palutena: KACAAAAWWWWW! The Immortal Phoenix, ~Players~, have managed to 'burn out' the competition and have came out on top. They will rule the world!"
+		}
+	],
+	"roles" : [{
+			"role" : "human",
+			"translation" : "Human",
+			"info" : "Sided with Palutena's Army.",
+			"side" : "village",
+			"help" : "You are a normal Human! You have no real say in the war going on, but you can vote the bad guys off during the day!",
+			"actions" : {
+                "massconvert": {
+					"mode": "ignore",
+                             "silent": true
+				},
+			"onDeath": {
+					"convertRoles": {
+						"hades9": "hades10",
+						"hades8": "hades9",
+						"hades7": "hades8",
+						"hades6": "hades7",
+						"hades5": "hades6",
+						"hades4": "hades5",
+						"hades3": "hades4",
+						"hades2": "hades3",
+						"hades": "hades2"
+					},
+					"convertmsg": "As ~Self~ falls, Hades collects their soul and harvests it as another vote!"
+				}
+			}
+		}, {
+			"role" : "ghuman",
+			"translation" : "Greedy Human",
+			"info" : "Inspects as Phosphora. Has 1.1 votes. Sided with Palutena's Army.",
+			"side" : "village",
+			"help" : "You are a normal Human! You have no real say in the war going on, but you can vote the bad guys off during the day!",
+			"actions" : {
+				"vote" : 1.1,
+				"inspect" : {
+					"revealAs" : "phosphora"
+				},
+				"startup" : {
+					"revealAs" : "human"
+				},
+				"lynch" : {
+					"revealAs" : "ghuman"
+				},
+				"onlist" : "ghuman",
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				},
+			"onDeath": {
+					"convertRoles": {
+						"hades9": "hades10",
+						"hades8": "hades9",
+						"hades7": "hades8",
+						"hades6": "hades7",
+						"hades5": "hades6",
+						"hades4": "hades5",
+						"hades3": "hades4",
+						"hades2": "hades3",
+						"hades": "hades2"
+					},
+					"convertmsg": "As ~Self~ falls, Hades collects their soul and harvests it as another vote!"
+				}
+				}
+		}, {
+			"role" : "ghuman2",
+			"translation" : "Greedy Human",
+			"info" : "Inspects as Pandora. Has -1.1 votes. Sided with Palutena's Army.",
+			"side" : "village",
+			"help" : "You are a normal Human! You have no real say in the war going on, but you can vote the bad guys off during the day!",
+			"actions" : {
+				"vote" : -1.1,
+				"inspect" : {
+					"revealAs" : "pandora"
+				},
+				"startup" : {
+					"revealAs" : "human"
+				},
+				"lynch" : {
+					"revealAs" : "ghuman2"
+				},
+				"onlist" : "ghuman2",
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				},
+			"onDeath": {
+					"convertRoles": {
+						"hades9": "hades10",
+						"hades8": "hades9",
+						"hades7": "hades8",
+						"hades6": "hades7",
+						"hades5": "hades6",
+						"hades4": "hades5",
+						"hades3": "hades4",
+						"hades2": "hades3",
+						"hades": "hades2"
+					},
+					"convertmsg": "As ~Self~ falls, Hades collects their soul and harvests it as another vote!"
+				}
+				}
+		}, {
+			"role" : "ghuman3",
+			"translation" : "Greedy Human",
+			"info" : "Inspects as Cragalanche. Has 1.1 votes. Sided with Palutena's Army.",
+			"side" : "village",
+                        "hide": true,
+			"help" : "You are a normal Human! You have no real say in the war going on, but you can vote the bad guys off during the day!",
+			"actions" : {
+				"vote" : 1.1,
+				"inspect" : {
+					"revealAs" : "cragalanche"
+				},
+				"startup" : {
+					"revealAs" : "human"
+				},
+				"lynch" : {
+					"revealAs" : "ghuman3"
+				},
+				"onlist" : "cragalanche",
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				},
+			"onDeath": {
+					"convertRoles": {
+						"hades9": "hades10",
+						"hades8": "hades9",
+						"hades7": "hades8",
+						"hades6": "hades7",
+						"hades5": "hades6",
+						"hades4": "hades5",
+						"hades3": "hades4",
+						"hades2": "hades3",
+						"hades": "hades2"
+					},
+					"convertmsg": "As ~Self~ falls, Hades collects their soul and harvests it as another vote!"
+				}
+				}
+		}, {
+			"role" : "ghuman4",
+			"translation" : "Greedy Human",
+			"info" : "Inspects as Nutski. Sided with Palutena's Army.",
+			"side" : "village",
+			"help" : "You are a normal Human! You have no real say in the war going on, but you can vote the bad guys off during the day!",
+			"actions" : {
+				"inspect" : {
+					"revealAs" : "nutski"
+				},
+				"startup" : {
+					"revealAs" : "human"
+				},
+				"lynch" : {
+					"revealAs" : "ghuman"
+				},
+				"onlist" : "ghuman4",
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				},
+			"onDeath": {
+					"convertRoles": {
+						"hades9": "hades10",
+						"hades8": "hades9",
+						"hades7": "hades8",
+						"hades6": "hades7",
+						"hades5": "hades6",
+						"hades4": "hades5",
+						"hades3": "hades4",
+						"hades2": "hades3",
+						"hades": "hades2"
+					},
+					"convertmsg": "As ~Self~ falls, Hades collects their soul and harvests it as another vote!"
+				}
+				}
+		},{
+			"role" : "fhuman",
+			"translation" : "Forgetful Human",
+			"info" : "Has a vote of either 0 or 1. Reveals other Forgetful Human upon death. Sided with Palutena's Army.",
+			"side" : "village",
+			"help" : "You are a normal Human! You have no real say in the war going on, but you can vote the bad guys off during the day!",
+			"actions" : {
+				"vote" : 0,
+				"inspect" : {
+					"revealAs" : "human"
+				},
+				"startup" : {
+					"revealAs" : "human"
+				},
+				"onlist" : "fhuman",
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				},
+			"onDeath": {
+					"exposeRoles" : ["fhuman2"],
+					"exposemsg" : "±Palutena: Before dying, ~Self~ snapped their fingers and remembered that ~Target~ was a Forgetful Human too!",
+					"convertRoles": {
+						"hades9": "hades10",
+						"hades8": "hades9",
+						"hades7": "hades8",
+						"hades6": "hades7",
+						"hades5": "hades6",
+						"hades4": "hades5",
+						"hades3": "hades4",
+						"hades2": "hades3",
+						"hades": "hades2"
+					},
+					"convertmsg": "As ~Self~ falls, Hades collects their soul and harvests it as another vote!"
+				}
+				}
+		}, {
+			"role" : "fhuman2",
+			"translation" : "Forgetful Human",
+			"info" : "Has a vote of either 0 or 1. Reveals other Forgetful Human upon death. Sided with Palutena's Army.",
+			"side" : "village",
+                        "hide": true,
+			"help" : "You are a normal Human! You have no real say in the war going on, but you can vote the bad guys off during the day!",
+			"actions" : {
+				"inspect" : {
+					"revealAs" : "human"
+				},
+				"startup" : {
+					"revealAs" : "human"
+				},
+				"onlist" : "fhuman",
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				},
+			"onDeath": {
+					"exposeRoles" : ["fhuman"],
+					"exposemsg" : "±Palutena: Before dying, ~Self~ snapped their fingers and remembered that ~Target~ was a Forgetful Human too!",
+					"convertRoles": {
+						"hades9": "hades10",
+						"hades8": "hades9",
+						"hades7": "hades8",
+						"hades6": "hades7",
+						"hades5": "hades6",
+						"hades4": "hades5",
+						"hades3": "hades4",
+						"hades2": "hades3",
+						"hades": "hades2"
+					},
+					"convertmsg": "As ~Self~ falls, Hades collects their soul and harvests it as another vote!"
+				}
+				}
+		}, {
+			"role" : "pit",
+			"translation" : "Pit",
+			"info" : "Can use /kill during standby (non-revealing). Can use /reveal to reveal his identity during standby. Sided with Palutena's Army.",
+			"side" : "village",
+			"help" : "You are Pit, commander of Palutena's Army! You must lead the Centurions to victory! Use /kill [name] during standby to kill those who oppose you! Also, when all those who can kill through protect are dead, use /reveal [name] to reveal yourself to your army! Also, you are in constant communication with Lady Palutena and know her identity. You may also use /tt to talk to her.",
+			"actions" : {
+                	 	"teamTalk": ["palutena"],
+				"standby" : {
+					"kill" : {
+						"target" : "AnyButSelf",
+						"msg" : "You can now kill someone using /kill [name]. Don't kill your teammates!",
+						"killmsg" : "±Palutena: Pit jumps from Skyworld and soars into the thick of battle. He draws his Meteor Bow, and fires a shot straight through ~Target~'s heart, killing them instantly!"
+					},
+					"reveal" : {
+						"msg" : "You can now use /reveal [name]!",
+						"revealmsg" : "~Self~ descends from Skyworld in all his glory, calling to his allies!"
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				},
+                		"startup": {
+                    	      		"revealRole": [
+                        	 		"palutena"
+                              		]
+                        	}
+			}
+		}, {
+			"role" : "palutena",
+			"translation" : "Palutena",
+			"info" : "Gets an inspect. Knows Pit. Sided with Palutena's Army.",
+			"side" : "village",
+			"help" : "You are the Goddess of Light, Palutena! You must protect the innocent humans from the Underworld and the Forces of Nature! You can use /inspect [name] to find the bad guys! Beware though, as both Pittoo and Medusa inspect as Hades. No fear though, you know Pit, with whom you may speak using /tt!",
+			"actions" : {
+				"teamTalk" : ["pit"],
+				"night" : {
+					"inspect" : {
+						"target" : "AnyButSelf",
+						"common" : "Self",
+						"hide" : true,
+						"priority" : 75,
+                                                "broadcast": ["pit"]
+					}
+				},
+				"daykill" : {
+					"mode" : {
+						"ignore" : ["pit"]
+					},
+					"msg" : "You don't want to shoot Lady Palutena now, do you?"
+				},
+				"startup" : {
+					"revealRole" : ["pit"]
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "palutena2",
+			"translation" : "Palutena",
+			"info" : "Can inspect people. Sided with Palutena's Army.",
+			"side" : "village",
+			"help" : "You are the Goddess of Light, Palutena! You must protect the innocent humans from the Underworld and the Forces of Nature! You can use /inspect [name] to find the bad guys!",
+			"actions" : {
+				"night" : {
+					"inspect" : {
+						"target" : "AnyButSelf",
+						"common" : "Role",
+						"priority" : 75
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "magnus",
+			"translation" : "Magnus",
+			"info" : "Gets a protect. Sided with Palutena's Army.",
+			"side" : "village",
+			"help" : "You are Magnus! You are well-known as the only human that can hold his own against the Underworld Army! Use /protect [name] to assist your team and prevent them from dying. Prove your worth in this war full of gods!",
+			"actions" : {
+				"night" : {
+					"protect" : {
+						"target" : "AnyButSelf",
+						"common" : "Role",
+						"priority" : 5,
+						"broadcast" : "role"
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "pittoo",
+			"translation" : "Pittoo",
+			"info" : "Can stalk once during the night. Can receive hax on kills and scythe. Inspected as Hades. Sided with Palutena's Army.",
+			"side" : "village",
+			"help" : "You are Pittoo! You are really sick of all this fighting, and have allied yourself with Palutena's Army to put an end to all this nonsense! Use /stalk [name] to find out if your target visited anyone that night! You also have a high chance to find out who's dying during the night. Beware however, you inspect as Hades! Also, if you die, the powerhouse Amazon Pandora is released! Be sure not to die!",
+			"actions" : {
+				"night" : {
+					"stalk" : {
+						"target" : "AnyButSelf",
+						"common" : "Self",
+						"priority" : 101
+					}
+				},
+				"hax" : {
+					"kill" : {
+						"revealTeam" : 0.1,
+						"revealPlayer" : 0.05
+					},
+					"scythe": {
+						"revealTeam": 0.1,
+						"revealPlayer": 0.05
+					}
+				},
+				"inspect" : {
+					"revealAs" : "hades"
+				},
+				"onDeath" : {
+					"convertRoles" : {
+						"pandora" : "amazonpandora"
+					},
+					"convertmsg" : "As Pittoo falls, a flash of light slowly emerges from his chest. It flies far away to Pandora, who is converted into Amazon Pandora! Beware her power!"
+				}
+			}
+		},{
+			"role" : "strongarm",
+			"translation" : "Centurion Strongarm",
+			"info" : "Nightbomb and daybomb with .5 votes. Sided with Palutena's Army.",
+			"side" : "village",
+			"help" : "You are a Centurion Strongarm! You are the burliest and most manly soldier in Palutena's Army. With your bulging muscles and sheer masculinity you take down your attacker during the night AND day! However, your brain is also pure muscle, so no one listens to you. You only have .5 votes!",
+			"actions" : {
+				"kill" : {
+					"mode" : "killattacker",
+					"msg": "You should really think next time before trying to attack someone as musclebound as a Strongarm..."
+				},
+				"vote" : 0.5,
+				"daykill": "bomb",
+                "daykillrevengemsg": "±Strongarm: ~Self~ saw ~Target~ shooting some deadly object towards them and, upset, ~Self~ rushed at them and choked the killer until they both died!",
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},
+ 		{
+			"role" : "strongarm2",
+			"translation" : "Centurion Strongarm",
+			"info" : "Nightbomb and daybomb with .5 votes. Sees itself as Human. Sided with Palutena's Army.",
+			"side" : "village",
+			"help" : "You are a normal Human! You have no real say in the war going on, but you can vote the bad guys off during the day!",
+			"actions" : {
+				"kill" : {
+					"mode" : "killattacker",
+					"msg": "You should really think next time before trying to attack someone as musclebound as a Strongarm..."
+				},
+				"vote" : 0.5,
+				"daykill": "bomb",
+                "daykillrevengemsg": "±Strongarm: ~Self~ saw ~Target~ shooting some deadly object towards them and, upset, ~Self~ rushed at them and choked the killer until they both died!",
+				"startup" : {
+					"revealAs" : "human"
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},{
+			"role" : "knight",
+			"translation" : "Centurion Knight",
+			"info" : "50% chance to evade nightkills. Sided with Palutena's Army.",
+			"side" : "village",
+			"help" : "You are a Centurion Knight! Hand picked from Palutena's Army, you are considered elite among Centurions. You are fully capable of defending yourself, so you have a 50% chance to evade any attacks during the night! (Hint: Use tt to talk to the other Knights)!",
+			"actions" : {
+				"startup" : {
+					"revealRole" : ["knight"]
+				},
+				"kill" : {
+					"mode" : {
+						"evadeChance" : 0.5
+					}
+				},
+                	 	"teamTalk": ["knight"],
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "centurion",
+			"translation" : "Centurion",
+			"info" : "Shares a nightkill with its fellow Centurions. Sided with Palutena's Army.",
+			"side" : "village",
+			"help" : "You are a Centurion! While you are weak alone, in numbers you can hold your own! You and your fellow Centurions share a nightkill by using /kill [name]! (Hint: Use /tt to talk to your team)!",
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"target" : "AnyButRole",
+						"common" : "Role",
+						"priority" : 20,
+						"broadcast" : "role"
+					}
+				},
+				"startup" : {
+					"revealRole" : ["centurion"]
+				},
+                	 	"teamTalk": ["centurion"],
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "dyntos",
+			"translation" : "Dyntos",
+			"info" : "Can convert into Dyntos-Light, Dyntos-Shield, Dyntos-Pegasus. Can also convert into Dyntos-Sacred on the 4th night. Sided with Palutena's Army",
+			"side" : "village",
+			"help" : "You are Dyntos, God of the Forge! Although you appear to be an old man, you are actually very powerful. You have crafted the Three Sacred Treasures, the Arrow of Light, Mirror Shield, and the Wings of Pegasus, and you also made the Great Sacred Treasure. You can use /light to give yourself an inspect every night and a one-time night kill, /shield to give yourself a self-protect each night but 0 votes, or /pegasus to give yourself +3 votes and a stalk every night! Or, on night 4, you can use /sacred on yourself to get the power to perform almost every command once! This means you can inspect, protect, stalk, distract, safeguard, AND kill all at once ON TOP OF having a -1 voteshield! Sure you have to wait a while for this but it is the ultimate power. Be warned though as all of these commands are one use only. You are sided with Palutena's Army.",
+			"actions" : {
+				"night" : {
+					"light" : {
+						"command" : "convert",
+						"target" : "OnlySelf",
+						"common" : "Self",
+						"hide" : true,
+						"priority" : 0,
+						"restrict" : ["shield", "pegasus", "sacred"],
+						"newRole" : "dyntos_light",
+						"canConvert" : ["dyntos"],
+						"convertmsg" : "Dyntos has invoked the power of the Arrow of Light, and has increased his wisdom.",
+						"silent" : false
+					},
+					"shield" : {
+						"command" : "convert",
+						"target" : "OnlySelf",
+						"common" : "Self",
+						"hide" : true,
+						"priority" : 0,
+						"restrict" : ["light", "pegasus", "sacred"],
+						"newRole" : "dyntos_shield",
+						"canConvert" : ["dyntos"],
+						"convertmsg" : "Dyntos has invoked the power of the Mirror Shield, and has increased his defense.",
+						"silent" : false
+					},
+					"pegasus" : {
+						"command" : "convert",
+						"target" : "OnlySelf",
+						"common" : "Self",
+						"hide" : true,
+						"priority" : 0,
+						"restrict" : ["shield", "light", "sacred"],
+						"newRole" : "dyntos_pegasus",
+						"canConvert" : ["dyntos"],
+						"convertmsg" : "Dyntos has invoked the power of the Wings of Pegasus, and has increased his influence.",
+						"silent" : false
+					},
+					"sacred" : {
+						"command" : "convert",
+						"target" : "OnlySelf",
+						"common" : "Self",
+						"hide" : true,
+						"priority" : 0,
+						"restrict" : ["shield", "light", "pegasus"],
+						"newRole" : "dyntos_sacred",
+						"initialrecharge" : 4,
+						"canConvert" : ["dyntos"],
+						"convertmsg" : "Dyntos has invoked the power of the Great Sacred Treasure. Let's hope he uses it wisely.",
+						"silent" : false
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "dyntos_light",
+			"translation" : "Dyntos (Light)",
+			"side" : "village",
+			"hide" : "side",
+			"info" : "Can inspect one person every night. Has a kill once per game. Sided with Palutena's Army.",
+			"help" : "You are Dyntos, and have invoked the power of the Arrow of Light to give yourself the power to shine around someone with /shine, which illuminates them and gives you the power to see their role. You also have a one-time nightkill with /arrow. Good luck.",
+			"actions" : {
+				"night" : {
+					"arrow" : {
+						"command" : "kill",
+						"target" : "AnyButSelf",
+						"common" : "Self",
+						"priority" : 21,
+						"hide" : "side",
+						"charges" : 1
+					},
+					"shine" : {
+						"command" : "inspect",
+						"target" : "AnyButSelf",
+						"common" : "Self",
+						"priority" : 37,
+						"hide" : "side"
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "dyntos_shield",
+			"translation" : "Dyntos (Shield)",
+			"side" : "village",
+			"hide" : "side",
+			"info" : "Can protect self during the night. Vote of 0. Sided with Palutena's Army.",
+			"help" : "You are Dyntos, and have invoked the power of the Mirror Shield to give yourself the power to protect (/shield) yourself during the night, which gives you immunity to most night kills, except the Phoenix's and Phosphora's secondary kill. However, you have a vote of 0 now. Good luck.",
+			"actions" : {
+				"vote" : 0,
+				"night" : {
+					"shield" : {
+						"target" : "OnlySelf",
+						"common" : "Self",
+						"priority" : 6,
+						"command" : "protect",
+						"hide" : "side"
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "dyntos_pegasus",
+			"translation" : "Dyntos (Pegasus)",
+			"side" : "village",
+			"hide" : "side",
+			"info" : "Can stalk someone every night. Vote of 3. Sided with Palutena's Army.",
+			"help" : "You are Dyntos, and have invoked the power of the Wings of Pegasus to give yourself the power to fly during the night! You can use this gift to stalk someone during the night with /visit. You also have a vote of 3. You are sided with Palutena's  Army.",
+			"actions" : {
+				"vote" : 3,
+				"night" : {
+					"visit" : {
+						"command" : "stalk",
+						"target" : "AnyButSelf",
+						"common" : "Self",
+						"priority" : 100,
+						"hide" : "side"
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "dyntos_sacred",
+			"translation" : "Dyntos (Sacred)",
+			"side" : "village",
+			"hide" : "side",
+			"help" : "You are Dyntos, and have invoked the power of the Great Sacred Treasure! You can now use /visit (stalk), /light (inspect), /shield (protect), /arrow (kill), /shine (distract), /blaze (safeguard with chance of poisoning target) once per game, and you know have a voteshield of -1! You are sided with Palutena's Army.",
+			"info" : "Can protect, distract, stalk, safeguard, kill, and inspect one person once per game. Sided with Palutena's Army.",
+			"actions" : {
+				"voteshield" : -1,
+				"night" : {
+					"shield" : {
+						"target" : "AnyButSelf",
+						"command" : "protect",
+						"common" : "Role",
+						"priority" : 6,
+						"charges" : 1,
+						"chargesmsg" : "You are now out of charges for shielding!"
+					},
+					"shine" : {
+						"target" : "AnyButSelf",
+						"command" : "distract",
+						"common" : "Role",
+						"priority" : 3,
+						"distractmsg" : "Dyntos shined a very bright light torwards you. You were distracted for the whole night....",
+						"teammsg" : "ARGH! Dyntos shined a light torwards your partner, and you couldn't perform your ~Action~ without him.",
+						"charges" : 1,
+						"chargesmsg" : "You are now out of charges for shining!"
+					},
+					"blaze" : {
+						"target" : "AnyButSelf",
+						"common" : "Role",
+						"priority" : 4,
+						"charges" : 1,
+						"command" : {
+							"poison" : 0.08,
+							"safeguard" : 0.92
+						},
+						"poisonDeadMessage" : "Dyntos tried to safeguard you with flames, but you got burnt instead.",
+						"chargesmsg" : "You are now out of charges for blazing!"
+					},
+					"visit" : {
+						"target" : "AnyButSelf",
+						"common" : "Role",
+						"priority" : 100,
+						"command" : "stalk",
+						"charges" : 1,
+						"chargesmsg" : "You are now out of charges for visiting!"
+					},
+					"light" : {
+						"target" : "AnyButSelf",
+						"common" : "Self",
+						"priority" : 37,
+						"charges" : 1,
+						"command" : "inspect",
+						"chargesmsg" : "You are now out of charges for light!"
+					},
+					"arrow" : {
+						"target" : "AnyButSelf",
+						"common" : "Self",
+						"priority" : 21,
+						"command" : "kill",
+						"charges" : 1,
+						"chargesmsg" : "You are now out of charges for arrow!"
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "dummy",
+			"translation" : "Dyntos",
+			"info" : "If you somehow get this role, please contact Joeypals at http://pokemon-online.eu/forums/member.php?24510-Joeypals!!",
+			"hide" : true,
+			"side" : "village",
+			"help" : "If you somehow get this role, please contact Joeypals at http://pokemon-online.eu/forums/member.php?24510-Joeypals!!",
+			"actions" : {
+				"initialCondition" : {
+					"poison" : {
+						"count" : 1,
+						"poisonDeadMessage" : "Time is up!"
+					}
+				},
+				"night" : {
+					"convert" : {
+						"target" : "OnlySelf",
+						"common" : "Self",
+						"newRole" : "dyntos",
+						"priority" : 0
+					}
+				}
+			}
+		}, {
+			"role" : "souflee",
+			"translation" : "Souflee",
+			"info" : "Can distract one person at night. Sides with Palutena's Army.",
+			"side" : "village",
+			"help" : "Aww, aren't you adorable! Even though you're not with any particular side, Lady Palutena has called on your adorable services to help in this war! In order to help out, simply you /distract [name] to keep someone from doing their job!",
+			"actions" : {
+				"night" : {
+					"distract" : {
+						"target" : "AnyButSelf",
+						"common" : "Self",
+						"priority" : 3,
+						"distractmsg" : "Aww, an adorable little cake! Wait, what?",
+						"teammsg" : "Your partner found some angel food cake so you decided to join him!"
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},{
+			"role": "hades",
+			"translation": "Hades",
+			"side": "underworld",
+			"info": "Can kill one person during the night (shared with team, cannot be haxed). Cannot be nightkilled, distracted, or converted. Gains an additional .5 votes for every Human that dies (caps at 5.5). Sided with The Underworld.",
+			"help": "You are Hades, ruler of the Underworld and professional soul hoarder! When you're not dealing with that winged nuisance named Pit, you're going around and using your troops to destroy human towns in order to collect souls. In this battle, it's no different! You share a nightkill with your team (but you using it won't get you haxed), can't be killed by any of your pathetic opponents during the night, and can't be converted by that nasty Chaos Kin. In addition, for every Human that dies, you gain half a vote! You currently have 1 vote. (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 16,
+						"hide" : true,
+						"broadcast": "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Hades) has decided to kill ~Target~!",
+						"msg": "Something from below grabbed you, dragging you to the Underworld!"
+					}
+				},
+				"convert": {
+					"mode": "ignore"
+				},
+				"kill" : {
+					"mode" : "ignore"
+				},
+				"distract" : {
+					"mode" : "ignore",
+					"msg" : "~Distracter~ came to you last night, but you just laughed it off!"
+				},
+				"avoidHax" : ["kill"],
+                	 	"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, 		{
+			"hide": true,
+			"role": "hades2",
+			"translation": "Hades",
+			"side": "underworld",
+			"help": "You are Hades, ruler of the Underworld and professional soul hoarder! When you're not dealing with that winged nuisance named Pit, you're going around and using your troops to destroy human towns in order to collect souls. In this battle, it's no different! You share a nightkill with your team (but you using it won't get you haxed), can't be killed by any of your pathetic opponents during the night, and can't be converted by that nasty Chaos Kin. In addition, for every Nutski that dies, you gain a vote! You currently have 1.5 votes. (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"vote": 1.5,
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 16,
+						"hide" : true,
+						"broadcast": "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Hades) has decided to kill ~Target~!",
+						"msg": "Something from below grabbed you, dragging you to the Underworld!"
+					}
+				},
+				"convert": {
+					"mode": "ignore"
+				},
+				"kill" : {
+					"mode" : "ignore"
+				},
+				"distract" : {
+					"mode" : "ignore",
+					"msg" : "~Distracter~ came to you last night, but you just laughed it off!"
+				},
+				"avoidHax" : ["kill"],
+                	 	"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, 
+		{
+			"hide": true,
+			"role": "hades3",
+			"translation": "Hades",
+			"side": "underworld",
+			"help": "You are Hades, ruler of the Underworld and professional soul hoarder! When you're not dealing with that winged nuisance named Pit, you're going around and using your troops to destroy human towns in order to collect souls. In this battle, it's no different! You share a nightkill with your team (but you using it won't get you haxed), can't be killed by any of your pathetic opponents during the night, and can't be converted by that nasty Chaos Kin. In addition, for every Nutski that dies, you gain a vote! You currently have 2 votes. (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"vote": 2,
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 16,
+						"hide" : true,
+						"broadcast": "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Hades) has decided to kill ~Target~!",
+						"msg": "Something from below grabbed you, dragging you to the Underworld!"
+					}
+				},
+				"convert": {
+					"mode": "ignore"
+				},
+				"kill" : {
+					"mode" : "ignore"
+				},
+				"distract" : {
+					"mode" : "ignore",
+					"msg" : "~Distracter~ came to you last night, but you just laughed it off!"
+				},
+				"avoidHax" : ["kill"],
+                	 	"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, 
+		{
+			"hide": true,
+			"role": "hades4",
+			"translation": "Hades",
+			"side": "underworld",
+			"help": "You are Hades, ruler of the Underworld and professional soul hoarder! When you're not dealing with that winged nuisance named Pit, you're going around and using your troops to destroy human towns in order to collect souls. In this battle, it's no different! You share a nightkill with your team (but you using it won't get you haxed), can't be killed by any of your pathetic opponents during the night, and can't be converted by that nasty Chaos Kin. In addition, for every Nutski that dies, you gain a vote! You currently have 2.5 votes. (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"vote": 2.5,
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 16,
+						"hide" : true,
+						"broadcast": "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Hades) has decided to kill ~Target~!",
+						"msg": "Something from below grabbed you, dragging you to the Underworld!"
+					}
+				},
+				"convert": {
+					"mode": "ignore"
+				},
+				"kill" : {
+					"mode" : "ignore"
+				},
+				"distract" : {
+					"mode" : "ignore",
+					"msg" : "~Distracter~ came to you last night, but you just laughed it off!"
+				},
+				"avoidHax" : ["kill"],
+                	 	"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, 
+		{
+			"hide": true,
+			"role": "hades5",
+			"translation": "Hades",
+			"side": "underworld",
+			"help": "You are Hades, ruler of the Underworld and professional soul hoarder! When you're not dealing with that winged nuisance named Pit, you're going around and using your troops to destroy human towns in order to collect souls. In this battle, it's no different! You share a nightkill with your team (but you using it won't get you haxed), can't be killed by any of your pathetic opponents during the night, and can't be converted by that nasty Chaos Kin. In addition, for every Nutski that dies, you gain a vote! You currently have 3 votes. (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"vote": 3,
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 16,
+						"hide" : true,
+						"broadcast": "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Hades) has decided to kill ~Target~!",
+						"msg": "Something from below grabbed you, dragging you to the Underworld!"
+					}
+				},
+				"convert": {
+					"mode": "ignore"
+				},
+				"kill" : {
+					"mode" : "ignore"
+				},
+				"distract" : {
+					"mode" : "ignore",
+					"msg" : "~Distracter~ came to you last night, but you just laughed it off!"
+				},
+				"avoidHax" : ["kill"],
+                	 	"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, 
+		{
+			"hide": true,
+			"role": "hades6",
+			"translation": "Hades",
+			"side": "underworld",
+			"help": "You are Hades, ruler of the Underworld and professional soul hoarder! When you're not dealing with that winged nuisance named Pit, you're going around and using your troops to destroy human towns in order to collect souls. In this battle, it's no different! You share a nightkill with your team (but you using it won't get you haxed), can't be killed by any of your pathetic opponents during the night, and can't be converted by that nasty Chaos Kin. In addition, for every Nutski that dies, you gain a vote! You currently have 3.5 votes. (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"vote": 3.5,
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 16,
+						"hide" : true,
+						"broadcast": "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Hades) has decided to kill ~Target~!",
+						"msg": "Something from below grabbed you, dragging you to the Underworld!"
+					}
+				},
+				"convert": {
+					"mode": "ignore"
+				},
+				"kill" : {
+					"mode" : "ignore"
+				},
+				"distract" : {
+					"mode" : "ignore",
+					"msg" : "~Distracter~ came to you last night, but you just laughed it off!"
+				},
+				"avoidHax" : ["kill"],
+                	 	"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, 
+		{
+			"hide": true,
+			"role": "hades7",
+			"translation": "Hades",
+			"side": "underworld",
+			"help": "You are Hades, ruler of the Underworld and professional soul hoarder! When you're not dealing with that winged nuisance named Pit, you're going around and using your troops to destroy human towns in order to collect souls. In this battle, it's no different! You share a nightkill with your team (but you using it won't get you haxed), can't be killed by any of your pathetic opponents during the night, and can't be converted by that nasty Chaos Kin. In addition, for every Nutski that dies, you gain a vote! You currently have 4 votes. (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"vote": 4,
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 16,
+						"hide" : true,
+						"broadcast": "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Hades) has decided to kill ~Target~!",
+						"msg": "Something from below grabbed you, dragging you to the Underworld!"
+					}
+				},
+				"convert": {
+					"mode": "ignore"
+				},
+				"kill" : {
+					"mode" : "ignore"
+				},
+				"distract" : {
+					"mode" : "ignore",
+					"msg" : "~Distracter~ came to you last night, but you just laughed it off!"
+				},
+				"avoidHax" : ["kill"],
+                	 	"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, 
+		{
+			"hide": true,
+			"role": "hades8",
+			"translation": "Hades",
+			"side": "underworld",
+			"help": "You are Hades, ruler of the Underworld and professional soul hoarder! When you're not dealing with that winged nuisance named Pit, you're going around and using your troops to destroy human towns in order to collect souls. In this battle, it's no different! You share a nightkill with your team (but you using it won't get you haxed), can't be killed by any of your pathetic opponents during the night, and can't be converted by that nasty Chaos Kin. In addition, for every Nutski that dies, you gain a vote! You currently have 4.5 votes. (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"vote": 4.5,
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 16,
+						"hide" : true,
+						"broadcast": "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Hades) has decided to kill ~Target~!",
+						"msg": "Something from below grabbed you, dragging you to the Underworld!"
+					}
+				},
+				"convert": {
+					"mode": "ignore"
+				},
+				"kill" : {
+					"mode" : "ignore"
+				},
+				"distract" : {
+					"mode" : "ignore",
+					"msg" : "~Distracter~ came to you last night, but you just laughed it off!"
+				},
+				"avoidHax" : ["kill"],
+                	 	"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, 
+		{
+			"hide": true,
+			"role": "hades9",
+			"translation": "Hades",
+			"side": "underworld",
+			"help": "You are Hades, ruler of the Underworld and professional soul hoarder! When you're not dealing with that winged nuisance named Pit, you're going around and using your troops to destroy human towns in order to collect souls. In this battle, it's no different! You share a nightkill with your team (but you using it won't get you haxed), can't be killed by any of your pathetic opponents during the night, and can't be converted by that nasty Chaos Kin. In addition, for every Nutski that dies, you gain a vote! You currently have 9 votes. (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"vote": 5,
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 16,
+						"hide" : true,
+						"broadcast": "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Hades) has decided to kill ~Target~!",
+						"msg": "Something from below grabbed you, dragging you to the Underworld!"
+					}
+				},
+				"convert": {
+					"mode": "ignore"
+				},
+				"kill" : {
+					"mode" : "ignore"
+				},
+				"distract" : {
+					"mode" : "ignore",
+					"msg" : "~Distracter~ came to you last night, but you just laughed it off!"
+				},
+				"avoidHax" : ["kill"],
+                	 	"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, 
+		{
+			"hide": true,
+			"role": "hades10",
+			"translation": "Hades",
+			"side": "underworld",
+			"help": "You are Hades, ruler of the Underworld and professional soul hoarder! When you're not dealing with that winged nuisance named Pit, you're going around and using your troops to destroy human towns in order to collect souls. In this battle, it's no different! You share a nightkill with your team (but you using it won't get you haxed), can't be killed by any of your pathetic opponents during the night, and can't be converted by that nasty Chaos Kin. In addition, for every Nutski that dies, you gain a vote! You currently have 10 votes. (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"vote": 5.5,
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 16,
+						"hide" : true,
+						"broadcast": "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Hades) has decided to kill ~Target~!",
+						"msg": "Something from below grabbed you, dragging you to the Underworld!"
+					}
+				},
+				"convert": {
+					"mode": "ignore"
+				},
+				"kill" : {
+					"mode" : "ignore"
+				},
+				"distract" : {
+					"mode" : "ignore",
+					"msg" : "~Distracter~ came to you last night, but you just laughed it off!"
+				},
+				"avoidHax" : ["kill"],
+                	 	"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "pandora",
+			"translation" : "Pandora",
+			"info" : "Shares a nightkill with her team. Converts to Amazon Pandora when Pittoo dies. Gets hax on stalk. Sided with the Underworld Army.",
+			"side" : "underworld",
+			"help" : "You are Pandora! While you aren't terribly powerful in your normal form, you convert into Amazon Pandora when Pittoo dies! Be sure to try and find him! Besides that, you share a kill with your teammates using /kill [name]. However, let Hades kill if he is alive because he can't be distracted or haxed! (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Pandora) has decided to kill ~Target~!"
+					}
+				},
+				"hax" : {
+					"stalk" : {
+						"revealTeam" : 0.1,
+						"revealPlayer" : 0.05
+					}
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "amazonpandora",
+			"translation" : "Amazon Pandora",
+			"info" : "Gets a nonrevealing daykill. Can stalk during the night. Sided with the Underworld Army.",
+			"side" : "underworld",
+			"help" : "You are Amazon Pandora! Time to end this war! You can use /kill [name] during standby to kill one person. You won't be revealed. Besides that, you can stalk with /stalk at night too. Rampage through the day with your long-forgetten body! (Hint: Use /tt to talk to your team!)",
+                        "players": "5-10 Players; Convert Only",
+			"actions" : {
+                		"teamUtilities": true,
+				"night" : {
+					"stalk" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 99,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Amazon Pandora) has decided to stalk ~Target~!"
+					}
+				},
+				"standby" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"msg" : "You can kill now using /kill [name]. You won't be revealed!",
+						"killmsg" : "±Amazon: A heart-shaped arrow flies from the distance and hits ~Target~, piercing their heart. Before anyone can catch her, Amazon Pandora warps away. Her seductive laugh echoes through everyone's ears."
+						}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},  {
+			"role" : "twinbellows",
+			"translation" : "Twinbellows",
+			"info" : "Can kill one person during the day (does not reveal user). Can expose one person during the day (does not reveal user). Sided with the Underworld Army.",
+			"side" : "underworld",
+			"help" : "You are the Twinbellows the Ferocious, guard dog of the Underworld! Covered in flames and possessing a powerful charge alongside a loud howl, you are one nasty creature to deal with. During the day, you may use /blast [name] to get rid of an enemy! In addition, you may also use /howl [name] to expose someone for everyone to see! Keep in mind this does not reveal you. (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+                		"teamUtilities": true,
+				"standby" : {
+					"blast" : {
+						"command": "kill",
+						"target" : "AnyButTeam",
+						"msg" : "You can kill now using /blast [name]. You won't be revealed!",
+						"killmsg" : "±Twinbellows: Although ~Target~ tried their hardest, they just could not overcome the deadly flames of Twinbellows..."
+					},
+					"howl": {
+						"command": "expose",
+						"target" : "AnyButTeam",
+						"msg" : "You can also use /howl [name], which won't expose you either!",
+						"exposemsg": "±Twinbellows: Twinbellows let out a mighty howl, deafening poor ~Target~ (~Role~)..."
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},
+  {
+			"role" : "twinbellows2",
+			"translation" : "Twinbellows",
+			"info" : "Can kill one person during the night (shared with team). Can protect one person during the night, once per game. Can expose one person during the day (does not reveal user). Immediately dies when distracted. Sided with the Underworld Army.",
+			"side" : "underworld",
+			"help" : "You are the Twinbellows the Ferocious, guard dog of the Underworld! Covered in flames and possessing a powerful charge alongside a loud howl, you are one nasty creature to deal with. During the night, you may /protect someone, but you can only do this once for the entire game. You also share a /kill with your team. During the day, you may use /howl [name] to expose someone for everyone to see! Keep in mind this does not reveal you. You do have one weakness though, and that's cake. If you find any, you'll forget this whole thing and run off! (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+                		"teamUtilities": true,
+                		"distract": {
+                    			"mode": "die",
+                    			"msg": "'Is that... cake?!? YESSS!!!' you shouted in your mind as you chased after it, leaving the game!",
+                    			"targetmsg": "All you did was float by this one fiery dog and now he's running off... weird."
+                		},
+                		"night": {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Twinbellows) has decided to kill ~Target~!"
+					},
+					"protect" : {
+						"target" : "AnyButSelf",
+						"common" : "Role",
+						"priority" : 5,
+						"charges": 1,
+						"broadcast" : "role"
+					}
+				},
+				"standby" : {
+					"howl": {
+						"command": "expose",
+						"target" : "AnyButTeam",
+						"msg" : "You can also use /howl [name], which won't expose you either!",
+						"exposemsg": "±Twinbellows: Twinbellows let out a mighty howl, deafening poor ~Target~ (~Role~)..."
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},
+		{
+			"role": "thanatos",
+			"translation": "Thanatos",
+			"info": "Can convert into the Doll, Bat, Pot, Altas, and Weapon forms of Thanatos. Has a vote of 2. Sided with the Underworld Army.",
+			"side": "underworld",
+			"help": "You are Thanatos, the hilarious God of Death! While one would expect someone with a title like yours to be very dark and depressing, you're the exact opposite, being a rather flamboyant being that appears to actually enjoy his job. What you truly possess in power, however, is your shapeshifting capabilities. During the night, you may use /doll (lets you evade a few kills but gives you a voteshield per hit), /bat (one-time poison), /pot (evade all nightkills, but don't nightkill and you gain votes at the sacrifice of evasion), /atlas (votebomb), or /weapon (one-time daykill) to take on the forms of Russian Nesting Dolls, bats, a pot, the Atlas Foot, and the Magnus Club with spears, respectively. Choice is yours, and don't worry about nightkills; they all have one.",
+			"actions": {
+				"vote": 2,
+				"night": {
+					"doll": {
+						"command" : "convert",
+						"target" : "OnlySelf",
+						"common" : "Self",
+						"hide" : true,
+						"priority" : 0,
+						"restrict" : ["bat", "pot", "atlas", "weapon"],
+						"newRole" : "thanatos_doll",
+						"canConvert" : ["thanatos"],
+						"convertmsg" : "Thanatos transformed into some Russian Nesting Dolls to give out an additional kill!",
+						"silent" : false
+					},
+					"bat": {
+						"command" : "convert",
+						"target" : "OnlySelf",
+						"common" : "Self",
+						"hide" : true,
+						"priority" : 0,
+						"restrict" : ["doll", "pot", "atlas", "weapon"],
+						"newRole" : "thanatos_bat",
+						"canConvert" : ["thanatos"],
+						"convertmsg" : "Thanatos transformed into some bats to gain the capability to poison!",
+						"silent" : false
+					},
+					"pot": {
+						"command" : "convert",
+						"target" : "OnlySelf",
+						"common" : "Self",
+						"hide" : true,
+						"priority" : 0,
+						"restrict" : ["bat", "doll", "atlas", "weapon"],
+						"newRole" : "thanatos_pot",
+						"canConvert" : ["thanatos"],
+						"convertmsg" : "Thanatos transformed into a pot to become immune to nightkills!",
+						"silent" : false
+					},
+					"atlas": {
+						"command" : "convert",
+						"target" : "OnlySelf",
+						"common" : "Self",
+						"hide" : true,
+						"priority" : 0,
+						"restrict" : ["bat", "pot", "doll", "weapon"],
+						"newRole" : "thanatos_atlas",
+						"canConvert" : ["thanatos"],
+						"convertmsg" : "Thanatos transformed into the Atlas Foot to take someone out if voted for!",
+						"silent" : false
+					},
+					"weapon": {
+						"command" : "convert",
+						"target" : "OnlySelf",
+						"common" : "Self",
+						"hide" : true,
+						"priority" : 0,
+						"restrict" : ["bat", "pot", "atlas", "doll"],
+						"newRole" : "thanatos_weapon",
+						"canConvert" : ["thanatos"],
+						"convertmsg" : "Thanatos transformed into the Magnus Club and a few spears to gain a daykill!",
+						"silent" : false
+					}
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},
+		{
+			"role": "thanatos_doll",
+			"translation": "Thanatos (Doll)",
+			"info": "Can kill during the night with a one-time /kill2, which outspeeds almost all distractors. Sided with the Underworld Army.",
+			"side": "underworld",
+			"help": "For this battle, you have decided to take the form of Russian Nesting Dolls! In this form, not only do you have a /kill that you can use, but you also have a one-time /cease command, which outspeeds all the distracts except for a Stolen Soul's /meet.",
+			"actions": {
+				"night" : {
+					"kill": {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Thanatos) has decided to kill ~Target~!"
+					},
+					"cease": {
+						"command": "kill",
+						"target" : "AnyButTeam",
+						"common" : "Self",
+						"priority" : 2,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Thanatos) has to end ~Target~'s life!"
+					}
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},
+		{
+			"role": "thanatos_bat",
+			"translation": "Thanatos (Bat)",
+			"info": "Can kill one person during the night. Can poison one person during the entire game. Sided with the Underworld Army.",
+			"side": "underworld",
+			"help": "For this battle, you have decided to take on the form of bats! Alongside your /kill, you have a one-time /poison command you can use. Aim carefully!",
+			"actions": {
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				},
+				"night" : {
+					"kill": {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Thanatos) has decided to kill ~Target~!"
+					},
+					"poison": {
+						"target": "AnyButTeam",
+						"common": "Self",
+						"priority": 39,
+						"broadcast": "team",
+						"broadcastmsg": "±Hades: Your teammate ~Player~ (Thanatos) has decided to poison ~Target~!",
+						"charges": 1
+					}
+				}
+			}
+		},
+		{
+			"role": "thanatos_pot",
+			"translation": "Thanatos (Pot)",
+			"info": "Can either kill during the night and keep immunity to nightkills OR choose not to kill for an additional vote and 50% loss of nightkill evasion (caps at 3 votes and no evade). Sided with the Underworld Army.",
+			"side": "underworld",
+			"help": "For this battle, you have chosen to take on the form of a pot! Currently, you are immune to nightkills and have a nightkill of your own, but you can choose not to kill in order to gain a vote at the price of some evasion! If you kill as this does increase, you'll be dropped back down to 1 vote with 100% evasion.",
+			"actions": {
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				},
+				"kill": {
+					"mode": "ignore"
+				},		
+				"night" : {
+					"kill": {
+						"command": ["copy", "kill"],
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Thanatos) has decided to kill ~Target~!",
+						"copyAs": "thanatos_potb",
+						"silent": true,
+						"silentCopy": true
+					}
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 1,
+						"cursedRole": "thanatos_pot2"
+					}
+				}
+			}
+		},
+		{
+			"role": "thanatos_potb",
+			"translation": "Thanatos (Pot)",
+			"hide": true,
+			"side": "underworld",
+			"help": "For this battle, you have chosen to take on the form of a pot! Currently, you are immune to nightkills and have a nightkill of your own, but you can choose not to kill in order to gain a vote at the price of some evasion! If you kill as this does increase, you'll be dropped back down to 1 vote with 100% evasion.",
+			"actions": {
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				},
+				"kill": {
+					"mode": "ignore"
+				},		
+				"night" : {
+					"kill": {
+						"command": ["copy", "kill"],
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Thanatos) has decided to kill ~Target~!",
+						"copyAs": "thanatos_potb",
+						"silent": true,
+						"silentCopy": true
+					}
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"cursedRole": "thanatos_pot2"
+					}
+				}
+			}
+		},
+		{
+			"role": "thanatos_pot2",
+			"translation": "Thanatos (Pot)",
+			"hide": true,
+			"side": "underworld",
+			"help": "For this battle, you have chosen to take on the form of a pot! Currently, you evade nightkills half the time, have 2 votes, and have a nightkill of your own, but you can choose not to kill in order to gain a vote at the price of some evasion! If you kill as this does increase, you'll be dropped back down to 1 vote with 100% evasion.",
+			"actions": {
+				"vote": 2,
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				},
+				"kill": {
+					"mode": {
+						"evadeChance": 0.5
+					}
+				},
+				"night" : {
+					"kill": {
+						"command": ["copy", "kill"],
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Thanatos) has decided to kill ~Target~!",
+						"copyAs": "thanatos_potb",
+						"silent": true,
+						"silentCopy": true
+					}
+				},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 1,
+						"cursedRole": "thanatos_pot3"
+					}
+				}
+			}
+		},
+		{
+			"role": "thanatos_pot3",
+			"translation": "Thanatos (Pot)",
+			"hide": true,
+			"side": "underworld",
+			"help": "For this battle, you have chosen to take on the form of a pot! Currently, you no longer evade nightkills, have 3 votes, and have a nightkill of your own! If you choose to kill, you'll be dropped back down to one vote with 100% nightkill evasion.",
+			"actions": {
+				"vote": 3,
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				},
+				"night" : {
+					"kill": {
+						"command": ["copy", "kill"],
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Thanatos) has decided to kill ~Target~!",
+						"copyAs": "thanatos_potb",
+						"silent": true,
+						"silentCopy": true
+					}
+				}
+			}
+		},
+		{
+			"role": "thanatos_atlas",
+			"translation": "Thanatos (Atlas)",
+			"info": "Can kill one person the night. Kills the first person that votes him out. Sided with the Underworld Army.",
+			"side": "underworld",
+			"help": "For this battle, you have chosen to take on the form of the Atlas Foot! On top of your kill during the night, you also kill the first person that votes you out so go crazy with those arrows!",
+			"actions": {
+				"night" : {
+					"kill": {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Thanatos) has decided to kill ~Target~!"
+					}
+				},
+				"lynch": {
+					"killVoters": {
+						"first": 1,
+						"message": "~Target~ was so dedicated to taking down Thanatos that they were defeated in the process!"
+					}
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},
+		{
+			"role": "thanatos_weapon",
+			"translation": "Thanatos (Weapons)",
+			"info": "Can kill one person during the night. Has a single daykill to use. Sided with the Underworld Army.",
+			"side": "underworld",
+			"help": "For this fight, you have chosen to take on the form of the Magnus Club and some spears! On top of your kill at night, you have a single daykill at your disposal, which you can use with /spear [name].",
+			"actions": {
+				"night" : {
+					"kill": {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Thanatos) has decided to kill ~Target~!"
+					}
+				},
+				"standby" : {
+					"spear" : {
+						"command": "kill",
+						"target" : "AnyButTeam",
+						"msg" : "You can kill now using /spear [name]. You won't be revealed!",
+						"killmsg" : "±Thanatos: A spear flies out of nowhere and strikes ~Target~ in the chest, defeating them instantly!",
+						"charges": 1
+					}
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},
+ 		{
+			"role" : "dummy2",
+			"translation" : "Thanatos",
+			"info" : "If you somehow get this role, please contact Joeypals at http://pokemon-online.eu/forums/member.php?24510-Joeypals!!",
+			"hide" : true,
+			"side" : "underworld",
+			"help" : "If you somehow get this role, please contact Joeypals at http://pokemon-online.eu/forums/member.php?24510-Joeypals!!",
+			"actions" : {
+				"initialCondition" : {
+					"poison" : {
+						"count" : 1,
+						"poisonDeadMessage" : "Time is up!"
+					}
+				},
+				"night" : {
+
+					"convert" : {
+						"target" : "OnlySelf",
+						"common" : "Self",
+						"newRole" : "thanatos",
+						"priority" : 0
+					}
+				}
+			}
+		},
+		{
+			"role": "reaper",
+			"translation": "Great Reaper",
+			"info": "Can convert one person during the night (50% chance of working). Can kill one person during the night. Sided with the Underworld Army.",
+			"side": "underworld",
+			"help": "You are the Great Reaper, leader of the Reapers! Your kind turns to you to figure out what to do, despite having a relatively simple job of just carrying souls to the Underworld. However, in this case, you're needed for your power, especially your scythe. During the night, type /scythe [name] to take someone out OR convert them into a Reapette! Keep in mind that while your /kill is separate, it is extremely slow.",
+			"actions": {
+				"night": {
+					"scythe": {
+						"command": "convert",
+						"failChance": 0.5,
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 78,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "±Hades: Your teammate ~Player~ (Great Reaper) has decided to strike ~Target~ with his scythe!",
+						"newRole": {
+							"reapette1.1": ["human", "ghuman", "ghuman2", "fhuman", "fhuman2", "pit", "palutena", "magnus", "strongarm", "knight", "centurion", "dyntos", "dyntos_light", "dyntos_shield", "dyntos_pegasus", "dyntos_sacred", "souflee", "viridi", "phosphora", "cragalanche", "toxiecap", "arlon", "nutski", "chaoskin", "soul", "medusa", "pyrrhon", "pittoo"]
+						},		
+						"silent": false,
+						"convertmsg": "~Old~ got hit by the Great Reaper's scythe so hard his powers turned them into a Reapette!"
+					},
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Great Reaper) has decided to kill ~Target~!"
+					}
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},
+		{
+			"role": "reapette1.1",
+			"translation": "Reapette",
+			"info": "Shares a nightkill with the Great Reaper (activates one turn later). Sided with the Underworld Army.",
+			"side": "underworld",
+			"help": "If you're seeing this, then the Great Reaper turned you into a Reapette! As a Reapette, you exist to help the Reapers in carrying souls to the Underworld and, ultimately, the Great Reaper himself. However, what you're here for all lies in that scythe you're holding. The Great Reaper should generally use /scythe since it also has a convert chance, but feel free to use it if he's gone... after a night, that is. When you get the chance to though, slice away!",
+			"actions": {
+				"initialCondition" : {
+					"curse" : {
+						"curseCount" : 1,
+						"cursedRole" : "reapette1.2"
+					}
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},
+		{
+			"role": "reapette1.2",
+			"translation": "Reapette",
+			"info": "Shares a nightkill with the Great Reaper (activates one turn later). Sided with the Underworld Army.",
+			"side": "underworld",
+			"help": "If you're seeing this, then the Great Reaper turned you into a Reapette! As a Reapette, you exist to help the Reapers in carrying souls to the Underworld and, ultimately, the Great Reaper himself. However, what you're here for all lies in that scythe you're holding. The Great Reaper should generally use /scythe since it also has a convert chance, but feel free to use it if he's gone... after a night, that is. When you get the chance to though, slice away!",
+			"actions": {
+				"night": {
+					"scythe": {
+						"command": "kill",
+						"target": "AnyButTeam",
+						"common": "Team",
+						"priority": 78,
+						"hide": true,
+						"broadcast": "team",
+						"broadcastmsg": "±Hades: Your teammate ~Player~ (Reapette) has decided to strike ~Target~ with their scythe!"
+					}
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},
+ 		{
+			"role" : "dummy3",
+			"translation" : "Great Reaper/Reapettes",
+			"info" : "If you somehow get this role, please contact Joeypals at http://pokemon-online.eu/forums/member.php?24510-Joeypals!!",
+			"hide" : true,
+			"side" : "underworld",
+			"help" : "If you somehow get this role, please contact Joeypals at http://pokemon-online.eu/forums/member.php?24510-Joeypals!!",
+			"actions" : {
+				"initialCondition" : {
+					"poison" : {
+						"count" : 1,
+						"poisonDeadMessage" : "Time is up!"
+					}
+				},
+				"night" : {
+					"scythe" : {
+						"command": "kill",
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 78
+					}
+				}
+			}
+		},
+		{
+			"role": "gaol",
+			"translation": "Dark Lord Gaol",
+			"info": "Shares a nightkill with her team. Kills distracters. Dies when protected. Sided with the Underworld Army.",
+			"side": "underworld",
+			"help": "Originally a mercenary that worked with Magnus to take down the Underworld Army, you were captured and turned into a commander of the Underworld Army after being put into the cursed armor of a dark lord! You are a very tough competitor, as not only do you share a kill with your team, but you also kill anyone that tries to distract you! However, if you're protected by anyone, you'll end up quitting as the only thing your mind will come across is Magnus and you'll shut down. (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Dark Lord Gaol) has decided to kill ~Target~!"
+					}
+				},
+				"distract": {
+					"mode": "ChangeTarget",
+					"hookermsg": "You tried getting in Gaol's way, but you just weren't prepared for that fight.",
+					"msg": "Someone tried distracting you from your goal... what a pathetic being."
+				},
+				"protect": {
+					"mode": "die",
+					"msg": "As you fought, someone tried saving you from a blast... the only thing that could cross your mind is Magnus and you gave up to your own emotions.",
+					"targetmsg": "You were trying to be nice, but apparently this guy doesn't accept favors well... is he shutting down?"
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},
+		{
+			"role": "gaol2",
+			"translation": "Dark Lord Gaol",
+			"info": "Shares a nightkill with her team. Kills distracters. Sided with the Underworld Army.",
+			"side": "underworld",
+			"help": "Originally a mercenary that worked with Magnus to take down the Underworld Army, you were captured and turned into a commander of the Underworld Army after being put into the cursed armor of a dark lord! You are a very tough competitor, as not only do you share a kill with your team, but you also kill anyone that tries to distract you! (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Dark Lord Gaol) has decided to kill ~Target~!"
+					}
+				},
+				"distract": {
+					"mode": "ChangeTarget",
+					"hookermsg": "You tried getting in Gaol's way, but you just weren't prepared for that fight.",
+					"msg": "Someone tried distracting you from your goal... what a pathetic being."
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},
+		{
+			"role": "bhewdraw",
+			"translation": "Blue Hewdraw",
+			"info": "Shares a nightkill with his team. Has a one-use piercing kill. Sided with the Underworld Army.",
+			"side": "underworld",
+			"help": "You are current head in charge of the Hewdraw body! You're the calmest and most collected of the three, which ultimately helps you in focusing on defeating Pit. During the night, while you share a kill with your team, you also have a one-time /chomp command, which will pierce protection. Get chomping!",
+			"actions": {
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Blue Hewdraw) has decided to kill ~Target~!"
+					},
+					"chomp": {
+						"command": "kill",
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 16,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Blue Hewdraw) has decided to kill ~Target~!"
+					}
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},
+		{
+			"role": "phewdraw",
+			"translation": "Purple Hewdraw",
+			"info": "Shares a nightkill with his team. Can inspect one person during the night. Sided with the Underworld Army.",
+			"side": "underworld",
+			"help": "You are the current head in charge of the Hewdraw body! While you are the smartest of the three heads, that doesn't mean you don't love starting arguments! That being said, along with sharing a /kill with your team, you also have an /inspect which you can use during the night to see who someone is.",
+			"actions": {
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Purple Hewdraw) has decided to kill ~Target~!"
+					},
+					"inspect": {
+						"target" : "AnyButSelf",
+						"common" : "Role",
+						"priority" : 76
+					}
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},
+		{
+			"role": "vhewdraw",
+			"translation": "Violet Hewdraw",
+			"info": "Shares a nightkill with his team. Can stalk someone during the night. Sided with the Underworld Army.",
+			"side": "underworld",
+			"help": "You are the current head in charge of the Hewdraw body! Your main passions in life are... well, hunting for food. That being said, along with the /kill you share with you team, you also have a /stalk that you can use to see what someone is doing. Who knows, maybe they have food!",
+			"actions": {
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Violet Hewdraw) has decided to kill ~Target~!"
+					},
+					"stalk" : {
+						"target" : "AnyButSelf",
+						"common" : "Self",
+						"priority" : 98
+					}
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},
+		{
+			"role": "mimicutie",
+			"translation": "Mimicutie",
+			"info": "Shares a nightkill with its team. Bombs nightkills and daykills. Sided with the Underworld Army.",
+			"side": "underworld",
+			"help": "You're a treasure chest... psyche! You're actually an enemy disguised as a treasure chest with legs that can move very swiftly and kick alarmingly hard for such an alluring look. Scary, right? Anywho, while you're not really aligned with anyone, Hades does put you places to screw with Pit so ultimately your allegiance lies with him. While you share a /kill with your team during the night, you also bomb nightkills and daykills with your sheer power!",
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Mimicutie) has decided to kill ~Target~!"
+					}
+				},
+				"kill" : {
+					"mode" : "killattacker",
+					"msg": "Yes, a treasure chest! Wait, it's sprouting legs... Welp, can't escape that. Bye!"
+				},
+				"vote" : 0.5,
+				"daykill": "bomb",
+                "daykillrevengemsg": "±Mimicutie: ~Self~ bent down to open a treasure chest when it suddenly sprouted legs! ~Self~ ended up taking out the nasty attacker, ~Target~, but at the expense of ~Self~'s own life!",
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},
+		{
+			"role" : "merenguy",
+			"translation" : "Underworld Merenguy",
+			"info" : "Shares a nightkill with his team. Can distract one person during the night. Sided with the Underworld Army.",
+			"side" : "underworld",
+			"help" : "You are the Underworld Merenguy! You can use /kill [name] during the night! You share this with your team, and you should let Hades kill while he's alive. Besides that, you can use /distract [name] during the night to prevent them from doing anything! (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Underworld Merenguy) has decided to kill ~Target~!"
+					},
+					"distract" : {
+						"target" : "AnyButTeam",
+						"common" : "Self",
+						"priority" : 3,
+						"distractmsg" : "±Hades: The Underworld Merenguy does a dance, and you couldn't turn away! You couldn't do anything this night.",
+						"teammsg" : "±Hades: Your partner mesmerized by the Underworld Merenguy, and couldn't do anything last night."
+					}
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "eggplantwizard",
+			"translation" : "Eggplant Wizard",
+			"info" : "Shares a nightkill with his team. Can convert one person during every third night. Sided with the Underworld Army.",
+			"side" : "underworld",
+			"help" : "You are the Eggplant Wizard! You can use /kill [name] during the night! You share this with your team, and you should let Hades kill while he's alive. You can also use /convert [name] to turn someone into an eggplant! However, because your power is so strong, it only works every third night! (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+                                "onDeath": {
+                                "killRoles": [
+                                     "eggplant"
+                                   ],
+                                   "killmsg": "Without the Wizard there to control them, ~Target~ died too!"
+                                },
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"broadcast" : "team",
+						"hide" : true,
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Eggplant Wizard) has decided to kill ~Target~!"
+					},
+					"convert" : {
+						"command" : ["massconvert", "convert"],
+						"target" : "AnyButTeam",
+						"common" : "Self",
+						"priority" : 69,
+						"newRole" : "eggplant",
+						"silent" : false,
+						"convertmsg" : "Someone has been changed into an Eggplant. Poor ~Old~.",
+						"massconvertmsg" : "As Pittoo falls, a flash of light slowly emerges from his chest. It flies far away to Pandora, who is converted into Amazon Pandora! Beware her power!",
+						"recharge" : 3,
+						"convertRoles" : {
+							"pandora" : "amazonpandora"
+						}
+					}
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "eggplant",
+			"translation" : "Eggplant",
+			"info" : "Can evade 15% of nightkills. Has a +999 voteshield. Sided with the Underworld Army.",
+			"side" : "underworld",
+			"help" : "You are an Eggplant! That darn Eggplant Wizard actually hit you... Now you can't do anything! As since your only defence is running away you have a 15% chance to evade nightkills. That being said, because you're such an easy target, one arrow shot in your direction means instant death! (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+                                "voteshield": 999,
+                		"teamUtilities": true,
+				"kill" : {
+					"mode" : {
+						"evadeChance" : 0.15
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "monoeye",
+			"translation" : "Monoeye",
+			"info" : "Shares a nightkill with its team. Sided with the Underworld Army. (Hint: Use /tt to talk to your team!)",
+			"side" : "underworld",
+			"help" : "You are a Monoeye! You are a normal Underworld grunt, and really don't have much power. You do share a kill with your team using /kill [name] though!",
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Monoeye) has decided to kill ~Target~!"
+					}
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "skuttler",
+			"translation" : "Skuttler",
+			"info" : "Shares a nightkill with its team. Has -1 votes. Sided with the Underworld Army.",
+			"side" : "underworld",
+			"help" : "You are a Skuttler! You are a normal Underworld grunt, and really don't have much power. You do share a kill with your team using /kill [name] though! You also have -1 vote, so use that in strategic ways to help your team! (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"broadcast" : "team",
+						"hide" : true,
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Skuttler) has decided to kill ~Target~!"
+					}
+				},
+                		"teamUtilities": true,
+				"vote" : -1,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "under",
+			"translation" : "Underworld",
+			"info" : "If you somehow get this role, please contact Joeypals at http://pokemon-online.eu/forums/member.php?24510-Joeypals!!",
+			"hide" : true,
+			"side" : "underworld",
+			"help" : "If you somehow get this role, please contact Joeypals at http://pokemon-online.eu/forums/member.php?24510-Joeypals!!",
+			"actions" : {
+				"initialCondition" : {
+					"poison" : {
+						"count" : 1,
+						"poisonDeadMessage" : "Time is up!"
+					}
+				},
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 15,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Hades: Your teammate ~Player~ (Skuttler) has decided to kill ~Target~!"
+					}
+				}
+			}
+		}, {
+			"role" : "viridi",
+			"translation" : "Viridi",
+			"info" : "Can inspect one person during the night. Shares a kill with her team. Sided with the Forces of Nature.",
+			"side" : "fon",
+			"help" : "You are Viridi, the Goddess of Nature! The human scum have poisoned the Earth with their greed and selfishness! It is time to eliminate them and return Earth to its natural balance. You share a kill with your team using /kill [name]. You also can use /inspect [name] to find a player's identity! Bring your team to victory! (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 13,
+						"broadcast" : "team",
+						"hide" : true,
+						"broadcastmsg" : "±Viridi: Your teammate ~Player~ (Viridi) has decided to kill ~Target~!"
+					},
+					"inspect" : {
+						"target" : "AnyButTeam",
+						"common" : "Self",
+						"priority" : 77,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Viridi: Your teammate ~Player~ (Viridi) has decided to inspect ~Target~!"
+					}
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "phosphora",
+			"translation" : "Phosphora",
+			"info" : "Shares a kill with her team. Can kill every other night, which is not shared with her team. Sided with the Forces of Nature.",
+			"side" : "fon",
+			"help" : "You are Phosphora, the Goddess of Lightning! You've decided to help Viridi in her quest to make Earth natural again. You share a kill with your team using /kill [name]. You can also use /electrify [name] to kill a person every other night! This kill ignores protects, so go crazy! (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 12,
+						"broadcast" : "team",
+						"hide" : true,
+						"broadcastmsg" : "±Viridi: Your teammate ~Player~ (Phosphora) has decided to kill ~Target~!"
+					},
+					"electrify" : {
+						"command" : "kill",
+						"target" : "AnyButTeam",
+						"common" : "Self",
+						"priority" : 4,
+						"recharge" : 2,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Viridi: Your teammate ~Player~ (Phosphora) has decided to electrify ~Target~!",
+						"msg": "±Phosphora: ZAP! Maybe next time you'll watch where you're going before you try to cross Phosphora's path."
+					}
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		},{
+			"role" : "cragalanche",
+			"translation" : "Cragalanche",
+			"info" : "Can protect one person during the night. Shares a kill with its team. Bombs daykills and nightkills. Sided with the Forces of Nature.",
+			"side" : "fon",
+			"help" : "You are Cragalanche! You are basically a hunk of rock. However, you can take a ton of punishment before going down. You can protect your teammates using /protect [name]. Also, if someone tries to kill you, whether night or day, you will kill them as you die! Finally, you share a kill with your team. (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"kill" : {
+					"mode" : "killattacker",
+					"msg": "CRAGA-SMASH!"
+				},
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 13,
+						"hide" : true,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Viridi: Your teammate ~Player~ (Cragalanche) has decided to kill ~Target~!"
+					},
+					"protect" : {
+						"target" : "AnyButSelf",
+						"common" : "Self",
+						"priority" : 5
+					}
+				},
+				"daykill" : "bomb",
+				"daykillrevengemsg" : "±Cragalanche: ~Target~ tried to kill ~Self~, but as ~Self~ was dying it exploded! The rocky debris smashed ~Target~ into pieces",
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "toxiecap",
+			"translation" : "Toxiecap",
+			"side" : "fon",
+			"help" : "You are Toxiecap, poisonous jellyfish-like creature, that is working with the Forces of Nature to get rid of those disastrous humans. You can poison one person during the night with /poison. The person will then die in one more night. Because of your toxicity, you poison anyone who dares attack you during the night. Good luck! (Hint: Use /tt to talk to your team!)",
+			"info" : "Can poison one person during the night, who dies the next night. Poisons attacker if killed. Sided with the Forces of Nature.",
+			"actions" : {
+				"kill" : {
+					"mode" : "poisonattackerevenifprotected",
+					"poisonDeadMessage" : "You attacked a Toxiecap and died from a horrible poison!"
+				},
+				"night" : {
+					"poison" : {
+						"target" : "AnyButTeam",
+						"common" : "Self",
+						"priority" : 38,
+						"broadcast" : "team"
+					}
+				},
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "arlon",
+			"translation" : "Arlon",
+			"info" : "Can safeguard one person during the night. Shares a kill with his team. Vote counts as -3. Sided with the Forces of Nature.",
+			"side" : "fon",
+			"help" : "You are Arlon, guardian of the Lunar Sanctum! You can use /safeguard [name] to protect someone from both poisons and conversions! Also, you have -3 votes due to being incredibly annoying. You also share a kill with your team using /kill [name]. (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"hide" : true,
+						"priority" : 13,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Viridi: Your teammate ~Player~ (Arlon) has decided to kill ~Target~!"
+					},
+					"safeguard" : {
+						"target" : "AnyButSelf",
+						"common" : "Self",
+						"priority" : 4
+					}
+				},
+				"vote" : -3,
+                		"teamUtilities": true,
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "nutski",
+			"translation" : "Nutski",
+			"info" : "Shares a kill with its team. Sided with the Forces of Nature.",
+			"side" : "fon",
+			"help" : "You are a Nutski! You are a normal Forces of Nature grunt, and really don't have much power. You do share a kill with your team using /kill [name] though! (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 13,
+						"broadcast" : "team",
+						"hide" : true,
+						"broadcastmsg" : "±Viridi: Your teammate ~Player~ (Nutski) has decided to kill ~Target~!"
+					}
+				},
+                		"teamUtilities": true
+			}
+		}, {
+			"role" : "nature",
+			"translation" : "Forces of Nature",
+			"info" : "If you somehow get this role, please contact Joeypals at http://pokemon-online.eu/forums/member.php?24510-Joeypals!!",
+			"hide" : true,
+			"side" : "underworld",
+			"help" : "If you somehow get this role, please contact Joeypals at http://pokemon-online.eu/forums/member.php?24510-Joeypals!!",
+			"actions" : {
+				"initialCondition" : {
+					"poison" : {
+						"count" : 1,
+						"poisonDeadMessage" : "Time is up!"
+					}
+				},
+				"night" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"common" : "Team",
+						"priority" : 13,
+						"broadcast" : "team",
+						"broadcastmsg" : "±Viridi: Your teammate ~Player~ (Nutski) has decided to kill ~Target~!"
+					}
+				}
+			}
+		}, {
+			"role" : "chaoskin",
+			"translation" : "Chaos Kin",
+			"info" : "Can poison one person per night (dies in 1 night). Can convert one person into a Stolen Soul every other night. Cannot be distracted. Evades one nightkill. Sided with itself.",
+			"side" : "chaoskin",
+			"help" : "You are the dreaded Chaos Kin! You don't care who wins the war, you just want everyone to suffer! Use /convert [name] to steal the soul of a player and take it as your own. You can do this once every other night. You also poison one person by using /poison [name]. Also, if anything like Souflee tries to distract you, you'll simply shrug them off. In addition, you also evade a nightkill! (Hint: Use /tt to talk to your team!)",
+			"actions" : {
+                                "distract": {
+                                         "mode": "ignore",
+                                         "msg": "~Distracter~ tried to stop you last night, but you couldn't care less."
+                                },
+				"kill": {
+					"mode": {
+						"evadeCharges": 1
+					}
+				},
+                                "onDeath": {
+                                "killRoles": [
+                                    "soul"
+                                ],
+                                "killmsg": "As the Chaos Kin fades away, ~Target~ finally accept(s) defeat and fade away too!"
+                                },
+                		"teamUtilities": true,
+				"night" : {
+					"convert" : {
+						"command" : ["massconvert", "convert"],
+						"target" : "AnyButTeam",
+						"common" : "Self",
+						"priority" : 8,
+						"newRole" : "soul",
+						"silent" : false,
+						"recharge" : 2,
+						"broadcast" : "team",
+						"convertmsg" : "The Chaos Kin has taken another soul as its own! Poor ~Old~...",
+						"massconvertmsg" : "As Pittoo falls, a flash of light slowly emerges from his chest. It flies far away to Pandora, who is converted into Amazon Pandora! Beware her power!",
+						"convertRoles" : {
+							"pandora" : "amazonpandora"
+						}
+					},
+					"poison" : {
+						"target" : "AnyButTeam",
+						"common" : "Self",
+						"priority" : 38,
+						"broadcast" : "team"
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "soul",
+			"translation" : "Stolen Soul",
+			"info" : "Can use /meet (protect, safeguard, distract, inspect, or kill). Sided with the Chaos Kin.",
+			"side" : "chaoskin",
+			"help" : "You have been possessed by the Chaos Kin and his companions, and have been converted into a Stolen Soul! You get to use /meet [name]. Your target will randomly be protected, killed, safeguarded, distracted, or inspected. This is shared with other Stolen Souls. However, if the Chaos Kin dies, so will you!",
+			"actions" : {
+                		"teamUtilities": true,
+				"night" : {
+					"meet" : {
+						"target" : "AnyButTeam",
+						"common" : "Role",
+						"priority" : 1,
+						"broadcast" : "team",
+						"command" : {
+							"protect" : 0.24,
+							"safeguard" : 0.24,
+							"distract" : 0.24,
+							"inspect" : 0.24,
+							"kill" : 0.04
+						}
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "medusa",
+			"translation" : "Medusa",
+			"info" : "Wins with everyone except the Underworld Army. Can kill one person during standby once per game (revealing). Inspects as Hades. Sided with itself.",
+			"side" : "medusa",
+			"help" : "You are Medusa, and you're out for revenge. Hades will not let your soul rest, using it as a toy. It is now time to extreminate him and all of his Underworld Army! Type /kill [name] during standby to eliminate Hades and the rest of the Underworld. You will be revealed however, so use your kill wisely. You also only get this kill once for the entire game. You can win with anyone except the Underworld Army, but due to your malicious past you inspect as Hades.",
+			"actions" : {
+				"inspect" : {
+					"revealAs" : "hades"
+				},
+				"standby" : {
+					"kill" : {
+						"target" : "AnyButSelf",
+						"msg" : "±Medusa: You can now kill someone using /kill [name], but you are revealed!!!!",
+						"killmsg" : "±Medusa: ~Self~ petrifies ~Target~ with her cursed gaze and strikes down her target in one hit!",
+						"charges" : 1
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			},
+			"winningSides" : ["village", "fon", "chaoskin", "phoenix"]
+		}, {
+			"role" : "phoenix",
+			"translation" : "Phoenix",
+			"info" : "Can kill one person during the night, outspeeding bodyguards, killing distracters and ignoring hax. Cannot be converted. Can kill one person during the day. Sided with itself.",
+			"side" : "phoenix",
+			"help" : "KACAAAAWWWWW! You are the Immortal Phoenix, and you have risen from the ashes, looking for revenge on those who have harmed you in the past. You have the ability to kill, ignoring protects, hax and distracters, during the night, with /burn. During the day, however, is where you truly shine. You can kill, with /burn [name], someone while they discuss. You also cannot be converted! Good luck....",
+			"actions" : {
+				"distract" : {
+					"msg" : "±Phoenix: Someone tried to distract you. Pitiful. You burned the person. Need I say more?",
+					"hookermsg" : "±Phoenix: You tried to distract the Phoenix. I heard that he kills distractors. It's true.",
+					"mode" : "ChangeTarget"
+				},
+				"avoidHax" : ["burn"],
+				"convert" : {
+					"mode" : "ignore"
+				},
+				"standby" : {
+					"burn" : {
+						"target" : "AnyButSelf",
+						"msg" : "±Phoenix: You can now kill someone using /burn [name], and you are not revealed.",
+						"killmsg" : "±Phoenix: Phoenix rises from ashes and incinerates ~Target~, leaving nothing but dust!",
+						"command" : "kill"
+					}
+				},
+				"night" : {
+					"burn" : {
+						"command" : "kill",
+						"target" : "AnyButSelf",
+						"common" : "Self",
+						"priority" : 4,
+						"msg": "±Phoenix: The Phoenix burned you to a crisp!"
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "phoenix2",
+			"translation" : "Phoenix",
+			"info" : "Can kill one person during the night, outspeeding bodyguards and killing distractors. Cannot be converted. Avoids 60% of daykills and 40% of nightkills. Sided with itself.",
+			"side" : "phoenix",
+			"help" : "KACAAAAWWWWW! You are the Immortal Phoenix, and you have risen from the ashes, looking for revenge on those who have harmed you in the past. You have the ability to kill, ignoring protects, hax and distracters, during the night, with /burn. You also cannot be converted AND, on top of that, you avoid daykills 60% of the time and nightkills 40% of the time! Good luck....",
+			"actions" : {
+				"distract" : {
+					"msg" : "±Phoenix: Someone tried to distract you. Pitiful. You burned the person. Need I say more?",
+					"hookermsg" : "±Phoenix: You tried to distract the Phoenix. I heard that he kills distractors. It's true.",
+					"mode" : "ChangeTarget"
+				},
+				"avoidHax" : ["burn"],
+				"daykill" : {
+					"mode" : {
+						"evadeChance" : 0.6
+					}
+				},
+				"kill" : {
+					"mode" : {
+						"evadeChance" : 0.4
+					}
+				},
+				"convert" : {
+					"mode" : "ignore"
+				},
+				"night" : {
+					"burn" : {
+						"command" : "kill",
+						"target" : "AnyButSelf",
+						"common" : "Self",
+						"hide" : true,
+						"priority" : 4,
+						"msg": "±Phoenix: The Phoenix burned you to a crisp!"
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "pyrrhon",
+			"translation" : "Pyrrhon",
+			"info" : "Can safeguard two people during the night with a slight chance of burning (poisoning). Can poison someone once during the entire game. Sided with Palutena's Army.",
+			"side" : "village",
+			"help" : "You are Pyrrhon, the eccentric, self-proclaimed Sun God. You see yourself as the champion of justice and as such, is sided with the Army of Palutena. You're not too much in this war, but you come when you must. You can safeguard, not one BUT TWO people during the night with your flames, but the target has a chance of being burned instead (Command is /blaze). You also have a one-time poison with /burn. Show them the fire!",
+			"actions" : {
+				"night" : {
+					"burn" : {
+						"target" : "AnyButSelf",
+						"common" : "Self",
+						"priority" : 38,
+						"command" : "poison",
+						"poisonDeadMessage" : "You got consumed by Pyrrhon's flames.",
+						"charges" : 1
+					},
+					"blaze" : {
+						"target" : "AnyButSelf",
+						"common" : "Self",
+						"priority" : 4,
+						"hide" : true,
+						"limit" : 2,
+						"command" : {
+							"poison" : 0.08,
+							"safeguard" : 0.92
+						}
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}, {
+			"role" : "pyrrhon2",
+			"translation" : "Pyrrhon",
+			"info" : "Can safeguard one person during the night with a slight chance of burning (poisoning). Sided with Palutena's Army.",
+			"side" : "village",
+			"help" : "You are Pyrrhon, the eccentric, self-proclaimed Sun God. You see yourself as the champion of justice and as such, is sided with the Army of Palutena. You're not too much in this war, but you come when you must. You can safeguard, one person during the night with your flames, but the target has a chance of being burned instead (Command is /blaze). If you accidentally burn them, they'll fade away the next night. Show them the fire!",
+			"actions" : {
+				"night" : {
+					"blaze" : {
+						"target" : "AnyButSelf",
+						"common" : "Self",
+						"priority" : 4,
+						"command" : {
+							"poison" : 0.08,
+							"safeguard" : 0.92
+						}
+					}
+				},
+				"massconvert" : {
+					"mode" : "ignore",
+					"silent" : true
+				}
+			}
+		}
+	],
+	"roles1": ["souflee", "palutena2", "nutski", "magnus", "amazonpandora", "strongarm", "viridi"],
+	"roles2" : ["souflee", "palutena2", "nutski", "magnus", {
+			"amazonpandora": 0.35,
+			"twinbellows": 0.35,
+			"thanatos": 0.11,
+			"reaper": 0.05,
+			"gaol2": 0.05,
+			"bhewdraw": 0.03,
+			"phewdraw": 0.03,
+			"vhewdraw": 0.03
+ 		},"strongarm2", "viridi", "monoeye", "ghuman4"],
+	"roles3" : ["souflee", "palutena2", "nutski", "magnus", {
+			"amazonpandora": 0.35,
+			"twinbellows": 0.35,
+			"thanatos": 0.11,
+			"reaper": 0.05,
+			"gaol2": 0.05,
+			"bhewdraw": 0.03,
+			"phewdraw": 0.03,
+			"vhewdraw": 0.03
+ 		},"strongarm2", "viridi", "monoeye", "fhuman", "fhuman2"],
+	"roles4" : ["pit", "palutena", "pittoo", "magnus", "hades", "fhuman2", "human", "viridi", "souflee", "phosphora", "fhuman", "pandora", {
+			"ghuman" : 0.5,
+			"ghuman2" : 0.5
+		}, "chaoskin", "pyrrhon2", "human", "phoenix2", "cragalanche", "medusa", "centurion"],
+	"roles5" : ["pit", "palutena", "pittoo", "magnus", "hades", "souflee", "fhuman", "fhuman2", "viridi", "human", "chaoskin", "phosphora", {
+			"ghuman" : 0.5,
+			"ghuman2" : 0.5
+		}, "pandora", "fhuman2", "medusa", "strongarm2", {
+			"knight": 0.2,
+			"strongarm2": 0.4,
+			"centurion": 0.4
+		}, {
+			"twinbellows2": 0.21,
+			"thanatos": 0.4,
+			"reaper": 0.2,
+			"gaol": 0.1,
+			"bhewdraw": 0.03,
+			"phewdraw": 0.03,
+			"vhewdraw": 0.03
+ 		},"cragalanche", "arlon", "centurion", "human", "knight", "phoenix", "nutski", "human", {
+			"monoeye" : 0.2,
+			"skuttler" : 0.2,
+			"eggplantwizard": 0.3,
+			"mimicutie": 0.3
+		}, "pyrrhon", {
+			"ghuman" : 0.5,
+			"ghuman2" : 0.5
+		}, "centurion", "fhuman", "dyntos", "toxiecap", "fhuman2", "human", "merenguy", "human", {
+			"ghuman" : 0.5,
+			"ghuman2" : 0.5
+		}, "centurion"],
+	"villageCantLoseRoles" : ["pit", "centurion", "ghuman", "ghuman3", "pyrrhon", "pyrrhon2"],
+	"changelog" : {
+		"10/9/13" : "All changes that I (Joeypals) have seen as needed have now been made. The theme is now in testing capability.",
+		"10/17/13" : "/tt has been activated, all fixes concerning the Forgetful Humans, Greedy Humans, and roles1 have been rectified.",
+		"10/25/13" : "Chaos Kin can no longer be distracted, Phoenix can no longer be converted and the priority list has been cleaned up.",
+		"11/4/13" : "Phoenix2 is now able to avoid 75% of daykills.",
+		"11/5/13" : "Chaos Kin can now be distracted again, buffing both roles of the side ended up being OP.",
+		"11/13/13" : "Bots have now been enabled for all sides and messages, stylized for each side.",
+		"11/15/13" : "Chaos Kin moved 1 spot back in the spawn list for roles2, bot issues now fixed.",
+		"11/20/13" : "After the biggest game ever (36 players), I have decided to make Eggplant Wizard's convert every 3rd night. Also fixed the bigger Phoenix so now the commands are restrictive of one another.",
+		"11/29/13" : "Edited roles2's spawnlist.",
+		"1/27/14" : "Small games slightly edited. roles1 was broken up into roles1-3, making the previous change for roles4. Games of 9 now have a Greedy Human instead of a Forgetful one, who inspects as Nutski.",
+		"2/1/14" : "Lowered the minplayers down to 5, let's see how this goes.",
+		"2/3/14" : "Made a non-peak version for 3-4 player games, currently in testing.",
+		"2/26/14" : "Non-peak removed but not without purpose.",
+		"3/2/14" : "Stolen Soul's /meet now fixed, Skuttler actually part of the spawn now.",
+		"3/7/14" : "In order to aid the Underworld Army, Pandora will now convert when Pittoo is converted.",
+                "6/10/14": "Added broadcast for Palutena's inspect to Pit.",
+                "6/14/14": "Shuffled the spawn for roles1-3 to create more balance. Cragalanche now replaces Nutski (didn't code out protect to help Amazon if he goofs) and a Centurion Knight replaces a human. The Greedy Human in roles2 inspects as Cragalanche now. Everything else is the same.",
+                "7/2/14": "Added tips. updateTeam is next on the agenda, not going to be adding preventTeamvote. Period. If you join, you should be paying attention anyway and it screws with bussing.",
+		"7/5/14": "Redistributed roles1-3. Nutski is back and instead of a Centurion Knight, there is now a Centurion Strongarm that bombs both night and daykillers. Sees itself as a Human.",
+                "7/5/14 (2)": "Not sure why I still had the Greedies appearing on the list as what they inspected as, but they're now on the list as Greedy Human.",
+                "7/16/14": "Added a custom votemsg.",
+                "7/23/14": "Eggplants and Stolen Souls now dies when the Eggplant Wizard and Chaos Kin die, respectively. Eggplants now have a +999 voteshield.",
+                "7/26/14": "The Forgetful Humans and Greedy Humans no longer have their votes randomized. The one for the 10- games is simply a miller now. The Pandora Greedy has -1.1 votes whilst the Phosphora one has 1.1 votes.",
+                "7/26/14 (2)": "Spawn for the Chaos Kin and Pandora has been swapped, possibly temporary. In addition, once again, Chaos Kin cannot be distracted.",
+		"7/30/14": "Due to a recent threat, I have added preventTeamvote. Can't let my themes get audited off! I have also added updateTeam due to the Chaos Kin (who may need an additional buff) and the Eggplant Wizard.",
+		"7/31/14": "The first boss of 5, Twinbellows, has been added!",
+		"8/1/14": "The second boss of 5, Thanatos, has been added!",
+		"8/2/14": "Chaos Kin now evades a nightkill. In addition, the third boss of 5, Great Reaper, along with his lackeys, the Reapettes, have been added!",
+		"8/3/14": "The fourth boss of 5, Dark Lord Gaol, has been added!",
+		"8/5/14": "The final boss of 5, the Hewdraw, has been added! Also shifted the Eggplant Wizard back a few spots.",
+		"8/6/14": "The final enemy, Mimicutie, has been added! NO MORE NEW ROLES ARE PLANNED, JUST LIKE HOW NO SEQUEL TO KID ICARUS: UPRISING IS PLANNED!",
+		"8/6/14 (2)": "Bumped up the convert time for Dyntos's Sacred for to n4, possible plans of redoing roles4 to include Dyntos on the agenda.",
+		"8/8/14": "Small game Twinbellows no longer dies when distracted.",
+		"8/9/14": "Small game Dark Lord Gaol no longer dies when protected. In addition, roles4 is now changed. Everything up to the Chaos Kin is the same as before, then it goes Pyrrhon, Human, Phoenix, Cragalanche, Medusa, and finally Centurion. Still can't seem to find room for Dyntos.",
+		"8/13/14": "Fixed priority issues involving /stalk.",
+		"12/24/14": "Great Reaper's updated. He now shares his team's kill while his convert works half the time.",
+		"4/4/15": "KI2 will be made soon! http://pokemon-online.eu/threads/kid-icarus-2-ki2.30730/",
+		"4/19/15": "KI2, KI's counterpart, is now complete! http://pokemon-online.eu/threads/kid-icarus-2-ki2.30861/",
+		"10/18/16": "Added Monoeye to 9 and 10 player games.",
+		"11/29/16": "Hades now gains an additional vote for every Human that dies. Fuck villager claims wheeee!",
+		"12/2/16": "As Hades is a bit too strong gaining a full vote for every dead human, he will now be getting .5 extra votes for every human death."
+	},
+	"killmsg" : "±Palutena: ~Player~ (~Role~) has been defeated in battle!",
+	"killusermsg" : "±Palutena: You have been defeated!",
+	"lynchmsg" : "±Palutena: ~Player~ (~Role~) was defeated!",
+        "votemsg": "~Player~ drew their Silver Bow and aimed at ~Target~!"
+}
