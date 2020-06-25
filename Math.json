@@ -1,0 +1,2140 @@
+{
+	"name" : "Math",
+	"author" : "R​iceKirby",
+	"summary" : "Numbers, operations, trigonometry, etc. For those who loves school (and we know everyone does), this theme is for you! Come see the Numbers defend themselves against the arithmetic operators, the trigonometry functions and even the infamous 3.14159 (AKA Pi)! [VERY IMPORTANT: Night actions will reveal publicly who was targeted! Be careful with your abilities (specially protections)!]",
+	"threadlink" : "http://pokemon-online.eu/threads/math.27883/",
+	"quickOnDeadRoles" : true,
+	"checkNoVoters" : true,
+	"ticks" : {
+		"standby" : 40
+	},
+	"sides" : [{
+			"side" : "village",
+			"translation" : "Numbers",
+			"winmsg" : "±Teacher: 1 2 3 4, ~Players~ have won once more! 5 6 7 8, Haters gonna hate!"
+		}, {
+			"side" : "oper",
+			"translation" : "Operators",
+			"winmsg" : "±Teacher: ~Players~ + Teamwork x Skill - Enemies = Operators Won!"
+		}, {
+			"side" : "tri",
+			"translation" : "Trigonometry",
+			"winmsg" : "±Teacher: Looking from this angle, it seems that ~Players~ have proved how Trigonometry is important!"
+		}, {
+			"side" : "pi",
+			"translation" : "π",
+			"winmsg" : "±Teacher: ~Players~ was the only person to pass the Math test and will celebrate by eating a 3.14159."
+		}
+	],
+	"tips" : {
+		"Night Actions" : "All night actions used will reveal who was targeted by them (won't reveal the user's identity though).",
+		"Night Actions 2" : "Standby Phase lasts 40 seconds. Use this time to read carefully the night actions to get valuable information.",
+		"Reading Actions" : "Whoever is targeted by 4, 5 or 7 cannot be that role. A player surviving a kill without protection is either 0 or π. Less night actions could mean a role was distracted, so check the distracted players.",
+		"Main threats" : "+ (killer that bypass BG twice per game), ÷ (evil distractor), cos (poisoner), π (daykiller).",
+		"Who claims" : "Due to the threats mentioned above, there's no role that can safely claim. On the other side, cleaning players or getting a voice should be fairly easy.",
+		"Team target" : "÷ and cos can distract/poison themselves or their teammates without actually hurting them to mislead village."
+	},
+	"variables" : {
+		"oper_kill" : {
+			"command" : ["kill", "dummy"],
+			"dummybroadcastmsg" : "±Teacher: The ~Side~ tried to kill ~Target~!",
+			"common" : "Team",
+			"target" : "AnyButTeam",
+			"priority" : "variable:prio_oper",
+			"broadcast" : "team",
+            "killmsg": "The ~Side~ killed ~Target~, the ~TargetRole~!:",
+			"hide" : true
+		},
+		"oper_kill_mourn" : {
+			"command" : ["kill", "dummy"],
+			"dummybroadcastmsg" : "±Teacher: The ~Side~ tried to kill ~Target~!",
+			"common" : "Team",
+			"target" : "AnyButTeam",
+			"priority" : "variable:prio_oper",
+			"initialrecharge" : 1,
+			"broadcast" : "team",
+            "killmsg": "The ~Side~ killed ~Target~, the ~TargetRole~!:",
+			"hide" : true
+		},
+		"oper_kill_mourn2" : {
+			"command" : ["kill", "dummy"],
+			"dummybroadcastmsg" : "±Teacher: The ~Side~ tried to kill ~Target~!",
+			"common" : "Team",
+			"target" : "AnyButTeam",
+			"priority" : "variable:prio_oper",
+			"initialrecharge" : 2,
+			"broadcast" : "team",
+            "killmsg": "The ~Side~ killed ~Target~, the ~TargetRole~!:",
+			"hide" : true
+		},
+		"oper_kill_silent" : {
+			"common" : "Team",
+			"target" : "AnyButTeam",
+			"priority" : "variable:prio_oper",
+			"broadcast" : "team",
+			"hide" : true
+		},
+		"tri_kill" : {
+			"command" : ["kill", "dummy"],
+			"dummybroadcastmsg" : "±Teacher: The ~Side~ tried to kill ~Target~!",
+			"common" : "Team",
+			"target" : "AnyButTeam",
+			"priority" : "variable:prio_tri",
+			"broadcast" : "team",
+            "killmsg": "The ~Side~ killed ~Target~, the ~TargetRole~!:",
+			"hide" : true
+		},
+		"tri_kill_mourn" : {
+			"command" : ["kill", "dummy"],
+			"dummybroadcastmsg" : "±Teacher: The ~Side~ tried to kill ~Target~!",
+			"common" : "Team",
+			"target" : "AnyButTeam",
+			"priority" : "variable:prio_tri",
+			"initialrecharge" : 1,
+			"broadcast" : "team",
+            "killmsg": "The ~Side~ killed ~Target~, the ~TargetRole~!:",
+			"hide" : true
+		},
+		"tri_kill_mourn2" : {
+			"command" : ["kill", "dummy"],
+			"dummybroadcastmsg" : "±Teacher: The ~Side~ tried to kill ~Target~!",
+			"common" : "Team",
+			"target" : "AnyButTeam",
+			"priority" : "variable:prio_tri",
+			"initialrecharge" : 2,
+			"broadcast" : "team",
+            "killmsg": "The ~Side~ killed ~Target~, the ~TargetRole~!:",
+			"hide" : true
+		},
+		"tri_kill_silent" : {
+			"common" : "Team",
+			"target" : "AnyButTeam",
+			"priority" : "variable:prio_tri",
+			"broadcast" : "team",
+            "killmsg": "The ~Side~ killed ~Target~, the ~TargetRole~!:",
+			"hide" : true
+		},
+		"tri_kill_tan" : {
+			"command" : ["kill", "dummy"],
+			"dummybroadcastmsg" : "±Teacher: The ~Side~ tried to kill ~Target~!",
+			"common" : "Team",
+			"target" : "AnyButTeam",
+			"priority" : "variable:prio_tri",
+			"broadcast" : "team",
+            "killmsg": "The ~Side~ killed ~Target~, the ~TargetRole~!:",
+			"noFollow" : true,
+			"hide" : true
+		},
+		"tri_kill_silent_tan" : {
+			"common" : "Team",
+			"target" : "AnyButTeam",
+			"priority" : "variable:prio_tri",
+			"noFollow" : true,
+			"broadcast" : "team",
+            "killmsg": "The ~Side~ killed ~Target~, the ~TargetRole~!:",
+			"hide" : true
+		},
+		"tri_kill_tan_mourn" : {
+			"command" : ["kill", "dummy"],
+			"dummybroadcastmsg" : "±Teacher: The ~Side~ tried to kill ~Target~!",
+			"common" : "Team",
+			"target" : "AnyButTeam",
+			"priority" : "variable:prio_tri",
+			"initialrecharge" : 1,
+			"noFollow" : true,
+			"broadcast" : "team",
+            "killmsg": "The ~Side~ killed ~Target~, the ~TargetRole~!:",
+			"hide" : true
+		},
+		"tri_kill_tan_mourn2" : {
+			"command" : ["kill", "dummy"],
+			"dummybroadcastmsg" : "±Teacher: The ~Side~ tried to kill ~Target~!",
+			"common" : "Team",
+			"target" : "AnyButTeam",
+			"priority" : "variable:prio_tri",
+			"initialrecharge" : 2,
+			"noFollow" : true,
+			"broadcast" : "team",
+            "killmsg": "The ~Side~ killed ~Target~, the ~TargetRole~!:",
+			"hide" : true
+		},
+		"cos_poison" : {
+			"command" : ["dummy", "poison"],
+			"dummybroadcastmsg" : "±Teacher: The ~Role~ poisoned ~Target~!",
+			"common" : "Self",
+			"target" : "Any",
+			"priority" : "variable:prio_cos",
+			"broadcast" : "team"
+		},
+		"cos_poison_mourn" : {
+			"command" : ["dummy", "poison"],
+			"dummybroadcastmsg" : "±Teacher: The ~Role~ poisoned ~Target~!",
+			"common" : "Self",
+			"target" : "Any",
+			"priority" : "variable:prio_cos",
+			"initialrecharge" : 1,
+			"broadcast" : "team",
+			"hide" : true
+		},
+		"cos_poison_mourn2" : {
+			"command" : ["dummy", "poison"],
+			"dummybroadcastmsg" : "±Teacher: The ~Role~ poisoned ~Target~!",
+			"common" : "Self",
+			"target" : "Any",
+			"priority" : "variable:prio_cos",
+			"initialrecharge" : 2,
+			"broadcast" : "team",
+			"hide" : true
+		},
+		"multiply_convertVoters" : {
+			"convertVoters" : {
+				"first" : 1,
+				"newRole" : {
+					"multiply_minion" : ["1", "2", "3", "4", "4_mourn", "4_mourn2", "5", "5_mourn", "5_mourn2", "6", "6_mourn", "6_mourn2", "7", "7_mourn", "7_mourn2", "8", "8_mourn", "8_mourn2", "8b", "9", "0", "0_mourn", "0_mourn2", "prio_oper", "plus", "plus_mourn", "plus_mourn2", "plusb", "plusb_mourn", "plusb_mourn2", "plusc", "plusc_mourn", "plusc_mourn2", "minus", "minus_mourn", "minus_mourn2", "minus_killer", "minus_killer_mourn", "minus_killer_mourn2", "multiply", "multiply_mourn", "multiply_mourn2", "multiply_killer", "multiply_killer_mourn", "multiply_killer_mourn2", "multiply_minion", "multiply_minion_mourn", "multiply_minion_mourn2", "divide", "divide_mourn", "divide_mourn2", "divide_killer", "divide_killer_mourn", "divide_killer_mourn2", "prio_tri", "sin", "sin_mourn", "sin_mourn2", "sinb", "sinb_mourn", "sinb_mourn2", "cos", "cos_mourn", "cos_mourn2", "cos_killer", "cos_killer_mourn", "cos_killer_mourn2", "tan", "tan_mourn", "tan_mourn2", "tan_killer", "tan_killer_mourn", "tan_killer_mourn2", "sec", "sec_mourn", "sec_mourn2", "pi"]
+				},
+				"message" : "±Teacher: ~Self~ is multiplying itself! ~Target~ was affected and became x's Minion!"
+			}
+		},
+		"divide_zero" : {
+			"mode" : "die",
+			"msg" : "Someone tried to divide by 0! You died as a result!",
+			"targetmsg" : "Your target got divided by 0 and died as a result!"
+		},
+		"oper_roles" : ["plus", "plus_mourn", "plus_mourn2", "plusb", "plusb_mourn", "plusb_mourn2", "plusc", "plusc_mourn", "plusc_mourn2", "minus", "minus_mourn", "minus_mourn2", "minus_killer", "minus_killer_mourn", "minus_killer_mourn2", "multiply", "multiply_mourn", "multiply_mourn2", "multiply_killer", "multiply_killer_mourn", "multiply_killer_mourn2", "divide", "divide_mourn", "divide_mourn2", "divide_killer", "divide_killer_mourn", "divide_killer_mourn2"],
+		"tri_roles" : ["sin", "sin_mourn", "sin_mourn2", "sinb", "sinb_mourn", "sinb_mourn2", "cos", "cos_mourn", "cos_mourn2", "cos_killer", "cos_killer_mourn", "cos_killer_mourn2", "tan_killer", "tan_killer_mourn", "tan_killer_mourn2", "tan", "tan_mourn", "tan_mourn2", "sec", "sec_mourn", "sec_mourn2"],
+		"avoidTeamfire_tri" : {
+			"mode" : {
+				"ignore" : "variable:tri_roles"
+			},
+			"silent" : true
+		},
+		"avoidTeamfire_oper" : {
+			"mode" : {
+				"ignore" : "variable:oper_roles"
+			},
+			"silent" : true
+		},
+		"minus_is_killer" : ["plus", "plus_mourn", "plus_mourn2", "plusb", "plusb_mourn", "plusb_mourn2", "plusc", "plusc_mourn", "plusc_mourn2"],
+		"multiply_is_killer" : ["plus", "plus_mourn", "plus_mourn2", "plusb", "plusb_mourn", "plusb_mourn2", "plusc", "plusc_mourn", "plusc_mourn2", "minus", "minus_mourn", "minus_mourn2", "minus_killer", "minus_killer_mourn", "minus_killer_mourn2"],
+		"division_is_killer" : ["plus", "plus_mourn", "plus_mourn2", "plusb", "plusb_mourn", "plusb_mourn2", "plusc", "plusc_mourn", "plusc_mourn2", "minus", "minus_mourn", "minus_mourn2", "minus_killer", "minus_killer_mourn", "minus_killer_mourn2", "multiply", "multiply_mourn", "multiply_mourn2", "multiply_killer", "multiply_killer_mourn", "multiply_killer_mourn2"],
+		"cos_is_killer" : ["sin", "sin_mourn", "sin_mourn2", "sinb", "sinb_mourn", "sinb_mourn2"],
+		"tan_is_killer" : ["sin", "sin_mourn", "sin_mourn2", "sinb", "sinb_mourn", "sinb_mourn2", "cos", "cos_mourn", "cos_mourn2", "cos_killer", "cos_killer_mourn", "cos_killer_mourn2", "tan", "tan_mourn", "tan_mourn2", "tan_killer", "tan_killer_mourn", "tan_killer_mourn2"],
+		"prio_sec" : 0,
+		"prio_÷" : 1,
+		"prio_0" : 2,
+		"prio_4" : 3,
+		"prio_-" : 4,
+		"prio_oper" : 5,
+		"prio_tri" : 6,
+		"prio_6" : 7,
+		"prio_cos" : 8,
+		"prio_+" : 9,
+		"prio_minion" : 10,
+		"prio_5" : 11,
+		"prio_8" : 12,
+		"prio_7" : 13
+	},
+	"roles" : [{
+			"role" : "1",
+			"translation" : "1",
+			"side" : "village",
+			"help" : "You are just one more number around. Your main task is to use /vote [name] during the day to lynch a bad guy.",
+			"actions" : {}
+
+		}, {
+			"role" : "2",
+			"translation" : "2",
+			"side" : "village",
+			"help" : "Your are not just one more around, you are twice that! As such, your vote counts as +2.",
+			"actions" : {
+				"vote" : 2
+			}
+		}, {
+			"role" : "3",
+			"translation" : "3",
+			"side" : "village",
+			"help" : "According to Pythagoras, you are the noblest of all digits! If you die, all players will mourn for your death and be unable to use any action for the next night! You cannot be daykilled, but you die instantly if poisoned!",
+			"info" : "If killed, all players will be unable to act for 1 night. Cannot be daykilled. Dies instantly if poisoned. ~Sided~",
+			"actions" : {
+				"daykill" : {
+					"mode" : {
+						"evadeChance" : 1
+					}
+				},
+				"poison" : {
+					"mode" : "die",
+					"msg" : "You died instantly to a strong poison!",
+					"targetmsg" : "Your target died instantly to your poison!"
+				},
+				"onDeath" : {
+					"curseRoles" : {
+						"4" : "4_mourn2",
+						"5" : "5_mourn2",
+						"6" : "6_mourn2",
+						"7" : "7_mourn2",
+						"8" : "8_mourn2",
+						"0" : "0_mourn2",
+						"plus" : "plus_mourn2",
+						"plusb" : "plusb_mourn2",
+						"plusc" : "plusc_mourn2",
+						"minus" : "minus_mourn2",
+						"minus_killer" : "minus_killer_mourn2",
+						"multiply" : "multiply_mourn2",
+						"multiply_killer" : "multiply_killer_mourn2",
+						"multiply_minion" : "multiply_minion_mourn2",
+						"divide_killer" : "divide_killer_mourn2",
+						"divide" : "divide_mourn2",
+						"sin" : "sin_mourn2",
+						"sinb" : "sinb_mourn2",
+						"cos" : "cos_mourn2",
+						"cos_killer" : "cos_killer_mourn2",
+						"tan" : "tan_mourn2",
+						"tan_killer" : "tan_killer_mourn2",
+						"sec" : "sec_mourn2"
+					},
+					"singlecursemsg" : "±Teacher: The noble 3 has died! No night actions can be used during the next night!",
+					"silentCurse" : true,
+					"curseCount" : -1,
+					"onslay" : false
+				},
+				"lynch" : {
+					"convertRoles" : {
+						"4" : "4_mourn",
+						"5" : "5_mourn",
+						"6" : "6_mourn",
+						"7" : "7_mourn",
+						"8" : "8_mourn",
+						"0" : "0_mourn",
+						"plus" : "plus_mourn",
+						"plusb" : "plusb_mourn",
+						"plusc" : "plusc_mourn",
+						"minus" : "minus_mourn",
+						"minus_killer" : "minus_killer_mourn",
+						"multiply" : "multiply_mourn",
+						"multiply_killer" : "multiply_killer_mourn",
+						"multiply_minion" : "multiply_minion_mourn",
+						"divide_killer" : "divide_killer_mourn",
+						"divide" : "divide_mourn",
+						"sin" : "sin_mourn",
+						"sinb" : "sinb_mourn",
+						"cos" : "cos_mourn",
+						"cos_killer" : "cos_killer_mourn",
+						"tan" : "tan_mourn",
+						"tan_killer" : "tan_killer_mourn",
+						"sec" : "sec_mourn"
+					},
+					"singleconvertmsg" : "±Teacher: The noble 3 has died! No night actions can be used during the next night!",
+					"silentConvert" : true
+				}
+			}
+		}, {
+			"role" : "4",
+			"translation" : "4",
+			"side" : "village",
+			"help" : "Said to be the number of the stability, you can use /protect [name] during the night to defend someone against killers!",
+			"actions" : {
+				"night" : {
+					"protect" : {
+						"command" : ["dummy", "protect"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ protected ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_4"
+					}
+				}
+			}
+		}, {
+			"role" : "4_mourn",
+			"translation" : "4",
+			"side" : "village",
+			"help" : "Said to be the number of the stability, you can use /protect [name] during the night to defend someone against killers!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"protect" : {
+						"command" : ["dummy", "protect"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ protected ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_4",
+						"initialrecharge" : 1
+					}
+				}
+			}
+		}, {
+			"role" : "4_mourn2",
+			"translation" : "4",
+			"side" : "village",
+			"help" : "Said to be the number of the stability, you can use /protect [name] during the night to defend someone against killers!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"protect" : {
+						"command" : ["dummy", "protect"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ protected ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_4",
+						"initialrecharge" : 2
+					}
+				}
+			}
+		}, {
+			"role" : "5",
+			"translation" : "5",
+			"side" : "village",
+			"help" : "During the night, you can type /five [name] to high-five another player and reveal your identity to them!",
+			"info" : "Can reveal itself to another player during the night. ~Sided~",
+			"actions" : {
+				"night" : {
+					"five" : {
+						"command" : "dummy",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_5",
+						"dummytargetmsg" : "~Self~, the 5, high-fives you!",
+						"dummyusermsg" : "You revealed your identity to ~Target~!",
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ high-fived ~Target~!"
+					}
+				}
+			}
+		}, {
+			"role" : "5_mourn",
+			"translation" : "5",
+			"side" : "village",
+			"help" : "During the night, you can type /five [name] to high-five another player and reveal your identity to them!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"five" : {
+						"command" : "dummy",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_5",
+						"dummytargetmsg" : "~Self~, the 5, high-fives you!",
+						"dummyusermsg" : "You revealed your identity to ~Target~!",
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ high-fived ~Target~!",
+						"initialrecharge" : 1
+					}
+				}
+			}
+		}, {
+			"role" : "5_mourn2",
+			"translation" : "5",
+			"side" : "village",
+			"help" : "During the night, you can type /five [name] to high-five another player and reveal your identity to them!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"five" : {
+						"command" : "dummy",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_5",
+						"dummytargetmsg" : "~Self~, the 5, high-fives you!",
+						"dummyusermsg" : "You revealed your identity to ~Target~!",
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ high-fived ~Target~!",
+						"initialrecharge" : 2
+					}
+				}
+			}
+		}, {
+			"role" : "6",
+			"translation" : "6",
+			"side" : "village",
+			"help" : "You can put another player six feet under by typing /kill [name] during the night!",
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"command" : ["kill", "dummy"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ tried to kill ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_6",
+                        "killmsg": "The ~Role~ killed ~Target~, the ~TargetRole~!:"
+					}
+				}
+			}
+		}, {
+			"role" : "6_mourn",
+			"translation" : "6",
+			"side" : "village",
+			"help" : "You can put another player six feet under by typing /kill [name] during the night!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"command" : ["kill", "dummy"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ tried to kill ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_6",
+						"initialrecharge" : 1,
+                        "killmsg": "The ~Role~ killed ~Target~, the ~TargetRole~!:"
+					}
+				}
+			}
+		}, {
+			"role" : "6_mourn2",
+			"translation" : "6",
+			"side" : "village",
+			"help" : "You can put another player six feet under by typing /kill [name] during the night!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"command" : ["kill", "dummy"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ tried to kill ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_6",
+						"initialrecharge" : 2,
+                        "killmsg": "The ~Role~ killed ~Target~, the ~TargetRole~!:"
+					}
+				}
+			}
+		}, {
+			"role" : "7",
+			"translation" : "7",
+			"side" : "village",
+			"help" : "You are not merely a 7; you are 007! Being a secret agent, you can use /stalk [name] to find who your target visited OR /watch [name] to find who visited your target!",
+			"info" : "Can stalk OR watch one person during the night. ~Sided~",
+			"actions" : {
+				"night" : {
+					"stalk" : {
+						"command" : ["dummy", "stalk"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ stalked ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_7",
+						"cancel" : ["watch"]
+					},
+					"watch" : {
+						"command" : ["dummy", "watch"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ watched ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_7",
+						"cancel" : ["stalk"]
+					}
+				}
+			}
+		}, {
+			"role" : "7_mourn",
+			"translation" : "7",
+			"side" : "village",
+			"help" : "You are not merely a 7; you are 007! Being a secret agent, you can use /stalk [name] to find who your target visited OR /watch [name] to find who visited your target!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"stalk" : {
+						"command" : ["dummy", "stalk"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ stalked ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_7",
+						"cancel" : ["watch"],
+						"initialrecharge" : 1
+					},
+					"watch" : {
+						"command" : ["dummy", "watch"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ watched ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_7",
+						"cancel" : ["stalk"],
+						"initialrecharge" : 1
+					}
+				}
+			}
+		}, {
+			"role" : "7_mourn2",
+			"translation" : "7",
+			"side" : "village",
+			"help" : "You are not merely a 7; you are 007! Being a secret agent, you can use /stalk [name] to find who your target visited OR /watch [name] to find who visited your target!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"stalk" : {
+						"command" : ["dummy", "stalk"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ stalked ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_7",
+						"cancel" : ["watch"],
+						"initialrecharge" : 2
+					},
+					"watch" : {
+						"command" : ["dummy", "watch"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ watched ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_7",
+						"cancel" : ["stalk"],
+						"initialrecharge" : 2
+					}
+				}
+			}
+		}, {
+			"role" : "8",
+			"translation" : "8",
+			"side" : "village",
+			"help" : "There's nothing very special about you, but if you turn sideways, you become infinity! After the 3rd night, you can type /infinite to gain infinite votes, but that will also reveal you!",
+			"info" : "Can convert after the 3rd night to reveal itself and gain 8888 votes. ~Sided~",
+			"actions" : {
+				"night" : {
+					"infinite" : {
+						"command" : "convert",
+						"common" : "Self",
+						"target" : "OnlySelf",
+						"priority" : "variable:prio_8",
+						"initialrecharge" : 3,
+						"newRole" : "8b",
+						"convertmsg" : "±Teacher: ~Player~, the 8, has now ∞ votes!"
+					}
+				}
+			}
+		}, {
+			"role" : "8_mourn",
+			"translation" : "8",
+			"side" : "village",
+			"help" : "There's nothing very special about you, but if you turn sideways, you become infinity! After the 3rd night, you can type /infinite to gain infinite votes, but that will also reveal you!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"infinite" : {
+						"command" : "convert",
+						"common" : "Self",
+						"target" : "OnlySelf",
+						"priority" : "variable:prio_8",
+						"initialrecharge" : 1,
+						"newRole" : "8b",
+						"convertmsg" : "~Player~, the 8, has now infinite votes!"
+					}
+				}
+			}
+		}, {
+			"role" : "8_mourn2",
+			"translation" : "8",
+			"side" : "village",
+			"help" : "There's nothing very special about you, but if you turn sideways, you become infinity! After the 3rd night, you can type /infinite to gain infinite votes, but that will also reveal you!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"infinite" : {
+						"command" : "convert",
+						"common" : "Self",
+						"target" : "OnlySelf",
+						"priority" : "variable:prio_8",
+						"initialrecharge" : 2,
+						"newRole" : "8b",
+						"convertmsg" : "~Player~, the 8, has now infinite votes!"
+					}
+				}
+			}
+		}, {
+			"role" : "8b",
+			"translation" : "8",
+			"side" : "village",
+			"help" : "You now have 8888 votes, so use your infinite power wisely!",
+			"hide" : true,
+			"actions" : {
+				"vote" : 8888
+			}
+		}, {
+			"role" : "9",
+			"translation" : "9",
+			"side" : "village",
+			"help" : "As the highest of all digits, you can kill one person during the day by typing /kill [name]. You won't be revealed!",
+			"info" : "Can kill one person during the standby (won't reveal itself). ~Sided~",
+			"actions" : {
+				"standby" : {
+					"kill" : {
+						"target" : "AnyButSelf",
+						"msg" : "You can kill now using /kill (You won't be revealed)",
+						"killmsg" : "\"My power level? IT'S OVER NINE (THOUSAND)!\""
+					}
+				}
+			}
+		}, {
+			"role" : "0",
+			"translation" : "0",
+			"side" : "village",
+			"help" : "Zero, nothing! That's what your target will do if you type /distract [name] during the night! Being so empty, you evades most nightkills, but you are unable to vote and die instantly if distracted by ÷!",
+			"info" : "Can distract one person during the night. Ignores nightkills. Cannot vote. Dies if distracted by ÷. ~Sided~",
+			"actions" : {
+				"night" : {
+					"distract" : {
+						"command" : ["dummy", "dummy3", "distract"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ distracted ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_0"
+					}
+				},
+				"noVote" : true,
+				"kill" : {
+					"mode" : "ignore"
+				},
+				"dummy2" : "variable:divide_zero"
+			}
+		}, {
+			"role" : "0_mourn",
+			"translation" : "0",
+			"side" : "village",
+			"help" : "Zero, nothing! That's what your target will do if you type /distract [name] during the night! Being so empty, you evades most nightkills, but you are unable to vote and die instantly if distracted by ÷!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"distract" : {
+						"command" : ["dummy", "dummy3", "distract"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ distracted ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_0",
+						"initialrecharge" : 1
+					}
+				},
+				"noVote" : true,
+				"kill" : {
+					"mode" : "ignore"
+				},
+				"dummy2" : "variable:divide_zero"
+			}
+		}, {
+			"role" : "0_mourn2",
+			"translation" : "0",
+			"side" : "village",
+			"help" : "Zero, nothing! That's what your target will do if you type /distract [name] during the night! Being so empty, you evades most nightkills, but you are unable to vote and die instantly if distracted by ÷!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"distract" : {
+						"command" : ["dummy", "dummy3", "distract"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ distracted ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButSelf",
+						"priority" : "variable:prio_0",
+						"initialrecharge" : 2
+					}
+				},
+				"noVote" : true,
+				"kill" : {
+					"mode" : "ignore"
+				},
+				"dummy2" : "variable:divide_zero"
+			}
+		}, {
+			"role" : "prio_oper",
+			"translation" : "Operators",
+			"side" : "oper",
+			"help" : "Role for /priority",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"common" : "Team",
+						"target" : "AnyButTeam",
+						"priority" : "variable:prio_oper",
+						"broadcast" : "team"
+					}
+				}
+			}
+		}, {
+			"role" : "plus",
+			"translation" : "+",
+			"side" : "oper",
+			"help" : "The symbol for additions! You can type /kill [name] during the night to kill another player (shared with your team). Twice during the game, you can use /kill2 [name] to kill a second target (not shared). This will bypass any defense, but it gives you a +2 voteshield for each time it's used!",
+			"info" : "Can kill one person during the night (shared). Can kill2 twice per game (bypass protection and evasion, but user receives +2 voteshield for each use). ~Sided~",
+			"infoName" : "+ (Plus)",
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill",
+					"kill2" : {
+						"command" : ["copy", "kill", "dummy"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ tried to kill ~Target~!",
+						"common" : "Team",
+						"target" : "AnyButTeam",
+						"priority" : "variable:prio_+",
+						"pierce" : true,
+						"bypass" : ["ignore", "evadeCharges"],
+						"copyAs" : "plusb",
+						"broadcast" : "team",
+						"silent" : true,
+                        "killmsg": "The ~Role~ killed ~Target~, the ~TargetRole~!:",
+						"usermsg" : ""
+					}
+				},
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "plus_mourn",
+			"translation" : "+",
+			"side" : "oper",
+			"help" : "The symbol for additions! You can type /kill [name] during the night to kill another player (shared with your team). Twice during the game, you can use /kill2 [name] to kill a second target (not shared). This will bypass any defense, but it gives you a +2 voteshield for each time it's used!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_mourn",
+					"kill2" : {
+						"command" : ["copy", "kill", "dummy"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ tried to kill ~Target~!",
+						"common" : "Team",
+						"target" : "AnyButTeam",
+						"priority" : "variable:prio_+",
+						"pierce" : true,
+						"bypass" : ["ignore", "evadeCharges"],
+						"copyAs" : "plusb",
+						"initialrecharge" : 1,
+						"broadcast" : "team",
+						"hide" : true,
+						"silent" : true,
+                        "killmsg": "The ~Role~ killed ~Target~, the ~TargetRole~!:",
+						"usermsg" : ""
+					}
+				},
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "plus_mourn2",
+			"translation" : "+",
+			"side" : "oper",
+			"help" : "The symbol for additions! You can type /kill [name] during the night to kill another player (shared with your team). Twice during the game, you can use /kill2 [name] to kill a second target (not shared). This will bypass any defense, but it gives you a +2 voteshield for each time it's used!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_mourn2",
+					"kill2" : {
+						"command" : ["copy", "kill", "dummy"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ tried to kill ~Target~!",
+						"common" : "Team",
+						"target" : "AnyButTeam",
+						"priority" : "variable:prio_+",
+						"pierce" : true,
+						"bypass" : ["ignore", "evadeCharges"],
+						"copyAs" : "plusb",
+						"initialrecharge" : 2,
+						"broadcast" : "team",
+						"hide" : true,
+						"silent" : true,
+                        "killmsg": "The ~Role~ killed ~Target~, the ~TargetRole~!:",
+						"usermsg" : ""
+					}
+				},
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "plusb",
+			"translation" : "+",
+			"side" : "oper",
+			"help" : "The symbol for additions! You can type /kill [name] during the night to kill another player (shared with your team). Twice during the game, you can use /kill2 [name] to kill a second target (not shared). This will bypass any defense, but it gives you a +2 voteshield for each time it's used!",
+			"help2" : "You have a voteshield of +2. You can still use /kill2 one more time.",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill",
+					"kill2" : {
+						"command" : ["copy", "kill", "dummy"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ tried to kill ~Target~!",
+						"common" : "Team",
+						"target" : "AnyButTeam",
+						"priority" : "variable:prio_+",
+						"pierce" : true,
+						"bypass" : ["ignore", "evadeCharges"],
+						"copyAs" : "plusc",
+						"broadcast" : "team",
+						"hide" : true,
+						"silent" : true,
+                        "killmsg": "The ~Role~ killed ~Target~, the ~TargetRole~!:",
+						"usermsg" : ""
+					}
+				},
+				"voteshield" : 2,
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "plusb_mourn",
+			"translation" : "+",
+			"side" : "oper",
+			"help" : "The symbol for additions! You can type /kill [name] during the night to kill another player (shared with your team). Twice during the game, you can use /kill2 [name] to kill a second target (not shared). This will bypass any defense, but it gives you a +2 voteshield for each time it's used!",
+			"help2" : "You have a voteshield of +2. You can still use /kill2 one more time.",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_mourn",
+					"kill2" : {
+						"command" : ["copy", "kill", "dummy"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ tried to kill ~Target~!",
+						"common" : "Team",
+						"target" : "AnyButTeam",
+						"priority" : "variable:prio_+",
+						"pierce" : true,
+						"bypass" : ["ignore", "evadeCharges"],
+						"copyAs" : "plusc",
+						"initialrecharge" : 1,
+						"broadcast" : "team",
+						"hide" : true,
+						"silent" : true,
+                        "killmsg": "The ~Role~ killed ~Target~, the ~TargetRole~!:",
+						"usermsg" : ""
+					}
+				},
+				"voteshield" : 2,
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "plusb_mourn2",
+			"translation" : "+",
+			"side" : "oper",
+			"help" : "The symbol for additions! You can type /kill [name] during the night to kill another player (shared with your team). Twice during the game, you can use /kill2 [name] to kill a second target (not shared). This will bypass any defense, but it gives you a +2 voteshield for each time it's used!",
+			"help2" : "You have a voteshield of +2. You can still use /kill2 one more time.",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_mourn2",
+					"kill2" : {
+						"command" : ["copy", "kill", "dummy"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ tried to kill ~Target~!",
+						"common" : "Team",
+						"target" : "AnyButTeam",
+						"priority" : "variable:prio_+",
+						"pierce" : true,
+						"bypass" : ["ignore", "evadeCharges"],
+						"copyAs" : "plusc",
+						"initialrecharge" : 2,
+						"broadcast" : "team",
+						"hide" : true,
+						"silent" : true,
+                        "killmsg": "The ~Role~ killed ~Target~, the ~TargetRole~!:",
+						"usermsg" : ""
+					}
+				},
+				"voteshield" : 2,
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "plusc",
+			"translation" : "+",
+			"side" : "oper",
+			"help" : "The symbol for additions! You can type /kill [name] during the night to kill another player (shared with your team). You cannot /kill2 anymore, and you have a voteshield of +4!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill"
+				},
+				"voteshield" : 4,
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "plusc_mourn",
+			"translation" : "+",
+			"side" : "oper",
+			"help" : "The symbol for additions! You can type /kill [name] during the night to kill another player (shared with your team). You cannot /kill2 anymore, and you have a voteshield of +4!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_mourn"
+				},
+				"voteshield" : 4,
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "plusc_mourn2",
+			"translation" : "+",
+			"side" : "oper",
+			"help" : "The symbol for additions! You can type /kill [name] during the night to kill another player (shared with your team). You cannot /kill2 anymore, and you have a voteshield of +4!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_mourn2"
+				},
+				"voteshield" : 4,
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "minus",
+			"translation" : "-",
+			"side" : "oper",
+			"help" : "The symbol for substractions! You can type /kill [name] during the night to kill another player (shared with your team). You can also type /protect [name] to protect any player (including yourself, but keep in mind that everyone will know who was protected). Your vote counts as -2.",
+			"info" : "Can kill one person during the night (shared). Can protect one person during the night (including self). Vote counts as -2. ~Sided~",
+			"infoName" : "- (Minus)",
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_silent",
+					"protect" : {
+						"command" : ["dummy", "protect"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ protected ~Target~!",
+						"common" : "Self",
+						"target" : "Any",
+						"priority" : "variable:prio_-",
+						"broadcast" : "team"
+					}
+				},
+				"vote" : -2,
+				"onDeadRoles" : {
+					"convertTo" : {
+						"minus_killer" : "variable:minus_is_killer"
+					},
+					"convertmsg" : "",
+					"silentConvert" : true
+				},
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles"
+			}
+		}, {
+			"role" : "minus_mourn",
+			"translation" : "-",
+			"side" : "oper",
+			"help" : "The symbol for substractions! You can type /kill [name] during the night to kill another player (shared with your team). You can also type /protect [name] to protect any player (including yourself, but keep in mind that everyone will know who was protected). Your vote counts as -2.",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_silent",
+					"protect" : {
+						"command" : ["dummy", "protect"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ protected ~Target~!",
+						"common" : "Self",
+						"target" : "Any",
+						"priority" : "variable:prio_-",
+						"initialrecharge" : 1,
+						"broadcast" : "team",
+						"hide" : true
+					}
+				},
+				"vote" : -2,
+				"onDeadRoles" : {
+					"convertTo" : {
+						"minus_killer" : "variable:minus_is_killer"
+					},
+					"convertmsg" : "",
+					"silentConvert" : true
+				},
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles"
+			}
+		}, {
+			"role" : "minus_mourn2",
+			"translation" : "-",
+			"side" : "oper",
+			"help" : "The symbol for substractions! You can type /kill [name] during the night to kill another player (shared with your team). You can also type /protect [name] to protect any player (including yourself, but keep in mind that everyone will know who was protected). Your vote counts as -2.",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_silent",
+					"protect" : {
+						"command" : ["dummy", "protect"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ protected ~Target~!",
+						"common" : "Self",
+						"target" : "Any",
+						"priority" : "variable:prio_-",
+						"initialrecharge" : 2,
+						"broadcast" : "team",
+						"hide" : true
+					}
+				},
+				"vote" : -2,
+				"onDeadRoles" : {
+					"convertTo" : {
+						"minus_killer" : "variable:minus_is_killer"
+					},
+					"convertmsg" : "",
+					"silentConvert" : true
+				},
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles"
+			}
+		}, {
+			"role" : "minus_killer",
+			"translation" : "-",
+			"side" : "oper",
+			"help" : "The symbol for substractions! You can type /kill [name] during the night to kill another player (shared with your team). You can also type /protect [name] to protect any player (including yourself, but keep in mind that everyone will know who was protected). Your vote counts as -2.",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill",
+					"protect" : {
+						"command" : ["dummy", "protect"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ protected ~Target~!",
+						"common" : "Self",
+						"target" : "Any",
+						"priority" : "variable:prio_-",
+						"broadcast" : "team",
+						"hide" : true
+					}
+				},
+				"vote" : -2,
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles"
+			}
+		}, {
+			"role" : "minus_killer_mourn",
+			"translation" : "-",
+			"side" : "oper",
+			"help" : "The symbol for substractions! You can type /kill [name] during the night to kill another player (shared with your team). You can also type /protect [name] to protect any player (including yourself, but keep in mind that everyone will know who was protected). Your vote counts as -2.",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_mourn",
+					"protect" : {
+						"command" : ["dummy", "protect"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ protected ~Target~!",
+						"common" : "Self",
+						"target" : "Any",
+						"priority" : "variable:prio_-",
+						"initialrecharge" : 1,
+						"broadcast" : "team",
+						"hide" : true
+					}
+				},
+				"vote" : -2,
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles"
+			}
+		}, {
+			"role" : "minus_killer_mourn2",
+			"translation" : "-",
+			"side" : "oper",
+			"help" : "The symbol for substractions! You can type /kill [name] during the night to kill another player (shared with your team). You can also type /protect [name] to protect any player (including yourself, but keep in mind that everyone will know who was protected). Your vote counts as -2.",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_mourn2",
+					"protect" : {
+						"command" : ["dummy", "protect"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ protected ~Target~!",
+						"common" : "Self",
+						"target" : "Any",
+						"priority" : "variable:prio_-",
+						"initialrecharge" : 2,
+						"broadcast" : "team",
+						"hide" : true
+					}
+				},
+				"vote" : -2,
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles"
+			}
+		}, {
+			"role" : "multiply",
+			"translation" : "x",
+			"side" : "oper",
+			"help" : "The symbol for multiplications! You can type /kill [name] during the night to kill another player (shared with your team). Your vote by itself is worth nothing, but whoever you vote will have their received votes doubled! If lynched, you transform the first person to vote you into a x (Minion)!",
+			"info" : "Can kill one person during the night (shared). Votes counts as x2. If lynched, converts first voter into x (Minion). ~Sided~",
+			"infoName" : "x (Multiplication)",
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_silent"
+				},
+				"lynch" : "variable:multiply_convertVoters",
+				"onDeadRoles" : {
+					"convertTo" : {
+						"multiply_killer" : "variable:multiply_is_killer"
+					},
+					"convertmsg" : "",
+					"silentConvert" : true
+				},
+				"vote" : 0,
+				"voteMultiplier" : 2,
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "multiply_mourn",
+			"translation" : "x",
+			"side" : "oper",
+			"help" : "The symbol for multiplications! You can type /kill [name] during the night to kill another player (shared with your team). Your vote by itself is worth nothing, but whoever you vote will have their received votes doubled! If lynched, you transform the first person to vote you into a x (Minion)!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_silent"
+				},
+				"lynch" : "variable:multiply_convertVoters",
+				"onDeadRoles" : {
+					"convertTo" : {
+						"multiply_killer" : "variable:multiply_is_killer"
+					},
+					"convertmsg" : "",
+					"silentConvert" : true
+				},
+				"vote" : 0,
+				"voteMultiplier" : 2,
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "multiply_mourn2",
+			"translation" : "x",
+			"side" : "oper",
+			"help" : "The symbol for multiplications! You can type /kill [name] during the night to kill another player (shared with your team). Your vote by itself is worth nothing, but whoever you vote will have their received votes doubled! If lynched, you transform the first person to vote you into a x (Minion)!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_silent"
+				},
+				"lynch" : "variable:multiply_convertVoters",
+				"onDeadRoles" : {
+					"convertTo" : {
+						"multiply_killer" : "variable:multiply_is_killer"
+					},
+					"convertmsg" : "",
+					"silentConvert" : true
+				},
+				"vote" : 0,
+				"voteMultiplier" : 2,
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "multiply_killer",
+			"translation" : "x",
+			"side" : "oper",
+			"help" : "The symbol for multiplications! You can type /kill [name] during the night to kill another player (shared with your team). Your vote by itself is worth nothing, but whoever you vote will have their received votes doubled! If lynched, you transform the first person to vote you into a x (Minion)!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill"
+				},
+				"lynch" : "variable:multiply_convertVoters",
+				"vote" : 0,
+				"voteMultiplier" : 2,
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "multiply_killer_mourn",
+			"translation" : "x",
+			"side" : "oper",
+			"help" : "The symbol for multiplications! You can type /kill [name] during the night to kill another player (shared with your team). Your vote by itself is worth nothing, but whoever you vote will have their received votes doubled! If lynched, you transform the first person to vote you into a x (Minion)!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_mourn"
+				},
+				"lynch" : "variable:multiply_convertVoters",
+				"vote" : 0,
+				"voteMultiplier" : 2,
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "multiply_killer_mourn2",
+			"translation" : "x",
+			"side" : "oper",
+			"help" : "The symbol for multiplications! You can type /kill [name] during the night to kill another player (shared with your team). Your vote by itself is worth nothing, but whoever you vote will have their received votes doubled! If lynched, you transform the first person to vote you into a x (Minion)!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_mourn2"
+				},
+				"lynch" : "variable:multiply_convertVoters",
+				"vote" : 0,
+				"voteMultiplier" : 2,
+				"distract" : "variable:avoidTeamfire_oper",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "multiply_minion",
+			"translation" : "x",
+			"side" : "oper",
+			"help" : "The x multiplied itself and converted you into a Minion! You can kill twice during the game with /kill [name], but only every 2 nights. Your vote counts as 0!",
+			"info" : "Can kill twice during the game (every 2 nights). Vote counts as 0. Doesn't know teammates. ~Sided~",
+			"infoName" : "x (Minion)",
+			"players" : "Convert (First player to vote for x)",
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"command" : ["kill", "dummy"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ tried to kill ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButTeam",
+						"priority" : "variable:prio_minion",
+						"broadcast" : "team",
+						"charges" : 2,
+						"recharge" : 2,
+                        "killmsg": "The ~Role~ killed ~Target~, the ~TargetRole~!:",
+						"restrict" : ["kill"]
+					}
+				},
+				"distract" : "variable:avoidTeamfire_oper",
+				"vote" : 0
+			}
+		}, {
+			"role" : "multiply_minion_mourn",
+			"translation" : "x",
+			"side" : "oper",
+			"help" : "The x multiplied itself and converted you into a Minion! You can kill twice during the game with /kill [name], but only every 2 nights. Your vote counts as 0!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"command" : ["kill", "dummy"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ tried to kill ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButTeam",
+						"priority" : "variable:prio_minion",
+						"broadcast" : "team",
+						"recharge" : 2,
+						"initialrecharge" : 1,
+						"restrict" : ["kill"],
+                        "killmsg": "The ~Role~ killed ~Target~, the ~TargetRole~!:",
+						"hide" : true
+					}
+				},
+				"distract" : "variable:avoidTeamfire_oper",
+				"vote" : 0
+			}
+		}, {
+			"role" : "multiply_minion_mourn2",
+			"translation" : "x",
+			"side" : "oper",
+			"help" : "The x multiplied itself and converted you into a Minion! You can kill twice during the game with /kill [name], but only every 2 nights. Your vote counts as 0!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"command" : ["kill", "dummy"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ tried to kill ~Target~!",
+						"common" : "Self",
+						"target" : "AnyButTeam",
+						"priority" : "variable:prio_minion",
+						"broadcast" : "team",
+						"recharge" : 2,
+						"initialrecharge" : 2,
+						"restrict" : ["kill"],
+                        "killmsg": "The ~Role~ killed ~Target~, the ~TargetRole~!:",
+						"hide" : true
+					}
+				},
+				"distract" : "variable:avoidTeamfire_oper",
+				"vote" : 0
+			}
+		}, {
+			"role" : "divide",
+			"translation" : "÷",
+			"side" : "oper",
+			"help" : "The symbol for divisions! You can type /kill [name] during the night to kill another player (shared with your team). You can divide another player's attention with /distract [name]. You evade poison, but die instantly if distracted by 0!",
+			"info" : "Can kill one person during the night (shared). Can distract one person during the night. Evades poison. Dies if distracted by 0. ~Sided~",
+			"infoName" : "÷ (Division)",
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_silent",
+					"distract" : {
+						"command" : ["dummy", "dummy2", "distract"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ distracted ~Target~!",
+						"common" : "Self",
+						"target" : "Any",
+						"priority" : "variable:prio_÷",
+						"broadcast" : "team"
+					}
+				},
+				"onDeadRoles" : {
+					"convertTo" : {
+						"divide_killer" : "variable:division_is_killer"
+					},
+					"convertmsg" : "",
+					"silentConvert" : true
+				},
+                "poison": {
+                    "mode": "ignore"
+                },
+				"distract" : "variable:avoidTeamfire_oper",
+				"dummy3" : "variable:divide_zero",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "divide_mourn",
+			"translation" : "÷",
+			"side" : "oper",
+			"help" : "The symbol for divisions! You can type /kill [name] during the night to kill another player (shared with your team). You can divide another player's attention with /distract [name]. You evade poison, but die instantly if distracted by 0!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_silent",
+					"distract" : {
+						"command" : ["dummy", "dummy2", "distract"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ distracted ~Target~!",
+						"common" : "Self",
+						"target" : "Any",
+						"priority" : "variable:prio_÷",
+						"initialrecharge" : 1,
+						"broadcast" : "team",
+						"hide" : true
+					}
+				},
+				"onDeadRoles" : {
+					"convertTo" : {
+						"divide_killer" : "variable:division_is_killer"
+					},
+					"convertmsg" : "",
+					"silentConvert" : true
+				},
+                "poison": {
+                    "mode": "ignore"
+                },
+				"distract" : "variable:avoidTeamfire_oper",
+				"dummy3" : "variable:divide_zero",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "divide_mourn2",
+			"translation" : "÷",
+			"side" : "oper",
+			"help" : "The symbol for divisions! You can type /kill [name] during the night to kill another player (shared with your team). You can divide another player's attention with /distract [name]. You evade poison, but die instantly if distracted by 0!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_silent",
+					"distract" : {
+						"command" : ["dummy", "dummy2", "distract"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ distracted ~Target~!",
+						"common" : "Self",
+						"target" : "Any",
+						"priority" : "variable:prio_÷",
+						"initialrecharge" : 2,
+						"broadcast" : "team",
+						"hide" : true
+					}
+				},
+				"onDeadRoles" : {
+					"convertTo" : {
+						"divide_killer" : "variable:division_is_killer"
+					},
+					"convertmsg" : "",
+					"silentConvert" : true
+				},
+                "poison": {
+                    "mode": "ignore"
+                },
+				"distract" : "variable:avoidTeamfire_oper",
+				"dummy3" : "variable:divide_zero",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "divide_killer",
+			"translation" : "÷",
+			"side" : "oper",
+			"help" : "The symbol for divisions! You can type /kill [name] during the night to kill another player (shared with your team). You can divide another player's attention with /distract [name]. You evade poison, but die instantly if distracted by 0!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill",
+					"distract" : {
+						"command" : ["dummy", "dummy2", "distract"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ distracted ~Target~!",
+						"common" : "Self",
+						"target" : "Any",
+						"priority" : "variable:prio_÷",
+						"broadcast" : "team",
+						"hide" : true
+					}
+				},
+                "poison": {
+                    "mode": "ignore"
+                },
+				"distract" : "variable:avoidTeamfire_oper",
+				"dummy3" : "variable:divide_zero",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "divide_killer_mourn",
+			"translation" : "÷",
+			"side" : "oper",
+			"help" : "The symbol for divisions! You can type /kill [name] during the night to kill another player (shared with your team). You can divide another player's attention with /distract [name]. You evade poison, but die instantly if distracted by 0!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_mourn",
+					"distract" : {
+						"command" : ["dummy", "dummy2", "distract"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ distracted ~Target~!",
+						"common" : "Self",
+						"target" : "Any",
+						"priority" : "variable:prio_÷",
+						"initialrecharge" : 1,
+						"broadcast" : "team",
+						"hide" : true
+					}
+				},
+                "poison": {
+                    "mode": "ignore"
+                },
+				"distract" : "variable:avoidTeamfire_oper",
+				"dummy3" : "variable:divide_zero",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "divide_killer_mourn2",
+			"translation" : "÷",
+			"side" : "oper",
+			"help" : "The symbol for divisions! You can type /kill [name] during the night to kill another player (shared with your team). You can divide another player's attention with /distract [name]. You evade poison, but die instantly if distracted by 0!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:oper_kill_mourn2",
+					"distract" : {
+						"command" : ["dummy", "dummy2", "distract"],
+						"dummybroadcastmsg" : "±Teacher: The ~Role~ distracted ~Target~!",
+						"common" : "Self",
+						"target" : "Any",
+						"priority" : "variable:prio_÷",
+						"initialrecharge" : 2,
+						"broadcast" : "team",
+						"hide" : true
+					}
+				},
+                "poison": {
+                    "mode": "ignore"
+                },
+				"distract" : "variable:avoidTeamfire_oper",
+				"dummy3" : "variable:divide_zero",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : "variable:oper_roles",
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "prio_tri",
+			"translation" : "Trigonometry",
+			"side" : "tri",
+			"help" : "Role for /priority",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : {
+						"common" : "Team",
+						"target" : "AnyButTeam",
+						"priority" : "variable:prio_tri",
+						"broadcast" : "team"
+					}
+				}
+			}
+		}, {
+			"role" : "sin",
+			"translation" : "sin",
+			"side" : "tri",
+			"help" : "The sine of an angle (opposite side/hypotenuse), you can type /kill [name] during the night to kill another player (shared with your team). You identify any action used on you. You also survive 1 lynch, gaining some extra abilities after that!",
+			"info" : "Can kill one person during the night (shared). Identify user if distracted, protected, stalked or watched. Survives 1 lynch (gains a daykill and +100 voteshield after that). ~Sided~",
+			"infoName" : "sin (Sine)",
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill"
+				},
+				"distract" : {
+					"mode" : "identify"
+				},
+				"protect" : {
+					"mode" : "identify"
+				},
+				"stalk" : {
+					"mode" : "identify"
+				},
+				"watch" : {
+					"mode" : "identify"
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"lynch" : {
+					"convertTo" : "sinb",
+					"convertmsg" : "±Teacher: 'Do you know what's the sine of 30°?' - While everyone was thinking about the answer, sin escaped the lynch!"
+				},
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "sin_mourn",
+			"translation" : "sin",
+			"side" : "tri",
+			"help" : "The sine of an angle (opposite side/hypotenuse), you can type /kill [name] during the night to kill another player (shared with your team). You identify any action used on you. You also survive 1 lynch, gaining some extra abilities after that!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill_mourn"
+				},
+				"distract" : {
+					"mode" : "identify"
+				},
+				"protect" : {
+					"mode" : "identify"
+				},
+				"stalk" : {
+					"mode" : "identify"
+				},
+				"watch" : {
+					"mode" : "identify"
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"lynch" : {
+					"convertTo" : "sinb",
+					"convertmsg" : "±Teacher: 'Do you know what's the sine of 30°?' - While everyone was thinking about the answer, sin escaped the lynch!"
+				},
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "sin_mourn2",
+			"translation" : "sin",
+			"side" : "tri",
+			"help" : "The sine of an angle (opposite side/hypotenuse), you can type /kill [name] during the night to kill another player (shared with your team). You identify any action used on you. You also survive 1 lynch, gaining some extra abilities after that!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill_mourn2"
+				},
+				"distract" : {
+					"mode" : "identify"
+				},
+				"protect" : {
+					"mode" : "identify"
+				},
+				"stalk" : {
+					"mode" : "identify"
+				},
+				"watch" : {
+					"mode" : "identify"
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"lynch" : {
+					"convertTo" : "sinb",
+					"convertmsg" : "±Teacher: 'Do you know what's the sine of 30°?' - While everyone was thinking about the answer, sin escaped the lynch!"
+				},
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "sinb",
+			"translation" : "sin",
+			"side" : "tri",
+			"help" : "You survived a lynch and gained new powers! You still can use /kill [name] during the night (shared with your team), and you can now also use /kill [name] during the day! You identify any action used on you, but you now have a voteshield of +100!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill"
+				},
+				"standby" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"msg" : "You can kill now using /kill [name]:",
+						"killmsg" : "±Sine: 'You still don't know the sine of 30°, ~Target~? You should just die then.'"
+					}
+				},
+				"distract" : {
+					"mode" : "identify"
+				},
+				"protect" : {
+					"mode" : "identify"
+				},
+				"stalk" : {
+					"mode" : "identify"
+				},
+				"watch" : {
+					"mode" : "identify"
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"voteshield" : 100,
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "sinb_mourn",
+			"translation" : "sin",
+			"side" : "tri",
+			"help" : "You survived a lynch and gained new powers! You still can use /kill [name] during the night (shared with your team), and you can now also use /kill [name] during the day! You identify any action used on you, but you now have a voteshield of +100!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill_mourn"
+				},
+				"standby" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"msg" : "You can kill now using /kill [name]:",
+						"killmsg" : "±Sine: 'You still don't know the sine of 30°, ~Target~? You should just die then.'"
+					}
+				},
+				"distract" : {
+					"mode" : "identify"
+				},
+				"protect" : {
+					"mode" : "identify"
+				},
+				"stalk" : {
+					"mode" : "identify"
+				},
+				"watch" : {
+					"mode" : "identify"
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"voteshield" : 100,
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "sinb_mourn2",
+			"translation" : "sin",
+			"side" : "tri",
+			"help" : "You survived a lynch and gained new powers! You still can use /kill [name] during the night (shared with your team), and you can now also use /kill [name] during the day! You identify any action used on you, but you now have a voteshield of +100!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill_mourn2"
+				},
+				"standby" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"msg" : "You can kill now using /kill [name]:",
+						"killmsg" : "±Sine: 'You still don't know the sine of 30°, ~Target~? You should just die then.'"
+					}
+				},
+				"distract" : {
+					"mode" : "identify"
+				},
+				"protect" : {
+					"mode" : "identify"
+				},
+				"stalk" : {
+					"mode" : "identify"
+				},
+				"watch" : {
+					"mode" : "identify"
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"voteshield" : 100,
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "cos",
+			"translation" : "cos",
+			"side" : "tri",
+			"help" : "The cosine of an angle (adjacent side/hypotenuse), you can type /kill [name] during the night to kill another player (shared with your team). You can also use /poison [name] to kill a player after 1 night!",
+			"info" : "Can kill one person during the night (shared). Can poison one person during the night. ~Sided~",
+			"infoName" : "cos (Cosine)",
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill_silent",
+					"poison" : "variable:cos_poison"
+				},
+				"onDeadRoles" : {
+					"convertTo" : {
+						"cos_killer" : "variable:cos_is_killer"
+					},
+					"convertmsg" : "",
+					"silentConvert" : true
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "cos_mourn",
+			"translation" : "cos",
+			"side" : "tri",
+			"help" : "The cosine of an angle (adjacent side/hypotenuse), you can type /kill [name] during the night to kill another player (shared with your team). You can also use /poison [name] to kill a player after 1 night!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill_silent",
+					"poison" : "variable:cos_poison_mourn"
+				},
+				"onDeadRoles" : {
+					"convertTo" : {
+						"cos_killer" : "variable:cos_is_killer"
+					},
+					"convertmsg" : "",
+					"silentConvert" : true
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "cos_mourn2",
+			"translation" : "cos",
+			"side" : "tri",
+			"help" : "The cosine of an angle (adjacent side/hypotenuse), you can type /kill [name] during the night to kill another player (shared with your team). You can also use /poison [name] to kill a player after 1 night!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill_silent",
+					"poison" : "variable:cos_poison_mourn"
+				},
+				"onDeadRoles" : {
+					"convertTo" : {
+						"cos_killer" : "variable:cos_is_killer"
+					},
+					"convertmsg" : "",
+					"silentConvert" : true
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "cos_killer",
+			"translation" : "cos",
+			"side" : "tri",
+			"help" : "The cosine of an angle (adjacent side/hypotenuse), you can type /kill [name] during the night to kill another player (shared with your team). You can also use /poison [name] to kill a player after 1 night!",
+			"hide" : true,
+			"infoName" : "cos (Cosine)",
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill",
+					"poison" : "variable:cos_poison"
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "cos_killer_mourn",
+			"translation" : "cos",
+			"side" : "tri",
+			"help" : "The cosine of an angle (adjacent side/hypotenuse), you can type /kill [name] during the night to kill another player (shared with your team). You can also use /poison [name] to kill a player after 1 night!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill_mourn",
+					"poison" : "variable:cos_poison_mourn"
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "cos_killer_mourn2",
+			"translation" : "cos",
+			"side" : "tri",
+			"help" : "The cosine of an angle (adjacent side/hypotenuse), you can type /kill [name] during the night to kill another player (shared with your team). You can also use /poison [name] to kill a player after 1 night!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill_mourn2",
+					"poison" : "variable:cos_poison_mourn2"
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "tan_killer",
+			"translation" : "tan",
+			"side" : "tri",
+			"help" : "The tangent of an angle (opposite side/adjacent side), you can type /kill [name] during the night to kill another player (shared with your team). Your ability to go off on a tangent makes you immune to stalk, watch and distract!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill_tan"
+				},
+				"distract" : {
+					"mode" : "ignore",
+					"msg" : "Someone tried to distract you, but you went off on a tangent and escaped it!"
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "tan_killer_mourn",
+			"translation" : "tan",
+			"side" : "tri",
+			"help" : "The tangent of an angle (opposite side/adjacent side), you can type /kill [name] during the night to kill another player (shared with your team). Your ability to go off on a tangent makes you immune to stalk, watch and distract!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill_tan_mourn"
+				},
+				"distract" : {
+					"mode" : "ignore",
+					"msg" : "Someone tried to distract you, but you went off on a tangent and escaped it!"
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "tan_killer_mourn2",
+			"translation" : "tan",
+			"side" : "tri",
+			"help" : "The tangent of an angle (opposite side/adjacent side), you can type /kill [name] during the night to kill another player (shared with your team). Your ability to go off on a tangent makes you immune to stalk, watch and distract!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill_tan_mourn2"
+				},
+				"distract" : {
+					"mode" : "ignore",
+					"msg" : "Someone tried to distract you, but you went off on a tangent and escaped it!"
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "tan",
+			"translation" : "tan",
+			"side" : "tri",
+			"help" : "The tangent of an angle (opposite side/adjacent side), you can type /kill [name] during the night to kill another player (shared with your team). Your ability to go off on a tangent makes you immune to stalk, watch and distract!",
+			"info" : "Can kill one person during the night (shared). Cannot be stalked, watched or distracted. ~Sided~",
+			"infoName" : "tan (Tangent)",
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill_silent_tan"
+				},
+				"distract" : {
+					"mode" : "ignore",
+					"msg" : "Someone tried to distract you, but you went off on a tangent and escaped it!"
+				},
+				"onDeadRoles" : {
+					"convertTo" : {
+						"tan_killer" : "variable:tan_is_killer"
+					},
+					"convertmsg" : "",
+					"silentConvert" : true
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "tan_mourn",
+			"translation" : "tan",
+			"side" : "tri",
+			"help" : "The tangent of an angle (opposite side/adjacent side), you can type /kill [name] during the night to kill another player (shared with your team). Your ability to go off on a tangent makes you immune to stalk, watch and distract!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill_silent_tan"
+				},
+				"distract" : {
+					"mode" : "ignore",
+					"msg" : "Someone tried to distract you, but you went off on a tangent and escaped it!"
+				},
+				"onDeadRoles" : {
+					"convertTo" : {
+						"tan_killer" : "variable:tan_is_killer"
+					},
+					"convertmsg" : "",
+					"silentConvert" : true
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "tan_mourn2",
+			"translation" : "tan",
+			"side" : "tri",
+			"help" : "The tangent of an angle (opposite side/adjacent side), you can type /kill [name] during the night to kill another player (shared with your team). Your ability to go off on a tangent makes you immune to stalk, watch and distract!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"kill" : "variable:tri_kill_silent_tan"
+				},
+				"distract" : {
+					"mode" : "ignore",
+					"msg" : "Someone tried to distract you, but you went off on a tangent and escaped it!"
+				},
+				"onDeadRoles" : {
+					"convertTo" : {
+						"tan_killer" : "variable:tan_is_killer"
+					},
+					"convertmsg" : "",
+					"silentConvert" : true
+				},
+				"poison" : "variable:avoidTeamfire_tri",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "sec",
+			"translation" : "sec",
+			"side" : "tri",
+			"help" : "The secant of an angle (hypotenuse/adjacent side), you can type /guard [name] to block any non-killing action used on your target (this will not be made public, and you can use it on yourself). Your vote counts as +3!",
+			"info" : "Can guard one person during the night (blocks distract, protect, five, stalk and watch). Action is not public. Vote counts as +3. ~Sided~",
+			"infoName" : "sec (Secant)",
+			"actions" : {
+				"night" : {
+					"guard" : {
+						"common" : "Self",
+						"target" : "Any",
+						"priority" : "variable:prio_sec",
+						"guardActions" : ["distract", "protect", "five", "stalk", "watch"]
+					}
+				},
+				"vote" : 3,
+				"poison" : "variable:avoidTeamfire_tri",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "sec_mourn",
+			"translation" : "sec",
+			"side" : "tri",
+			"help" : "The secant of an angle (hypotenuse/adjacent side), you can type /guard [name] to block any non-killing action used on your target (this will not be made public, and you can use it on yourself). Your vote counts as +3!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"guard" : {
+						"common" : "Self",
+						"target" : "Any",
+						"priority" : "variable:prio_sec",
+						"guardActions" : ["distract", "protect", "five", "stalk", "watch"],
+						"initialrecharge" : 1,
+						"hide" : true
+					}
+				},
+				"vote" : 3,
+				"poison" : "variable:avoidTeamfire_tri",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "sec_mourn2",
+			"translation" : "sec",
+			"side" : "tri",
+			"help" : "The secant of an angle (hypotenuse/adjacent side), you can type /guard [name] to block any non-killing action used on your target (this will not be made public, and you can use it on yourself). Your vote counts as +3!",
+			"hide" : true,
+			"actions" : {
+				"night" : {
+					"guard" : {
+						"common" : "Self",
+						"target" : "Any",
+						"priority" : "variable:prio_sec",
+						"guardActions" : ["distract", "protect", "five", "stalk", "watch"],
+						"initialrecharge" : 2,
+						"hide" : true
+					}
+				},
+				"vote" : 3,
+				"poison" : "variable:avoidTeamfire_tri",
+				"startup" : "team-reveal-with-roles",
+				"teamTalk" : true,
+				"preventTeamvote" : true
+			}
+		}, {
+			"role" : "pi",
+			"translation" : "π",
+			"side" : "pi",
+			"help" : "You represent the ratio of a circle's circumference to its diameter! You have 2 actions available during the day: you can use /kill [name] to kill another player, and /inspect [name] to find another player's role (none of those actions will reveal you). You also evade 1 nightkill during the game, and your vote counts as 3.14159!",
+			"info" : "Can kill one person during the standby (won't reveal itself). Can inspect one person during the standby (won't reveal itself). Evades 1 nightkill per game. Vote counts as 3.14159. ~Sided~",
+			"infoName" : "π (Pi)",
+			"actions" : {
+				"standby" : {
+					"kill" : {
+						"target" : "AnyButTeam",
+						"msg" : "You can kill now using /kill [name], and find someone's role with /inspect [name] (neither command will reveal you):",
+						"killmsg" : "±Teacher: 3.1415926535897932384626433832795028841971693993751058209749445923078164062862"
+					},
+					"inspect" : {
+						"command" : "expose",
+						"target" : "AnyButTeam",
+						"exposemsg" : "±Teacher: π is analyzing someone's role!",
+						"exposedtargetmsg" : "~Target~ is the ~Role~!"
+					}
+				},
+				"kill" : {
+					"mode" : {
+						"evadeCharges" : 1
+					},
+					"evadechargemsg" : "You evaded a kill!"
+				},
+				"vote" : 3.14159
+			}
+		}
+	],
+	"roles1" : ["cos_killer", "1", "1", "5", "2", "4"],
+	"roles2" : ["cos_killer", "1", "1", "4", "5", "1", "3", "tan"],
+	"roles3" : ["tan", "1", "1", "4", "5", "2", "sin", "3", "7"],
+	"roles4" : ["plus", "divide", "cos_killer", "tan", "1", "1", "1", "0", "7", "4", "2", "5", "1", "minus", "3"],
+	"roles5" : ["plus", "divide", "sin", "cos", "7", "4", "0", "2", "1", "1", "1", "1", "3", "minus", "5", "tan", "1", "pi", "6", "1"],
+	"roles6" : ["plus", "minus", "divide", "sin", "cos", "tan", "pi", "7", "4", "0", "6", "3", "5", "5", "2", "1", "1", "1", "1", "1", "9", "sec", "8", "multiply", "1", "2", "pi", "1", "6", "1"],
+	"villageCantLoseRoles" : ["2", "6", "6_mourn", "8b", "9"],
+	"killmsg" : "~Player~ subtracted by ~Role~ = Dead:",
+	"killusermsg" : "*** You have been subtracted from the game! ***",
+	"votemsg" : "~Player~'s vote = ~Target~!",
+	"lynchmsg" : "±Teacher: ~Player~ (~Role~) was erased from the blackboard!",
+	"drawmsg" : "±Teacher: Wow, you guys hate Math so much that you all died?",
+	"changelog" : {
+		"02.09.2014" : "Tweaking spawn for small games.",
+		"08.08.2014" : "Removing altname for now.",
+		"27.07.2014" : "Plus now only gets +2 voteshield for each kill2 used. Division's distract is now faster than 0's. Division now ignores poison. Tweaked spawn. Tips updated. ",
+		"22.07.2014" : "Merged the double message for nightkills (~Side~ killed ~Target~ and ~Target~ died).",
+		"17.07.2014" : "Swapped kill priority for Operators and Trigonometry. Tweaked spawn.",
+		"12.07.2014" : "Tweaked spawn for small games.",
+		"10.07.2014" : "Test Period begins. Standby phase's length extended to 40 seconds. Message Styling. Check No Voters added. Trying a different styling for killmsg.",
+		"08.06.2014" : "Theme coded."
+	}
+}
