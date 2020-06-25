@@ -1,0 +1,1331 @@
+{
+    "name": "Vote",
+    "author": [
+        "Miki Sayaka"
+    ],
+    "summary": "It was a peaceful day and everything was going well until someone went and changed everyone's vote power!! Now everyone's votes could count for anywhere between -3 to +3! Will the Mafia take control of the village in the chaos that ensues? You can count on it!",
+    "minplayers": 3,
+    "nonPeak": true,
+    "tips": {
+        "Compulsory Lynch": "Even though there are negative voters in this theme, the person who receives the most votes, even if that amount is negative, will be lynched!",
+        "Villagers": "Use your /Combine command to find out what your vote count is when added to another player. You can find Mafia this way, and also triangulate your own vote strength.",
+        "Mafia": "The villagers don't know who you are, but they can find you with their /combine. You know what your vote counts are, while all the villagers have to guess."
+    },
+    "ticks": {
+        "night": 25,
+        "standby": 25
+    },
+    "sides": [
+        {
+            "side": "village",
+            "translation": "Village",
+            "winmsg": "The Villagers (~Players~) with their voting powers have saved their Village."
+        },
+        {
+            "side": "Mafia",
+            "translation": "Mafia",
+            "winmsg": "The Mafia (~Players~) have successfully taken control of the Village."
+        }
+    ],
+    "variables": {
+     "total0": {
+     	"mode": "ignore", "msg": "Your vote power combined with ~Self~ is 0!"
+     },
+     "total1": {
+     	"mode": "ignore", "msg": "Your vote power combined with ~Self~ is 1!"
+     },
+     "total2": {
+     	"mode": "ignore", "msg": "Your vote power combined with ~Self~ is 2!"
+     },
+     "total3": {
+     	"mode": "ignore", "msg": "Your vote power combined with ~Self~ is 3!"
+     },
+     "total4": {
+     	"mode": "ignore", "msg": "Your vote power combined with ~Self~ is 4!"
+     },
+     "total5": {
+     	"mode": "ignore", "msg": "Your vote power combined with ~Self~ is 5!"
+     },
+     "total6": {
+     	"mode": "ignore", "msg": "Your vote power combined with ~Self~ is 6!"
+     },
+     "total-1": {
+     	"mode": "ignore", "msg": "Your vote power combined with ~Self~ is -1!"
+     },
+     "total-2": {
+     	"mode": "ignore", "msg": "Your vote power combined with ~Self~ is -2!"
+     },
+     "total-3": {
+     	"mode": "ignore", "msg": "Your vote power combined with ~Self~ is -3!"
+     },
+     "total-4": {
+     	"mode": "ignore", "msg": "Your vote power combined with ~Self~ is -4!"
+     },
+     "total-5": {
+     	"mode": "ignore", "msg": "Your vote power combined with ~Self~ is -5!"
+     },
+     "total-6": {
+     	"mode": "ignore", "msg": "Your vote power combined with ~Self~ is -6!"
+     }
+    
+    },
+    "roles": [
+        {
+            "role": "Villager(0)",
+            "translation": "Villager (0)",
+            "side": "village",
+            "help": "You are a normal citizen of Village. You have to defeat the Mafia with the help of your vote. However your vote count was altered by the Mafia, so you can have any votecount between -3 to +3. You can communicate with your fellow villagers to learn what your vote count, when combined with another, is equal to, by using /Combine [name]!",
+            "hide": "true",
+            "info": "Has Vote between -3 to 3. Sided with Village.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "Villager with 0 votecount"
+                },
+                "startup": {"revealAs": "Villager"},
+                "night": {
+                	"combine": {
+                		"command": "dummy",
+                		"priority": 2,
+                		"hide": true,
+                		"common": "Self",
+                		"target": "AnyButSelf"
+                		}
+                	},
+                "voteshield": 100,
+                "vote": 0,
+                "dummy": "variable:total0",
+                "dummy2": "variable:total1",
+                "dummy3": "variable:total2",
+                "dummy4": "variable:total3",
+                "dummy5": "variable:total-1",
+                "dummy6": "variable:total-2",
+                "dummy7": "variable:total-3",
+                "vote": 0,
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "TrueVillager(0)",
+                        "curseCount": 1,
+                        "silentCurse": true
+                    }
+                },
+                "onlist": "Villager (0)"
+            }
+        },
+        {
+            "role": "Villager(+1)",
+            "translation": "Villager (+1)",
+            "side": "village",
+            "help": "You are a normal citizen of Village. You have to defeat the Mafia with the help of your vote. However your vote count was altered by the Mafia, so you can have any votecount between -3 to +3. You can communicate with your fellow villagers to learn what your vote count, when combined with another, is equal to, by using /Combine [name]!",
+            "hide": "true",
+            "info": "Has Vote between -3 to 3.Sided with Village.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "Villager with +1 votecount"
+                },
+                "startup": {"revealAs": "Villager"},
+                "night": {
+                	"combine": {
+                		"command": "dummy2",
+                		"priority": 2,
+                		"hide": true,
+                		"common": "Self",
+                		"target": "AnyButSelf"
+                		}
+                	},
+                "dummy": "variable:total1",
+                "dummy2": "variable:total2",
+                "dummy3": "variable:total3",
+                "dummy4": "variable:total4",
+                "dummy5": "variable:total0",
+                "dummy6": "variable:total-1",
+                "dummy7": "variable:total-2",
+                "vote": 1,
+                "voteshield": 100,
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "TrueVillager(+1)",
+                        "curseCount": 1,
+                        "silentCurse": true
+                    }
+                },
+                "onlist": "Villager (+1)"
+            }
+        },
+        {
+            "role": "Villager(+2)",
+            "translation": "Villager (+2)",
+            "side": "village",
+            "help": "You are a normal citizen of Village. You have to defeat the Mafia with the help of your vote. However your vote count was altered by the Mafia, so you can have any votecount between -3 to +3. You can communicate with your fellow villagers to learn what your vote count, when combined with another, is equal to, by using /Combine [name]!",
+            "hide": "true",
+            "info": "Has Vote between -3 to 3.Sided with Village.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "Villager with +2 votecount"
+                },
+                "startup": {"revealAs": "Villager"},
+                "night": {
+                	"combine": {
+                		"command": "dummy3",
+                		"priority": 2,
+                		"hide": true,
+                		"common": "Self",
+                		"target": "AnyButSelf"
+                		}
+                	},
+                "dummy": "variable:total2",
+                "dummy2": "variable:total3",
+                "dummy3": "variable:total4",
+                "dummy4": "variable:total5",
+                "dummy5": "variable:total1",
+                "dummy6": "variable:total0",
+                "dummy7": "variable:total-1",
+                "vote": 2,
+                "voteshield": 100,
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "TrueVillager(+2)",
+                        "curseCount": 1,
+                        "silentCurse": true
+                    }
+                },
+                "onlist": "Villager (+2)"
+            }
+        },
+        {
+            "role": "Villager(+3)",
+            "translation": "Villager (+3)",
+            "side": "village",
+            "help": "You are a normal citizen of Village. You have to defeat the Mafia with the help of your vote. However your vote count was altered by the Mafia, so you can have any votecount between -3 to +3. You can communicate with your fellow villagers to learn what your vote count, when combined with another, is equal to, by using /Combine [name]!",
+            "hide": "true",
+            "info": "Has Vote between -3 to 3.Sided with Village.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "Villager with +3 votecount"
+                },
+                "startup": {"revealAs": "Villager"},
+                "night": {
+                	"combine": {
+                		"command": "dummy4",
+                		"priority": 2,
+                		"hide": true,
+                		"common": "Self",
+                		"target": "AnyButSelf"
+                		}
+                	},
+                "dummy": "variable:total3",
+                "dummy2": "variable:total4",
+                "dummy3": "variable:total5",
+                "dummy4": "variable:total6",
+                "dummy5": "variable:total2",
+                "dummy6": "variable:total1",
+                "dummy7": "variable:total0",
+                "vote": 3,
+                "voteshield": 100,
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "TrueVillager(+3)",
+                        "curseCount": 1,
+                        "silentCurse": true
+                    }
+                },
+                "onlist": "Villager (+3)"
+            }
+        },
+        {
+            "role": "Villager(-1)",
+            "translation": "Villager (-1)",
+            "side": "village",
+            "help": "You are a normal citizen of Village. You have to defeat the Mafia with the help of your vote. However your vote count was altered by the Mafia, so you can have any votecount between -3 to +3. You can communicate with your fellow villagers to learn what your vote count, when combined with another, is equal to, by using /Combine [name]!",
+            "hide": "true",
+            "info": "Has Vote between -3 to 3.Sided with Village.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "Villager with -1 votecount"
+                },
+                "startup": {"revealAs": "Villager"},
+                "night": {
+                	"combine": {
+                		"command": "dummy5",
+                		"priority": 2,
+                		"hide": true,
+                		"common": "Self",
+                		"target": "AnyButSelf"
+                		}
+                	},
+                "dummy": "variable:total-1",
+                "dummy2": "variable:total0",
+                "dummy3": "variable:total1",
+                "dummy4": "variable:total2",
+                "dummy5": "variable:total-2",
+                "dummy6": "variable:total-3",
+                "dummy7": "variable:total-4",
+                "vote": -1,
+                "voteshield": 100,
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "TrueVillager(-1)",
+                        "curseCount": 1,
+                        "silentCurse": true
+                    }
+                },
+                "onlist": "Villager (-1)"
+            }
+        },
+        {
+            "role": "Villager(-2)",
+            "translation": "Villager (-2)",
+            "side": "village",
+            "help": "You are a normal citizen of Village. You have to defeat the Mafia with the help of your vote. However your vote count was altered by the Mafia, so you can have any votecount between -3 to +3. You can communicate with your fellow villagers to learn what your vote count, when combined with another, is equal to, by using /Combine [name]!",
+            "hide": "true",
+            "info": "Has Vote between -3 to 3.Sided with Village.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "Villager with -2 votecount"
+                },
+                "startup": {"revealAs": "Villager"},
+                "night": {
+                	"combine": {
+                		"command": "dummy6",
+                		"priority": 2,
+                		"hide": true,
+                		"common": "Self",
+                		"target": "AnyButSelf"
+                		}
+                	},
+                "dummy": "variable:total-2",
+                "dummy2": "variable:total-1",
+                "dummy3": "variable:total0",
+                "dummy4": "variable:total1",
+                "dummy5": "variable:total-3",
+                "dummy6": "variable:total-4",
+                "dummy7": "variable:total-5",
+                "vote": -2,
+                "voteshield": 100,
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "TrueVillager(-2)",
+                        "curseCount": 1,
+                        "silentCurse": true
+                    }
+                },
+                "onlist": "Villager (-2)"
+            }
+        },
+        {
+            "role": "Villager(-3)",
+            "translation": "Villager (-3)",
+            "side": "village",
+            "help": "You are a normal citizen of Village. You have to defeat the Mafia with the help of your vote. However your vote count was altered by the Mafia, so you can have any votecount between -3 to +3. You can communicate with your fellow villagers to learn what your vote count, when combined with another, is equal to, by using /Combine [name]!",
+            "hide": "true",
+            "info": "Has Vote between -3 to 3. Sided with Village.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "Villager with -3 votecount"
+                },
+                "startup": {"revealAs": "Villager"},
+                "night": {
+                	"combine": {
+                		"command": "dummy7",
+                		"priority": 2,
+                		"hide": true,
+                		"common": "Self",
+                		"target": "AnyButSelf"
+                		}
+                	},
+                "dummy": "variable:total-3",
+                "dummy2": "variable:total-2",
+                "dummy3": "variable:total-1",
+                "dummy4": "variable:total0",
+                "dummy5": "variable:total-4",
+                "dummy6": "variable:total-5",
+                "dummy7": "variable:total-6",
+                "vote": -3,
+                "voteshield": 100,
+                "initialCondition": {
+                    "curse": {
+                        "cursedRole": "TrueVillager(-3)",
+                        "curseCount": 1,
+                        "silentCurse": true
+                    }
+                },
+                "onlist": "Villager (-3)"
+            }
+        },
+        {
+            "role": "Villager",
+            "translation": "Villager",
+            "side": "village",
+            "help": "You are a normal citizen of Village. You have to defeat the Mafia with the help of your vote. However your vote count was altered by the Mafia, so you can have any votecount between -3 to +3. You can communicate with your fellow villagers to learn what your vote count, when combined with another, is equal to, by using /Combine [name]!",
+            "info": "Has Vote between -3 to 3.Sided with Village.",
+            "actions": {}
+        },
+        {
+            "role": "Villager with 0 votecount",
+            "translation": "Villager with 0 votecount",
+            "side": "village",
+            "help": "Dummy Role.",
+            "hide": "true",
+            "actions": {}
+        },
+        {
+            "role": "Villager with +1 votecount",
+            "translation": "Villager with +1 votecount",
+            "side": "village",
+            "help": "Dummy Role.",
+            "hide": "true",
+            "actions": {}
+        },
+        {
+            "role": "Villager with +2 votecount",
+            "translation": "Villager with +2 votecount",
+            "side": "village",
+            "help": "Dummy Role.",
+            "hide": "true",
+            "actions": {}
+        },
+        {
+            "role": "Villager with +3 votecount",
+            "translation": "Villager with +3 votecount",
+            "side": "village",
+            "help": "Dummy Role.",
+            "hide": "true",
+            "actions": {}
+        },
+        {
+            "role": "Villager with -1 votecount",
+            "translation": "Villager with -1 votecount",
+            "side": "village",
+            "help": "Dummy Role.",
+            "hide": "true",
+            "actions": {}
+        },
+        {
+            "role": "Villager with -2 votecount",
+            "translation": "Villager with -2 votecount",
+            "side": "village",
+            "help": "Dummy Role.",
+            "hide": "true",
+            "actions": {}
+        },
+        {
+            "role": "Villager with -3 votecount",
+            "translation": "Villager with -3 votecount",
+            "side": "village",
+            "help": "Dummy Role.",
+            "hide": "true",
+            "actions": {}
+        },
+        {
+            "role": "Villager (0)",
+            "translation": "Villager (0)",
+            "side": "village",
+            "help": "Dummy Role.",
+            "hide": "true",
+            "actions": {}
+        },
+        {
+            "role": "Villager (-1)",
+            "translation": "Villager (-1)",
+            "side": "village",
+            "help": "Dummy Role.",
+            "hide": "true",
+            "actions": {}
+        },
+        {
+            "role": "Villager (-2)",
+            "translation": "Villager (-2)",
+            "side": "village",
+            "help": "Dummy Role.",
+            "hide": "true",
+            "actions": {}
+        },
+        {
+            "role": "Villager (-3)",
+            "translation": "Villager (-3)",
+            "side": "village",
+            "help": "Dummy Role.",
+            "hide": "true",
+            "actions": {}
+        },
+        {
+            "role": "Villager (+1)",
+            "translation": "Villager (+1)",
+            "side": "village",
+            "help": "Dummy Role.",
+            "hide": "true",
+            "actions": {}
+        },
+        {
+            "role": "Villager (+2)",
+            "translation": "Villager (+2)",
+            "side": "village",
+            "help": "Dummy Role.",
+            "hide": "true",
+            "actions": {}
+        },
+        {
+            "role": "Villager (+3)",
+            "translation": "Villager (+3)",
+            "side": "village",
+            "help": "Dummy Role.",
+            "hide": "true",
+            "actions": {}
+        },
+        {
+            "role": "TrueVillager(0)",
+            "translation": "Villager",
+            "side": "village",
+            "help": "You are a normal citizen of Village. You have to defeat the Mafia with the help of your vote. However your vote count was altered by the Mafia, so you can have any votecount between -3 to +3. You can communicate with your fellow villagers to learn what your vote count, when combined with another, is equal to, by using /Combine [name]!",
+            "hide": "true",
+            "info": "Has Vote between -3 to 3. Sided with Village.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "Villager with 0 votecount"
+                },
+                "night": {
+                	"combine": {
+                		"command": "dummy",
+                		"priority": 2,
+                		"common": "Self",
+                		"target": "AnyButSelf"
+                		}
+                	},
+                "vote": 0,
+                "voteshield": 100,
+                "dummy": "variable:total0",
+                "dummy2": "variable:total1",
+                "dummy3": "variable:total2",
+                "dummy4": "variable:total3",
+                "dummy5": "variable:total-1",
+                "dummy6": "variable:total-2",
+                "dummy7": "variable:total-3"
+            }
+        },
+        {
+            "role": "TrueVillager(+1)",
+            "translation": "Villager",
+            "side": "village",
+            "help": "You are a normal citizen of Village. You have to defeat the Mafia with the help of your vote. However your vote count was altered by the Mafia, so you can have any votecount between -3 to +3. You can communicate with your fellow villagers to learn what your vote count, when combined with another, is equal to, by using /Combine [name]!",
+            "hide": "true",
+            "info": "Has Vote between -3 to 3.Sided with Village.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "Villager with +1 votecount"
+                },
+                "vote": 1,
+                "voteshield": 100,
+                "night": {
+                	"combine": {
+                		"command": "dummy2",
+                		"priority": 2,
+                		"common": "Self",
+                		"target": "AnyButSelf"
+                		}
+                	},
+                "dummy": "variable:total1",
+                "dummy2": "variable:total2",
+                "dummy3": "variable:total3",
+                "dummy4": "variable:total4",
+                "dummy5": "variable:total0",
+                "dummy6": "variable:total-1",
+                "dummy7": "variable:total-2"
+            }
+        },
+        {
+            "role": "TrueVillager(+2)",
+            "translation": "Villager",
+            "side": "village",
+            "help": "You are a normal citizen of Village. You have to defeat the Mafia with the help of your vote. However your vote count was altered by the Mafia, so you can have any votecount between -3 to +3. You can communicate with your fellow villagers to learn what your vote count, when combined with another, is equal to, by using /Combine [name]!",
+            "hide": "true",
+            "info": "Has Vote between -3 to 3.Sided with Village.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "Villager with +2 votecount"
+                },
+                "vote": 2,
+                "voteshield": 100,
+                "night": {
+                	"combine": {
+                		"command": "dummy3",
+                		"priority": 2,
+                		"common": "Self",
+                		"target": "AnyButSelf"
+                		}
+                	},
+                "dummy": "variable:total2",
+                "dummy2": "variable:total3",
+                "dummy3": "variable:total4",
+                "dummy4": "variable:total5",
+                "dummy5": "variable:total1",
+                "dummy6": "variable:total0",
+                "dummy7": "variable:total-1"
+            }
+        },
+        {
+            "role": "TrueVillager(+3)",
+            "translation": "Villager",
+            "side": "village",
+            "help": "You are a normal citizen of Village. You have to defeat the Mafia with the help of your vote. However your vote count was altered by the Mafia, so you can have any votecount between -3 to +3. You can communicate with your fellow villagers to learn what your vote count, when combined with another, is equal to, by using /Combine [name]!",
+            "hide": "true",
+            "info": "Has Vote between -3 to 3.Sided with Village.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "Villager with +3 votecount"
+                },
+                "vote": 3,
+                "voteshield": 100,
+                "night": {
+                	"combine": {
+                		"command": "dummy4",
+                		"priority": 2,
+                		"common": "Self",
+                		"target": "AnyButSelf"
+                		}
+                	},
+                "dummy": "variable:total3",
+                "dummy2": "variable:total4",
+                "dummy3": "variable:total5",
+                "dummy4": "variable:total6",
+                "dummy5": "variable:total2",
+                "dummy6": "variable:total1",
+                "dummy7": "variable:total0"
+            }
+        },
+        {
+            "role": "TrueVillager(-1)",
+            "translation": "Villager",
+            "side": "village",
+            "help": "You are a normal citizen of Village. You have to defeat the Mafia with the help of your vote. However your vote count was altered by the Mafia, so you can have any votecount between -3 to +3. You can communicate with your fellow villagers to learn what your vote count, when combined with another, is equal to, by using /Combine [name]!",
+            "hide": "true",
+            "info": "Has Vote between -3 to 3.Sided with Village.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "Villager with -1 votecount"
+                },
+                "vote": -1,
+                "voteshield": 100,
+                "night": {
+                	"combine": {
+                		"command": "dummy5",
+                		"priority": 2,
+                		"common": "Self",
+                		"target": "AnyButSelf"
+                		}
+                	},
+                "dummy": "variable:total-1",
+                "dummy2": "variable:total0",
+                "dummy3": "variable:total1",
+                "dummy4": "variable:total2",
+                "dummy5": "variable:total-2",
+                "dummy6": "variable:total-3",
+                "dummy7": "variable:total-4"
+            }
+        },
+        {
+            "role": "TrueVillager(-2)",
+            "translation": "Villager",
+            "side": "village",
+            "help": "You are a normal citizen of Village. You have to defeat the Mafia with the help of your vote. However your vote count was altered by the Mafia, so you can have any votecount between -3 to +3. You can communicate with your fellow villagers to learn what your vote count, when combined with another, is equal to, by using /Combine [name]!",
+            "hide": "true",
+            "info": "Has Vote between -3 to 3.Sided with Village.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "Villager with -2 votecount"
+                },
+                "vote": -2,
+                "voteshield": 100,
+                "night": {
+                	"combine": {
+                		"command": "dummy6",
+                		"priority": 2,
+                		"common": "Self",
+                		"target": "AnyButSelf"
+                		}
+                	},
+                "dummy": "variable:total-2",
+                "dummy2": "variable:total-1",
+                "dummy3": "variable:total0",
+                "dummy4": "variable:total1",
+                "dummy5": "variable:total-3",
+                "dummy6": "variable:total-4",
+                "dummy7": "variable:total-5"
+            }
+        },
+        {
+            "role": "TrueVillager(-3)",
+            "translation": "Villager",
+            "side": "village",
+            "help": "You are a normal citizen of Village. You have to defeat the Mafia with the help of your vote. However your vote count was altered by the Mafia, so you can have any votecount between -3 to +3. You can communicate with your fellow villagers to learn what your vote count, when combined with another, is equal to, by using /Combine [name]!",
+            "hide": "true",
+            "info": "Has Vote between -3 to 3. Sided with Village.",
+            "actions": {
+                "inspect": {
+                    "revealAs": "Villager with -3 votecount"
+                },
+                "vote": -3,
+                "voteshield": 100,
+                "night": {
+                	"combine": {
+                		"command": "dummy7",
+                		"priority": 2,
+                		"common": "Self",
+                		"target": "AnyButSelf"
+                		}
+                	},
+                "dummy": "variable:total-3",
+                "dummy2": "variable:total-2",
+                "dummy3": "variable:total-1",
+                "dummy4": "variable:total0",
+                "dummy5": "variable:total-4",
+                "dummy6": "variable:total-5",
+                "dummy7": "variable:total-6"
+            }
+        },
+        {
+            "role": "mafia",
+            "translation": "Mafia",
+            "side": "Mafia",
+            "help": "You are a Mafia that came to control Village. The villagers do not know your identity this time, but things have gotten quite chaotic around here. The Villagers don't know their vote counts, as you altered them to be anywhere between -3 to +3. You can kill every night except the first shared with your team by using /kill (name). Your team is the only side that knows their vote counts!",
+            "hide": true,
+            "actions": {
+                "teamTalk": true,
+                "onlist": "mafia",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 1,
+                        "initialrecharge": 2,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "Mafia+1",
+            "translation": "Mafia (+1)",
+            "side": "Mafia",
+            "help": "You are a Mafia that came to control Village. The villagers do not know your identity this time, but things have gotten quite chaotic around here. The Villagers don't know their vote counts, as you altered them to be anywhere between -3 to +3. You can kill every night except the first shared with your team by using /kill (name). Your team is the only side that knows their vote counts!",
+            "info": "Can kill people with /kill from night 2. Has Vote of 1. Sided with Mafia.",
+            "actions": {
+                "teamTalk": true,
+                "onlist": "mafia",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "dummy": "variable:total1",
+                "dummy2": "variable:total2",
+                "dummy3": "variable:total3",
+                "dummy4": "variable:total4",
+                "dummy5": "variable:total0",
+                "dummy6": "variable:total-1",
+                "dummy7": "variable:total-2",
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 1,
+                        "initialrecharge": 2,
+                        "broadcast": "team"
+                    }
+                },
+                "voteshield": 100,
+                "vote": 1
+            }
+        },
+        {
+            "role": "Mafia-1",
+            "translation": "Mafia (-1)",
+            "side": "Mafia",
+            "help": "You are a Mafia that came to control Village. The villagers do not know your identity this time, but things have gotten quite chaotic around here. The Villagers don't know their vote counts, as you altered them to be anywhere between -3 to +3. You can kill every night except the first shared with your team by using /kill (name). Your team is the only side that knows their vote counts!",
+            "info": "Can kill people with /kill from night 2. Has Vote of -1. Sided with Mafia.",
+            "actions": {
+                "teamTalk": true,
+                "onlist": "mafia",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "dummy": "variable:total-1",
+                "dummy2": "variable:total0",
+                "dummy3": "variable:total1",
+                "dummy4": "variable:total2",
+                "dummy5": "variable:total-2",
+                "dummy6": "variable:total-3",
+                "dummy7": "variable:total-4",
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 1,
+                        "initialrecharge": 2,
+                        "broadcast": "team"
+                    }
+                },
+                "voteshield": 100,
+                "vote": -1
+            }
+        },
+        {
+            "role": "Mafia+2",
+            "translation": "Mafia (+2)",
+            "side": "Mafia",
+            "help": "You are a Mafia that came to control Village. The villagers do not know your identity this time, but things have gotten quite chaotic around here. The Villagers don't know their vote counts, as you altered them to be anywhere between -3 to +3. You can kill every night except the first shared with your team by using /kill (name). Your team is the only side that knows their vote counts!",
+            "info": "Can kill people with /kill from night 2. Has Vote of 2. Sided with Mafia.",
+            "actions": {
+                "teamTalk": true,
+                "onlist": "mafia",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "dummy": "variable:total2",
+                "dummy2": "variable:total3",
+                "dummy3": "variable:total4",
+                "dummy4": "variable:total5",
+                "dummy5": "variable:total1",
+                "dummy6": "variable:total0",
+                "dummy7": "variable:total-1",
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 1,
+                        "initialrecharge": 2,
+                        "broadcast": "team"
+                    }
+                },
+                "voteshield": 100,
+                "vote": 2
+            }
+        },
+        {
+            "role": "Mafia-2",
+            "translation": "Mafia (-2)",
+            "side": "Mafia",
+            "help": "You are a Mafia that came to control Village. The villagers do not know your identity this time, but things have gotten quite chaotic around here. The Villagers don't know their vote counts, as you altered them to be anywhere between -3 to +3. You can kill every night except the first shared with your team by using /kill (name). Your team is the only side that knows their vote counts!",
+            "info": "Can kill people with /kill from night 2. Has Vote of -2. Sided with Mafia.",
+            "actions": {
+                "teamTalk": true,
+                "onlist": "mafia",
+                "startup": "team-reveal-with-roles",
+                "preventTeamvote": true,
+                "dummy": "variable:total-2",
+                "dummy2": "variable:total-1",
+                "dummy3": "variable:total0",
+                "dummy4": "variable:total1",
+                "dummy5": "variable:total-3",
+                "dummy6": "variable:total-4",
+                "dummy7": "variable:total-5",
+                "night": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 1,
+                        "initialrecharge": 2,
+                        "broadcast": "team"
+                    }
+                },
+                "voteshield": 100,
+                "vote": -2
+            }
+        }
+    ],
+    "spawnPacks": {
+        "Village1": {
+            "roles": [
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(+1)",
+                    "Villager(-1)",
+                    "Villager(-2)"
+                ],
+                [
+                    "Villager(+2)",
+                    "Villager(+1)",
+                    "Villager(-1)",
+                    "Villager(-2)",
+                    "Villager(-3)"
+                ]
+            ],
+            "chance": [
+                0.5, 0.5
+            ]
+        },
+        "Village2": {
+            "roles": [
+                [
+                    "Villager(+2)",
+                    "Villager(+2)",
+                    "Villager(+1)",
+                    "Villager(-2)",
+                    "Villager(-2)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(+1)",
+                    "Villager(-1)",
+                    "Villager(-2)"
+                ],
+                [
+                    "Villager(+2)",
+                    "Villager(+1)",
+                    "Villager(-1)",
+                    "Villager(-2)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(-1)",
+                    "Villager(-2)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(+1)",
+                    "Villager(-2)",
+                    "Villager(-3)"
+                ]
+            ],
+            "chance": [
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2
+            ]
+        },
+        "Village3": {
+            "roles": [
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(-1)",
+                    "Villager(-1)",
+                    "Villager(-2)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(+1)",
+                    "Villager(+1)",
+                    "Villager(-2)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(+1)",
+                    "Villager(-1)",
+                    "Villager(-2)",
+                    "Villager(-3)"
+                ]
+            ],
+            "chance": [
+                0.34, 0.33, 0.33
+                ]
+        },
+        "Village4": {
+            "roles": [
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(+1)",
+                    "Villager(+1)",
+                    "Villager(-1)",
+                    "Villager(-2)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(+1)",
+                    "Villager(-1)",
+                    "Villager(-1)",
+                    "Villager(-2)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+3)",
+                    "Villager(+1)",
+                    "Villager(-1)",
+                    "Villager(-1)",
+                    "Villager(-2)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+3)",
+                    "Villager(+1)",
+                    "Villager(-1)",
+                    "Villager(-2)",
+                    "Villager(-2)",
+                    "Villager(-2)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(+2)",
+                    "Villager(0)",
+                    "Villager(-1)",
+                    "Villager(-3)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(+2)",
+                    "Villager(0)",
+                    "Villager(-2)",
+                    "Villager(-2)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(+2)",
+                    "Villager(-1)",
+                    "Villager(-1)",
+                    "Villager(-2)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(+2)",
+                    "Villager(-1)",
+                    "Villager(-2)",
+                    "Villager(-2)",
+                    "Villager(-2)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(+1)",
+                    "Villager(+1)",
+                    "Villager(-1)",
+                    "Villager(-3)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(+1)",
+                    "Villager(+1)",
+                    "Villager(-2)",
+                    "Villager(-2)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+2)",
+                    "Villager(+2)",
+                    "Villager(+2)",
+                    "Villager(+1)",
+                    "Villager(-1)",
+                    "Villager(-3)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+2)",
+                    "Villager(+2)",
+                    "Villager(+2)",
+                    "Villager(+1)",
+                    "Villager(-2)",
+                    "Villager(-2)",
+                    "Villager(-3)"
+                ]
+            ],
+            "chance": [
+                0.09,
+                0.09,
+                0.08,
+                0.08,
+                0.09,
+                0.09,
+                0.08,
+                0.08,
+                0.08,
+                0.08,
+                0.08,
+                0.08
+            ]
+        },
+        "Village5": {
+            "roles": [
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(+1)",
+                    "Villager(0)",
+                    "Villager(-1)",
+                    "Villager(-2)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(+1)",
+                    "Villager(0)",
+                    "Villager(-1)",
+                    "Villager(-3)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(-1)",
+                    "Villager(-2)",
+                    "Villager(-2)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(-2)",
+                    "Villager(-2)",
+                    "Villager(-2)",
+                    "Villager(-2)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+3)",
+                    "Villager(+1)",
+                    "Villager(+1)",
+                    "Villager(-2)",
+                    "Villager(-3)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+3)",
+                    "Villager(+2)",
+                    "Villager(+2)",
+                    "Villager(+1)",
+                    "Villager(-2)",
+                    "Villager(-3)",
+                    "Villager(-3)"
+                ],
+                [
+                    "Villager(+2)",
+                    "Villager(+2)",
+                    "Villager(+2)",
+                    "Villager(+2)",
+                    "Villager(-2)",
+                    "Villager(-3)",
+                    "Villager(-3)"
+                ]
+            ],
+            "chance": [
+                0.16,
+                0.14,
+                0.14,
+                0.14,
+                0.14,
+                0.14,
+                0.14
+            ]
+        },
+        "Mafia1": {
+            "roles": [
+                [
+                    "Mafia+1",
+                    "Mafia-1"
+                ],
+                [
+                    "Mafia-1",
+                    "Mafia+1"
+                ]
+            ],
+            "chance": [
+                0.5,
+                0.5
+            ]
+        },
+        "Mafia2": {
+            "roles": [
+                [
+                    "Mafia+2",
+                    "Mafia-1"
+                ],
+                [
+                    "Mafia-1",
+                    "Mafia+2"
+                ],
+                [
+                    "Mafia-2",
+                    "Mafia+1"
+                ],
+                [
+                    "Mafia+1",
+                    "Mafia-2"
+                ],
+                [
+                    "Mafia+1",
+                    "Mafia-1"
+                ],
+                [
+                    "Mafia-1",
+                    "Mafia+1"
+                ],
+                [
+                    "Mafia+2",
+                    "Mafia-2"
+                ],
+                [
+                    "Mafia-2",
+                    "Mafia+2"
+                ]
+            ],
+            "chance": [
+                0.25,
+                0.25,
+                0.25,
+                0.25,
+                0.25,
+                0.25,
+                0.25,
+                0.25
+            ]
+        },
+        "Miller": {
+            "roles": [
+                [
+                    "Mafia+1",
+                    "Villager(+1)"
+                ],
+                [
+                    "Mafia-1",
+                    "Villager(-1)"
+                ],
+                [
+                    "Mafia+2",
+                    "Villager(+2)"
+                ],
+                [
+                    "Mafia-2",
+                    "Villager(-2)"
+                ]
+            ],
+            "chance": [
+                0.25,
+                0.25,
+                0.25,
+                0.5
+            ]
+        }
+    },
+    "roles1": [
+        "Villager(+1)",
+        "Villager(-1)",
+        "pack:Mafia1"
+    ],
+    "roles2": [
+        "Villager(+1)",
+        "Villager(0)",
+        "Villager(-1)",
+        "pack:Mafia1"
+    ],
+    "roles3": [
+        "Villager(+2)",
+        "Villager(+1)",
+        "Villager(-1)",
+        "Villager(-2)",
+        "pack:Mafia2"
+    ],
+    "roles4": [
+        "Villager(+2)",
+        "Villager(+1)",
+        "Villager(-1)",
+        "Villager(-2)",
+        "pack:Mafia1",
+        "pack:Mafia1"
+    ],
+    "roles5": [
+        "Villager(+3)",
+        "Villager(+2)",
+        "Villager(+1)",
+        "Villager(-1)",
+        "Villager(-2)",
+        "pack:Mafia2",
+        "pack:Mafia2"
+    ],
+    "roles6": [
+        "Villager(0)",
+        "Villager(+2)",
+        "Villager(+1)",
+        "Villager(-1)",
+        "Villager(-2)",
+        "pack:Miller",
+        "pack:Miller",
+        "pack:Mafia2"
+    ],
+    "roles7": [
+        "pack:Village2",
+        "pack:Village2",
+        "pack:Village2",
+        "pack:Village2",
+        "pack:Village2",
+        "Villager(0)",
+        "pack:Mafia1",
+        "pack:Mafia2",
+        "pack:Mafia2"
+    ],
+    "roles8": [
+        "pack:Village2",
+        "pack:Village2",
+        "pack:Village2",
+        "pack:Village2",
+        "pack:Village2",
+        "Villager(0)",
+        "pack:Miller",
+        "pack:Miller",
+        "pack:Mafia2",
+        "pack:Mafia2"
+    ],
+    "roles9": [
+        "pack:Village3",
+        "pack:Village3",
+        "pack:Village3",
+        "pack:Village3",
+        "pack:Village3",
+        "pack:Village3",
+        "pack:Village3",
+        "Villager(0)",
+        "pack:Miller",
+        "pack:Mafia2",
+        "pack:Mafia1",
+        "pack:Mafia2"
+    ],
+    "roles10": [
+        "Villager(+3)",
+        "Villager(+2)",
+        "Villager(+1)",
+        "Villager(-1)",
+        "Villager(-2)",
+        "Villager(-3)",
+        "Villager(0)",
+        "pack:Miller",
+        "pack:Miller",
+        "pack:Mafia1",
+        "pack:Mafia2",
+        "pack:Mafia2"
+    ],
+    "villageCantLoseRoles": [
+        "TrueVillager(-3)",
+        "TrueVillager(-2)",
+        "TrueVillager(+2)",
+        "TrueVillager(+3)"
+    ],
+    "killmsg": "~Player~ (~Role~) will not be voting with us this evening!",
+    "lynchmsg": "~Player~ (~Role~) will not be voting anyone ever again!",
+    "killusermsg": "You died. RIP!",
+    "votemsg": "~Player~ voted for ~Target~?",
+    "changelog": {
+    	"Vote2": "Mafia aren't revealed on startup. Mafia vote is concealed to village (but not to mafia). Villagers have /Combine to learn their vote when combined with someone else. Compulsory lynch (you can get lynched with negative votes)."
+    },
+    "border": "*** ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ***"
+}
