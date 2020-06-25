@@ -1,0 +1,1252 @@
+{
+    "name": "MAs",
+	"altname": "Mafia Channel",
+	"threadlink": "",
+	"minplayers": 5,
+        "votemsg": "~Player~ voted for ~Target~!",
+        "lynchmsg": "With ~Count~ votes, ~Player~ (~Role~) was kicked out of the channel!",
+    "author": ["???"],
+    "summary": "To feed our egoes, we remade this theme and started enabling it whenever.",
+    "tips": {
+    },
+    "sides": [
+        {
+            "side": "mafia1",
+            "translation": "Auth MAs"
+        },
+        {
+            "side": "mafia2",
+            "translation": "QC"
+        },
+        {
+            "side": "mafia3",
+            "translation": "Lead QC"
+        },
+        {
+            "side": "village",
+            "translation": "MAs"
+        },
+        {
+            "side": "godfather",
+            "translation": "Lucina"
+        },
+        {
+            "side": "consp",
+            "translation": "RiceKirby"
+        }
+    ],
+    "roles": [
+        {
+            "role": "villager",
+            "translation": "MidwayMarshall",
+            "side": "village",
+            "help": "You're an MA, but you're also a TA! You know lots of random trivia so you have a chance to know what's going on during the night. Type /question so that other MidwayMarshall can identify your Trivia skills!",
+            "actions": {
+            	"startup": {
+            		"revealRole": ["karp"]
+            		},
+                "hax": {
+                	"inspect": {
+                		"revealPlayer": 0.01,
+                		"revealTeam": 0.015
+                	},
+                	"distract": {
+                		"revealPlayer": 0.01,
+                		"revealTeam": 0.015
+                	},
+                	"confuse": {
+                		"revealPlayer": 0.01,
+                		"revealTeam": 0.03
+                	},
+                	"kill": {
+                		"revealPlayer": 0.01,
+                		"revealTeam": 0.015
+                	},
+                	"question": {
+                		"revealPlayer": 0.02
+                	}
+                },
+                "night": {
+                    "question": {
+                    	"restrict": ["question"],
+                    	"command": ["dummy"],
+                        "target": "OnlySelf",
+                        "common": "Self",
+                        "priority": -1,
+                        "hide": true
+                    }
+                }
+            
+            }
+        },
+        {
+            "role": "karp",
+            "translation": "Truthful Karp",
+            "side": "village",
+            "help": "You're Karp Karpity, an MA who likes to play as Truthful Karp. You never lie, so everyone knows you are sided with the village! Work together to defeat the QCs and Auth MAs with the help of the other MAs - MidwayMarshall (Spy), Fiery Espeon (Inspector), Roild (Bodyguard), Mumu (Distracter), Meh (Counter Bomb), Cheezeburgar (One-Shot Vigilante), and IronStorm (Samurai)!",
+            "info": "Is revealed to every player on startup. Evades daykills. ~Sided~",
+            "actions": { 
+            		"daykill": "evade"
+            }
+        },	
+		{
+            "role": "inspector",
+            "translation": "Fiery Espeon",
+            "side": "village",
+            "help": "Congratulations! You evolved into a - wait, what exactly are you? Anyhow, you have a history of being fired from QC, so now you must end them once and for all! You can /Inspect [name] to learn someone's role, and since so many users are scared of your reviews, you have a +3 vote. The only problem is that certain users cannot tell if you are a Flareon or Espeon, and so you only receive the +3 vote during the day if you have not Inspected during the previous night!",
+            "info": "Can /Inspect one person during the night. If Inspect is not used, vote counts as 3 during the following day. ~Sided~",
+            "actions": {
+            	"startup": {
+            		"revealRole": ["karp"]
+            		},
+				"initialCondition": {
+					"curse": {
+						"curseCount": 2,
+						"silentCurse": true,
+						"cursedRole": "inspector1"
+						}
+					},
+                "night": {
+                    "inspect": {
+                    	"command": ["copy"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "silent": true,
+                        "silentCopy": true,
+                        "copyAs": "inspector2",
+                        "priority": 0,
+                        "hide": true,
+                        "pierce": true
+                    }
+                },
+                "distract": {
+                    "mode": "identify",
+                    "msg": "You identified ~Distracter~!"
+                }
+            }
+        },
+		{
+            "role": "inspector1",
+            "translation": "Fiery Espeon",
+            "side": "village",
+            "hide": true,
+            "help": "Congratulations! You evolved into a - wait, what exactly are you? Anyhow, you're a new MA aligned with the village, so you must use your mixed powers to defeat the powers that threaten the Mafia Channel! During the night you can /Inspect [name] to learn someone's role. If you don't Inspect, you gain a vote of 3 for the following day!",
+            "info": "Can /Inspect one person during the night. If Inspect is not used, vote counts as 3 during the following day. ~Sided~",
+            "actions": {
+      			"initialCondition": {"clearCurse": true},
+				"vote": 3,
+            	"startup": {
+            		"revealRole": ["karp"]
+            		},
+                "night": {
+                    "inspect": {
+                    	"command": ["dummy2", "copy"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "copyAs": "inspector",
+                        "copymsg": "",
+                        "silent": true,
+                        "silentCopy": true,
+                        "priority": 21,
+                        "hide": true,
+                    	"dummy2usermsg": "You identified ~TargetRole~!",
+                        "pierce": true
+                    }
+                },
+                "distract": {
+                    "mode": "identify",
+                    "msg": "You identified ~Distracter~!"
+                }
+            }
+        },
+		{
+            "role": "inspector2",
+            "translation": "Fiery Espeon",
+            "side": "village",
+            "hide": true,
+            "help": "Congratulations! You evolved into a - wait, what exactly are you? Anyhow, you're a new MA aligned with the village, so you must use your mixed powers to defeat the powers that threaten the Mafia Channel! During the night you can /Inspect [name] to learn someone's role. If you don't Inspect, you gain a vote of 3 for the following day!",
+            "info": "Can /Inspect one person during the night. If Inspect is not used, vote counts as 3 during the following day. ~Sided~",
+            "actions": {
+				"initialCondition": {
+					"curse": {
+						"curseCount": -1,
+						"silentCurse": true,
+						"cursedRole": "inspector"
+						}
+					},
+                "night": {
+                    "inspect": {
+                    	"command": "dummy2",
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "priority": 20,
+                    	"dummy2usermsg": "You identified ~TargetRole~!",
+                        "pierce": true
+                    }
+                },
+                "distract": {
+                    "mode": "identify",
+                    "msg": "You identified ~Distracter~!"
+                }
+            }
+        },
+		{
+            "role": "vigilante",
+            "translation": "Cheezeburgar",
+            "side": "village",
+            "help": "You're an MA, but you are also a QC! Your sniping strength lets you /kill one person during the game, even if you are distracted, and even if the target is protected! You win with the QC as well as the MAs, so try to team up with them if they PM you!",            
+            "winningSides": [
+                "village",
+                "mafia2"
+            ],
+            "info": "Can /kill one person once per game. Can win with the MAs or QC. ~Sided~",
+            "actions": {
+            	"startup": {
+            		"revealRole": ["karp"]
+            		},
+                "night": {
+                    "kill": {
+                    	"command": ["kill"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "ignoreDistract": true,
+                        "killmsg": "Cheezeburgar sniped ~Target~! ~Target~ (~TargetRole~) died!",
+                        "pierce": true,
+                        "charges": 1,
+                        "priority": 10
+                    }
+                },
+                "onDeadRoles": {
+                	"convertTo": {
+                		"vigilante_vclr": ["qc1", "qc2"]
+                	},
+                		"convertmsg": ""
+                }
+            }
+        },
+		{
+            "role": "vigilante_vclr",
+            "translation": "Cheezeburgar",
+            "side": "village",
+            "help": "With the QC defeated, you can now be a VCLR!",            
+            "winningSides": [
+                "village"
+            ],
+            "hide": true,
+            "info": "Can /kill one person once per game. Can win with the MAs or QC. ~Sided~",
+            "actions": {
+            	"startup": {
+            		"revealRole": ["karp"]
+            		},
+                "night": {
+                    "kill": {
+                    	"command": ["kill"],
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "killmsg": "Cheezeburgar sniped ~Target~! ~Target~ (~TargetRole~) died!",
+                        "ignoreDistract": true,
+                        "pierce": true,
+                        "priority": 10
+                    }
+                }
+            }
+        },
+		{
+            "role": "pl",
+            "translation": "Mumu",
+            "side": "village",
+            "help": "You are a Berserk MA, but you go by so many alts that it's very easy for you to /Distract someone during the Night! You are so Berserk that your vote counts as -50, and you have a +50 voteshield! If you are lynched during the day, you will become the Berserk Player!",
+            "info": "Can /distract one person during the night. Vote of -50. Voteshield of +50. ~Sided~",
+            "actions": {
+            	"startup": {
+            		"revealRole": ["karp"]
+            		},
+            	"vote": -50,
+            	"voteshield": 50,
+                "night": {
+                    "distract": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "distractmsg": "The Yunalesca came to you last night! You were too busy being distracted!",
+                        "priority": 4
+                    }
+                },
+                "lynch": {
+                	"convertTo": "vengeful",
+                	"convertmsg": "After receiving ~Count~ votes, Mumu has been hit with a Berserk Staff and now kills during the Night!"
+                	}
+            }
+        },
+		{
+            "role": "vengeful",
+            "translation": "Mumu",
+            "side": "village",
+            "help": "You have changed names and are now known as Berserk Player! You can now /kill during the night, but you can't be Protected",
+            "info": "Can /kill during the Night. Cannot be Protected. ~Sided~",
+            "actions": {
+            	"startup": {
+            		"revealRole": ["karp"]
+            		},
+            	"protect": {
+            		"mode": "ignore"
+            		},
+                "night": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "common": "Self",
+                        "killmsg": "~Target~ (~TargetRole~) got Berserk'd!",
+                        "priority": -1
+                    }
+                }
+            }
+        },
+        {
+            "role": "mafia1",
+            "translation": "TraceofLife",
+            "side": "mafia1",
+            "help": "You are user TraceofLife! You are sided with the Auth MAs and therefore you can /kill during the night. Your antics allow you to /confuse (distract) one player during the night, and the best part is, the player won't even know that they were confused! It will also cause Inspectors to think they Inspected you! Your auth powers also give you a chance to find Inspectors, Distractors, and Killers during the night.",
+            "info": "Can /kill. Can /confuse (silent Distract). Gets hax on inspect, distract and kill. ~Sided~.",
+            "actions": {
+            	"startup": {
+            		"revealRole": ["karp"]
+            		},
+                "teamUtilities": true,
+                "hax": {
+                	"inspect": {
+                		"revealPlayer": 0.1,
+                		"revealTarget": 0.33
+                	},
+                	"distract": {
+                		"revealPlayer": 0.05,
+                		"revealTarget": 0.2
+                	},
+                	"kill": {
+                		"revealPlayer": 0.05,
+                		"revealTarget": 0.2
+                	}
+                },
+                "night": {
+                    "confuse": {
+                    	"command": "distract",
+                        "target": "AnyButTeam",
+                        "common": "Self",
+                        "priority": 2,
+                        "distractmsg": "",
+                        "broadcast": "team"
+                    },
+                    "kill": {
+                    	"command": ["kill", "convert", "dummy6", "dummy"],
+                    	"newRole": {
+                    		"mafia3.1": ["mafia3"]
+                    		},
+                    	"convertmsg": "Crobat has changed names and is now known as Ike!",
+                    	"convertfailmsg": "",
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+        {
+            "role": "mafia2",
+            "translation": "Diamondslight",
+            "side": "mafia1",
+            "help": "You are user Diamondslight! You are sided with the Auth MAs and therefore you can /kill during the night. You can /o.o one person during the night, but no one knows what it means so it could do almost anything. Your auth powers also give you a chance to find Inspectors, PLs, and Killers during the night.",
+            "actions": {
+            	"startup": {
+            		"revealRole": ["karp"]
+            		},
+                "teamUtilities": true,
+                "hax": {
+                	"inspect": {
+                		"revealPlayer": 0.05,
+                		"revealTarget": 0.16
+                	},
+                	"distract": {
+                		"revealPlayer": 0.025,
+                		"revealTarget": 0.1
+                	},
+                	"kill": {
+                		"revealPlayer": 0.025,
+                		"revealTarget": 0.1
+                	}
+                },
+                "night": {
+                    "o.o": {
+                    	"command": {
+                    		"distract": 0.2,
+                    		"guard": 0.2,
+                    		"inspect": 0.2,
+                    		"kill": 0.2,
+                    		"convert": 0.1,
+                    		"poison": 0.1
+                    	},
+                        "target": "Any",
+                        "newRole": {
+                        	"villager": ["inspector", "inspector1", "inspector2", "bodyguard", "vigilante", "meh", "meh2", "meh3", "karp"]
+                        },
+                        "guardActions": ["kill", "poison", "distract", "confuse", "inspect"],
+                        "convertmsg": "o.o ~Old~ has changed names and is now known as ~New~! o.o",
+                        "common": "Self",
+                        "priority": 3,
+                        "distractmsg": "",
+                        "broadcast": "team"
+                    },
+                    "kill": {
+                    	"command": ["kill", "convert", "dummy6", "dummy"],
+                    	"newRole": {
+                    		"mafia3.1": ["mafia3"]
+                    		},
+                    	"convertmsg": "Crobat has changed names and is now known as Ike!",
+                    	"convertfailmsg": "",
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 12,
+                        "broadcast": "team"
+                    }
+                }
+            }
+        },
+	{
+		"role": "bodyguard",
+		"translation": "Roild",
+		"side": "village",
+		"help": "You're the Bodyguard. No one else is and if anyone fakeclaims you they should die. You can /bg one person during the night which will protect them for that night.",
+		"info": "Can bg (protect+safeguard) one person during the night. ~Sided~",
+		"actions": {
+            	"startup": {
+            		"revealRole": ["karp"]
+            		},
+			"night": {
+				"bg": {
+					"command": ["protect", "safeguard"],
+					"target": "AnyButSelf",
+					"protectmsg": "",
+					"safeguardmsg": "",
+					"common": "Self",
+					"priority": 5
+				}
+			}
+		}
+	},
+	{
+		"role": "meh",
+		"translation": "Meh",
+		"side": "village",
+		"help": "You're just a Meh, why would anyone try to kill you? Probably because they don't know about your ULTIMATUM! Every two nights, you can type /xU to activate your kill countering abilities, making everyone who targets you suffer a painful death!",
+		"info": "Can /xU to counter kills for one cycle every 2 nights. ~Sided~",
+		"actions": {
+            	"startup": {
+            		"revealRole": ["karp"]
+            		},
+			"night": {
+				"xu": {
+					"command": ["convert"],
+					"newRole": "meh2",
+					"silent": true,
+					"silentConvert": true,
+					"convertmsg": "",
+					"target": "OnlySelf",
+					"common": "Self",
+					"priority": -2
+				}
+			}
+		}
+	},
+	{
+		"role": "meh2",
+		"translation": "Meh",
+		"side": "village",
+		"hide": true,
+		"help": "You're just a Meh, why would anyone try to kill you? Probably because they don't know about your ULTIMATUM! Every two nights, you can type /xU to activate your kill countering abilities, making everyone who targets you suffer a painful death!",
+		"info": "",
+		"actions": {
+			"initialCondition": {
+				"curse": {
+					"curseCount": -1,
+					"silentCurse": true,
+					"cursedRole": "meh3"
+					}
+				},
+			"kill": {
+				"mode": "killattacker",
+				"msg": "You were defeated by the ULTIMATUM!!!1!!12"
+			}
+		}
+	},
+	{
+		"role": "meh3",
+		"translation": "Meh",
+		"side": "village",
+		"hide": true,
+		"help": "You're just a Meh, why would anyone try to kill you? Probably because they don't know about your ULTIMATUM! Every two nights, you can type /xU to activate your kill countering abilities, making everyone who targets you suffer a painful death!",
+		"info": "",
+		"actions": {
+			"initialCondition": {
+				"curse": {
+					"curseCount": 1,
+					"silentCurse": true,
+					"cursedRole": "meh"
+					}
+				},
+			"daykill": "revenge",
+			"daykillrevengemsg": "Someone tried to attack Meh >xU YOU WERE NO MATCH FOR THE ULTIMATUM!!!!"
+		}
+	},
+        {
+            "role": "samurai",
+            "translation": "Ironstorm",
+            "side": "village",
+            "help": "You are IronStorm! You are quiet so you can /kill during the day and most of the time you won't be revealed! However, you receive two extra votes if voted for.",
+            "info": "Can kill during the day (35% chance to reveal). Voteshield of 2. ~Sided~",
+            "actions": {
+                "voteshield": 2,
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You can now /kill [name] (you may be revealed).",
+                        "revealChance": 0.35,
+                        "killmsg": "IronStorm appeared out of nowhere and sliced ~Target~ in two.",
+                        "revealmsg": "~Self~ backs away silently..."
+                    }
+                }
+            }
+        },
+        {
+            "role": "mafia3",
+            "translation": "Crobat",
+            "side": "mafia1",
+            "help": "You are Crobat, AKA Pain! Currently, you can /poison during the night, and once per game you can /fake to make someone think they are poisoned. Your vote also counts as -2. If you are nightkilled or lynched, you will log in as Ike!",
+            "info": "Can poison once per night. Can fake poison once per night. If killed or voted, becomes Ike. Evades daykills. Vote counts as -2. ~Sided~",
+            "actions": {
+            	"startup": {
+            		"revealRole": ["karp"]
+            		},
+            	"kill": {
+            		"mode": "ignore"
+            		},
+            	"daykill": "evade",
+	 			"vote": -2,
+                "teamUtilities": true,
+                "night": {
+                    "poison": {
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 9,
+						"broadcast": "team"
+                    },
+                    "fake": {
+                    	"command": ["dummy5"],
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 101,
+                        "hide": true,
+                        "dummy5targetmsg": "You have 1 days to live.",
+                        "dummy5usermsg": "You faked poison on ~Target~!",
+						"broadcast": "team"
+                    }
+                },
+                "dummy6": {
+                	"mode": "identify",
+                	"msg": "You changed names and are now known as Ike! You can now /kill during the day, and your vote counts as 1."
+                	},
+                "lynch": {
+  					"convertTo": "mafia3.1",
+  					"convertmsg": "Crobat has changed names and is now known as Ike!"
+					}
+            }
+        },
+        {
+            "role": "mafia3.1",
+            "translation": "Ike",
+            "side": "mafia1",
+            "help": "You logged on as Ike! You can now /kill during the day, and your vote counts as 1.",
+            "info": "Can kill during the day (not revealed). ~Sided~",
+            "actions": {
+                "teamUtilities": true,
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": 1
+            			},
+            			"evadechargemsg": "You changed names and are now known as Ike! You can now /kill during the day, and your vote counts as 1."
+            		},
+                "dummy6": {
+                	"mode": "ignore",
+                	"targetmsg": "You changed names and are now known as Ike! You can now /kill during the day, and your vote counts as 1."
+                	},
+                "standby": {
+                    "kill": {
+                        "target": "AnyButTeam",
+                        "msg": "Pick a target and end them with /kill [name] (you won't be revealed).",
+                        "killmsg": "'Prepare yourself.' A giant, golden sword is seen high in the sky. Ike lands on the ground in front of his opponent and swings the holy sword, Ragnell, at ~Target~ with great force. This match is over!"
+                    }
+                }
+            }
+        },
+        {
+            "role": "qc1",
+            "translation": "Perspective",
+            "side": "mafia2",
+            "help": "You are Perspective! A Member of the QC, you can /kill during the night! Use your QC powers to /Inspect one person during the night. Because you are an MA, people are easily tricked into believing you are actually MidwayMarshall!",
+            "info": "Can inspect and kill (shared). Is Inspected as Midway. ~Sided~",
+			"actions": {
+            	"startup": {
+            		"revealRole": ["karp"]
+            		},
+            	"inspect": {
+            		"revealAs": "villager"
+            		},
+                "teamUtilities": true,
+                "night": {
+                    "inspect": {
+                    	"command": ["dummy2"],
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 30,
+                    	"dummy2usermsg": "You identified ~TargetRole~!",
+                        "pierce": true
+                    },
+                    "kill": {
+                    	"command": ["kill", "convert", "dummy6", "dummy"],
+                    	"newRole": {
+                    		"mafia3.1": ["mafia3"]
+                    		},
+                    	"convertmsg": "Crobat has changed names and is now known as Ike!",
+                    	"convertfailmsg": "",
+                    	"usermsg": "",
+                    	"convertmsg": "",
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 13
+                    }
+                },
+                "distract": {
+                    "mode": "identify",
+                    "msg": "You identified ~Distracter~!"
+                }
+            }
+        },
+        {
+            "role": "qc2",
+            "translation": "Joeypals",
+            "side": "mafia2",
+            "help": "You are Joeypals! A Member of the QC, you can /kill during the night! Use your QC powers to /Inspect one person during the night. In order to balance this theme you decided to be Judge Gabranth and make your vote count as 2 and be able to Protect!",
+            "info": "Can inspect and kill (shared). Vote counts as 2. Can Protect. ~Sided~",
+			"actions": {
+			"vote": 2,
+            	"startup": {
+            		"revealRole": ["karp"]
+            		},
+                "teamUtilities": true,
+                "night": {
+                    "inspect": {
+                    	"command": ["dummy2"],
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 30,
+                    	"dummy2usermsg": "You identified ~TargetRole~!",
+                        "pierce": true
+                    },
+                    "kill": {
+                    	"command": ["kill", "convert", "dummy6", "dummy"],
+                    	"newRole": {
+                    		"mafia3.1": ["mafia3"]
+                    		},
+                    	"convertmsg": "Crobat has changed names and is now known as Ike!",
+                    	"convertfailmsg": "",
+                    	"usermsg": "",
+                    	"convertmsg": "",
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 13
+                    },
+                    "protect": {
+                    	"target": "AnyButSelf",
+                    	"common": "Self",
+                    	"priority": 5
+                    	}
+                },
+                "distract": {
+                    "mode": "identify",
+                    "msg": "You identified ~Distracter~!"
+                }
+            }
+        },
+        {
+            "role": "godfather",
+            "translation": "Lucina",
+            "side": "godfather",
+            "help": "Are you really a girl? Who cares! Since enough people think you are, use this to your advantage by using /expose during the standby to convince someone into telling you their role! You can also fake anyone, including yourself, as any other role in the game! Because you are an sMA you can /Kill [name] to cleanse the channel. You evade a single nightkill, and your vote counts as 4.",
+            "info": "Can /Expose or fake an Expose on any player (not revealed), using up to 3 fakes (only 1 is real). Can Kill. Evades 1 kill per game. Vote counts as 4. ~Sided~",
+			"actions": {
+			"vote": 4,
+            	"startup": {
+            		"revealRole": ["karp"]
+            		},
+				"standby": {
+					"expose": {
+						"target": "Any",
+						"limit": 1,
+						"msg": "You can /Expose 1 person during the day! You can also fake up to THREE (3) people per night by typing the first four letters of the role you want to fake them as! (e.g., /midw for midwaymarshall).",
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the ~Role~, ~Target~ conceded, blushing deeply."
+					},
+					"midwaymarshall": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the MidwayMarshall, ~Target~ conceded, blushing deeply."
+					},
+					"midw": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the MidwayMarshall, ~Target~ conceded, blushing deeply."
+					},
+					"roild": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Roild, ~Target~ conceded, blushing deeply."
+					},
+					"roil": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Roild, ~Target~ conceded, blushing deeply."
+					},
+					"fieryespeon": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Fiery Espeon, ~Target~ conceded, blushing deeply."
+					},
+					"fiery": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Fiery Espeon, ~Target~ conceded, blushing deeply."
+					},
+					"fier": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Fiery Espeon, ~Target~ conceded, blushing deeply."
+					},
+					"meh": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Meh, ~Target~ conceded, blushing deeply."
+					},
+					"mumu": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Mumu, ~Target~ conceded, blushing deeply."
+					},
+					"ironstorm": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the IronStorm, ~Target~ conceded, blushing deeply."
+					},
+					"iron": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the IronStorm, ~Target~ conceded, blushing deeply."
+					},
+					"cheezeburgar": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Cheezeburgar, ~Target~ conceded, blushing deeply."
+					},
+					"chee": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Cheezeburgar, ~Target~ conceded, blushing deeply."
+					},
+					"perspective": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Perspective, ~Target~ conceded, blushing deeply."
+					},
+					"pers": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Perspective, ~Target~ conceded, blushing deeply."
+					},
+					"joeypals": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Joeypals, ~Target~ conceded, blushing deeply."
+					},
+					"joey": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Joeypals, ~Target~ conceded, blushing deeply."
+					},
+					"diamondslight": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Diamondslight, ~Target~ conceded, blushing deeply."
+					},
+					"diamond": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Diamondslight, ~Target~ conceded, blushing deeply."
+					},
+					"diam": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Diamondslight, ~Target~ conceded, blushing deeply."
+					},
+					"traceoflife": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the TraceofLife, ~Target~ conceded, blushing deeply."
+					},
+					"trac": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the TraceofLife, ~Target~ conceded, blushing deeply."
+					},
+					"trace": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the TraceofLife, ~Target~ conceded, blushing deeply."
+					},
+					"crobat": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Crobat, ~Target~ conceded, blushing deeply."
+					},
+					"crob": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Crobat, ~Target~ conceded, blushing deeply."
+					},
+					"ike": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Ike, ~Target~ conceded, blushing deeply."
+					},
+					"miki": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Miki Sayaka, ~Target~ conceded, blushing deeply."
+					},
+					"mikisayaka": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Miki Sayaka, ~Target~ conceded, blushing deeply."
+					},
+					"obey": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the obey to kyubey, ~Target~ conceded, blushing deeply."
+					},
+					"obeytokyubey": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the obey to kyubey, ~Target~ conceded, blushing deeply."
+					},
+					"lucina": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Lucina, ~Target~ conceded, blushing deeply."
+					},
+					"luci": {
+						"target": "Any",
+						"command": "expose",
+						"limit": 3,
+						"exposemsg": "Lucina went up to ~Target~ to ask them for their role. 'Do it for me? <3' 'I guess I can't resist :x; I'm the Lucina, ~Target~ conceded, blushing deeply."
+					}
+				},
+            	"kill": {
+            		"mode": {
+            			"evadeCharges": 1
+            			}
+            		},
+                "teamUtilities": true,
+                "night": {
+                    "kill": {
+                    	"command": ["kill", "convert", "dummy6", "dummy"],
+                    	"newRole": {
+                    		"mafia3.1": ["mafia3"]
+                    		},
+                    	"convertmsg": "Crobat has changed names and is now known as Ike!",
+                    	"convertfailmsg": "",
+                    	"usermsg": "",
+                    	"convertmsg": "",
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 16
+                    }
+                }
+            }
+        },
+        {
+            "role": "lqc1",
+            "translation": "obey to kyubey",
+            "side": "mafia3",
+            "help": "You are obey to kyubey, AKA Shazan! Team up with Miki Sayaka to eliminate all the bad themes - I mean, other players from the game, with /kill. You can /watch one player during the night to see the last person who visited them. If you end up alone, your vote will be increased to 99!",
+            "info": "Can kill (shared). Can /watch (shows last visitor). If Miki Sayaka dies, gains 99 votes. ~Sided~",
+			"actions": {
+            	"startup": {
+            		"revealRole": ["karp"]
+            		},
+                "teamUtilities": true,
+                "night": {
+                    "kill": {
+                    	"command": ["kill", "convert", "dummy6"],
+                    	"newRole": {
+                    		"mafia3.1": ["mafia3"]
+                    		},
+                    	"convertmsg": "",
+                    	"silent": true,
+                    	"silentConvert": true,
+                    	"usermsg": "",
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "hide": true,
+                        "priority": 14
+                    },
+                    "watch": {
+                        "target": "Any",
+                        "common": "Self",
+                        "pierce": true,
+                        "watchLast": 1,
+                        "watchFirst": 0,
+                        "priority": 50
+                    }
+                },
+                "onDeath": {
+                	"convertRoles": {
+                		"lqc2": "lqc2.1"
+                		},
+                		"convertmsg": "*** With obey to kyubey gone, Miki Sayaka has turned into Oktavia von Seckendorff!"
+                	}
+            }
+        },
+        {
+            "role": "lqc1.1",
+            "translation": "obey to kyubey",
+            "side": "mafia3",
+            "help": "That contract went well. You can continue to /Kill and /Watch during the Night, but since you're alone, you've gained a vote that counts as 99!",
+            "hide": true,
+            "info": "Can kill (shared). Can /watch (shows last visitor). If Miki Sayaka dies, gains 99 votes. ~Sided~",
+			"actions": {
+			"vote": 99,
+                "teamUtilities": true,
+                "night": {
+                    "kill": {
+                    	"command": ["kill", "convert", "dummy6", "dummy"],
+                    	"newRole": {
+                    		"mafia3.1": ["mafia3"]
+                    		},
+                    	"convertmsg": "Crobat has changed names and is now known as Ike!",
+                    	"convertfailmsg": "",
+                    	"usermsg": "",
+                    	"convertmsg": "",
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 14
+                    },
+                    "watch": {
+                        "target": "Any",
+                        "common": "Self",
+                        "watchLast": 1,
+                        "pierce": true,
+                        "watchFirst": 0,
+                        "priority": 50
+                    }
+                }
+            }
+        },
+        {
+            "role": "lqc2",
+            "translation": "Miki Sayaka",
+            "side": "mafia3",
+            "help": "You are Miki Sayaka, AKA Whereabouts Unknown! Team up with obey to kyubey to eliminate all the bad themes - I mean, other players from the game, with /kill. You can /heal one player to cure them of poison, as well as Safeguarding and Protecting them. If you end up alone, you will gain a daykill!",
+            "info": "Can kill (shared). Can heal (detox + safeguard + protect). If obey to kyubey dies, gains a daykill. ~Sided~",
+			"actions": {
+            	"startup": {
+            		"revealRole": ["karp"]
+            		},
+                "teamUtilities": true,
+                "night": {
+                    "kill": {
+                    	"command": ["kill", "convert", "dummy6", "dummy"],
+                    	"newRole": {
+                    		"mafia3.1": ["mafia3"]
+                    		},
+                    	"convertmsg": "Crobat has changed names and is now known as Ike!",
+                    	"convertfailmsg": "",
+                    	"usermsg": "",
+                    	"convertmsg": "",
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "priority": 14
+                    },
+                    "heal": {
+                    	"command": ["detox", "safeguard", "protect"],
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": 0
+                    }
+                },
+                "onDeath": {
+                	"convertRoles": {
+                		"lqc1": "lqc1.1"
+                		},
+                		"convertmsg": "*** With Miki Sayaka's despair, obey to kyubey became empowered!"
+                	}
+            }
+        },
+        {
+            "role": "lqc2.1",
+            "translation": "Miki Sayaka",
+            "side": "mafia3",
+            "help": "Witch character are you, anyway? Well, you're still Miki Sayaka, but now you can /kill during the night and also /kill during the day (you won't be revealed)! You can also continue to /Heal yourself.",
+            "info": "Can kill (shared). Can heal (detox + safeguard + protect). If Shazan dies, gains a daykill. ~Sided~",
+			"actions": {
+                "teamUtilities": true,
+                "night": {
+                    "kill": {
+                    	"command": ["kill", "convert", "dummy6", "dummy"],
+                    	"newRole": {
+                    		"mafia3.1": ["mafia3"]
+                    		},
+                    	"convertmsg": "Crobat has changed names and is now known as Ike!",
+                    	"convertfailmsg": "",
+                    	"usermsg": "",
+                    	"convertmsg": "",
+                        "target": "AnyButTeam",
+                        "common": "Team",
+                        "hide": true,
+                        "priority": 14
+                    },
+                    "heal": {
+                    	"command": ["detox", "safeguard", "protect"],
+                        "target": "Any",
+                        "common": "Self",
+                        "priority": 1
+                    }
+                },
+                "standby": {
+                    "kill": {
+                        "target": "AnyButSelf",
+                        "msg": "You can now /kill [name] (you won't be revealed).",
+                        "killmsg": "AHAHAHA oktavia killed ~Target~. AHAHAHAHAHAHAH"
+                    }
+                }
+            }
+        },
+        {
+            "role": "rice",
+            "translation": "RiceKirby",
+            "side": "consp",            
+            "winningSides": [
+                "village",
+                "mafia1",
+                "mafia2",
+                "mafia3",
+                "godfather"
+            ],
+            "help": "\"No, I don't want to be an MA! I don't even know what I'm doing in this theme!\" Oh well, at least you can mess with everyone's heads using advanced coding witchcraft. You can /random one person during the night to convert them into a random role, and /metronome one other player to do a random action on them! You win with every side but you instantly die if you stop using your commands!",
+            "info": "Can randomize someone's role (can't randomize Lucina, Miki, Shazan, or Karp). Can Metronome one person per night. Ignores nightkill. Wins with every side.",
+			"actions": {
+                "teamUtilities": true,
+			"kill": {
+				"mode": "ignore",
+				"msg": ""
+			},
+                "night": {
+                    "metronome": {
+                    	"command": {
+                    		"distract": 1,
+                    		"inspect": 1,
+                    		"poison": 1,
+                    		"detox": 1,
+                    		"safeguard": 1,
+                    		"protect": 1
+                    	},
+                        "target": "Any",
+                        "common": "Team",
+                        "priority": 0
+                    },
+                    "random": {
+                    	"command": ["convert"],
+                        "target": "Any",
+                        "newRole": {
+                        	"villager": ["villager", "inspector", "pl", "bodyguard", "meh", "samurai", "vigilante"],
+                        	"inspector":["villager", "inspector", "pl", "bodyguard", "meh", "samurai", "vigilante"],
+                        	"inspector1": ["villager", "inspector", "pl", "bodyguard", "meh", "samurai", "vigilante"],
+                        	"inspector2": ["villager", "inspector", "pl", "bodyguard", "meh", "samurai", "vigilante"],
+                        	"bodyguard": ["villager", "inspector", "pl", "bodyguard", "meh", "samurai", "vigilante"],
+                        	"meh": ["villager", "inspector", "pl", "bodyguard", "meh", "samurai", "vigilante"],
+                        	"pl": ["villager", "inspector", "pl", "bodyguard", "meh", "samurai", "vigilante"],
+                        	"samurai": ["villager", "inspector", "pl", "bodyguard", "meh", "samurai", "vigilante"],
+                        	"vigilante": ["villager", "inspector", "pl", "bodyguard", "meh", "samurai", "vigilante"],
+                        	"mafia1": ["mafia1", "mafia2", "mafia3"],
+                        	"mafia2": ["mafia1", "mafia2", "mafia3"],
+                        	"mafia3": ["mafia1", "mafia2", "mafia3"],
+                        	"mafia3.1": ["mafia1", "mafia2", "mafia3"],
+                        	"qc1": ["qc1", "qc2"],
+                        	"qc2": ["qc1", "qc2"]
+                        	},
+                        "convertmsg": "RiceKirby reprogrammed ~Old~! ~Old~ is now a ~New~!",
+                        "common": "Self",
+                        "priority": 100
+                    }
+                }
+            }
+        }
+	],
+    "roles1": [
+	"inspector1",
+    "pl",
+    "bodyguard",
+    "qc1",
+	"mafia1",
+    "villager"
+    ],
+    "roles2": [
+	"inspector1",
+	"bodyguard",
+	"karp",
+    "villager",
+    "villager",
+	"mafia1",
+	"qc1",
+    "villager"
+    ],
+    "roles3": [
+	"inspector1",
+	"bodyguard",
+	"karp",
+	"vigilante",
+    "villager",
+    "villager",
+	"mafia1",
+	"qc1",
+	"mafia2"
+    ],
+    "roles4": [
+	"karp",
+	"inspector1",
+	"bodyguard",
+	"meh",
+	"vigilante",
+    "villager",
+    "villager",
+	"mafia1",
+	"mafia2",
+	"qc1",
+    "villager",
+	"villager"
+    ],
+    "roles5": [
+	"karp",
+	"meh",
+	"inspector1",
+	"bodyguard",
+	"pl",
+	"vigilante",
+    "villager",
+    "villager",
+    "villager",
+	"mafia1",
+	"mafia3",
+	"lqc1",
+	"lqc2",
+	"villager"
+    ],
+    "roles6": [
+	"karp",
+	"meh",
+	"inspector1",
+	"bodyguard",
+	"pl",
+	"vigilante",
+	"samurai",
+    "villager",
+    "villager",
+    "villager",
+	"mafia1",
+	"mafia3",
+	"lqc1",
+	"lqc2",
+	"godfather",
+    "villager",
+    "villager"
+    ],
+    "roles6": [
+	"karp",
+	"meh",
+	"inspector",
+	"bodyguard",
+	"pl",
+	"vigilante",
+    "samurai",
+    "villager",
+    "villager",
+    "villager",
+	"mafia1",
+	"mafia3",
+	"lqc1",
+	"lqc2",
+	"qc1",
+	"qc2",
+	"godfather",
+    "rice",
+    "villager",
+    "villager",
+    "mafia2",
+	"meh",
+	"qc1",
+	"pl",
+    "villager",
+	"mafia1",
+    "vigilante",
+	"inspector",
+	"qc2",
+    "villager",
+    "villager",
+    "villager"
+    ],
+    "villageCantLoseRoles": [
+        "samurai",
+        "inspector",
+        "meh",
+        "meh3",
+        "pl",
+        "vigilante_vclr",
+        "inspector2"
+    ],
+    "changelog": {
+   }
+}
